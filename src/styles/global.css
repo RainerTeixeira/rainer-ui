@@ -1,0 +1,20 @@
+/**
+ * Estilos globais da biblioteca @rainersoft/ui
+ * 
+ * Importa Tailwind e aplica reset básico
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Reset adicional */
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+  }
+}
