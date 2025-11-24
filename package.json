@@ -1,15 +1,49 @@
 {
   "name": "@rainersoft/ui",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "Componentes UI reutilizáveis construídos com Radix UI, Tailwind CSS e design tokens",
+  "packageManager": "pnpm@9.0.0",
+  "author": {
+    "name": "Rainer Teixeira",
+    "email": "suporte@rainersoft.com.br"
+},
+  "license": "MIT",
+  "keywords": [
+    "ui-components",
+    "radix-ui",
+    "tailwind",
+    "design-system",
+    "react-components"
+  ],
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./styles/global.css": "./src/styles/global.css",
+    "./lib/utils": {
+      "types": "./dist/lib/utils.d.ts",
+      "import": "./dist/lib/utils.mjs",
+      "require": "./dist/lib/utils.js"
+    },
+    "./lib/color-utils": {
+      "types": "./dist/lib/color-utils.d.ts",
+      "import": "./dist/lib/color-utils.mjs",
+      "require": "./dist/lib/color-utils.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist",
+    "src/styles",
     "README.md"
   ],
   "scripts": {
+    "prebuild": "pnpm --filter @rainersoft/design-tokens run build",
     "build": "tsup",
     "dev": "tsup --watch",
     "lint": "eslint . --ext ts,tsx",
@@ -18,26 +52,10 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "clean": "rimraf dist node_modules pnpm-lock.yaml .turbo",
-    "prepublishOnly": "pnpm run build"
+    "prepublishOnly": "pnpm run build",
+    "validate": "node scripts/validate-no-hardcode.js",
+    "type-check": "tsc --noEmit"
   },
-  "keywords": [
-    "ui-components",
-    "radix-ui",
-    "tailwind",
-    "design-system",
-    "react-components"
-  ],
-  "author": {
-    "name": "Rainer Teixeira",
-    "email": "suporte@rainersoft.com.br",
-    "url": "https://rainersoft.com.br"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/RainerSoft/rainer-ui.git"
-  },
-  "homepage": "https://github.com/RainerSoft/rainer-ui#readme",
   "peerDependencies": {
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
@@ -70,7 +88,12 @@
     "@rainersoft/design-tokens": "workspace:*",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "cmdk": "^1.0.0",
+    "embla-carousel-react": "^8.0.0",
     "lucide-react": "^0.553.0",
+    "react-day-picker": "^8.10.0",
+    "react-hook-form": "^7.50.0",
+    "sonner": "^1.4.0",
     "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
@@ -102,14 +125,30 @@
     "vite": "^5.4.21"
   },
   "tsup": {
-    "entry": ["src/index.ts"],
-    "format": ["cjs", "esm"],
+    "entry": [
+      "src/index.ts"
+    ],
+    "format": [
+      "cjs",
+      "esm"
+    ],
     "dts": true,
     "splitting": false,
     "sourcemap": true,
     "clean": true,
-    "external": ["react", "react-dom"]
+    "external": [
+      "react",
+      "react-dom"
+    ]
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RainerTeixeira/rainer-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RainerTeixeira/rainer-ui/issues"
+  },
+  "homepage": "https://github.com/RainerTeixeira/rainer-ui#readme",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"

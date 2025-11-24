@@ -1,12 +1,24 @@
 /**
  * Utilitários da Biblioteca de Componentes UI
  * 
+ * Fonte única de verdade: @rainersoft/design-tokens
+ * Usa tokens.json para valores build-time e CSS vars para runtime dinâmico
+ * 
  * @module @rainersoft/ui/lib/utils
  * @author Rainer Teixeira
  */
 
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { motionTokens } from '@rainersoft/design-tokens';
+
+// Importa tokens.json para fallbacks build-time
+let tokensJson: any = null;
+try {
+  tokensJson = require('@rainersoft/design-tokens/formats/tokens.json');
+} catch (e) {
+  console.warn('[@rainersoft/ui] tokens.json não disponível, usando fallbacks');
+}
 
 /**
  * Combina e mescla classes CSS de forma inteligente
@@ -57,23 +69,84 @@ export const COMPONENT_CLASSES = {
 } as const;
 
 /**
- * Delays de animação padronizados
+ * Motion tokens - Fonte única de verdade dos design-tokens
+ * 
+ * Ordem de precedência:
+ * 1. motionTokens (ES modules do design-tokens)
+ * 2. tokensJson.motion (tokens.json build-time)
+ * 
+ * Se nenhum estiver disponível, lança erro para garantir build correto
  */
-export const ANIMATION_DELAYS = {
-  instant: '0ms',
-  fast: '100ms',
-  normal: '200ms',
-  slow: '300ms',
-  slower: '500ms',
-} as const;
+const motion = (() => {
+  const duration = tokensJson?.motion?.duration || motionTokens?.duration;
+  const easing = tokensJson?.motion?.easing || motionTokens?.easing;
+  const delay = tokensJson?.motion?.delay || motionTokens?.delay;
+  
+  if (!duration || !easing || !delay) {
+    throw new Error(
+      '[@rainersoft/ui] Motion tokens não encontrados. ' +
+      'Certifique-se de que @rainersoft/design-tokens foi buildado corretamente.'
+    );
+  }
+  
+  return { duration, easing, delay };
+})();
 
 /**
- * Durações de animação padronizadas
+ * Delays de animação importados dos design tokens
+ * 
+ * @description
+ * Usa motion.delay com fallback seguro para garantir
+ * consistência em todo o sistema de design.
  */
-export const ANIMATION_DURATIONS = {
-  instant: '0ms',
-  fast: '150ms',
-  normal: '300ms',
-  slow: '500ms',
-  slower: '700ms',
-} as const;
+export const ANIMATION_DELAYS = motion.delay;
+
+/**
+ * Durações de animação importadas dos design tokens
+ * 
+ * @description
+ * Usa motion.duration com fallback seguro para garantir
+ * consistência em todo o sistema de design.
+ */
+export const ANIMATION_DURATIONS = motion.duration;
+
+/**
+ * Easings de animação importados dos design tokens
+ * 
+ * @description
+ * Usa motion.easing com fallback seguro para garantir
+ * transições suaves e consistentes.
+ */
+export const ANIMATION_EASINGS = motion.easing;
+
+/**
+ * Motion presets prontos para uso
+ * 
+ * @description
+ * Combinações pre-configuradas de duration + easing para casos comuns
+ * 
+ * @example
+ * ```tsx
+ * <motion.div
+ *   transition={motionPresets.default}
+ * />
+ * ```
+ */
+export const motionPresets = {
+  default: {
+    duration: motion.duration.normal,
+    easing: motion.easing.easeInOut,
+  },
+  fast: {
+    duration: motion.duration.fast,
+    easing: motion.easing.easeOut,
+  },
+  slow: {
+    duration: motion.duration.slow,
+    easing: motion.easing.easeInOut,
+  },
+  spring: {
+    duration: motion.duration.normal,
+    easing: motion.easing.spring,
+  },
+};

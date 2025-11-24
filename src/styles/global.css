@@ -1,9 +1,244 @@
 /**
  * Estilos globais da biblioteca @rainersoft/ui
  * 
- * Importa Tailwind e aplica reset básico
+ * Inclui reset CSS, estilos base e utilitários visuais.
+ * Importa CSS variables do @rainersoft/design-tokens.
+ * 
+ * @module @rainersoft/ui/styles/global
+ * @author Rainer Teixeira
  */
 
+/* Import design tokens CSS variables */
+@import '@rainersoft/design-tokens/formats/css-vars.css';
+
+/* ============================================================================ 
+   RESET & BASE
+   ============================================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+#root, #__next {
+  isolation: isolate;
+}
+
+/* ============================================================================ 
+   EFEITOS VISUAIS
+   ============================================================================ */
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Neon Effects */
+.neon-text {
+  text-shadow: 
+    0 0 5px currentColor,
+    0 0 10px currentColor,
+    0 0 20px currentColor;
+}
+
+.neon-box {
+  box-shadow: 
+    0 0 5px rgb(var(--color-primary)),
+    0 0 10px rgb(var(--color-primary)),
+    0 0 20px rgb(var(--color-primary)),
+    inset 0 0 5px rgb(var(--color-primary) / 0.2);
+}
+
+/* Gradients */
+.gradient-primary {
+  background: linear-gradient(135deg, 
+    rgb(var(--color-primary)), 
+    rgb(var(--color-secondary))
+  );
+}
+
+.gradient-accent {
+  background: linear-gradient(135deg, 
+    rgb(var(--color-accent)), 
+    rgb(var(--color-primary))
+  );
+}
+
+.gradient-cyberpunk {
+  background: linear-gradient(135deg, #00e6ff 0%, #7d00ff 100%);
+}
+
+.gradient-neon {
+  background: linear-gradient(135deg, #ff00ff 0%, #00e6ff 100%);
+}
+
+/* ============================================================================ 
+   ANIMAÇÕES UTILITÁRIAS
+   ============================================================================ */
+
+/* Pulse Glow */
+.animate-pulse-glow {
+  animation: pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 0.8;
+    filter: brightness(1.2);
+  }
+}
+
+/* Slide Up */
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Fade In */
+.animate-fade-in {
+  animation: fade-in 0.5s ease-in;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Spin */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Float */
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* ============================================================================ 
+   TRANSIÇÕES DE TEMA
+   ============================================================================ */
+
+/* Smooth theme transitions */
+.theme-transition * {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* ============================================================================ 
+   UTILIDADES ESPECIAIS
+   ============================================================================ */
+
+/* Scrollbar personalizada */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--color-primary) / 0.3) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-primary) / 0.3);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-primary) / 0.5);
+}
+
+/* Selection highlight */
+.selection-highlight ::selection {
+  background: rgb(var(--color-primary) / 0.3);
+  color: rgb(var(--color-primary-foreground));
+}
+
+/* Focus visible only for keyboard navigation */
+.focus-visible-only :focus {
+  outline: none;
+}
+
+.focus-visible-only :focus-visible {
+  outline: 2px solid rgb(var(--color-ring));
+  outline-offset: 2px;
+}
+
+/* Import Tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
