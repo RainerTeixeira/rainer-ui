@@ -7,7 +7,7 @@
  * @author Rainer Teixeira
  */
 
-import { Dialog, DialogContent, DialogTitle } from '@rainersoft/ui/dialog';
+import { Dialog, DialogContent, DialogTitle } from '../../overlays/dialog/Dialog';
 import { cn } from '../../../lib/utils';
 import { type DialogProps } from '@radix-ui/react-dialog';
 import { Command as CommandPrimitive } from 'cmdk';

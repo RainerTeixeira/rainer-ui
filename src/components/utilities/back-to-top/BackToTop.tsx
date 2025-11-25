@@ -43,7 +43,7 @@ import { ArrowUp } from 'lucide-react';
 // UI Components
 // ============================================================================
 
-import { Button } from '@rainersoft/ui/button';
+import { Button } from '../../actions/button/Button';
 
 // ============================================================================
 // Hooks
@@ -134,4 +134,11 @@ export function BackToTopButton() {
       <ArrowUp className="h-5 w-5" aria-hidden="true" />
     </Button>
   );
+}
+
+/**
+ * Alias BackToTop para compatibilidade com imports existentes
+ */
+export function BackToTop() {
+  return <BackToTopButton />;
 }

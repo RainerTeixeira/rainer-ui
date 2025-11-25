@@ -36,7 +36,7 @@ export function getTokenColor(tokenName: string): string {
   
   // Tenta encontrar no tokens.json
   if (tokensJson?.colors) {
-    for (const [category, values] of Object.entries(tokensJson.colors)) {
+    for (const [_category, values] of Object.entries(tokensJson.colors)) {
       if (typeof values === 'object' && values !== null) {
         const token = (values as any)[cleanName];
         if (token) {
@@ -118,7 +118,7 @@ export function overlayFromToken(tokenName: string, alpha: number = 0.08): strin
   
   // Busca valor hex no tokens.json
   if (tokensJson?.colors) {
-    for (const [category, values] of Object.entries(tokensJson.colors)) {
+    for (const [_category, values] of Object.entries(tokensJson.colors)) {
       if (typeof values === 'object' && values !== null) {
         const token = (values as any)[cleanName];
         if (token?.value) {

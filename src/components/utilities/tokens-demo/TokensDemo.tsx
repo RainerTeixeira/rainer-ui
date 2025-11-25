@@ -10,7 +10,7 @@
  * @version 1.0.0
  */
 
-import { Card, CardContent, CardHeader, CardTitle } from '@rainersoft/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '../../layout/card/Card';
 import {
   getDarkColors,
   getLightColors,

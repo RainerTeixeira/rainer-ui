@@ -69,6 +69,15 @@ export const COMPONENT_CLASSES = {
 } as const;
 
 /**
+ * Classes utilitárias para seções de página
+ * Usado por componentes de layout como PageHeader.
+ */
+export const SECTION_CLASSES = {
+  /** Container padrão de página com largura máxima e padding responsivo */
+  container: 'w-full max-w-6xl mx-auto px-6 py-12',
+} as const;
+
+/**
  * Motion tokens - Fonte única de verdade dos design-tokens
  * 
  * Ordem de precedência:

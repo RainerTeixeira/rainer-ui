@@ -33,8 +33,8 @@ import { cn } from '../../../lib/utils';
 import { RefreshCw } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import { Button } from './button';
-import { Card } from './card';
+import { Button } from '../../actions/button/Button';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../layout/card/Card';
 
 /**
  * Componente UpdateNotification

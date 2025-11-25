@@ -34,17 +34,17 @@ import { Check, Cookie, Settings, X, XCircle } from 'lucide-react';
 // UI Components
 // ============================================================================
 
-import { Button } from '@rainersoft/ui/button';
+import { Button } from '../../actions/button/Button';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@rainersoft/ui/card';
-import { Label } from '@rainersoft/ui/label';
-import { Separator } from '@rainersoft/ui/separator';
-import { Switch } from '@rainersoft/ui/switch';
+} from '../../layout/card/Card';
+import { Label } from '../../forms/label/Label';
+import { Separator } from '../../layout/separator/Separator';
+import { Switch } from '../../forms/switch/Switch';
 
 // ============================================================================
 // Design Tokens

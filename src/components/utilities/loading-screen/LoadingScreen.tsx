@@ -49,7 +49,7 @@ import { Loader2 } from 'lucide-react';
 // ============================================================================
 
 import { cn } from '../../../lib/utils';
-import { hexToRGB } from '../../../lib/utils/color-utils';
+import { hexToRGB } from '../../../lib/color-utils';
 
 // Cache de tokens carregados dinamicamente
 let tokensCache: any = null;
@@ -75,7 +75,7 @@ import { useTheme } from 'next-themes';
 // UI Components
 // ============================================================================
 
-import { Skeleton } from './skeleton';
+import { Skeleton } from '../../feedback/skeleton/Skeleton';
 
 // ============================================================================
 // Constants
@@ -586,8 +586,8 @@ export function LoadingScreen({ progress, currentStep }: LoadingScreenProps) {
         </div>
       </div>
 
-      {/* CSS para animações */}
-      <style jsx>{`
+      {/* CSS para animações (sem styled-jsx) */}
+      <style>{`
         @keyframes starTwinkle {
           0%,
           100% {

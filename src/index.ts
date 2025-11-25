@@ -1,12 +1,34 @@
 /**
  * @rainersoft/ui - Biblioteca de Componentes UI
  * 
+ * Filosofia:
+ * - Radix UI: Lógica + Acessibilidade
+ * - ShadCN: Estilização + Design System
+ * - Tailwind: Classes Utilitárias
+ * - Design Tokens: Valores (sem redundância)
+ * 
  * Exportações centralizadas de todos os componentes da biblioteca.
  * Organizados por categoria para facilitar a descoberta e uso.
  * 
  * @module @rainersoft/ui
  * @author Rainer Teixeira
  */
+
+// ============================================================================
+// DESIGN TOKENS (Re-exportados para conveniência)
+// ============================================================================
+export {
+  tokens,
+  darkTheme,
+  lightTheme,
+  darkThemeColors,
+  lightThemeColors,
+  BACKGROUND,
+  GRADIENTS,
+  GRADIENT_DIRECTIONS,
+  MOTION,
+} from '@rainersoft/design-tokens';
+export type { Tokens } from '@rainersoft/design-tokens';
 
 // ============================================================================
 // UTILITIES
@@ -39,6 +61,7 @@ export * from './components/forms/textarea/Textarea';
 export * from './components/layout/aspect-ratio/AspectRatio';
 export * from './components/layout/card/Card';
 export * from './components/layout/scroll-area/ScrollArea';
+// export * from './components/layout/separator/Separator'; // TODO: Fix lib/utils import
 export * from './components/layout/separator/Separator';
 export * from './components/layout/sheet/Sheet';
 export * from './components/layout/table/Table';
@@ -48,6 +71,8 @@ export * from './components/layout/table/Table';
 // ============================================================================
 export * from './components/feedback/alert/Alert';
 export * from './components/feedback/alert-dialog/AlertDialog';
+// export * from './components/feedback/badge/Badge'; // TODO: Fix lib/utils import
+// export * from './components/feedback/progress/Progress'; // TODO: Fix lib/utils import
 export * from './components/feedback/badge/Badge';
 export * from './components/feedback/progress/Progress';
 export * from './components/feedback/skeleton/Skeleton';
@@ -68,6 +93,7 @@ export * from './components/overlays/tooltip/Tooltip';
 // ============================================================================
 export * from './components/navigation/accordion/Accordion';
 export * from './components/navigation/collapsible/Collapsible';
+// export * from './components/navigation/command/Command'; // TODO: Fix circular dependency
 export * from './components/navigation/command/Command';
 export * from './components/navigation/navigation-menu/NavigationMenu';
 export * from './components/navigation/tabs/Tabs';
@@ -75,6 +101,7 @@ export * from './components/navigation/tabs/Tabs';
 // ============================================================================
 // DATA DISPLAY
 // ============================================================================
+// export * from './components/data-display/avatar/Avatar'; // TODO: Fix lib/utils import
 export * from './components/data-display/avatar/Avatar';
 export * from './components/data-display/calendar/Calendar';
 export * from './components/data-display/carousel/Carousel';
@@ -82,8 +109,8 @@ export * from './components/data-display/carousel/Carousel';
 // ============================================================================
 // EFFECTS
 // ============================================================================
-export * from './components/effects/celestial-background/CelestialBackground';
-export * from './components/effects/floating-grid/FloatingGrid';
+// export * from './components/effects/celestial-background/CelestialBackground'; // TODO: Fix color-utils import
+// export * from './components/effects/floating-grid/FloatingGrid'; // TODO: Fix color-utils import
 export * from './components/effects/particles-effect/ParticlesEffect';
 export * from './components/effects/stars-background/StarsBackground';
 
@@ -95,7 +122,7 @@ export * from './components/utilities/cookie-banner/CookieBanner';
 export * from './components/utilities/install-prompt/InstallPrompt';
 export * from './components/utilities/loading-screen/LoadingScreen';
 export * from './components/utilities/page-header/PageHeader';
-export * from './components/utilities/tokens-demo/TokensDemo';
+// export * from './components/utilities/tokens-demo/TokensDemo'; // TODO: Add missing tokens util
 export * from './components/utilities/update-notification/UpdateNotification';
 export * from './components/utilities/visually-hidden/VisuallyHidden';
 
