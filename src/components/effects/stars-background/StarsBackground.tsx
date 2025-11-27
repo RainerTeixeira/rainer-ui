@@ -76,14 +76,16 @@ export function StarsBackground() {
           {stars.map(star => (
             <div
               key={star.id}
-              className="absolute rounded-full bg-white"
+              className="absolute rounded-full"
               style={{
                 left: `${star.left}%`,
                 top: `${star.top}%`,
                 width: `${star.size}px`,
                 height: `${star.size}px`,
                 opacity: star.opacity,
-                boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, 0.8)`,
+                // Usa token dedicado de efeito para a cor das estrelas
+                backgroundColor: 'var(--effect-star-color)',
+                boxShadow: `0 0 ${star.size * 2}px var(--effect-star-color)`,
                 animation: 'starTwinkle 3s ease-in-out infinite',
                 animationDelay: `${star.delay}s`,
               }}

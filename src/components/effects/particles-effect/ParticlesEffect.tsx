@@ -137,19 +137,28 @@ export function ParticlesEffect({
     >
       {/* Partícula 1 - Cyan (maior, opacidade alta) */}
       <div
-        className={`absolute ${selectedPositions.particle1} w-1 h-1 bg-cyan-400 rounded-full animate-pulse opacity-40`}
+        className={`absolute ${selectedPositions.particle1} w-1 h-1 rounded-full animate-pulse opacity-40`}
+        style={{
+          backgroundColor: 'var(--color-text-neon-cyan)',
+        }}
       />
 
       {/* Partícula 2 - Purple (menor, delay médio) */}
       <div
-        className={`absolute ${selectedPositions.particle2} w-0.5 h-0.5 bg-purple-400 rounded-full animate-pulse opacity-30`}
-        style={{ animationDelay: ANIMATION_DELAYS.particle2 }}
+        className={`absolute ${selectedPositions.particle2} w-0.5 h-0.5 rounded-full animate-pulse opacity-30`}
+        style={{
+          animationDelay: ANIMATION_DELAYS.particle2,
+          backgroundColor: 'var(--color-text-neon-purple)',
+        }}
       />
 
       {/* Partícula 3 - Pink (menor, delay longo) */}
       <div
-        className={`absolute ${selectedPositions.particle3} w-0.5 h-0.5 bg-pink-400 rounded-full animate-pulse opacity-35`}
-        style={{ animationDelay: ANIMATION_DELAYS.long }}
+        className={`absolute ${selectedPositions.particle3} w-0.5 h-0.5 rounded-full animate-pulse opacity-35`}
+        style={{
+          animationDelay: ANIMATION_DELAYS.long,
+          backgroundColor: 'var(--color-text-neon-pink)',
+        }}
       />
     </div>
   );

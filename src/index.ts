@@ -134,7 +134,7 @@ export * from './components/data-display/carousel/Carousel';
 // export * from './components/effects/floating-grid/FloatingGrid'; // TODO: Fix color-utils import
 export * from './components/effects/particles-effect/ParticlesEffect';
 export * from './components/effects/stars-background/StarsBackground';
-export * from './matrix-background';
+export * from './components/effects/matrix-background/MatrixBackground';
 
 // ============================================================================
 // UTILITIES
