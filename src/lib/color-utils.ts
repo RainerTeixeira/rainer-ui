@@ -4,52 +4,46 @@
  * Funções helper para conversão e manipulação de cores,
  * baseadas 100% nos design tokens do @rainersoft/design-tokens.
  * 
- * Fonte única de verdade: @rainersoft/design-tokens/formats/tokens.json
+ * Fonte única de verdade: @rainersoft/design-tokens (ES modules)
  * 
  * @module @rainersoft/ui/lib/color-utils
  * @author Rainer Teixeira
  */
 
-// Importa tokens.json para resolução de cores
-let tokensJson: any = null;
-try {
-  tokensJson = require('@rainersoft/design-tokens/formats/tokens.json');
-} catch (e) {
-  console.warn('[@rainersoft/ui] tokens.json não disponível para color-utils');
-}
+import { tokens } from '@rainersoft/design-tokens';
 
 /**
- * Retorna o valor CSS do token (prefere CSS var se existir)
+ * Retorna o valor CSS do token (usa CSS var por padrão)
  * 
  * @param tokenName - Nome do token (ex: 'color-primary' ou 'primary')
- * @returns String CSS (var(--...) ou valor hex)
+ * @param theme - Tema para buscar valor direto ('light' | 'dark'), opcional
+ * @returns String CSS (var(--...) ou valor hex se theme especificado)
  * 
  * @example
  * ```typescript
  * getTokenColor('primary') // "var(--color-primary)"
- * getTokenColor('color-primary') // "var(--color-primary)"
+ * getTokenColor('primary', 'light') // "#0891b2" (valor direto do token)
  * ```
  */
-export function getTokenColor(tokenName: string): string {
-  // Remove prefixo 'color-' se presente para busca
+export function getTokenColor(tokenName: string, theme?: 'light' | 'dark'): string {
   const cleanName = tokenName.replace(/^color-/, '');
   
-  // Tenta encontrar no tokens.json
-  if (tokensJson?.colors) {
-    for (const [_category, values] of Object.entries(tokensJson.colors)) {
-      if (typeof values === 'object' && values !== null) {
-        const token = (values as any)[cleanName];
-        if (token) {
-          // Se tem variable definida, retornar CSS var
-          if (token.variable) return `var(--${token.variable})`;
-          // Se tem value, retornar diretamente
-          if (token.value) return token.value;
+  // Se theme especificado, tenta buscar valor direto
+  if (theme) {
+    const colors = theme === 'light' ? tokens.colors.light : tokens.colors.dark;
+    // Navega nos tokens buscando o valor
+    for (const category of Object.values(colors)) {
+      if (typeof category === 'object' && category !== null) {
+        for (const [key, value] of Object.entries(category)) {
+          if (key === cleanName && typeof value === 'string') {
+            return value;
+          }
         }
       }
     }
   }
   
-  // Fallback: assume que tokenName é nome de CSS var
+  // Fallback padrão: CSS var
   const varName = tokenName.startsWith('color-') ? tokenName : `color-${tokenName}`;
   return `var(--${varName})`;
 }
@@ -101,34 +95,37 @@ export function hexToRGBA(hex: string, alpha: number = 1): string {
  * 
  * @param tokenName - Nome do token de cor
  * @param alpha - Opacidade (padrão: 0.08)
+ * @param theme - Tema para buscar valor direto ('light' | 'dark'), opcional
  * @returns String CSS rgba
  * 
  * @description
- * Se token.value existir, converte hex → rgba.
- * Caso contrário, retorna CSS var com formato RGB para uso em rgba().
+ * Tenta buscar valor direto do token e converte hex → rgba.
+ * Se não encontrar, retorna CSS var com formato RGB para uso em rgba().
  * 
  * @example
  * ```typescript
- * overlayFromToken('primary', 0.08) // "rgba(8, 145, 178, 0.08)"
- * overlayFromToken('primary') // usa alpha padrão 0.08
+ * overlayFromToken('primary', 0.08, 'light') // "rgba(8, 145, 178, 0.08)"
+ * overlayFromToken('primary') // "rgba(var(--color-primary-rgb), 0.08)"
  * ```
  */
-export function overlayFromToken(tokenName: string, alpha: number = 0.08): string {
+export function overlayFromToken(tokenName: string, alpha: number = 0.08, theme?: 'light' | 'dark'): string {
   const cleanName = tokenName.replace(/^color-/, '');
   
-  // Busca valor hex no tokens.json
-  if (tokensJson?.colors) {
-    for (const [_category, values] of Object.entries(tokensJson.colors)) {
-      if (typeof values === 'object' && values !== null) {
-        const token = (values as any)[cleanName];
-        if (token?.value) {
-          return hexToRGBA(token.value, alpha);
+  // Se theme especificado, busca valor direto e converte
+  if (theme) {
+    const colors = theme === 'light' ? tokens.colors.light : tokens.colors.dark;
+    for (const category of Object.values(colors)) {
+      if (typeof category === 'object' && category !== null) {
+        for (const [key, value] of Object.entries(category)) {
+          if (key === cleanName && typeof value === 'string' && value.startsWith('#')) {
+            return hexToRGBA(value, alpha);
+          }
         }
       }
     }
   }
   
-  // Fallback: retorna rgba usando CSS var
+  // Fallback: usa CSS var com formato RGB
   // Assume que --color-*-rgb existe (padrão do design-tokens)
   const varName = tokenName.startsWith('color-') ? tokenName : `color-${tokenName}`;
   return `rgba(var(--${varName}-rgb, 0 0 0), ${alpha})`;

@@ -12,14 +12,6 @@ import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { motionTokens } from '@rainersoft/design-tokens';
 
-// Importa tokens.json para fallbacks build-time
-let tokensJson: any = null;
-try {
-  tokensJson = require('@rainersoft/design-tokens/formats/tokens.json');
-} catch (e) {
-  console.warn('[@rainersoft/ui] tokens.json não disponível, usando fallbacks');
-}
-
 /**
  * Combina e mescla classes CSS de forma inteligente
  * 
@@ -78,28 +70,13 @@ export const SECTION_CLASSES = {
 } as const;
 
 /**
- * Motion tokens - Fonte única de verdade dos design-tokens
+ * Motion tokens - Importados diretamente do @rainersoft/design-tokens
  * 
- * Ordem de precedência:
- * 1. motionTokens (ES modules do design-tokens)
- * 2. tokensJson.motion (tokens.json build-time)
- * 
- * Se nenhum estiver disponível, lança erro para garantir build correto
+ * @description
+ * Única fonte de verdade para tokens de motion (duração, easing, delay).
+ * Importados diretamente do pacote design-tokens via ES modules.
  */
-const motion = (() => {
-  const duration = tokensJson?.motion?.duration || motionTokens?.duration;
-  const easing = tokensJson?.motion?.easing || motionTokens?.easing;
-  const delay = tokensJson?.motion?.delay || motionTokens?.delay;
-  
-  if (!duration || !easing || !delay) {
-    throw new Error(
-      '[@rainersoft/ui] Motion tokens não encontrados. ' +
-      'Certifique-se de que @rainersoft/design-tokens foi buildado corretamente.'
-    );
-  }
-  
-  return { duration, easing, delay };
-})();
+export const motion = motionTokens;
 
 /**
  * Delays de animação importados dos design tokens

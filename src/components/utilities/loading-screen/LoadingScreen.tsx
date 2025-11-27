@@ -604,3 +604,4 @@ export function LoadingScreen({ progress, currentStep }: LoadingScreenProps) {
     </div>
   );
 }
+

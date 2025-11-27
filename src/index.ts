@@ -33,8 +33,30 @@ export type { Tokens } from '@rainersoft/design-tokens';
 // ============================================================================
 // UTILITIES
 // ============================================================================
-export { cn } from './lib/utils';
+export { cn, motion, ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS } from './lib/utils';
 export type { ClassValue } from 'clsx';
+
+// Color Utilities
+export {
+  getTokenColor,
+  hexToRGB,
+  hexToRGBA,
+  overlayFromToken,
+  isValidHex,
+  getContrastColor,
+  getLuminance,
+} from './lib/color-utils';
+
+// Theme Utilities (para uso sem hardcode)
+export {
+  getThemeColors,
+  getColorFromTheme,
+  getSemanticColors,
+  generateTailwindClasses,
+  SEMANTIC_COLORS,
+  getStatusColor,
+  getBrandColor,
+} from './lib/theme-utils';
 
 // ============================================================================
 // ACTIONS
@@ -125,4 +147,18 @@ export * from './components/utilities/page-header/PageHeader';
 // export * from './components/utilities/tokens-demo/TokensDemo'; // TODO: Add missing tokens util
 export * from './components/utilities/update-notification/UpdateNotification';
 export * from './components/utilities/visually-hidden/VisuallyHidden';
+export * from './components/utilities/theme-toggle/ThemeToggle';
+export * from './components/utilities/error-boundary/ErrorBoundary';
+
+// ============================================================================
+// HOOKS
+// ============================================================================
+export * from './hooks/use-mobile';
+export * from './hooks/use-pwa';
+
+// ============================================================================
+// SCROLL UTILITIES
+// ============================================================================
+export * from './lib/scroll-utils';
+
 

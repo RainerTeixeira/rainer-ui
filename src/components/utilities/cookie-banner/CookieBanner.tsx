@@ -599,3 +599,4 @@ export function useCookieConsent(): CookiePreferences | null {
 
   return preferences;
 }
+

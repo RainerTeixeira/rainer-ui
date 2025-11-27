@@ -93,7 +93,7 @@ export function StarsBackground() {
       </div>
 
       {/* CSS para animações */}
-      <style jsx>{`
+      <style>{`
         /* Animação de brilho das estrelas */
         @keyframes starTwinkle {
           0%,
@@ -110,3 +110,4 @@ export function StarsBackground() {
     </>
   );
 }
+
