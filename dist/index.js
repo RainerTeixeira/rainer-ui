@@ -4712,6 +4712,302 @@ function useIsMobile() {
   return !!isMobile;
 }
 
+// src/hooks/use-carousel-keyboard.ts
+
+function useCarouselKeyboard({
+  totalItems,
+  currentIndex = 0,
+  onIndexChange,
+  autoPlay = false,
+  autoPlayInterval = 3e3,
+  options = {}
+}) {
+  const {
+    loop = true,
+    pauseOnHover = true,
+    keyMap = ["ArrowLeft", "ArrowRight"]
+  } = options;
+  const [isPaused, setIsPaused] = React.default.useState(false);
+  const intervalRef = React.default.useRef(null);
+  const containerRef = React.default.useRef(null);
+  const next = React.default.useCallback(() => {
+    const nextIndex = currentIndex + 1;
+    if (nextIndex >= totalItems) {
+      if (loop) {
+        _optionalChain([onIndexChange, 'optionalCall', _73 => _73(0)]);
+      }
+    } else {
+      _optionalChain([onIndexChange, 'optionalCall', _74 => _74(nextIndex)]);
+    }
+  }, [currentIndex, totalItems, loop, onIndexChange]);
+  const prev = React.default.useCallback(() => {
+    const prevIndex = currentIndex - 1;
+    if (prevIndex < 0) {
+      if (loop) {
+        _optionalChain([onIndexChange, 'optionalCall', _75 => _75(totalItems - 1)]);
+      }
+    } else {
+      _optionalChain([onIndexChange, 'optionalCall', _76 => _76(prevIndex)]);
+    }
+  }, [currentIndex, totalItems, loop, onIndexChange]);
+  const goTo = React.default.useCallback((index) => {
+    if (index >= 0 && index < totalItems) {
+      _optionalChain([onIndexChange, 'optionalCall', _77 => _77(index)]);
+    }
+  }, [totalItems, onIndexChange]);
+  React.default.useEffect(() => {
+    if (autoPlay && !isPaused) {
+      intervalRef.current = setInterval(next, autoPlayInterval);
+    } else {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    }
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [autoPlay, isPaused, next, autoPlayInterval]);
+  React.default.useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (!keyMap.includes(event.key)) return;
+      event.preventDefault();
+      if (event.key === keyMap[0]) {
+        prev();
+      } else if (event.key === keyMap[1]) {
+        next();
+      }
+    };
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      if (container) {
+        container.removeEventListener("keydown", handleKeyDown);
+      } else {
+        document.removeEventListener("keydown", handleKeyDown);
+      }
+    };
+  }, [keyMap, next, prev]);
+  React.default.useEffect(() => {
+    if (!pauseOnHover || !autoPlay) return;
+    const container = containerRef.current;
+    if (!container) return;
+    const handleMouseEnter = () => setIsPaused(true);
+    const handleMouseLeave = () => setIsPaused(false);
+    container.addEventListener("mouseenter", handleMouseEnter);
+    container.addEventListener("mouseleave", handleMouseLeave);
+    return () => {
+      container.removeEventListener("mouseenter", handleMouseEnter);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [pauseOnHover, autoPlay]);
+  const pause = React.default.useCallback(() => {
+    setIsPaused(true);
+  }, []);
+  const resume = React.default.useCallback(() => {
+    setIsPaused(false);
+  }, []);
+  const stop = React.default.useCallback(() => {
+    setIsPaused(true);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }, []);
+  return {
+    // Refs
+    containerRef,
+    // Funções de navegação
+    next,
+    prev,
+    goTo,
+    // Controle de auto-play
+    pause,
+    resume,
+    stop,
+    // Estado
+    isPaused,
+    canGoNext: loop || currentIndex < totalItems - 1,
+    canGoPrev: loop || currentIndex > 0,
+    // Utilitários
+    isFirst: currentIndex === 0,
+    isLast: currentIndex === totalItems - 1,
+    progress: totalItems > 0 ? (currentIndex + 1) / totalItems * 100 : 0
+  };
+}
+
+// src/hooks/use-table-of-contents.ts
+
+function useTableOfContents({
+  containerRef,
+  headings = ["h2", "h3"],
+  options = {}
+}) {
+  const {
+    offset = 100,
+    smoothScroll = true,
+    activeOnScroll = true,
+    nested = true
+  } = options;
+  const [items, setItems] = React.default.useState([]);
+  const [activeId, setActiveId] = React.default.useState(null);
+  const generateTOC = React.default.useCallback(() => {
+    const container = _optionalChain([containerRef, 'optionalAccess', _78 => _78.current]);
+    if (!container) return [];
+    const headingElements = container.querySelectorAll(headings.join(", "));
+    const tocItems = [];
+    headingElements.forEach((element, index) => {
+      const text = _optionalChain([element, 'access', _79 => _79.textContent, 'optionalAccess', _80 => _80.trim, 'call', _81 => _81()]) || "";
+      const level = parseInt(element.tagName.substring(1));
+      if (!element.id) {
+        element.id = text.toLowerCase().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim() || `heading-${index}`;
+      }
+      tocItems.push({
+        id: element.id,
+        text,
+        level,
+        element,
+        index
+      });
+    });
+    return tocItems;
+  }, [containerRef, headings]);
+  React.default.useEffect(() => {
+    const tocItems = generateTOC();
+    setItems(tocItems);
+  }, [generateTOC]);
+  const scrollToItem = React.default.useCallback((itemId) => {
+    const element = document.getElementById(itemId);
+    if (!element) return;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+    if (smoothScroll) {
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    } else {
+      window.scrollTo(0, offsetPosition);
+    }
+    setActiveId(itemId);
+  }, [offset, smoothScroll]);
+  React.default.useEffect(() => {
+    if (!activeOnScroll || items.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: `-${offset}px 0px -${window.innerHeight - offset - 100}px 0px`,
+        threshold: 0
+      }
+    );
+    items.forEach((item) => {
+      if (item.element) {
+        observer.observe(item.element);
+      }
+    });
+    return () => {
+      items.forEach((item) => {
+        if (item.element) {
+          observer.unobserve(item.element);
+        }
+      });
+    };
+  }, [activeOnScroll, items, offset]);
+  const nestedItems = React.default.useMemo(() => {
+    if (!nested) return items;
+    const result = [];
+    const stack = [];
+    items.forEach((item) => {
+      const tocItem = { ...item, children: [] };
+      while (stack.length > 0 && stack[stack.length - 1].level >= item.level) {
+        stack.pop();
+      }
+      if (stack.length === 0) {
+        result.push(tocItem);
+      } else {
+        stack[stack.length - 1].children.push(tocItem);
+      }
+      stack.push(tocItem);
+    });
+    return result;
+  }, [items, nested]);
+  const renderItem = React.default.useCallback((item, depth = 0) => {
+    const isActive = item.id === activeId;
+    const hasChildren = "children" in item && item.children && item.children.length > 0;
+    return {
+      ...item,
+      isActive,
+      depth,
+      hasChildren,
+      scrollTo: () => scrollToItem(item.id)
+    };
+  }, [activeId, scrollToItem]);
+  const renderItems = React.default.useCallback(() => {
+    const flatItems = [];
+    const flatten = (items2, depth = 0) => {
+      items2.forEach((item) => {
+        flatItems.push(renderItem(item, depth));
+        if (item.children && item.children.length > 0) {
+          flatten(item.children, depth + 1);
+        }
+      });
+    };
+    flatten(nestedItems);
+    return flatItems;
+  }, [nestedItems, renderItem]);
+  const stats = React.default.useMemo(() => {
+    const levelCounts = {};
+    items.forEach((item) => {
+      levelCounts[item.level] = (levelCounts[item.level] || 0) + 1;
+    });
+    return {
+      totalItems: items.length,
+      levels: Object.keys(levelCounts).map(Number).sort(),
+      levelCounts,
+      hasActive: !!activeId,
+      activeIndex: items.findIndex((item) => item.id === activeId)
+    };
+  }, [items, activeId]);
+  const refresh = React.default.useCallback(() => {
+    const tocItems = generateTOC();
+    setItems(tocItems);
+  }, [generateTOC]);
+  const reset = React.default.useCallback(() => {
+    setItems([]);
+    setActiveId(null);
+  }, []);
+  return {
+    // Dados do TOC
+    items,
+    nestedItems,
+    renderItems: renderItems(),
+    // Estado
+    activeId,
+    hasItems: items.length > 0,
+    // Funções de controle
+    scrollToItem,
+    refresh,
+    reset,
+    // Estatísticas
+    stats,
+    // Utilitários
+    generateTOC,
+    renderItem
+  };
+}
+
 // src/lib/scroll-utils.ts
 function prefersReducedMotion2() {
   if (typeof window === "undefined") return false;
@@ -4983,5 +5279,7 @@ function enableScroll() {
 
 
 
-exports.ANIMATION_DELAYS = ANIMATION_DELAYS; exports.ANIMATION_DURATIONS = ANIMATION_DURATIONS; exports.ANIMATION_EASINGS = ANIMATION_EASINGS; exports.Accordion = Accordion; exports.AccordionContent = AccordionContent; exports.AccordionItem = AccordionItem; exports.AccordionTrigger = AccordionTrigger; exports.Alert = Alert; exports.AlertDescription = AlertDescription; exports.AlertDialog = AlertDialog; exports.AlertDialogAction = AlertDialogAction; exports.AlertDialogCancel = AlertDialogCancel; exports.AlertDialogContent = AlertDialogContent; exports.AlertDialogDescription = AlertDialogDescription; exports.AlertDialogFooter = AlertDialogFooter; exports.AlertDialogHeader = AlertDialogHeader; exports.AlertDialogOverlay = AlertDialogOverlay; exports.AlertDialogPortal = AlertDialogPortal; exports.AlertDialogTitle = AlertDialogTitle; exports.AlertDialogTrigger = AlertDialogTrigger; exports.AlertTitle = AlertTitle; exports.AspectRatio = AspectRatio; exports.Avatar = Avatar; exports.AvatarFallback = AvatarFallback; exports.AvatarImage = AvatarImage; exports.BACKGROUND = _designtokens.BACKGROUND; exports.BackToTop = BackToTop; exports.BackToTopButton = BackToTopButton; exports.Badge = Badge; exports.Button = Button; exports.Calendar = Calendar; exports.CalendarDayButton = CalendarDayButton; exports.Card = Card; exports.CardContent = CardContent; exports.CardDescription = CardDescription; exports.CardFooter = CardFooter; exports.CardHeader = CardHeader; exports.CardTitle = CardTitle; exports.Carousel = Carousel; exports.CarouselContent = CarouselContent; exports.CarouselItem = CarouselItem; exports.CarouselNext = CarouselNext; exports.CarouselPrevious = CarouselPrevious; exports.Checkbox = Checkbox; exports.Collapsible = Collapsible; exports.CollapsibleContent = CollapsibleContent2; exports.CollapsibleTrigger = CollapsibleTrigger2; exports.Command = Command; exports.CommandDialog = CommandDialog; exports.CommandEmpty = CommandEmpty; exports.CommandGroup = CommandGroup; exports.CommandInput = CommandInput; exports.CommandItem = CommandItem; exports.CommandList = CommandList; exports.CommandSeparator = CommandSeparator; exports.CommandShortcut = CommandShortcut; exports.ContextMenu = ContextMenu; exports.ContextMenuCheckboxItem = ContextMenuCheckboxItem; exports.ContextMenuContent = ContextMenuContent; exports.ContextMenuGroup = ContextMenuGroup; exports.ContextMenuItem = ContextMenuItem; exports.ContextMenuLabel = ContextMenuLabel; exports.ContextMenuPortal = ContextMenuPortal; exports.ContextMenuRadioGroup = ContextMenuRadioGroup; exports.ContextMenuRadioItem = ContextMenuRadioItem; exports.ContextMenuSeparator = ContextMenuSeparator; exports.ContextMenuShortcut = ContextMenuShortcut; exports.ContextMenuSub = ContextMenuSub; exports.ContextMenuSubContent = ContextMenuSubContent; exports.ContextMenuSubTrigger = ContextMenuSubTrigger; exports.ContextMenuTrigger = ContextMenuTrigger; exports.CookieBanner = CookieBanner; exports.Dialog = Dialog; exports.DialogClose = DialogClose; exports.DialogContent = DialogContent; exports.DialogDescription = DialogDescription; exports.DialogFooter = DialogFooter; exports.DialogHeader = DialogHeader; exports.DialogOverlay = DialogOverlay; exports.DialogPortal = DialogPortal; exports.DialogTitle = DialogTitle; exports.DialogTrigger = DialogTrigger; exports.DropdownMenu = DropdownMenu; exports.DropdownMenuCheckboxItem = DropdownMenuCheckboxItem; exports.DropdownMenuContent = DropdownMenuContent; exports.DropdownMenuGroup = DropdownMenuGroup; exports.DropdownMenuItem = DropdownMenuItem; exports.DropdownMenuLabel = DropdownMenuLabel; exports.DropdownMenuPortal = DropdownMenuPortal; exports.DropdownMenuRadioGroup = DropdownMenuRadioGroup; exports.DropdownMenuRadioItem = DropdownMenuRadioItem; exports.DropdownMenuSeparator = DropdownMenuSeparator; exports.DropdownMenuShortcut = DropdownMenuShortcut; exports.DropdownMenuSub = DropdownMenuSub; exports.DropdownMenuSubContent = DropdownMenuSubContent; exports.DropdownMenuSubTrigger = DropdownMenuSubTrigger; exports.DropdownMenuTrigger = DropdownMenuTrigger; exports.EmptyState = EmptyState; exports.ErrorBoundary = ErrorBoundary; exports.Form = Form; exports.FormControl = FormControl; exports.FormDescription = FormDescription; exports.FormField = FormField; exports.FormItem = FormItem; exports.FormLabel = FormLabel; exports.FormMessage = FormMessage; exports.FullPageLoader = FullPageLoader; exports.GRADIENTS = _designtokens.GRADIENTS; exports.GRADIENT_DIRECTIONS = _designtokens.GRADIENT_DIRECTIONS; exports.HighlightCard = HighlightCard; exports.HoverCard = HoverCard; exports.HoverCardContent = HoverCardContent; exports.HoverCardTrigger = HoverCardTrigger; exports.InlineLoader = InlineLoader; exports.Input = Input; exports.InstallPrompt = InstallPrompt; exports.Label = Label; exports.LoadingScreen = LoadingScreen; exports.LoadingSpinner = LoadingSpinner; exports.MOTION = _designtokens.MOTION; exports.MatrixBackground = MatrixBackground; exports.NavigationMenu = NavigationMenu; exports.NavigationMenuContent = NavigationMenuContent; exports.NavigationMenuIndicator = NavigationMenuIndicator; exports.NavigationMenuItem = NavigationMenuItem; exports.NavigationMenuLink = NavigationMenuLink; exports.NavigationMenuList = NavigationMenuList; exports.NavigationMenuTrigger = NavigationMenuTrigger; exports.NavigationMenuViewport = NavigationMenuViewport; exports.PageHeader = PageHeader; exports.ParticlesEffect = ParticlesEffect; exports.Popover = Popover; exports.PopoverContent = PopoverContent; exports.PopoverTrigger = PopoverTrigger; exports.Progress = Progress; exports.RadioGroup = RadioGroup; exports.RadioGroupItem = RadioGroupItem; exports.SEMANTIC_COLORS = SEMANTIC_COLORS; exports.ScrollArea = ScrollArea; exports.ScrollBar = ScrollBar; exports.Select = Select; exports.SelectContent = SelectContent; exports.SelectGroup = SelectGroup; exports.SelectItem = SelectItem; exports.SelectLabel = SelectLabel; exports.SelectScrollDownButton = SelectScrollDownButton; exports.SelectScrollUpButton = SelectScrollUpButton; exports.SelectSeparator = SelectSeparator; exports.SelectTrigger = SelectTrigger; exports.SelectValue = SelectValue; exports.Separator = Separator2; exports.Sheet = Sheet; exports.SheetClose = SheetClose; exports.SheetContent = SheetContent; exports.SheetDescription = SheetDescription; exports.SheetFooter = SheetFooter; exports.SheetHeader = SheetHeader; exports.SheetTitle = SheetTitle; exports.SheetTrigger = SheetTrigger; exports.Skeleton = Skeleton; exports.SkeletonGrid = SkeletonGrid; exports.Slider = Slider; exports.StarsBackground = StarsBackground; exports.Switch = Switch; exports.Table = Table; exports.TableBody = TableBody; exports.TableCaption = TableCaption; exports.TableCell = TableCell; exports.TableFooter = TableFooter; exports.TableHead = TableHead; exports.TableHeader = TableHeader; exports.TableRow = TableRow; exports.Tabs = Tabs; exports.TabsContent = TabsContent; exports.TabsList = TabsList; exports.TabsTrigger = TabsTrigger; exports.Textarea = Textarea; exports.ThemeProvider = ThemeProvider; exports.ThemeToggle = ThemeToggle; exports.Toaster = Toaster; exports.Toggle = Toggle; exports.Tooltip = Tooltip; exports.TooltipContent = TooltipContent; exports.TooltipProvider = TooltipProvider; exports.TooltipTrigger = TooltipTrigger; exports.UpdateNotification = UpdateNotification; exports.VisuallyHidden = VisuallyHidden; exports.badgeVariants = badgeVariants; exports.buttonVariants = buttonVariants; exports.cn = cn; exports.convertToWebP = convertToWebP; exports.darkTheme = _designtokens.darkTheme; exports.darkThemeColors = _designtokens.darkThemeColors; exports.disableScroll = disableScroll; exports.enableScroll = enableScroll; exports.generatePlaceholder = generatePlaceholder; exports.generateTailwindClasses = generateTailwindClasses; exports.getBrandColor = getBrandColor; exports.getColorFromTheme = getColorFromTheme; exports.getContrastColor = getContrastColor; exports.getImageInfo = getImageInfo; exports.getSemanticColors = getSemanticColors; exports.getStatusColor = getStatusColor; exports.getThemeColors = getThemeColors; exports.getTokenColor = getTokenColor; exports.hexToRGB = hexToRGB; exports.hexToRGBA = hexToRGBA; exports.isAcceptedFormat = isAcceptedFormat; exports.isValidHex = isValidHex; exports.isWebP = isWebP; exports.lightTheme = _designtokens.lightTheme; exports.lightThemeColors = _designtokens.lightThemeColors; exports.motion = motion; exports.navigationMenuTriggerStyle = navigationMenuTriggerStyle; exports.overlayFromToken = overlayFromToken; exports.prefersReducedMotion = prefersReducedMotion2; exports.prepareImageForUpload = prepareImageForUpload; exports.resizeImage = resizeImage; exports.scrollToPosition = scrollToPosition2; exports.scrollToTop = scrollToTop2; exports.smoothScrollTo = smoothScrollTo2; exports.supportsWebP = supportsWebP; exports.toggleVariants = toggleVariants; exports.tokens = _designtokens.tokens; exports.useCookieConsent = useCookieConsent; exports.useFormField = useFormField; exports.useIsMobile = useIsMobile; exports.usePWA = usePWA; exports.useTheme = useTheme6;
+
+
+exports.ANIMATION_DELAYS = ANIMATION_DELAYS; exports.ANIMATION_DURATIONS = ANIMATION_DURATIONS; exports.ANIMATION_EASINGS = ANIMATION_EASINGS; exports.Accordion = Accordion; exports.AccordionContent = AccordionContent; exports.AccordionItem = AccordionItem; exports.AccordionTrigger = AccordionTrigger; exports.Alert = Alert; exports.AlertDescription = AlertDescription; exports.AlertDialog = AlertDialog; exports.AlertDialogAction = AlertDialogAction; exports.AlertDialogCancel = AlertDialogCancel; exports.AlertDialogContent = AlertDialogContent; exports.AlertDialogDescription = AlertDialogDescription; exports.AlertDialogFooter = AlertDialogFooter; exports.AlertDialogHeader = AlertDialogHeader; exports.AlertDialogOverlay = AlertDialogOverlay; exports.AlertDialogPortal = AlertDialogPortal; exports.AlertDialogTitle = AlertDialogTitle; exports.AlertDialogTrigger = AlertDialogTrigger; exports.AlertTitle = AlertTitle; exports.AspectRatio = AspectRatio; exports.Avatar = Avatar; exports.AvatarFallback = AvatarFallback; exports.AvatarImage = AvatarImage; exports.BACKGROUND = _designtokens.BACKGROUND; exports.BackToTop = BackToTop; exports.BackToTopButton = BackToTopButton; exports.Badge = Badge; exports.Button = Button; exports.Calendar = Calendar; exports.CalendarDayButton = CalendarDayButton; exports.Card = Card; exports.CardContent = CardContent; exports.CardDescription = CardDescription; exports.CardFooter = CardFooter; exports.CardHeader = CardHeader; exports.CardTitle = CardTitle; exports.Carousel = Carousel; exports.CarouselContent = CarouselContent; exports.CarouselItem = CarouselItem; exports.CarouselNext = CarouselNext; exports.CarouselPrevious = CarouselPrevious; exports.Checkbox = Checkbox; exports.Collapsible = Collapsible; exports.CollapsibleContent = CollapsibleContent2; exports.CollapsibleTrigger = CollapsibleTrigger2; exports.Command = Command; exports.CommandDialog = CommandDialog; exports.CommandEmpty = CommandEmpty; exports.CommandGroup = CommandGroup; exports.CommandInput = CommandInput; exports.CommandItem = CommandItem; exports.CommandList = CommandList; exports.CommandSeparator = CommandSeparator; exports.CommandShortcut = CommandShortcut; exports.ContextMenu = ContextMenu; exports.ContextMenuCheckboxItem = ContextMenuCheckboxItem; exports.ContextMenuContent = ContextMenuContent; exports.ContextMenuGroup = ContextMenuGroup; exports.ContextMenuItem = ContextMenuItem; exports.ContextMenuLabel = ContextMenuLabel; exports.ContextMenuPortal = ContextMenuPortal; exports.ContextMenuRadioGroup = ContextMenuRadioGroup; exports.ContextMenuRadioItem = ContextMenuRadioItem; exports.ContextMenuSeparator = ContextMenuSeparator; exports.ContextMenuShortcut = ContextMenuShortcut; exports.ContextMenuSub = ContextMenuSub; exports.ContextMenuSubContent = ContextMenuSubContent; exports.ContextMenuSubTrigger = ContextMenuSubTrigger; exports.ContextMenuTrigger = ContextMenuTrigger; exports.CookieBanner = CookieBanner; exports.Dialog = Dialog; exports.DialogClose = DialogClose; exports.DialogContent = DialogContent; exports.DialogDescription = DialogDescription; exports.DialogFooter = DialogFooter; exports.DialogHeader = DialogHeader; exports.DialogOverlay = DialogOverlay; exports.DialogPortal = DialogPortal; exports.DialogTitle = DialogTitle; exports.DialogTrigger = DialogTrigger; exports.DropdownMenu = DropdownMenu; exports.DropdownMenuCheckboxItem = DropdownMenuCheckboxItem; exports.DropdownMenuContent = DropdownMenuContent; exports.DropdownMenuGroup = DropdownMenuGroup; exports.DropdownMenuItem = DropdownMenuItem; exports.DropdownMenuLabel = DropdownMenuLabel; exports.DropdownMenuPortal = DropdownMenuPortal; exports.DropdownMenuRadioGroup = DropdownMenuRadioGroup; exports.DropdownMenuRadioItem = DropdownMenuRadioItem; exports.DropdownMenuSeparator = DropdownMenuSeparator; exports.DropdownMenuShortcut = DropdownMenuShortcut; exports.DropdownMenuSub = DropdownMenuSub; exports.DropdownMenuSubContent = DropdownMenuSubContent; exports.DropdownMenuSubTrigger = DropdownMenuSubTrigger; exports.DropdownMenuTrigger = DropdownMenuTrigger; exports.EmptyState = EmptyState; exports.ErrorBoundary = ErrorBoundary; exports.Form = Form; exports.FormControl = FormControl; exports.FormDescription = FormDescription; exports.FormField = FormField; exports.FormItem = FormItem; exports.FormLabel = FormLabel; exports.FormMessage = FormMessage; exports.FullPageLoader = FullPageLoader; exports.GRADIENTS = _designtokens.GRADIENTS; exports.GRADIENT_DIRECTIONS = _designtokens.GRADIENT_DIRECTIONS; exports.HighlightCard = HighlightCard; exports.HoverCard = HoverCard; exports.HoverCardContent = HoverCardContent; exports.HoverCardTrigger = HoverCardTrigger; exports.InlineLoader = InlineLoader; exports.Input = Input; exports.InstallPrompt = InstallPrompt; exports.Label = Label; exports.LoadingScreen = LoadingScreen; exports.LoadingSpinner = LoadingSpinner; exports.MOTION = _designtokens.MOTION; exports.MatrixBackground = MatrixBackground; exports.NavigationMenu = NavigationMenu; exports.NavigationMenuContent = NavigationMenuContent; exports.NavigationMenuIndicator = NavigationMenuIndicator; exports.NavigationMenuItem = NavigationMenuItem; exports.NavigationMenuLink = NavigationMenuLink; exports.NavigationMenuList = NavigationMenuList; exports.NavigationMenuTrigger = NavigationMenuTrigger; exports.NavigationMenuViewport = NavigationMenuViewport; exports.PageHeader = PageHeader; exports.ParticlesEffect = ParticlesEffect; exports.Popover = Popover; exports.PopoverContent = PopoverContent; exports.PopoverTrigger = PopoverTrigger; exports.Progress = Progress; exports.RadioGroup = RadioGroup; exports.RadioGroupItem = RadioGroupItem; exports.SEMANTIC_COLORS = SEMANTIC_COLORS; exports.ScrollArea = ScrollArea; exports.ScrollBar = ScrollBar; exports.Select = Select; exports.SelectContent = SelectContent; exports.SelectGroup = SelectGroup; exports.SelectItem = SelectItem; exports.SelectLabel = SelectLabel; exports.SelectScrollDownButton = SelectScrollDownButton; exports.SelectScrollUpButton = SelectScrollUpButton; exports.SelectSeparator = SelectSeparator; exports.SelectTrigger = SelectTrigger; exports.SelectValue = SelectValue; exports.Separator = Separator2; exports.Sheet = Sheet; exports.SheetClose = SheetClose; exports.SheetContent = SheetContent; exports.SheetDescription = SheetDescription; exports.SheetFooter = SheetFooter; exports.SheetHeader = SheetHeader; exports.SheetTitle = SheetTitle; exports.SheetTrigger = SheetTrigger; exports.Skeleton = Skeleton; exports.SkeletonGrid = SkeletonGrid; exports.Slider = Slider; exports.StarsBackground = StarsBackground; exports.Switch = Switch; exports.Table = Table; exports.TableBody = TableBody; exports.TableCaption = TableCaption; exports.TableCell = TableCell; exports.TableFooter = TableFooter; exports.TableHead = TableHead; exports.TableHeader = TableHeader; exports.TableRow = TableRow; exports.Tabs = Tabs; exports.TabsContent = TabsContent; exports.TabsList = TabsList; exports.TabsTrigger = TabsTrigger; exports.Textarea = Textarea; exports.ThemeProvider = ThemeProvider; exports.ThemeToggle = ThemeToggle; exports.Toaster = Toaster; exports.Toggle = Toggle; exports.Tooltip = Tooltip; exports.TooltipContent = TooltipContent; exports.TooltipProvider = TooltipProvider; exports.TooltipTrigger = TooltipTrigger; exports.UpdateNotification = UpdateNotification; exports.VisuallyHidden = VisuallyHidden; exports.badgeVariants = badgeVariants; exports.buttonVariants = buttonVariants; exports.cn = cn; exports.convertToWebP = convertToWebP; exports.darkTheme = _designtokens.darkTheme; exports.darkThemeColors = _designtokens.darkThemeColors; exports.disableScroll = disableScroll; exports.enableScroll = enableScroll; exports.generatePlaceholder = generatePlaceholder; exports.generateTailwindClasses = generateTailwindClasses; exports.getBrandColor = getBrandColor; exports.getColorFromTheme = getColorFromTheme; exports.getContrastColor = getContrastColor; exports.getImageInfo = getImageInfo; exports.getSemanticColors = getSemanticColors; exports.getStatusColor = getStatusColor; exports.getThemeColors = getThemeColors; exports.getTokenColor = getTokenColor; exports.hexToRGB = hexToRGB; exports.hexToRGBA = hexToRGBA; exports.isAcceptedFormat = isAcceptedFormat; exports.isValidHex = isValidHex; exports.isWebP = isWebP; exports.lightTheme = _designtokens.lightTheme; exports.lightThemeColors = _designtokens.lightThemeColors; exports.motion = motion; exports.navigationMenuTriggerStyle = navigationMenuTriggerStyle; exports.overlayFromToken = overlayFromToken; exports.prefersReducedMotion = prefersReducedMotion2; exports.prepareImageForUpload = prepareImageForUpload; exports.resizeImage = resizeImage; exports.scrollToPosition = scrollToPosition2; exports.scrollToTop = scrollToTop2; exports.smoothScrollTo = smoothScrollTo2; exports.supportsWebP = supportsWebP; exports.toggleVariants = toggleVariants; exports.tokens = _designtokens.tokens; exports.useCarouselKeyboard = useCarouselKeyboard; exports.useCookieConsent = useCookieConsent; exports.useFormField = useFormField; exports.useIsMobile = useIsMobile; exports.usePWA = usePWA; exports.useTableOfContents = useTableOfContents; exports.useTheme = useTheme6;
 //# sourceMappingURL=index.js.map

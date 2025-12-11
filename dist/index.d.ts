@@ -6,7 +6,7 @@ import * as class_variance_authority_types from 'class-variance-authority/types'
 import * as class_variance_authority from 'class-variance-authority';
 import { VariantProps } from 'class-variance-authority';
 import * as React$1 from 'react';
-import { ReactNode, ErrorInfo, Component } from 'react';
+import React__default, { ReactNode, ErrorInfo, Component } from 'react';
 import * as SliderPrimitive from '@radix-ui/react-slider';
 import * as TogglePrimitive from '@radix-ui/react-toggle';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
@@ -2837,6 +2837,131 @@ declare function useTheme(): {
 };
 
 /**
+ * Hook para controlar carrossel com teclado
+ *
+ * @param {Object} params - Parâmetros do hook
+ * @param {number} params.totalItems - Total de itens no carrossel
+ * @param {number} params.currentIndex - Índice atual
+ * @param {Function} params.onIndexChange - Callback quando índice muda
+ * @param {boolean} params.autoPlay - Se auto-play está ativo
+ * @param {number} params.autoPlayInterval - Intervalo do auto-play em ms
+ * @param {Object} params.options - Opções adicionais
+ * @param {boolean} params.options.loop - Se deve voltar ao início quando chegar no fim
+ * @param {boolean} params.options.pauseOnHover - Se deve pausar auto-play ao passar mouse
+ * @param {string[]} params.options.keyMap - Mapeamento de teclas (default: ['ArrowLeft', 'ArrowRight'])
+ *
+ * @returns {Object} Objeto com funções de controle e estado
+ */
+
+declare function useCarouselKeyboard({ totalItems, currentIndex, onIndexChange, autoPlay, autoPlayInterval, options }: {
+    totalItems: number;
+    currentIndex?: number;
+    onIndexChange?: (index: number) => void;
+    autoPlay?: boolean;
+    autoPlayInterval?: number;
+    options?: {
+        loop?: boolean;
+        pauseOnHover?: boolean;
+        keyMap?: string[];
+    };
+}): {
+    containerRef: React__default.RefObject<HTMLElement | null>;
+    next: () => void;
+    prev: () => void;
+    goTo: (index: number) => void;
+    pause: () => void;
+    resume: () => void;
+    stop: () => void;
+    isPaused: boolean;
+    canGoNext: boolean;
+    canGoPrev: boolean;
+    isFirst: boolean;
+    isLast: boolean;
+    progress: number;
+};
+
+/**
+ * Hook para gerar e gerenciar índice de conteúdo (Table of Contents)
+ *
+ * @param {Object} params - Parâmetros do hook
+ * @param {React.RefObject} params.containerRef - Ref do container com o conteúdo
+ * @param {string[]} params.headings - Seletor dos títulos (default: ['h2', 'h3'])
+ * @param {Object} params.options - Opções de configuração
+ * @param {number} params.options.offset - Offset para scroll (default: 100)
+ * @param {boolean} params.options.smoothScroll - Se usa scroll suave (default: true)
+ * @param {boolean} params.options.activeOnScroll - Se destaca item ativo ao rolar (default: true)
+ * @param {boolean} params.options.nested - Se gera TOC aninhado (default: true)
+ *
+ * @returns {Object} Objeto com TOC e funções de controle
+ */
+
+declare function useTableOfContents({ containerRef, headings, options }: {
+    containerRef: React__default.RefObject<HTMLElement>;
+    headings?: string[];
+    options?: {
+        offset?: number;
+        smoothScroll?: boolean;
+        activeOnScroll?: boolean;
+        nested?: boolean;
+    };
+}): {
+    items: TocItem[];
+    nestedItems: NestedTocItem[];
+    renderItems: RenderedTocItem[];
+    activeId: string | null;
+    hasItems: boolean;
+    scrollToItem: (itemId: string) => void;
+    refresh: () => void;
+    reset: () => void;
+    stats: {
+        totalItems: number;
+        levels: number[];
+        levelCounts: Record<number, number>;
+        hasActive: boolean;
+        activeIndex: number;
+    };
+    generateTOC: () => TocItem[];
+    renderItem: (item: TocItem | NestedTocItem, depth?: number) => {
+        isActive: boolean;
+        depth: number;
+        hasChildren: boolean;
+        scrollTo: () => void;
+        id: string;
+        text: string;
+        level: number;
+        element: HTMLElement;
+        index: number;
+    } | {
+        isActive: boolean;
+        depth: number;
+        hasChildren: boolean;
+        scrollTo: () => void;
+        children: NestedTocItem[];
+        id: string;
+        text: string;
+        level: number;
+        element: HTMLElement;
+        index: number;
+    };
+};
+interface TocItem {
+    id: string;
+    text: string;
+    level: number;
+    element: HTMLElement;
+    index: number;
+}
+interface NestedTocItem extends TocItem {
+    children: NestedTocItem[];
+}
+interface RenderedTocItem extends TocItem {
+    isActive: boolean;
+    depth: number;
+    hasChildren: boolean;
+    scrollTo: () => void;
+}
+
+/**
  * Scroll Utilities
  *
  * Utilitários de scroll acessíveis que respeitam automaticamente
@@ -2870,4 +2995,4 @@ declare function disableScroll(): void;
  */
 declare function enableScroll(): void;
 
-export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, Accordion, AccordionContent, AccordionItem, AccordionTrigger, Alert, AlertDescription, AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, AlertDialogPortal, AlertDialogTitle, AlertDialogTrigger, AlertTitle, AspectRatio, Avatar, AvatarFallback, AvatarImage, BackToTop, BackToTopButton, Badge, type BadgeProps, Button, Calendar, CalendarDayButton, type CalendarProps, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Carousel, type CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, Checkbox, Collapsible, CollapsibleContent, CollapsibleTrigger, Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, ContextMenu, ContextMenuCheckboxItem, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuLabel, ContextMenuPortal, ContextMenuRadioGroup, ContextMenuRadioItem, ContextMenuSeparator, ContextMenuShortcut, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuTrigger, CookieBanner, type CookiePreferences, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger, DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger, EmptyState, ErrorBoundary, type ErrorBoundaryProps, type ErrorBoundaryState, Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, FullPageLoader, HighlightCard, HoverCard, HoverCardContent, HoverCardTrigger, InlineLoader, Input, InstallPrompt, Label, LoadingScreen, LoadingSpinner, MatrixBackground, type MatrixBackgroundProps, NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport, PageHeader, ParticlesEffect, Popover, PopoverContent, PopoverTrigger, Progress, RadioGroup, RadioGroupItem, SEMANTIC_COLORS, ScrollArea, ScrollBar, Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, SelectTrigger, SelectValue, Separator, Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Skeleton, SkeletonGrid, Slider, StarsBackground, Switch, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow, Tabs, TabsContent, TabsList, TabsTrigger, Textarea, ThemeProvider, ThemeToggle, type ThemeToggleProps, Toaster, Toggle, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, UpdateNotification, VisuallyHidden, badgeVariants, buttonVariants, cn, convertToWebP, disableScroll, enableScroll, generatePlaceholder, generateTailwindClasses, getBrandColor, getColorFromTheme, getContrastColor, getImageInfo, getSemanticColors, getStatusColor, getThemeColors, getTokenColor, hexToRGB, hexToRGBA, isAcceptedFormat, isValidHex, isWebP, motion, navigationMenuTriggerStyle, overlayFromToken, prefersReducedMotion, prepareImageForUpload, resizeImage, scrollToPosition, scrollToTop, smoothScrollTo, supportsWebP, toggleVariants, useCookieConsent, useFormField, useIsMobile, usePWA, useTheme };
+export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, Accordion, AccordionContent, AccordionItem, AccordionTrigger, Alert, AlertDescription, AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, AlertDialogPortal, AlertDialogTitle, AlertDialogTrigger, AlertTitle, AspectRatio, Avatar, AvatarFallback, AvatarImage, BackToTop, BackToTopButton, Badge, type BadgeProps, Button, Calendar, CalendarDayButton, type CalendarProps, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Carousel, type CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, Checkbox, Collapsible, CollapsibleContent, CollapsibleTrigger, Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, ContextMenu, ContextMenuCheckboxItem, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuLabel, ContextMenuPortal, ContextMenuRadioGroup, ContextMenuRadioItem, ContextMenuSeparator, ContextMenuShortcut, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuTrigger, CookieBanner, type CookiePreferences, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger, DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger, EmptyState, ErrorBoundary, type ErrorBoundaryProps, type ErrorBoundaryState, Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, FullPageLoader, HighlightCard, HoverCard, HoverCardContent, HoverCardTrigger, InlineLoader, Input, InstallPrompt, Label, LoadingScreen, LoadingSpinner, MatrixBackground, type MatrixBackgroundProps, NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport, PageHeader, ParticlesEffect, Popover, PopoverContent, PopoverTrigger, Progress, RadioGroup, RadioGroupItem, SEMANTIC_COLORS, ScrollArea, ScrollBar, Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, SelectTrigger, SelectValue, Separator, Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Skeleton, SkeletonGrid, Slider, StarsBackground, Switch, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow, Tabs, TabsContent, TabsList, TabsTrigger, Textarea, ThemeProvider, ThemeToggle, type ThemeToggleProps, Toaster, Toggle, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, UpdateNotification, VisuallyHidden, badgeVariants, buttonVariants, cn, convertToWebP, disableScroll, enableScroll, generatePlaceholder, generateTailwindClasses, getBrandColor, getColorFromTheme, getContrastColor, getImageInfo, getSemanticColors, getStatusColor, getThemeColors, getTokenColor, hexToRGB, hexToRGBA, isAcceptedFormat, isValidHex, isWebP, motion, navigationMenuTriggerStyle, overlayFromToken, prefersReducedMotion, prepareImageForUpload, resizeImage, scrollToPosition, scrollToTop, smoothScrollTo, supportsWebP, toggleVariants, useCarouselKeyboard, useCookieConsent, useFormField, useIsMobile, usePWA, useTableOfContents, useTheme };

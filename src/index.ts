@@ -178,6 +178,8 @@ export * from './components/providers/theme-provider';
 export * from './hooks/use-mobile';
 export * from './hooks/use-pwa';
 export * from './hooks/use-theme';
+export * from './hooks/use-carousel-keyboard';
+export * from './hooks/use-table-of-contents';
 
 // ============================================================================
 // SCROLL UTILITIES

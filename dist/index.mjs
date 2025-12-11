@@ -4712,6 +4712,302 @@ function useIsMobile() {
   return !!isMobile;
 }
 
+// src/hooks/use-carousel-keyboard.ts
+import React33 from "react";
+function useCarouselKeyboard({
+  totalItems,
+  currentIndex = 0,
+  onIndexChange,
+  autoPlay = false,
+  autoPlayInterval = 3e3,
+  options = {}
+}) {
+  const {
+    loop = true,
+    pauseOnHover = true,
+    keyMap = ["ArrowLeft", "ArrowRight"]
+  } = options;
+  const [isPaused, setIsPaused] = React33.useState(false);
+  const intervalRef = React33.useRef(null);
+  const containerRef = React33.useRef(null);
+  const next = React33.useCallback(() => {
+    const nextIndex = currentIndex + 1;
+    if (nextIndex >= totalItems) {
+      if (loop) {
+        onIndexChange?.(0);
+      }
+    } else {
+      onIndexChange?.(nextIndex);
+    }
+  }, [currentIndex, totalItems, loop, onIndexChange]);
+  const prev = React33.useCallback(() => {
+    const prevIndex = currentIndex - 1;
+    if (prevIndex < 0) {
+      if (loop) {
+        onIndexChange?.(totalItems - 1);
+      }
+    } else {
+      onIndexChange?.(prevIndex);
+    }
+  }, [currentIndex, totalItems, loop, onIndexChange]);
+  const goTo = React33.useCallback((index) => {
+    if (index >= 0 && index < totalItems) {
+      onIndexChange?.(index);
+    }
+  }, [totalItems, onIndexChange]);
+  React33.useEffect(() => {
+    if (autoPlay && !isPaused) {
+      intervalRef.current = setInterval(next, autoPlayInterval);
+    } else {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+        intervalRef.current = null;
+      }
+    }
+    return () => {
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current);
+      }
+    };
+  }, [autoPlay, isPaused, next, autoPlayInterval]);
+  React33.useEffect(() => {
+    const handleKeyDown = (event) => {
+      if (!keyMap.includes(event.key)) return;
+      event.preventDefault();
+      if (event.key === keyMap[0]) {
+        prev();
+      } else if (event.key === keyMap[1]) {
+        next();
+      }
+    };
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+    return () => {
+      if (container) {
+        container.removeEventListener("keydown", handleKeyDown);
+      } else {
+        document.removeEventListener("keydown", handleKeyDown);
+      }
+    };
+  }, [keyMap, next, prev]);
+  React33.useEffect(() => {
+    if (!pauseOnHover || !autoPlay) return;
+    const container = containerRef.current;
+    if (!container) return;
+    const handleMouseEnter = () => setIsPaused(true);
+    const handleMouseLeave = () => setIsPaused(false);
+    container.addEventListener("mouseenter", handleMouseEnter);
+    container.addEventListener("mouseleave", handleMouseLeave);
+    return () => {
+      container.removeEventListener("mouseenter", handleMouseEnter);
+      container.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [pauseOnHover, autoPlay]);
+  const pause = React33.useCallback(() => {
+    setIsPaused(true);
+  }, []);
+  const resume = React33.useCallback(() => {
+    setIsPaused(false);
+  }, []);
+  const stop = React33.useCallback(() => {
+    setIsPaused(true);
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  }, []);
+  return {
+    // Refs
+    containerRef,
+    // Funções de navegação
+    next,
+    prev,
+    goTo,
+    // Controle de auto-play
+    pause,
+    resume,
+    stop,
+    // Estado
+    isPaused,
+    canGoNext: loop || currentIndex < totalItems - 1,
+    canGoPrev: loop || currentIndex > 0,
+    // Utilitários
+    isFirst: currentIndex === 0,
+    isLast: currentIndex === totalItems - 1,
+    progress: totalItems > 0 ? (currentIndex + 1) / totalItems * 100 : 0
+  };
+}
+
+// src/hooks/use-table-of-contents.ts
+import React34 from "react";
+function useTableOfContents({
+  containerRef,
+  headings = ["h2", "h3"],
+  options = {}
+}) {
+  const {
+    offset = 100,
+    smoothScroll = true,
+    activeOnScroll = true,
+    nested = true
+  } = options;
+  const [items, setItems] = React34.useState([]);
+  const [activeId, setActiveId] = React34.useState(null);
+  const generateTOC = React34.useCallback(() => {
+    const container = containerRef?.current;
+    if (!container) return [];
+    const headingElements = container.querySelectorAll(headings.join(", "));
+    const tocItems = [];
+    headingElements.forEach((element, index) => {
+      const text = element.textContent?.trim() || "";
+      const level = parseInt(element.tagName.substring(1));
+      if (!element.id) {
+        element.id = text.toLowerCase().replace(/[^a-z0-9\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim() || `heading-${index}`;
+      }
+      tocItems.push({
+        id: element.id,
+        text,
+        level,
+        element,
+        index
+      });
+    });
+    return tocItems;
+  }, [containerRef, headings]);
+  React34.useEffect(() => {
+    const tocItems = generateTOC();
+    setItems(tocItems);
+  }, [generateTOC]);
+  const scrollToItem = React34.useCallback((itemId) => {
+    const element = document.getElementById(itemId);
+    if (!element) return;
+    const elementPosition = element.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - offset;
+    if (smoothScroll) {
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    } else {
+      window.scrollTo(0, offsetPosition);
+    }
+    setActiveId(itemId);
+  }, [offset, smoothScroll]);
+  React34.useEffect(() => {
+    if (!activeOnScroll || items.length === 0) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: `-${offset}px 0px -${window.innerHeight - offset - 100}px 0px`,
+        threshold: 0
+      }
+    );
+    items.forEach((item) => {
+      if (item.element) {
+        observer.observe(item.element);
+      }
+    });
+    return () => {
+      items.forEach((item) => {
+        if (item.element) {
+          observer.unobserve(item.element);
+        }
+      });
+    };
+  }, [activeOnScroll, items, offset]);
+  const nestedItems = React34.useMemo(() => {
+    if (!nested) return items;
+    const result = [];
+    const stack = [];
+    items.forEach((item) => {
+      const tocItem = { ...item, children: [] };
+      while (stack.length > 0 && stack[stack.length - 1].level >= item.level) {
+        stack.pop();
+      }
+      if (stack.length === 0) {
+        result.push(tocItem);
+      } else {
+        stack[stack.length - 1].children.push(tocItem);
+      }
+      stack.push(tocItem);
+    });
+    return result;
+  }, [items, nested]);
+  const renderItem = React34.useCallback((item, depth = 0) => {
+    const isActive = item.id === activeId;
+    const hasChildren = "children" in item && item.children && item.children.length > 0;
+    return {
+      ...item,
+      isActive,
+      depth,
+      hasChildren,
+      scrollTo: () => scrollToItem(item.id)
+    };
+  }, [activeId, scrollToItem]);
+  const renderItems = React34.useCallback(() => {
+    const flatItems = [];
+    const flatten = (items2, depth = 0) => {
+      items2.forEach((item) => {
+        flatItems.push(renderItem(item, depth));
+        if (item.children && item.children.length > 0) {
+          flatten(item.children, depth + 1);
+        }
+      });
+    };
+    flatten(nestedItems);
+    return flatItems;
+  }, [nestedItems, renderItem]);
+  const stats = React34.useMemo(() => {
+    const levelCounts = {};
+    items.forEach((item) => {
+      levelCounts[item.level] = (levelCounts[item.level] || 0) + 1;
+    });
+    return {
+      totalItems: items.length,
+      levels: Object.keys(levelCounts).map(Number).sort(),
+      levelCounts,
+      hasActive: !!activeId,
+      activeIndex: items.findIndex((item) => item.id === activeId)
+    };
+  }, [items, activeId]);
+  const refresh = React34.useCallback(() => {
+    const tocItems = generateTOC();
+    setItems(tocItems);
+  }, [generateTOC]);
+  const reset = React34.useCallback(() => {
+    setItems([]);
+    setActiveId(null);
+  }, []);
+  return {
+    // Dados do TOC
+    items,
+    nestedItems,
+    renderItems: renderItems(),
+    // Estado
+    activeId,
+    hasItems: items.length > 0,
+    // Funções de controle
+    scrollToItem,
+    refresh,
+    reset,
+    // Estatísticas
+    stats,
+    // Utilitários
+    generateTOC,
+    renderItem
+  };
+}
+
 // src/lib/scroll-utils.ts
 function prefersReducedMotion2() {
   if (typeof window === "undefined") return false;
@@ -4978,10 +5274,12 @@ export {
   supportsWebP,
   toggleVariants,
   tokens3 as tokens,
+  useCarouselKeyboard,
   useCookieConsent,
   useFormField,
   useIsMobile,
   usePWA,
+  useTableOfContents,
   useTheme6 as useTheme
 };
 //# sourceMappingURL=index.mjs.map
