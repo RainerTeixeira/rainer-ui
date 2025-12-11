@@ -1,6 +1,6 @@
 {
   "name": "@rainersoft/ui",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "Componentes UI reutilizáveis construídos com Radix UI, Tailwind CSS e design tokens",
   "packageManager": "pnpm@9.0.0",
   "author": {
