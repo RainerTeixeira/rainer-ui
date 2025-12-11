@@ -13,7 +13,7 @@
 
 import * as React from 'react';
 import { Moon, Sun } from 'lucide-react';
-import { useTheme } from 'next-themes';
+import { useTheme } from '../../../hooks/use-theme';
 import { cn } from '../../../lib/utils';
 
 export interface ThemeToggleProps {
@@ -21,57 +21,95 @@ export interface ThemeToggleProps {
 }
 
 export function ThemeToggle({ className }: ThemeToggleProps) {
-  const { setTheme, resolvedTheme } = useTheme();
+  const { toggle, isDark } = useTheme();
   const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
     setMounted(true);
   }, []);
 
+  /**
+   * Handler para clique no botão
+   * Usa a função toggle do hook personalizado
+   */
+  const handleToggle = () => {
+    toggle();
+  };
+
+  // Placeholder durante SSR para evitar hydration mismatch
   if (!mounted) {
     return (
       <button
         className={cn(
-          'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors',
-          'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
-          'disabled:pointer-events-none disabled:opacity-50 border border-input bg-background',
-          'shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9 relative',
+          // Layout base
+          'inline-flex items-center justify-center rounded-md',
+          'text-sm font-medium transition-colors duration-200',
+          'h-9 w-9 relative',
+          
+          // Estados interativos
+          'focus-visible:outline-none focus-visible:ring-2',
+          'focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+          'disabled:pointer-events-none disabled:opacity-50',
+          
+          // Cores do tema - usando design tokens
+          'bg-surface border border-border shadow-sm',
+          'hover:bg-surface-hover',
+          
+          // Dark mode
+          'dark:bg-surface-dark dark:border-border-dark',
+          'dark:hover:bg-surface-hover-dark',
+          
           className
         )}
         aria-label="Alternar tema"
         disabled
       >
-        <Sun className="h-[1.2rem] w-[1.2rem]" aria-hidden="true" />
+        <div className="h-[1.2rem] w-[1.2rem]" />
         <span className="sr-only">Alternar tema</span>
       </button>
     );
   }
 
-  const handleToggle = () => {
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
-  };
-
   return (
     <button
       onClick={handleToggle}
       className={cn(
-        'inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors',
-        'focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring',
-        'disabled:pointer-events-none disabled:opacity-50 border border-input bg-background',
-        'shadow-sm hover:bg-accent hover:text-accent-foreground h-9 w-9 relative',
+        // Layout base
+        'inline-flex items-center justify-center rounded-md',
+        'text-sm font-medium transition-colors duration-200',
+        'h-9 w-9 relative',
+        
+        // Estados interativos
+        'focus-visible:outline-none focus-visible:ring-2',
+        'focus-visible:ring-primary-500 focus-visible:ring-offset-2',
+        'disabled:pointer-events-none disabled:opacity-50',
+        
+        // Cores do tema - usando design tokens
+        'bg-surface border border-border shadow-sm',
+        'hover:bg-surface-hover',
+        
+        // Dark mode
+        'dark:bg-surface-dark dark:border-border-dark',
+        'dark:hover:bg-surface-hover-dark',
+        
         className
       )}
-      aria-label="Alternar tema"
+      aria-label={isDark ? 'Mudar para tema claro' : 'Mudar para tema escuro'}
     >
-      <Sun
-        className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-        aria-hidden="true"
-      />
-      <Moon
-        className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
-        aria-hidden="true"
-      />
-      <span className="sr-only">Alternar tema</span>
+      {isDark ? (
+        <Moon
+          className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-200 text-text-secondary"
+          aria-hidden="true"
+        />
+      ) : (
+        <Sun
+          className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-200 text-text-primary"
+          aria-hidden="true"
+        />
+      )}
+      <span className="sr-only">
+        {isDark ? 'Mudar para tema claro' : 'Mudar para tema escuro'}
+      </span>
     </button>
   );
 }

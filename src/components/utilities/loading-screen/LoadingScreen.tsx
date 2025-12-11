@@ -383,7 +383,6 @@ export function LoadingScreen({ progress, currentStep }: LoadingScreenProps) {
   // Converter para RGB para uso em estilos
   const primaryRGB = hexToRGB(primaryColor);
   const secondaryRGB = hexToRGB(secondaryColor);
-  const accentRGB = hexToRGB(accentColor);
 
   // ============================================================================
   // Effects

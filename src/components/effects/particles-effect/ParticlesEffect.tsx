@@ -147,7 +147,7 @@ export function ParticlesEffect({
       <div
         className={`absolute ${selectedPositions.particle2} w-0.5 h-0.5 rounded-full animate-pulse opacity-30`}
         style={{
-          animationDelay: ANIMATION_DELAYS.particle2,
+          animationDelay: ANIMATION_DELAYS.short,
           backgroundColor: 'var(--color-text-neon-purple)',
         }}
       />

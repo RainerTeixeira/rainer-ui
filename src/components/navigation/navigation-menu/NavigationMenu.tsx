@@ -10,7 +10,7 @@ import { ChevronDown } from 'lucide-react';
 import * as React from 'react';
 
 import { cn } from '../../../lib/utils';
-import { Z_INDEX, MOTION, motionTokens } from '@rainersoft/design-tokens';
+import { Z_INDEX, MOTION } from '@rainersoft/design-tokens';
 
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,

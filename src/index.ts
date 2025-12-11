@@ -31,6 +31,20 @@ export {
 export type { Tokens } from '@rainersoft/design-tokens';
 
 // ============================================================================
+// IMAGE UTILITIES
+// ============================================================================
+export {
+  isAcceptedFormat,
+  isWebP,
+  supportsWebP,
+  getImageInfo,
+  resizeImage,
+  convertToWebP,
+  prepareImageForUpload,
+  generatePlaceholder,
+} from './lib/image-utils';
+
+// ============================================================================
 // UTILITIES
 // ============================================================================
 export { cn, motion, ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS } from './lib/utils';
@@ -120,10 +134,13 @@ export * from './components/navigation/navigation-menu/NavigationMenu';
 export * from './components/navigation/tabs/Tabs';
 
 // ============================================================================
+// AVATAR
+// ============================================================================
+export { Avatar, AvatarImage, AvatarFallback } from './components/data-display/avatar/Avatar';
+
+// ============================================================================
 // DATA DISPLAY
 // ============================================================================
-// export * from './components/data-display/avatar/Avatar'; // TODO: Fix lib/utils import
-export * from './components/data-display/avatar/Avatar';
 export * from './components/data-display/calendar/Calendar';
 export * from './components/data-display/carousel/Carousel';
 
@@ -151,14 +168,18 @@ export * from './components/utilities/theme-toggle/ThemeToggle';
 export * from './components/utilities/error-boundary/ErrorBoundary';
 
 // ============================================================================
+// PROVIDERS
+// ============================================================================
+export * from './components/providers/theme-provider';
+
+// ============================================================================
 // HOOKS
 // ============================================================================
 export * from './hooks/use-mobile';
 export * from './hooks/use-pwa';
+export * from './hooks/use-theme';
 
 // ============================================================================
 // SCROLL UTILITIES
 // ============================================================================
 export * from './lib/scroll-utils';
-
-

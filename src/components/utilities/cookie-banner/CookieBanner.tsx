@@ -600,3 +600,6 @@ export function useCookieConsent(): CookiePreferences | null {
   return preferences;
 }
 
+// Re-export do tipo para uso externo
+export type { CookiePreferences } from '@/lib/cookies/cookie-manager';
+

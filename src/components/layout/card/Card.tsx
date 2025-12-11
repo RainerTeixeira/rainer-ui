@@ -21,6 +21,7 @@
 
 import { cn } from '../../../lib/utils';
 import * as React from 'react';
+import { GRADIENT_DIRECTIONS, MOTION } from '@rainersoft/design-tokens';
 
 /**
  * Componente Card (Container principal)
@@ -191,6 +192,45 @@ const CardFooter = React.forwardRef<
 ));
 CardFooter.displayName = 'CardFooter';
 
+/**
+ * Componente HighlightCard
+ *
+ * Variante de Card com estilo de destaque/glassmorphism, usando
+ * tokens de gradiente e motion do design system.
+ *
+ * Útil para seções em destaque (ex.: formulários de perfil,
+ * configurações, analytics, seções principais de dashboard).
+ */
+const HighlightCard = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      'text-left bg-card/60 dark:bg-black/50',
+      'backdrop-blur-xl',
+      'rounded-2xl',
+      'p-4 xs:p-5 sm:p-6 md:p-8',
+      'border border-border/50 dark:border-cyan-400/20',
+      'hover:border-primary/40 dark:hover:border-cyan-400/50',
+      'hover:bg-card/80 dark:hover:bg-black/70',
+      'hover:shadow-2xl hover:shadow-primary/10 dark:hover:shadow-cyan-500/20',
+      'h-full flex flex-col group',
+      'relative overflow-hidden',
+      `before:absolute before:inset-0 before:${GRADIENT_DIRECTIONS.TO_BR}`,
+      'before:from-primary/0 before:via-primary/0 before:to-primary/0',
+      'hover:before:from-primary/5 hover:before:via-transparent hover:before:to-primary/5',
+      'dark:hover:before:from-cyan-400/5 dark:hover:before:via-transparent dark:hover:before:to-purple-400/5',
+      'before:transition-all before:duration-500 before:ease-in-out before:pointer-events-none',
+      MOTION.TRANSITION.DEFAULT,
+      className,
+    )}
+    {...props}
+  />
+));
+HighlightCard.displayName = 'HighlightCard';
+
 export {
   Card,
   CardContent,
@@ -198,5 +238,6 @@ export {
   CardFooter,
   CardHeader,
   CardTitle,
+  HighlightCard,
 };
 

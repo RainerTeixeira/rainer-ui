@@ -35,7 +35,7 @@ import { Download, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { Button } from '../../actions/button/Button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../layout/card/Card';
+import { Card } from '../../layout/card/Card';
 
 /**
  * Componente InstallPrompt
