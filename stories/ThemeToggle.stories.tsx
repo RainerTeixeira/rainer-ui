@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ThemeToggle } from '../src/components/utilities/theme-toggle/ThemeToggle';
+import { ThemeToggle } from '../src/components/utilities/ThemeToggle';
 
 const meta = {
   title: 'Utilities/ThemeToggle',

@@ -1,11 +1,12 @@
 # @rainersoft/ui
 
-[![Version](https://img.shields.io/badge/version-1.1.0-blue)](https://github.com/RainerTeixeira/rainer-ui)
+[![Version](https://img.shields.io/badge/version-2.1.0-blue)](https://github.com/RainerTeixeira/rainer-ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Test Coverage](https://img.shields.io/badge/coverage-3.39%25-red)](https://github.com/RainerTeixeira/rainer-ui)
 
 > Componentes UI reutilizáveis construídos com Radix UI, Tailwind CSS e design tokens
 
-**Versão 1.1.0** - Utilitários visuais integrados, configuração simplificada
+**Versão 2.1.0** - Testes abrangentes, componentes completos, setup de testes profissional
 
 ## 📦 Responsabilidade
 
@@ -13,7 +14,9 @@ Esta biblioteca fornece **componentes de UI prontos para uso**:
 - Componentes acessíveis baseados em Radix UI
 - Estilizados com Tailwind CSS
 - Consumindo tokens de `@rainersoft/design-tokens`
-- 49 componentes organizados por categoria
+- 50+ componentes organizados por categoria
+- Setup completo de testes com Jest e Testing Library
+- Storybook para documentação visual
 
 ## 🚀 Instalação
 
@@ -48,7 +51,130 @@ function App() {
 }
 ```
 
-### Temas Dinâmicos
+### 🌟 Imports Individuais (Tree-shaking)
+
+**Novidade v2.1.0**: Importe apenas os componentes que precisa para um bundle menor!
+
+```tsx
+// ✅ Importação completa (padrão)
+import { Button, Card, Input } from '@rainersoft/ui';
+
+// 🌳 Importação individual (recomendado para performance)
+import { Button } from '@rainersoft/ui/components/ui/button';
+import { Card } from '@rainersoft/ui/components/layout/card';
+import { Input } from '@rainersoft/ui/components/forms/input';
+
+// 🎯 Importação por categoria
+import * as UI from '@rainersoft/ui/components/ui';
+import * as Social from '@rainersoft/ui/components/social';
+import * as Forms from '@rainersoft/ui/components/forms';
+```
+
+### 🌐 Componentes Sociais Genéricos
+
+**Novidade v2.1.0**: Componentes sociais genéricos para qualquer tipo de conteúdo!
+
+```tsx
+// 🚀 ActionButton - Botão de ação genérico
+import { ActionButton } from '@rainersoft/ui/components/social/action-button';
+
+<ActionButton
+  icon={<Heart />}
+  activeIcon={<Heart className="fill-current" />}
+  count={likes}
+  isActive={isLiked}
+  onToggle={handleLike}
+  activeColor="error"
+  activeLabel="Curtido"
+  inactiveLabel="Curtir"
+/>
+
+// 📤 ShareMenu - Menu de compartilhamento completo
+import { ShareMenu } from '@rainersoft/ui/components/social/share-menu';
+
+<ShareMenu
+  url="/blog/post-123"
+  title="Como usar React Hooks"
+  description="Aprenda os fundamentos..."
+  platforms={['twitter', 'facebook', 'linkedin', 'whatsapp', 'copy', 'qr']}
+/>
+
+// 📋 ContentCard - Card genérico com ações
+import { ContentCard } from '@rainersoft/ui/components/social/content-card';
+
+<ContentCard
+  title="Como usar React Hooks"
+  description="Aprenda os fundamentos dos Hooks React..."
+  image="/blog/react-hooks.jpg"
+  category="Tutorial"
+  readTime={8}
+  actions={{
+    like: { count: 42, active: true },
+    bookmark: { active: false },
+    share: { url: "/blog/post", title: "Como usar React Hooks" }
+  }}
+/>
+```
+
+### 🎯 Casos de Uso por Projeto
+
+#### **Blog**
+```tsx
+import { ContentCard } from '@rainersoft/ui/components/social/content-card';
+import { ReadingTime } from '@rainersoft/ui/components/social/reading-time';
+import { ActionButton } from '@rainersoft/ui/components/social/action-button';
+
+// Post completo com metadados e ações
+<ContentCard
+  title="Título do Post"
+  description="Resumo do conteúdo..."
+  category="Tutorial"
+  readTime={8}
+  actions={{
+    like: { count: 42, active: true },
+    bookmark: { active: false },
+    share: { url: "/blog/post", title: "Título do Post" }
+  }}
+/>
+```
+
+#### **E-commerce**
+```tsx
+import { ContentCard } from '@rainersoft/ui/components/social/content-card';
+import { ActionButton } from '@rainersoft/ui/components/social/action-button';
+import { ShareMenu } from '@rainersoft/ui/components/social/share-menu';
+
+// Card de produto com ações
+<ContentCard
+  title="Produto Incrível"
+  description="Descrição do produto..."
+  price="R$ 199,90"
+  badge="Promoção"
+  variant="product"
+  actions={{
+    favorite: { count: 89, active: false },
+    share: { url: "/product/123", title: "Produto Incrível" }
+  }}
+/>
+```
+
+#### **Dashboard**
+```tsx
+import { ShareMenu } from '@rainersoft/ui/components/social/share-menu';
+import { KPI } from '@rainersoft/ui/components/feedback/kpi';
+import { Table } from '@rainersoft/ui/components/layout/table';
+
+// Relatório compartilhável
+<ShareMenu
+  url="/dashboard/report/123"
+  title="Relatório Mensal"
+  platforms={['copy', 'email']}
+  variant="ghost"
+  size="sm"
+/>
+```
+
+### 🎨 Temas Dinâmicos
 
 ```tsx
 // Os componentes se adaptam automaticamente ao tema
@@ -110,32 +236,53 @@ export default config;
 
 ## 🧩 Componentes Disponíveis
 
-### Actions
-- `Button`, `Toggle`, `Slider`
+### 🌐 Social Components (Novidade v2.1.0)
+- `ActionButton` - Botão de ação genérico (curtir, favoritar, follow)
+- `ShareMenu` - Menu de compartilhamento completo
+- `ContentCard` - Card genérico com metadados e ações
+- `LikeButton` - Botão de curtir específico
+- `BookmarkButton` - Botão de salvar específico  
+- `ShareButton` - Botão de compartilhamento específico
+- `ReadingTime` - Tempo de leitura estimado
 
-### Forms  
-- `Input`, `Textarea`, `Select`, `Checkbox`, `RadioGroup`, `Switch`, `Label`, `Form`
+### 🎨 UI Components
+- `Button`, `Avatar`, `Input`, `Label`, `Textarea`
+- `Select`, `Checkbox`, `RadioGroup`, `Switch`, `Slider`, `Toggle`
+- `Icon-Button`, `Link-Button`, `FAB`, `Segmented-Control`
 
-### Layout
-- `Card`, `Sheet`, `Table`, `ScrollArea`, `Separator`, `AspectRatio`
+### 📝 Forms  
+- `Form`, `Input`, `Textarea`, `Select`, `Checkbox`, `RadioGroup`, `Switch`, `Label`
+- `Date-Picker`, `Time-Picker`, `Phone-Input`, `Search-Input`, `File-Upload`, `Range-Slider`
 
-### Feedback
-- `Alert`, `AlertDialog`, `Badge`, `Progress`, `Skeleton`, `Sonner`
+### 🏗️ Layout
+- `Card`, `Sheet`, `Table`, `ScrollArea`, `Separator`, `AspectRatio`, `Container`
+- `Flex`, `Grid`, `Spacer`, `Panel`, `Breadcrumb`, `Divider`
 
-### Overlays
-- `Dialog`, `Popover`, `Tooltip`, `HoverCard`, `DropdownMenu`, `ContextMenu`
+### 🔔 Feedback
+- `Alert`, `AlertDialog`, `Badge`, `EmptyState`, `Progress`, `Skeleton`, `Sonner`
+- `KPI`, `Notification`, `Spinner`
 
-### Navigation
-- `Tabs`, `Accordion`, `NavigationMenu`, `Command`, `Collapsible`
+### 🎭 Overlays
+- `Dialog`, `Modal`, `Popover`, `Tooltip`, `HoverCard`, `DropdownMenu`, `ContextMenu`
+- `Drawer`, `Lightbox`, `Confirm-Dialog`
 
-### Data Display
-- `Avatar`, `Calendar`, `Carousel`
+### 🧭 Navigation
+- `Tabs`, `Accordion`, `NavigationMenu`, `Command`, `Collapsible`, `Menu`
+- `Pagination`, `Sidebar`, `Steps`, `Top-Bar`
 
-### Effects
-- `ParticlesEffect`, `StarsBackground`, `FloatingGrid`, `CelestialBackground`
+### 📊 Data Display
+- `Avatar`, `Calendar`, `Carousel`, `Chip`, `Masonry`, `Rating`, `Timeline`
 
-### Utilities
+### ✨ Effects
+- `ParticlesEffect`, `StarsBackground`, `FloatingGrid`, `CelestialBackground`, `MatrixBackground`
+
+### ⚙️ Providers
+- `ThemeProvider`
+
+### 🛠️ Utilities
 - `BackToTop`, `CookieBanner`, `InstallPrompt`, `LoadingScreen`, `PageHeader`, `UpdateNotification`
+- `ErrorBoundary`, `Center`, `Kbd`, `Code`, `Quote`, `VisuallyHidden`, `ThemeToggle`, `TokensDemo`
+- `Aspect-Ratio-Box`
 
 ## 🛠️ Scripts
 
@@ -162,26 +309,91 @@ pnpm clean
 @rainersoft/ui/
 ├── src/
 │   ├── components/
-│   │   ├── actions/       # Botões e controles
-│   │   ├── forms/         # Elementos de formulário
-│   │   ├── layout/        # Containers e layout
-│   │   ├── feedback/      # Feedback visual
-│   │   ├── overlays/      # Modais e overlays
-│   │   ├── navigation/    # Navegação
-│   │   ├── data-display/  # Exibição de dados
-│   │   ├── effects/       # Efeitos visuais
-│   │   └── utilities/     # Utilitários
+│   │   ├── ui/             # Componentes UI básicos
+│   │   ├── social/         # 🆕 Componentes sociais genéricos
+│   │   ├── forms/          # Elementos de formulário
+│   │   ├── layout/         # Containers e layout
+│   │   ├── feedback/       # Feedback visual
+│   │   ├── overlays/       # Modais e overlays
+│   │   ├── navigation/     # Navegação
+│   │   ├── data-display/   # Exibição de dados
+│   │   ├── effects/        # Efeitos visuais
+│   │   ├── utilities/      # Utilitários
+│   │   └── providers/      # Context providers
 │   ├── lib/
-│   │   ├── utils.ts       # Função cn() e motion helpers
-│   │   └── color-utils.ts # Utilitários de cor
+│   │   ├── utils.ts        # Função cn() e motion helpers
+│   │   └── color-utils.ts  # Utilitários de cor
 │   ├── styles/
-│   │   └── global.css     # 🆕 Estilos globais + utilitários visuais
-│   └── index.ts           # Exportações
-├── stories/               # Stories do Storybook
-└── dist/                  # Build para distribuição
+│   │   └── global.css      # Estilos globais + utilitários visuais
+│   └── index.ts            # Exportações
+├── stories/                # Stories do Storybook
+├── scripts/                # Scripts de build e geração
+└── dist/                   # Build para distribuição
+    └── components/         # 🆕 Exports individuais
+        ├── ui/
+        ├── social/
+        ├── forms/
+        ├── layout/
+        ├── feedback/
+        ├── overlays/
+        ├── navigation/
+        ├── data-display/
+        ├── effects/
+        └── providers/
 ```
 
 ## 🎨 Variantes e Props
+
+### 🌐 Social Components
+
+#### ActionButton
+```tsx
+<ActionButton
+  icon={<Heart />}
+  activeIcon={<Heart className="fill-current" />}
+  count={42}
+  isActive={true}
+  onToggle={handleLike}
+  activeColor="error"
+  activeLabel="Curtido"
+  inactiveLabel="Curtir"
+  variant="default"
+  size="sm"
+/>
+```
+
+#### ShareMenu
+```tsx
+<ShareMenu
+  url="/blog/post-123"
+  title="Como usar React Hooks"
+  description="Aprenda os fundamentos..."
+  platforms={['twitter', 'facebook', 'linkedin', 'whatsapp', 'copy', 'qr']}
+  variant="outline"
+  size="sm"
+  showLabel={true}
+  onShare={(platform) => console.log('Shared:', platform)}
+/>
+```
+
+#### ContentCard
+```tsx
+<ContentCard
+  title="Como usar React Hooks"
+  description="Aprenda os fundamentos dos Hooks React..."
+  image="/blog/react-hooks.jpg"
+  category="Tutorial"
+  readTime={8}
+  link="/blog/react-hooks"
+  variant="default"
+  orientation="vertical"
+  actions={{
+    like: { count: 42, active: true },
+    bookmark: { active: false },
+    share: { url: "/blog/post", title: "Como usar React Hooks" }
+  }}
+/>
+```
 
 ### Button
 

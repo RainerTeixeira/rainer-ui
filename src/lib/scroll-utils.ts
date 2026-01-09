@@ -84,3 +84,34 @@ export function disableScroll(): void {
 export function enableScroll(): void {
   document.body.style.overflow = '';
 }
+
+/**
+ * Observa mudanças na preferência de movimento reduzido
+ */
+export function onReducedMotionChange(
+  callback: (matches: boolean) => void
+): () => void {
+  if (typeof window === 'undefined') {
+    return () => {};
+  }
+
+  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  const handler = (event: MediaQueryListEvent | MediaQueryList) => {
+    callback(event.matches);
+  };
+
+  handler(mediaQuery);
+
+  if (mediaQuery.addEventListener) {
+    mediaQuery.addEventListener('change', handler);
+    return () => mediaQuery.removeEventListener('change', handler);
+  }
+
+  if (mediaQuery.addListener) {
+    mediaQuery.addListener(handler);
+    return () => mediaQuery.removeListener(handler);
+  }
+
+  return () => {};
+}

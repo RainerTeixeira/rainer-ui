@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Avatar, AvatarFallback, AvatarImage } from '../src/components/data-display/avatar/Avatar';
+import { Avatar } from '../src/components/ui/avatar';
 
 const meta = {
   title: 'Data Display/Avatar',
@@ -8,44 +8,71 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
+  argTypes: {
+    src: {
+      control: 'text',
+    },
+    alt: {
+      control: 'text',
+    },
+    name: {
+      control: 'text',
+    },
+    size: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+    },
+    variant: {
+      control: 'select',
+      options: ['circular', 'rounded', 'square'],
+    },
+  },
 } satisfies Meta<typeof Avatar>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: () => (
-    <Avatar>
-      <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-      <AvatarFallback>CN</AvatarFallback>
-    </Avatar>
-  ),
+  args: {
+    src: 'https://github.com/shadcn.png',
+    alt: '@shadcn',
+    name: 'shadcn',
+  },
 };
 
 export const Fallback: Story = {
-  render: () => (
-    <Avatar>
-      <AvatarImage src="invalid-url" alt="Fallback" />
-      <AvatarFallback>RT</AvatarFallback>
-    </Avatar>
-  ),
+  args: {
+    src: 'invalid-url',
+    alt: 'Fallback',
+    name: 'Rainer Teixeira',
+  },
+};
+
+export const FallbackOnly: Story = {
+  args: {
+    name: 'Rainer Teixeira',
+  },
 };
 
 export const Sizes: Story = {
   render: () => (
     <div className="flex items-center gap-4">
-      <Avatar className="h-8 w-8">
-        <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>SM</AvatarFallback>
-      </Avatar>
-      <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>MD</AvatarFallback>
-      </Avatar>
-      <Avatar className="h-16 w-16">
-        <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>LG</AvatarFallback>
-      </Avatar>
+      <Avatar size="xs" name="XS" />
+      <Avatar size="sm" name="Small" />
+      <Avatar size="md" name="Medium" />
+      <Avatar size="lg" name="Large" />
+      <Avatar size="xl" name="Extra Large" />
+      <Avatar size="2xl" name="2X Large" />
+    </div>
+  ),
+};
+
+export const Variants: Story = {
+  render: () => (
+    <div className="flex items-center gap-4">
+      <Avatar variant="circular" name="Circular" />
+      <Avatar variant="rounded" name="Rounded" />
+      <Avatar variant="square" name="Square" />
     </div>
   ),
 };
@@ -53,21 +80,28 @@ export const Sizes: Story = {
 export const Group: Story = {
   render: () => (
     <div className="flex -space-x-4">
-      <Avatar className="border-2 border-background">
-        <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback>RT</AvatarFallback>
-      </Avatar>
-      <Avatar className="border-2 border-background">
-        <AvatarImage src="https://github.com/vercel.png" />
-        <AvatarFallback>VC</AvatarFallback>
-      </Avatar>
-      <Avatar className="border-2 border-background">
-        <AvatarImage src="https://github.com/nextjs.png" />
-        <AvatarFallback>NX</AvatarFallback>
-      </Avatar>
-      <Avatar className="border-2 border-background">
-        <AvatarFallback>+3</AvatarFallback>
-      </Avatar>
+      <Avatar 
+        src="https://github.com/shadcn.png" 
+        alt="shadcn" 
+        name="shadcn"
+        className="border-2 border-background"
+      />
+      <Avatar 
+        src="https://github.com/vercel.png" 
+        alt="vercel" 
+        name="vercel"
+        className="border-2 border-background"
+      />
+      <Avatar 
+        src="https://github.com/nextjs.png" 
+        alt="nextjs" 
+        name="nextjs"
+        className="border-2 border-background"
+      />
+      <Avatar 
+        name="+3"
+        className="border-2 border-background"
+      />
     </div>
   ),
 };

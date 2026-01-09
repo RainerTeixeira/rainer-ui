@@ -22,23 +22,29 @@ import { tokens } from '@rainersoft/design-tokens';
  * @example
  * ```typescript
  * getTokenColor('primary') // "var(--color-primary)"
- * getTokenColor('primary', 'light') // "#0891b2" (valor direto do token)
+ * getTokenColor('primary', 'light') // "#0ea5e9" (valor direto do token)
  * ```
  */
 export function getTokenColor(tokenName: string, theme?: 'light' | 'dark'): string {
-  const cleanName = tokenName.replace(/^color-/, '');
-  
-  // Se theme especificado, tenta buscar valor direto
+  // Se theme especificado, tenta buscar valor direto dos temas
   if (theme) {
-    const colors = theme === 'light' ? tokens.colors.light : tokens.colors.dark;
-    // Navega nos tokens buscando o valor
-    for (const category of Object.values(colors)) {
-      if (typeof category === 'object' && category !== null) {
-        for (const [key, value] of Object.entries(category)) {
-          if (key === cleanName && typeof value === 'string') {
-            return value;
-          }
-        }
+    const themeColors = tokens.themes[theme] as any;
+    
+    // Busca em diferentes categorias do tema
+    const searchPaths = [
+      themeColors.button?.primary?.default,
+      themeColors.text?.primary,
+      themeColors.background?.primary,
+      themeColors.border?.default,
+      themeColors.status?.success?.default,
+      themeColors.status?.error?.default,
+      themeColors.status?.warning?.default,
+      themeColors.status?.info?.default,
+    ];
+    
+    for (const value of searchPaths) {
+      if (typeof value === 'string' && value.startsWith('#')) {
+        return value;
       }
     }
   }
@@ -113,20 +119,13 @@ export function overlayFromToken(tokenName: string, alpha: number = 0.08, theme?
   
   // Se theme especificado, busca valor direto e converte
   if (theme) {
-    const colors = theme === 'light' ? tokens.colors.light : tokens.colors.dark;
-    for (const category of Object.values(colors)) {
-      if (typeof category === 'object' && category !== null) {
-        for (const [key, value] of Object.entries(category)) {
-          if (key === cleanName && typeof value === 'string' && value.startsWith('#')) {
-            return hexToRGBA(value, alpha);
-          }
-        }
-      }
+    const hexColor = getTokenColor(cleanName, theme);
+    if (hexColor.startsWith('#')) {
+      return hexToRGBA(hexColor, alpha);
     }
   }
   
   // Fallback: usa CSS var com formato RGB
-  // Assume que --color-*-rgb existe (padrão do design-tokens)
   const varName = tokenName.startsWith('color-') ? tokenName : `color-${tokenName}`;
   return `rgba(var(--${varName}-rgb, 0 0 0), ${alpha})`;
 }

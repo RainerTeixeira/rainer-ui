@@ -2,7 +2,7 @@
  * Theme Utilities
  * 
  * Utilitários para trabalhar com temas e cores do design system,
- * facilitando o uso sem hardcode de valores.
+ * usando a nova estrutura de tokens semânticos.
  * 
  * @module @rainersoft/ui/lib/theme-utils
  * @author Rainer Teixeira
@@ -19,47 +19,18 @@ import { tokens } from '@rainersoft/design-tokens';
  * @example
  * ```typescript
  * const lightColors = getThemeColors('light');
- * const primaryColor = lightColors.brand.primary;
+ * const primaryColor = lightColors.background.primary;
  * ```
  */
 export function getThemeColors(theme: 'light' | 'dark') {
-  return theme === 'light' ? tokens.colors.light : tokens.colors.dark;
+  return tokens.themes[theme];
 }
 
 /**
- * Obtém uma cor específica de um tema
+ * Obtém cores semânticas do tema
  * 
  * @param theme - Tema para buscar ('light' | 'dark')
- * @param category - Categoria da cor (ex: 'brand', 'accent', 'neutral')
- * @param shade - Tom da cor (ex: 'primary', 'secondary', '50', '900')
- * @returns Valor hex da cor ou undefined se não encontrada
- * 
- * @example
- * ```typescript
- * const primary = getColorFromTheme('light', 'brand', 'primary');
- * const cyan500 = getColorFromTheme('dark', 'accent', 'cyan');
- * ```
- */
-export function getColorFromTheme(
-  theme: 'light' | 'dark',
-  category: string,
-  shade: string
-): string | undefined {
-  const colors = getThemeColors(theme);
-  const colorCategory = (colors as any)[category];
-  
-  if (!colorCategory || typeof colorCategory !== 'object') {
-    return undefined;
-  }
-  
-  return colorCategory[shade];
-}
-
-/**
- * Gera um objeto de cores semantic para uso em componentes
- * 
- * @param theme - Tema base ('light' | 'dark')
- * @returns Objeto com cores semantic prontas para uso
+ * @returns Objeto com cores semânticas organizadas
  * 
  * @example
  * ```typescript
@@ -71,39 +42,243 @@ export function getColorFromTheme(
  * ```
  */
 export function getSemanticColors(theme: 'light' | 'dark') {
-  const colors = getThemeColors(theme);
+  return tokens.themes[theme];
+}
+
+/**
+ * Obtém cores semânticas de forma simplificada
+ * 
+ * @param theme - Tema ('light' | 'dark')
+ * @returns Objeto simplificado com cores mais usadas
+ */
+export function getSemanticColorsSimplified(theme: 'light' | 'dark') {
+  const colors = tokens.themes[theme] as any;
   
   return {
     text: {
-      primary: (colors as any).text?.primary || (colors as any).neutral?.['900'],
-      secondary: (colors as any).text?.secondary || (colors as any).neutral?.['600'],
-      muted: (colors as any).text?.muted || (colors as any).neutral?.['500'],
-      disabled: (colors as any).text?.disabled || (colors as any).neutral?.['400'],
+      primary: colors.text.primary,
+      secondary: colors.text.secondary,
+      tertiary: colors.text.tertiary,
+      disabled: colors.text.disabled,
+      inverse: colors.text.inverse,
+      link: colors.text.link || colors.interactive?.link?.default || colors.text.primary,
+      linkHover: colors.text.linkHover || colors.interactive?.link?.hover || colors.text.primary,
     },
     background: {
-      primary: (colors as any).background?.primary || (colors as any).neutral?.['50'],
-      secondary: (colors as any).background?.secondary || (colors as any).neutral?.['100'],
-      tertiary: (colors as any).background?.tertiary || (colors as any).neutral?.['200'],
+      primary: colors.background.primary,
+      secondary: colors.background.secondary,
+      tertiary: colors.background.tertiary,
+      disabled: colors.background.disabled,
+      overlay: colors.background.overlay,
     },
     border: {
-      default: (colors as any).border?.default || (colors as any).neutral?.['300'],
-      muted: (colors as any).border?.muted || (colors as any).neutral?.['200'],
-      strong: (colors as any).border?.strong || (colors as any).neutral?.['400'],
+      default: colors.border.default,
+      light: colors.border.light,
+      medium: colors.border.medium || colors.border.default,
+      dark: colors.border.dark || colors.border.default,
+      focus: colors.border.focus || colors.border.default,
+      error: colors.border.error || colors.border.default,
+      success: colors.border.success || colors.border.default,
+      warning: colors.border.warning || colors.border.default,
     },
-    brand: {
-      primary: (colors as any).brand?.primary,
-      secondary: (colors as any).brand?.secondary,
-      tertiary: (colors as any).brand?.tertiary,
-    },
-    accent: (colors as any).accent || {},
-    status: {
-      success: (colors as any).status?.success || '#10b981',
-      warning: (colors as any).status?.warning || '#f59e0b',
-      error: (colors as any).status?.error || '#ef4444',
-      info: (colors as any).status?.info || '#3b82f6',
-    },
+    button: colors.button,
+    status: colors.status,
+    interactive: colors.interactive || {},
+    surface: colors.surface || {},
   };
 }
+
+/**
+ * Helper para obter cor de status sem hardcode
+ * 
+ * @param status - Tipo de status
+ * @param theme - Tema (opcional, padrão: light)
+ * @returns Valor hex da cor padrão do status
+ * 
+ * @example
+ * ```typescript
+ * const successColor = getStatusColor('success');
+ * const errorColorDark = getStatusColor('error', 'dark');
+ * ```
+ */
+export function getStatusColor(
+  status: 'success' | 'warning' | 'error' | 'info',
+  theme: 'light' | 'dark' = 'light'
+): string {
+  const colors = tokens.themes[theme] as any;
+  const statusColors = colors.status?.[status];
+  
+  if (typeof statusColors === 'string') {
+    return statusColors;
+  }
+  
+  if (statusColors && typeof statusColors === 'object' && 'default' in statusColors) {
+    return statusColors.default;
+  }
+  
+  // Fallback
+  if (status === 'success') return colors.status?.success?.default || '#22c55e';
+  if (status === 'error') return colors.status?.error?.default || '#ef4444';
+  if (status === 'warning') return colors.status?.warning?.default || '#f87171';
+  return colors.status?.info?.default || '#0ea5e9';
+}
+
+/**
+ * Helper para obter cor de botão primário
+ * 
+ * @param theme - Tema (opcional, padrão: light)
+ * @returns Valor hex da cor padrão do botão primário
+ * 
+ * @example
+ * ```typescript
+ * const primaryButton = getButtonPrimaryColor();
+ * const primaryButtonDark = getButtonPrimaryColor('dark');
+ * ```
+ */
+export function getButtonPrimaryColor(theme: 'light' | 'dark' = 'light'): string {
+  const colors = tokens.themes[theme] as any;
+  const buttonPrimary = colors.button?.primary;
+  
+  if (typeof buttonPrimary === 'string') {
+    return buttonPrimary;
+  }
+  
+  return buttonPrimary?.default || '#0ea5e9';
+}
+
+/**
+ * Helper para obter cor de botão secundário
+ * 
+ * @param theme - Tema (opcional, padrão: light)
+ * @returns Valor hex da cor padrão do botão secundário
+ */
+export function getButtonSecondaryColor(theme: 'light' | 'dark' = 'light'): string {
+  const colors = tokens.themes[theme] as any;
+  const buttonSecondary = colors.button?.secondary;
+  
+  if (typeof buttonSecondary === 'string') {
+    return buttonSecondary;
+  }
+  
+  return buttonSecondary?.default || '#e5e7eb';
+}
+
+/**
+ * Helper para obter cor de botão terciário
+ * 
+ * @param theme - Tema (opcional, padrão: light)
+ * @returns Valor hex da cor padrão do botão terciário
+ */
+export function getButtonTertiaryColor(theme: 'light' | 'dark' = 'light'): string {
+  const colors = tokens.themes[theme] as any;
+  const buttonTertiary = colors.button?.tertiary;
+  
+  if (typeof buttonTertiary === 'string') {
+    return buttonTertiary;
+  }
+  
+  return buttonTertiary?.default || 'transparent';
+}
+
+/**
+ * Helper para obter cor de texto sobre fundo primário
+ * 
+ * @param theme - Tema (opcional, padrão: light)
+ * @returns Valor hex da cor do texto
+ */
+export function getButtonPrimaryTextColor(theme: 'light' | 'dark' = 'light'): string {
+  const colors = tokens.themes[theme] as any;
+  const buttonPrimary = colors.button?.primary;
+  
+  if (typeof buttonPrimary === 'string') {
+    return '#ffffff';
+  }
+  
+  return buttonPrimary?.text || '#ffffff';
+}
+
+/**
+ * Obtém uma cor específica de um tema por categoria e shade
+ * 
+ * @param theme - Tema para buscar ('light' | 'dark')
+ * @param category - Categoria da cor (ex: 'background', 'text', 'button', 'border', 'status')
+ * @param shade - Tom/chave da cor (ex: 'primary', 'secondary', 'default')
+ * @returns Valor hex da cor ou undefined se não encontrada
+ * 
+ * @example
+ * ```typescript
+ * const primaryBg = getColorFromTheme('light', 'background', 'primary');
+ * const primaryText = getColorFromTheme('light', 'text', 'primary');
+ * const primaryButton = getColorFromTheme('light', 'button', 'primary');
+ * ```
+ */
+export function getColorFromTheme(
+  theme: 'light' | 'dark',
+  category: 'background' | 'text' | 'button' | 'border' | 'status' | 'interactive' | 'surface',
+  shade: string
+): string | undefined {
+  const colors = tokens.themes[theme] as any;
+  const colorCategory = colors[category];
+  
+  if (!colorCategory || typeof colorCategory !== 'object') {
+    return undefined;
+  }
+  
+  // Se for um objeto aninhado (como button.primary.default), busca recursivamente
+  const shadeValue = colorCategory[shade];
+  if (typeof shadeValue === 'string') {
+    return shadeValue;
+  }
+  
+  if (shadeValue && typeof shadeValue === 'object' && 'default' in shadeValue) {
+    return shadeValue.default;
+  }
+  
+  return undefined;
+}
+
+/**
+ * Helper para obter cor de botão/marca por variante
+ * 
+ * @param variant - Variante da cor de botão ('primary' | 'secondary' | 'tertiary')
+ * @param theme - Tema (opcional, padrão: light)
+ * @returns Valor hex da cor ou undefined se não encontrada
+ * 
+ * @example
+ * ```typescript
+ * const primaryBrand = getBrandColor('primary');
+ * const secondaryBrandDark = getBrandColor('secondary', 'dark');
+ * ```
+ */
+export function getBrandColor(
+  variant: 'primary' | 'secondary' | 'tertiary',
+  theme: 'light' | 'dark' = 'light'
+): string | undefined {
+  const colors = tokens.themes[theme] as any;
+  const button = colors.button || {};
+  
+  if (variant === 'primary') {
+    const primary = button.primary;
+    return typeof primary === 'string' ? primary : primary?.default;
+  } else if (variant === 'secondary') {
+    const secondary = button.secondary;
+    return typeof secondary === 'string' ? secondary : secondary?.default;
+  } else if (variant === 'tertiary' && button.tertiary) {
+    const tertiary = button.tertiary;
+    return typeof tertiary === 'string' ? tertiary : tertiary?.default;
+  }
+  
+  return undefined;
+}
+
+/**
+ * Constantes de cores semânticas para uso rápido
+ * Baseadas nos tokens do design system
+ */
+export const SEMANTIC_COLORS = {
+  light: getSemanticColorsSimplified('light'),
+  dark: getSemanticColorsSimplified('dark'),
+} as const;
 
 /**
  * Gera classes Tailwind CSS baseadas em tokens
@@ -150,53 +325,4 @@ export function generateTailwindClasses(options: {
   });
   
   return classes.join(' ');
-}
-
-/**
- * Constantes de cores semantic para uso rápido
- * Baseadas nos tokens do design system
- */
-export const SEMANTIC_COLORS = {
-  light: getSemanticColors('light'),
-  dark: getSemanticColors('dark'),
-} as const;
-
-/**
- * Helper para obter cor de status sem hardcode
- * 
- * @param status - Tipo de status
- * @param theme - Tema (opcional, padrão: light)
- * @returns Valor hex da cor
- * 
- * @example
- * ```typescript
- * const successColor = getStatusColor('success');
- * const errorColorDark = getStatusColor('error', 'dark');
- * ```
- */
-export function getStatusColor(
-  status: 'success' | 'warning' | 'error' | 'info',
-  theme: 'light' | 'dark' = 'light'
-): string {
-  return SEMANTIC_COLORS[theme].status[status];
-}
-
-/**
- * Helper para obter cor de marca sem hardcode
- * 
- * @param variant - Variante da cor de marca
- * @param theme - Tema (opcional, padrão: light)
- * @returns Valor hex da cor
- * 
- * @example
- * ```typescript
- * const primaryBrand = getBrandColor('primary');
- * const secondaryBrandDark = getBrandColor('secondary', 'dark');
- * ```
- */
-export function getBrandColor(
-  variant: 'primary' | 'secondary' | 'tertiary',
-  theme: 'light' | 'dark' = 'light'
-): string | undefined {
-  return SEMANTIC_COLORS[theme].brand[variant];
 }

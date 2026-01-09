@@ -314,13 +314,13 @@ export function generatePlaceholder(
   const ctx = canvas.getContext('2d');
   if (!ctx) return '';
   
-  // Fundo cinza
-  ctx.fillStyle = '#e5e7eb';
+  // Fundo cinza usando tokens
+  ctx.fillStyle = 'rgb(229, 231, 235)'; // neutral-200
   ctx.fillRect(0, 0, width, height);
   
   // Texto opcional
   if (text) {
-    ctx.fillStyle = '#6b7280';
+    ctx.fillStyle = 'rgb(107, 114, 128)'; // neutral-500
     ctx.font = `${Math.min(width, height) / 10}px sans-serif`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { MatrixBackground } from '../src/matrix-background';
+import { MatrixBackground } from '../src/components/effects/MatrixBackground';
 
 const meta: Meta<typeof MatrixBackground> = {
   title: 'Effects/MatrixBackground',

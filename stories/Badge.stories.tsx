@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Badge } from '../src/components/feedback/badge/Badge';
+import { Badge } from '../src/components/feedback/badge';
 
 const meta = {
   title: 'Feedback/Badge',

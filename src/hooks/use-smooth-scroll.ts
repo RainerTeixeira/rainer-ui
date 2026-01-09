@@ -6,7 +6,7 @@ import {
   scrollToPosition,
   scrollToTop,
   smoothScrollTo,
-} from '@/lib/utils/scroll';
+} from '../lib/scroll-utils';
 import { useCallback, useEffect, useState } from 'react';
 
 export function useSmoothScroll() {
@@ -15,7 +15,7 @@ export function useSmoothScroll() {
   useEffect(() => {
     setReducedMotion(prefersReducedMotion());
 
-    const cleanup = onReducedMotionChange(matches => {
+    const cleanup = onReducedMotionChange((matches: boolean) => {
       setReducedMotion(matches);
     });
 
@@ -33,8 +33,8 @@ export function useSmoothScroll() {
     scrollToTop();
   }, []);
 
-  const toPosition = useCallback((top: number, left?: number) => {
-    scrollToPosition(top, left);
+  const toPosition = useCallback((top: number, left: number = 0) => {
+    scrollToPosition(left, top);
   }, []);
 
   return {

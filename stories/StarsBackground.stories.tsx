@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { StarsBackground } from '../src/components/effects/stars-background/StarsBackground';
+import { StarsBackground } from '../src/components/effects/StarsBackground';
 
 const meta: Meta<typeof StarsBackground> = {
   title: 'Effects/StarsBackground',

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../src/components/forms/select/Select';
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../src/components/forms/select';
 
 const meta = {
   title: 'Forms/Select',

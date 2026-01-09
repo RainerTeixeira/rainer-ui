@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Skeleton } from '../src/components/feedback/skeleton/Skeleton';
-import { Card, CardContent, CardHeader } from '../src/components/layout/card/Card';
+import { Skeleton } from '../src/components/feedback/skeleton';
+import { Card, CardContent, CardHeader } from '../src/components/layout/card';
 
 const meta = {
   title: 'Feedback/Skeleton',

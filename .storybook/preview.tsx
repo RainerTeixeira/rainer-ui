@@ -2,7 +2,7 @@ import type { Preview } from '@storybook/react';
 import React from 'react';
 
 // Import CSS Variables
-import '@rainersoft/design-tokens/src/css-vars.css';
+import '@rainersoft/design-tokens/formats/css-vars.css';
 import '../src/styles/global.css';
 
 const preview: Preview = {

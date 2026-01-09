@@ -1,17 +1,25 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+
 module.exports = {
-  preset: 'ts-jest',
-  testEnvironment: 'jsdom',
-  roots: ['<rootDir>/src'],
+  preset: "ts-jest/presets/default",
+  testEnvironment: "jsdom",
+  roots: ["<rootDir>/src", "<rootDir>/test"],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    "^.+\\.tsx?$": ["ts-jest", {
+      tsconfig: {
+        jsx: "react-jsx",
+        skipLibCheck: true,
+        types: ["jest", "@testing-library/jest-dom", "node"]
+      }
+    }],
   },
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
+  testRegex: String.raw`(/__tests__/.*|(\\.|/)(test|spec))\.tsx?$`,
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   collectCoverageFrom: [
-    'src/**/*.{ts,tsx}',
-    '!src/**/*.d.ts',
-    '!src/**/*.stories.tsx',
-    '!src/index.ts',
+    "src/**/*.{ts,tsx}",
+    "!src/**/*.d.ts",
+    "!src/**/*.stories.tsx",
+    "!src/index.ts",
   ],
   coverageThreshold: {
     global: {
@@ -21,8 +29,8 @@ module.exports = {
       statements: 80,
     },
   },
-  setupFilesAfterEnv: ['<rootDir>/src/test/setup.ts'],
+  setupFilesAfterEnv: ["<rootDir>/test/setup.ts"],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/src/$1',
+    "^@/(.*)$": "<rootDir>/src/$1",
   },
 };

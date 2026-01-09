@@ -7,10 +7,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '../src/components/overlays/dialog/Dialog';
-import { Button } from '../src/components/actions/button/Button';
-import { Input } from '../src/components/forms/input/Input';
-import { Label } from '../src/components/forms/label/Label';
+} from '../src/components/overlays/dialog';
+import { Button } from '../src/components/ui/button';
+import { Input } from '../src/components/forms/input';
+import { Label } from '../src/components/forms/label';
 
 const meta = {
   title: 'Overlays/Dialog',

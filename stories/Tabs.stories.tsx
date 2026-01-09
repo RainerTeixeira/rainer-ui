@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../src/components/navigation/tabs/Tabs';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../src/components/layout/card/Card';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '../src/components/navigation/tabs';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../src/components/layout/card';
 
 const meta = {
   title: 'Navigation/Tabs',

@@ -8,8 +8,13 @@
 
 ### Guias Principais
 
-- **[Guia de Contribuição](./CONTRIBUINDO.md)**  
+- **[Guia de Contribuição](./02-CONTRIBUINDO.md)**  
   Como contribuir com a biblioteca, padrões de código, estrutura de componentes e processo de pull request.
+
+### Documentação Técnica
+
+- **[CHANGELOG](./98-CHANGELOG.md)**  
+  Histórico de mudanças e releases da biblioteca.
 
 ---
 
@@ -34,8 +39,13 @@
 
 ```
 docs/
-├── 00-INDICE.md        # Este arquivo - Índice de toda documentação
-└── CONTRIBUINDO.md     # Guia de contribuição
+├── 00-INDICE.md           # Este arquivo - Índice de toda documentação
+├── 01-ARQUITETURA.md      # Arquitetura do sistema
+├── 02-CONTRIBUINDO.md     # Guia de contribuição
+├── 03-ESTRUTURA.md        # Estrutura dos componentes
+├── 04-GUIA-SISTEMA-TEMAS.md # Sistema de temas
+├── 98-CHANGELOG.md        # CHANGELOG gerado automaticamente
+└── 99-CHANGELOG-SYSTEM.md # Sistema de geração de changelog
 ```
 
 ---
@@ -43,10 +53,10 @@ docs/
 ## 🚀 Como Usar Esta Documentação
 
 1. **Novo Contribuidor?**  
-   Comece pelo [Guia de Contribuição](./CONTRIBUINDO.md)
+   Comece pelo [Guia de Contribuição](./02-CONTRIBUINDO.md)
 
 2. **Criando Componente?**  
-   Veja templates e padrões em [CONTRIBUINDO.md](./CONTRIBUINDO.md#criando-componentes)
+   Veja templates e padrões em [02-CONTRIBUINDO.md](./02-CONTRIBUINDO.md#criando-componentes)
 
 3. **Dúvidas?**  
    Abra uma [issue no GitHub](https://github.com/RainerTeixeira/rainer-ui/issues)

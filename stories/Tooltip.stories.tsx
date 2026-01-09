@@ -4,8 +4,8 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from '../src/components/overlays/tooltip/Tooltip';
-import { Button } from '../src/components/actions/button/Button';
+} from '../src/components/overlays/tooltip';
+import { Button } from '../src/components/ui/button';
 
 const meta = {
   title: 'Overlays/Tooltip',

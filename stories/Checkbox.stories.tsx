@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Checkbox } from '../src/components/forms/checkbox/Checkbox';
-import { Label } from '../src/components/forms/label/Label';
+import { Checkbox } from '../src/components/forms/checkbox';
+import { Label } from '../src/components/forms/label';
 
 const meta = {
   title: 'Forms/Checkbox',
