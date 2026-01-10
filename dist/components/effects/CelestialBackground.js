@@ -24,9 +24,9 @@ __export(CelestialBackground_exports, {
 module.exports = __toCommonJS(CelestialBackground_exports);
 var import_jsx_runtime = require("react/jsx-runtime");
 var import_react = require("react");
-var import_color_utils = require("../../lib/color-utils");
+var import_color_utils = require("../../../lib/color-utils");
 var import_design_tokens = require("@rainersoft/design-tokens");
-var import_constants = require("../../lib/constants");
+var import_constants = require("../../../lib/constants");
 const STAR_CONFIGS = {
   default: {
     count: 150,

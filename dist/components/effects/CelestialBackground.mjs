@@ -1,9 +1,9 @@
 "use client"
 import { jsx, jsxs } from "react/jsx-runtime";
 import { useEffect, useState } from "react";
-import { hexToRGBA } from "../../lib/color-utils";
+import { hexToRGBA } from "../../../lib/color-utils";
 import { tokens } from "@rainersoft/design-tokens";
-import { GRADIENT_DIRECTIONS } from "../../lib/constants";
+import { GRADIENT_DIRECTIONS } from "../../../lib/constants";
 const STAR_CONFIGS = {
   default: {
     count: 150,

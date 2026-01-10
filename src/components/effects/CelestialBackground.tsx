@@ -18,9 +18,9 @@
  */
 
 import { useEffect, useState } from 'react';
-import { hexToRGBA } from '../../lib/color-utils';
+import { hexToRGBA } from '../../../lib/color-utils';
 import { tokens } from '@rainersoft/design-tokens';
-import { GRADIENT_DIRECTIONS } from '../../lib/constants';
+import { GRADIENT_DIRECTIONS } from '../../../lib/constants';
 
 // ============================================================================
 // Types

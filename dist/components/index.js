@@ -15,7 +15,6 @@ var __reExport = (target, mod, secondTarget) => (__copyProps(target, mod, "defau
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var components_exports = {};
 module.exports = __toCommonJS(components_exports);
-__reExport(components_exports, require("./ui"), module.exports);
 __reExport(components_exports, require("./forms"), module.exports);
 __reExport(components_exports, require("./layout"), module.exports);
 __reExport(components_exports, require("./feedback"), module.exports);
@@ -28,7 +27,6 @@ __reExport(components_exports, require("./social"), module.exports);
 __reExport(components_exports, require("./providers/theme-provider"), module.exports);
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  ...require("./ui"),
   ...require("./forms"),
   ...require("./layout"),
   ...require("./feedback"),
