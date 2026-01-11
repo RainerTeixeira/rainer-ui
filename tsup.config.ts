@@ -1,24 +1,17 @@
 import { defineConfig } from 'tsup';
 
 export default defineConfig({
-  entry: [
-    // Arquivos principais
-    'src/index.ts',
-    
-    // Todos os arquivos .ts/.tsx em src/lib e src/hooks
-    'src/lib/**/*.{ts,tsx}',
-    'src/hooks/**/*.{ts,tsx}',
-    
-    // Todos os arquivos .ts/.tsx em src/components
-    'src/components/**/*.{ts,tsx}',
-  ],
+  entry: {
+    index: 'src/index.ts',
+  },
   format: ['esm', 'cjs'],
   dts: false,
   sourcemap: true,
   clean: true,
   minify: false,
   splitting: false,
-  bundle: false,
+  bundle: true,
+  treeshake: true,
   external: [
     'react', 
     'react-dom',
