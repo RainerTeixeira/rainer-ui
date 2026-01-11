@@ -6,6 +6,7 @@ node_modules/
 coverage/
 *.tsbuildinfo
 *.lcov
+*.map
 
 # Production
 build/
@@ -37,6 +38,25 @@ lerna-debug.log*
 *.swo
 *~
 
-# Storybook
-storybook-static
+# Storybook build outputs
+storybook-static/
 *storybook.log
+
+# Component documentation build
+.styleguidist
+docz/
+
+# Chromatic screenshots (se usado)
+.chromatic/
+
+# Component testing artifacts
+testing-library/
+*.testing.json
+
+# Bundle analyzer outputs
+bundle-analyzer/
+*.stats.json
+
+# Temporary component files
+components-temp/
+*.component.tmp
