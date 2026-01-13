@@ -7,9 +7,13 @@ import { useState, useEffect } from 'react';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
-import { TrendingUp, Eye, Heart, MessageSquare } from 'lucide-react';
+import 'lucide-react';
 import '@radix-ui/react-dialog';
 import { cva } from 'class-variance-authority';
+import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
+import Eye from 'lucide-react/dist/esm/icons/eye';
+import Heart from 'lucide-react/dist/esm/icons/heart';
+import MessageSquare from 'lucide-react/dist/esm/icons/message-square';
 
 // src/lib/utils.ts
 function cn(...inputs) {

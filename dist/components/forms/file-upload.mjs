@@ -1,6 +1,10 @@
-import { Upload, X, ImageIcon, FileText, File } from 'lucide-react';
+import File from 'lucide-react/dist/esm/icons/file';
+import ImageIcon from 'lucide-react/dist/esm/icons/image';
+import FileText from 'lucide-react/dist/esm/icons/file-text';
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
+import Upload from 'lucide-react/dist/esm/icons/upload';
+import X from 'lucide-react/dist/esm/icons/x';
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';

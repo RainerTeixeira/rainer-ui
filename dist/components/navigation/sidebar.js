@@ -1,13 +1,21 @@
 'use strict';
 
-var lucideReact = require('lucide-react');
+var LogOut = require('lucide-react/dist/esm/icons/log-out');
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
+var ChevronLeft = require('lucide-react/dist/esm/icons/chevron-left');
+var ChevronRight = require('lucide-react/dist/esm/icons/chevron-right');
+var Menu = require('lucide-react/dist/esm/icons/menu');
+var Settings = require('lucide-react/dist/esm/icons/settings');
+var User = require('lucide-react/dist/esm/icons/user');
+var X = require('lucide-react/dist/esm/icons/x');
 var reactSlot = require('@radix-ui/react-slot');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -27,7 +35,14 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
+var LogOut__default = /*#__PURE__*/_interopDefault(LogOut);
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var ChevronLeft__default = /*#__PURE__*/_interopDefault(ChevronLeft);
+var ChevronRight__default = /*#__PURE__*/_interopDefault(ChevronRight);
+var Menu__default = /*#__PURE__*/_interopDefault(Menu);
+var Settings__default = /*#__PURE__*/_interopDefault(Settings);
+var User__default = /*#__PURE__*/_interopDefault(User);
+var X__default = /*#__PURE__*/_interopDefault(X);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -278,7 +293,7 @@ var Sidebar = React__namespace.forwardRef(
                   size: "sm",
                   onClick: handleCollapse,
                   className: "h-8 w-8 p-0",
-                  children: isCollapsed ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "h-4 w-4" })
+                  children: isCollapsed ? /* @__PURE__ */ jsxRuntime.jsx(ChevronRight__default.default, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-4 w-4" })
                 }
               ),
               overlay && /* @__PURE__ */ jsxRuntime.jsx(
@@ -288,7 +303,7 @@ var Sidebar = React__namespace.forwardRef(
                   size: "sm",
                   onClick: () => handleOpenChange(false),
                   className: "h-8 w-8 p-0",
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-4 w-4" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-4 w-4" })
                 }
               )
             ] }),
@@ -298,7 +313,7 @@ var Sidebar = React__namespace.forwardRef(
                 className: "flex w-full items-center gap-3 rounded-md p-2 transition-colors hover:bg-accent",
                 onClick: profile.onClick,
                 children: [
-                  /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground", children: profile.avatar ? /* @__PURE__ */ jsxRuntime.jsx("img", { src: profile.avatar, alt: profile.name, className: "h-full w-full rounded-full object-cover" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.User, { className: "h-4 w-4" }) }),
+                  /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground", children: profile.avatar ? /* @__PURE__ */ jsxRuntime.jsx("img", { src: profile.avatar, alt: profile.name, className: "h-full w-full rounded-full object-cover" }) : /* @__PURE__ */ jsxRuntime.jsx(User__default.default, { className: "h-4 w-4" }) }),
                   /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-left", children: [
                     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-sm font-medium", children: profile.name }),
                     profile.email && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs text-muted-foreground", children: profile.email })
@@ -319,7 +334,7 @@ var Sidebar = React__namespace.forwardRef(
                     className: "w-full justify-start",
                     size: "sm",
                     children: [
-                      /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Settings, { className: "mr-2 h-4 w-4" }),
+                      /* @__PURE__ */ jsxRuntime.jsx(Settings__default.default, { className: "mr-2 h-4 w-4" }),
                       "Configura\xE7\xF5es"
                     ]
                   }
@@ -331,15 +346,15 @@ var Sidebar = React__namespace.forwardRef(
                     className: "w-full justify-start",
                     size: "sm",
                     children: [
-                      /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LogOut, { className: "mr-2 h-4 w-4" }),
+                      /* @__PURE__ */ jsxRuntime.jsx(LogOut__default.default, { className: "mr-2 h-4 w-4" }),
                       "Sair"
                     ]
                   }
                 )
               ] }),
               isCollapsed && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col gap-2", children: [
-                /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Settings, { className: "h-4 w-4" }) }),
-                /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LogOut, { className: "h-4 w-4" }) })
+                /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(Settings__default.default, { className: "h-4 w-4" }) }),
+                /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(LogOut__default.default, { className: "h-4 w-4" }) })
               ] }),
               footerActions
             ] })
@@ -370,7 +385,7 @@ var SidebarTrigger = React__namespace.forwardRef(
         className: cn("h-8 w-8 p-0", className),
         onClick: handleClick,
         ...props,
-        children: children || /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Menu, { className: "h-4 w-4" })
+        children: children || /* @__PURE__ */ jsxRuntime.jsx(Menu__default.default, { className: "h-4 w-4" })
       }
     );
   }

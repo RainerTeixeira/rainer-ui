@@ -1,6 +1,10 @@
-import { Clock, Search, X, Filter, TrendingUp } from 'lucide-react';
+import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
+import Clock from 'lucide-react/dist/esm/icons/clock';
+import Filter from 'lucide-react/dist/esm/icons/filter';
+import Search from 'lucide-react/dist/esm/icons/search';
+import X from 'lucide-react/dist/esm/icons/x';
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -150,10 +154,10 @@ var SearchInput = React.forwardRef(
     loading = false,
     debounceTime = 300,
     maxSuggestions = 10,
-    saveToHistory = false,
-    disabled,
-    ...props
-  }, ref) => {
+    // saveToHistory, // TODO: implementar funcionalidade de histórico
+    disabled
+    // props, // Props adicionais não utilizados
+  }) => {
     const [internalValue, setInternalValue] = React.useState(value);
     const [isOpen, setIsOpen] = React.useState(false);
     const [selectedIndex, setSelectedIndex] = React.useState(-1);
@@ -292,8 +296,7 @@ var SearchInput = React.forwardRef(
                 onBlur: handleBlur,
                 placeholder,
                 disabled,
-                className: "flex-1 bg-transparent outline-none ml-2 placeholder:text-muted-foreground",
-                ...props
+                className: "flex-1 bg-transparent outline-none ml-2 placeholder:text-muted-foreground"
               }
             ),
             /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-1", children: [

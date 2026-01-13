@@ -2,11 +2,17 @@
 
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
-var lucideReact = require('lucide-react');
+var ArrowDown = require('lucide-react/dist/esm/icons/arrow-down');
+var ArrowUp = require('lucide-react/dist/esm/icons/arrow-up');
+var Minus = require('lucide-react/dist/esm/icons/minus');
+var TrendingDown = require('lucide-react/dist/esm/icons/trending-down');
+var TrendingUp = require('lucide-react/dist/esm/icons/trending-up');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -27,6 +33,11 @@ function _interopNamespace(e) {
 }
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var ArrowDown__default = /*#__PURE__*/_interopDefault(ArrowDown);
+var ArrowUp__default = /*#__PURE__*/_interopDefault(ArrowUp);
+var Minus__default = /*#__PURE__*/_interopDefault(Minus);
+var TrendingDown__default = /*#__PURE__*/_interopDefault(TrendingDown);
+var TrendingUp__default = /*#__PURE__*/_interopDefault(TrendingUp);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -154,8 +165,8 @@ var KPI = React__namespace.forwardRef(
     decimals = 0,
     ...props
   }, ref) => {
-    const TrendIcon = trend === "up" ? lucideReact.TrendingUp : trend === "down" ? lucideReact.TrendingDown : lucideReact.Minus;
-    const ArrowIcon = trend === "up" ? lucideReact.ArrowUp : trend === "down" ? lucideReact.ArrowDown : null;
+    const TrendIcon = trend === "up" ? TrendingUp__default.default : trend === "down" ? TrendingDown__default.default : Minus__default.default;
+    const ArrowIcon = trend === "up" ? ArrowUp__default.default : trend === "down" ? ArrowDown__default.default : null;
     return /* @__PURE__ */ jsxRuntime.jsxs(
       "div",
       {
@@ -239,7 +250,7 @@ var KPIChart = React__namespace.forwardRef(
     className,
     chart,
     chartPosition = "bottom",
-    children,
+    // children, // TODO: implementar children content
     ...props
   }, ref) => {
     const isRight = chartPosition === "right";

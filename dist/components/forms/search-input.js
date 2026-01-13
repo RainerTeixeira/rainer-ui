@@ -1,13 +1,19 @@
 'use strict';
 
-var lucideReact = require('lucide-react');
+var TrendingUp = require('lucide-react/dist/esm/icons/trending-up');
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
+var Clock = require('lucide-react/dist/esm/icons/clock');
+var Filter = require('lucide-react/dist/esm/icons/filter');
+var Search = require('lucide-react/dist/esm/icons/search');
+var X = require('lucide-react/dist/esm/icons/x');
 var reactSlot = require('@radix-ui/react-slot');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -27,7 +33,12 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
+var TrendingUp__default = /*#__PURE__*/_interopDefault(TrendingUp);
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var Clock__default = /*#__PURE__*/_interopDefault(Clock);
+var Filter__default = /*#__PURE__*/_interopDefault(Filter);
+var Search__default = /*#__PURE__*/_interopDefault(Search);
+var X__default = /*#__PURE__*/_interopDefault(X);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -172,10 +183,10 @@ var SearchInput = React__namespace.forwardRef(
     loading = false,
     debounceTime = 300,
     maxSuggestions = 10,
-    saveToHistory = false,
-    disabled,
-    ...props
-  }, ref) => {
+    // saveToHistory, // TODO: implementar funcionalidade de histórico
+    disabled
+    // props, // Props adicionais não utilizados
+  }) => {
     const [internalValue, setInternalValue] = React__namespace.useState(value);
     const [isOpen, setIsOpen] = React__namespace.useState(false);
     const [selectedIndex, setSelectedIndex] = React__namespace.useState(-1);
@@ -199,7 +210,7 @@ var SearchInput = React__namespace.forwardRef(
           id: `history-${index}`,
           text: item,
           type: "history",
-          icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Clock, { className: "h-4 w-4" })
+          icon: /* @__PURE__ */ jsxRuntime.jsx(Clock__default.default, { className: "h-4 w-4" })
         }));
         const trendingSuggestions = suggestions.filter((s) => s.type === "trending").slice(0, 5);
         setFilteredSuggestions([...historySuggestions, ...trendingSuggestions]);
@@ -277,11 +288,11 @@ var SearchInput = React__namespace.forwardRef(
     const getIcon = (type) => {
       switch (type) {
         case "history":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Clock, { className: "h-4 w-4 text-muted-foreground" });
+          return /* @__PURE__ */ jsxRuntime.jsx(Clock__default.default, { className: "h-4 w-4 text-muted-foreground" });
         case "trending":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.TrendingUp, { className: "h-4 w-4 text-amber-500" });
+          return /* @__PURE__ */ jsxRuntime.jsx(TrendingUp__default.default, { className: "h-4 w-4 text-amber-500" });
         case "filter":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Filter, { className: "h-4 w-4 text-blue-500" });
+          return /* @__PURE__ */ jsxRuntime.jsx(Filter__default.default, { className: "h-4 w-4 text-blue-500" });
         default:
           return null;
       }
@@ -301,7 +312,7 @@ var SearchInput = React__namespace.forwardRef(
             variant === "outlined" && "border-2",
             variant === "minimal" && "border-transparent bg-transparent"
           ), children: [
-            /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { className: "h-4 w-4 text-muted-foreground" }),
+            /* @__PURE__ */ jsxRuntime.jsx(Search__default.default, { className: "h-4 w-4 text-muted-foreground" }),
             /* @__PURE__ */ jsxRuntime.jsx(
               "input",
               {
@@ -314,8 +325,7 @@ var SearchInput = React__namespace.forwardRef(
                 onBlur: handleBlur,
                 placeholder,
                 disabled,
-                className: "flex-1 bg-transparent outline-none ml-2 placeholder:text-muted-foreground",
-                ...props
+                className: "flex-1 bg-transparent outline-none ml-2 placeholder:text-muted-foreground"
               }
             ),
             /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-1", children: [
@@ -328,7 +338,7 @@ var SearchInput = React__namespace.forwardRef(
                   size: "sm",
                   className: "h-6 w-6 p-0",
                   onClick: handleClear,
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-3 w-3" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-3 w-3" })
                 }
               ),
               showFilter && /* @__PURE__ */ jsxRuntime.jsx(
@@ -340,7 +350,7 @@ var SearchInput = React__namespace.forwardRef(
                   className: "h-6 w-6 p-0",
                   onClick: onFilter,
                   disabled,
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Filter, { className: "h-3 w-3" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(Filter__default.default, { className: "h-3 w-3" })
                 }
               )
             ] })

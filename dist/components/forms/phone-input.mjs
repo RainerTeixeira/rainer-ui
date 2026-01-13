@@ -1,6 +1,7 @@
-import { Globe, Phone } from 'lucide-react';
+import Globe from 'lucide-react/dist/esm/icons/globe';
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
+import Phone from 'lucide-react/dist/esm/icons/phone';
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';

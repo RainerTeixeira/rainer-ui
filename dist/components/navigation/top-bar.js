@@ -1,13 +1,20 @@
 'use strict';
 
-var lucideReact = require('lucide-react');
+var MoreVertical = require('lucide-react/dist/esm/icons/more-vertical');
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
+var ArrowLeft = require('lucide-react/dist/esm/icons/arrow-left');
+var Bell = require('lucide-react/dist/esm/icons/bell');
+var Menu = require('lucide-react/dist/esm/icons/menu');
+var Search = require('lucide-react/dist/esm/icons/search');
+var Settings = require('lucide-react/dist/esm/icons/settings');
 var reactSlot = require('@radix-ui/react-slot');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -27,7 +34,13 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
+var MoreVertical__default = /*#__PURE__*/_interopDefault(MoreVertical);
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var ArrowLeft__default = /*#__PURE__*/_interopDefault(ArrowLeft);
+var Bell__default = /*#__PURE__*/_interopDefault(Bell);
+var Menu__default = /*#__PURE__*/_interopDefault(Menu);
+var Search__default = /*#__PURE__*/_interopDefault(Search);
+var Settings__default = /*#__PURE__*/_interopDefault(Settings);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -190,7 +203,7 @@ var TopBar = React__namespace.forwardRef(
             onClick: back.onClick,
             className: "h-8 w-8 p-0",
             "aria-label": back.label || "Voltar",
-            children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ArrowLeft, { className: "h-4 w-4" })
+            children: /* @__PURE__ */ jsxRuntime.jsx(ArrowLeft__default.default, { className: "h-4 w-4" })
           }
         ),
         menu && /* @__PURE__ */ jsxRuntime.jsx(
@@ -201,7 +214,7 @@ var TopBar = React__namespace.forwardRef(
             onClick: menu.onClick,
             className: "h-8 w-8 p-0",
             "aria-label": menu.label || "Menu",
-            children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Menu, { className: "h-4 w-4" })
+            children: /* @__PURE__ */ jsxRuntime.jsx(Menu__default.default, { className: "h-4 w-4" })
           }
         ),
         (title || subtitle) && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col", children: [
@@ -214,7 +227,7 @@ var TopBar = React__namespace.forwardRef(
       if (center) return center;
       if (search) {
         return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex-1 max-w-md mx-4", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Search__default.default, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
           /* @__PURE__ */ jsxRuntime.jsx(
             "input",
             {
@@ -254,7 +267,7 @@ var TopBar = React__namespace.forwardRef(
             onClick: notifications.onClick,
             className: "relative h-8 w-8 p-0",
             children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Bell, { className: "h-4 w-4" }),
+              /* @__PURE__ */ jsxRuntime.jsx(Bell__default.default, { className: "h-4 w-4" }),
               notifications.count && notifications.count > 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-xs text-primary-foreground flex items-center justify-center", children: notifications.count > 99 ? "99+" : notifications.count })
             ]
           }
@@ -265,7 +278,7 @@ var TopBar = React__namespace.forwardRef(
             variant: "ghost",
             size: "sm",
             className: "h-8 w-8 p-0",
-            children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Settings, { className: "h-4 w-4" })
+            children: /* @__PURE__ */ jsxRuntime.jsx(Settings__default.default, { className: "h-4 w-4" })
           }
         ),
         /* @__PURE__ */ jsxRuntime.jsx(
@@ -274,7 +287,7 @@ var TopBar = React__namespace.forwardRef(
             variant: "ghost",
             size: "sm",
             className: "h-8 w-8 p-0",
-            children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MoreVertical, { className: "h-4 w-4" })
+            children: /* @__PURE__ */ jsxRuntime.jsx(MoreVertical__default.default, { className: "h-4 w-4" })
           }
         )
       ] });

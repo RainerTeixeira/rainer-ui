@@ -2,12 +2,24 @@
 
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
-var lucideReact = require('lucide-react');
+var ChevronLeft = require('lucide-react/dist/esm/icons/chevron-left');
+var ChevronRight = require('lucide-react/dist/esm/icons/chevron-right');
+var Download = require('lucide-react/dist/esm/icons/download');
+var Maximize2 = require('lucide-react/dist/esm/icons/maximize-2');
+var Minimize2 = require('lucide-react/dist/esm/icons/minimize-2');
+var Pause = require('lucide-react/dist/esm/icons/pause');
+var Play = require('lucide-react/dist/esm/icons/play');
+var RotateCw = require('lucide-react/dist/esm/icons/rotate-cw');
+var X = require('lucide-react/dist/esm/icons/x');
+var ZoomIn = require('lucide-react/dist/esm/icons/zoom-in');
+var ZoomOut = require('lucide-react/dist/esm/icons/zoom-out');
 var reactSlot = require('@radix-ui/react-slot');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -28,6 +40,17 @@ function _interopNamespace(e) {
 }
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var ChevronLeft__default = /*#__PURE__*/_interopDefault(ChevronLeft);
+var ChevronRight__default = /*#__PURE__*/_interopDefault(ChevronRight);
+var Download__default = /*#__PURE__*/_interopDefault(Download);
+var Maximize2__default = /*#__PURE__*/_interopDefault(Maximize2);
+var Minimize2__default = /*#__PURE__*/_interopDefault(Minimize2);
+var Pause__default = /*#__PURE__*/_interopDefault(Pause);
+var Play__default = /*#__PURE__*/_interopDefault(Play);
+var RotateCw__default = /*#__PURE__*/_interopDefault(RotateCw);
+var X__default = /*#__PURE__*/_interopDefault(X);
+var ZoomIn__default = /*#__PURE__*/_interopDefault(ZoomIn);
+var ZoomOut__default = /*#__PURE__*/_interopDefault(ZoomOut);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -435,7 +458,7 @@ var Lightbox = React__namespace.forwardRef(
                   className: "absolute right-4 top-4 z-10 h-10 w-10 text-white hover:bg-white/20 rounded-full backdrop-blur-sm",
                   onClick: () => onOpenChange(false),
                   "aria-label": "Fechar lightbox",
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-5 w-5" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-5 w-5" })
                 }
               ),
               /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center justify-center h-full px-4", children: [
@@ -447,7 +470,7 @@ var Lightbox = React__namespace.forwardRef(
                     className: "absolute left-4 top-1/2 -translate-y-1/2 z-10 h-12 w-12 text-white hover:bg-white/20 rounded-full backdrop-blur-sm",
                     onClick: handlePrevious,
                     "aria-label": "Item anterior",
-                    children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "h-6 w-6" })
+                    children: /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-6 w-6" })
                   }
                 ),
                 /* @__PURE__ */ jsxRuntime.jsx(
@@ -495,7 +518,7 @@ var Lightbox = React__namespace.forwardRef(
                     className: "absolute right-4 top-1/2 -translate-y-1/2 z-10 h-12 w-12 text-white hover:bg-white/20 rounded-full backdrop-blur-sm",
                     onClick: handleNext,
                     "aria-label": "Pr\xF3ximo item",
-                    children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "h-6 w-6" })
+                    children: /* @__PURE__ */ jsxRuntime.jsx(ChevronRight__default.default, { className: "h-6 w-6" })
                   }
                 )
               ] }),
@@ -531,7 +554,7 @@ var Lightbox = React__namespace.forwardRef(
                         className: "h-8 w-8 text-white hover:bg-white/20",
                         onClick: handlePlayPause,
                         "aria-label": isPlaying ? "Pausar" : "Reproduzir",
-                        children: isPlaying ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Pause, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Play, { className: "h-4 w-4" })
+                        children: isPlaying ? /* @__PURE__ */ jsxRuntime.jsx(Pause__default.default, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(Play__default.default, { className: "h-4 w-4" })
                       }
                     ),
                     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-px h-4 bg-white/30" })
@@ -546,7 +569,7 @@ var Lightbox = React__namespace.forwardRef(
                         onClick: handleZoomOut,
                         disabled: zoom <= ZOOM_CONFIG.MIN,
                         "aria-label": "Reduzir zoom",
-                        children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ZoomOut, { className: "h-4 w-4" })
+                        children: /* @__PURE__ */ jsxRuntime.jsx(ZoomOut__default.default, { className: "h-4 w-4" })
                       }
                     ),
                     /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-xs text-white min-w-[40px] text-center", children: [
@@ -562,7 +585,7 @@ var Lightbox = React__namespace.forwardRef(
                         onClick: handleZoomIn,
                         disabled: zoom >= ZOOM_CONFIG.MAX,
                         "aria-label": "Aumentar zoom",
-                        children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ZoomIn, { className: "h-4 w-4" })
+                        children: /* @__PURE__ */ jsxRuntime.jsx(ZoomIn__default.default, { className: "h-4 w-4" })
                       }
                     ),
                     /* @__PURE__ */ jsxRuntime.jsx(
@@ -574,7 +597,7 @@ var Lightbox = React__namespace.forwardRef(
                         onClick: handleResetZoom,
                         disabled: zoom === ZOOM_CONFIG.DEFAULT && rotation === 0,
                         "aria-label": "Resetar zoom",
-                        children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Minimize2, { className: "h-4 w-4" })
+                        children: /* @__PURE__ */ jsxRuntime.jsx(Minimize2__default.default, { className: "h-4 w-4" })
                       }
                     ),
                     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-px h-4 bg-white/30" })
@@ -587,7 +610,7 @@ var Lightbox = React__namespace.forwardRef(
                       className: "h-8 w-8 text-white hover:bg-white/20",
                       onClick: handleRotate,
                       "aria-label": "Rotacionar",
-                      children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RotateCw, { className: "h-4 w-4" })
+                      children: /* @__PURE__ */ jsxRuntime.jsx(RotateCw__default.default, { className: "h-4 w-4" })
                     }
                   ),
                   /* @__PURE__ */ jsxRuntime.jsx(
@@ -598,7 +621,7 @@ var Lightbox = React__namespace.forwardRef(
                       className: "h-8 w-8 text-white hover:bg-white/20",
                       onClick: handleToggleFullscreen,
                       "aria-label": isFullscreen ? "Sair da tela cheia" : "Tela cheia",
-                      children: isFullscreen ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Minimize2, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Maximize2, { className: "h-4 w-4" })
+                      children: isFullscreen ? /* @__PURE__ */ jsxRuntime.jsx(Minimize2__default.default, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(Maximize2__default.default, { className: "h-4 w-4" })
                     }
                   ),
                   allowDownload && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
@@ -611,7 +634,7 @@ var Lightbox = React__namespace.forwardRef(
                         className: "h-8 w-8 text-white hover:bg-white/20",
                         onClick: handleDownload,
                         "aria-label": "Download",
-                        children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Download, { className: "h-4 w-4" })
+                        children: /* @__PURE__ */ jsxRuntime.jsx(Download__default.default, { className: "h-4 w-4" })
                       }
                     )
                   ] })
@@ -646,8 +669,8 @@ var Lightbox = React__namespace.forwardRef(
                             className: "w-full h-full object-cover",
                             loading: "lazy"
                           }
-                        ) : /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Play, { className: "h-5 w-5 text-gray-400" }) }),
-                        item.type === "video" && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute bottom-1 right-1 bg-black/60 rounded-full p-1", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Play, { className: "h-2 w-2 text-white" }) })
+                        ) : /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntime.jsx(Play__default.default, { className: "h-5 w-5 text-gray-400" }) }),
+                        item.type === "video" && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute bottom-1 right-1 bg-black/60 rounded-full p-1", children: /* @__PURE__ */ jsxRuntime.jsx(Play__default.default, { className: "h-2 w-2 text-white" }) })
                       ]
                     },
                     idx

@@ -1,5 +1,4 @@
 import * as React19 from 'react';
-import { useState } from 'react';
 import { cva } from 'class-variance-authority';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -10,15 +9,37 @@ import { Slot } from '@radix-ui/react-slot';
 import * as ProgressPrimitive from '@radix-ui/react-progress';
 import 'next-themes';
 import 'sonner';
-import { Loader2, ArrowUp, ArrowDown, TrendingUp, TrendingDown, Minus, X, Plus, RefreshCw, Wifi, ChevronDown, XCircle, Package, Search, Bell, Info, AlertTriangle, AlertCircle, Check, Calendar, Eye, Edit, Trash2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
+import ArrowDown from 'lucide-react/dist/esm/icons/arrow-down';
+import ArrowUp from 'lucide-react/dist/esm/icons/arrow-up';
+import Minus from 'lucide-react/dist/esm/icons/minus';
+import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
+import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
+import RefreshCw from 'lucide-react/dist/esm/icons/refresh-cw';
+import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down';
+import Package from 'lucide-react/dist/esm/icons/package';
+import Search from 'lucide-react/dist/esm/icons/search';
+import Wifi from 'lucide-react/dist/esm/icons/wifi';
+import XCircle from 'lucide-react/dist/esm/icons/x-circle';
+import AlertCircle from 'lucide-react/dist/esm/icons/alert-circle';
+import AlertTriangle2 from 'lucide-react/dist/esm/icons/alert-triangle';
+import Bell from 'lucide-react/dist/esm/icons/bell';
+import Check2 from 'lucide-react/dist/esm/icons/check';
+import Info2 from 'lucide-react/dist/esm/icons/info';
+import X from 'lucide-react/dist/esm/icons/x';
 import * as SliderPrimitive from '@radix-ui/react-slider';
 import * as SwitchPrimitives from '@radix-ui/react-switch';
 import * as TogglePrimitive from '@radix-ui/react-toggle';
+import Plus from 'lucide-react/dist/esm/icons/plus';
 import '@radix-ui/react-aspect-ratio';
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
 import '@radix-ui/react-dialog';
 import { motion as motion$1 } from 'framer-motion';
+import Trash2 from 'lucide-react/dist/esm/icons/trash-2';
+import Calendar from 'lucide-react/dist/esm/icons/calendar';
+import Edit from 'lucide-react/dist/esm/icons/edit';
+import Eye from 'lucide-react/dist/esm/icons/eye';
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -641,7 +662,7 @@ var KPIChart = React19.forwardRef(
     className,
     chart,
     chartPosition = "bottom",
-    children,
+    // children, // TODO: implementar children content
     ...props
   }, ref) => {
     const isRight = chartPosition === "right";
@@ -792,10 +813,10 @@ var EmptyStateIllustrated = React19.forwardRef(
 );
 EmptyStateIllustrated.displayName = "EmptyStateIllustrated";
 var variantIcons = {
-  success: Check,
+  success: Check2,
   error: AlertCircle,
-  warning: AlertTriangle,
-  info: Info,
+  warning: AlertTriangle2,
+  info: Info2,
   default: Bell
 };
 var notificationVariants = cva(
@@ -2848,20 +2869,7 @@ function RecentPostsList({
   maxPosts = 5,
   className
 }) {
-  const [isLoading, setIsLoading] = useState(false);
   const displayedPosts = posts.slice(0, maxPosts);
-  if (isLoading) {
-    return /* @__PURE__ */ jsxs(Card, { className: cn("w-full", className), children: [
-      /* @__PURE__ */ jsx(CardHeader, { children: /* @__PURE__ */ jsx(CardTitle, { children: "Posts Recentes" }) }),
-      /* @__PURE__ */ jsx(CardContent, { children: /* @__PURE__ */ jsx("div", { className: "space-y-4", children: [...Array(3)].map((_, i) => /* @__PURE__ */ jsxs("div", { className: "flex items-center space-x-4", children: [
-        /* @__PURE__ */ jsx("div", { className: "w-16 h-16 bg-muted rounded animate-pulse" }),
-        /* @__PURE__ */ jsxs("div", { className: "flex-1 space-y-2", children: [
-          /* @__PURE__ */ jsx("div", { className: "h-4 bg-muted rounded animate-pulse" }),
-          /* @__PURE__ */ jsx("div", { className: "h-3 bg-muted rounded animate-pulse w-3/4" })
-        ] })
-      ] }, i)) }) })
-    ] });
-  }
   if (displayedPosts.length === 0) {
     return /* @__PURE__ */ jsxs(Card, { className: cn("w-full", className), children: [
       /* @__PURE__ */ jsx(CardHeader, { children: /* @__PURE__ */ jsx(CardTitle, { children: "Posts Recentes" }) }),

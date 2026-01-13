@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
-import { Star, StarHalf } from 'lucide-react';
+import Star from 'lucide-react/dist/esm/icons/star';
+import StarHalf from 'lucide-react/dist/esm/icons/star-half';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';

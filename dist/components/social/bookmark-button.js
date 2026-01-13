@@ -8,7 +8,11 @@ var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
 var framerMotion = require('framer-motion');
 var react = require('react');
-var lucideReact = require('lucide-react');
+var Bookmark = require('lucide-react/dist/esm/icons/bookmark');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
+
+var Bookmark__default = /*#__PURE__*/_interopDefault(Bookmark);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -184,7 +188,7 @@ function BookmarkButton({
             } : {},
             transition: { duration: 0.6, ease: "easeInOut" },
             children: /* @__PURE__ */ jsxRuntime.jsx(
-              lucideReact.Bookmark,
+              Bookmark__default.default,
               {
                 className: cn(
                   "h-4 w-4 transition-all",

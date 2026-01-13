@@ -8,9 +8,15 @@ var React4 = require('react');
 var jsxRuntime = require('react/jsx-runtime');
 var ScrollAreaPrimitive = require('@radix-ui/react-scroll-area');
 var SeparatorPrimitive = require('@radix-ui/react-separator');
-var lucideReact = require('lucide-react');
+require('lucide-react');
 require('@radix-ui/react-dialog');
 var classVarianceAuthority = require('class-variance-authority');
+var TrendingUp = require('lucide-react/dist/esm/icons/trending-up');
+var Eye = require('lucide-react/dist/esm/icons/eye');
+var Heart = require('lucide-react/dist/esm/icons/heart');
+var MessageSquare = require('lucide-react/dist/esm/icons/message-square');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -33,6 +39,10 @@ function _interopNamespace(e) {
 var React4__namespace = /*#__PURE__*/_interopNamespace(React4);
 var ScrollAreaPrimitive__namespace = /*#__PURE__*/_interopNamespace(ScrollAreaPrimitive);
 var SeparatorPrimitive__namespace = /*#__PURE__*/_interopNamespace(SeparatorPrimitive);
+var TrendingUp__default = /*#__PURE__*/_interopDefault(TrendingUp);
+var Eye__default = /*#__PURE__*/_interopDefault(Eye);
+var Heart__default = /*#__PURE__*/_interopDefault(Heart);
+var MessageSquare__default = /*#__PURE__*/_interopDefault(MessageSquare);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -1329,7 +1339,7 @@ function AnalyticsOverview({ className }) {
             value: stats.totalPosts.toString(),
             change: "+0.0%",
             trend: "up",
-            icon: lucideReact.TrendingUp,
+            icon: TrendingUp__default.default,
             color: "text-blue-500"
           },
           {
@@ -1337,7 +1347,7 @@ function AnalyticsOverview({ className }) {
             value: stats.totalViews.toLocaleString("pt-BR"),
             change: "+0.0%",
             trend: "up",
-            icon: lucideReact.Eye,
+            icon: Eye__default.default,
             color: "text-cyan-500"
           },
           {
@@ -1345,7 +1355,7 @@ function AnalyticsOverview({ className }) {
             value: stats.totalLikes.toLocaleString("pt-BR"),
             change: "+0.0%",
             trend: "up",
-            icon: lucideReact.Heart,
+            icon: Heart__default.default,
             color: "text-pink-500"
           },
           {
@@ -1353,7 +1363,7 @@ function AnalyticsOverview({ className }) {
             value: stats.totalComments.toLocaleString("pt-BR"),
             change: "+0.0%",
             trend: "up",
-            icon: lucideReact.MessageSquare,
+            icon: MessageSquare__default.default,
             color: "text-orange-500"
           }
         ];

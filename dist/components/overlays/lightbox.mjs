@@ -1,6 +1,16 @@
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
-import { X, ChevronLeft, ChevronRight, Pause, Play, ZoomOut, ZoomIn, Minimize2, RotateCw, Maximize2, Download } from 'lucide-react';
+import ChevronLeft from 'lucide-react/dist/esm/icons/chevron-left';
+import ChevronRight from 'lucide-react/dist/esm/icons/chevron-right';
+import Download from 'lucide-react/dist/esm/icons/download';
+import Maximize2 from 'lucide-react/dist/esm/icons/maximize-2';
+import Minimize2 from 'lucide-react/dist/esm/icons/minimize-2';
+import Pause from 'lucide-react/dist/esm/icons/pause';
+import Play from 'lucide-react/dist/esm/icons/play';
+import RotateCw from 'lucide-react/dist/esm/icons/rotate-cw';
+import X from 'lucide-react/dist/esm/icons/x';
+import ZoomIn from 'lucide-react/dist/esm/icons/zoom-in';
+import ZoomOut from 'lucide-react/dist/esm/icons/zoom-out';
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';

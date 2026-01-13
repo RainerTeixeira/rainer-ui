@@ -3,12 +3,15 @@
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
 var reactDayPicker = require('react-day-picker');
-var lucideReact = require('lucide-react');
+var Calendar = require('lucide-react/dist/esm/icons/calendar');
+var ChevronDown = require('lucide-react/dist/esm/icons/chevron-down');
 var reactSlot = require('@radix-ui/react-slot');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -29,6 +32,8 @@ function _interopNamespace(e) {
 }
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var Calendar__default = /*#__PURE__*/_interopDefault(Calendar);
+var ChevronDown__default = /*#__PURE__*/_interopDefault(ChevronDown);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -181,7 +186,7 @@ var DatePicker = React__namespace.forwardRef(
     placeholder = "Selecione uma data",
     multiple = false,
     range = false,
-    disabled,
+    disabledDates,
     minDate,
     maxDate,
     fromYear,
@@ -189,7 +194,7 @@ var DatePicker = React__namespace.forwardRef(
     format,
     showWeekNumber = false,
     fixedWeeks = false,
-    locale,
+    disabled = false,
     ...props
   }, _ref) => {
     const [isOpen, setIsOpen] = React__namespace.useState(false);
@@ -217,20 +222,15 @@ var DatePicker = React__namespace.forwardRef(
         setInputValue(formatDate(value, format));
       }
     }, [value, range, multiple, format]);
-    const handleSelect = React__namespace.useCallback((dates) => {
-      if (!dates) {
-        onChange?.(void 0);
-        return;
-      }
-      if (range) {
-        const rangeValue = dates.length > 0 ? { from: dates[0], to: dates[1] } : void 0;
-        onChange?.(rangeValue);
-      } else if (multiple) {
-        onChange?.(dates);
-      } else {
-        onChange?.(dates[0]);
-      }
-    }, [range, multiple, onChange]);
+    const handleSingleSelect = React__namespace.useCallback((day) => {
+      onChange?.(day);
+    }, [onChange]);
+    const handleMultipleSelect = React__namespace.useCallback((dates) => {
+      onChange?.(dates);
+    }, [onChange]);
+    const handleRangeSelect = React__namespace.useCallback((range2) => {
+      onChange?.(range2);
+    }, [onChange]);
     React__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
@@ -288,26 +288,57 @@ var DatePicker = React__namespace.forwardRef(
               onClick: () => setIsOpen(!isOpen),
               disabled,
               children: [
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.CalendarIcon, { className: "mr-2 h-4 w-4" }),
+                /* @__PURE__ */ jsxRuntime.jsx(Calendar__default.default, { className: "mr-2 h-4 w-4" }),
                 inputValue || placeholder,
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { className: "ml-auto h-4 w-4 opacity-50" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronDown__default.default, { className: "ml-auto h-4 w-4 opacity-50" })
               ]
             }
           ),
-          isOpen && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute top-full left-0 z-50 mt-1 rounded-md border bg-popover p-0 text-popover-foreground shadow-lg animate-in fade-in-0 zoom-in-95", children: /* @__PURE__ */ jsxRuntime.jsx(
+          isOpen && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute top-full left-0 z-50 mt-1 rounded-md border bg-popover p-0 text-popover-foreground shadow-lg animate-in fade-in-0 zoom-in-95", children: range ? /* @__PURE__ */ jsxRuntime.jsx(
             reactDayPicker.DayPicker,
             {
-              mode: range ? "range" : multiple ? "multiple" : "single",
-              selected: selectedDates,
-              onSelect: handleSelect,
-              disabled,
+              mode: "range",
+              selected: value,
+              onSelect: handleRangeSelect,
+              disabled: disabledDates,
               fromDate: minDate,
               toDate: maxDate,
               fromYear,
               toYear,
               showWeekNumber,
               fixedWeeks,
-              locale,
+              classNames: dayPickerClassNames,
+              initialFocus: true
+            }
+          ) : multiple ? /* @__PURE__ */ jsxRuntime.jsx(
+            reactDayPicker.DayPicker,
+            {
+              mode: "multiple",
+              selected: selectedDates,
+              onSelect: handleMultipleSelect,
+              disabled: disabledDates,
+              fromDate: minDate,
+              toDate: maxDate,
+              fromYear,
+              toYear,
+              showWeekNumber,
+              fixedWeeks,
+              classNames: dayPickerClassNames,
+              initialFocus: true
+            }
+          ) : /* @__PURE__ */ jsxRuntime.jsx(
+            reactDayPicker.DayPicker,
+            {
+              mode: "single",
+              selected: value instanceof Date ? value : void 0,
+              onSelect: handleSingleSelect,
+              disabled: disabledDates,
+              fromDate: minDate,
+              toDate: maxDate,
+              fromYear,
+              toYear,
+              showWeekNumber,
+              fixedWeeks,
               classNames: dayPickerClassNames,
               initialFocus: true
             }

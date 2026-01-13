@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
-import { ArrowUp, ArrowDown, TrendingUp, TrendingDown, Minus } from 'lucide-react';
+import ArrowDown from 'lucide-react/dist/esm/icons/arrow-down';
+import ArrowUp from 'lucide-react/dist/esm/icons/arrow-up';
+import Minus from 'lucide-react/dist/esm/icons/minus';
+import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
+import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
@@ -217,7 +221,7 @@ var KPIChart = React.forwardRef(
     className,
     chart,
     chartPosition = "bottom",
-    children,
+    // children, // TODO: implementar children content
     ...props
   }, ref) => {
     const isRight = chartPosition === "right";

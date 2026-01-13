@@ -6,7 +6,7 @@ import { tokens } from '@rainersoft/design-tokens';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { motion as motion$1 } from 'framer-motion';
 import { useState } from 'react';
-import { Heart } from 'lucide-react';
+import Heart from 'lucide-react/dist/esm/icons/heart';
 
 // src/lib/utils.ts
 function cn(...inputs) {

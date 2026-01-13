@@ -14,6 +14,20 @@ var NavigationMenuPrimitive = require('@radix-ui/react-navigation-menu');
 var classVarianceAuthority = require('class-variance-authority');
 var TabsPrimitive = require('@radix-ui/react-tabs');
 var reactSlot = require('@radix-ui/react-slot');
+var ChevronLeft = require('lucide-react/dist/esm/icons/chevron-left');
+var ChevronRight2 = require('lucide-react/dist/esm/icons/chevron-right');
+var MoreHorizontal = require('lucide-react/dist/esm/icons/more-horizontal');
+var LogOut = require('lucide-react/dist/esm/icons/log-out');
+var Menu2 = require('lucide-react/dist/esm/icons/menu');
+var Settings = require('lucide-react/dist/esm/icons/settings');
+var User = require('lucide-react/dist/esm/icons/user');
+var X2 = require('lucide-react/dist/esm/icons/x');
+var MoreVertical = require('lucide-react/dist/esm/icons/more-vertical');
+var ArrowLeft = require('lucide-react/dist/esm/icons/arrow-left');
+var Bell = require('lucide-react/dist/esm/icons/bell');
+var Search2 = require('lucide-react/dist/esm/icons/search');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -38,6 +52,18 @@ var React6__namespace = /*#__PURE__*/_interopNamespace(React6);
 var CollapsiblePrimitive__namespace = /*#__PURE__*/_interopNamespace(CollapsiblePrimitive);
 var NavigationMenuPrimitive__namespace = /*#__PURE__*/_interopNamespace(NavigationMenuPrimitive);
 var TabsPrimitive__namespace = /*#__PURE__*/_interopNamespace(TabsPrimitive);
+var ChevronLeft__default = /*#__PURE__*/_interopDefault(ChevronLeft);
+var ChevronRight2__default = /*#__PURE__*/_interopDefault(ChevronRight2);
+var MoreHorizontal__default = /*#__PURE__*/_interopDefault(MoreHorizontal);
+var LogOut__default = /*#__PURE__*/_interopDefault(LogOut);
+var Menu2__default = /*#__PURE__*/_interopDefault(Menu2);
+var Settings__default = /*#__PURE__*/_interopDefault(Settings);
+var User__default = /*#__PURE__*/_interopDefault(User);
+var X2__default = /*#__PURE__*/_interopDefault(X2);
+var MoreVertical__default = /*#__PURE__*/_interopDefault(MoreVertical);
+var ArrowLeft__default = /*#__PURE__*/_interopDefault(ArrowLeft);
+var Bell__default = /*#__PURE__*/_interopDefault(Bell);
+var Search2__default = /*#__PURE__*/_interopDefault(Search2);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -920,8 +946,8 @@ var Pagination = React6__namespace.forwardRef(
               disabled: disabled || page === 1,
               children: [
                 /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: "Primeira p\xE1gina" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "h-4 w-4" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "h-4 w-4 -ml-3" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-4 w-4" }),
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-4 w-4 -ml-3" })
               ]
             }
           ),
@@ -935,7 +961,7 @@ var Pagination = React6__namespace.forwardRef(
               disabled: disabled || page === 1,
               children: [
                 /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: "P\xE1gina anterior" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "h-4 w-4" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-4 w-4" })
               ]
             }
           ),
@@ -948,7 +974,7 @@ var Pagination = React6__namespace.forwardRef(
                     "flex items-center justify-center",
                     sizeClasses[size]
                   ),
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MoreHorizontal, { className: "h-4 w-4" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(MoreHorizontal__default.default, { className: "h-4 w-4" })
                 },
                 `ellipsis-${index}`
               );
@@ -976,7 +1002,7 @@ var Pagination = React6__namespace.forwardRef(
               disabled: disabled || page === totalPages,
               children: [
                 /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: "Pr\xF3xima p\xE1gina" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "h-4 w-4" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight2__default.default, { className: "h-4 w-4" })
               ]
             }
           ),
@@ -990,8 +1016,8 @@ var Pagination = React6__namespace.forwardRef(
               disabled: disabled || page === totalPages,
               children: [
                 /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: "\xDAltima p\xE1gina" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "h-4 w-4" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "h-4 w-4 -ml-3" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight2__default.default, { className: "h-4 w-4" }),
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight2__default.default, { className: "h-4 w-4 -ml-3" })
               ]
             }
           ),
@@ -1459,7 +1485,7 @@ var Sidebar = React6__namespace.forwardRef(
                   size: "sm",
                   onClick: handleCollapse,
                   className: "h-8 w-8 p-0",
-                  children: isCollapsed ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "h-4 w-4" })
+                  children: isCollapsed ? /* @__PURE__ */ jsxRuntime.jsx(ChevronRight2__default.default, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-4 w-4" })
                 }
               ),
               overlay && /* @__PURE__ */ jsxRuntime.jsx(
@@ -1469,7 +1495,7 @@ var Sidebar = React6__namespace.forwardRef(
                   size: "sm",
                   onClick: () => handleOpenChange(false),
                   className: "h-8 w-8 p-0",
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-4 w-4" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(X2__default.default, { className: "h-4 w-4" })
                 }
               )
             ] }),
@@ -1479,7 +1505,7 @@ var Sidebar = React6__namespace.forwardRef(
                 className: "flex w-full items-center gap-3 rounded-md p-2 transition-colors hover:bg-accent",
                 onClick: profile.onClick,
                 children: [
-                  /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground", children: profile.avatar ? /* @__PURE__ */ jsxRuntime.jsx("img", { src: profile.avatar, alt: profile.name, className: "h-full w-full rounded-full object-cover" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.User, { className: "h-4 w-4" }) }),
+                  /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground", children: profile.avatar ? /* @__PURE__ */ jsxRuntime.jsx("img", { src: profile.avatar, alt: profile.name, className: "h-full w-full rounded-full object-cover" }) : /* @__PURE__ */ jsxRuntime.jsx(User__default.default, { className: "h-4 w-4" }) }),
                   /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-left", children: [
                     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-sm font-medium", children: profile.name }),
                     profile.email && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs text-muted-foreground", children: profile.email })
@@ -1500,7 +1526,7 @@ var Sidebar = React6__namespace.forwardRef(
                     className: "w-full justify-start",
                     size: "sm",
                     children: [
-                      /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Settings, { className: "mr-2 h-4 w-4" }),
+                      /* @__PURE__ */ jsxRuntime.jsx(Settings__default.default, { className: "mr-2 h-4 w-4" }),
                       "Configura\xE7\xF5es"
                     ]
                   }
@@ -1512,15 +1538,15 @@ var Sidebar = React6__namespace.forwardRef(
                     className: "w-full justify-start",
                     size: "sm",
                     children: [
-                      /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LogOut, { className: "mr-2 h-4 w-4" }),
+                      /* @__PURE__ */ jsxRuntime.jsx(LogOut__default.default, { className: "mr-2 h-4 w-4" }),
                       "Sair"
                     ]
                   }
                 )
               ] }),
               isCollapsed && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col gap-2", children: [
-                /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Settings, { className: "h-4 w-4" }) }),
-                /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LogOut, { className: "h-4 w-4" }) })
+                /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(Settings__default.default, { className: "h-4 w-4" }) }),
+                /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(LogOut__default.default, { className: "h-4 w-4" }) })
               ] }),
               footerActions
             ] })
@@ -1551,7 +1577,7 @@ var SidebarTrigger = React6__namespace.forwardRef(
         className: cn("h-8 w-8 p-0", className),
         onClick: handleClick,
         ...props,
-        children: children || /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Menu, { className: "h-4 w-4" })
+        children: children || /* @__PURE__ */ jsxRuntime.jsx(Menu2__default.default, { className: "h-4 w-4" })
       }
     );
   }
@@ -1614,7 +1640,7 @@ var TopBar = React6__namespace.forwardRef(
             onClick: back.onClick,
             className: "h-8 w-8 p-0",
             "aria-label": back.label || "Voltar",
-            children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ArrowLeft, { className: "h-4 w-4" })
+            children: /* @__PURE__ */ jsxRuntime.jsx(ArrowLeft__default.default, { className: "h-4 w-4" })
           }
         ),
         menu && /* @__PURE__ */ jsxRuntime.jsx(
@@ -1625,7 +1651,7 @@ var TopBar = React6__namespace.forwardRef(
             onClick: menu.onClick,
             className: "h-8 w-8 p-0",
             "aria-label": menu.label || "Menu",
-            children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Menu, { className: "h-4 w-4" })
+            children: /* @__PURE__ */ jsxRuntime.jsx(Menu2__default.default, { className: "h-4 w-4" })
           }
         ),
         (title || subtitle) && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col", children: [
@@ -1638,7 +1664,7 @@ var TopBar = React6__namespace.forwardRef(
       if (center) return center;
       if (search) {
         return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex-1 max-w-md mx-4", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Search2__default.default, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
           /* @__PURE__ */ jsxRuntime.jsx(
             "input",
             {
@@ -1678,7 +1704,7 @@ var TopBar = React6__namespace.forwardRef(
             onClick: notifications.onClick,
             className: "relative h-8 w-8 p-0",
             children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Bell, { className: "h-4 w-4" }),
+              /* @__PURE__ */ jsxRuntime.jsx(Bell__default.default, { className: "h-4 w-4" }),
               notifications.count && notifications.count > 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-xs text-primary-foreground flex items-center justify-center", children: notifications.count > 99 ? "99+" : notifications.count })
             ]
           }
@@ -1689,7 +1715,7 @@ var TopBar = React6__namespace.forwardRef(
             variant: "ghost",
             size: "sm",
             className: "h-8 w-8 p-0",
-            children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Settings, { className: "h-4 w-4" })
+            children: /* @__PURE__ */ jsxRuntime.jsx(Settings__default.default, { className: "h-4 w-4" })
           }
         ),
         /* @__PURE__ */ jsxRuntime.jsx(
@@ -1698,7 +1724,7 @@ var TopBar = React6__namespace.forwardRef(
             variant: "ghost",
             size: "sm",
             className: "h-8 w-8 p-0",
-            children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MoreVertical, { className: "h-4 w-4" })
+            children: /* @__PURE__ */ jsxRuntime.jsx(MoreVertical__default.default, { className: "h-4 w-4" })
           }
         )
       ] });

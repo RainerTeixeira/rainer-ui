@@ -11,6 +11,17 @@ var reactDialog = require('@radix-ui/react-dialog');
 var lucideReact = require('lucide-react');
 var reactDropdownMenu = require('@radix-ui/react-dropdown-menu');
 var qrcode_react = require('qrcode.react');
+var Check2 = require('lucide-react/dist/esm/icons/check');
+var Facebook = require('lucide-react/dist/esm/icons/facebook');
+var Link = require('lucide-react/dist/esm/icons/link');
+var Linkedin = require('lucide-react/dist/esm/icons/linkedin');
+var MessageCircle = require('lucide-react/dist/esm/icons/message-circle');
+var QrCode = require('lucide-react/dist/esm/icons/qr-code');
+var Send = require('lucide-react/dist/esm/icons/send');
+var Share2 = require('lucide-react/dist/esm/icons/share-2');
+var Twitter = require('lucide-react/dist/esm/icons/twitter');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -31,6 +42,15 @@ function _interopNamespace(e) {
 }
 
 var React2__namespace = /*#__PURE__*/_interopNamespace(React2);
+var Check2__default = /*#__PURE__*/_interopDefault(Check2);
+var Facebook__default = /*#__PURE__*/_interopDefault(Facebook);
+var Link__default = /*#__PURE__*/_interopDefault(Link);
+var Linkedin__default = /*#__PURE__*/_interopDefault(Linkedin);
+var MessageCircle__default = /*#__PURE__*/_interopDefault(MessageCircle);
+var QrCode__default = /*#__PURE__*/_interopDefault(QrCode);
+var Send__default = /*#__PURE__*/_interopDefault(Send);
+var Share2__default = /*#__PURE__*/_interopDefault(Share2);
+var Twitter__default = /*#__PURE__*/_interopDefault(Twitter);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -412,7 +432,7 @@ function ShareButton({
   return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
     /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenu, { children: [
       /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsxs(Button, { variant, size, className: "gap-2", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Share2, { className: "h-4 w-4" }),
+        /* @__PURE__ */ jsxRuntime.jsx(Share2__default.default, { className: "h-4 w-4" }),
         showLabel && /* @__PURE__ */ jsxRuntime.jsx("span", { children: "Compartilhar" })
       ] }) }),
       /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuContent, { align: "end", className: "w-56", children: [
@@ -420,41 +440,41 @@ function ShareButton({
         /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {}),
         typeof navigator !== "undefined" && "share" in navigator && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
           /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: shareNative, children: [
-            /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Share2, { className: "mr-2 h-4 w-4" }),
+            /* @__PURE__ */ jsxRuntime.jsx(Share2__default.default, { className: "mr-2 h-4 w-4" }),
             "Compartilhar..."
           ] }),
           /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {})
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("facebook"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Facebook, { className: "mr-2 h-4 w-4 text-blue-600" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Facebook__default.default, { className: "mr-2 h-4 w-4 text-blue-600" }),
           "Facebook"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("twitter"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Twitter, { className: "mr-2 h-4 w-4 text-sky-500" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Twitter__default.default, { className: "mr-2 h-4 w-4 text-sky-500" }),
           "Twitter / X"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("linkedin"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Linkedin, { className: "mr-2 h-4 w-4 text-blue-700" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Linkedin__default.default, { className: "mr-2 h-4 w-4 text-blue-700" }),
           "LinkedIn"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("whatsapp"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MessageCircle, { className: "mr-2 h-4 w-4 text-green-600" }),
+          /* @__PURE__ */ jsxRuntime.jsx(MessageCircle__default.default, { className: "mr-2 h-4 w-4 text-green-600" }),
           "WhatsApp"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("telegram"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Send, { className: "mr-2 h-4 w-4 text-blue-500" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Send__default.default, { className: "mr-2 h-4 w-4 text-blue-500" }),
           "Telegram"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {}),
         /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuItem, { onClick: copyToClipboard, children: copied ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { className: "mr-2 h-4 w-4 text-green-500" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Check2__default.default, { className: "mr-2 h-4 w-4 text-green-500" }),
           /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-green-500", children: "Link copiado!" })
         ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Link, { className: "mr-2 h-4 w-4" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Link__default.default, { className: "mr-2 h-4 w-4" }),
           "Copiar link"
         ] }) }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => setShowQR(true), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.QrCode, { className: "mr-2 h-4 w-4" }),
+          /* @__PURE__ */ jsxRuntime.jsx(QrCode__default.default, { className: "mr-2 h-4 w-4" }),
           "QR Code"
         ] })
       ] })
@@ -492,7 +512,7 @@ function ShareButton({
             className: "flex-1",
             onClick: copyToClipboard,
             children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Link, { className: "mr-2 h-4 w-4" }),
+              /* @__PURE__ */ jsxRuntime.jsx(Link__default.default, { className: "mr-2 h-4 w-4" }),
               "Copiar Link"
             ]
           }

@@ -7,7 +7,13 @@ var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
 var React = require('react');
-var lucideReact = require('lucide-react');
+var BookOpen = require('lucide-react/dist/esm/icons/book-open');
+var ExternalLink = require('lucide-react/dist/esm/icons/external-link');
+var HelpCircle = require('lucide-react/dist/esm/icons/help-circle');
+var MessageCircle = require('lucide-react/dist/esm/icons/message-circle');
+var Video = require('lucide-react/dist/esm/icons/video');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -28,6 +34,11 @@ function _interopNamespace(e) {
 }
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var BookOpen__default = /*#__PURE__*/_interopDefault(BookOpen);
+var ExternalLink__default = /*#__PURE__*/_interopDefault(ExternalLink);
+var HelpCircle__default = /*#__PURE__*/_interopDefault(HelpCircle);
+var MessageCircle__default = /*#__PURE__*/_interopDefault(MessageCircle);
+var Video__default = /*#__PURE__*/_interopDefault(Video);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -223,19 +234,19 @@ HighlightCard.displayName = "HighlightCard";
 function HelpCenter() {
   const resources = [
     {
-      icon: lucideReact.BookOpen,
+      icon: BookOpen__default.default,
       title: "Documenta\xE7\xE3o",
       description: "Guias completos de uso",
       link: "/docs"
     },
     {
-      icon: lucideReact.Video,
+      icon: Video__default.default,
       title: "Tutoriais",
       description: "V\xEDdeos passo a passo",
       link: "/tutorials"
     },
     {
-      icon: lucideReact.MessageCircle,
+      icon: MessageCircle__default.default,
       title: "Suporte",
       description: "Fale com nossa equipe",
       link: "/contato"
@@ -244,7 +255,7 @@ function HelpCenter() {
   return /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: "dark:bg-black/30 dark:border-purple-400/20", children: [
     /* @__PURE__ */ jsxRuntime.jsxs(CardHeader, { children: [
       /* @__PURE__ */ jsxRuntime.jsxs(CardTitle, { className: "flex items-center gap-2 dark:text-purple-200", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(lucideReact.HelpCircle, { className: "h-5 w-5" }),
+        /* @__PURE__ */ jsxRuntime.jsx(HelpCircle__default.default, { className: "h-5 w-5" }),
         "Central de Ajuda"
       ] }),
       /* @__PURE__ */ jsxRuntime.jsx(CardDescription, { children: "Precisa de ajuda? Acesse nossos recursos" })
@@ -263,7 +274,7 @@ function HelpCenter() {
               /* @__PURE__ */ jsxRuntime.jsx("div", { className: "font-medium text-sm", children: resource.title }),
               /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs text-muted-foreground", children: resource.description })
             ] }),
-            /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ExternalLink, { className: "h-4 w-4 ml-auto" })
+            /* @__PURE__ */ jsxRuntime.jsx(ExternalLink__default.default, { className: "h-4 w-4 ml-auto" })
           ] })
         },
         index

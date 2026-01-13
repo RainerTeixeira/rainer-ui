@@ -2,12 +2,15 @@
 
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
-var lucideReact = require('lucide-react');
+var Check = require('lucide-react/dist/esm/icons/check');
+var Copy = require('lucide-react/dist/esm/icons/copy');
 var reactSlot = require('@radix-ui/react-slot');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -28,6 +31,8 @@ function _interopNamespace(e) {
 }
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var Check__default = /*#__PURE__*/_interopDefault(Check);
+var Copy__default = /*#__PURE__*/_interopDefault(Copy);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -206,10 +211,10 @@ var Code = React__namespace.forwardRef(
             className: "h-7 px-2 text-xs",
             onClick: handleCopy,
             children: copied ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { className: "h-3 w-3 mr-1" }),
+              /* @__PURE__ */ jsxRuntime.jsx(Check__default.default, { className: "h-3 w-3 mr-1" }),
               "Copiado!"
             ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Copy, { className: "h-3 w-3 mr-1" }),
+              /* @__PURE__ */ jsxRuntime.jsx(Copy__default.default, { className: "h-3 w-3 mr-1" }),
               "Copiar"
             ] })
           }

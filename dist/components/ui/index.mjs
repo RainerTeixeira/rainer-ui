@@ -8,7 +8,9 @@ import { cva } from 'class-variance-authority';
 import * as SliderPrimitive from '@radix-ui/react-slider';
 import * as SwitchPrimitives from '@radix-ui/react-switch';
 import * as TogglePrimitive from '@radix-ui/react-toggle';
-import { X, Plus, Loader2 } from 'lucide-react';
+import Plus from 'lucide-react/dist/esm/icons/plus';
+import X from 'lucide-react/dist/esm/icons/x';
+import { Loader2 } from 'lucide-react';
 
 // src/lib/utils.ts
 function cn(...inputs) {

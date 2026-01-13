@@ -6,10 +6,16 @@ import * as React4 from 'react';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
-import { FileText, Eye, Heart, MessageCircle, TrendingUp, TrendingDown } from 'lucide-react';
+import 'lucide-react';
 import '@radix-ui/react-dialog';
 import { cva } from 'class-variance-authority';
 import { motion as motion$1 } from 'framer-motion';
+import Eye from 'lucide-react/dist/esm/icons/eye';
+import FileText from 'lucide-react/dist/esm/icons/file-text';
+import Heart from 'lucide-react/dist/esm/icons/heart';
+import MessageCircle from 'lucide-react/dist/esm/icons/message-circle';
+import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
+import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
 
 // src/lib/utils.ts
 function cn(...inputs) {

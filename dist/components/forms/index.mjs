@@ -3,14 +3,28 @@ import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
-import { Check, Circle, ChevronDown, ChevronUp, Upload, X, CalendarIcon, Timer, Clock, Search, Filter, Globe, Phone, ImageIcon, FileText, File, TrendingUp } from 'lucide-react';
+import { Check, Circle, ChevronDown, ChevronUp } from 'lucide-react';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import * as LabelPrimitive from '@radix-ui/react-label';
 import { cva } from 'class-variance-authority';
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import * as SelectPrimitive from '@radix-ui/react-select';
+import File from 'lucide-react/dist/esm/icons/file';
+import ImageIcon from 'lucide-react/dist/esm/icons/image';
+import FileText from 'lucide-react/dist/esm/icons/file-text';
+import Upload from 'lucide-react/dist/esm/icons/upload';
+import X from 'lucide-react/dist/esm/icons/x';
 import { Slot } from '@radix-ui/react-slot';
 import { DayPicker } from 'react-day-picker';
+import Calendar from 'lucide-react/dist/esm/icons/calendar';
+import ChevronDown2 from 'lucide-react/dist/esm/icons/chevron-down';
+import Timer from 'lucide-react/dist/esm/icons/timer';
+import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
+import Clock from 'lucide-react/dist/esm/icons/clock';
+import Filter from 'lucide-react/dist/esm/icons/filter';
+import Search from 'lucide-react/dist/esm/icons/search';
+import Globe from 'lucide-react/dist/esm/icons/globe';
+import Phone from 'lucide-react/dist/esm/icons/phone';
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -608,7 +622,7 @@ var DatePicker = React10.forwardRef(
     placeholder = "Selecione uma data",
     multiple = false,
     range = false,
-    disabled,
+    disabledDates,
     minDate,
     maxDate,
     fromYear,
@@ -616,7 +630,7 @@ var DatePicker = React10.forwardRef(
     format,
     showWeekNumber = false,
     fixedWeeks = false,
-    locale,
+    disabled = false,
     ...props
   }, _ref) => {
     const [isOpen, setIsOpen] = React10.useState(false);
@@ -644,20 +658,15 @@ var DatePicker = React10.forwardRef(
         setInputValue(formatDate(value, format));
       }
     }, [value, range, multiple, format]);
-    const handleSelect = React10.useCallback((dates) => {
-      if (!dates) {
-        onChange?.(void 0);
-        return;
-      }
-      if (range) {
-        const rangeValue = dates.length > 0 ? { from: dates[0], to: dates[1] } : void 0;
-        onChange?.(rangeValue);
-      } else if (multiple) {
-        onChange?.(dates);
-      } else {
-        onChange?.(dates[0]);
-      }
-    }, [range, multiple, onChange]);
+    const handleSingleSelect = React10.useCallback((day) => {
+      onChange?.(day);
+    }, [onChange]);
+    const handleMultipleSelect = React10.useCallback((dates) => {
+      onChange?.(dates);
+    }, [onChange]);
+    const handleRangeSelect = React10.useCallback((range2) => {
+      onChange?.(range2);
+    }, [onChange]);
     React10.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
@@ -715,26 +724,57 @@ var DatePicker = React10.forwardRef(
               onClick: () => setIsOpen(!isOpen),
               disabled,
               children: [
-                /* @__PURE__ */ jsx(CalendarIcon, { className: "mr-2 h-4 w-4" }),
+                /* @__PURE__ */ jsx(Calendar, { className: "mr-2 h-4 w-4" }),
                 inputValue || placeholder,
-                /* @__PURE__ */ jsx(ChevronDown, { className: "ml-auto h-4 w-4 opacity-50" })
+                /* @__PURE__ */ jsx(ChevronDown2, { className: "ml-auto h-4 w-4 opacity-50" })
               ]
             }
           ),
-          isOpen && /* @__PURE__ */ jsx("div", { className: "absolute top-full left-0 z-50 mt-1 rounded-md border bg-popover p-0 text-popover-foreground shadow-lg animate-in fade-in-0 zoom-in-95", children: /* @__PURE__ */ jsx(
+          isOpen && /* @__PURE__ */ jsx("div", { className: "absolute top-full left-0 z-50 mt-1 rounded-md border bg-popover p-0 text-popover-foreground shadow-lg animate-in fade-in-0 zoom-in-95", children: range ? /* @__PURE__ */ jsx(
             DayPicker,
             {
-              mode: range ? "range" : multiple ? "multiple" : "single",
-              selected: selectedDates,
-              onSelect: handleSelect,
-              disabled,
+              mode: "range",
+              selected: value,
+              onSelect: handleRangeSelect,
+              disabled: disabledDates,
               fromDate: minDate,
               toDate: maxDate,
               fromYear,
               toYear,
               showWeekNumber,
               fixedWeeks,
-              locale,
+              classNames: dayPickerClassNames,
+              initialFocus: true
+            }
+          ) : multiple ? /* @__PURE__ */ jsx(
+            DayPicker,
+            {
+              mode: "multiple",
+              selected: selectedDates,
+              onSelect: handleMultipleSelect,
+              disabled: disabledDates,
+              fromDate: minDate,
+              toDate: maxDate,
+              fromYear,
+              toYear,
+              showWeekNumber,
+              fixedWeeks,
+              classNames: dayPickerClassNames,
+              initialFocus: true
+            }
+          ) : /* @__PURE__ */ jsx(
+            DayPicker,
+            {
+              mode: "single",
+              selected: value instanceof Date ? value : void 0,
+              onSelect: handleSingleSelect,
+              disabled: disabledDates,
+              fromDate: minDate,
+              toDate: maxDate,
+              fromYear,
+              toYear,
+              showWeekNumber,
+              fixedWeeks,
               classNames: dayPickerClassNames,
               initialFocus: true
             }
@@ -795,10 +835,10 @@ var TimePicker = React10.forwardRef(
     disabled = false,
     minuteStep = 1,
     secondStep = 1,
-    minTime,
-    maxTime,
+    // minTime, // TODO: implementar validação de tempo mínimo
+    // maxTime, // TODO: implementar validação de tempo máximo
     ...props
-  }, ref) => {
+  }) => {
     const [isOpen, setIsOpen] = React10.useState(false);
     const [hours, setHours] = React10.useState(value?.hours || 0);
     const [minutes, setMinutes] = React10.useState(value?.minutes || 0);
@@ -1069,15 +1109,13 @@ var RangeSlider = React10.forwardRef(
     };
     const updateValue = React10.useCallback((type, percent) => {
       const newValue = percentToValue(percent);
-      setValue((prev) => {
-        const updated = { ...prev };
-        if (type === "min") {
-          updated.min = Math.min(newValue, prev.max - step);
-        } else {
-          updated.max = Math.max(newValue, prev.min + step);
-        }
-        return updated;
-      });
+      const updated = { ...currentValue };
+      if (type === "min") {
+        updated.min = Math.min(newValue, currentValue.max - step);
+      } else {
+        updated.max = Math.max(newValue, currentValue.min + step);
+      }
+      setValue(updated);
     }, [step]);
     const setValue = React10.useCallback((newValue) => {
       setInternalValue(newValue);
@@ -1251,10 +1289,10 @@ var SearchInput = React10.forwardRef(
     loading = false,
     debounceTime = 300,
     maxSuggestions = 10,
-    saveToHistory = false,
-    disabled,
-    ...props
-  }, ref) => {
+    // saveToHistory, // TODO: implementar funcionalidade de histórico
+    disabled
+    // props, // Props adicionais não utilizados
+  }) => {
     const [internalValue, setInternalValue] = React10.useState(value);
     const [isOpen, setIsOpen] = React10.useState(false);
     const [selectedIndex, setSelectedIndex] = React10.useState(-1);
@@ -1393,8 +1431,7 @@ var SearchInput = React10.forwardRef(
                 onBlur: handleBlur,
                 placeholder,
                 disabled,
-                className: "flex-1 bg-transparent outline-none ml-2 placeholder:text-muted-foreground",
-                ...props
+                className: "flex-1 bg-transparent outline-none ml-2 placeholder:text-muted-foreground"
               }
             ),
             /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-1", children: [

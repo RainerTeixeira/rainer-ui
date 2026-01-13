@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
-import { X, Plus } from 'lucide-react';
+import Plus from 'lucide-react/dist/esm/icons/plus';
+import X from 'lucide-react/dist/esm/icons/x';
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';

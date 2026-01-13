@@ -12,6 +12,25 @@ var ProgressPrimitive = require('@radix-ui/react-progress');
 var nextThemes = require('next-themes');
 var sonner = require('sonner');
 var lucideReact = require('lucide-react');
+var ArrowDown = require('lucide-react/dist/esm/icons/arrow-down');
+var ArrowUp = require('lucide-react/dist/esm/icons/arrow-up');
+var Minus = require('lucide-react/dist/esm/icons/minus');
+var TrendingDown = require('lucide-react/dist/esm/icons/trending-down');
+var TrendingUp = require('lucide-react/dist/esm/icons/trending-up');
+var RefreshCw = require('lucide-react/dist/esm/icons/refresh-cw');
+var ChevronDown = require('lucide-react/dist/esm/icons/chevron-down');
+var Package = require('lucide-react/dist/esm/icons/package');
+var Search = require('lucide-react/dist/esm/icons/search');
+var Wifi = require('lucide-react/dist/esm/icons/wifi');
+var XCircle = require('lucide-react/dist/esm/icons/x-circle');
+var AlertCircle = require('lucide-react/dist/esm/icons/alert-circle');
+var AlertTriangle2 = require('lucide-react/dist/esm/icons/alert-triangle');
+var Bell = require('lucide-react/dist/esm/icons/bell');
+var Check2 = require('lucide-react/dist/esm/icons/check');
+var Info2 = require('lucide-react/dist/esm/icons/info');
+var X = require('lucide-react/dist/esm/icons/x');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -34,6 +53,23 @@ function _interopNamespace(e) {
 var React7__namespace = /*#__PURE__*/_interopNamespace(React7);
 var AlertDialogPrimitive__namespace = /*#__PURE__*/_interopNamespace(AlertDialogPrimitive);
 var ProgressPrimitive__namespace = /*#__PURE__*/_interopNamespace(ProgressPrimitive);
+var ArrowDown__default = /*#__PURE__*/_interopDefault(ArrowDown);
+var ArrowUp__default = /*#__PURE__*/_interopDefault(ArrowUp);
+var Minus__default = /*#__PURE__*/_interopDefault(Minus);
+var TrendingDown__default = /*#__PURE__*/_interopDefault(TrendingDown);
+var TrendingUp__default = /*#__PURE__*/_interopDefault(TrendingUp);
+var RefreshCw__default = /*#__PURE__*/_interopDefault(RefreshCw);
+var ChevronDown__default = /*#__PURE__*/_interopDefault(ChevronDown);
+var Package__default = /*#__PURE__*/_interopDefault(Package);
+var Search__default = /*#__PURE__*/_interopDefault(Search);
+var Wifi__default = /*#__PURE__*/_interopDefault(Wifi);
+var XCircle__default = /*#__PURE__*/_interopDefault(XCircle);
+var AlertCircle__default = /*#__PURE__*/_interopDefault(AlertCircle);
+var AlertTriangle2__default = /*#__PURE__*/_interopDefault(AlertTriangle2);
+var Bell__default = /*#__PURE__*/_interopDefault(Bell);
+var Check2__default = /*#__PURE__*/_interopDefault(Check2);
+var Info2__default = /*#__PURE__*/_interopDefault(Info2);
+var X__default = /*#__PURE__*/_interopDefault(X);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -643,8 +679,8 @@ var KPI = React7__namespace.forwardRef(
     decimals = 0,
     ...props
   }, ref) => {
-    const TrendIcon = trend === "up" ? lucideReact.TrendingUp : trend === "down" ? lucideReact.TrendingDown : lucideReact.Minus;
-    const ArrowIcon = trend === "up" ? lucideReact.ArrowUp : trend === "down" ? lucideReact.ArrowDown : null;
+    const TrendIcon = trend === "up" ? TrendingUp__default.default : trend === "down" ? TrendingDown__default.default : Minus__default.default;
+    const ArrowIcon = trend === "up" ? ArrowUp__default.default : trend === "down" ? ArrowDown__default.default : null;
     return /* @__PURE__ */ jsxRuntime.jsxs(
       "div",
       {
@@ -728,7 +764,7 @@ var KPIChart = React7__namespace.forwardRef(
     className,
     chart,
     chartPosition = "bottom",
-    children,
+    // children, // TODO: implementar children content
     ...props
   }, ref) => {
     const isRight = chartPosition === "right";
@@ -755,12 +791,12 @@ var KPIChart = React7__namespace.forwardRef(
 );
 KPIChart.displayName = "KPIChart";
 var defaultIcons = {
-  search: lucideReact.Search,
-  empty: lucideReact.Package,
-  error: lucideReact.XCircle,
-  filtered: lucideReact.ChevronDown,
-  offline: lucideReact.Wifi,
-  loading: lucideReact.RefreshCw
+  search: Search__default.default,
+  empty: Package__default.default,
+  error: XCircle__default.default,
+  filtered: ChevronDown__default.default,
+  offline: Wifi__default.default,
+  loading: RefreshCw__default.default
 };
 var emptyStateVariants = classVarianceAuthority.cva(
   "flex flex-col items-center justify-center text-center p-8",
@@ -943,11 +979,11 @@ var EmptyStatePatterns = {
   )
 };
 var variantIcons = {
-  success: lucideReact.Check,
-  error: lucideReact.AlertCircle,
-  warning: lucideReact.AlertTriangle,
-  info: lucideReact.Info,
-  default: lucideReact.Bell
+  success: Check2__default.default,
+  error: AlertCircle__default.default,
+  warning: AlertTriangle2__default.default,
+  info: Info2__default.default,
+  default: Bell__default.default
 };
 var notificationVariants = classVarianceAuthority.cva(
   "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-4 pr-8 shadow-lg transition-all duration-[var(--motion-duration-normal)]",
@@ -1036,7 +1072,7 @@ var Notification = React7__namespace.forwardRef(
                 "hover:bg-black/10 dark:hover:bg-white/10",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               ),
-              children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-4 w-4 opacity-60 hover:opacity-100" })
+              children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-4 w-4 opacity-60 hover:opacity-100" })
             }
           )
         ]

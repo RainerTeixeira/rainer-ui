@@ -7,18 +7,50 @@ import React4__default, { useState, useEffect } from 'react';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
-import { X, Plus, Loader2, ArrowUp, ArrowDown, TrendingUp, TrendingDown, Minus, RefreshCw, Wifi, ChevronDown, XCircle, Package, Search, Bell, Info, AlertTriangle, AlertCircle, Check, FileText, Eye, Heart, MessageSquare, MessageCircle, Calendar, Edit, Trash2, HelpCircle, BookOpen, Video, ExternalLink, BarChart, Settings } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import '@radix-ui/react-dialog';
 import { cva } from 'class-variance-authority';
 import { motion as motion$1 } from 'framer-motion';
+import Eye from 'lucide-react/dist/esm/icons/eye';
+import FileText from 'lucide-react/dist/esm/icons/file-text';
+import Heart from 'lucide-react/dist/esm/icons/heart';
+import MessageCircle from 'lucide-react/dist/esm/icons/message-circle';
+import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
+import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
+import MessageSquare from 'lucide-react/dist/esm/icons/message-square';
 import { Slot } from '@radix-ui/react-slot';
 import * as SliderPrimitive from '@radix-ui/react-slider';
 import * as SwitchPrimitives from '@radix-ui/react-switch';
 import * as TogglePrimitive from '@radix-ui/react-toggle';
+import Plus from 'lucide-react/dist/esm/icons/plus';
+import X2 from 'lucide-react/dist/esm/icons/x';
+import Settings from 'lucide-react/dist/esm/icons/settings';
+import BarChart from 'lucide-react/dist/esm/icons/bar-chart';
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import * as ProgressPrimitive from '@radix-ui/react-progress';
 import 'next-themes';
 import 'sonner';
+import ArrowDown from 'lucide-react/dist/esm/icons/arrow-down';
+import ArrowUp from 'lucide-react/dist/esm/icons/arrow-up';
+import Minus from 'lucide-react/dist/esm/icons/minus';
+import RefreshCw from 'lucide-react/dist/esm/icons/refresh-cw';
+import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down';
+import Package from 'lucide-react/dist/esm/icons/package';
+import Search from 'lucide-react/dist/esm/icons/search';
+import Wifi from 'lucide-react/dist/esm/icons/wifi';
+import XCircle from 'lucide-react/dist/esm/icons/x-circle';
+import AlertCircle from 'lucide-react/dist/esm/icons/alert-circle';
+import AlertTriangle2 from 'lucide-react/dist/esm/icons/alert-triangle';
+import Bell from 'lucide-react/dist/esm/icons/bell';
+import Check2 from 'lucide-react/dist/esm/icons/check';
+import Info2 from 'lucide-react/dist/esm/icons/info';
+import Trash2 from 'lucide-react/dist/esm/icons/trash-2';
+import Calendar from 'lucide-react/dist/esm/icons/calendar';
+import Edit from 'lucide-react/dist/esm/icons/edit';
+import BookOpen from 'lucide-react/dist/esm/icons/book-open';
+import ExternalLink from 'lucide-react/dist/esm/icons/external-link';
+import HelpCircle from 'lucide-react/dist/esm/icons/help-circle';
+import Video from 'lucide-react/dist/esm/icons/video';
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -1432,7 +1464,7 @@ var DEFAULT_STATS = [
 function QuickStatsComponent({
   stats = [...DEFAULT_STATS],
   animationDelay = DEFAULT_STAGGER_DELAY,
-  animateOnView = true,
+  // animateOnView = true, // TODO: implementar animação ao entrar na viewport
   className,
   theme = "auto"
 }) {
@@ -2053,7 +2085,7 @@ var FAB = React4.forwardRef(
       }
       onClick?.();
     }, [actions.length, showActions, onClick]);
-    const defaultIcon = actions.length > 0 ? showActions ? /* @__PURE__ */ jsx(X, { className: "h-5 w-5" }) : /* @__PURE__ */ jsx(Plus, { className: "h-5 w-5" }) : /* @__PURE__ */ jsx(Plus, { className: "h-5 w-5" });
+    const defaultIcon = actions.length > 0 ? showActions ? /* @__PURE__ */ jsx(X2, { className: "h-5 w-5" }) : /* @__PURE__ */ jsx(Plus, { className: "h-5 w-5" }) : /* @__PURE__ */ jsx(Plus, { className: "h-5 w-5" });
     return /* @__PURE__ */ jsxs("div", { className: "relative", children: [
       showActions && actions.length > 0 && /* @__PURE__ */ jsx("div", { className: "absolute bottom-0 flex flex-col-reverse gap-3 mb-4", children: actions.map((action, index) => /* @__PURE__ */ jsxs(
         "div",
@@ -3013,7 +3045,7 @@ var KPIChart = React4.forwardRef(
     className,
     chart,
     chartPosition = "bottom",
-    children,
+    // children, // TODO: implementar children content
     ...props
   }, ref) => {
     const isRight = chartPosition === "right";
@@ -3164,10 +3196,10 @@ var EmptyStateIllustrated = React4.forwardRef(
 );
 EmptyStateIllustrated.displayName = "EmptyStateIllustrated";
 var variantIcons = {
-  success: Check,
+  success: Check2,
   error: AlertCircle,
-  warning: AlertTriangle,
-  info: Info,
+  warning: AlertTriangle2,
+  info: Info2,
   default: Bell
 };
 var notificationVariants = cva(
@@ -3257,7 +3289,7 @@ var Notification = React4.forwardRef(
                 "hover:bg-black/10 dark:hover:bg-white/10",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               ),
-              children: /* @__PURE__ */ jsx(X, { className: "h-4 w-4 opacity-60 hover:opacity-100" })
+              children: /* @__PURE__ */ jsx(X2, { className: "h-4 w-4 opacity-60 hover:opacity-100" })
             }
           )
         ]
@@ -3326,20 +3358,7 @@ function RecentPostsList({
   maxPosts = 5,
   className
 }) {
-  const [isLoading, setIsLoading] = useState(false);
   const displayedPosts = posts.slice(0, maxPosts);
-  if (isLoading) {
-    return /* @__PURE__ */ jsxs(Card, { className: cn("w-full", className), children: [
-      /* @__PURE__ */ jsx(CardHeader, { children: /* @__PURE__ */ jsx(CardTitle, { children: "Posts Recentes" }) }),
-      /* @__PURE__ */ jsx(CardContent, { children: /* @__PURE__ */ jsx("div", { className: "space-y-4", children: [...Array(3)].map((_, i) => /* @__PURE__ */ jsxs("div", { className: "flex items-center space-x-4", children: [
-        /* @__PURE__ */ jsx("div", { className: "w-16 h-16 bg-muted rounded animate-pulse" }),
-        /* @__PURE__ */ jsxs("div", { className: "flex-1 space-y-2", children: [
-          /* @__PURE__ */ jsx("div", { className: "h-4 bg-muted rounded animate-pulse" }),
-          /* @__PURE__ */ jsx("div", { className: "h-3 bg-muted rounded animate-pulse w-3/4" })
-        ] })
-      ] }, i)) }) })
-    ] });
-  }
   if (displayedPosts.length === 0) {
     return /* @__PURE__ */ jsxs(Card, { className: cn("w-full", className), children: [
       /* @__PURE__ */ jsx(CardHeader, { children: /* @__PURE__ */ jsx(CardTitle, { children: "Posts Recentes" }) }),

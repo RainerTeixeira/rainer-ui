@@ -1,7 +1,7 @@
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
-import { Clock } from 'lucide-react';
+import Clock from 'lucide-react/dist/esm/icons/clock';
 import { jsxs, jsx } from 'react/jsx-runtime';
 
 // src/lib/utils.ts

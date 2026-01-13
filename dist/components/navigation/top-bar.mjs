@@ -1,6 +1,11 @@
-import { ArrowLeft, Menu, Search, Bell, Settings, MoreVertical } from 'lucide-react';
+import MoreVertical from 'lucide-react/dist/esm/icons/more-vertical';
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
+import ArrowLeft from 'lucide-react/dist/esm/icons/arrow-left';
+import Bell from 'lucide-react/dist/esm/icons/bell';
+import Menu from 'lucide-react/dist/esm/icons/menu';
+import Search from 'lucide-react/dist/esm/icons/search';
+import Settings from 'lucide-react/dist/esm/icons/settings';
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';

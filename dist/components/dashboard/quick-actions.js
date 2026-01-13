@@ -10,12 +10,19 @@ var classVarianceAuthority = require('class-variance-authority');
 var SliderPrimitive = require('@radix-ui/react-slider');
 var SwitchPrimitives = require('@radix-ui/react-switch');
 var TogglePrimitive = require('@radix-ui/react-toggle');
-var lucideReact = require('lucide-react');
+var Plus = require('lucide-react/dist/esm/icons/plus');
+var X = require('lucide-react/dist/esm/icons/x');
+require('lucide-react');
 require('@radix-ui/react-aspect-ratio');
 var ScrollAreaPrimitive = require('@radix-ui/react-scroll-area');
 var SeparatorPrimitive = require('@radix-ui/react-separator');
 require('@radix-ui/react-dialog');
 var framerMotion = require('framer-motion');
+var Settings = require('lucide-react/dist/esm/icons/settings');
+var BarChart = require('lucide-react/dist/esm/icons/bar-chart');
+var FileText = require('lucide-react/dist/esm/icons/file-text');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -39,8 +46,13 @@ var React12__namespace = /*#__PURE__*/_interopNamespace(React12);
 var SliderPrimitive__namespace = /*#__PURE__*/_interopNamespace(SliderPrimitive);
 var SwitchPrimitives__namespace = /*#__PURE__*/_interopNamespace(SwitchPrimitives);
 var TogglePrimitive__namespace = /*#__PURE__*/_interopNamespace(TogglePrimitive);
+var Plus__default = /*#__PURE__*/_interopDefault(Plus);
+var X__default = /*#__PURE__*/_interopDefault(X);
 var ScrollAreaPrimitive__namespace = /*#__PURE__*/_interopNamespace(ScrollAreaPrimitive);
 var SeparatorPrimitive__namespace = /*#__PURE__*/_interopNamespace(SeparatorPrimitive);
+var Settings__default = /*#__PURE__*/_interopDefault(Settings);
+var BarChart__default = /*#__PURE__*/_interopDefault(BarChart);
+var FileText__default = /*#__PURE__*/_interopDefault(FileText);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -591,7 +603,7 @@ var FAB = React12__namespace.forwardRef(
       }
       onClick?.();
     }, [actions.length, showActions, onClick]);
-    const defaultIcon = actions.length > 0 ? showActions ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { className: "h-5 w-5" });
+    const defaultIcon = actions.length > 0 ? showActions ? /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(Plus__default.default, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(Plus__default.default, { className: "h-5 w-5" });
     return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", children: [
       showActions && actions.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute bottom-0 flex flex-col-reverse gap-3 mb-4", children: actions.map((action, index) => /* @__PURE__ */ jsxRuntime.jsxs(
         "div",
@@ -2049,28 +2061,28 @@ function QuickActions({
 }) {
   const actions = [
     {
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { className: "w-5 h-5" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(Plus__default.default, { className: "w-5 h-5" }),
       label: "Novo Post",
       description: "Criar novo artigo",
       color: "from-cyan-500 to-blue-500",
       onClick: onNewPost
     },
     {
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.FileText, { className: "w-5 h-5" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(FileText__default.default, { className: "w-5 h-5" }),
       label: "Meus Posts",
       description: "Ver todos os posts",
       color: "from-purple-500 to-pink-500",
       onClick: onViewPosts
     },
     {
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.BarChart, { className: "w-5 h-5" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(BarChart__default.default, { className: "w-5 h-5" }),
       label: "Estat\xEDsticas",
       description: "An\xE1lise e m\xE9tricas",
       color: "from-orange-500 to-red-500",
       onClick: onViewStats
     },
     {
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Settings, { className: "w-5 h-5" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(Settings__default.default, { className: "w-5 h-5" }),
       label: "Configura\xE7\xF5es",
       description: "Ajustes do blog",
       color: "from-green-500 to-emerald-500",

@@ -7,9 +7,20 @@ import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import * as React2 from 'react';
 import { useState } from 'react';
 import { Overlay, Portal, Content, Close, Title, Description, Root as Root$1 } from '@radix-ui/react-dialog';
-import { X, ChevronRight, Check, Smartphone, Copy, QrCode, Link2, Share2, Facebook, Twitter, Linkedin, MessageCircle, Send } from 'lucide-react';
+import { X, ChevronRight, Check } from 'lucide-react';
 import { SubTrigger, SubContent, Portal as Portal$1, Content as Content$1, Item, CheckboxItem, ItemIndicator, RadioItem, Label, Separator, Root, Trigger } from '@radix-ui/react-dropdown-menu';
 import { QRCodeSVG } from 'qrcode.react';
+import Check2 from 'lucide-react/dist/esm/icons/check';
+import Copy from 'lucide-react/dist/esm/icons/copy';
+import Facebook from 'lucide-react/dist/esm/icons/facebook';
+import Link2 from 'lucide-react/dist/esm/icons/link-2';
+import Linkedin from 'lucide-react/dist/esm/icons/linkedin';
+import MessageCircle from 'lucide-react/dist/esm/icons/message-circle';
+import QrCode from 'lucide-react/dist/esm/icons/qr-code';
+import Send from 'lucide-react/dist/esm/icons/send';
+import Share2 from 'lucide-react/dist/esm/icons/share-2';
+import Smartphone from 'lucide-react/dist/esm/icons/smartphone';
+import Twitter from 'lucide-react/dist/esm/icons/twitter';
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -466,7 +477,7 @@ function ShareMenu({
         )),
         (showCopyLink || showQRCode) && /* @__PURE__ */ jsx(DropdownMenuSeparator, {}),
         showCopyLink && /* @__PURE__ */ jsx(DropdownMenuItem, { onClick: copyToClipboard, children: copied ? /* @__PURE__ */ jsxs(Fragment, { children: [
-          /* @__PURE__ */ jsx(Check, { className: "mr-2 h-4 w-4 text-green-500" }),
+          /* @__PURE__ */ jsx(Check2, { className: "mr-2 h-4 w-4 text-green-500" }),
           /* @__PURE__ */ jsx("span", { className: "text-green-500", children: "Link copiado!" })
         ] }) : /* @__PURE__ */ jsxs(Fragment, { children: [
           /* @__PURE__ */ jsx(Copy, { className: "mr-2 h-4 w-4" }),

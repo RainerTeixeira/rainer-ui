@@ -5,8 +5,11 @@ var nextThemes = require('next-themes');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
-var lucideReact = require('lucide-react');
+var Moon = require('lucide-react/dist/esm/icons/moon');
+var Sun = require('lucide-react/dist/esm/icons/sun');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -27,6 +30,8 @@ function _interopNamespace(e) {
 }
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var Moon__default = /*#__PURE__*/_interopDefault(Moon);
+var Sun__default = /*#__PURE__*/_interopDefault(Sun);
 
 function useTheme() {
   const { theme, resolvedTheme, setTheme } = nextThemes.useTheme();
@@ -180,13 +185,13 @@ function ThemeToggle({ className }) {
       "aria-label": isDark ? "Mudar para tema claro" : "Mudar para tema escuro",
       children: [
         isDark ? /* @__PURE__ */ jsxRuntime.jsx(
-          lucideReact.Moon,
+          Moon__default.default,
           {
             className: "h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-200 text-text-secondary",
             "aria-hidden": "true"
           }
         ) : /* @__PURE__ */ jsxRuntime.jsx(
-          lucideReact.Sun,
+          Sun__default.default,
           {
             className: "h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-200 text-text-primary",
             "aria-hidden": "true"

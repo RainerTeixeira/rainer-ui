@@ -5,7 +5,11 @@ import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import * as React from 'react';
-import { HelpCircle, BookOpen, Video, MessageCircle, ExternalLink } from 'lucide-react';
+import BookOpen from 'lucide-react/dist/esm/icons/book-open';
+import ExternalLink from 'lucide-react/dist/esm/icons/external-link';
+import HelpCircle from 'lucide-react/dist/esm/icons/help-circle';
+import MessageCircle from 'lucide-react/dist/esm/icons/message-circle';
+import Video from 'lucide-react/dist/esm/icons/video';
 
 // src/lib/utils.ts
 function cn(...inputs) {

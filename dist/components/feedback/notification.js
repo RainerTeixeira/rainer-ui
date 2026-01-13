@@ -2,11 +2,18 @@
 
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
-var lucideReact = require('lucide-react');
+var AlertCircle = require('lucide-react/dist/esm/icons/alert-circle');
+var AlertTriangle = require('lucide-react/dist/esm/icons/alert-triangle');
+var Bell = require('lucide-react/dist/esm/icons/bell');
+var Check = require('lucide-react/dist/esm/icons/check');
+var Info = require('lucide-react/dist/esm/icons/info');
+var X = require('lucide-react/dist/esm/icons/x');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -27,6 +34,12 @@ function _interopNamespace(e) {
 }
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var AlertCircle__default = /*#__PURE__*/_interopDefault(AlertCircle);
+var AlertTriangle__default = /*#__PURE__*/_interopDefault(AlertTriangle);
+var Bell__default = /*#__PURE__*/_interopDefault(Bell);
+var Check__default = /*#__PURE__*/_interopDefault(Check);
+var Info__default = /*#__PURE__*/_interopDefault(Info);
+var X__default = /*#__PURE__*/_interopDefault(X);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -86,11 +99,11 @@ motion.easing;
   navigation: motionSemantic.navigation.page
 });
 var variantIcons = {
-  success: lucideReact.Check,
-  error: lucideReact.AlertCircle,
-  warning: lucideReact.AlertTriangle,
-  info: lucideReact.Info,
-  default: lucideReact.Bell
+  success: Check__default.default,
+  error: AlertCircle__default.default,
+  warning: AlertTriangle__default.default,
+  info: Info__default.default,
+  default: Bell__default.default
 };
 var notificationVariants = classVarianceAuthority.cva(
   "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-4 pr-8 shadow-lg transition-all duration-[var(--motion-duration-normal)]",
@@ -179,7 +192,7 @@ var Notification = React__namespace.forwardRef(
                 "hover:bg-black/10 dark:hover:bg-white/10",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               ),
-              children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-4 w-4 opacity-60 hover:opacity-100" })
+              children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-4 w-4 opacity-60 hover:opacity-100" })
             }
           )
         ]

@@ -9,7 +9,24 @@ import { Slot } from '@radix-ui/react-slot';
 import * as ProgressPrimitive from '@radix-ui/react-progress';
 import { useTheme } from 'next-themes';
 import { Toaster as Toaster$1 } from 'sonner';
-import { Loader2, ArrowUp, ArrowDown, TrendingUp, TrendingDown, Minus, X, RefreshCw, Wifi, ChevronDown, XCircle, Package, Search, Bell, Info, AlertTriangle, AlertCircle, Check, Octagon } from 'lucide-react';
+import { Loader2, Octagon, AlertTriangle, Info, Check } from 'lucide-react';
+import ArrowDown from 'lucide-react/dist/esm/icons/arrow-down';
+import ArrowUp from 'lucide-react/dist/esm/icons/arrow-up';
+import Minus from 'lucide-react/dist/esm/icons/minus';
+import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
+import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
+import RefreshCw from 'lucide-react/dist/esm/icons/refresh-cw';
+import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down';
+import Package from 'lucide-react/dist/esm/icons/package';
+import Search from 'lucide-react/dist/esm/icons/search';
+import Wifi from 'lucide-react/dist/esm/icons/wifi';
+import XCircle from 'lucide-react/dist/esm/icons/x-circle';
+import AlertCircle from 'lucide-react/dist/esm/icons/alert-circle';
+import AlertTriangle2 from 'lucide-react/dist/esm/icons/alert-triangle';
+import Bell from 'lucide-react/dist/esm/icons/bell';
+import Check2 from 'lucide-react/dist/esm/icons/check';
+import Info2 from 'lucide-react/dist/esm/icons/info';
+import X from 'lucide-react/dist/esm/icons/x';
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -704,7 +721,7 @@ var KPIChart = React7.forwardRef(
     className,
     chart,
     chartPosition = "bottom",
-    children,
+    // children, // TODO: implementar children content
     ...props
   }, ref) => {
     const isRight = chartPosition === "right";
@@ -919,10 +936,10 @@ var EmptyStatePatterns = {
   )
 };
 var variantIcons = {
-  success: Check,
+  success: Check2,
   error: AlertCircle,
-  warning: AlertTriangle,
-  info: Info,
+  warning: AlertTriangle2,
+  info: Info2,
   default: Bell
 };
 var notificationVariants = cva(

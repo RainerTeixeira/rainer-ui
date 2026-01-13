@@ -1,13 +1,16 @@
 'use strict';
 
-var lucideReact = require('lucide-react');
+var Globe = require('lucide-react/dist/esm/icons/globe');
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
+var Phone = require('lucide-react/dist/esm/icons/phone');
 var reactSlot = require('@radix-ui/react-slot');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -27,7 +30,9 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
+var Globe__default = /*#__PURE__*/_interopDefault(Globe);
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var Phone__default = /*#__PURE__*/_interopDefault(Phone);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -261,7 +266,7 @@ var PhoneInput = React__namespace.forwardRef(
                 disabled,
                 children: [
                   /* @__PURE__ */ jsxRuntime.jsx("span", { className: "mr-1", children: selectedCountry.flag }),
-                  /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Globe, { className: "h-4 w-4" })
+                  /* @__PURE__ */ jsxRuntime.jsx(Globe__default.default, { className: "h-4 w-4" })
                 ]
               }
             ),
@@ -293,7 +298,7 @@ var PhoneInput = React__namespace.forwardRef(
             )
           ] }),
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative flex-1", children: [
-            /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Phone, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
+            /* @__PURE__ */ jsxRuntime.jsx(Phone__default.default, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
             /* @__PURE__ */ jsxRuntime.jsx(
               "input",
               {

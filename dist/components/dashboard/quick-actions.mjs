@@ -8,12 +8,17 @@ import { cva } from 'class-variance-authority';
 import * as SliderPrimitive from '@radix-ui/react-slider';
 import * as SwitchPrimitives from '@radix-ui/react-switch';
 import * as TogglePrimitive from '@radix-ui/react-toggle';
-import { X, Plus, FileText, BarChart, Settings } from 'lucide-react';
+import Plus from 'lucide-react/dist/esm/icons/plus';
+import X from 'lucide-react/dist/esm/icons/x';
+import 'lucide-react';
 import '@radix-ui/react-aspect-ratio';
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
 import '@radix-ui/react-dialog';
 import { motion as motion$1 } from 'framer-motion';
+import Settings from 'lucide-react/dist/esm/icons/settings';
+import BarChart from 'lucide-react/dist/esm/icons/bar-chart';
+import FileText from 'lucide-react/dist/esm/icons/file-text';
 
 // src/lib/utils.ts
 function cn(...inputs) {

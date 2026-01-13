@@ -5,7 +5,12 @@ import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsx, jsxs } from 'react/jsx-runtime';
-import { FileText, Eye, Heart, MessageSquare, TrendingUp, TrendingDown } from 'lucide-react';
+import Eye from 'lucide-react/dist/esm/icons/eye';
+import FileText from 'lucide-react/dist/esm/icons/file-text';
+import Heart from 'lucide-react/dist/esm/icons/heart';
+import MessageSquare from 'lucide-react/dist/esm/icons/message-square';
+import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
+import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -198,7 +203,7 @@ var DEFAULT_STATS = [
 function QuickStatsComponent({
   stats = [...DEFAULT_STATS],
   animationDelay = DEFAULT_STAGGER_DELAY,
-  animateOnView = true,
+  // animateOnView = true, // TODO: implementar animação ao entrar na viewport
   className,
   theme = "auto"
 }) {

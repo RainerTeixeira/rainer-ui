@@ -1,6 +1,6 @@
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import * as React6 from 'react';
-import { ChevronDown, X, Search, ChevronLeft, MoreHorizontal, ChevronRight, Check, Loader2, User, Settings, LogOut, Menu as Menu$1, ArrowLeft, Bell, MoreVertical } from 'lucide-react';
+import { ChevronDown, X, Search, Check, Loader2, ChevronRight } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
@@ -12,6 +12,18 @@ import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import { cva } from 'class-variance-authority';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
 import { Slot } from '@radix-ui/react-slot';
+import ChevronLeft from 'lucide-react/dist/esm/icons/chevron-left';
+import ChevronRight2 from 'lucide-react/dist/esm/icons/chevron-right';
+import MoreHorizontal from 'lucide-react/dist/esm/icons/more-horizontal';
+import LogOut from 'lucide-react/dist/esm/icons/log-out';
+import Menu2 from 'lucide-react/dist/esm/icons/menu';
+import Settings from 'lucide-react/dist/esm/icons/settings';
+import User from 'lucide-react/dist/esm/icons/user';
+import X2 from 'lucide-react/dist/esm/icons/x';
+import MoreVertical from 'lucide-react/dist/esm/icons/more-vertical';
+import ArrowLeft from 'lucide-react/dist/esm/icons/arrow-left';
+import Bell from 'lucide-react/dist/esm/icons/bell';
+import Search2 from 'lucide-react/dist/esm/icons/search';
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -950,7 +962,7 @@ var Pagination = React6.forwardRef(
               disabled: disabled || page === totalPages,
               children: [
                 /* @__PURE__ */ jsx("span", { className: "sr-only", children: "Pr\xF3xima p\xE1gina" }),
-                /* @__PURE__ */ jsx(ChevronRight, { className: "h-4 w-4" })
+                /* @__PURE__ */ jsx(ChevronRight2, { className: "h-4 w-4" })
               ]
             }
           ),
@@ -964,8 +976,8 @@ var Pagination = React6.forwardRef(
               disabled: disabled || page === totalPages,
               children: [
                 /* @__PURE__ */ jsx("span", { className: "sr-only", children: "\xDAltima p\xE1gina" }),
-                /* @__PURE__ */ jsx(ChevronRight, { className: "h-4 w-4" }),
-                /* @__PURE__ */ jsx(ChevronRight, { className: "h-4 w-4 -ml-3" })
+                /* @__PURE__ */ jsx(ChevronRight2, { className: "h-4 w-4" }),
+                /* @__PURE__ */ jsx(ChevronRight2, { className: "h-4 w-4 -ml-3" })
               ]
             }
           ),
@@ -1433,7 +1445,7 @@ var Sidebar = React6.forwardRef(
                   size: "sm",
                   onClick: handleCollapse,
                   className: "h-8 w-8 p-0",
-                  children: isCollapsed ? /* @__PURE__ */ jsx(ChevronRight, { className: "h-4 w-4" }) : /* @__PURE__ */ jsx(ChevronLeft, { className: "h-4 w-4" })
+                  children: isCollapsed ? /* @__PURE__ */ jsx(ChevronRight2, { className: "h-4 w-4" }) : /* @__PURE__ */ jsx(ChevronLeft, { className: "h-4 w-4" })
                 }
               ),
               overlay && /* @__PURE__ */ jsx(
@@ -1443,7 +1455,7 @@ var Sidebar = React6.forwardRef(
                   size: "sm",
                   onClick: () => handleOpenChange(false),
                   className: "h-8 w-8 p-0",
-                  children: /* @__PURE__ */ jsx(X, { className: "h-4 w-4" })
+                  children: /* @__PURE__ */ jsx(X2, { className: "h-4 w-4" })
                 }
               )
             ] }),
@@ -1525,7 +1537,7 @@ var SidebarTrigger = React6.forwardRef(
         className: cn("h-8 w-8 p-0", className),
         onClick: handleClick,
         ...props,
-        children: children || /* @__PURE__ */ jsx(Menu$1, { className: "h-4 w-4" })
+        children: children || /* @__PURE__ */ jsx(Menu2, { className: "h-4 w-4" })
       }
     );
   }
@@ -1599,7 +1611,7 @@ var TopBar = React6.forwardRef(
             onClick: menu.onClick,
             className: "h-8 w-8 p-0",
             "aria-label": menu.label || "Menu",
-            children: /* @__PURE__ */ jsx(Menu$1, { className: "h-4 w-4" })
+            children: /* @__PURE__ */ jsx(Menu2, { className: "h-4 w-4" })
           }
         ),
         (title || subtitle) && /* @__PURE__ */ jsxs("div", { className: "flex flex-col", children: [
@@ -1612,7 +1624,7 @@ var TopBar = React6.forwardRef(
       if (center) return center;
       if (search) {
         return /* @__PURE__ */ jsx("div", { className: "flex-1 max-w-md mx-4", children: /* @__PURE__ */ jsxs("div", { className: "relative", children: [
-          /* @__PURE__ */ jsx(Search, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
+          /* @__PURE__ */ jsx(Search2, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
           /* @__PURE__ */ jsx(
             "input",
             {

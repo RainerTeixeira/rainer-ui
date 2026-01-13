@@ -11,8 +11,24 @@ var LabelPrimitive = require('@radix-ui/react-label');
 var classVarianceAuthority = require('class-variance-authority');
 var RadioGroupPrimitive = require('@radix-ui/react-radio-group');
 var SelectPrimitive = require('@radix-ui/react-select');
+var File = require('lucide-react/dist/esm/icons/file');
+var ImageIcon = require('lucide-react/dist/esm/icons/image');
+var FileText = require('lucide-react/dist/esm/icons/file-text');
+var Upload = require('lucide-react/dist/esm/icons/upload');
+var X = require('lucide-react/dist/esm/icons/x');
 var reactSlot = require('@radix-ui/react-slot');
 var reactDayPicker = require('react-day-picker');
+var Calendar = require('lucide-react/dist/esm/icons/calendar');
+var ChevronDown2 = require('lucide-react/dist/esm/icons/chevron-down');
+var Timer = require('lucide-react/dist/esm/icons/timer');
+var TrendingUp = require('lucide-react/dist/esm/icons/trending-up');
+var Clock = require('lucide-react/dist/esm/icons/clock');
+var Filter = require('lucide-react/dist/esm/icons/filter');
+var Search = require('lucide-react/dist/esm/icons/search');
+var Globe = require('lucide-react/dist/esm/icons/globe');
+var Phone = require('lucide-react/dist/esm/icons/phone');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -37,6 +53,20 @@ var CheckboxPrimitive__namespace = /*#__PURE__*/_interopNamespace(CheckboxPrimit
 var LabelPrimitive__namespace = /*#__PURE__*/_interopNamespace(LabelPrimitive);
 var RadioGroupPrimitive__namespace = /*#__PURE__*/_interopNamespace(RadioGroupPrimitive);
 var SelectPrimitive__namespace = /*#__PURE__*/_interopNamespace(SelectPrimitive);
+var File__default = /*#__PURE__*/_interopDefault(File);
+var ImageIcon__default = /*#__PURE__*/_interopDefault(ImageIcon);
+var FileText__default = /*#__PURE__*/_interopDefault(FileText);
+var Upload__default = /*#__PURE__*/_interopDefault(Upload);
+var X__default = /*#__PURE__*/_interopDefault(X);
+var Calendar__default = /*#__PURE__*/_interopDefault(Calendar);
+var ChevronDown2__default = /*#__PURE__*/_interopDefault(ChevronDown2);
+var Timer__default = /*#__PURE__*/_interopDefault(Timer);
+var TrendingUp__default = /*#__PURE__*/_interopDefault(TrendingUp);
+var Clock__default = /*#__PURE__*/_interopDefault(Clock);
+var Filter__default = /*#__PURE__*/_interopDefault(Filter);
+var Search__default = /*#__PURE__*/_interopDefault(Search);
+var Globe__default = /*#__PURE__*/_interopDefault(Globe);
+var Phone__default = /*#__PURE__*/_interopDefault(Phone);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -379,11 +409,11 @@ function formatFileSize(bytes) {
 }
 function getFileIcon(file) {
   if (file.type.startsWith("image/")) {
-    return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ImageIcon, { className: "h-4 w-4" });
+    return /* @__PURE__ */ jsxRuntime.jsx(ImageIcon__default.default, { className: "h-4 w-4" });
   } else if (file.type.startsWith("text/")) {
-    return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.FileText, { className: "h-4 w-4" });
+    return /* @__PURE__ */ jsxRuntime.jsx(FileText__default.default, { className: "h-4 w-4" });
   } else {
-    return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.File, { className: "h-4 w-4" });
+    return /* @__PURE__ */ jsxRuntime.jsx(File__default.default, { className: "h-4 w-4" });
   }
 }
 var FileUpload = React10__namespace.forwardRef(
@@ -503,7 +533,7 @@ var FileUpload = React10__namespace.forwardRef(
               }
             ),
             /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col items-center gap-2 text-center", children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Upload, { className: cn(
+              /* @__PURE__ */ jsxRuntime.jsx(Upload__default.default, { className: cn(
                 "h-8 w-8 text-muted-foreground",
                 size === "sm" && "h-6 w-6",
                 size === "lg" && "h-10 w-10"
@@ -575,7 +605,7 @@ var FileUpload = React10__namespace.forwardRef(
                   onClick: () => handleRemoveFile(fileItem.id),
                   disabled,
                   className: "h-8 w-8 p-0",
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-4 w-4" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-4 w-4" })
                 }
               )
             ]
@@ -634,7 +664,7 @@ var DatePicker = React10__namespace.forwardRef(
     placeholder = "Selecione uma data",
     multiple = false,
     range = false,
-    disabled,
+    disabledDates,
     minDate,
     maxDate,
     fromYear,
@@ -642,7 +672,7 @@ var DatePicker = React10__namespace.forwardRef(
     format,
     showWeekNumber = false,
     fixedWeeks = false,
-    locale,
+    disabled = false,
     ...props
   }, _ref) => {
     const [isOpen, setIsOpen] = React10__namespace.useState(false);
@@ -670,20 +700,15 @@ var DatePicker = React10__namespace.forwardRef(
         setInputValue(formatDate(value, format));
       }
     }, [value, range, multiple, format]);
-    const handleSelect = React10__namespace.useCallback((dates) => {
-      if (!dates) {
-        onChange?.(void 0);
-        return;
-      }
-      if (range) {
-        const rangeValue = dates.length > 0 ? { from: dates[0], to: dates[1] } : void 0;
-        onChange?.(rangeValue);
-      } else if (multiple) {
-        onChange?.(dates);
-      } else {
-        onChange?.(dates[0]);
-      }
-    }, [range, multiple, onChange]);
+    const handleSingleSelect = React10__namespace.useCallback((day) => {
+      onChange?.(day);
+    }, [onChange]);
+    const handleMultipleSelect = React10__namespace.useCallback((dates) => {
+      onChange?.(dates);
+    }, [onChange]);
+    const handleRangeSelect = React10__namespace.useCallback((range2) => {
+      onChange?.(range2);
+    }, [onChange]);
     React10__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
@@ -741,26 +766,57 @@ var DatePicker = React10__namespace.forwardRef(
               onClick: () => setIsOpen(!isOpen),
               disabled,
               children: [
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.CalendarIcon, { className: "mr-2 h-4 w-4" }),
+                /* @__PURE__ */ jsxRuntime.jsx(Calendar__default.default, { className: "mr-2 h-4 w-4" }),
                 inputValue || placeholder,
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { className: "ml-auto h-4 w-4 opacity-50" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronDown2__default.default, { className: "ml-auto h-4 w-4 opacity-50" })
               ]
             }
           ),
-          isOpen && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute top-full left-0 z-50 mt-1 rounded-md border bg-popover p-0 text-popover-foreground shadow-lg animate-in fade-in-0 zoom-in-95", children: /* @__PURE__ */ jsxRuntime.jsx(
+          isOpen && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute top-full left-0 z-50 mt-1 rounded-md border bg-popover p-0 text-popover-foreground shadow-lg animate-in fade-in-0 zoom-in-95", children: range ? /* @__PURE__ */ jsxRuntime.jsx(
             reactDayPicker.DayPicker,
             {
-              mode: range ? "range" : multiple ? "multiple" : "single",
-              selected: selectedDates,
-              onSelect: handleSelect,
-              disabled,
+              mode: "range",
+              selected: value,
+              onSelect: handleRangeSelect,
+              disabled: disabledDates,
               fromDate: minDate,
               toDate: maxDate,
               fromYear,
               toYear,
               showWeekNumber,
               fixedWeeks,
-              locale,
+              classNames: dayPickerClassNames,
+              initialFocus: true
+            }
+          ) : multiple ? /* @__PURE__ */ jsxRuntime.jsx(
+            reactDayPicker.DayPicker,
+            {
+              mode: "multiple",
+              selected: selectedDates,
+              onSelect: handleMultipleSelect,
+              disabled: disabledDates,
+              fromDate: minDate,
+              toDate: maxDate,
+              fromYear,
+              toYear,
+              showWeekNumber,
+              fixedWeeks,
+              classNames: dayPickerClassNames,
+              initialFocus: true
+            }
+          ) : /* @__PURE__ */ jsxRuntime.jsx(
+            reactDayPicker.DayPicker,
+            {
+              mode: "single",
+              selected: value instanceof Date ? value : void 0,
+              onSelect: handleSingleSelect,
+              disabled: disabledDates,
+              fromDate: minDate,
+              toDate: maxDate,
+              fromYear,
+              toYear,
+              showWeekNumber,
+              fixedWeeks,
               classNames: dayPickerClassNames,
               initialFocus: true
             }
@@ -821,10 +877,10 @@ var TimePicker = React10__namespace.forwardRef(
     disabled = false,
     minuteStep = 1,
     secondStep = 1,
-    minTime,
-    maxTime,
+    // minTime, // TODO: implementar validação de tempo mínimo
+    // maxTime, // TODO: implementar validação de tempo máximo
     ...props
-  }, ref) => {
+  }) => {
     const [isOpen, setIsOpen] = React10__namespace.useState(false);
     const [hours, setHours] = React10__namespace.useState(value?.hours || 0);
     const [minutes, setMinutes] = React10__namespace.useState(value?.minutes || 0);
@@ -926,7 +982,7 @@ var TimePicker = React10__namespace.forwardRef(
               onClick: () => setIsOpen(!isOpen),
               disabled,
               children: [
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Timer, { className: "mr-2 h-4 w-4" }),
+                /* @__PURE__ */ jsxRuntime.jsx(Timer__default.default, { className: "mr-2 h-4 w-4" }),
                 displayValue || placeholder
               ]
             }
@@ -1095,15 +1151,13 @@ var RangeSlider = React10__namespace.forwardRef(
     };
     const updateValue = React10__namespace.useCallback((type, percent) => {
       const newValue = percentToValue(percent);
-      setValue((prev) => {
-        const updated = { ...prev };
-        if (type === "min") {
-          updated.min = Math.min(newValue, prev.max - step);
-        } else {
-          updated.max = Math.max(newValue, prev.min + step);
-        }
-        return updated;
-      });
+      const updated = { ...currentValue };
+      if (type === "min") {
+        updated.min = Math.min(newValue, currentValue.max - step);
+      } else {
+        updated.max = Math.max(newValue, currentValue.min + step);
+      }
+      setValue(updated);
     }, [step]);
     const setValue = React10__namespace.useCallback((newValue) => {
       setInternalValue(newValue);
@@ -1277,10 +1331,10 @@ var SearchInput = React10__namespace.forwardRef(
     loading = false,
     debounceTime = 300,
     maxSuggestions = 10,
-    saveToHistory = false,
-    disabled,
-    ...props
-  }, ref) => {
+    // saveToHistory, // TODO: implementar funcionalidade de histórico
+    disabled
+    // props, // Props adicionais não utilizados
+  }) => {
     const [internalValue, setInternalValue] = React10__namespace.useState(value);
     const [isOpen, setIsOpen] = React10__namespace.useState(false);
     const [selectedIndex, setSelectedIndex] = React10__namespace.useState(-1);
@@ -1304,7 +1358,7 @@ var SearchInput = React10__namespace.forwardRef(
           id: `history-${index}`,
           text: item,
           type: "history",
-          icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Clock, { className: "h-4 w-4" })
+          icon: /* @__PURE__ */ jsxRuntime.jsx(Clock__default.default, { className: "h-4 w-4" })
         }));
         const trendingSuggestions = suggestions.filter((s) => s.type === "trending").slice(0, 5);
         setFilteredSuggestions([...historySuggestions, ...trendingSuggestions]);
@@ -1382,11 +1436,11 @@ var SearchInput = React10__namespace.forwardRef(
     const getIcon = (type) => {
       switch (type) {
         case "history":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Clock, { className: "h-4 w-4 text-muted-foreground" });
+          return /* @__PURE__ */ jsxRuntime.jsx(Clock__default.default, { className: "h-4 w-4 text-muted-foreground" });
         case "trending":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.TrendingUp, { className: "h-4 w-4 text-amber-500" });
+          return /* @__PURE__ */ jsxRuntime.jsx(TrendingUp__default.default, { className: "h-4 w-4 text-amber-500" });
         case "filter":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Filter, { className: "h-4 w-4 text-blue-500" });
+          return /* @__PURE__ */ jsxRuntime.jsx(Filter__default.default, { className: "h-4 w-4 text-blue-500" });
         default:
           return null;
       }
@@ -1406,7 +1460,7 @@ var SearchInput = React10__namespace.forwardRef(
             variant === "outlined" && "border-2",
             variant === "minimal" && "border-transparent bg-transparent"
           ), children: [
-            /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { className: "h-4 w-4 text-muted-foreground" }),
+            /* @__PURE__ */ jsxRuntime.jsx(Search__default.default, { className: "h-4 w-4 text-muted-foreground" }),
             /* @__PURE__ */ jsxRuntime.jsx(
               "input",
               {
@@ -1419,8 +1473,7 @@ var SearchInput = React10__namespace.forwardRef(
                 onBlur: handleBlur,
                 placeholder,
                 disabled,
-                className: "flex-1 bg-transparent outline-none ml-2 placeholder:text-muted-foreground",
-                ...props
+                className: "flex-1 bg-transparent outline-none ml-2 placeholder:text-muted-foreground"
               }
             ),
             /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-1", children: [
@@ -1433,7 +1486,7 @@ var SearchInput = React10__namespace.forwardRef(
                   size: "sm",
                   className: "h-6 w-6 p-0",
                   onClick: handleClear,
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-3 w-3" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-3 w-3" })
                 }
               ),
               showFilter && /* @__PURE__ */ jsxRuntime.jsx(
@@ -1445,7 +1498,7 @@ var SearchInput = React10__namespace.forwardRef(
                   className: "h-6 w-6 p-0",
                   onClick: onFilter,
                   disabled,
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Filter, { className: "h-3 w-3" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(Filter__default.default, { className: "h-3 w-3" })
                 }
               )
             ] })
@@ -1604,7 +1657,7 @@ var PhoneInput = React10__namespace.forwardRef(
                 disabled,
                 children: [
                   /* @__PURE__ */ jsxRuntime.jsx("span", { className: "mr-1", children: selectedCountry.flag }),
-                  /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Globe, { className: "h-4 w-4" })
+                  /* @__PURE__ */ jsxRuntime.jsx(Globe__default.default, { className: "h-4 w-4" })
                 ]
               }
             ),
@@ -1636,7 +1689,7 @@ var PhoneInput = React10__namespace.forwardRef(
             )
           ] }),
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative flex-1", children: [
-            /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Phone, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
+            /* @__PURE__ */ jsxRuntime.jsx(Phone__default.default, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
             /* @__PURE__ */ jsxRuntime.jsx(
               "input",
               {

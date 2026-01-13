@@ -1,13 +1,19 @@
 'use strict';
 
-var lucideReact = require('lucide-react');
+var File = require('lucide-react/dist/esm/icons/file');
+var ImageIcon = require('lucide-react/dist/esm/icons/image');
+var FileText = require('lucide-react/dist/esm/icons/file-text');
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
+var Upload = require('lucide-react/dist/esm/icons/upload');
+var X = require('lucide-react/dist/esm/icons/x');
 var reactSlot = require('@radix-ui/react-slot');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -27,7 +33,12 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
+var File__default = /*#__PURE__*/_interopDefault(File);
+var ImageIcon__default = /*#__PURE__*/_interopDefault(ImageIcon);
+var FileText__default = /*#__PURE__*/_interopDefault(FileText);
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var Upload__default = /*#__PURE__*/_interopDefault(Upload);
+var X__default = /*#__PURE__*/_interopDefault(X);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -166,11 +177,11 @@ function formatFileSize(bytes) {
 }
 function getFileIcon(file) {
   if (file.type.startsWith("image/")) {
-    return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ImageIcon, { className: "h-4 w-4" });
+    return /* @__PURE__ */ jsxRuntime.jsx(ImageIcon__default.default, { className: "h-4 w-4" });
   } else if (file.type.startsWith("text/")) {
-    return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.FileText, { className: "h-4 w-4" });
+    return /* @__PURE__ */ jsxRuntime.jsx(FileText__default.default, { className: "h-4 w-4" });
   } else {
-    return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.File, { className: "h-4 w-4" });
+    return /* @__PURE__ */ jsxRuntime.jsx(File__default.default, { className: "h-4 w-4" });
   }
 }
 var FileUpload = React__namespace.forwardRef(
@@ -290,7 +301,7 @@ var FileUpload = React__namespace.forwardRef(
               }
             ),
             /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col items-center gap-2 text-center", children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Upload, { className: cn(
+              /* @__PURE__ */ jsxRuntime.jsx(Upload__default.default, { className: cn(
                 "h-8 w-8 text-muted-foreground",
                 size === "sm" && "h-6 w-6",
                 size === "lg" && "h-10 w-10"
@@ -362,7 +373,7 @@ var FileUpload = React__namespace.forwardRef(
                   onClick: () => handleRemoveFile(fileItem.id),
                   disabled,
                   className: "h-8 w-8 p-0",
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-4 w-4" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-4 w-4" })
                 }
               )
             ]

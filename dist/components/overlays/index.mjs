@@ -1,6 +1,6 @@
 import { SubTrigger, SubContent, Portal, Content, Item, CheckboxItem, ItemIndicator, RadioItem, Label, Separator, Root, Group, RadioGroup, Sub, Trigger } from '@radix-ui/react-context-menu';
 import * as React8 from 'react';
-import { ChevronRight, Check, X, ChevronLeft, Pause, Play, ZoomOut, ZoomIn, Minimize2, RotateCw, Maximize2, Download, CheckCircle, Info, AlertTriangle } from 'lucide-react';
+import { ChevronRight, Check, X } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
@@ -12,6 +12,20 @@ import { Portal as Portal$3, Content as Content$4, Root as Root$4, Trigger as Tr
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import { cva } from 'class-variance-authority';
 import { Slot } from '@radix-ui/react-slot';
+import ChevronLeft from 'lucide-react/dist/esm/icons/chevron-left';
+import ChevronRight3 from 'lucide-react/dist/esm/icons/chevron-right';
+import Download from 'lucide-react/dist/esm/icons/download';
+import Maximize2 from 'lucide-react/dist/esm/icons/maximize-2';
+import Minimize2 from 'lucide-react/dist/esm/icons/minimize-2';
+import Pause from 'lucide-react/dist/esm/icons/pause';
+import Play from 'lucide-react/dist/esm/icons/play';
+import RotateCw from 'lucide-react/dist/esm/icons/rotate-cw';
+import X4 from 'lucide-react/dist/esm/icons/x';
+import ZoomIn from 'lucide-react/dist/esm/icons/zoom-in';
+import ZoomOut from 'lucide-react/dist/esm/icons/zoom-out';
+import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle';
+import CheckCircle from 'lucide-react/dist/esm/icons/check-circle';
+import Info from 'lucide-react/dist/esm/icons/info';
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -1350,7 +1364,7 @@ var Lightbox = React8.forwardRef(
                   className: "absolute right-4 top-4 z-10 h-10 w-10 text-white hover:bg-white/20 rounded-full backdrop-blur-sm",
                   onClick: () => onOpenChange(false),
                   "aria-label": "Fechar lightbox",
-                  children: /* @__PURE__ */ jsx(X, { className: "h-5 w-5" })
+                  children: /* @__PURE__ */ jsx(X4, { className: "h-5 w-5" })
                 }
               ),
               /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-center h-full px-4", children: [
@@ -1410,7 +1424,7 @@ var Lightbox = React8.forwardRef(
                     className: "absolute right-4 top-1/2 -translate-y-1/2 z-10 h-12 w-12 text-white hover:bg-white/20 rounded-full backdrop-blur-sm",
                     onClick: handleNext,
                     "aria-label": "Pr\xF3ximo item",
-                    children: /* @__PURE__ */ jsx(ChevronRight, { className: "h-6 w-6" })
+                    children: /* @__PURE__ */ jsx(ChevronRight3, { className: "h-6 w-6" })
                   }
                 )
               ] }),
@@ -1618,9 +1632,9 @@ var ConfirmDialog = React8.forwardRef(
     closeOnCancel = true,
     closeOnBackdrop = true,
     closeOnEscape = true,
-    confirmVariant = "default",
-    ...props
-  }, ref) => {
+    confirmVariant = "default"
+    // props, // Props adicionais não utilizados
+  }) => {
     const [internalLoading, setInternalLoading] = React8.useState(false);
     const isLoading = loading || internalLoading;
     React8.useEffect(() => {
@@ -1700,7 +1714,6 @@ var ConfirmDialog = React8.forwardRef(
       /* @__PURE__ */ jsxs(
         "div",
         {
-          ref,
           className: cn(
             confirmDialogVariants({ variant, size }),
             "relative z-10 p-6 animate-in fade-in-0 zoom-in-95 duration-[var(--motion-duration-normal)]",
@@ -1719,7 +1732,7 @@ var ConfirmDialog = React8.forwardRef(
                 onClick: handleCancel,
                 className: "absolute right-4 top-4 h-8 w-8 p-0",
                 disabled: isLoading,
-                children: /* @__PURE__ */ jsx(X, { className: "h-4 w-4" })
+                children: /* @__PURE__ */ jsx(X4, { className: "h-4 w-4" })
               }
             ),
             /* @__PURE__ */ jsxs("div", { className: "flex flex-col items-center text-center max-w-sm mx-auto", children: [

@@ -3,19 +3,34 @@
 var designTokens = require('@rainersoft/design-tokens');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
-var React55 = require('react');
+var React54 = require('react');
 var jsxRuntime = require('react/jsx-runtime');
 var reactSlot = require('@radix-ui/react-slot');
 var classVarianceAuthority = require('class-variance-authority');
 var SliderPrimitive = require('@radix-ui/react-slider');
 var SwitchPrimitives = require('@radix-ui/react-switch');
 var TogglePrimitive = require('@radix-ui/react-toggle');
+var Plus = require('lucide-react/dist/esm/icons/plus');
+var X = require('lucide-react/dist/esm/icons/x');
 var lucideReact = require('lucide-react');
 var CheckboxPrimitive = require('@radix-ui/react-checkbox');
 var LabelPrimitive = require('@radix-ui/react-label');
 var RadioGroupPrimitive = require('@radix-ui/react-radio-group');
 var SelectPrimitive = require('@radix-ui/react-select');
+var File2 = require('lucide-react/dist/esm/icons/file');
+var ImageIcon = require('lucide-react/dist/esm/icons/image');
+var FileText = require('lucide-react/dist/esm/icons/file-text');
+var Upload = require('lucide-react/dist/esm/icons/upload');
 var reactDayPicker = require('react-day-picker');
+var Calendar = require('lucide-react/dist/esm/icons/calendar');
+var ChevronDown2 = require('lucide-react/dist/esm/icons/chevron-down');
+var Timer = require('lucide-react/dist/esm/icons/timer');
+var TrendingUp = require('lucide-react/dist/esm/icons/trending-up');
+var Clock = require('lucide-react/dist/esm/icons/clock');
+var Filter = require('lucide-react/dist/esm/icons/filter');
+var Search = require('lucide-react/dist/esm/icons/search');
+var Globe = require('lucide-react/dist/esm/icons/globe');
+var Phone = require('lucide-react/dist/esm/icons/phone');
 var AspectRatioPrimitive = require('@radix-ui/react-aspect-ratio');
 var ScrollAreaPrimitive = require('@radix-ui/react-scroll-area');
 var SeparatorPrimitive = require('@radix-ui/react-separator');
@@ -24,22 +39,79 @@ var AlertDialogPrimitive = require('@radix-ui/react-alert-dialog');
 var ProgressPrimitive = require('@radix-ui/react-progress');
 var nextThemes = require('next-themes');
 var sonner = require('sonner');
+var ArrowDown = require('lucide-react/dist/esm/icons/arrow-down');
+var ArrowUp = require('lucide-react/dist/esm/icons/arrow-up');
+var Minus = require('lucide-react/dist/esm/icons/minus');
+var TrendingDown = require('lucide-react/dist/esm/icons/trending-down');
+var RefreshCw = require('lucide-react/dist/esm/icons/refresh-cw');
+var Package = require('lucide-react/dist/esm/icons/package');
+var Wifi = require('lucide-react/dist/esm/icons/wifi');
+var XCircle = require('lucide-react/dist/esm/icons/x-circle');
+var AlertCircle = require('lucide-react/dist/esm/icons/alert-circle');
+var AlertTriangle3 = require('lucide-react/dist/esm/icons/alert-triangle');
+var Bell = require('lucide-react/dist/esm/icons/bell');
+var Check4 = require('lucide-react/dist/esm/icons/check');
+var Info2 = require('lucide-react/dist/esm/icons/info');
 var AccordionPrimitive = require('@radix-ui/react-accordion');
 var CollapsiblePrimitive = require('@radix-ui/react-collapsible');
 var cmdk = require('cmdk');
 var NavigationMenuPrimitive = require('@radix-ui/react-navigation-menu');
 var TabsPrimitive = require('@radix-ui/react-tabs');
+var ChevronLeft = require('lucide-react/dist/esm/icons/chevron-left');
+var ChevronRight2 = require('lucide-react/dist/esm/icons/chevron-right');
+var MoreHorizontal = require('lucide-react/dist/esm/icons/more-horizontal');
+var LogOut = require('lucide-react/dist/esm/icons/log-out');
+var Menu2 = require('lucide-react/dist/esm/icons/menu');
+var Settings = require('lucide-react/dist/esm/icons/settings');
+var User = require('lucide-react/dist/esm/icons/user');
+var MoreVertical = require('lucide-react/dist/esm/icons/more-vertical');
+var ArrowLeft = require('lucide-react/dist/esm/icons/arrow-left');
 var framerMotion = require('framer-motion');
+var Eye = require('lucide-react/dist/esm/icons/eye');
+var Heart4 = require('lucide-react/dist/esm/icons/heart');
+var MessageCircle = require('lucide-react/dist/esm/icons/message-circle');
+var MessageSquare = require('lucide-react/dist/esm/icons/message-square');
+var BarChart = require('lucide-react/dist/esm/icons/bar-chart');
+var Trash2 = require('lucide-react/dist/esm/icons/trash-2');
+var Edit = require('lucide-react/dist/esm/icons/edit');
+var BookOpen = require('lucide-react/dist/esm/icons/book-open');
+var ExternalLink = require('lucide-react/dist/esm/icons/external-link');
+var HelpCircle = require('lucide-react/dist/esm/icons/help-circle');
+var Video = require('lucide-react/dist/esm/icons/video');
 var reactContextMenu = require('@radix-ui/react-context-menu');
 var reactDropdownMenu = require('@radix-ui/react-dropdown-menu');
 var reactHoverCard = require('@radix-ui/react-hover-card');
 var reactPopover = require('@radix-ui/react-popover');
 var TooltipPrimitive = require('@radix-ui/react-tooltip');
+var Download = require('lucide-react/dist/esm/icons/download');
+var Maximize2 = require('lucide-react/dist/esm/icons/maximize-2');
+var Minimize2 = require('lucide-react/dist/esm/icons/minimize-2');
+var Pause = require('lucide-react/dist/esm/icons/pause');
+var Play = require('lucide-react/dist/esm/icons/play');
+var RotateCw = require('lucide-react/dist/esm/icons/rotate-cw');
+var ZoomIn = require('lucide-react/dist/esm/icons/zoom-in');
+var ZoomOut = require('lucide-react/dist/esm/icons/zoom-out');
+var CheckCircle = require('lucide-react/dist/esm/icons/check-circle');
 var useEmblaCarousel = require('embla-carousel-react');
+var Star = require('lucide-react/dist/esm/icons/star');
+var StarHalf = require('lucide-react/dist/esm/icons/star-half');
 var Link2 = require('next/link');
+var Moon = require('lucide-react/dist/esm/icons/moon');
+var Sun = require('lucide-react/dist/esm/icons/sun');
 var reactLoadingIndicators = require('react-loading-indicators');
+var Copy = require('lucide-react/dist/esm/icons/copy');
+var QuoteIcon = require('lucide-react/dist/esm/icons/quote');
 var qrcode_react = require('qrcode.react');
-var Image2 = require('next/image');
+var Facebook = require('lucide-react/dist/esm/icons/facebook');
+var Link3 = require('lucide-react/dist/esm/icons/link');
+var Linkedin = require('lucide-react/dist/esm/icons/linkedin');
+var QrCode = require('lucide-react/dist/esm/icons/qr-code');
+var Send = require('lucide-react/dist/esm/icons/send');
+var Share2 = require('lucide-react/dist/esm/icons/share-2');
+var Twitter = require('lucide-react/dist/esm/icons/twitter');
+var Bookmark = require('lucide-react/dist/esm/icons/bookmark');
+var Link22 = require('lucide-react/dist/esm/icons/link-2');
+var Smartphone = require('lucide-react/dist/esm/icons/smartphone');
 var dateFns = require('date-fns');
 var locale = require('date-fns/locale');
 
@@ -63,27 +135,99 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React55__namespace = /*#__PURE__*/_interopNamespace(React55);
+var React54__namespace = /*#__PURE__*/_interopNamespace(React54);
 var SliderPrimitive__namespace = /*#__PURE__*/_interopNamespace(SliderPrimitive);
 var SwitchPrimitives__namespace = /*#__PURE__*/_interopNamespace(SwitchPrimitives);
 var TogglePrimitive__namespace = /*#__PURE__*/_interopNamespace(TogglePrimitive);
+var Plus__default = /*#__PURE__*/_interopDefault(Plus);
+var X__default = /*#__PURE__*/_interopDefault(X);
 var CheckboxPrimitive__namespace = /*#__PURE__*/_interopNamespace(CheckboxPrimitive);
 var LabelPrimitive__namespace = /*#__PURE__*/_interopNamespace(LabelPrimitive);
 var RadioGroupPrimitive__namespace = /*#__PURE__*/_interopNamespace(RadioGroupPrimitive);
 var SelectPrimitive__namespace = /*#__PURE__*/_interopNamespace(SelectPrimitive);
+var File2__default = /*#__PURE__*/_interopDefault(File2);
+var ImageIcon__default = /*#__PURE__*/_interopDefault(ImageIcon);
+var FileText__default = /*#__PURE__*/_interopDefault(FileText);
+var Upload__default = /*#__PURE__*/_interopDefault(Upload);
+var Calendar__default = /*#__PURE__*/_interopDefault(Calendar);
+var ChevronDown2__default = /*#__PURE__*/_interopDefault(ChevronDown2);
+var Timer__default = /*#__PURE__*/_interopDefault(Timer);
+var TrendingUp__default = /*#__PURE__*/_interopDefault(TrendingUp);
+var Clock__default = /*#__PURE__*/_interopDefault(Clock);
+var Filter__default = /*#__PURE__*/_interopDefault(Filter);
+var Search__default = /*#__PURE__*/_interopDefault(Search);
+var Globe__default = /*#__PURE__*/_interopDefault(Globe);
+var Phone__default = /*#__PURE__*/_interopDefault(Phone);
 var AspectRatioPrimitive__namespace = /*#__PURE__*/_interopNamespace(AspectRatioPrimitive);
 var ScrollAreaPrimitive__namespace = /*#__PURE__*/_interopNamespace(ScrollAreaPrimitive);
 var SeparatorPrimitive__namespace = /*#__PURE__*/_interopNamespace(SeparatorPrimitive);
 var AlertDialogPrimitive__namespace = /*#__PURE__*/_interopNamespace(AlertDialogPrimitive);
 var ProgressPrimitive__namespace = /*#__PURE__*/_interopNamespace(ProgressPrimitive);
+var ArrowDown__default = /*#__PURE__*/_interopDefault(ArrowDown);
+var ArrowUp__default = /*#__PURE__*/_interopDefault(ArrowUp);
+var Minus__default = /*#__PURE__*/_interopDefault(Minus);
+var TrendingDown__default = /*#__PURE__*/_interopDefault(TrendingDown);
+var RefreshCw__default = /*#__PURE__*/_interopDefault(RefreshCw);
+var Package__default = /*#__PURE__*/_interopDefault(Package);
+var Wifi__default = /*#__PURE__*/_interopDefault(Wifi);
+var XCircle__default = /*#__PURE__*/_interopDefault(XCircle);
+var AlertCircle__default = /*#__PURE__*/_interopDefault(AlertCircle);
+var AlertTriangle3__default = /*#__PURE__*/_interopDefault(AlertTriangle3);
+var Bell__default = /*#__PURE__*/_interopDefault(Bell);
+var Check4__default = /*#__PURE__*/_interopDefault(Check4);
+var Info2__default = /*#__PURE__*/_interopDefault(Info2);
 var AccordionPrimitive__namespace = /*#__PURE__*/_interopNamespace(AccordionPrimitive);
 var CollapsiblePrimitive__namespace = /*#__PURE__*/_interopNamespace(CollapsiblePrimitive);
 var NavigationMenuPrimitive__namespace = /*#__PURE__*/_interopNamespace(NavigationMenuPrimitive);
 var TabsPrimitive__namespace = /*#__PURE__*/_interopNamespace(TabsPrimitive);
+var ChevronLeft__default = /*#__PURE__*/_interopDefault(ChevronLeft);
+var ChevronRight2__default = /*#__PURE__*/_interopDefault(ChevronRight2);
+var MoreHorizontal__default = /*#__PURE__*/_interopDefault(MoreHorizontal);
+var LogOut__default = /*#__PURE__*/_interopDefault(LogOut);
+var Menu2__default = /*#__PURE__*/_interopDefault(Menu2);
+var Settings__default = /*#__PURE__*/_interopDefault(Settings);
+var User__default = /*#__PURE__*/_interopDefault(User);
+var MoreVertical__default = /*#__PURE__*/_interopDefault(MoreVertical);
+var ArrowLeft__default = /*#__PURE__*/_interopDefault(ArrowLeft);
+var Eye__default = /*#__PURE__*/_interopDefault(Eye);
+var Heart4__default = /*#__PURE__*/_interopDefault(Heart4);
+var MessageCircle__default = /*#__PURE__*/_interopDefault(MessageCircle);
+var MessageSquare__default = /*#__PURE__*/_interopDefault(MessageSquare);
+var BarChart__default = /*#__PURE__*/_interopDefault(BarChart);
+var Trash2__default = /*#__PURE__*/_interopDefault(Trash2);
+var Edit__default = /*#__PURE__*/_interopDefault(Edit);
+var BookOpen__default = /*#__PURE__*/_interopDefault(BookOpen);
+var ExternalLink__default = /*#__PURE__*/_interopDefault(ExternalLink);
+var HelpCircle__default = /*#__PURE__*/_interopDefault(HelpCircle);
+var Video__default = /*#__PURE__*/_interopDefault(Video);
 var TooltipPrimitive__namespace = /*#__PURE__*/_interopNamespace(TooltipPrimitive);
+var Download__default = /*#__PURE__*/_interopDefault(Download);
+var Maximize2__default = /*#__PURE__*/_interopDefault(Maximize2);
+var Minimize2__default = /*#__PURE__*/_interopDefault(Minimize2);
+var Pause__default = /*#__PURE__*/_interopDefault(Pause);
+var Play__default = /*#__PURE__*/_interopDefault(Play);
+var RotateCw__default = /*#__PURE__*/_interopDefault(RotateCw);
+var ZoomIn__default = /*#__PURE__*/_interopDefault(ZoomIn);
+var ZoomOut__default = /*#__PURE__*/_interopDefault(ZoomOut);
+var CheckCircle__default = /*#__PURE__*/_interopDefault(CheckCircle);
 var useEmblaCarousel__default = /*#__PURE__*/_interopDefault(useEmblaCarousel);
+var Star__default = /*#__PURE__*/_interopDefault(Star);
+var StarHalf__default = /*#__PURE__*/_interopDefault(StarHalf);
 var Link2__default = /*#__PURE__*/_interopDefault(Link2);
-var Image2__default = /*#__PURE__*/_interopDefault(Image2);
+var Moon__default = /*#__PURE__*/_interopDefault(Moon);
+var Sun__default = /*#__PURE__*/_interopDefault(Sun);
+var Copy__default = /*#__PURE__*/_interopDefault(Copy);
+var QuoteIcon__default = /*#__PURE__*/_interopDefault(QuoteIcon);
+var Facebook__default = /*#__PURE__*/_interopDefault(Facebook);
+var Link3__default = /*#__PURE__*/_interopDefault(Link3);
+var Linkedin__default = /*#__PURE__*/_interopDefault(Linkedin);
+var QrCode__default = /*#__PURE__*/_interopDefault(QrCode);
+var Send__default = /*#__PURE__*/_interopDefault(Send);
+var Share2__default = /*#__PURE__*/_interopDefault(Share2);
+var Twitter__default = /*#__PURE__*/_interopDefault(Twitter);
+var Bookmark__default = /*#__PURE__*/_interopDefault(Bookmark);
+var Link22__default = /*#__PURE__*/_interopDefault(Link22);
+var Smartphone__default = /*#__PURE__*/_interopDefault(Smartphone);
 
 // src/lib/image-utils.ts
 function isAcceptedFormat(mimeType) {
@@ -435,7 +579,7 @@ var variantClasses = {
   rounded: "rounded-lg",
   square: "rounded-none"
 };
-var Avatar = React55__namespace.forwardRef(
+var Avatar = React54__namespace.forwardRef(
   ({
     className,
     src,
@@ -451,9 +595,9 @@ var Avatar = React55__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [imageStatus, setImageStatus] = React55__namespace.useState("loading");
-    const [showFallback, setShowFallback] = React55__namespace.useState(!src);
-    React55__namespace.useEffect(() => {
+    const [imageStatus, setImageStatus] = React54__namespace.useState("loading");
+    const [showFallback, setShowFallback] = React54__namespace.useState(!src);
+    React54__namespace.useEffect(() => {
       if (!src) {
         setShowFallback(true);
         setImageStatus("error");
@@ -514,7 +658,7 @@ var Avatar = React55__namespace.forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var AvatarImage = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarImage = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "img",
   {
     ref,
@@ -523,7 +667,7 @@ var AvatarImage = React55__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 AvatarImage.displayName = "AvatarImage";
-var AvatarFallback = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarFallback = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -582,7 +726,7 @@ function Button({
     }
   );
 }
-var Slider = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var Slider = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SliderPrimitive__namespace.Root,
   {
     ref,
@@ -616,7 +760,7 @@ var Slider = React55__namespace.forwardRef(({ className, ...props }, ref) => /* 
   }
 ));
 Slider.displayName = SliderPrimitive__namespace.Root.displayName;
-var Switch = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Switch = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SwitchPrimitives__namespace.Root,
   {
     className: cn(
@@ -660,7 +804,7 @@ var toggleVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Toggle = React55__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Toggle = React54__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TogglePrimitive__namespace.Root,
   {
     ref,
@@ -700,7 +844,7 @@ var iconButtonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var IconButton = React55__namespace.forwardRef(
+var IconButton = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -711,7 +855,7 @@ var IconButton = React55__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [showTooltip, setShowTooltip] = React55__namespace.useState(false);
+    const [showTooltip, setShowTooltip] = React54__namespace.useState(false);
     const tooltipClasses = {
       top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
       bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
@@ -789,7 +933,7 @@ var linkButtonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var LinkButton = React55__namespace.forwardRef(
+var LinkButton = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -880,7 +1024,7 @@ var fabVariants = classVarianceAuthority.cva(
     }
   }
 );
-var FAB = React55__namespace.forwardRef(
+var FAB = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -895,18 +1039,18 @@ var FAB = React55__namespace.forwardRef(
     actions = [],
     ...props
   }, ref) => {
-    const [showActions, setShowActions] = React55__namespace.useState(active);
+    const [showActions, setShowActions] = React54__namespace.useState(active);
     const isExtended = extended && text;
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       setShowActions(active);
     }, [active]);
-    const handleClick = React55__namespace.useCallback(() => {
+    const handleClick = React54__namespace.useCallback(() => {
       if (actions.length > 0) {
         setShowActions(!showActions);
       }
       onClick?.();
     }, [actions.length, showActions, onClick]);
-    const defaultIcon = actions.length > 0 ? showActions ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { className: "h-5 w-5" });
+    const defaultIcon = actions.length > 0 ? showActions ? /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(Plus__default.default, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(Plus__default.default, { className: "h-5 w-5" });
     return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", children: [
       showActions && actions.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute bottom-0 flex flex-col-reverse gap-3 mb-4", children: actions.map((action, index) => /* @__PURE__ */ jsxRuntime.jsxs(
         "div",
@@ -958,7 +1102,7 @@ var FAB = React55__namespace.forwardRef(
   }
 );
 FAB.displayName = "FAB";
-var FABGroup = React55__namespace.forwardRef(
+var FABGroup = React54__namespace.forwardRef(
   ({
     className,
     main,
@@ -1030,7 +1174,7 @@ var segmentedControlVariants = classVarianceAuthority.cva(
     }
   }
 );
-var SegmentedControl = React55__namespace.forwardRef(
+var SegmentedControl = React54__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -1043,9 +1187,9 @@ var SegmentedControl = React55__namespace.forwardRef(
     disabled = false,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React55__namespace.useState(defaultValue || options[0]?.value);
+    const [internalValue, setInternalValue] = React54__namespace.useState(defaultValue || options[0]?.value);
     const currentValue = value !== void 0 ? value : internalValue;
-    const handleOptionClick = React55__namespace.useCallback((optionValue, isDisabled) => {
+    const handleOptionClick = React54__namespace.useCallback((optionValue, isDisabled) => {
       if (isDisabled || disabled) return;
       if (value === void 0) {
         setInternalValue(optionValue);
@@ -1100,7 +1244,7 @@ var SegmentedControl = React55__namespace.forwardRef(
   }
 );
 SegmentedControl.displayName = "SegmentedControl";
-var SegmentedControlItem = React55__namespace.forwardRef(
+var SegmentedControlItem = React54__namespace.forwardRef(
   ({
     className,
     active = false,
@@ -1177,7 +1321,7 @@ function PageHeader({ title, description, children }) {
     ] }) })
   );
 }
-var Checkbox = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Checkbox = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   CheckboxPrimitive__namespace.Root,
   {
     ref,
@@ -1218,7 +1362,7 @@ function Input({ className, type, ...props }) {
 var labelVariants = classVarianceAuthority.cva(
   "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-cyan-200 dark:font-mono"
 );
-var Label = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Label = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   LabelPrimitive__namespace.Root,
   {
     ref,
@@ -1227,7 +1371,7 @@ var Label = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 Label.displayName = LabelPrimitive__namespace.Root.displayName;
-var RadioGroup = React55__namespace.forwardRef(({ className, ...props }, ref) => {
+var RadioGroup = React54__namespace.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsxRuntime.jsx(
     RadioGroupPrimitive__namespace.Root,
     {
@@ -1238,7 +1382,7 @@ var RadioGroup = React55__namespace.forwardRef(({ className, ...props }, ref) =>
   );
 });
 RadioGroup.displayName = RadioGroupPrimitive__namespace.Root.displayName;
-var RadioGroupItem = React55__namespace.forwardRef(({ className, ...props }, ref) => {
+var RadioGroupItem = React54__namespace.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsxRuntime.jsx(
     RadioGroupPrimitive__namespace.Item,
     {
@@ -1256,7 +1400,7 @@ RadioGroupItem.displayName = RadioGroupPrimitive__namespace.Item.displayName;
 var Select = SelectPrimitive__namespace.Root;
 var SelectGroup = SelectPrimitive__namespace.Group;
 var SelectValue = SelectPrimitive__namespace.Value;
-var SelectTrigger = React55__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var SelectTrigger = React54__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SelectPrimitive__namespace.Trigger,
   {
     ref,
@@ -1277,7 +1421,7 @@ var SelectTrigger = React55__namespace.forwardRef(({ className, children, ...pro
   }
 ));
 SelectTrigger.displayName = SelectPrimitive__namespace.Trigger.displayName;
-var SelectScrollUpButton = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectScrollUpButton = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.ScrollUpButton,
   {
     ref,
@@ -1287,7 +1431,7 @@ var SelectScrollUpButton = React55__namespace.forwardRef(({ className, ...props 
   }
 ));
 SelectScrollUpButton.displayName = SelectPrimitive__namespace.ScrollUpButton.displayName;
-var SelectScrollDownButton = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectScrollDownButton = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.ScrollDownButton,
   {
     ref,
@@ -1297,7 +1441,7 @@ var SelectScrollDownButton = React55__namespace.forwardRef(({ className, ...prop
   }
 ));
 SelectScrollDownButton.displayName = SelectPrimitive__namespace.ScrollDownButton.displayName;
-var SelectContent = React55__namespace.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.Portal, { children: /* @__PURE__ */ jsxRuntime.jsxs(
+var SelectContent = React54__namespace.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.Portal, { children: /* @__PURE__ */ jsxRuntime.jsxs(
   SelectPrimitive__namespace.Content,
   {
     ref,
@@ -1330,7 +1474,7 @@ var SelectContent = React55__namespace.forwardRef(({ className, children, positi
   }
 ) }));
 SelectContent.displayName = SelectPrimitive__namespace.Content.displayName;
-var SelectLabel = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectLabel = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.Label,
   {
     ref,
@@ -1339,7 +1483,7 @@ var SelectLabel = React55__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 SelectLabel.displayName = SelectPrimitive__namespace.Label.displayName;
-var SelectItem = React55__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var SelectItem = React54__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SelectPrimitive__namespace.Item,
   {
     ref,
@@ -1357,7 +1501,7 @@ var SelectItem = React55__namespace.forwardRef(({ className, children, ...props 
   }
 ));
 SelectItem.displayName = SelectPrimitive__namespace.Item.displayName;
-var SelectSeparator = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectSeparator = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.Separator,
   {
     ref,
@@ -1366,7 +1510,7 @@ var SelectSeparator = React55__namespace.forwardRef(({ className, ...props }, re
   }
 ));
 SelectSeparator.displayName = SelectPrimitive__namespace.Separator.displayName;
-var Textarea = React55__namespace.forwardRef(({ className, ...props }, ref) => {
+var Textarea = React54__namespace.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsxRuntime.jsx(
     "textarea",
     {
@@ -1409,19 +1553,19 @@ function formatFileSize(bytes) {
   if (bytes === 0) return "0 Bytes";
   const k = 1024;
   const sizes = ["Bytes", "KB", "MB", "GB"];
-  const i2 = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i2)).toFixed(2)) + " " + sizes[i2];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
 }
 function getFileIcon(file) {
   if (file.type.startsWith("image/")) {
-    return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ImageIcon, { className: "h-4 w-4" });
+    return /* @__PURE__ */ jsxRuntime.jsx(ImageIcon__default.default, { className: "h-4 w-4" });
   } else if (file.type.startsWith("text/")) {
-    return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.FileText, { className: "h-4 w-4" });
+    return /* @__PURE__ */ jsxRuntime.jsx(FileText__default.default, { className: "h-4 w-4" });
   } else {
-    return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.File, { className: "h-4 w-4" });
+    return /* @__PURE__ */ jsxRuntime.jsx(File2__default.default, { className: "h-4 w-4" });
   }
 }
-var FileUpload = React55__namespace.forwardRef(
+var FileUpload = React54__namespace.forwardRef(
   ({
     className,
     files = [],
@@ -1440,9 +1584,9 @@ var FileUpload = React55__namespace.forwardRef(
     size = "md",
     ...props
   }, ref) => {
-    const [isDragging, setIsDragging] = React55__namespace.useState(false);
-    const inputRef = React55__namespace.useRef(null);
-    const processFiles = React55__namespace.useCallback((fileList) => {
+    const [isDragging, setIsDragging] = React54__namespace.useState(false);
+    const inputRef = React54__namespace.useRef(null);
+    const processFiles = React54__namespace.useCallback((fileList) => {
       const filesArray = Array.from(fileList);
       if (!multiple && filesArray.length > 1) {
         console.warn("Apenas um arquivo \xE9 permitido");
@@ -1474,7 +1618,7 @@ var FileUpload = React55__namespace.forwardRef(
         onFilesAdd?.(newFiles);
       }
     }, [multiple, maxFiles, files.length, maxSize, onFilesAdd]);
-    const handleDrop = React55__namespace.useCallback((e) => {
+    const handleDrop = React54__namespace.useCallback((e) => {
       e.preventDefault();
       setIsDragging(false);
       if (disabled || loading) return;
@@ -1483,32 +1627,32 @@ var FileUpload = React55__namespace.forwardRef(
         processFiles(files2);
       }
     }, [disabled, loading, processFiles]);
-    const handleDragOver = React55__namespace.useCallback((e) => {
+    const handleDragOver = React54__namespace.useCallback((e) => {
       e.preventDefault();
       if (!disabled && !loading) {
         setIsDragging(true);
       }
     }, [disabled, loading]);
-    const handleDragLeave = React55__namespace.useCallback((e) => {
+    const handleDragLeave = React54__namespace.useCallback((e) => {
       e.preventDefault();
       setIsDragging(false);
     }, []);
-    const handleFileSelect = React55__namespace.useCallback((e) => {
+    const handleFileSelect = React54__namespace.useCallback((e) => {
       const files2 = e.target.files;
       if (files2 && files2.length > 0) {
         processFiles(files2);
       }
       e.target.value = "";
     }, [processFiles]);
-    const handleClick = React55__namespace.useCallback(() => {
+    const handleClick = React54__namespace.useCallback(() => {
       if (!disabled && !loading) {
         inputRef.current?.click();
       }
     }, [disabled, loading]);
-    const handleRemoveFile = React55__namespace.useCallback((id) => {
+    const handleRemoveFile = React54__namespace.useCallback((id) => {
       onFileRemove?.(id);
     }, [onFileRemove]);
-    const handleClear = React55__namespace.useCallback(() => {
+    const handleClear = React54__namespace.useCallback(() => {
       onClear?.();
     }, [onClear]);
     return /* @__PURE__ */ jsxRuntime.jsxs("div", { ref, className: cn("space-y-4", className), ...props, children: [
@@ -1538,7 +1682,7 @@ var FileUpload = React55__namespace.forwardRef(
               }
             ),
             /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col items-center gap-2 text-center", children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Upload, { className: cn(
+              /* @__PURE__ */ jsxRuntime.jsx(Upload__default.default, { className: cn(
                 "h-8 w-8 text-muted-foreground",
                 size === "sm" && "h-6 w-6",
                 size === "lg" && "h-10 w-10"
@@ -1610,7 +1754,7 @@ var FileUpload = React55__namespace.forwardRef(
                   onClick: () => handleRemoveFile(fileItem.id),
                   disabled,
                   className: "h-8 w-8 p-0",
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-4 w-4" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-4 w-4" })
                 }
               )
             ]
@@ -1660,7 +1804,7 @@ function formatMultipleDates(dates) {
   if (dates.length === 2) return `${formatDate(dates[0])} e ${formatDate(dates[1])}`;
   return `${formatDate(dates[0])} (+${dates.length - 1})`;
 }
-var DatePicker = React55__namespace.forwardRef(
+var DatePicker = React54__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -1669,7 +1813,7 @@ var DatePicker = React55__namespace.forwardRef(
     placeholder = "Selecione uma data",
     multiple = false,
     range = false,
-    disabled,
+    disabledDates,
     minDate,
     maxDate,
     fromYear,
@@ -1677,15 +1821,15 @@ var DatePicker = React55__namespace.forwardRef(
     format,
     showWeekNumber = false,
     fixedWeeks = false,
-    locale,
+    disabled = false,
     ...props
   }, _ref) => {
-    const [isOpen, setIsOpen] = React55__namespace.useState(false);
-    const [selectedDates, setSelectedDates] = React55__namespace.useState([]);
-    const [inputValue, setInputValue] = React55__namespace.useState("");
-    const containerRef = React55__namespace.useRef(null);
-    const buttonRef = React55__namespace.useRef(null);
-    React55__namespace.useEffect(() => {
+    const [isOpen, setIsOpen] = React54__namespace.useState(false);
+    const [selectedDates, setSelectedDates] = React54__namespace.useState([]);
+    const [inputValue, setInputValue] = React54__namespace.useState("");
+    const containerRef = React54__namespace.useRef(null);
+    const buttonRef = React54__namespace.useRef(null);
+    React54__namespace.useEffect(() => {
       if (!value) {
         setInputValue("");
         setSelectedDates([]);
@@ -1705,21 +1849,16 @@ var DatePicker = React55__namespace.forwardRef(
         setInputValue(formatDate(value, format));
       }
     }, [value, range, multiple, format]);
-    const handleSelect = React55__namespace.useCallback((dates) => {
-      if (!dates) {
-        onChange?.(void 0);
-        return;
-      }
-      if (range) {
-        const rangeValue = dates.length > 0 ? { from: dates[0], to: dates[1] } : void 0;
-        onChange?.(rangeValue);
-      } else if (multiple) {
-        onChange?.(dates);
-      } else {
-        onChange?.(dates[0]);
-      }
-    }, [range, multiple, onChange]);
-    React55__namespace.useEffect(() => {
+    const handleSingleSelect = React54__namespace.useCallback((day) => {
+      onChange?.(day);
+    }, [onChange]);
+    const handleMultipleSelect = React54__namespace.useCallback((dates) => {
+      onChange?.(dates);
+    }, [onChange]);
+    const handleRangeSelect = React54__namespace.useCallback((range2) => {
+      onChange?.(range2);
+    }, [onChange]);
+    React54__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -1776,26 +1915,57 @@ var DatePicker = React55__namespace.forwardRef(
               onClick: () => setIsOpen(!isOpen),
               disabled,
               children: [
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.CalendarIcon, { className: "mr-2 h-4 w-4" }),
+                /* @__PURE__ */ jsxRuntime.jsx(Calendar__default.default, { className: "mr-2 h-4 w-4" }),
                 inputValue || placeholder,
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { className: "ml-auto h-4 w-4 opacity-50" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronDown2__default.default, { className: "ml-auto h-4 w-4 opacity-50" })
               ]
             }
           ),
-          isOpen && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute top-full left-0 z-50 mt-1 rounded-md border bg-popover p-0 text-popover-foreground shadow-lg animate-in fade-in-0 zoom-in-95", children: /* @__PURE__ */ jsxRuntime.jsx(
+          isOpen && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute top-full left-0 z-50 mt-1 rounded-md border bg-popover p-0 text-popover-foreground shadow-lg animate-in fade-in-0 zoom-in-95", children: range ? /* @__PURE__ */ jsxRuntime.jsx(
             reactDayPicker.DayPicker,
             {
-              mode: range ? "range" : multiple ? "multiple" : "single",
-              selected: selectedDates,
-              onSelect: handleSelect,
-              disabled,
+              mode: "range",
+              selected: value,
+              onSelect: handleRangeSelect,
+              disabled: disabledDates,
               fromDate: minDate,
               toDate: maxDate,
               fromYear,
               toYear,
               showWeekNumber,
               fixedWeeks,
-              locale,
+              classNames: dayPickerClassNames,
+              initialFocus: true
+            }
+          ) : multiple ? /* @__PURE__ */ jsxRuntime.jsx(
+            reactDayPicker.DayPicker,
+            {
+              mode: "multiple",
+              selected: selectedDates,
+              onSelect: handleMultipleSelect,
+              disabled: disabledDates,
+              fromDate: minDate,
+              toDate: maxDate,
+              fromYear,
+              toYear,
+              showWeekNumber,
+              fixedWeeks,
+              classNames: dayPickerClassNames,
+              initialFocus: true
+            }
+          ) : /* @__PURE__ */ jsxRuntime.jsx(
+            reactDayPicker.DayPicker,
+            {
+              mode: "single",
+              selected: value instanceof Date ? value : void 0,
+              onSelect: handleSingleSelect,
+              disabled: disabledDates,
+              fromDate: minDate,
+              toDate: maxDate,
+              fromYear,
+              toYear,
+              showWeekNumber,
+              fixedWeeks,
               classNames: dayPickerClassNames,
               initialFocus: true
             }
@@ -1843,7 +2013,7 @@ function timeToString(time, use12Hours = false, showSeconds = false) {
   const secondsStr = showSeconds ? `:${padNumber(seconds)}` : "";
   return `${timeStr}${secondsStr}${use12Hours ? ` ${period}` : ""}`;
 }
-var TimePicker = React55__namespace.forwardRef(
+var TimePicker = React54__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -1856,17 +2026,17 @@ var TimePicker = React55__namespace.forwardRef(
     disabled = false,
     minuteStep = 1,
     secondStep = 1,
-    minTime,
-    maxTime,
+    // minTime, // TODO: implementar validação de tempo mínimo
+    // maxTime, // TODO: implementar validação de tempo máximo
     ...props
-  }, ref) => {
-    const [isOpen, setIsOpen] = React55__namespace.useState(false);
-    const [hours, setHours] = React55__namespace.useState(value?.hours || 0);
-    const [minutes, setMinutes] = React55__namespace.useState(value?.minutes || 0);
-    const [seconds, setSeconds] = React55__namespace.useState(value?.seconds || 0);
-    const [period, setPeriod] = React55__namespace.useState(value?.period || "AM");
-    const containerRef = React55__namespace.useRef(null);
-    React55__namespace.useEffect(() => {
+  }) => {
+    const [isOpen, setIsOpen] = React54__namespace.useState(false);
+    const [hours, setHours] = React54__namespace.useState(value?.hours || 0);
+    const [minutes, setMinutes] = React54__namespace.useState(value?.minutes || 0);
+    const [seconds, setSeconds] = React54__namespace.useState(value?.seconds || 0);
+    const [period, setPeriod] = React54__namespace.useState(value?.period || "AM");
+    const containerRef = React54__namespace.useRef(null);
+    React54__namespace.useEffect(() => {
       if (value) {
         setHours(value.hours);
         setMinutes(value.minutes);
@@ -1876,7 +2046,7 @@ var TimePicker = React55__namespace.forwardRef(
         }
       }
     }, [value, use12Hours]);
-    const handleHoursChange = React55__namespace.useCallback((newHours) => {
+    const handleHoursChange = React54__namespace.useCallback((newHours) => {
       if (newHours < 0) newHours = 0;
       if (newHours > 23) newHours = 23;
       setHours(newHours);
@@ -1888,7 +2058,7 @@ var TimePicker = React55__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [minutes, seconds, period, use12Hours, showSeconds, onChange]);
-    const handleMinutesChange = React55__namespace.useCallback((newMinutes) => {
+    const handleMinutesChange = React54__namespace.useCallback((newMinutes) => {
       if (newMinutes < 0) newMinutes = 0;
       if (newMinutes > 59) newMinutes = 59;
       newMinutes = Math.round(newMinutes / minuteStep) * minuteStep;
@@ -1901,7 +2071,7 @@ var TimePicker = React55__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, seconds, period, use12Hours, showSeconds, minuteStep, onChange]);
-    const handleSecondsChange = React55__namespace.useCallback((newSeconds) => {
+    const handleSecondsChange = React54__namespace.useCallback((newSeconds) => {
       if (!showSeconds) return;
       if (newSeconds < 0) newSeconds = 0;
       if (newSeconds > 59) newSeconds = 59;
@@ -1915,7 +2085,7 @@ var TimePicker = React55__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, minutes, period, use12Hours, secondStep, onChange]);
-    const handlePeriodChange = React55__namespace.useCallback((newPeriod) => {
+    const handlePeriodChange = React54__namespace.useCallback((newPeriod) => {
       setPeriod(newPeriod);
       let newHours = hours;
       if (newPeriod === "AM" && hours === 12) {
@@ -1932,7 +2102,7 @@ var TimePicker = React55__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, minutes, seconds, showSeconds, onChange]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -1961,7 +2131,7 @@ var TimePicker = React55__namespace.forwardRef(
               onClick: () => setIsOpen(!isOpen),
               disabled,
               children: [
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Timer, { className: "mr-2 h-4 w-4" }),
+                /* @__PURE__ */ jsxRuntime.jsx(Timer__default.default, { className: "mr-2 h-4 w-4" }),
                 displayValue || placeholder
               ]
             }
@@ -2087,7 +2257,7 @@ var rangeSliderVariants = classVarianceAuthority.cva(
     }
   }
 );
-var RangeSlider = React55__namespace.forwardRef(
+var RangeSlider = React54__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -2107,11 +2277,11 @@ var RangeSlider = React55__namespace.forwardRef(
     color = "primary",
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React55__namespace.useState(defaultValue);
-    const [isDragging, setIsDragging] = React55__namespace.useState(null);
-    const sliderRef = React55__namespace.useRef(null);
-    const minThumbRef = React55__namespace.useRef(null);
-    const maxThumbRef = React55__namespace.useRef(null);
+    const [internalValue, setInternalValue] = React54__namespace.useState(defaultValue);
+    const [isDragging, setIsDragging] = React54__namespace.useState(null);
+    const sliderRef = React54__namespace.useRef(null);
+    const minThumbRef = React54__namespace.useRef(null);
+    const maxThumbRef = React54__namespace.useRef(null);
     const currentValue = value || internalValue;
     const valueToPercent = (val) => {
       return (val - min) / (max - min) * 100;
@@ -2128,38 +2298,36 @@ var RangeSlider = React55__namespace.forwardRef(
       const percent = position / rect.width * 100;
       return Math.max(0, Math.min(100, percent));
     };
-    const updateValue = React55__namespace.useCallback((type, percent) => {
+    const updateValue = React54__namespace.useCallback((type, percent) => {
       const newValue = percentToValue(percent);
-      setValue((prev) => {
-        const updated = { ...prev };
-        if (type === "min") {
-          updated.min = Math.min(newValue, prev.max - step);
-        } else {
-          updated.max = Math.max(newValue, prev.min + step);
-        }
-        return updated;
-      });
+      const updated = { ...currentValue };
+      if (type === "min") {
+        updated.min = Math.min(newValue, currentValue.max - step);
+      } else {
+        updated.max = Math.max(newValue, currentValue.min + step);
+      }
+      setValue(updated);
     }, [step]);
-    const setValue = React55__namespace.useCallback((newValue) => {
+    const setValue = React54__namespace.useCallback((newValue) => {
       setInternalValue(newValue);
       onChange?.(newValue);
     }, [onChange]);
-    const handleMouseDown = React55__namespace.useCallback((type) => {
+    const handleMouseDown = React54__namespace.useCallback((type) => {
       if (disabled) return;
       setIsDragging(type);
     }, [disabled]);
-    const handleMouseMove = React55__namespace.useCallback((event) => {
+    const handleMouseMove = React54__namespace.useCallback((event) => {
       if (!isDragging || disabled) return;
       const percent = getPosition(event);
       updateValue(isDragging, percent);
     }, [isDragging, disabled, updateValue]);
-    const handleMouseUp = React55__namespace.useCallback(() => {
+    const handleMouseUp = React54__namespace.useCallback(() => {
       if (isDragging) {
         onChangeEnd?.(currentValue);
         setIsDragging(null);
       }
     }, [isDragging, currentValue, onChangeEnd]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       if (isDragging) {
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseup", handleMouseUp);
@@ -2295,7 +2463,7 @@ var searchInputVariants = classVarianceAuthority.cva(
     }
   }
 );
-var SearchInput = React55__namespace.forwardRef(
+var SearchInput = React54__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -2312,19 +2480,19 @@ var SearchInput = React55__namespace.forwardRef(
     loading = false,
     debounceTime = 300,
     maxSuggestions = 10,
-    saveToHistory = false,
-    disabled,
-    ...props
-  }, ref) => {
-    const [internalValue, setInternalValue] = React55__namespace.useState(value);
-    const [isOpen, setIsOpen] = React55__namespace.useState(false);
-    const [selectedIndex, setSelectedIndex] = React55__namespace.useState(-1);
-    const [filteredSuggestions, setFilteredSuggestions] = React55__namespace.useState([]);
-    const inputRef = React55__namespace.useRef(null);
-    const containerRef = React55__namespace.useRef(null);
-    const debounceRef = React55__namespace.useRef();
+    // saveToHistory, // TODO: implementar funcionalidade de histórico
+    disabled
+    // props, // Props adicionais não utilizados
+  }) => {
+    const [internalValue, setInternalValue] = React54__namespace.useState(value);
+    const [isOpen, setIsOpen] = React54__namespace.useState(false);
+    const [selectedIndex, setSelectedIndex] = React54__namespace.useState(-1);
+    const [filteredSuggestions, setFilteredSuggestions] = React54__namespace.useState([]);
+    const inputRef = React54__namespace.useRef(null);
+    const containerRef = React54__namespace.useRef(null);
+    const debounceRef = React54__namespace.useRef();
     const currentValue = value !== void 0 ? value : internalValue;
-    const setValue = React55__namespace.useCallback((newValue) => {
+    const setValue = React54__namespace.useCallback((newValue) => {
       setInternalValue(newValue);
       if (debounceRef.current) {
         clearTimeout(debounceRef.current);
@@ -2333,13 +2501,13 @@ var SearchInput = React55__namespace.forwardRef(
         onChange?.(newValue);
       }, debounceTime);
     }, [onChange, debounceTime]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       if (!currentValue.trim()) {
         const historySuggestions = history.slice(0, 5).map((item, index) => ({
           id: `history-${index}`,
           text: item,
           type: "history",
-          icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Clock, { className: "h-4 w-4" })
+          icon: /* @__PURE__ */ jsxRuntime.jsx(Clock__default.default, { className: "h-4 w-4" })
         }));
         const trendingSuggestions = suggestions.filter((s) => s.type === "trending").slice(0, 5);
         setFilteredSuggestions([...historySuggestions, ...trendingSuggestions]);
@@ -2350,7 +2518,7 @@ var SearchInput = React55__namespace.forwardRef(
         setFilteredSuggestions(filtered);
       }
     }, [currentValue, suggestions, history, maxSuggestions]);
-    const handleKeyDown = React55__namespace.useCallback((event) => {
+    const handleKeyDown = React54__namespace.useCallback((event) => {
       switch (event.key) {
         case "Enter":
           event.preventDefault();
@@ -2384,19 +2552,19 @@ var SearchInput = React55__namespace.forwardRef(
           break;
       }
     }, [selectedIndex, filteredSuggestions, currentValue, setValue, onSubmit]);
-    const handleFocus = React55__namespace.useCallback(() => {
+    const handleFocus = React54__namespace.useCallback(() => {
       setIsOpen(true);
     }, []);
-    const handleBlur = React55__namespace.useCallback((event) => {
+    const handleBlur = React54__namespace.useCallback((event) => {
       if (!event.relatedTarget?.closest(".search-suggestion")) {
         setTimeout(() => setIsOpen(false), 150);
       }
     }, []);
-    const handleClear = React55__namespace.useCallback(() => {
+    const handleClear = React54__namespace.useCallback(() => {
       setValue("");
       inputRef.current?.focus();
     }, [setValue]);
-    const handleSuggestionClick = React55__namespace.useCallback((suggestion) => {
+    const handleSuggestionClick = React54__namespace.useCallback((suggestion) => {
       if (suggestion.action) {
         suggestion.action();
       } else {
@@ -2405,7 +2573,7 @@ var SearchInput = React55__namespace.forwardRef(
       }
       setIsOpen(false);
     }, [setValue, onSubmit]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -2417,11 +2585,11 @@ var SearchInput = React55__namespace.forwardRef(
     const getIcon = (type) => {
       switch (type) {
         case "history":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Clock, { className: "h-4 w-4 text-muted-foreground" });
+          return /* @__PURE__ */ jsxRuntime.jsx(Clock__default.default, { className: "h-4 w-4 text-muted-foreground" });
         case "trending":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.TrendingUp, { className: "h-4 w-4 text-amber-500" });
+          return /* @__PURE__ */ jsxRuntime.jsx(TrendingUp__default.default, { className: "h-4 w-4 text-amber-500" });
         case "filter":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Filter, { className: "h-4 w-4 text-blue-500" });
+          return /* @__PURE__ */ jsxRuntime.jsx(Filter__default.default, { className: "h-4 w-4 text-blue-500" });
         default:
           return null;
       }
@@ -2441,7 +2609,7 @@ var SearchInput = React55__namespace.forwardRef(
             variant === "outlined" && "border-2",
             variant === "minimal" && "border-transparent bg-transparent"
           ), children: [
-            /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { className: "h-4 w-4 text-muted-foreground" }),
+            /* @__PURE__ */ jsxRuntime.jsx(Search__default.default, { className: "h-4 w-4 text-muted-foreground" }),
             /* @__PURE__ */ jsxRuntime.jsx(
               "input",
               {
@@ -2454,8 +2622,7 @@ var SearchInput = React55__namespace.forwardRef(
                 onBlur: handleBlur,
                 placeholder,
                 disabled,
-                className: "flex-1 bg-transparent outline-none ml-2 placeholder:text-muted-foreground",
-                ...props
+                className: "flex-1 bg-transparent outline-none ml-2 placeholder:text-muted-foreground"
               }
             ),
             /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-1", children: [
@@ -2468,7 +2635,7 @@ var SearchInput = React55__namespace.forwardRef(
                   size: "sm",
                   className: "h-6 w-6 p-0",
                   onClick: handleClear,
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-3 w-3" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-3 w-3" })
                 }
               ),
               showFilter && /* @__PURE__ */ jsxRuntime.jsx(
@@ -2480,7 +2647,7 @@ var SearchInput = React55__namespace.forwardRef(
                   className: "h-6 w-6 p-0",
                   onClick: onFilter,
                   disabled,
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Filter, { className: "h-3 w-3" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(Filter__default.default, { className: "h-3 w-3" })
                 }
               )
             ] })
@@ -2552,12 +2719,12 @@ var phoneInputVariants = classVarianceAuthority.cva(
 function applyMask(value, mask) {
   let result = "";
   let valueIndex = 0;
-  for (let i2 = 0; i2 < mask.length && valueIndex < value.length; i2++) {
-    if (mask[i2] === "0") {
+  for (let i = 0; i < mask.length && valueIndex < value.length; i++) {
+    if (mask[i] === "0") {
       result += value[valueIndex];
       valueIndex++;
     } else {
-      result += mask[i2];
+      result += mask[i];
     }
   }
   return result;
@@ -2565,7 +2732,7 @@ function applyMask(value, mask) {
 function removeMask(value) {
   return value.replace(/\D/g, "");
 }
-var PhoneInput = React55__namespace.forwardRef(
+var PhoneInput = React54__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -2582,19 +2749,19 @@ var PhoneInput = React55__namespace.forwardRef(
     numbersOnly = true,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React55__namespace.useState(value);
-    const [selectedCountry, setSelectedCountry] = React55__namespace.useState(
+    const [internalValue, setInternalValue] = React54__namespace.useState(value);
+    const [selectedCountry, setSelectedCountry] = React54__namespace.useState(
       countries.find((c) => c.code === country) || countries[0]
     );
-    const [isDropdownOpen, setIsDropdownOpen] = React55__namespace.useState(false);
-    const inputRef = React55__namespace.useRef(null);
-    const dropdownRef = React55__namespace.useRef(null);
+    const [isDropdownOpen, setIsDropdownOpen] = React54__namespace.useState(false);
+    const inputRef = React54__namespace.useRef(null);
+    const dropdownRef = React54__namespace.useRef(null);
     const currentValue = value !== void 0 ? value : internalValue;
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       const newCountry = countries.find((c) => c.code === country) || countries[0];
       setSelectedCountry(newCountry);
     }, [country, countries]);
-    const handleInputChange = React55__namespace.useCallback((event) => {
+    const handleInputChange = React54__namespace.useCallback((event) => {
       let inputValue = event.target.value;
       if (numbersOnly) {
         inputValue = removeMask(inputValue);
@@ -2604,7 +2771,7 @@ var PhoneInput = React55__namespace.forwardRef(
       const finalValue = includeDDI ? `${selectedCountry.ddi} ${removeMask(maskedValue)}` : removeMask(maskedValue);
       onChange?.(finalValue, selectedCountry);
     }, [selectedCountry, numbersOnly, includeDDI, onChange]);
-    const handleCountrySelect = React55__namespace.useCallback((country2) => {
+    const handleCountrySelect = React54__namespace.useCallback((country2) => {
       setSelectedCountry(country2);
       setIsDropdownOpen(false);
       onCountryChange?.(country2);
@@ -2613,7 +2780,7 @@ var PhoneInput = React55__namespace.forwardRef(
         onChange?.("", country2);
       }
     }, [selectedCountry, onCountryChange, onChange]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target) && !inputRef.current?.contains(event.target)) {
           setIsDropdownOpen(false);
@@ -2639,7 +2806,7 @@ var PhoneInput = React55__namespace.forwardRef(
                 disabled,
                 children: [
                   /* @__PURE__ */ jsxRuntime.jsx("span", { className: "mr-1", children: selectedCountry.flag }),
-                  /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Globe, { className: "h-4 w-4" })
+                  /* @__PURE__ */ jsxRuntime.jsx(Globe__default.default, { className: "h-4 w-4" })
                 ]
               }
             ),
@@ -2671,7 +2838,7 @@ var PhoneInput = React55__namespace.forwardRef(
             )
           ] }),
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative flex-1", children: [
-            /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Phone, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
+            /* @__PURE__ */ jsxRuntime.jsx(Phone__default.default, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
             /* @__PURE__ */ jsxRuntime.jsx(
               "input",
               {
@@ -2716,7 +2883,7 @@ var MOTION = {
 var GRADIENT_DIRECTIONS = {
   TO_BOTTOM: "to-b",
   TO_BOTTOM_RIGHT: "to-br"};
-var Card = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Card = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -2728,7 +2895,7 @@ var Card = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardHeader = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -2737,7 +2904,7 @@ var CardHeader = React55__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardTitle = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h3",
   {
     ref,
@@ -2749,7 +2916,7 @@ var CardTitle = React55__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardDescription = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "p",
   {
     ref,
@@ -2758,9 +2925,9 @@ var CardDescription = React55__namespace.forwardRef(({ className, ...props }, re
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardFooter = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -2769,7 +2936,7 @@ var CardFooter = React55__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 CardFooter.displayName = "CardFooter";
-var HighlightCard = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var HighlightCard = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -2796,7 +2963,7 @@ var HighlightCard = React55__namespace.forwardRef(({ className, ...props }, ref)
   }
 ));
 HighlightCard.displayName = "HighlightCard";
-var ScrollArea = React55__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ScrollArea = React54__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   ScrollAreaPrimitive__namespace.Root,
   {
     ref,
@@ -2810,7 +2977,7 @@ var ScrollArea = React55__namespace.forwardRef(({ className, children, ...props 
   }
 ));
 ScrollArea.displayName = ScrollAreaPrimitive__namespace.Root.displayName;
-var ScrollBar = React55__namespace.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ScrollBar = React54__namespace.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   ScrollAreaPrimitive__namespace.ScrollAreaScrollbar,
   {
     ref,
@@ -2826,7 +2993,7 @@ var ScrollBar = React55__namespace.forwardRef(({ className, orientation = "verti
   }
 ));
 ScrollBar.displayName = ScrollAreaPrimitive__namespace.ScrollAreaScrollbar.displayName;
-var Separator2 = React55__namespace.forwardRef(
+var Separator2 = React54__namespace.forwardRef(
   ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     SeparatorPrimitive__namespace.Root,
     {
@@ -2960,7 +3127,7 @@ function SheetDescription({
     }
   );
 }
-var Table = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsxRuntime.jsx(
+var Table = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsxRuntime.jsx(
   "table",
   {
     ref,
@@ -2969,9 +3136,9 @@ var Table = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @
   }
 ) }));
 Table.displayName = "Table";
-var TableHeader = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
+var TableHeader = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
 TableHeader.displayName = "TableHeader";
-var TableBody = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableBody = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tbody",
   {
     ref,
@@ -2980,7 +3147,7 @@ var TableBody = React55__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableBody.displayName = "TableBody";
-var TableFooter = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableFooter = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tfoot",
   {
     ref,
@@ -2992,7 +3159,7 @@ var TableFooter = React55__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 TableFooter.displayName = "TableFooter";
-var TableRow = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableRow = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tr",
   {
     ref,
@@ -3004,7 +3171,7 @@ var TableRow = React55__namespace.forwardRef(({ className, ...props }, ref) => /
   }
 ));
 TableRow.displayName = "TableRow";
-var TableHead = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableHead = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "th",
   {
     ref,
@@ -3016,7 +3183,7 @@ var TableHead = React55__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableHead.displayName = "TableHead";
-var TableCell = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableCell = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "td",
   {
     ref,
@@ -3025,7 +3192,7 @@ var TableCell = React55__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableCell.displayName = "TableCell";
-var TableCaption = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableCaption = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "caption",
   {
     ref,
@@ -3073,7 +3240,7 @@ var containerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Container = React55__namespace.forwardRef(
+var Container = React54__namespace.forwardRef(
   ({
     className,
     size = "7xl",
@@ -3099,7 +3266,7 @@ var Container = React55__namespace.forwardRef(
   }
 );
 Container.displayName = "Container";
-var ContainerFluid = React55__namespace.forwardRef(
+var ContainerFluid = React54__namespace.forwardRef(
   ({
     className,
     padding = "md",
@@ -3133,7 +3300,7 @@ var spacingClasses = {
   xl: "py-20",
   "2xl": "py-24"
 };
-var ContainerSection = React55__namespace.forwardRef(
+var ContainerSection = React54__namespace.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -3299,7 +3466,7 @@ var gridVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Grid = React55__namespace.forwardRef(
+var Grid = React54__namespace.forwardRef(
   ({
     className,
     cols,
@@ -3319,7 +3486,7 @@ var Grid = React55__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React55__namespace.useMemo(() => {
+    const gridStyle = React54__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (templateCols) {
         customStyle.gridTemplateColumns = templateCols;
@@ -3361,7 +3528,7 @@ var Grid = React55__namespace.forwardRef(
   }
 );
 Grid.displayName = "Grid";
-var GridItem = React55__namespace.forwardRef(
+var GridItem = React54__namespace.forwardRef(
   ({
     className,
     colStart,
@@ -3372,7 +3539,7 @@ var GridItem = React55__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React55__namespace.useMemo(() => {
+    const gridStyle = React54__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (colStart !== void 0) {
         customStyle.gridColumnStart = colStart;
@@ -3475,7 +3642,7 @@ var flexVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Flex = React55__namespace.forwardRef(
+var Flex = React54__namespace.forwardRef(
   ({
     className,
     direction = "row",
@@ -3513,7 +3680,7 @@ var Flex = React55__namespace.forwardRef(
   }
 );
 Flex.displayName = "Flex";
-var FlexCenter = React55__namespace.forwardRef(
+var FlexCenter = React54__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -3527,7 +3694,7 @@ var FlexCenter = React55__namespace.forwardRef(
   }
 );
 FlexCenter.displayName = "FlexCenter";
-var FlexBetween = React55__namespace.forwardRef(
+var FlexBetween = React54__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -3540,7 +3707,7 @@ var FlexBetween = React55__namespace.forwardRef(
   }
 );
 FlexBetween.displayName = "FlexBetween";
-var FlexStart = React55__namespace.forwardRef(
+var FlexStart = React54__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -3554,7 +3721,7 @@ var FlexStart = React55__namespace.forwardRef(
   }
 );
 FlexStart.displayName = "FlexStart";
-var FlexEnd = React55__namespace.forwardRef(
+var FlexEnd = React54__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -3568,7 +3735,7 @@ var FlexEnd = React55__namespace.forwardRef(
   }
 );
 FlexEnd.displayName = "FlexEnd";
-var FlexColumn = React55__namespace.forwardRef(
+var FlexColumn = React54__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -3581,7 +3748,7 @@ var FlexColumn = React55__namespace.forwardRef(
   }
 );
 FlexColumn.displayName = "FlexColumn";
-var FlexRow = React55__namespace.forwardRef(
+var FlexRow = React54__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -3627,7 +3794,7 @@ var spacerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Spacer = React55__namespace.forwardRef(
+var Spacer = React54__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -3640,7 +3807,7 @@ var Spacer = React55__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const spacerStyle = React55__namespace.useMemo(() => {
+    const spacerStyle = React54__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (width !== void 0) {
         customStyle.width = typeof width === "number" ? `${width}px` : width;
@@ -3674,7 +3841,7 @@ var Spacer = React55__namespace.forwardRef(
   }
 );
 Spacer.displayName = "Spacer";
-var VerticalSpacer = React55__namespace.forwardRef(
+var VerticalSpacer = React54__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Spacer,
@@ -3687,7 +3854,7 @@ var VerticalSpacer = React55__namespace.forwardRef(
   }
 );
 VerticalSpacer.displayName = "VerticalSpacer";
-var HorizontalSpacer = React55__namespace.forwardRef(
+var HorizontalSpacer = React54__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Spacer,
@@ -3731,7 +3898,7 @@ var dividerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Divider = React55__namespace.forwardRef(
+var Divider = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -3805,7 +3972,7 @@ var spacingClasses2 = {
   lg: "my-8",
   xl: "my-12"
 };
-var SectionDivider = React55__namespace.forwardRef(
+var SectionDivider = React54__namespace.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -3821,7 +3988,7 @@ var textColorClasses = {
   primary: "text-primary",
   secondary: "text-secondary-foreground"
 };
-var TextDivider = React55__namespace.forwardRef(
+var TextDivider = React54__namespace.forwardRef(
   ({
     className,
     children,
@@ -3888,7 +4055,7 @@ var panelVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Panel = React55__namespace.forwardRef(
+var Panel = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -3919,7 +4086,7 @@ var Panel = React55__namespace.forwardRef(
   }
 );
 Panel.displayName = "Panel";
-var PanelHeader = React55__namespace.forwardRef(
+var PanelHeader = React54__namespace.forwardRef(
   ({
     className,
     divider = false,
@@ -3942,7 +4109,7 @@ var PanelHeader = React55__namespace.forwardRef(
   }
 );
 PanelHeader.displayName = "PanelHeader";
-var PanelTitle = React55__namespace.forwardRef(
+var PanelTitle = React54__namespace.forwardRef(
   ({
     className,
     children,
@@ -3960,7 +4127,7 @@ var PanelTitle = React55__namespace.forwardRef(
   }
 );
 PanelTitle.displayName = "PanelTitle";
-var PanelDescription = React55__namespace.forwardRef(
+var PanelDescription = React54__namespace.forwardRef(
   ({
     className,
     children,
@@ -3978,7 +4145,7 @@ var PanelDescription = React55__namespace.forwardRef(
   }
 );
 PanelDescription.displayName = "PanelDescription";
-var PanelContent = React55__namespace.forwardRef(
+var PanelContent = React54__namespace.forwardRef(
   ({
     className,
     children,
@@ -3996,7 +4163,7 @@ var PanelContent = React55__namespace.forwardRef(
   }
 );
 PanelContent.displayName = "PanelContent";
-var PanelFooter = React55__namespace.forwardRef(
+var PanelFooter = React54__namespace.forwardRef(
   ({
     className,
     divider = false,
@@ -4025,7 +4192,7 @@ var spacingClasses3 = {
   lg: "gap-8",
   xl: "gap-10"
 };
-var PanelGroup = React55__namespace.forwardRef(
+var PanelGroup = React54__namespace.forwardRef(
   ({
     className,
     spacing = "md",
@@ -4061,7 +4228,7 @@ var alertVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Alert = React55__namespace.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Alert = React54__namespace.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -4071,7 +4238,7 @@ var Alert = React55__namespace.forwardRef(({ className, variant, ...props }, ref
   }
 ));
 Alert.displayName = "Alert";
-var AlertTitle = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertTitle = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h5",
   {
     ref,
@@ -4080,7 +4247,7 @@ var AlertTitle = React55__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 AlertTitle.displayName = "AlertTitle";
-var AlertDescription = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDescription = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -4092,7 +4259,7 @@ AlertDescription.displayName = "AlertDescription";
 var AlertDialog = AlertDialogPrimitive__namespace.Root;
 var AlertDialogTrigger = AlertDialogPrimitive__namespace.Trigger;
 var AlertDialogPortal = AlertDialogPrimitive__namespace.Portal;
-var AlertDialogOverlay = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogOverlay = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Overlay,
   {
     className: cn(
@@ -4104,7 +4271,7 @@ var AlertDialogOverlay = React55__namespace.forwardRef(({ className, ...props },
   }
 ));
 AlertDialogOverlay.displayName = AlertDialogPrimitive__namespace.Overlay.displayName;
-var AlertDialogContent = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(AlertDialogPortal, { children: [
+var AlertDialogContent = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(AlertDialogPortal, { children: [
   /* @__PURE__ */ jsxRuntime.jsx(AlertDialogOverlay, {}),
   /* @__PURE__ */ jsxRuntime.jsx(
     AlertDialogPrimitive__namespace.Content,
@@ -4147,7 +4314,7 @@ var AlertDialogFooter = ({
   }
 );
 AlertDialogFooter.displayName = "AlertDialogFooter";
-var AlertDialogTitle = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogTitle = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Title,
   {
     ref,
@@ -4156,7 +4323,7 @@ var AlertDialogTitle = React55__namespace.forwardRef(({ className, ...props }, r
   }
 ));
 AlertDialogTitle.displayName = AlertDialogPrimitive__namespace.Title.displayName;
-var AlertDialogDescription = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogDescription = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Description,
   {
     ref,
@@ -4165,7 +4332,7 @@ var AlertDialogDescription = React55__namespace.forwardRef(({ className, ...prop
   }
 ));
 AlertDialogDescription.displayName = AlertDialogPrimitive__namespace.Description.displayName;
-var AlertDialogAction = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogAction = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Action,
   {
     ref,
@@ -4174,7 +4341,7 @@ var AlertDialogAction = React55__namespace.forwardRef(({ className, ...props }, 
   }
 ));
 AlertDialogAction.displayName = AlertDialogPrimitive__namespace.Action.displayName;
-var AlertDialogCancel = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogCancel = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Cancel,
   {
     ref,
@@ -4217,7 +4384,7 @@ var badgeVariants = classVarianceAuthority.cva(
 function Badge({ className, variant, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(badgeVariants({ variant }), className), ...props });
 }
-var Progress = React55__namespace.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Progress = React54__namespace.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   ProgressPrimitive__namespace.Root,
   {
     ref,
@@ -4314,7 +4481,7 @@ var speedClasses = {
   normal: "animate-spin",
   fast: "animate-spin-fast"
 };
-var Spinner = React55__namespace.forwardRef(
+var Spinner = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -4367,7 +4534,7 @@ var Spinner = React55__namespace.forwardRef(
   }
 );
 Spinner.displayName = "Spinner";
-var SpinnerOverlay = React55__namespace.forwardRef(
+var SpinnerOverlay = React54__namespace.forwardRef(
   ({
     className,
     fullscreen = false,
@@ -4398,7 +4565,7 @@ var dotSizeClasses = {
   md: "h-2 w-2",
   lg: "h-3 w-3"
 };
-var DotsSpinner = React55__namespace.forwardRef(
+var DotsSpinner = React54__namespace.forwardRef(
   ({
     className,
     count = 3,
@@ -4445,7 +4612,7 @@ var pulseSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var PulseSpinner = React55__namespace.forwardRef(
+var PulseSpinner = React54__namespace.forwardRef(
   ({
     className,
     rings = 3,
@@ -4530,7 +4697,7 @@ function formatValue(value, format, currency, decimals = 0) {
       return formatted;
   }
 }
-var KPI = React55__namespace.forwardRef(
+var KPI = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -4548,8 +4715,8 @@ var KPI = React55__namespace.forwardRef(
     decimals = 0,
     ...props
   }, ref) => {
-    const TrendIcon = trend === "up" ? lucideReact.TrendingUp : trend === "down" ? lucideReact.TrendingDown : lucideReact.Minus;
-    const ArrowIcon = trend === "up" ? lucideReact.ArrowUp : trend === "down" ? lucideReact.ArrowDown : null;
+    const TrendIcon = trend === "up" ? TrendingUp__default.default : trend === "down" ? TrendingDown__default.default : Minus__default.default;
+    const ArrowIcon = trend === "up" ? ArrowUp__default.default : trend === "down" ? ArrowDown__default.default : null;
     return /* @__PURE__ */ jsxRuntime.jsxs(
       "div",
       {
@@ -4605,7 +4772,7 @@ var gridColsClasses = {
   3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
   4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
 };
-var KPIGrid = React55__namespace.forwardRef(
+var KPIGrid = React54__namespace.forwardRef(
   ({
     className,
     cols = 4,
@@ -4628,12 +4795,12 @@ var KPIGrid = React55__namespace.forwardRef(
   }
 );
 KPIGrid.displayName = "KPIGrid";
-var KPIChart = React55__namespace.forwardRef(
+var KPIChart = React54__namespace.forwardRef(
   ({
     className,
     chart,
     chartPosition = "bottom",
-    children,
+    // children, // TODO: implementar children content
     ...props
   }, ref) => {
     const isRight = chartPosition === "right";
@@ -4660,12 +4827,12 @@ var KPIChart = React55__namespace.forwardRef(
 );
 KPIChart.displayName = "KPIChart";
 var defaultIcons = {
-  search: lucideReact.Search,
-  empty: lucideReact.Package,
-  error: lucideReact.XCircle,
-  filtered: lucideReact.ChevronDown,
-  offline: lucideReact.Wifi,
-  loading: lucideReact.RefreshCw
+  search: Search__default.default,
+  empty: Package__default.default,
+  error: XCircle__default.default,
+  filtered: ChevronDown2__default.default,
+  offline: Wifi__default.default,
+  loading: RefreshCw__default.default
 };
 var emptyStateVariants = classVarianceAuthority.cva(
   "flex flex-col items-center justify-center text-center p-8",
@@ -4696,7 +4863,7 @@ var iconSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var EmptyState = React55__namespace.forwardRef(
+var EmptyState = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -4753,7 +4920,7 @@ var EmptyState = React55__namespace.forwardRef(
   }
 );
 EmptyState.displayName = "EmptyState";
-var EmptyStateIllustrated = React55__namespace.forwardRef(
+var EmptyStateIllustrated = React54__namespace.forwardRef(
   ({
     className,
     illustration,
@@ -4848,11 +5015,11 @@ var EmptyStatePatterns = {
   )
 };
 var variantIcons = {
-  success: lucideReact.Check,
-  error: lucideReact.AlertCircle,
-  warning: lucideReact.AlertTriangle,
-  info: lucideReact.Info,
-  default: lucideReact.Bell
+  success: Check4__default.default,
+  error: AlertCircle__default.default,
+  warning: AlertTriangle3__default.default,
+  info: Info2__default.default,
+  default: Bell__default.default
 };
 var notificationVariants = classVarianceAuthority.cva(
   "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-4 pr-8 shadow-lg transition-all duration-[var(--motion-duration-normal)]",
@@ -4871,7 +5038,7 @@ var notificationVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Notification = React55__namespace.forwardRef(
+var Notification = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -4887,8 +5054,8 @@ var Notification = React55__namespace.forwardRef(
     toast = false,
     ...props
   }, ref) => {
-    const [visible, setVisible] = React55__namespace.useState(true);
-    React55__namespace.useEffect(() => {
+    const [visible, setVisible] = React54__namespace.useState(true);
+    React54__namespace.useEffect(() => {
       if (autoClose && onDismiss) {
         const timer = setTimeout(() => {
           handleClose();
@@ -4941,7 +5108,7 @@ var Notification = React55__namespace.forwardRef(
                 "hover:bg-black/10 dark:hover:bg-white/10",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               ),
-              children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-4 w-4 opacity-60 hover:opacity-100" })
+              children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-4 w-4 opacity-60 hover:opacity-100" })
             }
           )
         ]
@@ -4963,7 +5130,7 @@ var spacingClasses4 = {
   md: "gap-3",
   lg: "gap-4"
 };
-var NotificationGroup = React55__namespace.forwardRef(
+var NotificationGroup = React54__namespace.forwardRef(
   ({
     className,
     children,
@@ -4989,7 +5156,7 @@ var NotificationGroup = React55__namespace.forwardRef(
   }
 );
 NotificationGroup.displayName = "NotificationGroup";
-var NotificationToast = React55__namespace.forwardRef(
+var NotificationToast = React54__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Notification,
@@ -5003,8 +5170,8 @@ var NotificationToast = React55__namespace.forwardRef(
 );
 NotificationToast.displayName = "NotificationToast";
 function useNotification() {
-  const [notifications, setNotifications] = React55__namespace.useState(/* @__PURE__ */ new Map());
-  const notify = React55__namespace.useCallback((options) => {
+  const [notifications, setNotifications] = React54__namespace.useState(/* @__PURE__ */ new Map());
+  const notify = React54__namespace.useCallback((options) => {
     const id = options.id || Math.random().toString(36).substr(2, 9);
     setNotifications((prev) => new Map(prev).set(id, options));
     if (options.autoClose !== false) {
@@ -5015,14 +5182,14 @@ function useNotification() {
     }
     return id;
   }, []);
-  const dismiss = React55__namespace.useCallback((id) => {
+  const dismiss = React54__namespace.useCallback((id) => {
     setNotifications((prev) => {
       const next = new Map(prev);
       next.delete(id);
       return next;
     });
   }, []);
-  const clear = React55__namespace.useCallback(() => {
+  const clear = React54__namespace.useCallback(() => {
     setNotifications(/* @__PURE__ */ new Map());
   }, []);
   return {
@@ -5048,7 +5215,7 @@ var NotificationProvider = ({ children }) => {
   ] });
 };
 var Accordion = AccordionPrimitive__namespace.Root;
-var AccordionItem = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AccordionItem = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AccordionPrimitive__namespace.Item,
   {
     ref,
@@ -5057,7 +5224,7 @@ var AccordionItem = React55__namespace.forwardRef(({ className, ...props }, ref)
   }
 ));
 AccordionItem.displayName = "AccordionItem";
-var AccordionTrigger = React55__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
+var AccordionTrigger = React54__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
   AccordionPrimitive__namespace.Trigger,
   {
     ref,
@@ -5078,7 +5245,7 @@ var AccordionTrigger = React55__namespace.forwardRef(({ className, children, ...
   }
 ) }));
 AccordionTrigger.displayName = AccordionPrimitive__namespace.Trigger.displayName;
-var AccordionContent = React55__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AccordionContent = React54__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AccordionPrimitive__namespace.Content,
   {
     ref,
@@ -5095,7 +5262,7 @@ var Dialog = reactDialog.Root;
 var DialogTrigger = reactDialog.Trigger;
 var DialogPortal = reactDialog.Portal;
 var DialogClose = reactDialog.Close;
-var DialogOverlay = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogOverlay = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Overlay,
   {
     ref,
@@ -5108,7 +5275,7 @@ var DialogOverlay = React55__namespace.forwardRef(({ className, ...props }, ref)
   }
 ));
 DialogOverlay.displayName = reactDialog.Overlay.displayName;
-var DialogContent = React55__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(DialogPortal, { children: [
+var DialogContent = React54__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(DialogPortal, { children: [
   /* @__PURE__ */ jsxRuntime.jsx(DialogOverlay, {}),
   /* @__PURE__ */ jsxRuntime.jsxs(
     reactDialog.Content,
@@ -5162,7 +5329,7 @@ var DialogFooter = ({
   }
 );
 DialogFooter.displayName = "DialogFooter";
-var DialogTitle = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogTitle = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Title,
   {
     ref,
@@ -5174,7 +5341,7 @@ var DialogTitle = React55__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 DialogTitle.displayName = reactDialog.Title.displayName;
-var DialogDescription = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogDescription = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Description,
   {
     ref,
@@ -5186,7 +5353,7 @@ var DialogDescription = React55__namespace.forwardRef(({ className, ...props }, 
   }
 ));
 DialogDescription.displayName = reactDialog.Description.displayName;
-var Command = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Command = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command,
   {
     ref,
@@ -5207,7 +5374,7 @@ var CommandDialog = ({
     /* @__PURE__ */ jsxRuntime.jsx(Command, { className: "[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[data-cmdk-input-wrapper]_svg]:h-5 [&_[data-cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5", children })
   ] }) });
 };
-var CommandInput = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center border-b px-3", "data-cmdk-input-wrapper": "", children: [
+var CommandInput = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center border-b px-3", "data-cmdk-input-wrapper": "", children: [
   /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { className: "mr-2 h-4 w-4 shrink-0 opacity-50" }),
   /* @__PURE__ */ jsxRuntime.jsx(
     cmdk.Command.Input,
@@ -5222,7 +5389,7 @@ var CommandInput = React55__namespace.forwardRef(({ className, ...props }, ref) 
   )
 ] }));
 CommandInput.displayName = cmdk.Command.Input.displayName;
-var CommandList = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandList = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.List,
   {
     ref,
@@ -5231,7 +5398,7 @@ var CommandList = React55__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 CommandList.displayName = cmdk.Command.List.displayName;
-var CommandEmpty = React55__namespace.forwardRef((props, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandEmpty = React54__namespace.forwardRef((props, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Empty,
   {
     ref,
@@ -5240,7 +5407,7 @@ var CommandEmpty = React55__namespace.forwardRef((props, ref) => /* @__PURE__ */
   }
 ));
 CommandEmpty.displayName = cmdk.Command.Empty.displayName;
-var CommandGroup = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandGroup = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Group,
   {
     ref,
@@ -5252,7 +5419,7 @@ var CommandGroup = React55__namespace.forwardRef(({ className, ...props }, ref) 
   }
 ));
 CommandGroup.displayName = cmdk.Command.Group.displayName;
-var CommandSeparator = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandSeparator = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Separator,
   {
     ref,
@@ -5261,7 +5428,7 @@ var CommandSeparator = React55__namespace.forwardRef(({ className, ...props }, r
   }
 ));
 CommandSeparator.displayName = cmdk.Command.Separator.displayName;
-var CommandItem = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandItem = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Item,
   {
     ref,
@@ -5289,7 +5456,7 @@ var CommandShortcut = ({
   );
 };
 CommandShortcut.displayName = "CommandShortcut";
-var NavigationMenu = React55__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var NavigationMenu = React54__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   NavigationMenuPrimitive__namespace.Root,
   {
     ref,
@@ -5306,7 +5473,7 @@ var NavigationMenu = React55__namespace.forwardRef(({ className, children, ...pr
   }
 ));
 NavigationMenu.displayName = NavigationMenuPrimitive__namespace.Root.displayName;
-var NavigationMenuList = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuList = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.List,
   {
     ref,
@@ -5326,7 +5493,7 @@ var navigationMenuTriggerStyle = classVarianceAuthority.cva(
     "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-accent-foreground data-[state=open]:bg-accent/50 data-[state=open]:hover:bg-accent data-[state=open]:focus:bg-accent"
   )
 );
-var NavigationMenuTrigger = React55__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var NavigationMenuTrigger = React54__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   NavigationMenuPrimitive__namespace.Trigger,
   {
     ref,
@@ -5349,7 +5516,7 @@ var NavigationMenuTrigger = React55__namespace.forwardRef(({ className, children
   }
 ));
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive__namespace.Trigger.displayName;
-var NavigationMenuContent = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuContent = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.Content,
   {
     ref,
@@ -5362,7 +5529,7 @@ var NavigationMenuContent = React55__namespace.forwardRef(({ className, ...props
 ));
 NavigationMenuContent.displayName = NavigationMenuPrimitive__namespace.Content.displayName;
 var NavigationMenuLink = NavigationMenuPrimitive__namespace.Link;
-var NavigationMenuViewport = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn("absolute left-0 top-full flex justify-center"), children: /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuViewport = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn("absolute left-0 top-full flex justify-center"), children: /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.Viewport,
   {
     className: cn(
@@ -5374,7 +5541,7 @@ var NavigationMenuViewport = React55__namespace.forwardRef(({ className, ...prop
   }
 ) }));
 NavigationMenuViewport.displayName = NavigationMenuPrimitive__namespace.Viewport.displayName;
-var NavigationMenuIndicator = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuIndicator = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.Indicator,
   {
     ref,
@@ -5389,7 +5556,7 @@ var NavigationMenuIndicator = React55__namespace.forwardRef(({ className, ...pro
 ));
 NavigationMenuIndicator.displayName = NavigationMenuPrimitive__namespace.Indicator.displayName;
 var Tabs = TabsPrimitive__namespace.Root;
-var TabsList = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TabsList = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TabsPrimitive__namespace.List,
   {
     ref,
@@ -5401,7 +5568,7 @@ var TabsList = React55__namespace.forwardRef(({ className, ...props }, ref) => /
   }
 ));
 TabsList.displayName = TabsPrimitive__namespace.List.displayName;
-var TabsTrigger = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TabsTrigger = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TabsPrimitive__namespace.Trigger,
   {
     ref,
@@ -5417,7 +5584,7 @@ var TabsTrigger = React55__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 TabsTrigger.displayName = TabsPrimitive__namespace.Trigger.displayName;
-var TabsContent = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TabsContent = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TabsPrimitive__namespace.Content,
   {
     ref,
@@ -5451,7 +5618,7 @@ var menuVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Menu = React55__namespace.forwardRef(
+var Menu = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -5464,17 +5631,17 @@ var Menu = React55__namespace.forwardRef(
     closeOnClick = true,
     ...props
   }, ref) => {
-    const [internalOpen, setInternalOpen] = React55__namespace.useState(false);
-    const [openSubmenus, setOpenSubmenus] = React55__namespace.useState(/* @__PURE__ */ new Set());
+    const [internalOpen, setInternalOpen] = React54__namespace.useState(false);
+    const [openSubmenus, setOpenSubmenus] = React54__namespace.useState(/* @__PURE__ */ new Set());
     const isOpen = controlledOpen !== void 0 ? controlledOpen : internalOpen;
-    const containerRef = React55__namespace.useRef(null);
-    const handleOpenChange = React55__namespace.useCallback((newOpen) => {
+    const containerRef = React54__namespace.useRef(null);
+    const handleOpenChange = React54__namespace.useCallback((newOpen) => {
       if (controlledOpen === void 0) {
         setInternalOpen(newOpen);
       }
       onOpenChange?.(newOpen);
     }, [controlledOpen, onOpenChange]);
-    const toggleSubmenu = React55__namespace.useCallback((itemId) => {
+    const toggleSubmenu = React54__namespace.useCallback((itemId) => {
       setOpenSubmenus((prev) => {
         const next = new Set(prev);
         if (next.has(itemId)) {
@@ -5485,7 +5652,7 @@ var Menu = React55__namespace.forwardRef(
         return next;
       });
     }, []);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           handleOpenChange(false);
@@ -5625,7 +5792,7 @@ var Menu = React55__namespace.forwardRef(
   }
 );
 Menu.displayName = "Menu";
-var MenuBar = React55__namespace.forwardRef(
+var MenuBar = React54__namespace.forwardRef(
   ({
     className,
     menus,
@@ -5656,17 +5823,17 @@ var MenuBar = React55__namespace.forwardRef(
   }
 );
 MenuBar.displayName = "MenuBar";
-var NavigationContextMenu = React55__namespace.forwardRef(
+var NavigationContextMenu = React54__namespace.forwardRef(
   ({
     className,
     children,
     items,
     ...props
   }, ref) => {
-    const [open, setOpen] = React55__namespace.useState(false);
-    const [position, setPosition] = React55__namespace.useState({ x: 0, y: 0 });
-    const containerRef = React55__namespace.useRef(null);
-    const handleContextMenu = React55__namespace.useCallback((event) => {
+    const [open, setOpen] = React54__namespace.useState(false);
+    const [position, setPosition] = React54__namespace.useState({ x: 0, y: 0 });
+    const containerRef = React54__namespace.useRef(null);
+    const handleContextMenu = React54__namespace.useCallback((event) => {
       event.preventDefault();
       setPosition({ x: event.clientX, y: event.clientY });
       setOpen(true);
@@ -5766,8 +5933,8 @@ function generateRange(page, totalPages, siblingCount) {
   if (start > 2) {
     range.push("...");
   }
-  for (let i2 = start; i2 <= end; i2++) {
-    range.push(i2);
+  for (let i = start; i <= end; i++) {
+    range.push(i);
   }
   if (end < totalPages - 1) {
     range.push("...");
@@ -5777,7 +5944,7 @@ function generateRange(page, totalPages, siblingCount) {
   }
   return range;
 }
-var Pagination = React55__namespace.forwardRef(
+var Pagination = React54__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -5794,31 +5961,31 @@ var Pagination = React55__namespace.forwardRef(
     siblingCount = 1,
     ...props
   }, ref) => {
-    const pages = React55__namespace.useMemo(() => {
+    const pages = React54__namespace.useMemo(() => {
       if (totalPages <= 7) {
-        return Array.from({ length: totalPages }, (_, i2) => i2 + 1);
+        return Array.from({ length: totalPages }, (_, i) => i + 1);
       }
       return generateRange(page, totalPages, siblingCount);
     }, [page, totalPages, siblingCount]);
-    const handlePrevious = React55__namespace.useCallback(() => {
+    const handlePrevious = React54__namespace.useCallback(() => {
       if (page > 1) {
         onPrevious?.();
         onChange?.(page - 1);
       }
     }, [page, onChange, onPrevious]);
-    const handleNext = React55__namespace.useCallback(() => {
+    const handleNext = React54__namespace.useCallback(() => {
       if (page < totalPages) {
         onNext?.();
         onChange?.(page + 1);
       }
     }, [page, totalPages, onChange, onNext]);
-    const handlePageClick = React55__namespace.useCallback((page2) => {
+    const handlePageClick = React54__namespace.useCallback((page2) => {
       onChange?.(page2);
     }, [onChange]);
-    const handleFirst = React55__namespace.useCallback(() => {
+    const handleFirst = React54__namespace.useCallback(() => {
       onChange?.(1);
     }, [onChange]);
-    const handleLast = React55__namespace.useCallback(() => {
+    const handleLast = React54__namespace.useCallback(() => {
       onChange?.(totalPages);
     }, [onChange, totalPages]);
     const sizeClasses2 = {
@@ -5843,8 +6010,8 @@ var Pagination = React55__namespace.forwardRef(
               disabled: disabled || page === 1,
               children: [
                 /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: "Primeira p\xE1gina" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "h-4 w-4" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "h-4 w-4 -ml-3" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-4 w-4" }),
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-4 w-4 -ml-3" })
               ]
             }
           ),
@@ -5858,7 +6025,7 @@ var Pagination = React55__namespace.forwardRef(
               disabled: disabled || page === 1,
               children: [
                 /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: "P\xE1gina anterior" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "h-4 w-4" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-4 w-4" })
               ]
             }
           ),
@@ -5871,7 +6038,7 @@ var Pagination = React55__namespace.forwardRef(
                     "flex items-center justify-center",
                     sizeClasses2[size]
                   ),
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MoreHorizontal, { className: "h-4 w-4" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(MoreHorizontal__default.default, { className: "h-4 w-4" })
                 },
                 `ellipsis-${index}`
               );
@@ -5899,7 +6066,7 @@ var Pagination = React55__namespace.forwardRef(
               disabled: disabled || page === totalPages,
               children: [
                 /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: "Pr\xF3xima p\xE1gina" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "h-4 w-4" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight2__default.default, { className: "h-4 w-4" })
               ]
             }
           ),
@@ -5913,8 +6080,8 @@ var Pagination = React55__namespace.forwardRef(
               disabled: disabled || page === totalPages,
               children: [
                 /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: "\xDAltima p\xE1gina" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "h-4 w-4" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "h-4 w-4 -ml-3" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight2__default.default, { className: "h-4 w-4" }),
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight2__default.default, { className: "h-4 w-4 -ml-3" })
               ]
             }
           ),
@@ -5930,7 +6097,7 @@ var Pagination = React55__namespace.forwardRef(
   }
 );
 Pagination.displayName = "Pagination";
-var PaginationInfo = React55__namespace.forwardRef(
+var PaginationInfo = React54__namespace.forwardRef(
   ({
     className,
     page,
@@ -5966,7 +6133,7 @@ var PaginationInfo = React55__namespace.forwardRef(
   }
 );
 PaginationInfo.displayName = "PaginationInfo";
-var PaginationCompact = React55__namespace.forwardRef(
+var PaginationCompact = React54__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Pagination,
@@ -6022,7 +6189,7 @@ var stepVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Steps = React55__namespace.forwardRef(
+var Steps = React54__namespace.forwardRef(
   ({
     className,
     orientation = "horizontal",
@@ -6034,7 +6201,7 @@ var Steps = React55__namespace.forwardRef(
     showConnector = true,
     ...props
   }, ref) => {
-    const stepsWithStatus = React55__namespace.useMemo(() => {
+    const stepsWithStatus = React54__namespace.useMemo(() => {
       return steps.map((step, index) => {
         let status = "pending";
         if (index < current) {
@@ -6182,7 +6349,7 @@ var Steps = React55__namespace.forwardRef(
   }
 );
 Steps.displayName = "Steps";
-var StepItem = React55__namespace.forwardRef(
+var StepItem = React54__namespace.forwardRef(
   ({
     className,
     number,
@@ -6267,7 +6434,7 @@ var sidebarVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Sidebar = React55__namespace.forwardRef(
+var Sidebar = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -6285,25 +6452,25 @@ var Sidebar = React55__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [internalCollapsed, setInternalCollapsed] = React55__namespace.useState(collapsed);
-    const [internalOpen, setInternalOpen] = React55__namespace.useState(open);
+    const [internalCollapsed, setInternalCollapsed] = React54__namespace.useState(collapsed);
+    const [internalOpen, setInternalOpen] = React54__namespace.useState(open);
     const isCollapsed = onCollapse ? collapsed : internalCollapsed;
     const isOpen = overlay ? onOpenChange ? open : internalOpen : true;
-    const handleCollapse = React55__namespace.useCallback(() => {
+    const handleCollapse = React54__namespace.useCallback(() => {
       if (onCollapse) {
         onCollapse(!isCollapsed);
       } else {
         setInternalCollapsed(!isCollapsed);
       }
     }, [isCollapsed, onCollapse]);
-    const handleOpenChange = React55__namespace.useCallback((newOpen) => {
+    const handleOpenChange = React54__namespace.useCallback((newOpen) => {
       if (onOpenChange) {
         onOpenChange(newOpen);
       } else {
         setInternalOpen(newOpen);
       }
     }, [onOpenChange]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       if (overlay && isOpen) {
         const handleClickOutside = (event) => {
           const target = event.target;
@@ -6382,7 +6549,7 @@ var Sidebar = React55__namespace.forwardRef(
                   size: "sm",
                   onClick: handleCollapse,
                   className: "h-8 w-8 p-0",
-                  children: isCollapsed ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "h-4 w-4" })
+                  children: isCollapsed ? /* @__PURE__ */ jsxRuntime.jsx(ChevronRight2__default.default, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-4 w-4" })
                 }
               ),
               overlay && /* @__PURE__ */ jsxRuntime.jsx(
@@ -6392,7 +6559,7 @@ var Sidebar = React55__namespace.forwardRef(
                   size: "sm",
                   onClick: () => handleOpenChange(false),
                   className: "h-8 w-8 p-0",
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-4 w-4" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-4 w-4" })
                 }
               )
             ] }),
@@ -6402,7 +6569,7 @@ var Sidebar = React55__namespace.forwardRef(
                 className: "flex w-full items-center gap-3 rounded-md p-2 transition-colors hover:bg-accent",
                 onClick: profile.onClick,
                 children: [
-                  /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground", children: profile.avatar ? /* @__PURE__ */ jsxRuntime.jsx("img", { src: profile.avatar, alt: profile.name, className: "h-full w-full rounded-full object-cover" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.User, { className: "h-4 w-4" }) }),
+                  /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-8 w-8 rounded-full bg-primary flex items-center justify-center text-primary-foreground", children: profile.avatar ? /* @__PURE__ */ jsxRuntime.jsx("img", { src: profile.avatar, alt: profile.name, className: "h-full w-full rounded-full object-cover" }) : /* @__PURE__ */ jsxRuntime.jsx(User__default.default, { className: "h-4 w-4" }) }),
                   /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-left", children: [
                     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-sm font-medium", children: profile.name }),
                     profile.email && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs text-muted-foreground", children: profile.email })
@@ -6423,7 +6590,7 @@ var Sidebar = React55__namespace.forwardRef(
                     className: "w-full justify-start",
                     size: "sm",
                     children: [
-                      /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Settings, { className: "mr-2 h-4 w-4" }),
+                      /* @__PURE__ */ jsxRuntime.jsx(Settings__default.default, { className: "mr-2 h-4 w-4" }),
                       "Configura\xE7\xF5es"
                     ]
                   }
@@ -6435,15 +6602,15 @@ var Sidebar = React55__namespace.forwardRef(
                     className: "w-full justify-start",
                     size: "sm",
                     children: [
-                      /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LogOut, { className: "mr-2 h-4 w-4" }),
+                      /* @__PURE__ */ jsxRuntime.jsx(LogOut__default.default, { className: "mr-2 h-4 w-4" }),
                       "Sair"
                     ]
                   }
                 )
               ] }),
               isCollapsed && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col gap-2", children: [
-                /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Settings, { className: "h-4 w-4" }) }),
-                /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.LogOut, { className: "h-4 w-4" }) })
+                /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(Settings__default.default, { className: "h-4 w-4" }) }),
+                /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(LogOut__default.default, { className: "h-4 w-4" }) })
               ] }),
               footerActions
             ] })
@@ -6454,14 +6621,14 @@ var Sidebar = React55__namespace.forwardRef(
   }
 );
 Sidebar.displayName = "Sidebar";
-var SidebarTrigger = React55__namespace.forwardRef(
+var SidebarTrigger = React54__namespace.forwardRef(
   ({
     className,
     children,
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React55__namespace.useCallback((event) => {
+    const handleClick = React54__namespace.useCallback((event) => {
       onClick?.(event);
       window.dispatchEvent(new CustomEvent("sidebar:toggle"));
     }, [onClick]);
@@ -6474,7 +6641,7 @@ var SidebarTrigger = React55__namespace.forwardRef(
         className: cn("h-8 w-8 p-0", className),
         onClick: handleClick,
         ...props,
-        children: children || /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Menu, { className: "h-4 w-4" })
+        children: children || /* @__PURE__ */ jsxRuntime.jsx(Menu2__default.default, { className: "h-4 w-4" })
       }
     );
   }
@@ -6508,7 +6675,7 @@ var topBarVariants = classVarianceAuthority.cva(
     }
   }
 );
-var TopBar = React55__namespace.forwardRef(
+var TopBar = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -6537,7 +6704,7 @@ var TopBar = React55__namespace.forwardRef(
             onClick: back.onClick,
             className: "h-8 w-8 p-0",
             "aria-label": back.label || "Voltar",
-            children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ArrowLeft, { className: "h-4 w-4" })
+            children: /* @__PURE__ */ jsxRuntime.jsx(ArrowLeft__default.default, { className: "h-4 w-4" })
           }
         ),
         menu && /* @__PURE__ */ jsxRuntime.jsx(
@@ -6548,7 +6715,7 @@ var TopBar = React55__namespace.forwardRef(
             onClick: menu.onClick,
             className: "h-8 w-8 p-0",
             "aria-label": menu.label || "Menu",
-            children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Menu, { className: "h-4 w-4" })
+            children: /* @__PURE__ */ jsxRuntime.jsx(Menu2__default.default, { className: "h-4 w-4" })
           }
         ),
         (title || subtitle) && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col", children: [
@@ -6561,7 +6728,7 @@ var TopBar = React55__namespace.forwardRef(
       if (center) return center;
       if (search) {
         return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex-1 max-w-md mx-4", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Search__default.default, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
           /* @__PURE__ */ jsxRuntime.jsx(
             "input",
             {
@@ -6601,7 +6768,7 @@ var TopBar = React55__namespace.forwardRef(
             onClick: notifications.onClick,
             className: "relative h-8 w-8 p-0",
             children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Bell, { className: "h-4 w-4" }),
+              /* @__PURE__ */ jsxRuntime.jsx(Bell__default.default, { className: "h-4 w-4" }),
               notifications.count && notifications.count > 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-xs text-primary-foreground flex items-center justify-center", children: notifications.count > 99 ? "99+" : notifications.count })
             ]
           }
@@ -6612,7 +6779,7 @@ var TopBar = React55__namespace.forwardRef(
             variant: "ghost",
             size: "sm",
             className: "h-8 w-8 p-0",
-            children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Settings, { className: "h-4 w-4" })
+            children: /* @__PURE__ */ jsxRuntime.jsx(Settings__default.default, { className: "h-4 w-4" })
           }
         ),
         /* @__PURE__ */ jsxRuntime.jsx(
@@ -6621,7 +6788,7 @@ var TopBar = React55__namespace.forwardRef(
             variant: "ghost",
             size: "sm",
             className: "h-8 w-8 p-0",
-            children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MoreVertical, { className: "h-4 w-4" })
+            children: /* @__PURE__ */ jsxRuntime.jsx(MoreVertical__default.default, { className: "h-4 w-4" })
           }
         )
       ] });
@@ -6643,7 +6810,7 @@ var TopBar = React55__namespace.forwardRef(
   }
 );
 TopBar.displayName = "TopBar";
-var TopBarTitle = React55__namespace.forwardRef(
+var TopBarTitle = React54__namespace.forwardRef(
   ({
     className,
     title,
@@ -6665,7 +6832,7 @@ var TopBarTitle = React55__namespace.forwardRef(
   }
 );
 TopBarTitle.displayName = "TopBarTitle";
-var TopBarActions = React55__namespace.forwardRef(
+var TopBarActions = React54__namespace.forwardRef(
   ({
     className,
     children,
@@ -6689,39 +6856,39 @@ function StatsCards({ stats, isLoading }) {
       label: "Total de Posts",
       value: stats.totalPosts,
       change: stats.postsChange,
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.FileText, { className: "h-4 w-4" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(FileText__default.default, { className: "h-4 w-4" }),
       color: "from-cyan-500 to-blue-500"
     },
     {
       label: "Total de Visualiza\xE7\xF5es",
       value: stats.totalViews,
       change: stats.viewsChange,
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Eye, { className: "h-4 w-4" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(Eye__default.default, { className: "h-4 w-4" }),
       color: "from-purple-500 to-pink-500"
     },
     {
       label: "Total de Curtidas",
       value: stats.totalLikes,
       change: stats.likesChange,
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Heart, { className: "h-4 w-4" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(Heart4__default.default, { className: "h-4 w-4" }),
       color: "from-pink-500 to-red-500"
     },
     {
       label: "Total de Coment\xE1rios",
       value: stats.totalComments,
       change: stats.commentsChange,
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MessageCircle, { className: "h-4 w-4" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(MessageCircle__default.default, { className: "h-4 w-4" }),
       color: "from-green-500 to-emerald-500"
     }
   ];
   if (isLoading) {
-    return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid gap-4 md:grid-cols-2 lg:grid-cols-4", children: [...Array(4)].map((_, i2) => /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: "animate-pulse", children: [
+    return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid gap-4 md:grid-cols-2 lg:grid-cols-4", children: [...Array(4)].map((_, i) => /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: "animate-pulse", children: [
       /* @__PURE__ */ jsxRuntime.jsxs(CardHeader, { className: "flex flex-row items-center justify-between pb-2", children: [
         /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-24 bg-muted rounded" }),
         /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-8 w-8 bg-muted rounded" })
       ] }),
       /* @__PURE__ */ jsxRuntime.jsx(CardContent, { children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-8 w-16 bg-muted rounded" }) })
-    ] }, i2)) });
+    ] }, i)) });
   }
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid gap-4 md:grid-cols-2 lg:grid-cols-4", children: cards.map((stat, index) => /* @__PURE__ */ jsxRuntime.jsx(
     framerMotion.motion.div,
@@ -6754,7 +6921,7 @@ function StatsCards({ stats, isLoading }) {
                   stat.change > 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
                 ),
                 children: [
-                  stat.change > 0 ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.TrendingUp, { className: "h-3 w-3" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.TrendingDown, { className: "h-3 w-3" }),
+                  stat.change > 0 ? /* @__PURE__ */ jsxRuntime.jsx(TrendingUp__default.default, { className: "h-3 w-3" }) : /* @__PURE__ */ jsxRuntime.jsx(TrendingDown__default.default, { className: "h-3 w-3" }),
                   Math.abs(stat.change),
                   "%"
                 ]
@@ -6787,7 +6954,7 @@ var DEFAULT_STATS = [
     label: "Total de Posts",
     value: 42,
     change: 12.5,
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.FileText, { className: "w-5 h-5", "aria-hidden": "true" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(FileText__default.default, { className: "w-5 h-5", "aria-hidden": "true" }),
     color: "from-cyan-500 to-blue-500",
     description: "Artigos publicados no blog"
   },
@@ -6795,7 +6962,7 @@ var DEFAULT_STATS = [
     label: "Visualiza\xE7\xF5es",
     value: "2.4K",
     change: 8.3,
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Eye, { className: "w-5 h-5", "aria-hidden": "true" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(Eye__default.default, { className: "w-5 h-5", "aria-hidden": "true" }),
     color: "from-purple-500 to-pink-500",
     description: "Visualiza\xE7\xF5es totais"
   },
@@ -6803,7 +6970,7 @@ var DEFAULT_STATS = [
     label: "Curtidas",
     value: 1.2,
     change: -3.2,
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Heart, { className: "w-5 h-5", "aria-hidden": "true" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(Heart4__default.default, { className: "w-5 h-5", "aria-hidden": "true" }),
     color: "from-orange-500 to-red-500",
     description: "Curtidas recebidas"
   },
@@ -6811,7 +6978,7 @@ var DEFAULT_STATS = [
     label: "Coment\xE1rios",
     value: 89,
     change: 15.7,
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MessageSquare, { className: "w-5 h-5", "aria-hidden": "true" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(MessageSquare__default.default, { className: "w-5 h-5", "aria-hidden": "true" }),
     color: "from-green-500 to-emerald-500",
     description: "Coment\xE1rios ativos"
   }
@@ -6819,7 +6986,7 @@ var DEFAULT_STATS = [
 function QuickStatsComponent({
   stats = [...DEFAULT_STATS],
   animationDelay = DEFAULT_STAGGER_DELAY,
-  animateOnView = true,
+  // animateOnView = true, // TODO: implementar animação ao entrar na viewport
   className,
   theme = "auto"
 }) {
@@ -6835,7 +7002,7 @@ function QuickStatsComponent({
   const renderChangeIndicator = (change) => {
     if (change === void 0 || change === 0) return null;
     const isPositive = change > 0;
-    const Icon2 = isPositive ? lucideReact.TrendingUp : lucideReact.TrendingDown;
+    const Icon2 = isPositive ? TrendingUp__default.default : TrendingDown__default.default;
     const formattedChange = Math.abs(change).toFixed(1);
     return /* @__PURE__ */ jsxRuntime.jsxs(
       "div",
@@ -6937,7 +7104,7 @@ function QuickStatsComponent({
       "data-theme": theme,
       children: [
         /* @__PURE__ */ jsxRuntime.jsx("h2", { id: "quick-stats-heading", className: "sr-only", children: "Estat\xEDsticas R\xE1pidas do Dashboard" }),
-        /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6", children: stats.map((stat, index) => /* @__PURE__ */ jsxRuntime.jsx(React55__namespace.default.Fragment, { children: renderStatCard(stat, index) }, `${stat.label}-${index}`)) }),
+        /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6", children: stats.map((stat, index) => /* @__PURE__ */ jsxRuntime.jsx(React54__namespace.default.Fragment, { children: renderStatCard(stat, index) }, `${stat.label}-${index}`)) }),
         /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mt-4 text-right", children: /* @__PURE__ */ jsxRuntime.jsxs("p", { className: "text-xs text-gray-500 dark:text-gray-500", children: [
           "Atualizado em ",
           (/* @__PURE__ */ new Date()).toLocaleDateString("pt-BR")
@@ -6946,7 +7113,7 @@ function QuickStatsComponent({
     }
   );
 }
-var QuickStats = React55__namespace.default.memo(QuickStatsComponent);
+var QuickStats = React54__namespace.default.memo(QuickStatsComponent);
 QuickStats.displayName = "QuickStats";
 var STAGGER_DELAY_SECONDS = 0.1;
 function QuickActions({
@@ -6957,28 +7124,28 @@ function QuickActions({
 }) {
   const actions = [
     {
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { className: "w-5 h-5" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(Plus__default.default, { className: "w-5 h-5" }),
       label: "Novo Post",
       description: "Criar novo artigo",
       color: "from-cyan-500 to-blue-500",
       onClick: onNewPost
     },
     {
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.FileText, { className: "w-5 h-5" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(FileText__default.default, { className: "w-5 h-5" }),
       label: "Meus Posts",
       description: "Ver todos os posts",
       color: "from-purple-500 to-pink-500",
       onClick: onViewPosts
     },
     {
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.BarChart, { className: "w-5 h-5" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(BarChart__default.default, { className: "w-5 h-5" }),
       label: "Estat\xEDsticas",
       description: "An\xE1lise e m\xE9tricas",
       color: "from-orange-500 to-red-500",
       onClick: onViewStats
     },
     {
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Settings, { className: "w-5 h-5" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(Settings__default.default, { className: "w-5 h-5" }),
       label: "Configura\xE7\xF5es",
       description: "Ajustes do blog",
       color: "from-green-500 to-emerald-500",
@@ -7022,9 +7189,9 @@ function QuickActions({
   ] });
 }
 function AnalyticsOverview({ className }) {
-  const [metrics, setMetrics] = React55.useState([]);
-  const [isLoading, setIsLoading] = React55.useState(true);
-  React55.useEffect(() => {
+  const [metrics, setMetrics] = React54.useState([]);
+  const [isLoading, setIsLoading] = React54.useState(true);
+  React54.useEffect(() => {
     const loadStats = async () => {
       try {
         setIsLoading(true);
@@ -7040,7 +7207,7 @@ function AnalyticsOverview({ className }) {
             value: stats.totalPosts.toString(),
             change: "+0.0%",
             trend: "up",
-            icon: lucideReact.TrendingUp,
+            icon: TrendingUp__default.default,
             color: "text-blue-500"
           },
           {
@@ -7048,7 +7215,7 @@ function AnalyticsOverview({ className }) {
             value: stats.totalViews.toLocaleString("pt-BR"),
             change: "+0.0%",
             trend: "up",
-            icon: lucideReact.Eye,
+            icon: Eye__default.default,
             color: "text-cyan-500"
           },
           {
@@ -7056,7 +7223,7 @@ function AnalyticsOverview({ className }) {
             value: stats.totalLikes.toLocaleString("pt-BR"),
             change: "+0.0%",
             trend: "up",
-            icon: lucideReact.Heart,
+            icon: Heart4__default.default,
             color: "text-pink-500"
           },
           {
@@ -7064,7 +7231,7 @@ function AnalyticsOverview({ className }) {
             value: stats.totalComments.toLocaleString("pt-BR"),
             change: "+0.0%",
             trend: "up",
-            icon: lucideReact.MessageSquare,
+            icon: MessageSquare__default.default,
             color: "text-orange-500"
           }
         ];
@@ -7086,7 +7253,7 @@ function AnalyticsOverview({ className }) {
           "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
           className
         ),
-        children: [1, 2, 3, 4].map((i2) => /* @__PURE__ */ jsxRuntime.jsxs(
+        children: [1, 2, 3, 4].map((i) => /* @__PURE__ */ jsxRuntime.jsxs(
           Card,
           {
             className: "dark:bg-black/30 dark:border-cyan-400/20 animate-pulse",
@@ -7101,7 +7268,7 @@ function AnalyticsOverview({ className }) {
               ] })
             ]
           },
-          i2
+          i
         ))
       }
     );
@@ -7169,20 +7336,7 @@ function RecentPostsList({
   maxPosts = 5,
   className
 }) {
-  const [isLoading, setIsLoading] = React55.useState(false);
   const displayedPosts = posts.slice(0, maxPosts);
-  if (isLoading) {
-    return /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: cn("w-full", className), children: [
-      /* @__PURE__ */ jsxRuntime.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntime.jsx(CardTitle, { children: "Posts Recentes" }) }),
-      /* @__PURE__ */ jsxRuntime.jsx(CardContent, { children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "space-y-4", children: [...Array(3)].map((_, i2) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center space-x-4", children: [
-        /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-16 h-16 bg-muted rounded animate-pulse" }),
-        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex-1 space-y-2", children: [
-          /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 bg-muted rounded animate-pulse" }),
-          /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-3 bg-muted rounded animate-pulse w-3/4" })
-        ] })
-      ] }, i2)) }) })
-    ] });
-  }
   if (displayedPosts.length === 0) {
     return /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: cn("w-full", className), children: [
       /* @__PURE__ */ jsxRuntime.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntime.jsx(CardTitle, { children: "Posts Recentes" }) }),
@@ -7212,7 +7366,7 @@ function RecentPostsList({
             /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted-foreground line-clamp-2 mt-1", children: post.excerpt }),
             /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-4 mt-2", children: [
               /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center text-xs text-muted-foreground", children: [
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Calendar, { className: "w-3 h-3 mr-1" }),
+                /* @__PURE__ */ jsxRuntime.jsx(Calendar__default.default, { className: "w-3 h-3 mr-1" }),
                 new Date(post.publishedAt).toLocaleDateString("pt-BR")
               ] }),
               post.tags.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-1", children: [
@@ -7232,7 +7386,7 @@ function RecentPostsList({
                 size: "sm",
                 onClick: () => onViewPost(post),
                 className: "h-8 w-8 p-0",
-                children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Eye, { className: "w-4 h-4" })
+                children: /* @__PURE__ */ jsxRuntime.jsx(Eye__default.default, { className: "w-4 h-4" })
               }
             ),
             onEditPost && /* @__PURE__ */ jsxRuntime.jsx(
@@ -7242,7 +7396,7 @@ function RecentPostsList({
                 size: "sm",
                 onClick: () => onEditPost(post),
                 className: "h-8 w-8 p-0",
-                children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Edit, { className: "w-4 h-4" })
+                children: /* @__PURE__ */ jsxRuntime.jsx(Edit__default.default, { className: "w-4 h-4" })
               }
             ),
             onDeletePost && /* @__PURE__ */ jsxRuntime.jsx(
@@ -7252,7 +7406,7 @@ function RecentPostsList({
                 size: "sm",
                 onClick: () => onDeletePost(post.id),
                 className: "h-8 w-8 p-0 text-destructive hover:text-destructive",
-                children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Trash2, { className: "w-4 h-4" })
+                children: /* @__PURE__ */ jsxRuntime.jsx(Trash2__default.default, { className: "w-4 h-4" })
               }
             )
           ] })
@@ -7265,19 +7419,19 @@ function RecentPostsList({
 function HelpCenter() {
   const resources = [
     {
-      icon: lucideReact.BookOpen,
+      icon: BookOpen__default.default,
       title: "Documenta\xE7\xE3o",
       description: "Guias completos de uso",
       link: "/docs"
     },
     {
-      icon: lucideReact.Video,
+      icon: Video__default.default,
       title: "Tutoriais",
       description: "V\xEDdeos passo a passo",
       link: "/tutorials"
     },
     {
-      icon: lucideReact.MessageCircle,
+      icon: MessageCircle__default.default,
       title: "Suporte",
       description: "Fale com nossa equipe",
       link: "/contato"
@@ -7286,7 +7440,7 @@ function HelpCenter() {
   return /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: "dark:bg-black/30 dark:border-purple-400/20", children: [
     /* @__PURE__ */ jsxRuntime.jsxs(CardHeader, { children: [
       /* @__PURE__ */ jsxRuntime.jsxs(CardTitle, { className: "flex items-center gap-2 dark:text-purple-200", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(lucideReact.HelpCircle, { className: "h-5 w-5" }),
+        /* @__PURE__ */ jsxRuntime.jsx(HelpCircle__default.default, { className: "h-5 w-5" }),
         "Central de Ajuda"
       ] }),
       /* @__PURE__ */ jsxRuntime.jsx(CardDescription, { children: "Precisa de ajuda? Acesse nossos recursos" })
@@ -7305,7 +7459,7 @@ function HelpCenter() {
               /* @__PURE__ */ jsxRuntime.jsx("div", { className: "font-medium text-sm", children: resource.title }),
               /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs text-muted-foreground", children: resource.description })
             ] }),
-            /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ExternalLink, { className: "h-4 w-4 ml-auto" })
+            /* @__PURE__ */ jsxRuntime.jsx(ExternalLink__default.default, { className: "h-4 w-4 ml-auto" })
           ] })
         },
         index
@@ -7319,7 +7473,7 @@ var ContextMenuGroup = reactContextMenu.Group;
 var ContextMenuPortal = reactContextMenu.Portal;
 var ContextMenuSub = reactContextMenu.Sub;
 var ContextMenuRadioGroup = reactContextMenu.RadioGroup;
-var ContextMenuSubTrigger = React55__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ContextMenuSubTrigger = React54__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactContextMenu.SubTrigger,
   {
     ref,
@@ -7338,7 +7492,7 @@ var ContextMenuSubTrigger = React55__namespace.forwardRef(({ className, inset, c
   }
 ));
 ContextMenuSubTrigger.displayName = reactContextMenu.SubTrigger.displayName;
-var ContextMenuSubContent = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuSubContent = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.SubContent,
   {
     ref,
@@ -7351,7 +7505,7 @@ var ContextMenuSubContent = React55__namespace.forwardRef(({ className, ...props
   }
 ));
 ContextMenuSubContent.displayName = reactContextMenu.SubContent.displayName;
-var ContextMenuContent = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactContextMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuContent = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactContextMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Content,
   {
     ref,
@@ -7367,7 +7521,7 @@ var ContextMenuContent = React55__namespace.forwardRef(({ className, ...props },
   }
 ) }));
 ContextMenuContent.displayName = reactContextMenu.Content.displayName;
-var ContextMenuItem = React55__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuItem = React54__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Item,
   {
     ref,
@@ -7385,7 +7539,7 @@ var ContextMenuItem = React55__namespace.forwardRef(({ className, inset, ...prop
   }
 ));
 ContextMenuItem.displayName = reactContextMenu.Item.displayName;
-var ContextMenuCheckboxItem = React55__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ContextMenuCheckboxItem = React54__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactContextMenu.CheckboxItem,
   {
     ref,
@@ -7402,7 +7556,7 @@ var ContextMenuCheckboxItem = React55__namespace.forwardRef(({ className, childr
   }
 ));
 ContextMenuCheckboxItem.displayName = reactContextMenu.CheckboxItem.displayName;
-var ContextMenuRadioItem = React55__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ContextMenuRadioItem = React54__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactContextMenu.RadioItem,
   {
     ref,
@@ -7418,7 +7572,7 @@ var ContextMenuRadioItem = React55__namespace.forwardRef(({ className, children,
   }
 ));
 ContextMenuRadioItem.displayName = reactContextMenu.RadioItem.displayName;
-var ContextMenuLabel = React55__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuLabel = React54__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Label,
   {
     ref,
@@ -7431,7 +7585,7 @@ var ContextMenuLabel = React55__namespace.forwardRef(({ className, inset, ...pro
   }
 ));
 ContextMenuLabel.displayName = reactContextMenu.Label.displayName;
-var ContextMenuSeparator = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuSeparator = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Separator,
   {
     ref,
@@ -7462,7 +7616,7 @@ var DropdownMenuGroup = reactDropdownMenu.Group;
 var DropdownMenuPortal = reactDropdownMenu.Portal;
 var DropdownMenuSub = reactDropdownMenu.Sub;
 var DropdownMenuRadioGroup = reactDropdownMenu.RadioGroup;
-var DropdownMenuSubTrigger = React55__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuSubTrigger = React54__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.SubTrigger,
   {
     ref,
@@ -7480,7 +7634,7 @@ var DropdownMenuSubTrigger = React55__namespace.forwardRef(({ className, inset, 
   }
 ));
 DropdownMenuSubTrigger.displayName = reactDropdownMenu.SubTrigger.displayName;
-var DropdownMenuSubContent = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuSubContent = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.SubContent,
   {
     ref,
@@ -7497,7 +7651,7 @@ var DropdownMenuSubContent = React55__namespace.forwardRef(({ className, ...prop
   }
 ));
 DropdownMenuSubContent.displayName = reactDropdownMenu.SubContent.displayName;
-var DropdownMenuContent = React55__namespace.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactDropdownMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuContent = React54__namespace.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactDropdownMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Content,
   {
     ref,
@@ -7515,7 +7669,7 @@ var DropdownMenuContent = React55__namespace.forwardRef(({ className, sideOffset
   }
 ) }));
 DropdownMenuContent.displayName = reactDropdownMenu.Content.displayName;
-var DropdownMenuItem = React55__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuItem = React54__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Item,
   {
     ref,
@@ -7530,7 +7684,7 @@ var DropdownMenuItem = React55__namespace.forwardRef(({ className, inset, ...pro
   }
 ));
 DropdownMenuItem.displayName = reactDropdownMenu.Item.displayName;
-var DropdownMenuCheckboxItem = React55__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuCheckboxItem = React54__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.CheckboxItem,
   {
     ref,
@@ -7549,7 +7703,7 @@ var DropdownMenuCheckboxItem = React55__namespace.forwardRef(({ className, child
   }
 ));
 DropdownMenuCheckboxItem.displayName = reactDropdownMenu.CheckboxItem.displayName;
-var DropdownMenuRadioItem = React55__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuRadioItem = React54__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.RadioItem,
   {
     ref,
@@ -7567,7 +7721,7 @@ var DropdownMenuRadioItem = React55__namespace.forwardRef(({ className, children
   }
 ));
 DropdownMenuRadioItem.displayName = reactDropdownMenu.RadioItem.displayName;
-var DropdownMenuLabel = React55__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuLabel = React54__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Label,
   {
     ref,
@@ -7580,7 +7734,7 @@ var DropdownMenuLabel = React55__namespace.forwardRef(({ className, inset, ...pr
   }
 ));
 DropdownMenuLabel.displayName = reactDropdownMenu.Label.displayName;
-var DropdownMenuSeparator = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuSeparator = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Separator,
   {
     ref,
@@ -7604,7 +7758,7 @@ var DropdownMenuShortcut = ({
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
 var HoverCard = reactHoverCard.Root;
 var HoverCardTrigger = reactHoverCard.Trigger;
-var HoverCardContent = React55__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var HoverCardContent = React54__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactHoverCard.Content,
   {
     ref,
@@ -7620,7 +7774,7 @@ var HoverCardContent = React55__namespace.forwardRef(({ className, align = "cent
 HoverCardContent.displayName = reactHoverCard.Content.displayName;
 var Popover = reactPopover.Root;
 var PopoverTrigger = reactPopover.Trigger;
-var PopoverContent = React55__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactPopover.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
+var PopoverContent = React54__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactPopover.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
   reactPopover.Content,
   {
     ref,
@@ -7717,7 +7871,7 @@ var modalVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Modal = React55__namespace.forwardRef(
+var Modal = React54__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -7735,8 +7889,8 @@ var Modal = React55__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const modalRef = React55__namespace.useRef(null);
-    React55__namespace.useEffect(() => {
+    const modalRef = React54__namespace.useRef(null);
+    React54__namespace.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -7744,7 +7898,7 @@ var Modal = React55__namespace.forwardRef(
         };
       }
     }, [open, preventBodyScroll]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -7754,12 +7908,12 @@ var Modal = React55__namespace.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       if (open && modalRef.current) {
         modalRef.current.focus();
       }
     }, [open]);
-    const handleBackdropClick = React55__namespace.useCallback((event) => {
+    const handleBackdropClick = React54__namespace.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop) {
         onOpenChange(false);
       }
@@ -7816,7 +7970,7 @@ var Modal = React55__namespace.forwardRef(
   }
 );
 Modal.displayName = "Modal";
-var ModalHeader = React55__namespace.forwardRef(
+var ModalHeader = React54__namespace.forwardRef(
   ({
     className,
     title,
@@ -7842,7 +7996,7 @@ var ModalHeader = React55__namespace.forwardRef(
   }
 );
 ModalHeader.displayName = "ModalHeader";
-var ModalContent = React55__namespace.forwardRef(
+var ModalContent = React54__namespace.forwardRef(
   ({
     className,
     children,
@@ -7860,7 +8014,7 @@ var ModalContent = React55__namespace.forwardRef(
   }
 );
 ModalContent.displayName = "ModalContent";
-var ModalFooter = React55__namespace.forwardRef(
+var ModalFooter = React54__namespace.forwardRef(
   ({
     className,
     children,
@@ -7881,7 +8035,7 @@ var ModalFooter = React55__namespace.forwardRef(
   }
 );
 ModalFooter.displayName = "ModalFooter";
-var ModalTrigger = React55__namespace.forwardRef(
+var ModalTrigger = React54__namespace.forwardRef(
   ({
     className,
     children,
@@ -7889,7 +8043,7 @@ var ModalTrigger = React55__namespace.forwardRef(
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React55__namespace.useCallback((event) => {
+    const handleClick = React54__namespace.useCallback((event) => {
       onClick?.(event);
       onOpen?.();
     }, [onClick, onOpen]);
@@ -7936,7 +8090,7 @@ var drawerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Drawer = React55__namespace.forwardRef(
+var Drawer = React54__namespace.forwardRef(
   ({
     className,
     position = "right",
@@ -7955,8 +8109,8 @@ var Drawer = React55__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const drawerRef = React55__namespace.useRef(null);
-    React55__namespace.useEffect(() => {
+    const drawerRef = React54__namespace.useRef(null);
+    React54__namespace.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -7964,7 +8118,7 @@ var Drawer = React55__namespace.forwardRef(
         };
       }
     }, [open, preventBodyScroll]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -7974,12 +8128,12 @@ var Drawer = React55__namespace.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       if (open && drawerRef.current) {
         drawerRef.current.focus();
       }
     }, [open]);
-    const handleBackdropClick = React55__namespace.useCallback((event) => {
+    const handleBackdropClick = React54__namespace.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop) {
         onOpenChange(false);
       }
@@ -8051,7 +8205,7 @@ var Drawer = React55__namespace.forwardRef(
   }
 );
 Drawer.displayName = "Drawer";
-var DrawerHeader = React55__namespace.forwardRef(
+var DrawerHeader = React54__namespace.forwardRef(
   ({
     className,
     title,
@@ -8077,7 +8231,7 @@ var DrawerHeader = React55__namespace.forwardRef(
   }
 );
 DrawerHeader.displayName = "DrawerHeader";
-var DrawerContent = React55__namespace.forwardRef(
+var DrawerContent = React54__namespace.forwardRef(
   ({
     className,
     children,
@@ -8095,7 +8249,7 @@ var DrawerContent = React55__namespace.forwardRef(
   }
 );
 DrawerContent.displayName = "DrawerContent";
-var DrawerFooter = React55__namespace.forwardRef(
+var DrawerFooter = React54__namespace.forwardRef(
   ({
     className,
     children,
@@ -8116,7 +8270,7 @@ var DrawerFooter = React55__namespace.forwardRef(
   }
 );
 DrawerFooter.displayName = "DrawerFooter";
-var DrawerTrigger = React55__namespace.forwardRef(
+var DrawerTrigger = React54__namespace.forwardRef(
   ({
     className,
     children,
@@ -8124,7 +8278,7 @@ var DrawerTrigger = React55__namespace.forwardRef(
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React55__namespace.useCallback((event) => {
+    const handleClick = React54__namespace.useCallback((event) => {
       onClick?.(event);
       onOpen?.();
     }, [onClick, onOpen]);
@@ -8169,7 +8323,7 @@ var lightboxVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Lightbox = React55__namespace.forwardRef(
+var Lightbox = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -8195,21 +8349,21 @@ var Lightbox = React55__namespace.forwardRef(
     mediaContainerClassName,
     ...props
   }, ref) => {
-    const [zoom, setZoom] = React55__namespace.useState(ZOOM_CONFIG.DEFAULT);
-    const [rotation, setRotation] = React55__namespace.useState(0);
-    const [isPlaying, setIsPlaying] = React55__namespace.useState(autoPlayVideos);
-    const [isFullscreen, setIsFullscreen] = React55__namespace.useState(false);
-    const [touchStart, setTouchStart] = React55__namespace.useState(null);
-    const [isDragging, setIsDragging] = React55__namespace.useState(false);
-    const [dragOffset, setDragOffset] = React55__namespace.useState({ x: 0, y: 0 });
-    const videoRef = React55__namespace.useRef(null);
-    const containerRef = React55__namespace.useRef(null);
-    const mediaRef = React55__namespace.useRef(null);
+    const [zoom, setZoom] = React54__namespace.useState(ZOOM_CONFIG.DEFAULT);
+    const [rotation, setRotation] = React54__namespace.useState(0);
+    const [isPlaying, setIsPlaying] = React54__namespace.useState(autoPlayVideos);
+    const [isFullscreen, setIsFullscreen] = React54__namespace.useState(false);
+    const [touchStart, setTouchStart] = React54__namespace.useState(null);
+    const [isDragging, setIsDragging] = React54__namespace.useState(false);
+    const [dragOffset, setDragOffset] = React54__namespace.useState({ x: 0, y: 0 });
+    const videoRef = React54__namespace.useRef(null);
+    const containerRef = React54__namespace.useRef(null);
+    const mediaRef = React54__namespace.useRef(null);
     const currentItem = items[index];
     const hasMultipleItems = items.length > 1;
     const isImage = currentItem?.type === "image";
     const isVideo = currentItem?.type === "video";
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       if (open) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -8217,7 +8371,7 @@ var Lightbox = React55__namespace.forwardRef(
         };
       }
     }, [open]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       if (!open) return;
       const handleKeyDown = (event) => {
         switch (event.key) {
@@ -8273,20 +8427,20 @@ var Lightbox = React55__namespace.forwardRef(
       document.addEventListener("keydown", handleKeyDown);
       return () => document.removeEventListener("keydown", handleKeyDown);
     }, [open, index, zoom, isVideo, allowZoom, allowRotation]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       if (isVideo && autoPlayVideos && videoRef.current && open) {
         videoRef.current.play().catch(console.error);
         setIsPlaying(true);
       }
     }, [index, isVideo, autoPlayVideos, open]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       if (!autoPlayInterval || !hasMultipleItems || !open) return;
       const interval = setInterval(() => {
         handleNext();
       }, autoPlayInterval);
       return () => clearInterval(interval);
     }, [autoPlayInterval, hasMultipleItems, open, index]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       setZoom(ZOOM_CONFIG.DEFAULT);
       setRotation(0);
       setDragOffset({ x: 0, y: 0 });
@@ -8295,35 +8449,35 @@ var Lightbox = React55__namespace.forwardRef(
         setIsPlaying(autoPlayVideos);
       }
     }, [index, isVideo, autoPlayVideos]);
-    const handlePrevious = React55__namespace.useCallback(() => {
+    const handlePrevious = React54__namespace.useCallback(() => {
       if (index > 0) {
         onIndexChange(index - 1);
       } else if (hasMultipleItems) {
         onIndexChange(items.length - 1);
       }
     }, [index, items.length, onIndexChange, hasMultipleItems]);
-    const handleNext = React55__namespace.useCallback(() => {
+    const handleNext = React54__namespace.useCallback(() => {
       if (index < items.length - 1) {
         onIndexChange(index + 1);
       } else if (hasMultipleItems) {
         onIndexChange(0);
       }
     }, [index, items.length, onIndexChange, hasMultipleItems]);
-    const handleZoomIn = React55__namespace.useCallback(() => {
+    const handleZoomIn = React54__namespace.useCallback(() => {
       setZoom((prev) => Math.min(prev + ZOOM_CONFIG.STEP, ZOOM_CONFIG.MAX));
     }, []);
-    const handleZoomOut = React55__namespace.useCallback(() => {
+    const handleZoomOut = React54__namespace.useCallback(() => {
       setZoom((prev) => Math.max(prev - ZOOM_CONFIG.STEP, ZOOM_CONFIG.MIN));
     }, []);
-    const handleResetZoom = React55__namespace.useCallback(() => {
+    const handleResetZoom = React54__namespace.useCallback(() => {
       setZoom(ZOOM_CONFIG.DEFAULT);
       setRotation(0);
       setDragOffset({ x: 0, y: 0 });
     }, []);
-    const handleRotate = React55__namespace.useCallback(() => {
+    const handleRotate = React54__namespace.useCallback(() => {
       setRotation((prev) => (prev + 90) % 360);
     }, []);
-    const handlePlayPause = React55__namespace.useCallback(() => {
+    const handlePlayPause = React54__namespace.useCallback(() => {
       if (videoRef.current) {
         if (isPlaying) {
           videoRef.current.pause();
@@ -8333,7 +8487,7 @@ var Lightbox = React55__namespace.forwardRef(
         setIsPlaying(!isPlaying);
       }
     }, [isPlaying]);
-    const handleToggleFullscreen = React55__namespace.useCallback(() => {
+    const handleToggleFullscreen = React54__namespace.useCallback(() => {
       if (!containerRef.current) return;
       if (!document.fullscreenElement) {
         containerRef.current.requestFullscreen().then(() => {
@@ -8345,14 +8499,14 @@ var Lightbox = React55__namespace.forwardRef(
         });
       }
     }, []);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       const handleFullscreenChange = () => {
         setIsFullscreen(!!document.fullscreenElement);
       };
       document.addEventListener("fullscreenchange", handleFullscreenChange);
       return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
     }, []);
-    const handleDownload = React55__namespace.useCallback(() => {
+    const handleDownload = React54__namespace.useCallback(() => {
       if (currentItem?.downloadUrl || currentItem?.url) {
         const link = document.createElement("a");
         link.href = currentItem.downloadUrl || currentItem.url;
@@ -8363,7 +8517,7 @@ var Lightbox = React55__namespace.forwardRef(
         document.body.removeChild(link);
       }
     }, [currentItem]);
-    const handleTouchStart = React55__namespace.useCallback((e) => {
+    const handleTouchStart = React54__namespace.useCallback((e) => {
       if (!enableGestures || !isImage || zoom <= ZOOM_CONFIG.DEFAULT) return;
       setTouchStart({
         x: e.touches[0].clientX,
@@ -8371,7 +8525,7 @@ var Lightbox = React55__namespace.forwardRef(
       });
       setIsDragging(true);
     }, [enableGestures, isImage, zoom]);
-    const handleTouchMove = React55__namespace.useCallback((e) => {
+    const handleTouchMove = React54__namespace.useCallback((e) => {
       if (!touchStart || !isDragging || !isImage || zoom <= ZOOM_CONFIG.DEFAULT) return;
       const deltaX = e.touches[0].clientX - touchStart.x;
       const deltaY = e.touches[0].clientY - touchStart.y;
@@ -8380,7 +8534,7 @@ var Lightbox = React55__namespace.forwardRef(
         y: deltaY
       });
     }, [touchStart, isDragging, isImage, zoom]);
-    const handleTouchEnd = React55__namespace.useCallback(() => {
+    const handleTouchEnd = React54__namespace.useCallback(() => {
       if (!enableGestures || !isImage) return;
       if (!isDragging && touchStart && zoom <= ZOOM_CONFIG.DEFAULT) {
         const swipeThreshold = 50;
@@ -8396,7 +8550,7 @@ var Lightbox = React55__namespace.forwardRef(
       setTouchStart(null);
       setIsDragging(false);
     }, [enableGestures, isImage, zoom, dragOffset, handlePrevious, handleNext, isDragging, touchStart]);
-    const handleDoubleClick = React55__namespace.useCallback(() => {
+    const handleDoubleClick = React54__namespace.useCallback(() => {
       if (allowZoom && isImage) {
         if (zoom > ZOOM_CONFIG.DEFAULT) {
           handleResetZoom();
@@ -8443,7 +8597,7 @@ var Lightbox = React55__namespace.forwardRef(
                   className: "absolute right-4 top-4 z-10 h-10 w-10 text-white hover:bg-white/20 rounded-full backdrop-blur-sm",
                   onClick: () => onOpenChange(false),
                   "aria-label": "Fechar lightbox",
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-5 w-5" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-5 w-5" })
                 }
               ),
               /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center justify-center h-full px-4", children: [
@@ -8455,7 +8609,7 @@ var Lightbox = React55__namespace.forwardRef(
                     className: "absolute left-4 top-1/2 -translate-y-1/2 z-10 h-12 w-12 text-white hover:bg-white/20 rounded-full backdrop-blur-sm",
                     onClick: handlePrevious,
                     "aria-label": "Item anterior",
-                    children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "h-6 w-6" })
+                    children: /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-6 w-6" })
                   }
                 ),
                 /* @__PURE__ */ jsxRuntime.jsx(
@@ -8503,7 +8657,7 @@ var Lightbox = React55__namespace.forwardRef(
                     className: "absolute right-4 top-1/2 -translate-y-1/2 z-10 h-12 w-12 text-white hover:bg-white/20 rounded-full backdrop-blur-sm",
                     onClick: handleNext,
                     "aria-label": "Pr\xF3ximo item",
-                    children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "h-6 w-6" })
+                    children: /* @__PURE__ */ jsxRuntime.jsx(ChevronRight2__default.default, { className: "h-6 w-6" })
                   }
                 )
               ] }),
@@ -8539,7 +8693,7 @@ var Lightbox = React55__namespace.forwardRef(
                         className: "h-8 w-8 text-white hover:bg-white/20",
                         onClick: handlePlayPause,
                         "aria-label": isPlaying ? "Pausar" : "Reproduzir",
-                        children: isPlaying ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Pause, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Play, { className: "h-4 w-4" })
+                        children: isPlaying ? /* @__PURE__ */ jsxRuntime.jsx(Pause__default.default, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(Play__default.default, { className: "h-4 w-4" })
                       }
                     ),
                     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-px h-4 bg-white/30" })
@@ -8554,7 +8708,7 @@ var Lightbox = React55__namespace.forwardRef(
                         onClick: handleZoomOut,
                         disabled: zoom <= ZOOM_CONFIG.MIN,
                         "aria-label": "Reduzir zoom",
-                        children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ZoomOut, { className: "h-4 w-4" })
+                        children: /* @__PURE__ */ jsxRuntime.jsx(ZoomOut__default.default, { className: "h-4 w-4" })
                       }
                     ),
                     /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-xs text-white min-w-[40px] text-center", children: [
@@ -8570,7 +8724,7 @@ var Lightbox = React55__namespace.forwardRef(
                         onClick: handleZoomIn,
                         disabled: zoom >= ZOOM_CONFIG.MAX,
                         "aria-label": "Aumentar zoom",
-                        children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ZoomIn, { className: "h-4 w-4" })
+                        children: /* @__PURE__ */ jsxRuntime.jsx(ZoomIn__default.default, { className: "h-4 w-4" })
                       }
                     ),
                     /* @__PURE__ */ jsxRuntime.jsx(
@@ -8582,7 +8736,7 @@ var Lightbox = React55__namespace.forwardRef(
                         onClick: handleResetZoom,
                         disabled: zoom === ZOOM_CONFIG.DEFAULT && rotation === 0,
                         "aria-label": "Resetar zoom",
-                        children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Minimize2, { className: "h-4 w-4" })
+                        children: /* @__PURE__ */ jsxRuntime.jsx(Minimize2__default.default, { className: "h-4 w-4" })
                       }
                     ),
                     /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-px h-4 bg-white/30" })
@@ -8595,7 +8749,7 @@ var Lightbox = React55__namespace.forwardRef(
                       className: "h-8 w-8 text-white hover:bg-white/20",
                       onClick: handleRotate,
                       "aria-label": "Rotacionar",
-                      children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RotateCw, { className: "h-4 w-4" })
+                      children: /* @__PURE__ */ jsxRuntime.jsx(RotateCw__default.default, { className: "h-4 w-4" })
                     }
                   ),
                   /* @__PURE__ */ jsxRuntime.jsx(
@@ -8606,7 +8760,7 @@ var Lightbox = React55__namespace.forwardRef(
                       className: "h-8 w-8 text-white hover:bg-white/20",
                       onClick: handleToggleFullscreen,
                       "aria-label": isFullscreen ? "Sair da tela cheia" : "Tela cheia",
-                      children: isFullscreen ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Minimize2, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Maximize2, { className: "h-4 w-4" })
+                      children: isFullscreen ? /* @__PURE__ */ jsxRuntime.jsx(Minimize2__default.default, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(Maximize2__default.default, { className: "h-4 w-4" })
                     }
                   ),
                   allowDownload && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
@@ -8619,7 +8773,7 @@ var Lightbox = React55__namespace.forwardRef(
                         className: "h-8 w-8 text-white hover:bg-white/20",
                         onClick: handleDownload,
                         "aria-label": "Download",
-                        children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Download, { className: "h-4 w-4" })
+                        children: /* @__PURE__ */ jsxRuntime.jsx(Download__default.default, { className: "h-4 w-4" })
                       }
                     )
                   ] })
@@ -8654,8 +8808,8 @@ var Lightbox = React55__namespace.forwardRef(
                             className: "w-full h-full object-cover",
                             loading: "lazy"
                           }
-                        ) : /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Play, { className: "h-5 w-5 text-gray-400" }) }),
-                        item.type === "video" && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute bottom-1 right-1 bg-black/60 rounded-full p-1", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Play, { className: "h-2 w-2 text-white" }) })
+                        ) : /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntime.jsx(Play__default.default, { className: "h-5 w-5 text-gray-400" }) }),
+                        item.type === "video" && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute bottom-1 right-1 bg-black/60 rounded-full p-1", children: /* @__PURE__ */ jsxRuntime.jsx(Play__default.default, { className: "h-2 w-2 text-white" }) })
                       ]
                     },
                     idx
@@ -8693,7 +8847,7 @@ var confirmDialogVariants = classVarianceAuthority.cva(
     }
   }
 );
-var ConfirmDialog = React55__namespace.forwardRef(
+var ConfirmDialog = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -8711,12 +8865,12 @@ var ConfirmDialog = React55__namespace.forwardRef(
     closeOnCancel = true,
     closeOnBackdrop = true,
     closeOnEscape = true,
-    confirmVariant = "default",
-    ...props
-  }, ref) => {
-    const [internalLoading, setInternalLoading] = React55__namespace.useState(false);
+    confirmVariant = "default"
+    // props, // Props adicionais não utilizados
+  }) => {
+    const [internalLoading, setInternalLoading] = React54__namespace.useState(false);
     const isLoading = loading || internalLoading;
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -8726,7 +8880,7 @@ var ConfirmDialog = React55__namespace.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    const handleConfirm = React55__namespace.useCallback(async () => {
+    const handleConfirm = React54__namespace.useCallback(async () => {
       if (isLoading) return;
       try {
         if (onConfirm) {
@@ -8740,14 +8894,14 @@ var ConfirmDialog = React55__namespace.forwardRef(
         setInternalLoading(false);
       }
     }, [isLoading, onConfirm, closeOnConfirm, onOpenChange]);
-    const handleCancel = React55__namespace.useCallback(() => {
+    const handleCancel = React54__namespace.useCallback(() => {
       if (isLoading) return;
       onCancel?.();
       if (closeOnCancel) {
         onOpenChange(false);
       }
     }, [isLoading, onCancel, closeOnCancel, onOpenChange]);
-    const handleBackdropClick = React55__namespace.useCallback((event) => {
+    const handleBackdropClick = React54__namespace.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop && !isLoading) {
         onOpenChange(false);
       }
@@ -8755,13 +8909,13 @@ var ConfirmDialog = React55__namespace.forwardRef(
     const getIcon = () => {
       switch (variant) {
         case "destructive":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.AlertTriangle, { className: "h-6 w-6 text-destructive" });
+          return /* @__PURE__ */ jsxRuntime.jsx(AlertTriangle3__default.default, { className: "h-6 w-6 text-destructive" });
         case "warning":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.AlertTriangle, { className: "h-6 w-6 text-amber-500" });
+          return /* @__PURE__ */ jsxRuntime.jsx(AlertTriangle3__default.default, { className: "h-6 w-6 text-amber-500" });
         case "info":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Info, { className: "h-6 w-6 text-blue-500" });
+          return /* @__PURE__ */ jsxRuntime.jsx(Info2__default.default, { className: "h-6 w-6 text-blue-500" });
         case "success":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.CheckCircle, { className: "h-6 w-6 text-emerald-500" });
+          return /* @__PURE__ */ jsxRuntime.jsx(CheckCircle__default.default, { className: "h-6 w-6 text-emerald-500" });
         default:
           return null;
       }
@@ -8793,7 +8947,6 @@ var ConfirmDialog = React55__namespace.forwardRef(
       /* @__PURE__ */ jsxRuntime.jsxs(
         "div",
         {
-          ref,
           className: cn(
             confirmDialogVariants({ variant, size }),
             "relative z-10 p-6 animate-in fade-in-0 zoom-in-95 duration-[var(--motion-duration-normal)]",
@@ -8812,7 +8965,7 @@ var ConfirmDialog = React55__namespace.forwardRef(
                 onClick: handleCancel,
                 className: "absolute right-4 top-4 h-8 w-8 p-0",
                 disabled: isLoading,
-                children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-4 w-4" })
+                children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-4 w-4" })
               }
             ),
             /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col items-center text-center max-w-sm mx-auto", children: [
@@ -8850,22 +9003,22 @@ var ConfirmDialog = React55__namespace.forwardRef(
 );
 ConfirmDialog.displayName = "ConfirmDialog";
 function useConfirm() {
-  const [isOpen, setIsOpen] = React55__namespace.useState(false);
-  const [options, setOptions] = React55__namespace.useState(null);
-  const confirm = React55__namespace.useCallback((options2) => {
+  const [isOpen, setIsOpen] = React54__namespace.useState(false);
+  const [options, setOptions] = React54__namespace.useState(null);
+  const confirm = React54__namespace.useCallback((options2) => {
     setOptions(options2);
     setIsOpen(true);
   }, []);
-  const handleConfirm = React55__namespace.useCallback(async () => {
+  const handleConfirm = React54__namespace.useCallback(async () => {
     if (options.onConfirm) {
       await options.onConfirm();
     }
     setIsOpen(false);
   }, [options]);
-  const handleCancel = React55__namespace.useCallback(() => {
+  const handleCancel = React54__namespace.useCallback(() => {
     setIsOpen(false);
   }, []);
-  const ConfirmDialogComponent = React55__namespace.useCallback(() => /* @__PURE__ */ jsxRuntime.jsx(
+  const ConfirmDialogComponent = React54__namespace.useCallback(() => /* @__PURE__ */ jsxRuntime.jsx(
     ConfirmDialog,
     {
       open: isOpen,
@@ -8905,39 +9058,39 @@ function getMonthGrid(month) {
   const gridStart = new Date(firstOfMonth);
   gridStart.setDate(firstOfMonth.getDate() - startDay);
   const days = [];
-  for (let i2 = 0; i2 < 42; i2 += 1) {
+  for (let i = 0; i < 42; i += 1) {
     const d = new Date(gridStart);
-    d.setDate(gridStart.getDate() + i2);
+    d.setDate(gridStart.getDate() + i);
     days.push(d);
   }
   return days;
 }
 function getWeekdayLabels(locale) {
   const base = new Date(2024, 0, 7);
-  return Array.from({ length: 7 }).map((_, i2) => {
+  return Array.from({ length: 7 }).map((_, i) => {
     const d = new Date(base);
-    d.setDate(base.getDate() + i2);
+    d.setDate(base.getDate() + i);
     return d.toLocaleDateString(locale, { weekday: "short" });
   });
 }
-function Calendar2({ className, selected, onSelect, disabled }) {
+function Calendar3({ className, selected, onSelect, disabled }) {
   const initialMonth = selected ?? /* @__PURE__ */ new Date();
-  const [currentMonth, setCurrentMonth] = React55__namespace.useState(
+  const [currentMonth, setCurrentMonth] = React54__namespace.useState(
     startOfDay(initialMonth)
   );
-  const today = React55__namespace.useMemo(() => startOfDay(/* @__PURE__ */ new Date()), []);
-  const days = React55__namespace.useMemo(() => getMonthGrid(currentMonth), [currentMonth]);
-  const weekdayLabels = React55__namespace.useMemo(
+  const today = React54__namespace.useMemo(() => startOfDay(/* @__PURE__ */ new Date()), []);
+  const days = React54__namespace.useMemo(() => getMonthGrid(currentMonth), [currentMonth]);
+  const weekdayLabels = React54__namespace.useMemo(
     () => getWeekdayLabels("pt-BR"),
     []
   );
-  const handlePrevMonth = React55__namespace.useCallback(() => {
+  const handlePrevMonth = React54__namespace.useCallback(() => {
     setCurrentMonth((prev) => addMonths(prev, -1));
   }, []);
-  const handleNextMonth = React55__namespace.useCallback(() => {
+  const handleNextMonth = React54__namespace.useCallback(() => {
     setCurrentMonth((prev) => addMonths(prev, 1));
   }, []);
-  const handleSelect = React55__namespace.useCallback(
+  const handleSelect = React54__namespace.useCallback(
     (date) => {
       if (disabled?.(date)) return;
       if (onSelect) {
@@ -8950,7 +9103,7 @@ function Calendar2({ className, selected, onSelect, disabled }) {
     },
     [disabled, onSelect, selected]
   );
-  const monthLabel = React55__namespace.useMemo(
+  const monthLabel = React54__namespace.useMemo(
     () => currentMonth.toLocaleDateString("pt-BR", {
       month: "long",
       year: "numeric"
@@ -9034,7 +9187,7 @@ function CalendarDayButton({
   onSelect,
   className
 }) {
-  const handleClick = React55__namespace.useCallback(() => {
+  const handleClick = React54__namespace.useCallback(() => {
     if (disabled) return;
     onSelect?.(date);
   }, [date, disabled, onSelect]);
@@ -9061,15 +9214,15 @@ function CalendarDayButton({
     }
   );
 }
-var CarouselContext = React55__namespace.createContext(null);
+var CarouselContext = React54__namespace.createContext(null);
 function useCarousel() {
-  const context = React55__namespace.useContext(CarouselContext);
+  const context = React54__namespace.useContext(CarouselContext);
   if (!context) {
     throw new Error("useCarousel must be used within a <Carousel />");
   }
   return context;
 }
-var Carousel = React55__namespace.forwardRef(
+var Carousel = React54__namespace.forwardRef(
   ({
     orientation = "horizontal",
     opts,
@@ -9086,22 +9239,22 @@ var Carousel = React55__namespace.forwardRef(
       },
       plugins
     );
-    const [canScrollPrev, setCanScrollPrev] = React55__namespace.useState(false);
-    const [canScrollNext, setCanScrollNext] = React55__namespace.useState(false);
-    const onSelect = React55__namespace.useCallback((api2) => {
+    const [canScrollPrev, setCanScrollPrev] = React54__namespace.useState(false);
+    const [canScrollNext, setCanScrollNext] = React54__namespace.useState(false);
+    const onSelect = React54__namespace.useCallback((api2) => {
       if (!api2) {
         return;
       }
       setCanScrollPrev(api2.canScrollPrev());
       setCanScrollNext(api2.canScrollNext());
     }, []);
-    const scrollPrev = React55__namespace.useCallback(() => {
+    const scrollPrev = React54__namespace.useCallback(() => {
       api?.scrollPrev();
     }, [api]);
-    const scrollNext = React55__namespace.useCallback(() => {
+    const scrollNext = React54__namespace.useCallback(() => {
       api?.scrollNext();
     }, [api]);
-    const handleKeyDown = React55__namespace.useCallback(
+    const handleKeyDown = React54__namespace.useCallback(
       (event) => {
         if (event.key === "ArrowLeft") {
           event.preventDefault();
@@ -9113,13 +9266,13 @@ var Carousel = React55__namespace.forwardRef(
       },
       [scrollPrev, scrollNext]
     );
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       if (!api || !setApi) {
         return;
       }
       setApi(api);
     }, [api, setApi]);
-    React55__namespace.useEffect(() => {
+    React54__namespace.useEffect(() => {
       if (!api) {
         return;
       }
@@ -9130,7 +9283,7 @@ var Carousel = React55__namespace.forwardRef(
         api?.off("select", onSelect);
       };
     }, [api, onSelect]);
-    const contextValue = React55__namespace.useMemo(() => ({
+    const contextValue = React54__namespace.useMemo(() => ({
       carouselRef,
       api,
       opts,
@@ -9155,7 +9308,7 @@ var Carousel = React55__namespace.forwardRef(
   }
 );
 Carousel.displayName = "Carousel";
-var CarouselContent = React55__namespace.forwardRef(({ className, ...props }, ref) => {
+var CarouselContent = React54__namespace.forwardRef(({ className, ...props }, ref) => {
   const { carouselRef, orientation } = useCarousel();
   return /* @__PURE__ */ jsxRuntime.jsx("div", { ref: carouselRef, className: "overflow-hidden", children: /* @__PURE__ */ jsxRuntime.jsx(
     "div",
@@ -9171,7 +9324,7 @@ var CarouselContent = React55__namespace.forwardRef(({ className, ...props }, re
   ) });
 });
 CarouselContent.displayName = "CarouselContent";
-var CarouselItem = React55__namespace.forwardRef(({ className, ...props }, ref) => {
+var CarouselItem = React54__namespace.forwardRef(({ className, ...props }, ref) => {
   const { orientation } = useCarousel();
   return /* @__PURE__ */ jsxRuntime.jsx(
     "fieldset",
@@ -9188,7 +9341,7 @@ var CarouselItem = React55__namespace.forwardRef(({ className, ...props }, ref) 
   );
 });
 CarouselItem.displayName = "CarouselItem";
-var CarouselPrevious = React55__namespace.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+var CarouselPrevious = React54__namespace.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
   return /* @__PURE__ */ jsxRuntime.jsxs(
     Button,
@@ -9212,7 +9365,7 @@ var CarouselPrevious = React55__namespace.forwardRef(({ className, variant = "ou
   );
 });
 CarouselPrevious.displayName = "CarouselPrevious";
-var CarouselNext = React55__namespace.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+var CarouselNext = React54__namespace.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
   return /* @__PURE__ */ jsxRuntime.jsxs(
     Button,
@@ -9263,7 +9416,7 @@ var chipVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Chip = React55__namespace.forwardRef(
+var Chip = React54__namespace.forwardRef(
   ({
     className,
     variant,
@@ -9326,7 +9479,7 @@ var spacingClasses5 = {
   md: "gap-2",
   lg: "gap-3"
 };
-var ChipGroup = React55__namespace.forwardRef(
+var ChipGroup = React54__namespace.forwardRef(
   ({
     className,
     spacing = "md",
@@ -9352,8 +9505,8 @@ var ChipGroup = React55__namespace.forwardRef(
 );
 ChipGroup.displayName = "ChipGroup";
 function useMasonryLayout(containerRef, columns, gap) {
-  const [positions, setPositions] = React55__namespace.useState([]);
-  React55__namespace.useEffect(() => {
+  const [positions, setPositions] = React54__namespace.useState([]);
+  React54__namespace.useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;
     const containerWidth = container.offsetWidth;
@@ -9361,8 +9514,8 @@ function useMasonryLayout(containerRef, columns, gap) {
     const columnHeights = new Array(columns).fill(0);
     const newPositions = [];
     const children = container.children;
-    for (let i2 = 0; i2 < children.length; i2++) {
-      const child = children[i2];
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
       const height = child.offsetHeight;
       const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
       const top = columnHeights[shortestColumnIndex];
@@ -9374,7 +9527,7 @@ function useMasonryLayout(containerRef, columns, gap) {
   }, [columns, gap]);
   return positions;
 }
-var Masonry = React55__namespace.forwardRef(
+var Masonry = React54__namespace.forwardRef(
   ({
     className,
     columns = { sm: 1, md: 2, lg: 3, xl: 4 },
@@ -9382,9 +9535,9 @@ var Masonry = React55__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const innerRef = React55__namespace.useRef(null);
-    const [resolvedColumns, setResolvedColumns] = React55__namespace.useState(4);
-    React55__namespace.useEffect(() => {
+    const innerRef = React54__namespace.useRef(null);
+    const [resolvedColumns, setResolvedColumns] = React54__namespace.useState(4);
+    React54__namespace.useEffect(() => {
       const handleResize = () => {
         if (typeof columns === "number") {
           setResolvedColumns(columns);
@@ -9403,13 +9556,13 @@ var Masonry = React55__namespace.forwardRef(
     }, [columns]);
     const gapValue = typeof gap === "number" ? gap : parseInt(gap) || 16;
     const positions = useMasonryLayout(innerRef, resolvedColumns, gapValue);
-    const childrenWithPositions = React55__namespace.Children.toArray(children).map((child, index) => {
-      if (!React55__namespace.isValidElement(child)) return child;
+    const childrenWithPositions = React54__namespace.Children.toArray(children).map((child, index) => {
+      if (!React54__namespace.isValidElement(child)) return child;
       const position = positions[index];
       if (!position) return child;
       const containerWidth = innerRef.current?.offsetWidth || 0;
       const columnWidth = (containerWidth - gapValue * (resolvedColumns - 1)) / resolvedColumns;
-      return React55__namespace.cloneElement(child, {
+      return React54__namespace.cloneElement(child, {
         style: {
           ...child.props.style,
           position: "absolute",
@@ -9445,7 +9598,7 @@ var Masonry = React55__namespace.forwardRef(
   }
 );
 Masonry.displayName = "Masonry";
-var MasonryItem = React55__namespace.forwardRef(
+var MasonryItem = React54__namespace.forwardRef(
   ({ className, children, ...props }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       "div",
@@ -9490,7 +9643,7 @@ var timelineDotVariants = classVarianceAuthority.cva(
     }
   }
 );
-var TimelineItem = React55__namespace.forwardRef(
+var TimelineItem = React54__namespace.forwardRef(
   ({
     className,
     status = "default",
@@ -9505,7 +9658,7 @@ var TimelineItem = React55__namespace.forwardRef(
   }, ref) => {
     let IconComponent = icon;
     if (!IconComponent && iconType) {
-      IconComponent = React55__namespace.createElement(defaultIcons2[iconType], {
+      IconComponent = React54__namespace.createElement(defaultIcons2[iconType], {
         className: "h-2.5 w-2.5 text-primary-foreground"
       });
     }
@@ -9538,7 +9691,7 @@ var TimelineItem = React55__namespace.forwardRef(
   }
 );
 TimelineItem.displayName = "TimelineItem";
-var Timeline = React55__namespace.forwardRef(
+var Timeline = React54__namespace.forwardRef(
   ({
     className,
     children,
@@ -9550,9 +9703,9 @@ var Timeline = React55__namespace.forwardRef(
         ref,
         className: cn("space-y-0", className),
         ...props,
-        children: React55__namespace.Children.map(children, (child) => {
-          if (!React55__namespace.isValidElement(child)) return child;
-          return React55__namespace.cloneElement(child, {
+        children: React54__namespace.Children.map(children, (child) => {
+          if (!React54__namespace.isValidElement(child)) return child;
+          return React54__namespace.cloneElement(child, {
             ...child.props,
             className: cn(child.props.className)
           });
@@ -9562,7 +9715,7 @@ var Timeline = React55__namespace.forwardRef(
   }
 );
 Timeline.displayName = "Timeline";
-var TimelineSeparator = React55__namespace.forwardRef(
+var TimelineSeparator = React54__namespace.forwardRef(
   ({ className, children, ...props }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       "div",
@@ -9609,7 +9762,7 @@ var starSizeClasses = {
   md: "h-5 w-5",
   lg: "h-6 w-6"
 };
-var Rating = React55__namespace.forwardRef(
+var Rating = React54__namespace.forwardRef(
   ({
     className,
     value = 0,
@@ -9627,8 +9780,8 @@ var Rating = React55__namespace.forwardRef(
     color,
     ...props
   }, ref) => {
-    const [hoverValue, setHoverValue] = React55__namespace.useState(0);
-    const [isHovering, setIsHovering] = React55__namespace.useState(false);
+    const [hoverValue, setHoverValue] = React54__namespace.useState(0);
+    const [isHovering, setIsHovering] = React54__namespace.useState(false);
     const displayValue = isHovering ? hoverValue : value;
     const formattedValue = allowHalf ? displayValue.toFixed(1) : Math.round(displayValue).toString();
     const handleStarClick = (starValue) => {
@@ -9665,11 +9818,11 @@ var Rating = React55__namespace.forwardRef(
       const starValue = starIndex + 1;
       const isFilled = starValue <= displayValue;
       const isHalf = allowHalf && starValue - 0.5 === displayValue;
-      let icon = emptyIcon || /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Star, { className: starSizeClasses[size] });
+      let icon = emptyIcon || /* @__PURE__ */ jsxRuntime.jsx(Star__default.default, { className: starSizeClasses[size] });
       if (isHalf) {
-        icon = halfIcon || /* @__PURE__ */ jsxRuntime.jsx(lucideReact.StarHalf, { className: starSizeClasses[size] });
+        icon = halfIcon || /* @__PURE__ */ jsxRuntime.jsx(StarHalf__default.default, { className: starSizeClasses[size] });
       } else if (isFilled) {
-        icon = fillIcon || /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Star, { className: starSizeClasses[size], fill: "currentColor" });
+        icon = fillIcon || /* @__PURE__ */ jsxRuntime.jsx(Star__default.default, { className: starSizeClasses[size], fill: "currentColor" });
       }
       const iconStyle = color && (isFilled || isHalf) ? { color } : void 0;
       return /* @__PURE__ */ jsxRuntime.jsx(
@@ -9718,7 +9871,7 @@ var progressHeightClasses = {
   md: "h-2",
   lg: "h-3"
 };
-var RatingProgress = React55__namespace.forwardRef(
+var RatingProgress = React54__namespace.forwardRef(
   ({
     className,
     value,
@@ -9760,7 +9913,7 @@ var RatingProgress = React55__namespace.forwardRef(
   }
 );
 RatingProgress.displayName = "RatingProgress";
-var RatingSummary = React55__namespace.forwardRef(
+var RatingSummary = React54__namespace.forwardRef(
   ({
     className,
     average,
@@ -9823,9 +9976,9 @@ var STAR_CONFIGS = {
 };
 function generateStars(count, sizes, opacity) {
   const stars = [];
-  for (let i2 = 0; i2 < count; i2++) {
+  for (let i = 0; i < count; i++) {
     stars.push({
-      id: i2,
+      id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
       size: sizes[Math.floor(Math.random() * sizes.length)],
@@ -9855,12 +10008,12 @@ function CelestialBackground({
   variant = "default"
 } = {}) {
   const config = STAR_CONFIGS[variant];
-  const [stars, setStars] = React55.useState([]);
-  const [isMounted, setIsMounted] = React55.useState(false);
+  const [stars, setStars] = React54.useState([]);
+  const [isMounted, setIsMounted] = React54.useState(false);
   const cyan400 = designTokens.tokens.primitives.color.cyan["400"];
   const purple400 = designTokens.tokens.primitives.color.purple["400"];
   const pink500 = designTokens.tokens.primitives.color.pink["500"];
-  React55.useEffect(() => {
+  React54.useEffect(() => {
     setStars(generateStars(config.count, [...config.sizes], [...config.opacity]));
     setIsMounted(true);
   }, [config.count, config.sizes, config.opacity]);
@@ -9915,13 +10068,13 @@ function FloatingGrid({
   variant = "default",
   intensity = 0.5
 } = {}) {
-  const canvasRef = React55.useRef(null);
+  const canvasRef = React54.useRef(null);
   const { theme } = nextThemes.useTheme();
-  const [mounted, setMounted] = React55.useState(false);
-  React55.useEffect(() => {
+  const [mounted, setMounted] = React54.useState(false);
+  React54.useEffect(() => {
     setMounted(true);
   }, []);
-  React55.useEffect(() => {
+  React54.useEffect(() => {
     if (!mounted || theme !== "dark") return;
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -10042,35 +10195,35 @@ function generateCharacters(count) {
     return pattern[idx % pattern.length] || "0";
   });
 }
-function generateColumn(i2, columnCount, isMobile, isTablet) {
+function generateColumn(i, columnCount, isMobile, isTablet) {
   const randomId = Math.round(Math.random() * 1e4);
   const charactersCount = isMobile ? 12 + Math.floor(Math.random() * 8) : 15 + Math.floor(Math.random() * 12);
   return {
-    id: `col-${i2}-${randomId}`,
-    leftPct: i2 / columnCount * 100,
+    id: `col-${i}-${randomId}`,
+    leftPct: i / columnCount * 100,
     fontSize: isMobile ? 14 + Math.random() * 6 : isTablet ? 16 + Math.random() * 8 : 18 + Math.random() * 8,
     animationDuration: 6 + Math.random() * 4,
     // 6-10s para chuva devagar
-    animationDelay: i2 / columnCount * 8,
+    animationDelay: i / columnCount * 8,
     characters: generateCharacters(charactersCount)
   };
 }
 function MatrixBackgroundInner({ variant = "global" }) {
-  const [matrixColumns, setMatrixColumns] = React55.useState([]);
-  const [isInitialized, setIsInitialized] = React55.useState(false);
-  const initializeMatrix = React55.useCallback(() => {
+  const [matrixColumns, setMatrixColumns] = React54.useState([]);
+  const [isInitialized, setIsInitialized] = React54.useState(false);
+  const initializeMatrix = React54.useCallback(() => {
     if (isInitialized || typeof window === "undefined") return;
     const width = window.innerWidth;
     const isMobile = width < MOBILE_BREAKPOINT;
     const isTablet = width >= MOBILE_BREAKPOINT && width < TABLET_BREAKPOINT;
     const columnCount = isMobile ? Math.min(18, Math.max(10, Math.floor(width / 35))) : isTablet ? Math.min(28, Math.max(16, Math.floor(width / 38))) : Math.min(40, Math.max(25, Math.floor(width / 40)));
     const initialColumns = Array.from({ length: columnCount }).map(
-      (_, i2) => generateColumn(i2, columnCount, isMobile, isTablet)
+      (_, i) => generateColumn(i, columnCount, isMobile, isTablet)
     );
     setMatrixColumns(initialColumns);
     setIsInitialized(true);
   }, [isInitialized]);
-  React55.useEffect(() => {
+  React54.useEffect(() => {
     if (typeof window !== "undefined" && !isInitialized) {
       initializeMatrix();
     }
@@ -10167,25 +10320,25 @@ function MatrixBackgroundInner({ variant = "global" }) {
     )
   ] });
 }
-var MatrixBackground = React55.memo(MatrixBackgroundInner);
+var MatrixBackground = React54.memo(MatrixBackgroundInner);
 function StarsBackground() {
   const { resolvedTheme } = nextThemes.useTheme();
-  const [mounted, setMounted] = React55.useState(false);
-  const [stars, setStars] = React55.useState([]);
-  React55.useEffect(() => {
+  const [mounted, setMounted] = React54.useState(false);
+  const [stars, setStars] = React54.useState([]);
+  React54.useEffect(() => {
     setMounted(true);
   }, []);
-  React55.useEffect(() => {
+  React54.useEffect(() => {
     if (!mounted) return;
     const starsCount = 150;
-    const newStars = Array.from({ length: starsCount }, (_, i2) => {
+    const newStars = Array.from({ length: starsCount }, (_, i) => {
       const randomLeft = Math.random() * 100;
       const randomTop = Math.random() * 100;
       const randomSize = Math.random() * 2 + 0.5;
       const randomDelay = Math.random() * 3;
       const randomOpacity = 0.6 + Math.random() * 0.4;
       return {
-        id: i2,
+        id: i,
         left: randomLeft,
         top: randomTop,
         size: randomSize,
@@ -10358,24 +10511,24 @@ function onReducedMotionChange(callback) {
   };
 }
 function useSmoothScroll() {
-  const [reducedMotion, setReducedMotion] = React55.useState(false);
-  React55.useEffect(() => {
+  const [reducedMotion, setReducedMotion] = React54.useState(false);
+  React54.useEffect(() => {
     setReducedMotion(prefersReducedMotion());
     const cleanup = onReducedMotionChange((matches) => {
       setReducedMotion(matches);
     });
     return cleanup;
   }, []);
-  const scrollTo = React55.useCallback(
+  const scrollTo = React54.useCallback(
     (target, options) => {
       smoothScrollTo(target, options);
     },
     []
   );
-  const toTop = React55.useCallback(() => {
+  const toTop = React54.useCallback(() => {
     scrollToTop();
   }, []);
-  const toPosition = React55.useCallback((top, left = 0) => {
+  const toPosition = React54.useCallback((top, left = 0) => {
     scrollToPosition(left, top);
   }, []);
   return {
@@ -10388,9 +10541,9 @@ function useSmoothScroll() {
 }
 var SCROLL_THRESHOLD_PX = 300;
 function BackToTopButton() {
-  const [isButtonVisible, setIsButtonVisible] = React55.useState(false);
+  const [isButtonVisible, setIsButtonVisible] = React54.useState(false);
   const { scrollToTop: scrollToTop2, reducedMotion } = useSmoothScroll();
-  React55.useEffect(() => {
+  React54.useEffect(() => {
     const handleScrollEvent = () => {
       setIsButtonVisible(window.scrollY > SCROLL_THRESHOLD_PX);
     };
@@ -10550,10 +10703,10 @@ function getCookieManager() {
 }
 var NextLink = Link2__default.default;
 function CookieBanner() {
-  const [showBanner, setShowBanner] = React55.useState(false);
-  const [canShowBanner, setCanShowBanner] = React55.useState(false);
-  const [showCustomize, setShowCustomize] = React55.useState(false);
-  const [preferences, setPreferences] = React55.useState({
+  const [showBanner, setShowBanner] = React54.useState(false);
+  const [canShowBanner, setCanShowBanner] = React54.useState(false);
+  const [showCustomize, setShowCustomize] = React54.useState(false);
+  const [preferences, setPreferences] = React54.useState({
     essential: true,
     // Sempre verdadeiro, não pode ser desabilitado
     performance: true,
@@ -10561,7 +10714,7 @@ function CookieBanner() {
     analytics: true
   });
   const cookieManager = getCookieManager();
-  React55.useEffect(() => {
+  React54.useEffect(() => {
     if (typeof globalThis.window === "undefined") return;
     if (cookieManager.hasConsent()) {
       const savedPreferences = cookieManager.getPreferences();
@@ -10576,11 +10729,11 @@ function CookieBanner() {
       }
     }
   }, [cookieManager]);
-  const hasShownBannerRef = React55.useRef(false);
-  const scrollThresholdRef = React55.useRef(0);
-  const scrollTimeoutRef = React55.useRef(null);
-  const mouseTimeoutRef = React55.useRef(null);
-  React55.useEffect(() => {
+  const hasShownBannerRef = React54.useRef(false);
+  const scrollThresholdRef = React54.useRef(0);
+  const scrollTimeoutRef = React54.useRef(null);
+  const mouseTimeoutRef = React54.useRef(null);
+  React54.useEffect(() => {
     if (typeof globalThis.window === "undefined" || !canShowBanner || hasShownBannerRef.current)
       return;
     const heroHeight = globalThis.window.innerHeight;
@@ -11018,20 +11171,20 @@ function CookieBanner() {
 }
 function useTheme4() {
   const { theme, resolvedTheme, setTheme } = nextThemes.useTheme();
-  const toggle = React55__namespace.useCallback(() => {
+  const toggle = React54__namespace.useCallback(() => {
     if (theme === "system") {
       setTheme(resolvedTheme === "dark" ? "light" : "dark");
     } else {
       setTheme(theme === "dark" ? "light" : "dark");
     }
   }, [theme, resolvedTheme, setTheme]);
-  const setLight = React55__namespace.useCallback(() => {
+  const setLight = React54__namespace.useCallback(() => {
     setTheme("light");
   }, [setTheme]);
-  const setDark = React55__namespace.useCallback(() => {
+  const setDark = React54__namespace.useCallback(() => {
     setTheme("dark");
   }, [setTheme]);
-  const setSystem = React55__namespace.useCallback(() => {
+  const setSystem = React54__namespace.useCallback(() => {
     setTheme("system");
   }, [setTheme]);
   return {
@@ -11049,8 +11202,8 @@ function useTheme4() {
 }
 function ThemeToggle({ className }) {
   const { toggle, isDark } = useTheme4();
-  const [mounted, setMounted] = React55__namespace.useState(false);
-  React55__namespace.useEffect(() => {
+  const [mounted, setMounted] = React54__namespace.useState(false);
+  React54__namespace.useEffect(() => {
     setMounted(true);
   }, []);
   const handleToggle = () => {
@@ -11110,13 +11263,13 @@ function ThemeToggle({ className }) {
       "aria-label": isDark ? "Mudar para tema claro" : "Mudar para tema escuro",
       children: [
         isDark ? /* @__PURE__ */ jsxRuntime.jsx(
-          lucideReact.Moon,
+          Moon__default.default,
           {
             className: "h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-200 text-text-secondary",
             "aria-hidden": "true"
           }
         ) : /* @__PURE__ */ jsxRuntime.jsx(
-          lucideReact.Sun,
+          Sun__default.default,
           {
             className: "h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-200 text-text-primary",
             "aria-hidden": "true"
@@ -11127,84 +11280,14 @@ function ThemeToggle({ className }) {
     }
   );
 }
-var ErrorBoundary = class extends React55.Component {
-  constructor(props) {
-    super(props);
-    this.handleReset = () => {
-      this.setState({
-        hasError: false,
-        error: null,
-        errorInfo: null
-      });
-    };
-    this.handleGoHome = () => {
-      window.location.href = "/";
-    };
-    this.state = {
-      hasError: false,
-      error: null,
-      errorInfo: null
-    };
-  }
-  static getDerivedStateFromError(error) {
-    return {
-      hasError: true,
-      error
-    };
-  }
-  componentDidCatch(error, errorInfo) {
-    console.error("ErrorBoundary caught:", error, errorInfo);
-    this.setState({
-      error,
-      errorInfo
-    });
-    if (this.props.onError) {
-      this.props.onError(error, errorInfo);
-    }
-  }
-  render() {
-    if (this.state.hasError) {
-      if (this.props.fallback) {
-        return /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: this.props.fallback });
-      }
-      return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "min-h-screen flex items-center justify-center p-4", children: /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: "max-w-lg w-full", children: [
-        /* @__PURE__ */ jsxRuntime.jsxs(CardHeader, { className: "text-center", children: [
-          /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mx-auto w-16 h-16 bg-destructive/10 rounded-full flex items-center justify-center mb-4", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.AlertTriangle, { className: "h-8 w-8 text-destructive" }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(CardTitle, { className: "text-2xl", children: "Ops! Algo deu errado" }),
-          /* @__PURE__ */ jsxRuntime.jsx(CardDescription, { children: "Encontramos um erro inesperado. Por favor, tente novamente." })
-        ] }),
-        /* @__PURE__ */ jsxRuntime.jsxs(CardContent, { className: "space-y-4", children: [
-          process.env.NODE_ENV === "development" && this.state.error && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "p-4 bg-muted rounded-lg", children: [
-            /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm font-mono text-muted-foreground", children: this.state.error.toString() }),
-            this.state.errorInfo && /* @__PURE__ */ jsxRuntime.jsxs("details", { className: "mt-2", children: [
-              /* @__PURE__ */ jsxRuntime.jsx("summary", { className: "cursor-pointer text-sm text-muted-foreground hover:text-foreground", children: "Stack trace" }),
-              /* @__PURE__ */ jsxRuntime.jsx("pre", { className: "mt-2 text-xs overflow-auto", children: this.state.errorInfo.componentStack })
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-3", children: [
-            /* @__PURE__ */ jsxRuntime.jsxs(Button, { onClick: this.handleReset, variant: "outline", className: "flex-1", children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { className: "h-4 w-4 mr-2" }),
-              "Tentar Novamente"
-            ] }),
-            /* @__PURE__ */ jsxRuntime.jsxs(Button, { onClick: this.handleGoHome, className: "flex-1", children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Home, { className: "h-4 w-4 mr-2" }),
-              "Ir para Home"
-            ] })
-          ] })
-        ] })
-      ] }) });
-    }
-    return this.props.children;
-  }
-};
 function usePWA() {
-  const [deferredPrompt, setDeferredPrompt] = React55.useState(null);
-  const [isInstallable, setIsInstallable] = React55.useState(false);
-  const [isInstalled, setIsInstalled] = React55.useState(false);
-  const [isStandalone, setIsStandalone] = React55.useState(false);
-  const [updateAvailable, setUpdateAvailable] = React55.useState(false);
-  const [swRegistration, setSwRegistration] = React55.useState(null);
-  React55.useEffect(() => {
+  const [deferredPrompt, setDeferredPrompt] = React54.useState(null);
+  const [isInstallable, setIsInstallable] = React54.useState(false);
+  const [isInstalled, setIsInstalled] = React54.useState(false);
+  const [isStandalone, setIsStandalone] = React54.useState(false);
+  const [updateAvailable, setUpdateAvailable] = React54.useState(false);
+  const [swRegistration, setSwRegistration] = React54.useState(null);
+  React54.useEffect(() => {
     if (typeof window === "undefined" || !("serviceWorker" in navigator)) {
       return;
     }
@@ -11226,7 +11309,7 @@ function usePWA() {
     }).catch(() => {
     });
   }, []);
-  React55.useEffect(() => {
+  React54.useEffect(() => {
     if (typeof window === "undefined") return;
     const isStandaloneiOS = window.navigator.standalone === true;
     const isStandaloneAndroid = window.matchMedia(
@@ -11239,7 +11322,7 @@ function usePWA() {
     setIsStandalone(standalone);
     setIsInstalled(standalone);
   }, []);
-  React55.useEffect(() => {
+  React54.useEffect(() => {
     if (typeof window === "undefined") return;
     const handleBeforeInstallPrompt = (e) => {
       e.preventDefault();
@@ -11261,7 +11344,7 @@ function usePWA() {
       window.removeEventListener("appinstalled", handleAppInstalled);
     };
   }, []);
-  const promptInstall = React55.useCallback(async () => {
+  const promptInstall = React54.useCallback(async () => {
     if (!deferredPrompt) {
       return;
     }
@@ -11270,7 +11353,7 @@ function usePWA() {
     setDeferredPrompt(null);
     setIsInstallable(false);
   }, [deferredPrompt]);
-  const updateServiceWorker = React55.useCallback(() => {
+  const updateServiceWorker = React54.useCallback(() => {
     if (!swRegistration || !swRegistration.waiting) {
       return;
     }
@@ -11290,13 +11373,13 @@ function usePWA() {
 }
 function InstallPrompt() {
   const { resolvedTheme } = nextThemes.useTheme();
-  const [mounted, setMounted] = React55.useState(false);
+  const [mounted, setMounted] = React54.useState(false);
   const { isInstallable, isStandalone, promptInstall } = usePWA();
-  const [showPrompt, setShowPrompt] = React55.useState(false);
-  React55.useEffect(() => {
+  const [showPrompt, setShowPrompt] = React54.useState(false);
+  React54.useEffect(() => {
     setMounted(true);
   }, []);
-  React55.useEffect(() => {
+  React54.useEffect(() => {
     if (typeof window === "undefined") return;
     const dismissed = localStorage.getItem("pwa-install-dismissed");
     if (isInstallable && !isStandalone && !dismissed) {
@@ -11426,9 +11509,9 @@ function InstallPrompt() {
 }
 function UpdateNotification() {
   const { resolvedTheme } = nextThemes.useTheme();
-  const [mounted, setMounted] = React55.useState(false);
+  const [mounted, setMounted] = React54.useState(false);
   const { updateAvailable, updateServiceWorker } = usePWA();
-  React55.useEffect(() => {
+  React54.useEffect(() => {
     setMounted(true);
   }, []);
   const isDark = mounted ? resolvedTheme === "dark" : false;
@@ -11521,11 +11604,11 @@ function UpdateNotification() {
   );
 }
 function LoadingScreen({ progress, currentStep }) {
-  const [displayedProgress, setDisplayedProgress] = React55.useState(0);
-  const [stars, setStars] = React55.useState([]);
-  const [mounted, setMounted] = React55.useState(false);
+  const [displayedProgress, setDisplayedProgress] = React54.useState(0);
+  const [stars, setStars] = React54.useState([]);
+  const [mounted, setMounted] = React54.useState(false);
   const { theme, systemTheme } = nextThemes.useTheme();
-  React55.useEffect(() => {
+  React54.useEffect(() => {
     setMounted(true);
   }, []);
   const currentTheme = mounted ? theme === "system" ? systemTheme : theme : "light";
@@ -11535,10 +11618,10 @@ function LoadingScreen({ progress, currentStep }) {
   const accentColor = isDark ? designTokens.tokens.primitives.color.red["400"] : designTokens.tokens.primitives.color.red["600"];
   const primaryRGB = hexToRGB(primaryColor);
   const secondaryRGB = hexToRGB(secondaryColor);
-  React55.useEffect(() => {
+  React54.useEffect(() => {
     const starsCount = 100;
-    const newStars = Array.from({ length: starsCount }, (_, i2) => ({
-      id: i2,
+    const newStars = Array.from({ length: starsCount }, (_, i) => ({
+      id: i,
       left: Math.random() * 100,
       top: Math.random() * 100,
       size: Math.random() * 2 + 0.5,
@@ -11547,7 +11630,7 @@ function LoadingScreen({ progress, currentStep }) {
     }));
     setStars(newStars);
   }, []);
-  React55.useEffect(() => {
+  React54.useEffect(() => {
     if (progress === void 0) {
       setDisplayedProgress(0);
       return;
@@ -11747,8 +11830,8 @@ function LoadingScreen({ progress, currentStep }) {
   );
 }
 function TokensDemo() {
-  const [mounted, setMounted] = React55.useState(false);
-  React55.useEffect(() => {
+  const [mounted, setMounted] = React54.useState(false);
+  React54.useEffect(() => {
     setMounted(true);
   }, []);
   if (!mounted) return null;
@@ -11825,7 +11908,7 @@ function TokensDemo() {
     ] })
   ] });
 }
-var VisuallyHidden = React55__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var VisuallyHidden = React54__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "span",
   {
     ref,
@@ -11862,7 +11945,7 @@ var kbdVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Kbd = React55__namespace.forwardRef(
+var Kbd = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -11882,7 +11965,7 @@ var Kbd = React55__namespace.forwardRef(
   }
 );
 Kbd.displayName = "Kbd";
-var KbdCombo = React55__namespace.forwardRef(
+var KbdCombo = React54__namespace.forwardRef(
   ({
     className,
     keys,
@@ -11897,7 +11980,7 @@ var KbdCombo = React55__namespace.forwardRef(
         ref,
         className: cn("flex items-center gap-1", className),
         ...props,
-        children: keys.map((key, index) => /* @__PURE__ */ jsxRuntime.jsxs(React55__namespace.Fragment, { children: [
+        children: keys.map((key, index) => /* @__PURE__ */ jsxRuntime.jsxs(React54__namespace.Fragment, { children: [
           index > 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-muted-foreground text-xs font-normal", children: separator }),
           /* @__PURE__ */ jsxRuntime.jsx(Kbd, { size, variant, children: key })
         ] }, index))
@@ -11981,7 +12064,7 @@ var codeVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Code = React55__namespace.forwardRef(
+var Code = React54__namespace.forwardRef(
   ({
     className,
     variant = "inline",
@@ -11994,9 +12077,9 @@ var Code = React55__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [copied, setCopied] = React55__namespace.useState(false);
-    const codeRef = React55__namespace.useRef(null);
-    const handleCopy = React55__namespace.useCallback(async () => {
+    const [copied, setCopied] = React54__namespace.useState(false);
+    const codeRef = React54__namespace.useRef(null);
+    const handleCopy = React54__namespace.useCallback(async () => {
       if (codeRef.current) {
         const text = codeRef.current.textContent || "";
         await navigator.clipboard.writeText(text);
@@ -12028,10 +12111,10 @@ var Code = React55__namespace.forwardRef(
             className: "h-7 px-2 text-xs",
             onClick: handleCopy,
             children: copied ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { className: "h-3 w-3 mr-1" }),
+              /* @__PURE__ */ jsxRuntime.jsx(Check4__default.default, { className: "h-3 w-3 mr-1" }),
               "Copiado!"
             ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Copy, { className: "h-3 w-3 mr-1" }),
+              /* @__PURE__ */ jsxRuntime.jsx(Copy__default.default, { className: "h-3 w-3 mr-1" }),
               "Copiar"
             ] })
           }
@@ -12057,7 +12140,7 @@ var Code = React55__namespace.forwardRef(
   }
 );
 Code.displayName = "Code";
-var CodeInline = React55__namespace.forwardRef(
+var CodeInline = React54__namespace.forwardRef(
   ({
     className,
     color = "default",
@@ -12075,7 +12158,7 @@ var CodeInline = React55__namespace.forwardRef(
   }
 );
 CodeInline.displayName = "CodeInline";
-var CodeBlock = React55__namespace.forwardRef(
+var CodeBlock = React54__namespace.forwardRef(
   ({
     className,
     ...props
@@ -12122,7 +12205,7 @@ var quoteVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Quote = React55__namespace.forwardRef(
+var Quote = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -12136,7 +12219,7 @@ var Quote = React55__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const IconComponent = icon || (variant === "testimonial" || variant === "card" ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.QuoteIcon, { className: "h-8 w-8 text-primary/20" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.QuoteIcon, { className: "h-4 w-4 text-muted-foreground" }));
+    const IconComponent = icon || (variant === "testimonial" || variant === "card" ? /* @__PURE__ */ jsxRuntime.jsx(QuoteIcon__default.default, { className: "h-8 w-8 text-primary/20" }) : /* @__PURE__ */ jsxRuntime.jsx(QuoteIcon__default.default, { className: "h-4 w-4 text-muted-foreground" }));
     return /* @__PURE__ */ jsxRuntime.jsxs(
       "blockquote",
       {
@@ -12173,7 +12256,7 @@ var Quote = React55__namespace.forwardRef(
   }
 );
 Quote.displayName = "Quote";
-var QuoteTestimonial = React55__namespace.forwardRef(
+var QuoteTestimonial = React54__namespace.forwardRef(
   ({
     className,
     author,
@@ -12211,23 +12294,23 @@ var QuoteTestimonial = React55__namespace.forwardRef(
             source && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-sm text-muted-foreground", children: source })
           ] })
         ] }),
-        rating && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex gap-0.5", children: Array.from({ length: 5 }).map((_, i2) => /* @__PURE__ */ jsxRuntime.jsx(
+        rating && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex gap-0.5", children: Array.from({ length: 5 }).map((_, i) => /* @__PURE__ */ jsxRuntime.jsx(
           "span",
           {
             className: cn(
               "text-lg",
-              i2 < rating ? "text-amber-400" : "text-muted-foreground/30"
+              i < rating ? "text-amber-400" : "text-muted-foreground/30"
             ),
             children: "\u2605"
           },
-          i2
+          i
         )) })
       ] })
     ] });
   }
 );
 QuoteTestimonial.displayName = "QuoteTestimonial";
-var QuoteBlock = React55__namespace.forwardRef(
+var QuoteBlock = React54__namespace.forwardRef(
   ({
     className,
     children,
@@ -12278,7 +12361,7 @@ var aspectRatioBoxVariants = classVarianceAuthority.cva(
     }
   }
 );
-var AspectRatioBox = React55__namespace.forwardRef(
+var AspectRatioBox = React54__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -12287,13 +12370,13 @@ var AspectRatioBox = React55__namespace.forwardRef(
     objectFit = "cover",
     ...props
   }, ref) => {
-    const resolvedRatio = React55__namespace.useMemo(() => {
+    const resolvedRatio = React54__namespace.useMemo(() => {
       if (typeof ratio === "string" && ratio in ASPECT_RATIOS) {
         return ASPECT_RATIOS[ratio];
       }
       return ratio;
     }, [ratio]);
-    const paddingBottom = React55__namespace.useMemo(() => {
+    const paddingBottom = React54__namespace.useMemo(() => {
       const [width, height] = resolvedRatio.split("/").map(Number);
       return `${height / width * 100}%`;
     }, [resolvedRatio]);
@@ -12309,7 +12392,7 @@ var AspectRatioBox = React55__namespace.forwardRef(
         className: cn(aspectRatioBoxVariants({ variant }), className),
         style: { paddingBottom },
         ...props,
-        children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute inset-0", children: React55__namespace.isValidElement(children) ? React55__namespace.cloneElement(children, {
+        children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute inset-0", children: React54__namespace.isValidElement(children) ? React54__namespace.cloneElement(children, {
           className: cn(
             objectFitClasses[objectFit],
             children.props.className
@@ -12320,7 +12403,7 @@ var AspectRatioBox = React55__namespace.forwardRef(
   }
 );
 AspectRatioBox.displayName = "AspectRatioBox";
-var AspectRatioImage = React55__namespace.forwardRef(
+var AspectRatioImage = React54__namespace.forwardRef(
   ({
     className,
     ratio = "square",
@@ -12342,7 +12425,7 @@ var AspectRatioImage = React55__namespace.forwardRef(
   }
 );
 AspectRatioImage.displayName = "AspectRatioImage";
-var AspectRatioVideo = React55__namespace.forwardRef(
+var AspectRatioVideo = React54__namespace.forwardRef(
   ({
     className,
     ratio = "video",
@@ -12360,7 +12443,7 @@ var AspectRatioVideo = React55__namespace.forwardRef(
   }
 );
 AspectRatioVideo.displayName = "AspectRatioVideo";
-var AspectRatioIframe = React55__namespace.forwardRef(
+var AspectRatioIframe = React54__namespace.forwardRef(
   ({
     className,
     ratio = "video",
@@ -12398,7 +12481,7 @@ var centerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Center = React55__namespace.forwardRef(
+var Center = React54__namespace.forwardRef(
   ({
     className,
     direction = "both",
@@ -12411,7 +12494,7 @@ var Center = React55__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const centerStyle = React55__namespace.useMemo(() => {
+    const centerStyle = React54__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (padding !== void 0) {
         customStyle.padding = typeof padding === "number" ? `${padding}px` : padding;
@@ -12440,7 +12523,7 @@ var Center = React55__namespace.forwardRef(
   }
 );
 Center.displayName = "Center";
-var CenterInline = React55__namespace.forwardRef(
+var CenterInline = React54__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Center,
@@ -12453,7 +12536,7 @@ var CenterInline = React55__namespace.forwardRef(
   }
 );
 CenterInline.displayName = "CenterInline";
-var CenterScreen = React55__namespace.forwardRef(
+var CenterScreen = React54__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Center,
@@ -12468,7 +12551,7 @@ var CenterScreen = React55__namespace.forwardRef(
   }
 );
 CenterScreen.displayName = "CenterScreen";
-var CenterText = React55__namespace.forwardRef(
+var CenterText = React54__namespace.forwardRef(
   ({
     className,
     align = "center",
@@ -12503,9 +12586,9 @@ function LikeButton({
   onUnlike,
   className
 }) {
-  const [isLiked, setIsLiked] = React55.useState(initialIsLiked);
-  const [likes, setLikes] = React55.useState(initialLikes);
-  const [isAnimating, setIsAnimating] = React55.useState(false);
+  const [isLiked, setIsLiked] = React54.useState(initialIsLiked);
+  const [likes, setLikes] = React54.useState(initialLikes);
+  const [isAnimating, setIsAnimating] = React54.useState(false);
   const handleLike = () => {
     setIsAnimating(true);
     console.debug(`A\xE7\xE3o de curtir para o item: ${itemId}`);
@@ -12562,7 +12645,7 @@ function LikeButton({
               } : {},
               transition: { duration: 0.3 },
               children: /* @__PURE__ */ jsxRuntime.jsx(
-                lucideReact.Heart,
+                Heart4__default.default,
                 {
                   className: cn("h-4 w-4 transition-all", isLiked && "fill-current")
                 }
@@ -12596,7 +12679,7 @@ function LikeButton({
             } : {},
             transition: { duration: 0.6, ease: "easeInOut" },
             children: /* @__PURE__ */ jsxRuntime.jsx(
-              lucideReact.Heart,
+              Heart4__default.default,
               {
                 className: cn("h-4 w-4 transition-all", isLiked && "fill-current")
               }
@@ -12635,8 +12718,8 @@ function ShareButton({
   onShare,
   onCopy
 }) {
-  const [copied, setCopied] = React55.useState(false);
-  const [showQR, setShowQR] = React55.useState(false);
+  const [copied, setCopied] = React54.useState(false);
+  const [showQR, setShowQR] = React54.useState(false);
   const shareUrl = typeof window !== "undefined" ? `${window.location.origin}${url}` : url;
   async function copyToClipboard() {
     try {
@@ -12678,7 +12761,7 @@ function ShareButton({
   return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
     /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenu, { children: [
       /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsxs(Button, { variant, size, className: "gap-2", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Share2, { className: "h-4 w-4" }),
+        /* @__PURE__ */ jsxRuntime.jsx(Share2__default.default, { className: "h-4 w-4" }),
         showLabel && /* @__PURE__ */ jsxRuntime.jsx("span", { children: "Compartilhar" })
       ] }) }),
       /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuContent, { align: "end", className: "w-56", children: [
@@ -12686,41 +12769,41 @@ function ShareButton({
         /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {}),
         typeof navigator !== "undefined" && "share" in navigator && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
           /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: shareNative, children: [
-            /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Share2, { className: "mr-2 h-4 w-4" }),
+            /* @__PURE__ */ jsxRuntime.jsx(Share2__default.default, { className: "mr-2 h-4 w-4" }),
             "Compartilhar..."
           ] }),
           /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {})
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("facebook"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Facebook, { className: "mr-2 h-4 w-4 text-blue-600" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Facebook__default.default, { className: "mr-2 h-4 w-4 text-blue-600" }),
           "Facebook"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("twitter"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Twitter, { className: "mr-2 h-4 w-4 text-sky-500" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Twitter__default.default, { className: "mr-2 h-4 w-4 text-sky-500" }),
           "Twitter / X"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("linkedin"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Linkedin, { className: "mr-2 h-4 w-4 text-blue-700" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Linkedin__default.default, { className: "mr-2 h-4 w-4 text-blue-700" }),
           "LinkedIn"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("whatsapp"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MessageCircle, { className: "mr-2 h-4 w-4 text-green-600" }),
+          /* @__PURE__ */ jsxRuntime.jsx(MessageCircle__default.default, { className: "mr-2 h-4 w-4 text-green-600" }),
           "WhatsApp"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("telegram"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Send, { className: "mr-2 h-4 w-4 text-blue-500" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Send__default.default, { className: "mr-2 h-4 w-4 text-blue-500" }),
           "Telegram"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {}),
         /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuItem, { onClick: copyToClipboard, children: copied ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { className: "mr-2 h-4 w-4 text-green-500" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Check4__default.default, { className: "mr-2 h-4 w-4 text-green-500" }),
           /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-green-500", children: "Link copiado!" })
         ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Link, { className: "mr-2 h-4 w-4" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Link3__default.default, { className: "mr-2 h-4 w-4" }),
           "Copiar link"
         ] }) }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => setShowQR(true), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.QrCode, { className: "mr-2 h-4 w-4" }),
+          /* @__PURE__ */ jsxRuntime.jsx(QrCode__default.default, { className: "mr-2 h-4 w-4" }),
           "QR Code"
         ] })
       ] })
@@ -12758,7 +12841,7 @@ function ShareButton({
             className: "flex-1",
             onClick: copyToClipboard,
             children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Link, { className: "mr-2 h-4 w-4" }),
+              /* @__PURE__ */ jsxRuntime.jsx(Link3__default.default, { className: "mr-2 h-4 w-4" }),
               "Copiar Link"
             ]
           }
@@ -12780,8 +12863,8 @@ function BookmarkButton({
   onUnbookmark,
   className
 }) {
-  const [isBookmarked, setIsBookmarked] = React55.useState(initialIsBookmarked);
-  const [isAnimating, setIsAnimating] = React55.useState(false);
+  const [isBookmarked, setIsBookmarked] = React54.useState(initialIsBookmarked);
+  const [isAnimating, setIsAnimating] = React54.useState(false);
   const handleBookmark = () => {
     setIsAnimating(true);
     console.debug(`A\xE7\xE3o de bookmark para o item: ${itemId}`);
@@ -12837,7 +12920,7 @@ function BookmarkButton({
             } : {},
             transition: { duration: 0.6, ease: "easeInOut" },
             children: /* @__PURE__ */ jsxRuntime.jsx(
-              lucideReact.Bookmark,
+              Bookmark__default.default,
               {
                 className: cn(
                   "h-4 w-4 transition-all",
@@ -12922,7 +13005,7 @@ function ReadingTime({
       role: "timer",
       "aria-label": `Tempo estimado: ${formattedTime} ${unitText}`,
       children: [
-        showIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "flex-shrink-0", "aria-hidden": "true", children: icon || /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Clock, { className: "h-4 w-4" }) }),
+        showIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "flex-shrink-0", "aria-hidden": "true", children: icon || /* @__PURE__ */ jsxRuntime.jsx(Clock__default.default, { className: "h-4 w-4" }) }),
         /* @__PURE__ */ jsxRuntime.jsx("span", { className: "whitespace-nowrap", children: defaultText })
       ]
     }
@@ -12959,9 +13042,9 @@ function ActionButton({
   ariaLabel,
   activeColor = "primary"
 }) {
-  const [isAnimating, setIsAnimating] = React55.useState(false);
-  const [currentActive, setCurrentActive] = React55.useState(isActive);
-  React.useEffect(() => {
+  const [isAnimating, setIsAnimating] = React54.useState(false);
+  const [currentActive, setCurrentActive] = React54.useState(isActive);
+  React54.useEffect(() => {
     setCurrentActive(isActive);
   }, [isActive]);
   const handleClick = () => {
@@ -13041,7 +13124,7 @@ var DEFAULT_PLATFORMS = [
   {
     id: "facebook",
     name: "Facebook",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Facebook, { className: "h-4 w-4" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(Facebook__default.default, { className: "h-4 w-4" }),
     color: "text-blue-600",
     url: "https://www.facebook.com/sharer/sharer.php?u={url}&t={title}",
     order: 1
@@ -13049,7 +13132,7 @@ var DEFAULT_PLATFORMS = [
   {
     id: "twitter",
     name: "Twitter / X",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Twitter, { className: "h-4 w-4" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(Twitter__default.default, { className: "h-4 w-4" }),
     color: "text-sky-500",
     url: "https://twitter.com/intent/tweet?url={url}&text={title}",
     order: 2
@@ -13057,7 +13140,7 @@ var DEFAULT_PLATFORMS = [
   {
     id: "linkedin",
     name: "LinkedIn",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Linkedin, { className: "h-4 w-4" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(Linkedin__default.default, { className: "h-4 w-4" }),
     color: "text-blue-700",
     url: "https://www.linkedin.com/sharing/share-offsite/?url={url}",
     order: 3
@@ -13065,7 +13148,7 @@ var DEFAULT_PLATFORMS = [
   {
     id: "whatsapp",
     name: "WhatsApp",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MessageCircle, { className: "h-4 w-4" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(MessageCircle__default.default, { className: "h-4 w-4" }),
     color: "text-green-600",
     url: "https://api.whatsapp.com/send?text={title}%20{url}",
     order: 4
@@ -13073,7 +13156,7 @@ var DEFAULT_PLATFORMS = [
   {
     id: "telegram",
     name: "Telegram",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Send, { className: "h-4 w-4" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(Send__default.default, { className: "h-4 w-4" }),
     color: "text-blue-500",
     url: "https://t.me/share/url?url={url}&text={title}",
     order: 5
@@ -13096,8 +13179,8 @@ function ShareMenu({
   side = "bottom",
   align = "end"
 }) {
-  const [copied, setCopied] = React55.useState(false);
-  const [showQR, setShowQR] = React55.useState(false);
+  const [copied, setCopied] = React54.useState(false);
+  const [showQR, setShowQR] = React54.useState(false);
   const shareUrl = typeof window !== "undefined" ? url.startsWith("http") ? url : `${window.location.origin}${url}` : url;
   const copyToClipboard = async () => {
     try {
@@ -13143,7 +13226,7 @@ function ShareMenu({
   };
   const enabledPlatforms = DEFAULT_PLATFORMS.filter((p) => platforms.includes(p.id)).sort((a, b) => (a.order || 0) - (b.order || 0));
   const TriggerButton = () => /* @__PURE__ */ jsxRuntime.jsxs(Button, { variant, size, className: cn("gap-2", className), children: [
-    /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Share2, { className: "h-4 w-4" }),
+    /* @__PURE__ */ jsxRuntime.jsx(Share2__default.default, { className: "h-4 w-4" }),
     showLabel && /* @__PURE__ */ jsxRuntime.jsx("span", { children: label })
   ] });
   return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
@@ -13154,7 +13237,7 @@ function ShareMenu({
         /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {}),
         showNativeShare && typeof navigator !== "undefined" && "share" in navigator && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
           /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: shareNative, children: [
-            /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Smartphone, { className: "mr-2 h-4 w-4" }),
+            /* @__PURE__ */ jsxRuntime.jsx(Smartphone__default.default, { className: "mr-2 h-4 w-4" }),
             "Compartilhar..."
           ] }),
           /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {})
@@ -13172,14 +13255,14 @@ function ShareMenu({
         )),
         (showCopyLink || showQRCode) && /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {}),
         showCopyLink && /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuItem, { onClick: copyToClipboard, children: copied ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { className: "mr-2 h-4 w-4 text-green-500" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Check4__default.default, { className: "mr-2 h-4 w-4 text-green-500" }),
           /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-green-500", children: "Link copiado!" })
         ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Copy, { className: "mr-2 h-4 w-4" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Copy__default.default, { className: "mr-2 h-4 w-4" }),
           "Copiar link"
         ] }) }),
         showQRCode && /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => setShowQR(true), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.QrCode, { className: "mr-2 h-4 w-4" }),
+          /* @__PURE__ */ jsxRuntime.jsx(QrCode__default.default, { className: "mr-2 h-4 w-4" }),
           "QR Code"
         ] })
       ] })
@@ -13219,7 +13302,7 @@ function ShareMenu({
             className: "flex-1",
             onClick: copyToClipboard,
             children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Link2, { className: "mr-2 h-4 w-4" }),
+              /* @__PURE__ */ jsxRuntime.jsx(Link22__default.default, { className: "mr-2 h-4 w-4" }),
               "Copiar Link"
             ]
           }
@@ -13275,7 +13358,6 @@ var ShareMenuVariants = {
     }
   )
 };
-i;
 var formatRelativeDate = (date) => {
   try {
     return dateFns.formatDistanceToNow(new Date(date), {
@@ -13307,20 +13389,15 @@ function ContentCard({
   const renderImage = () => {
     if (!showImage || !image) return null;
     return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative overflow-hidden", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "aspect-video relative", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(
-        Image2__default.default,
-        {
-          src: image,
-          alt: imageAlt || title,
-          fill: true,
-          className: cn(
-            "object-cover transition-transform duration-300",
-            "group-hover:scale-105"
-          ),
-          priority: imagePriority,
-          sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        }
-      ),
+      React54__namespace.default.createElement("img", {
+        src: image,
+        alt: imageAlt || title,
+        className: cn(
+          "w-full h-full object-cover transition-transform duration-300",
+          "group-hover:scale-105"
+        ),
+        loading: imagePriority ? "eager" : "lazy"
+      }),
       metadata?.badge && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute top-2 right-2", children: /* @__PURE__ */ jsxRuntime.jsx(Badge, { variant: "default", className: "bg-red-500 text-white", children: metadata.badge }) })
     ] }) });
   };
@@ -13471,7 +13548,7 @@ function ContentCard({
                         className: "gap-1 text-primary",
                         children: [
                           "Ler mais",
-                          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Link, { className: "h-3 w-3" })
+                          /* @__PURE__ */ jsxRuntime.jsx(Link3__default.default, { className: "h-3 w-3" })
                         ]
                       }
                     )
@@ -13523,8 +13600,8 @@ function ThemeProvider({ children, ...props }) {
 }
 var MOBILE_BREAKPOINT2 = 768;
 function useIsMobile() {
-  const [isMobile, setIsMobile] = React55__namespace.useState(void 0);
-  React55__namespace.useEffect(() => {
+  const [isMobile, setIsMobile] = React54__namespace.useState(void 0);
+  React54__namespace.useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT2 - 1}px)`);
     const onChange = () => {
       setIsMobile(window.innerWidth < MOBILE_BREAKPOINT2);
@@ -13548,10 +13625,10 @@ function useCarouselKeyboard({
     pauseOnHover = true,
     keyMap = ["ArrowLeft", "ArrowRight"]
   } = options;
-  const [isPaused, setIsPaused] = React55__namespace.default.useState(false);
-  const intervalRef = React55__namespace.default.useRef(null);
-  const containerRef = React55__namespace.default.useRef(null);
-  const next = React55__namespace.default.useCallback(() => {
+  const [isPaused, setIsPaused] = React54__namespace.default.useState(false);
+  const intervalRef = React54__namespace.default.useRef(null);
+  const containerRef = React54__namespace.default.useRef(null);
+  const next = React54__namespace.default.useCallback(() => {
     const nextIndex = currentIndex + 1;
     if (nextIndex >= totalItems) {
       if (loop) {
@@ -13561,7 +13638,7 @@ function useCarouselKeyboard({
       onIndexChange?.(nextIndex);
     }
   }, [currentIndex, totalItems, loop, onIndexChange]);
-  const prev = React55__namespace.default.useCallback(() => {
+  const prev = React54__namespace.default.useCallback(() => {
     const prevIndex = currentIndex - 1;
     if (prevIndex < 0) {
       if (loop) {
@@ -13571,12 +13648,12 @@ function useCarouselKeyboard({
       onIndexChange?.(prevIndex);
     }
   }, [currentIndex, totalItems, loop, onIndexChange]);
-  const goTo = React55__namespace.default.useCallback((index) => {
+  const goTo = React54__namespace.default.useCallback((index) => {
     if (index >= 0 && index < totalItems) {
       onIndexChange?.(index);
     }
   }, [totalItems, onIndexChange]);
-  React55__namespace.default.useEffect(() => {
+  React54__namespace.default.useEffect(() => {
     if (autoPlay && !isPaused) {
       intervalRef.current = setInterval(next, autoPlayInterval);
     } else {
@@ -13591,7 +13668,7 @@ function useCarouselKeyboard({
       }
     };
   }, [autoPlay, isPaused, next, autoPlayInterval]);
-  React55__namespace.default.useEffect(() => {
+  React54__namespace.default.useEffect(() => {
     const handleKeyDown = (event) => {
       if (!keyMap.includes(event.key)) return;
       event.preventDefault();
@@ -13615,7 +13692,7 @@ function useCarouselKeyboard({
       }
     };
   }, [keyMap, next, prev]);
-  React55__namespace.default.useEffect(() => {
+  React54__namespace.default.useEffect(() => {
     if (!pauseOnHover || !autoPlay) return;
     const container = containerRef.current;
     if (!container) return;
@@ -13628,13 +13705,13 @@ function useCarouselKeyboard({
       container.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [pauseOnHover, autoPlay]);
-  const pause = React55__namespace.default.useCallback(() => {
+  const pause = React54__namespace.default.useCallback(() => {
     setIsPaused(true);
   }, []);
-  const resume = React55__namespace.default.useCallback(() => {
+  const resume = React54__namespace.default.useCallback(() => {
     setIsPaused(false);
   }, []);
-  const stop = React55__namespace.default.useCallback(() => {
+  const stop = React54__namespace.default.useCallback(() => {
     setIsPaused(true);
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -13673,9 +13750,9 @@ function useTableOfContents({
     activeOnScroll = true,
     nested = true
   } = options;
-  const [items, setItems] = React55__namespace.default.useState([]);
-  const [activeId, setActiveId] = React55__namespace.default.useState(null);
-  const generateTOC = React55__namespace.default.useCallback(() => {
+  const [items, setItems] = React54__namespace.default.useState([]);
+  const [activeId, setActiveId] = React54__namespace.default.useState(null);
+  const generateTOC = React54__namespace.default.useCallback(() => {
     const container = containerRef?.current;
     if (!container) return [];
     const headingElements = container.querySelectorAll(headings.join(", "));
@@ -13696,11 +13773,11 @@ function useTableOfContents({
     });
     return tocItems;
   }, [containerRef, headings]);
-  React55__namespace.default.useEffect(() => {
+  React54__namespace.default.useEffect(() => {
     const tocItems = generateTOC();
     setItems(tocItems);
   }, [generateTOC]);
-  const scrollToItem = React55__namespace.default.useCallback((itemId) => {
+  const scrollToItem = React54__namespace.default.useCallback((itemId) => {
     const element = document.getElementById(itemId);
     if (!element) return;
     const elementPosition = element.getBoundingClientRect().top;
@@ -13715,7 +13792,7 @@ function useTableOfContents({
     }
     setActiveId(itemId);
   }, [offset, smoothScroll]);
-  React55__namespace.default.useEffect(() => {
+  React54__namespace.default.useEffect(() => {
     if (!activeOnScroll || items.length === 0) return;
     const observer = new IntersectionObserver(
       (entries) => {
@@ -13743,7 +13820,7 @@ function useTableOfContents({
       });
     };
   }, [activeOnScroll, items, offset]);
-  const nestedItems = React55__namespace.default.useMemo(() => {
+  const nestedItems = React54__namespace.default.useMemo(() => {
     if (!nested) return items;
     const result = [];
     const stack = [];
@@ -13761,7 +13838,7 @@ function useTableOfContents({
     });
     return result;
   }, [items, nested]);
-  const renderItem = React55__namespace.default.useCallback((item, depth = 0) => {
+  const renderItem = React54__namespace.default.useCallback((item, depth = 0) => {
     const isActive = item.id === activeId;
     const hasChildren = "children" in item && item.children && item.children.length > 0;
     return {
@@ -13772,7 +13849,7 @@ function useTableOfContents({
       scrollTo: () => scrollToItem(item.id)
     };
   }, [activeId, scrollToItem]);
-  const renderItems = React55__namespace.default.useCallback(() => {
+  const renderItems = React54__namespace.default.useCallback(() => {
     const flatItems = [];
     const flatten = (items2, depth = 0) => {
       items2.forEach((item) => {
@@ -13785,7 +13862,7 @@ function useTableOfContents({
     flatten(nestedItems);
     return flatItems;
   }, [nestedItems, renderItem]);
-  const stats = React55__namespace.default.useMemo(() => {
+  const stats = React54__namespace.default.useMemo(() => {
     const levelCounts = {};
     items.forEach((item) => {
       levelCounts[item.level] = (levelCounts[item.level] || 0) + 1;
@@ -13798,11 +13875,11 @@ function useTableOfContents({
       activeIndex: items.findIndex((item) => item.id === activeId)
     };
   }, [items, activeId]);
-  const refresh = React55__namespace.default.useCallback(() => {
+  const refresh = React54__namespace.default.useCallback(() => {
     const tocItems = generateTOC();
     setItems(tocItems);
   }, [generateTOC]);
-  const reset = React55__namespace.default.useCallback(() => {
+  const reset = React54__namespace.default.useCallback(() => {
     setItems([]);
     setActiveId(null);
   }, []);
@@ -13915,7 +13992,7 @@ exports.BackToTop = BackToTop;
 exports.Badge = Badge;
 exports.BookmarkButton = BookmarkButton;
 exports.Button = Button;
-exports.Calendar = Calendar2;
+exports.Calendar = Calendar3;
 exports.CalendarDayButton = CalendarDayButton;
 exports.Card = Card;
 exports.CardContent = CardContent;
@@ -14009,7 +14086,6 @@ exports.DropdownMenuTrigger = DropdownMenuTrigger;
 exports.EmptyState = EmptyState;
 exports.EmptyStateIllustrated = EmptyStateIllustrated;
 exports.EmptyStatePatterns = EmptyStatePatterns;
-exports.ErrorBoundary = ErrorBoundary;
 exports.FAB = FAB;
 exports.FABGroup = FABGroup;
 exports.FileUpload = FileUpload;

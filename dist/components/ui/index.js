@@ -10,7 +10,11 @@ var classVarianceAuthority = require('class-variance-authority');
 var SliderPrimitive = require('@radix-ui/react-slider');
 var SwitchPrimitives = require('@radix-ui/react-switch');
 var TogglePrimitive = require('@radix-ui/react-toggle');
+var Plus = require('lucide-react/dist/esm/icons/plus');
+var X = require('lucide-react/dist/esm/icons/x');
 var lucideReact = require('lucide-react');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -34,6 +38,8 @@ var React__namespace = /*#__PURE__*/_interopNamespace(React);
 var SliderPrimitive__namespace = /*#__PURE__*/_interopNamespace(SliderPrimitive);
 var SwitchPrimitives__namespace = /*#__PURE__*/_interopNamespace(SwitchPrimitives);
 var TogglePrimitive__namespace = /*#__PURE__*/_interopNamespace(TogglePrimitive);
+var Plus__default = /*#__PURE__*/_interopDefault(Plus);
+var X__default = /*#__PURE__*/_interopDefault(X);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -584,7 +590,7 @@ var FAB = React__namespace.forwardRef(
       }
       onClick?.();
     }, [actions.length, showActions, onClick]);
-    const defaultIcon = actions.length > 0 ? showActions ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { className: "h-5 w-5" });
+    const defaultIcon = actions.length > 0 ? showActions ? /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(Plus__default.default, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(Plus__default.default, { className: "h-5 w-5" });
     return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", children: [
       showActions && actions.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute bottom-0 flex flex-col-reverse gap-3 mb-4", children: actions.map((action, index) => /* @__PURE__ */ jsxRuntime.jsxs(
         "div",

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
-import { ChevronLeft, MoreHorizontal, ChevronRight } from 'lucide-react';
+import ChevronLeft from 'lucide-react/dist/esm/icons/chevron-left';
+import ChevronRight from 'lucide-react/dist/esm/icons/chevron-right';
+import MoreHorizontal from 'lucide-react/dist/esm/icons/more-horizontal';
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';

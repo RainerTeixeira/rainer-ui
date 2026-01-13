@@ -1,13 +1,20 @@
 'use strict';
 
-var lucideReact = require('lucide-react');
+var RefreshCw = require('lucide-react/dist/esm/icons/refresh-cw');
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
+var ChevronDown = require('lucide-react/dist/esm/icons/chevron-down');
+var Package = require('lucide-react/dist/esm/icons/package');
+var Search = require('lucide-react/dist/esm/icons/search');
+var Wifi = require('lucide-react/dist/esm/icons/wifi');
+var XCircle = require('lucide-react/dist/esm/icons/x-circle');
 var reactSlot = require('@radix-ui/react-slot');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -27,7 +34,13 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
+var RefreshCw__default = /*#__PURE__*/_interopDefault(RefreshCw);
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var ChevronDown__default = /*#__PURE__*/_interopDefault(ChevronDown);
+var Package__default = /*#__PURE__*/_interopDefault(Package);
+var Search__default = /*#__PURE__*/_interopDefault(Search);
+var Wifi__default = /*#__PURE__*/_interopDefault(Wifi);
+var XCircle__default = /*#__PURE__*/_interopDefault(XCircle);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -134,12 +147,12 @@ function Button({
   );
 }
 var defaultIcons = {
-  search: lucideReact.Search,
-  empty: lucideReact.Package,
-  error: lucideReact.XCircle,
-  filtered: lucideReact.ChevronDown,
-  offline: lucideReact.Wifi,
-  loading: lucideReact.RefreshCw
+  search: Search__default.default,
+  empty: Package__default.default,
+  error: XCircle__default.default,
+  filtered: ChevronDown__default.default,
+  offline: Wifi__default.default,
+  loading: RefreshCw__default.default
 };
 var emptyStateVariants = classVarianceAuthority.cva(
   "flex flex-col items-center justify-center text-center p-8",

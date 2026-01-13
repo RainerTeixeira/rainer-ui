@@ -13,7 +13,12 @@ var LabelPrimitive = require('@radix-ui/react-label');
 var SeparatorPrimitive = require('@radix-ui/react-separator');
 var SwitchPrimitives = require('@radix-ui/react-switch');
 var nextThemes = require('next-themes');
+var Moon = require('lucide-react/dist/esm/icons/moon');
+var Sun = require('lucide-react/dist/esm/icons/sun');
 var reactLoadingIndicators = require('react-loading-indicators');
+var Check2 = require('lucide-react/dist/esm/icons/check');
+var Copy = require('lucide-react/dist/esm/icons/copy');
+var QuoteIcon = require('lucide-react/dist/esm/icons/quote');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
@@ -40,6 +45,11 @@ var Link__default = /*#__PURE__*/_interopDefault(Link);
 var LabelPrimitive__namespace = /*#__PURE__*/_interopNamespace(LabelPrimitive);
 var SeparatorPrimitive__namespace = /*#__PURE__*/_interopNamespace(SeparatorPrimitive);
 var SwitchPrimitives__namespace = /*#__PURE__*/_interopNamespace(SwitchPrimitives);
+var Moon__default = /*#__PURE__*/_interopDefault(Moon);
+var Sun__default = /*#__PURE__*/_interopDefault(Sun);
+var Check2__default = /*#__PURE__*/_interopDefault(Check2);
+var Copy__default = /*#__PURE__*/_interopDefault(Copy);
+var QuoteIcon__default = /*#__PURE__*/_interopDefault(QuoteIcon);
 
 function hexToRGB(hex) {
   const cleanHex = hex.replace("#", "");
@@ -1108,13 +1118,13 @@ function ThemeToggle({ className }) {
       "aria-label": isDark ? "Mudar para tema claro" : "Mudar para tema escuro",
       children: [
         isDark ? /* @__PURE__ */ jsxRuntime.jsx(
-          lucideReact.Moon,
+          Moon__default.default,
           {
             className: "h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-200 text-text-secondary",
             "aria-hidden": "true"
           }
         ) : /* @__PURE__ */ jsxRuntime.jsx(
-          lucideReact.Sun,
+          Sun__default.default,
           {
             className: "h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-200 text-text-primary",
             "aria-hidden": "true"
@@ -1125,76 +1135,6 @@ function ThemeToggle({ className }) {
     }
   );
 }
-var ErrorBoundary = class extends React12.Component {
-  constructor(props) {
-    super(props);
-    this.handleReset = () => {
-      this.setState({
-        hasError: false,
-        error: null,
-        errorInfo: null
-      });
-    };
-    this.handleGoHome = () => {
-      window.location.href = "/";
-    };
-    this.state = {
-      hasError: false,
-      error: null,
-      errorInfo: null
-    };
-  }
-  static getDerivedStateFromError(error) {
-    return {
-      hasError: true,
-      error
-    };
-  }
-  componentDidCatch(error, errorInfo) {
-    console.error("ErrorBoundary caught:", error, errorInfo);
-    this.setState({
-      error,
-      errorInfo
-    });
-    if (this.props.onError) {
-      this.props.onError(error, errorInfo);
-    }
-  }
-  render() {
-    if (this.state.hasError) {
-      if (this.props.fallback) {
-        return /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: this.props.fallback });
-      }
-      return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "min-h-screen flex items-center justify-center p-4", children: /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: "max-w-lg w-full", children: [
-        /* @__PURE__ */ jsxRuntime.jsxs(CardHeader, { className: "text-center", children: [
-          /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mx-auto w-16 h-16 bg-destructive/10 rounded-full flex items-center justify-center mb-4", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.AlertTriangle, { className: "h-8 w-8 text-destructive" }) }),
-          /* @__PURE__ */ jsxRuntime.jsx(CardTitle, { className: "text-2xl", children: "Ops! Algo deu errado" }),
-          /* @__PURE__ */ jsxRuntime.jsx(CardDescription, { children: "Encontramos um erro inesperado. Por favor, tente novamente." })
-        ] }),
-        /* @__PURE__ */ jsxRuntime.jsxs(CardContent, { className: "space-y-4", children: [
-          process.env.NODE_ENV === "development" && this.state.error && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "p-4 bg-muted rounded-lg", children: [
-            /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm font-mono text-muted-foreground", children: this.state.error.toString() }),
-            this.state.errorInfo && /* @__PURE__ */ jsxRuntime.jsxs("details", { className: "mt-2", children: [
-              /* @__PURE__ */ jsxRuntime.jsx("summary", { className: "cursor-pointer text-sm text-muted-foreground hover:text-foreground", children: "Stack trace" }),
-              /* @__PURE__ */ jsxRuntime.jsx("pre", { className: "mt-2 text-xs overflow-auto", children: this.state.errorInfo.componentStack })
-            ] })
-          ] }),
-          /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-3", children: [
-            /* @__PURE__ */ jsxRuntime.jsxs(Button, { onClick: this.handleReset, variant: "outline", className: "flex-1", children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { className: "h-4 w-4 mr-2" }),
-              "Tentar Novamente"
-            ] }),
-            /* @__PURE__ */ jsxRuntime.jsxs(Button, { onClick: this.handleGoHome, className: "flex-1", children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Home, { className: "h-4 w-4 mr-2" }),
-              "Ir para Home"
-            ] })
-          ] })
-        ] })
-      ] }) });
-    }
-    return this.props.children;
-  }
-};
 function usePWA() {
   const [deferredPrompt, setDeferredPrompt] = React12.useState(null);
   const [isInstallable, setIsInstallable] = React12.useState(false);
@@ -2042,10 +1982,10 @@ var Code = React12__namespace.forwardRef(
             className: "h-7 px-2 text-xs",
             onClick: handleCopy,
             children: copied ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { className: "h-3 w-3 mr-1" }),
+              /* @__PURE__ */ jsxRuntime.jsx(Check2__default.default, { className: "h-3 w-3 mr-1" }),
               "Copiado!"
             ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Copy, { className: "h-3 w-3 mr-1" }),
+              /* @__PURE__ */ jsxRuntime.jsx(Copy__default.default, { className: "h-3 w-3 mr-1" }),
               "Copiar"
             ] })
           }
@@ -2150,7 +2090,7 @@ var Quote = React12__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const IconComponent = icon || (variant === "testimonial" || variant === "card" ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.QuoteIcon, { className: "h-8 w-8 text-primary/20" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.QuoteIcon, { className: "h-4 w-4 text-muted-foreground" }));
+    const IconComponent = icon || (variant === "testimonial" || variant === "card" ? /* @__PURE__ */ jsxRuntime.jsx(QuoteIcon__default.default, { className: "h-8 w-8 text-primary/20" }) : /* @__PURE__ */ jsxRuntime.jsx(QuoteIcon__default.default, { className: "h-4 w-4 text-muted-foreground" }));
     return /* @__PURE__ */ jsxRuntime.jsxs(
       "blockquote",
       {
@@ -2517,7 +2457,6 @@ exports.Code = Code;
 exports.CodeBlock = CodeBlock;
 exports.CodeInline = CodeInline;
 exports.CookieBanner = CookieBanner;
-exports.ErrorBoundary = ErrorBoundary;
 exports.InstallPrompt = InstallPrompt;
 exports.Kbd = Kbd;
 exports.KbdCombo = KbdCombo;

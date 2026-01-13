@@ -1,6 +1,12 @@
-import { ChevronRight, ChevronLeft, X, User, Settings, LogOut, Menu } from 'lucide-react';
+import LogOut from 'lucide-react/dist/esm/icons/log-out';
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
+import ChevronLeft from 'lucide-react/dist/esm/icons/chevron-left';
+import ChevronRight from 'lucide-react/dist/esm/icons/chevron-right';
+import Menu from 'lucide-react/dist/esm/icons/menu';
+import Settings from 'lucide-react/dist/esm/icons/settings';
+import User from 'lucide-react/dist/esm/icons/user';
+import X from 'lucide-react/dist/esm/icons/x';
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';

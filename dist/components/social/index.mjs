@@ -5,13 +5,27 @@ import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import { motion as motion$1 } from 'framer-motion';
-import * as React3 from 'react';
-import { useState } from 'react';
-import { X, ChevronRight, Check, Heart, Share2, Facebook, Twitter, Linkedin, MessageCircle, Send, Link, QrCode, Bookmark, Clock, Smartphone, Copy, Link2 } from 'lucide-react';
+import * as React2 from 'react';
+import React2__default, { useState, useEffect } from 'react';
+import Heart from 'lucide-react/dist/esm/icons/heart';
 import { Overlay, Portal, Content, Close, Title, Description, Root as Root$1 } from '@radix-ui/react-dialog';
+import { X, ChevronRight, Check } from 'lucide-react';
 import { SubTrigger, SubContent, Portal as Portal$1, Content as Content$1, Item, CheckboxItem, ItemIndicator, RadioItem, Label, Separator, Root, Trigger } from '@radix-ui/react-dropdown-menu';
 import { QRCodeSVG } from 'qrcode.react';
-import Image from 'next/image';
+import Check2 from 'lucide-react/dist/esm/icons/check';
+import Facebook from 'lucide-react/dist/esm/icons/facebook';
+import Link from 'lucide-react/dist/esm/icons/link';
+import Linkedin from 'lucide-react/dist/esm/icons/linkedin';
+import MessageCircle from 'lucide-react/dist/esm/icons/message-circle';
+import QrCode from 'lucide-react/dist/esm/icons/qr-code';
+import Send from 'lucide-react/dist/esm/icons/send';
+import Share2 from 'lucide-react/dist/esm/icons/share-2';
+import Twitter from 'lucide-react/dist/esm/icons/twitter';
+import Bookmark from 'lucide-react/dist/esm/icons/bookmark';
+import Clock from 'lucide-react/dist/esm/icons/clock';
+import Copy from 'lucide-react/dist/esm/icons/copy';
+import Link2 from 'lucide-react/dist/esm/icons/link-2';
+import Smartphone from 'lucide-react/dist/esm/icons/smartphone';
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
@@ -261,7 +275,7 @@ var GRADIENT_DIRECTIONS = {
   TO_BOTTOM_RIGHT: "to-br"};
 var Dialog = Root$1;
 var DialogPortal = Portal;
-var DialogOverlay = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DialogOverlay = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Overlay,
   {
     ref,
@@ -274,7 +288,7 @@ var DialogOverlay = React3.forwardRef(({ className, ...props }, ref) => /* @__PU
   }
 ));
 DialogOverlay.displayName = Overlay.displayName;
-var DialogContent = React3.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(DialogPortal, { children: [
+var DialogContent = React2.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(DialogPortal, { children: [
   /* @__PURE__ */ jsx(DialogOverlay, {}),
   /* @__PURE__ */ jsxs(
     Content,
@@ -314,7 +328,7 @@ var DialogHeader = ({
   }
 );
 DialogHeader.displayName = "DialogHeader";
-var DialogTitle = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DialogTitle = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Title,
   {
     ref,
@@ -326,7 +340,7 @@ var DialogTitle = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 DialogTitle.displayName = Title.displayName;
-var DialogDescription = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DialogDescription = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Description,
   {
     ref,
@@ -340,7 +354,7 @@ var DialogDescription = React3.forwardRef(({ className, ...props }, ref) => /* @
 DialogDescription.displayName = Description.displayName;
 var DropdownMenu = Root;
 var DropdownMenuTrigger = Trigger;
-var DropdownMenuSubTrigger = React3.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var DropdownMenuSubTrigger = React2.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   SubTrigger,
   {
     ref,
@@ -358,7 +372,7 @@ var DropdownMenuSubTrigger = React3.forwardRef(({ className, inset, children, ..
   }
 ));
 DropdownMenuSubTrigger.displayName = SubTrigger.displayName;
-var DropdownMenuSubContent = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DropdownMenuSubContent = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SubContent,
   {
     ref,
@@ -375,7 +389,7 @@ var DropdownMenuSubContent = React3.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 DropdownMenuSubContent.displayName = SubContent.displayName;
-var DropdownMenuContent = React3.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsx(Portal$1, { children: /* @__PURE__ */ jsx(
+var DropdownMenuContent = React2.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsx(Portal$1, { children: /* @__PURE__ */ jsx(
   Content$1,
   {
     ref,
@@ -393,7 +407,7 @@ var DropdownMenuContent = React3.forwardRef(({ className, sideOffset = 4, ...pro
   }
 ) }));
 DropdownMenuContent.displayName = Content$1.displayName;
-var DropdownMenuItem = React3.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
+var DropdownMenuItem = React2.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
   Item,
   {
     ref,
@@ -408,7 +422,7 @@ var DropdownMenuItem = React3.forwardRef(({ className, inset, ...props }, ref) =
   }
 ));
 DropdownMenuItem.displayName = Item.displayName;
-var DropdownMenuCheckboxItem = React3.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxs(
+var DropdownMenuCheckboxItem = React2.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxs(
   CheckboxItem,
   {
     ref,
@@ -427,7 +441,7 @@ var DropdownMenuCheckboxItem = React3.forwardRef(({ className, children, checked
   }
 ));
 DropdownMenuCheckboxItem.displayName = CheckboxItem.displayName;
-var DropdownMenuRadioItem = React3.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var DropdownMenuRadioItem = React2.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   RadioItem,
   {
     ref,
@@ -445,7 +459,7 @@ var DropdownMenuRadioItem = React3.forwardRef(({ className, children, ...props }
   }
 ));
 DropdownMenuRadioItem.displayName = RadioItem.displayName;
-var DropdownMenuLabel = React3.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
+var DropdownMenuLabel = React2.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
   Label,
   {
     ref,
@@ -458,7 +472,7 @@ var DropdownMenuLabel = React3.forwardRef(({ className, inset, ...props }, ref) 
   }
 ));
 DropdownMenuLabel.displayName = Label.displayName;
-var DropdownMenuSeparator = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DropdownMenuSeparator = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Separator,
   {
     ref,
@@ -562,7 +576,7 @@ function ShareButton({
         ] }),
         /* @__PURE__ */ jsx(DropdownMenuSeparator, {}),
         /* @__PURE__ */ jsx(DropdownMenuItem, { onClick: copyToClipboard, children: copied ? /* @__PURE__ */ jsxs(Fragment, { children: [
-          /* @__PURE__ */ jsx(Check, { className: "mr-2 h-4 w-4 text-green-500" }),
+          /* @__PURE__ */ jsx(Check2, { className: "mr-2 h-4 w-4 text-green-500" }),
           /* @__PURE__ */ jsx("span", { className: "text-green-500", children: "Link copiado!" })
         ] }) : /* @__PURE__ */ jsxs(Fragment, { children: [
           /* @__PURE__ */ jsx(Link, { className: "mr-2 h-4 w-4" }),
@@ -810,7 +824,7 @@ function ActionButton({
 }) {
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentActive, setCurrentActive] = useState(isActive);
-  React.useEffect(() => {
+  useEffect(() => {
     setCurrentActive(isActive);
   }, [isActive]);
   const handleClick = () => {
@@ -1021,7 +1035,7 @@ function ShareMenu({
         )),
         (showCopyLink || showQRCode) && /* @__PURE__ */ jsx(DropdownMenuSeparator, {}),
         showCopyLink && /* @__PURE__ */ jsx(DropdownMenuItem, { onClick: copyToClipboard, children: copied ? /* @__PURE__ */ jsxs(Fragment, { children: [
-          /* @__PURE__ */ jsx(Check, { className: "mr-2 h-4 w-4 text-green-500" }),
+          /* @__PURE__ */ jsx(Check2, { className: "mr-2 h-4 w-4 text-green-500" }),
           /* @__PURE__ */ jsx("span", { className: "text-green-500", children: "Link copiado!" })
         ] }) : /* @__PURE__ */ jsxs(Fragment, { children: [
           /* @__PURE__ */ jsx(Copy, { className: "mr-2 h-4 w-4" }),
@@ -1124,7 +1138,7 @@ var ShareMenuVariants = {
     }
   )
 };
-var Card = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Card = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1136,7 +1150,7 @@ var Card = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ j
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardHeader = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1145,7 +1159,7 @@ var CardHeader = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardTitle = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h3",
   {
     ref,
@@ -1157,7 +1171,7 @@ var CardTitle = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardDescription = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "p",
   {
     ref,
@@ -1166,9 +1180,9 @@ var CardDescription = React3.forwardRef(({ className, ...props }, ref) => /* @__
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardFooter = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1177,7 +1191,7 @@ var CardFooter = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 CardFooter.displayName = "CardFooter";
-var HighlightCard = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var HighlightCard = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1234,7 +1248,6 @@ var badgeVariants = cva(
 function Badge({ className, variant, ...props }) {
   return /* @__PURE__ */ jsx("div", { className: cn(badgeVariants({ variant }), className), ...props });
 }
-i;
 var formatRelativeDate = (date) => {
   try {
     return formatDistanceToNow(new Date(date), {
@@ -1266,20 +1279,15 @@ function ContentCard({
   const renderImage = () => {
     if (!showImage || !image) return null;
     return /* @__PURE__ */ jsx("div", { className: "relative overflow-hidden", children: /* @__PURE__ */ jsxs("div", { className: "aspect-video relative", children: [
-      /* @__PURE__ */ jsx(
-        Image,
-        {
-          src: image,
-          alt: imageAlt || title,
-          fill: true,
-          className: cn(
-            "object-cover transition-transform duration-300",
-            "group-hover:scale-105"
-          ),
-          priority: imagePriority,
-          sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        }
-      ),
+      React2__default.createElement("img", {
+        src: image,
+        alt: imageAlt || title,
+        className: cn(
+          "w-full h-full object-cover transition-transform duration-300",
+          "group-hover:scale-105"
+        ),
+        loading: imagePriority ? "eager" : "lazy"
+      }),
       metadata?.badge && /* @__PURE__ */ jsx("div", { className: "absolute top-2 right-2", children: /* @__PURE__ */ jsx(Badge, { variant: "default", className: "bg-red-500 text-white", children: metadata.badge }) })
     ] }) });
   };

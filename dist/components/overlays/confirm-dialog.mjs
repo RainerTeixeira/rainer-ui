@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
-import { X, CheckCircle, Info, AlertTriangle } from 'lucide-react';
+import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle';
+import CheckCircle from 'lucide-react/dist/esm/icons/check-circle';
+import Info from 'lucide-react/dist/esm/icons/info';
+import X from 'lucide-react/dist/esm/icons/x';
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -152,9 +155,9 @@ var ConfirmDialog = React.forwardRef(
     closeOnCancel = true,
     closeOnBackdrop = true,
     closeOnEscape = true,
-    confirmVariant = "default",
-    ...props
-  }, ref) => {
+    confirmVariant = "default"
+    // props, // Props adicionais não utilizados
+  }) => {
     const [internalLoading, setInternalLoading] = React.useState(false);
     const isLoading = loading || internalLoading;
     React.useEffect(() => {
@@ -234,7 +237,6 @@ var ConfirmDialog = React.forwardRef(
       /* @__PURE__ */ jsxs(
         "div",
         {
-          ref,
           className: cn(
             confirmDialogVariants({ variant, size }),
             "relative z-10 p-6 animate-in fade-in-0 zoom-in-95 duration-[var(--motion-duration-normal)]",

@@ -2,11 +2,14 @@
 
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
-var lucideReact = require('lucide-react');
+var Star = require('lucide-react/dist/esm/icons/star');
+var StarHalf = require('lucide-react/dist/esm/icons/star-half');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -27,6 +30,8 @@ function _interopNamespace(e) {
 }
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var Star__default = /*#__PURE__*/_interopDefault(Star);
+var StarHalf__default = /*#__PURE__*/_interopDefault(StarHalf);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -166,11 +171,11 @@ var Rating = React__namespace.forwardRef(
       const starValue = starIndex + 1;
       const isFilled = starValue <= displayValue;
       const isHalf = allowHalf && starValue - 0.5 === displayValue;
-      let icon = emptyIcon || /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Star, { className: starSizeClasses[size] });
+      let icon = emptyIcon || /* @__PURE__ */ jsxRuntime.jsx(Star__default.default, { className: starSizeClasses[size] });
       if (isHalf) {
-        icon = halfIcon || /* @__PURE__ */ jsxRuntime.jsx(lucideReact.StarHalf, { className: starSizeClasses[size] });
+        icon = halfIcon || /* @__PURE__ */ jsxRuntime.jsx(StarHalf__default.default, { className: starSizeClasses[size] });
       } else if (isFilled) {
-        icon = fillIcon || /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Star, { className: starSizeClasses[size], fill: "currentColor" });
+        icon = fillIcon || /* @__PURE__ */ jsxRuntime.jsx(Star__default.default, { className: starSizeClasses[size], fill: "currentColor" });
       }
       const iconStyle = color && (isFilled || isHalf) ? { color } : void 0;
       return /* @__PURE__ */ jsxRuntime.jsx(

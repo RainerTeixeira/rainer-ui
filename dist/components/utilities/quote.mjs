@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
-import { QuoteIcon } from 'lucide-react';
+import QuoteIcon from 'lucide-react/dist/esm/icons/quote';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';

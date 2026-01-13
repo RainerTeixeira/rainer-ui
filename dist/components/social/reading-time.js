@@ -3,8 +3,12 @@
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
-var lucideReact = require('lucide-react');
+var Clock = require('lucide-react/dist/esm/icons/clock');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
+
+var Clock__default = /*#__PURE__*/_interopDefault(Clock);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -133,7 +137,7 @@ function ReadingTime({
       role: "timer",
       "aria-label": `Tempo estimado: ${formattedTime} ${unitText}`,
       children: [
-        showIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "flex-shrink-0", "aria-hidden": "true", children: icon || /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Clock, { className: "h-4 w-4" }) }),
+        showIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "flex-shrink-0", "aria-hidden": "true", children: icon || /* @__PURE__ */ jsxRuntime.jsx(Clock__default.default, { className: "h-4 w-4" }) }),
         /* @__PURE__ */ jsxRuntime.jsx("span", { className: "whitespace-nowrap", children: defaultText })
       ]
     }

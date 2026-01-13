@@ -1,15 +1,14 @@
 'use strict';
 
+var React = require('react');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
-var React = require('react');
 var jsxRuntime = require('react/jsx-runtime');
 var classVarianceAuthority = require('class-variance-authority');
 var reactSlot = require('@radix-ui/react-slot');
 var framerMotion = require('framer-motion');
-var lucideReact = require('lucide-react');
-var Image = require('next/image');
+var Link = require('lucide-react/dist/esm/icons/link');
 var dateFns = require('date-fns');
 var locale = require('date-fns/locale');
 
@@ -34,7 +33,7 @@ function _interopNamespace(e) {
 }
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
-var Image__default = /*#__PURE__*/_interopDefault(Image);
+var Link__default = /*#__PURE__*/_interopDefault(Link);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -257,7 +256,6 @@ function Button({
     }
   );
 }
-i;
 var formatRelativeDate = (date) => {
   try {
     return dateFns.formatDistanceToNow(new Date(date), {
@@ -289,20 +287,15 @@ function ContentCard({
   const renderImage = () => {
     if (!showImage || !image) return null;
     return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative overflow-hidden", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "aspect-video relative", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(
-        Image__default.default,
-        {
-          src: image,
-          alt: imageAlt || title,
-          fill: true,
-          className: cn(
-            "object-cover transition-transform duration-300",
-            "group-hover:scale-105"
-          ),
-          priority: imagePriority,
-          sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        }
-      ),
+      React__namespace.default.createElement("img", {
+        src: image,
+        alt: imageAlt || title,
+        className: cn(
+          "w-full h-full object-cover transition-transform duration-300",
+          "group-hover:scale-105"
+        ),
+        loading: imagePriority ? "eager" : "lazy"
+      }),
       metadata?.badge && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute top-2 right-2", children: /* @__PURE__ */ jsxRuntime.jsx(Badge, { variant: "default", className: "bg-red-500 text-white", children: metadata.badge }) })
     ] }) });
   };
@@ -453,7 +446,7 @@ function ContentCard({
                         className: "gap-1 text-primary",
                         children: [
                           "Ler mais",
-                          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Link, { className: "h-3 w-3" })
+                          /* @__PURE__ */ jsxRuntime.jsx(Link__default.default, { className: "h-3 w-3" })
                         ]
                       }
                     )

@@ -1,6 +1,11 @@
-import { RefreshCw, Wifi, ChevronDown, XCircle, Package, Search } from 'lucide-react';
+import RefreshCw from 'lucide-react/dist/esm/icons/refresh-cw';
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
+import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down';
+import Package from 'lucide-react/dist/esm/icons/package';
+import Search from 'lucide-react/dist/esm/icons/search';
+import Wifi from 'lucide-react/dist/esm/icons/wifi';
+import XCircle from 'lucide-react/dist/esm/icons/x-circle';
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';

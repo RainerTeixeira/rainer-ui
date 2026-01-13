@@ -12,14 +12,38 @@ var ProgressPrimitive = require('@radix-ui/react-progress');
 require('next-themes');
 require('sonner');
 var lucideReact = require('lucide-react');
+var ArrowDown = require('lucide-react/dist/esm/icons/arrow-down');
+var ArrowUp = require('lucide-react/dist/esm/icons/arrow-up');
+var Minus = require('lucide-react/dist/esm/icons/minus');
+var TrendingDown = require('lucide-react/dist/esm/icons/trending-down');
+var TrendingUp = require('lucide-react/dist/esm/icons/trending-up');
+var RefreshCw = require('lucide-react/dist/esm/icons/refresh-cw');
+var ChevronDown = require('lucide-react/dist/esm/icons/chevron-down');
+var Package = require('lucide-react/dist/esm/icons/package');
+var Search = require('lucide-react/dist/esm/icons/search');
+var Wifi = require('lucide-react/dist/esm/icons/wifi');
+var XCircle = require('lucide-react/dist/esm/icons/x-circle');
+var AlertCircle = require('lucide-react/dist/esm/icons/alert-circle');
+var AlertTriangle2 = require('lucide-react/dist/esm/icons/alert-triangle');
+var Bell = require('lucide-react/dist/esm/icons/bell');
+var Check2 = require('lucide-react/dist/esm/icons/check');
+var Info2 = require('lucide-react/dist/esm/icons/info');
+var X = require('lucide-react/dist/esm/icons/x');
 var SliderPrimitive = require('@radix-ui/react-slider');
 var SwitchPrimitives = require('@radix-ui/react-switch');
 var TogglePrimitive = require('@radix-ui/react-toggle');
+var Plus = require('lucide-react/dist/esm/icons/plus');
 require('@radix-ui/react-aspect-ratio');
 var ScrollAreaPrimitive = require('@radix-ui/react-scroll-area');
 var SeparatorPrimitive = require('@radix-ui/react-separator');
 require('@radix-ui/react-dialog');
 var framerMotion = require('framer-motion');
+var Trash2 = require('lucide-react/dist/esm/icons/trash-2');
+var Calendar = require('lucide-react/dist/esm/icons/calendar');
+var Edit = require('lucide-react/dist/esm/icons/edit');
+var Eye = require('lucide-react/dist/esm/icons/eye');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -42,11 +66,33 @@ function _interopNamespace(e) {
 var React19__namespace = /*#__PURE__*/_interopNamespace(React19);
 var AlertDialogPrimitive__namespace = /*#__PURE__*/_interopNamespace(AlertDialogPrimitive);
 var ProgressPrimitive__namespace = /*#__PURE__*/_interopNamespace(ProgressPrimitive);
+var ArrowDown__default = /*#__PURE__*/_interopDefault(ArrowDown);
+var ArrowUp__default = /*#__PURE__*/_interopDefault(ArrowUp);
+var Minus__default = /*#__PURE__*/_interopDefault(Minus);
+var TrendingDown__default = /*#__PURE__*/_interopDefault(TrendingDown);
+var TrendingUp__default = /*#__PURE__*/_interopDefault(TrendingUp);
+var RefreshCw__default = /*#__PURE__*/_interopDefault(RefreshCw);
+var ChevronDown__default = /*#__PURE__*/_interopDefault(ChevronDown);
+var Package__default = /*#__PURE__*/_interopDefault(Package);
+var Search__default = /*#__PURE__*/_interopDefault(Search);
+var Wifi__default = /*#__PURE__*/_interopDefault(Wifi);
+var XCircle__default = /*#__PURE__*/_interopDefault(XCircle);
+var AlertCircle__default = /*#__PURE__*/_interopDefault(AlertCircle);
+var AlertTriangle2__default = /*#__PURE__*/_interopDefault(AlertTriangle2);
+var Bell__default = /*#__PURE__*/_interopDefault(Bell);
+var Check2__default = /*#__PURE__*/_interopDefault(Check2);
+var Info2__default = /*#__PURE__*/_interopDefault(Info2);
+var X__default = /*#__PURE__*/_interopDefault(X);
 var SliderPrimitive__namespace = /*#__PURE__*/_interopNamespace(SliderPrimitive);
 var SwitchPrimitives__namespace = /*#__PURE__*/_interopNamespace(SwitchPrimitives);
 var TogglePrimitive__namespace = /*#__PURE__*/_interopNamespace(TogglePrimitive);
+var Plus__default = /*#__PURE__*/_interopDefault(Plus);
 var ScrollAreaPrimitive__namespace = /*#__PURE__*/_interopNamespace(ScrollAreaPrimitive);
 var SeparatorPrimitive__namespace = /*#__PURE__*/_interopNamespace(SeparatorPrimitive);
+var Trash2__default = /*#__PURE__*/_interopDefault(Trash2);
+var Calendar__default = /*#__PURE__*/_interopDefault(Calendar);
+var Edit__default = /*#__PURE__*/_interopDefault(Edit);
+var Eye__default = /*#__PURE__*/_interopDefault(Eye);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -584,8 +630,8 @@ var KPI = React19__namespace.forwardRef(
     decimals = 0,
     ...props
   }, ref) => {
-    const TrendIcon = trend === "up" ? lucideReact.TrendingUp : trend === "down" ? lucideReact.TrendingDown : lucideReact.Minus;
-    const ArrowIcon = trend === "up" ? lucideReact.ArrowUp : trend === "down" ? lucideReact.ArrowDown : null;
+    const TrendIcon = trend === "up" ? TrendingUp__default.default : trend === "down" ? TrendingDown__default.default : Minus__default.default;
+    const ArrowIcon = trend === "up" ? ArrowUp__default.default : trend === "down" ? ArrowDown__default.default : null;
     return /* @__PURE__ */ jsxRuntime.jsxs(
       "div",
       {
@@ -669,7 +715,7 @@ var KPIChart = React19__namespace.forwardRef(
     className,
     chart,
     chartPosition = "bottom",
-    children,
+    // children, // TODO: implementar children content
     ...props
   }, ref) => {
     const isRight = chartPosition === "right";
@@ -696,12 +742,12 @@ var KPIChart = React19__namespace.forwardRef(
 );
 KPIChart.displayName = "KPIChart";
 var defaultIcons = {
-  search: lucideReact.Search,
-  empty: lucideReact.Package,
-  error: lucideReact.XCircle,
-  filtered: lucideReact.ChevronDown,
-  offline: lucideReact.Wifi,
-  loading: lucideReact.RefreshCw
+  search: Search__default.default,
+  empty: Package__default.default,
+  error: XCircle__default.default,
+  filtered: ChevronDown__default.default,
+  offline: Wifi__default.default,
+  loading: RefreshCw__default.default
 };
 var emptyStateVariants = classVarianceAuthority.cva(
   "flex flex-col items-center justify-center text-center p-8",
@@ -820,11 +866,11 @@ var EmptyStateIllustrated = React19__namespace.forwardRef(
 );
 EmptyStateIllustrated.displayName = "EmptyStateIllustrated";
 var variantIcons = {
-  success: lucideReact.Check,
-  error: lucideReact.AlertCircle,
-  warning: lucideReact.AlertTriangle,
-  info: lucideReact.Info,
-  default: lucideReact.Bell
+  success: Check2__default.default,
+  error: AlertCircle__default.default,
+  warning: AlertTriangle2__default.default,
+  info: Info2__default.default,
+  default: Bell__default.default
 };
 var notificationVariants = classVarianceAuthority.cva(
   "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-4 pr-8 shadow-lg transition-all duration-[var(--motion-duration-normal)]",
@@ -913,7 +959,7 @@ var Notification = React19__namespace.forwardRef(
                 "hover:bg-black/10 dark:hover:bg-white/10",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               ),
-              children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-4 w-4 opacity-60 hover:opacity-100" })
+              children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-4 w-4 opacity-60 hover:opacity-100" })
             }
           )
         ]
@@ -1419,7 +1465,7 @@ var FAB = React19__namespace.forwardRef(
       }
       onClick?.();
     }, [actions.length, showActions, onClick]);
-    const defaultIcon = actions.length > 0 ? showActions ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Plus, { className: "h-5 w-5" });
+    const defaultIcon = actions.length > 0 ? showActions ? /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(Plus__default.default, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(Plus__default.default, { className: "h-5 w-5" });
     return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", children: [
       showActions && actions.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute bottom-0 flex flex-col-reverse gap-3 mb-4", children: actions.map((action, index) => /* @__PURE__ */ jsxRuntime.jsxs(
         "div",
@@ -2876,20 +2922,7 @@ function RecentPostsList({
   maxPosts = 5,
   className
 }) {
-  const [isLoading, setIsLoading] = React19.useState(false);
   const displayedPosts = posts.slice(0, maxPosts);
-  if (isLoading) {
-    return /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: cn("w-full", className), children: [
-      /* @__PURE__ */ jsxRuntime.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntime.jsx(CardTitle, { children: "Posts Recentes" }) }),
-      /* @__PURE__ */ jsxRuntime.jsx(CardContent, { children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "space-y-4", children: [...Array(3)].map((_, i) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center space-x-4", children: [
-        /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-16 h-16 bg-muted rounded animate-pulse" }),
-        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex-1 space-y-2", children: [
-          /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 bg-muted rounded animate-pulse" }),
-          /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-3 bg-muted rounded animate-pulse w-3/4" })
-        ] })
-      ] }, i)) }) })
-    ] });
-  }
   if (displayedPosts.length === 0) {
     return /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: cn("w-full", className), children: [
       /* @__PURE__ */ jsxRuntime.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntime.jsx(CardTitle, { children: "Posts Recentes" }) }),
@@ -2919,7 +2952,7 @@ function RecentPostsList({
             /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted-foreground line-clamp-2 mt-1", children: post.excerpt }),
             /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-4 mt-2", children: [
               /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center text-xs text-muted-foreground", children: [
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Calendar, { className: "w-3 h-3 mr-1" }),
+                /* @__PURE__ */ jsxRuntime.jsx(Calendar__default.default, { className: "w-3 h-3 mr-1" }),
                 new Date(post.publishedAt).toLocaleDateString("pt-BR")
               ] }),
               post.tags.length > 0 && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-1", children: [
@@ -2939,7 +2972,7 @@ function RecentPostsList({
                 size: "sm",
                 onClick: () => onViewPost(post),
                 className: "h-8 w-8 p-0",
-                children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Eye, { className: "w-4 h-4" })
+                children: /* @__PURE__ */ jsxRuntime.jsx(Eye__default.default, { className: "w-4 h-4" })
               }
             ),
             onEditPost && /* @__PURE__ */ jsxRuntime.jsx(
@@ -2949,7 +2982,7 @@ function RecentPostsList({
                 size: "sm",
                 onClick: () => onEditPost(post),
                 className: "h-8 w-8 p-0",
-                children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Edit, { className: "w-4 h-4" })
+                children: /* @__PURE__ */ jsxRuntime.jsx(Edit__default.default, { className: "w-4 h-4" })
               }
             ),
             onDeletePost && /* @__PURE__ */ jsxRuntime.jsx(
@@ -2959,7 +2992,7 @@ function RecentPostsList({
                 size: "sm",
                 onClick: () => onDeletePost(post.id),
                 className: "h-8 w-8 p-0 text-destructive hover:text-destructive",
-                children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Trash2, { className: "w-4 h-4" })
+                children: /* @__PURE__ */ jsxRuntime.jsx(Trash2__default.default, { className: "w-4 h-4" })
               }
             )
           ] })

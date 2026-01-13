@@ -1,13 +1,13 @@
+import * as React from 'react';
+import React__default from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
-import * as React from 'react';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { cva } from 'class-variance-authority';
 import { Slot } from '@radix-ui/react-slot';
 import { motion as motion$1 } from 'framer-motion';
-import { Link } from 'lucide-react';
-import Image from 'next/image';
+import Link from 'lucide-react/dist/esm/icons/link';
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
@@ -232,7 +232,6 @@ function Button({
     }
   );
 }
-i;
 var formatRelativeDate = (date) => {
   try {
     return formatDistanceToNow(new Date(date), {
@@ -264,20 +263,15 @@ function ContentCard({
   const renderImage = () => {
     if (!showImage || !image) return null;
     return /* @__PURE__ */ jsx("div", { className: "relative overflow-hidden", children: /* @__PURE__ */ jsxs("div", { className: "aspect-video relative", children: [
-      /* @__PURE__ */ jsx(
-        Image,
-        {
-          src: image,
-          alt: imageAlt || title,
-          fill: true,
-          className: cn(
-            "object-cover transition-transform duration-300",
-            "group-hover:scale-105"
-          ),
-          priority: imagePriority,
-          sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        }
-      ),
+      React__default.createElement("img", {
+        src: image,
+        alt: imageAlt || title,
+        className: cn(
+          "w-full h-full object-cover transition-transform duration-300",
+          "group-hover:scale-105"
+        ),
+        loading: imagePriority ? "eager" : "lazy"
+      }),
       metadata?.badge && /* @__PURE__ */ jsx("div", { className: "absolute top-2 right-2", children: /* @__PURE__ */ jsx(Badge, { variant: "default", className: "bg-red-500 text-white", children: metadata.badge }) })
     ] }) });
   };

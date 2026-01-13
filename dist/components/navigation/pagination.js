@@ -2,12 +2,16 @@
 
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
-var lucideReact = require('lucide-react');
+var ChevronLeft = require('lucide-react/dist/esm/icons/chevron-left');
+var ChevronRight = require('lucide-react/dist/esm/icons/chevron-right');
+var MoreHorizontal = require('lucide-react/dist/esm/icons/more-horizontal');
 var reactSlot = require('@radix-ui/react-slot');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -28,6 +32,9 @@ function _interopNamespace(e) {
 }
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var ChevronLeft__default = /*#__PURE__*/_interopDefault(ChevronLeft);
+var ChevronRight__default = /*#__PURE__*/_interopDefault(ChevronRight);
+var MoreHorizontal__default = /*#__PURE__*/_interopDefault(MoreHorizontal);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -245,8 +252,8 @@ var Pagination = React__namespace.forwardRef(
               disabled: disabled || page === 1,
               children: [
                 /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: "Primeira p\xE1gina" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "h-4 w-4" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "h-4 w-4 -ml-3" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-4 w-4" }),
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-4 w-4 -ml-3" })
               ]
             }
           ),
@@ -260,7 +267,7 @@ var Pagination = React__namespace.forwardRef(
               disabled: disabled || page === 1,
               children: [
                 /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: "P\xE1gina anterior" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronLeft, { className: "h-4 w-4" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-4 w-4" })
               ]
             }
           ),
@@ -273,7 +280,7 @@ var Pagination = React__namespace.forwardRef(
                     "flex items-center justify-center",
                     sizeClasses[size]
                   ),
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MoreHorizontal, { className: "h-4 w-4" })
+                  children: /* @__PURE__ */ jsxRuntime.jsx(MoreHorizontal__default.default, { className: "h-4 w-4" })
                 },
                 `ellipsis-${index}`
               );
@@ -301,7 +308,7 @@ var Pagination = React__namespace.forwardRef(
               disabled: disabled || page === totalPages,
               children: [
                 /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: "Pr\xF3xima p\xE1gina" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "h-4 w-4" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight__default.default, { className: "h-4 w-4" })
               ]
             }
           ),
@@ -315,8 +322,8 @@ var Pagination = React__namespace.forwardRef(
               disabled: disabled || page === totalPages,
               children: [
                 /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: "\xDAltima p\xE1gina" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "h-4 w-4" }),
-                /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, { className: "h-4 w-4 -ml-3" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight__default.default, { className: "h-4 w-4" }),
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight__default.default, { className: "h-4 w-4 -ml-3" })
               ]
             }
           ),

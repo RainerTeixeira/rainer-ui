@@ -7,12 +7,26 @@ var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
 var framerMotion = require('framer-motion');
-var React3 = require('react');
-var lucideReact = require('lucide-react');
+var React2 = require('react');
+var Heart = require('lucide-react/dist/esm/icons/heart');
 var reactDialog = require('@radix-ui/react-dialog');
+var lucideReact = require('lucide-react');
 var reactDropdownMenu = require('@radix-ui/react-dropdown-menu');
 var qrcode_react = require('qrcode.react');
-var Image = require('next/image');
+var Check2 = require('lucide-react/dist/esm/icons/check');
+var Facebook = require('lucide-react/dist/esm/icons/facebook');
+var Link = require('lucide-react/dist/esm/icons/link');
+var Linkedin = require('lucide-react/dist/esm/icons/linkedin');
+var MessageCircle = require('lucide-react/dist/esm/icons/message-circle');
+var QrCode = require('lucide-react/dist/esm/icons/qr-code');
+var Send = require('lucide-react/dist/esm/icons/send');
+var Share2 = require('lucide-react/dist/esm/icons/share-2');
+var Twitter = require('lucide-react/dist/esm/icons/twitter');
+var Bookmark = require('lucide-react/dist/esm/icons/bookmark');
+var Clock = require('lucide-react/dist/esm/icons/clock');
+var Copy = require('lucide-react/dist/esm/icons/copy');
+var Link2 = require('lucide-react/dist/esm/icons/link-2');
+var Smartphone = require('lucide-react/dist/esm/icons/smartphone');
 var dateFns = require('date-fns');
 var locale = require('date-fns/locale');
 
@@ -36,8 +50,22 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React3__namespace = /*#__PURE__*/_interopNamespace(React3);
-var Image__default = /*#__PURE__*/_interopDefault(Image);
+var React2__namespace = /*#__PURE__*/_interopNamespace(React2);
+var Heart__default = /*#__PURE__*/_interopDefault(Heart);
+var Check2__default = /*#__PURE__*/_interopDefault(Check2);
+var Facebook__default = /*#__PURE__*/_interopDefault(Facebook);
+var Link__default = /*#__PURE__*/_interopDefault(Link);
+var Linkedin__default = /*#__PURE__*/_interopDefault(Linkedin);
+var MessageCircle__default = /*#__PURE__*/_interopDefault(MessageCircle);
+var QrCode__default = /*#__PURE__*/_interopDefault(QrCode);
+var Send__default = /*#__PURE__*/_interopDefault(Send);
+var Share2__default = /*#__PURE__*/_interopDefault(Share2);
+var Twitter__default = /*#__PURE__*/_interopDefault(Twitter);
+var Bookmark__default = /*#__PURE__*/_interopDefault(Bookmark);
+var Clock__default = /*#__PURE__*/_interopDefault(Clock);
+var Copy__default = /*#__PURE__*/_interopDefault(Copy);
+var Link2__default = /*#__PURE__*/_interopDefault(Link2);
+var Smartphone__default = /*#__PURE__*/_interopDefault(Smartphone);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -158,9 +186,9 @@ function LikeButton({
   onUnlike,
   className
 }) {
-  const [isLiked, setIsLiked] = React3.useState(initialIsLiked);
-  const [likes, setLikes] = React3.useState(initialLikes);
-  const [isAnimating, setIsAnimating] = React3.useState(false);
+  const [isLiked, setIsLiked] = React2.useState(initialIsLiked);
+  const [likes, setLikes] = React2.useState(initialLikes);
+  const [isAnimating, setIsAnimating] = React2.useState(false);
   const handleLike = () => {
     setIsAnimating(true);
     console.debug(`A\xE7\xE3o de curtir para o item: ${itemId}`);
@@ -217,7 +245,7 @@ function LikeButton({
               } : {},
               transition: { duration: 0.3 },
               children: /* @__PURE__ */ jsxRuntime.jsx(
-                lucideReact.Heart,
+                Heart__default.default,
                 {
                   className: cn("h-4 w-4 transition-all", isLiked && "fill-current")
                 }
@@ -251,7 +279,7 @@ function LikeButton({
             } : {},
             transition: { duration: 0.6, ease: "easeInOut" },
             children: /* @__PURE__ */ jsxRuntime.jsx(
-              lucideReact.Heart,
+              Heart__default.default,
               {
                 className: cn("h-4 w-4 transition-all", isLiked && "fill-current")
               }
@@ -285,7 +313,7 @@ var GRADIENT_DIRECTIONS = {
   TO_BOTTOM_RIGHT: "to-br"};
 var Dialog = reactDialog.Root;
 var DialogPortal = reactDialog.Portal;
-var DialogOverlay = React3__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogOverlay = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Overlay,
   {
     ref,
@@ -298,7 +326,7 @@ var DialogOverlay = React3__namespace.forwardRef(({ className, ...props }, ref) 
   }
 ));
 DialogOverlay.displayName = reactDialog.Overlay.displayName;
-var DialogContent = React3__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(DialogPortal, { children: [
+var DialogContent = React2__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(DialogPortal, { children: [
   /* @__PURE__ */ jsxRuntime.jsx(DialogOverlay, {}),
   /* @__PURE__ */ jsxRuntime.jsxs(
     reactDialog.Content,
@@ -338,7 +366,7 @@ var DialogHeader = ({
   }
 );
 DialogHeader.displayName = "DialogHeader";
-var DialogTitle = React3__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogTitle = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Title,
   {
     ref,
@@ -350,7 +378,7 @@ var DialogTitle = React3__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 DialogTitle.displayName = reactDialog.Title.displayName;
-var DialogDescription = React3__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogDescription = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Description,
   {
     ref,
@@ -364,7 +392,7 @@ var DialogDescription = React3__namespace.forwardRef(({ className, ...props }, r
 DialogDescription.displayName = reactDialog.Description.displayName;
 var DropdownMenu = reactDropdownMenu.Root;
 var DropdownMenuTrigger = reactDropdownMenu.Trigger;
-var DropdownMenuSubTrigger = React3__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuSubTrigger = React2__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.SubTrigger,
   {
     ref,
@@ -382,7 +410,7 @@ var DropdownMenuSubTrigger = React3__namespace.forwardRef(({ className, inset, c
   }
 ));
 DropdownMenuSubTrigger.displayName = reactDropdownMenu.SubTrigger.displayName;
-var DropdownMenuSubContent = React3__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuSubContent = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.SubContent,
   {
     ref,
@@ -399,7 +427,7 @@ var DropdownMenuSubContent = React3__namespace.forwardRef(({ className, ...props
   }
 ));
 DropdownMenuSubContent.displayName = reactDropdownMenu.SubContent.displayName;
-var DropdownMenuContent = React3__namespace.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactDropdownMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuContent = React2__namespace.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactDropdownMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Content,
   {
     ref,
@@ -417,7 +445,7 @@ var DropdownMenuContent = React3__namespace.forwardRef(({ className, sideOffset 
   }
 ) }));
 DropdownMenuContent.displayName = reactDropdownMenu.Content.displayName;
-var DropdownMenuItem = React3__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuItem = React2__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Item,
   {
     ref,
@@ -432,7 +460,7 @@ var DropdownMenuItem = React3__namespace.forwardRef(({ className, inset, ...prop
   }
 ));
 DropdownMenuItem.displayName = reactDropdownMenu.Item.displayName;
-var DropdownMenuCheckboxItem = React3__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuCheckboxItem = React2__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.CheckboxItem,
   {
     ref,
@@ -451,7 +479,7 @@ var DropdownMenuCheckboxItem = React3__namespace.forwardRef(({ className, childr
   }
 ));
 DropdownMenuCheckboxItem.displayName = reactDropdownMenu.CheckboxItem.displayName;
-var DropdownMenuRadioItem = React3__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuRadioItem = React2__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.RadioItem,
   {
     ref,
@@ -469,7 +497,7 @@ var DropdownMenuRadioItem = React3__namespace.forwardRef(({ className, children,
   }
 ));
 DropdownMenuRadioItem.displayName = reactDropdownMenu.RadioItem.displayName;
-var DropdownMenuLabel = React3__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuLabel = React2__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Label,
   {
     ref,
@@ -482,7 +510,7 @@ var DropdownMenuLabel = React3__namespace.forwardRef(({ className, inset, ...pro
   }
 ));
 DropdownMenuLabel.displayName = reactDropdownMenu.Label.displayName;
-var DropdownMenuSeparator = React3__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuSeparator = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Separator,
   {
     ref,
@@ -508,8 +536,8 @@ function ShareButton({
   onShare,
   onCopy
 }) {
-  const [copied, setCopied] = React3.useState(false);
-  const [showQR, setShowQR] = React3.useState(false);
+  const [copied, setCopied] = React2.useState(false);
+  const [showQR, setShowQR] = React2.useState(false);
   const shareUrl = typeof window !== "undefined" ? `${window.location.origin}${url}` : url;
   async function copyToClipboard() {
     try {
@@ -551,7 +579,7 @@ function ShareButton({
   return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
     /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenu, { children: [
       /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsxs(Button, { variant, size, className: "gap-2", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Share2, { className: "h-4 w-4" }),
+        /* @__PURE__ */ jsxRuntime.jsx(Share2__default.default, { className: "h-4 w-4" }),
         showLabel && /* @__PURE__ */ jsxRuntime.jsx("span", { children: "Compartilhar" })
       ] }) }),
       /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuContent, { align: "end", className: "w-56", children: [
@@ -559,41 +587,41 @@ function ShareButton({
         /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {}),
         typeof navigator !== "undefined" && "share" in navigator && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
           /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: shareNative, children: [
-            /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Share2, { className: "mr-2 h-4 w-4" }),
+            /* @__PURE__ */ jsxRuntime.jsx(Share2__default.default, { className: "mr-2 h-4 w-4" }),
             "Compartilhar..."
           ] }),
           /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {})
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("facebook"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Facebook, { className: "mr-2 h-4 w-4 text-blue-600" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Facebook__default.default, { className: "mr-2 h-4 w-4 text-blue-600" }),
           "Facebook"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("twitter"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Twitter, { className: "mr-2 h-4 w-4 text-sky-500" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Twitter__default.default, { className: "mr-2 h-4 w-4 text-sky-500" }),
           "Twitter / X"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("linkedin"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Linkedin, { className: "mr-2 h-4 w-4 text-blue-700" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Linkedin__default.default, { className: "mr-2 h-4 w-4 text-blue-700" }),
           "LinkedIn"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("whatsapp"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MessageCircle, { className: "mr-2 h-4 w-4 text-green-600" }),
+          /* @__PURE__ */ jsxRuntime.jsx(MessageCircle__default.default, { className: "mr-2 h-4 w-4 text-green-600" }),
           "WhatsApp"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("telegram"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Send, { className: "mr-2 h-4 w-4 text-blue-500" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Send__default.default, { className: "mr-2 h-4 w-4 text-blue-500" }),
           "Telegram"
         ] }),
         /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {}),
         /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuItem, { onClick: copyToClipboard, children: copied ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { className: "mr-2 h-4 w-4 text-green-500" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Check2__default.default, { className: "mr-2 h-4 w-4 text-green-500" }),
           /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-green-500", children: "Link copiado!" })
         ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Link, { className: "mr-2 h-4 w-4" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Link__default.default, { className: "mr-2 h-4 w-4" }),
           "Copiar link"
         ] }) }),
         /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => setShowQR(true), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.QrCode, { className: "mr-2 h-4 w-4" }),
+          /* @__PURE__ */ jsxRuntime.jsx(QrCode__default.default, { className: "mr-2 h-4 w-4" }),
           "QR Code"
         ] })
       ] })
@@ -631,7 +659,7 @@ function ShareButton({
             className: "flex-1",
             onClick: copyToClipboard,
             children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Link, { className: "mr-2 h-4 w-4" }),
+              /* @__PURE__ */ jsxRuntime.jsx(Link__default.default, { className: "mr-2 h-4 w-4" }),
               "Copiar Link"
             ]
           }
@@ -653,8 +681,8 @@ function BookmarkButton({
   onUnbookmark,
   className
 }) {
-  const [isBookmarked, setIsBookmarked] = React3.useState(initialIsBookmarked);
-  const [isAnimating, setIsAnimating] = React3.useState(false);
+  const [isBookmarked, setIsBookmarked] = React2.useState(initialIsBookmarked);
+  const [isAnimating, setIsAnimating] = React2.useState(false);
   const handleBookmark = () => {
     setIsAnimating(true);
     console.debug(`A\xE7\xE3o de bookmark para o item: ${itemId}`);
@@ -710,7 +738,7 @@ function BookmarkButton({
             } : {},
             transition: { duration: 0.6, ease: "easeInOut" },
             children: /* @__PURE__ */ jsxRuntime.jsx(
-              lucideReact.Bookmark,
+              Bookmark__default.default,
               {
                 className: cn(
                   "h-4 w-4 transition-all",
@@ -795,7 +823,7 @@ function ReadingTime({
       role: "timer",
       "aria-label": `Tempo estimado: ${formattedTime} ${unitText}`,
       children: [
-        showIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "flex-shrink-0", "aria-hidden": "true", children: icon || /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Clock, { className: "h-4 w-4" }) }),
+        showIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "flex-shrink-0", "aria-hidden": "true", children: icon || /* @__PURE__ */ jsxRuntime.jsx(Clock__default.default, { className: "h-4 w-4" }) }),
         /* @__PURE__ */ jsxRuntime.jsx("span", { className: "whitespace-nowrap", children: defaultText })
       ]
     }
@@ -832,9 +860,9 @@ function ActionButton({
   ariaLabel,
   activeColor = "primary"
 }) {
-  const [isAnimating, setIsAnimating] = React3.useState(false);
-  const [currentActive, setCurrentActive] = React3.useState(isActive);
-  React.useEffect(() => {
+  const [isAnimating, setIsAnimating] = React2.useState(false);
+  const [currentActive, setCurrentActive] = React2.useState(isActive);
+  React2.useEffect(() => {
     setCurrentActive(isActive);
   }, [isActive]);
   const handleClick = () => {
@@ -914,7 +942,7 @@ var DEFAULT_PLATFORMS = [
   {
     id: "facebook",
     name: "Facebook",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Facebook, { className: "h-4 w-4" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(Facebook__default.default, { className: "h-4 w-4" }),
     color: "text-blue-600",
     url: "https://www.facebook.com/sharer/sharer.php?u={url}&t={title}",
     order: 1
@@ -922,7 +950,7 @@ var DEFAULT_PLATFORMS = [
   {
     id: "twitter",
     name: "Twitter / X",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Twitter, { className: "h-4 w-4" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(Twitter__default.default, { className: "h-4 w-4" }),
     color: "text-sky-500",
     url: "https://twitter.com/intent/tweet?url={url}&text={title}",
     order: 2
@@ -930,7 +958,7 @@ var DEFAULT_PLATFORMS = [
   {
     id: "linkedin",
     name: "LinkedIn",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Linkedin, { className: "h-4 w-4" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(Linkedin__default.default, { className: "h-4 w-4" }),
     color: "text-blue-700",
     url: "https://www.linkedin.com/sharing/share-offsite/?url={url}",
     order: 3
@@ -938,7 +966,7 @@ var DEFAULT_PLATFORMS = [
   {
     id: "whatsapp",
     name: "WhatsApp",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MessageCircle, { className: "h-4 w-4" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(MessageCircle__default.default, { className: "h-4 w-4" }),
     color: "text-green-600",
     url: "https://api.whatsapp.com/send?text={title}%20{url}",
     order: 4
@@ -946,7 +974,7 @@ var DEFAULT_PLATFORMS = [
   {
     id: "telegram",
     name: "Telegram",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Send, { className: "h-4 w-4" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(Send__default.default, { className: "h-4 w-4" }),
     color: "text-blue-500",
     url: "https://t.me/share/url?url={url}&text={title}",
     order: 5
@@ -969,8 +997,8 @@ function ShareMenu({
   side = "bottom",
   align = "end"
 }) {
-  const [copied, setCopied] = React3.useState(false);
-  const [showQR, setShowQR] = React3.useState(false);
+  const [copied, setCopied] = React2.useState(false);
+  const [showQR, setShowQR] = React2.useState(false);
   const shareUrl = typeof window !== "undefined" ? url.startsWith("http") ? url : `${window.location.origin}${url}` : url;
   const copyToClipboard = async () => {
     try {
@@ -1016,7 +1044,7 @@ function ShareMenu({
   };
   const enabledPlatforms = DEFAULT_PLATFORMS.filter((p) => platforms.includes(p.id)).sort((a, b) => (a.order || 0) - (b.order || 0));
   const TriggerButton = () => /* @__PURE__ */ jsxRuntime.jsxs(Button, { variant, size, className: cn("gap-2", className), children: [
-    /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Share2, { className: "h-4 w-4" }),
+    /* @__PURE__ */ jsxRuntime.jsx(Share2__default.default, { className: "h-4 w-4" }),
     showLabel && /* @__PURE__ */ jsxRuntime.jsx("span", { children: label })
   ] });
   return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
@@ -1027,7 +1055,7 @@ function ShareMenu({
         /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {}),
         showNativeShare && typeof navigator !== "undefined" && "share" in navigator && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
           /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: shareNative, children: [
-            /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Smartphone, { className: "mr-2 h-4 w-4" }),
+            /* @__PURE__ */ jsxRuntime.jsx(Smartphone__default.default, { className: "mr-2 h-4 w-4" }),
             "Compartilhar..."
           ] }),
           /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {})
@@ -1045,14 +1073,14 @@ function ShareMenu({
         )),
         (showCopyLink || showQRCode) && /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {}),
         showCopyLink && /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuItem, { onClick: copyToClipboard, children: copied ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { className: "mr-2 h-4 w-4 text-green-500" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Check2__default.default, { className: "mr-2 h-4 w-4 text-green-500" }),
           /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-green-500", children: "Link copiado!" })
         ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Copy, { className: "mr-2 h-4 w-4" }),
+          /* @__PURE__ */ jsxRuntime.jsx(Copy__default.default, { className: "mr-2 h-4 w-4" }),
           "Copiar link"
         ] }) }),
         showQRCode && /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => setShowQR(true), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.QrCode, { className: "mr-2 h-4 w-4" }),
+          /* @__PURE__ */ jsxRuntime.jsx(QrCode__default.default, { className: "mr-2 h-4 w-4" }),
           "QR Code"
         ] })
       ] })
@@ -1092,7 +1120,7 @@ function ShareMenu({
             className: "flex-1",
             onClick: copyToClipboard,
             children: [
-              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Link2, { className: "mr-2 h-4 w-4" }),
+              /* @__PURE__ */ jsxRuntime.jsx(Link2__default.default, { className: "mr-2 h-4 w-4" }),
               "Copiar Link"
             ]
           }
@@ -1148,7 +1176,7 @@ var ShareMenuVariants = {
     }
   )
 };
-var Card = React3__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Card = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1160,7 +1188,7 @@ var Card = React3__namespace.forwardRef(({ className, ...props }, ref) => /* @__
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React3__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardHeader = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1169,7 +1197,7 @@ var CardHeader = React3__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React3__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardTitle = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h3",
   {
     ref,
@@ -1181,7 +1209,7 @@ var CardTitle = React3__namespace.forwardRef(({ className, ...props }, ref) => /
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React3__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardDescription = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "p",
   {
     ref,
@@ -1190,9 +1218,9 @@ var CardDescription = React3__namespace.forwardRef(({ className, ...props }, ref
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React3__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React3__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardFooter = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1201,7 +1229,7 @@ var CardFooter = React3__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 CardFooter.displayName = "CardFooter";
-var HighlightCard = React3__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var HighlightCard = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1258,7 +1286,6 @@ var badgeVariants = classVarianceAuthority.cva(
 function Badge({ className, variant, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(badgeVariants({ variant }), className), ...props });
 }
-i;
 var formatRelativeDate = (date) => {
   try {
     return dateFns.formatDistanceToNow(new Date(date), {
@@ -1290,20 +1317,15 @@ function ContentCard({
   const renderImage = () => {
     if (!showImage || !image) return null;
     return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative overflow-hidden", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "aspect-video relative", children: [
-      /* @__PURE__ */ jsxRuntime.jsx(
-        Image__default.default,
-        {
-          src: image,
-          alt: imageAlt || title,
-          fill: true,
-          className: cn(
-            "object-cover transition-transform duration-300",
-            "group-hover:scale-105"
-          ),
-          priority: imagePriority,
-          sizes: "(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        }
-      ),
+      React2__namespace.default.createElement("img", {
+        src: image,
+        alt: imageAlt || title,
+        className: cn(
+          "w-full h-full object-cover transition-transform duration-300",
+          "group-hover:scale-105"
+        ),
+        loading: imagePriority ? "eager" : "lazy"
+      }),
       metadata?.badge && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute top-2 right-2", children: /* @__PURE__ */ jsxRuntime.jsx(Badge, { variant: "default", className: "bg-red-500 text-white", children: metadata.badge }) })
     ] }) });
   };
@@ -1454,7 +1476,7 @@ function ContentCard({
                         className: "gap-1 text-primary",
                         children: [
                           "Ler mais",
-                          /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Link, { className: "h-3 w-3" })
+                          /* @__PURE__ */ jsxRuntime.jsx(Link__default.default, { className: "h-3 w-3" })
                         ]
                       }
                     )

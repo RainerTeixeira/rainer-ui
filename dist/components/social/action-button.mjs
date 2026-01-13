@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { motion as motion$1 } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -144,7 +144,7 @@ function ActionButton({
 }) {
   const [isAnimating, setIsAnimating] = useState(false);
   const [currentActive, setCurrentActive] = useState(isActive);
-  React.useEffect(() => {
+  useEffect(() => {
     setCurrentActive(isActive);
   }, [isActive]);
   const handleClick = () => {

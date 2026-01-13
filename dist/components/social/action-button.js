@@ -146,7 +146,7 @@ function ActionButton({
 }) {
   const [isAnimating, setIsAnimating] = react.useState(false);
   const [currentActive, setCurrentActive] = react.useState(isActive);
-  React.useEffect(() => {
+  react.useEffect(() => {
     setCurrentActive(isActive);
   }, [isActive]);
   const handleClick = () => {

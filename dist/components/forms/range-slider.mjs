@@ -128,15 +128,13 @@ var RangeSlider = React.forwardRef(
     };
     const updateValue = React.useCallback((type, percent) => {
       const newValue = percentToValue(percent);
-      setValue((prev) => {
-        const updated = { ...prev };
-        if (type === "min") {
-          updated.min = Math.min(newValue, prev.max - step);
-        } else {
-          updated.max = Math.max(newValue, prev.min + step);
-        }
-        return updated;
-      });
+      const updated = { ...currentValue };
+      if (type === "min") {
+        updated.min = Math.min(newValue, currentValue.max - step);
+      } else {
+        updated.max = Math.max(newValue, currentValue.min + step);
+      }
+      setValue(updated);
     }, [step]);
     const setValue = React.useCallback((newValue) => {
       setInternalValue(newValue);

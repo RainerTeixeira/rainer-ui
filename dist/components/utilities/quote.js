@@ -2,11 +2,13 @@
 
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
-var lucideReact = require('lucide-react');
+var QuoteIcon = require('lucide-react/dist/esm/icons/quote');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -27,6 +29,7 @@ function _interopNamespace(e) {
 }
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var QuoteIcon__default = /*#__PURE__*/_interopDefault(QuoteIcon);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -129,7 +132,7 @@ var Quote = React__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const IconComponent = icon || (variant === "testimonial" || variant === "card" ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.QuoteIcon, { className: "h-8 w-8 text-primary/20" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.QuoteIcon, { className: "h-4 w-4 text-muted-foreground" }));
+    const IconComponent = icon || (variant === "testimonial" || variant === "card" ? /* @__PURE__ */ jsxRuntime.jsx(QuoteIcon__default.default, { className: "h-8 w-8 text-primary/20" }) : /* @__PURE__ */ jsxRuntime.jsx(QuoteIcon__default.default, { className: "h-4 w-4 text-muted-foreground" }));
     return /* @__PURE__ */ jsxRuntime.jsxs(
       "blockquote",
       {

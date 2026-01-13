@@ -3,7 +3,8 @@ import { useTheme as useTheme$1 } from 'next-themes';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
-import { Moon, Sun } from 'lucide-react';
+import Moon from 'lucide-react/dist/esm/icons/moon';
+import Sun from 'lucide-react/dist/esm/icons/sun';
 import { jsxs, jsx } from 'react/jsx-runtime';
 
 function useTheme() {

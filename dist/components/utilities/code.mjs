@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
-import { Check, Copy } from 'lucide-react';
+import Check from 'lucide-react/dist/esm/icons/check';
+import Copy from 'lucide-react/dist/esm/icons/copy';
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';

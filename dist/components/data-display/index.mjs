@@ -1,5 +1,5 @@
 import * as React2 from 'react';
-import { ChevronLeft, ChevronRight, X, AlertTriangle, Circle, Check, Star, StarHalf, ChevronDown } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, AlertTriangle, Circle, Check, ChevronDown } from 'lucide-react';
 import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 import { clsx } from 'clsx';
@@ -7,6 +7,8 @@ import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import useEmblaCarousel from 'embla-carousel-react';
+import Star from 'lucide-react/dist/esm/icons/star';
+import StarHalf from 'lucide-react/dist/esm/icons/star-half';
 
 // src/lib/utils.ts
 function cn(...inputs) {

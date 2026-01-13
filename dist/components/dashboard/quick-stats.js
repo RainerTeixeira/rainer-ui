@@ -8,7 +8,14 @@ var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
-var lucideReact = require('lucide-react');
+var Eye = require('lucide-react/dist/esm/icons/eye');
+var FileText = require('lucide-react/dist/esm/icons/file-text');
+var Heart = require('lucide-react/dist/esm/icons/heart');
+var MessageSquare = require('lucide-react/dist/esm/icons/message-square');
+var TrendingDown = require('lucide-react/dist/esm/icons/trending-down');
+var TrendingUp = require('lucide-react/dist/esm/icons/trending-up');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -29,6 +36,12 @@ function _interopNamespace(e) {
 }
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var Eye__default = /*#__PURE__*/_interopDefault(Eye);
+var FileText__default = /*#__PURE__*/_interopDefault(FileText);
+var Heart__default = /*#__PURE__*/_interopDefault(Heart);
+var MessageSquare__default = /*#__PURE__*/_interopDefault(MessageSquare);
+var TrendingDown__default = /*#__PURE__*/_interopDefault(TrendingDown);
+var TrendingUp__default = /*#__PURE__*/_interopDefault(TrendingUp);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -189,7 +202,7 @@ var DEFAULT_STATS = [
     label: "Total de Posts",
     value: 42,
     change: 12.5,
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.FileText, { className: "w-5 h-5", "aria-hidden": "true" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(FileText__default.default, { className: "w-5 h-5", "aria-hidden": "true" }),
     color: "from-cyan-500 to-blue-500",
     description: "Artigos publicados no blog"
   },
@@ -197,7 +210,7 @@ var DEFAULT_STATS = [
     label: "Visualiza\xE7\xF5es",
     value: "2.4K",
     change: 8.3,
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Eye, { className: "w-5 h-5", "aria-hidden": "true" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(Eye__default.default, { className: "w-5 h-5", "aria-hidden": "true" }),
     color: "from-purple-500 to-pink-500",
     description: "Visualiza\xE7\xF5es totais"
   },
@@ -205,7 +218,7 @@ var DEFAULT_STATS = [
     label: "Curtidas",
     value: 1.2,
     change: -3.2,
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Heart, { className: "w-5 h-5", "aria-hidden": "true" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(Heart__default.default, { className: "w-5 h-5", "aria-hidden": "true" }),
     color: "from-orange-500 to-red-500",
     description: "Curtidas recebidas"
   },
@@ -213,7 +226,7 @@ var DEFAULT_STATS = [
     label: "Coment\xE1rios",
     value: 89,
     change: 15.7,
-    icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MessageSquare, { className: "w-5 h-5", "aria-hidden": "true" }),
+    icon: /* @__PURE__ */ jsxRuntime.jsx(MessageSquare__default.default, { className: "w-5 h-5", "aria-hidden": "true" }),
     color: "from-green-500 to-emerald-500",
     description: "Coment\xE1rios ativos"
   }
@@ -221,7 +234,7 @@ var DEFAULT_STATS = [
 function QuickStatsComponent({
   stats = [...DEFAULT_STATS],
   animationDelay = DEFAULT_STAGGER_DELAY,
-  animateOnView = true,
+  // animateOnView = true, // TODO: implementar animação ao entrar na viewport
   className,
   theme = "auto"
 }) {
@@ -237,7 +250,7 @@ function QuickStatsComponent({
   const renderChangeIndicator = (change) => {
     if (change === void 0 || change === 0) return null;
     const isPositive = change > 0;
-    const Icon = isPositive ? lucideReact.TrendingUp : lucideReact.TrendingDown;
+    const Icon = isPositive ? TrendingUp__default.default : TrendingDown__default.default;
     const formattedChange = Math.abs(change).toFixed(1);
     return /* @__PURE__ */ jsxRuntime.jsxs(
       "div",

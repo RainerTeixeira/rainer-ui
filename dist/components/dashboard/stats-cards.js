@@ -8,10 +8,18 @@ var React4 = require('react');
 var jsxRuntime = require('react/jsx-runtime');
 var ScrollAreaPrimitive = require('@radix-ui/react-scroll-area');
 var SeparatorPrimitive = require('@radix-ui/react-separator');
-var lucideReact = require('lucide-react');
+require('lucide-react');
 require('@radix-ui/react-dialog');
 var classVarianceAuthority = require('class-variance-authority');
 var framerMotion = require('framer-motion');
+var Eye = require('lucide-react/dist/esm/icons/eye');
+var FileText = require('lucide-react/dist/esm/icons/file-text');
+var Heart = require('lucide-react/dist/esm/icons/heart');
+var MessageCircle = require('lucide-react/dist/esm/icons/message-circle');
+var TrendingDown = require('lucide-react/dist/esm/icons/trending-down');
+var TrendingUp = require('lucide-react/dist/esm/icons/trending-up');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -34,6 +42,12 @@ function _interopNamespace(e) {
 var React4__namespace = /*#__PURE__*/_interopNamespace(React4);
 var ScrollAreaPrimitive__namespace = /*#__PURE__*/_interopNamespace(ScrollAreaPrimitive);
 var SeparatorPrimitive__namespace = /*#__PURE__*/_interopNamespace(SeparatorPrimitive);
+var Eye__default = /*#__PURE__*/_interopDefault(Eye);
+var FileText__default = /*#__PURE__*/_interopDefault(FileText);
+var Heart__default = /*#__PURE__*/_interopDefault(Heart);
+var MessageCircle__default = /*#__PURE__*/_interopDefault(MessageCircle);
+var TrendingDown__default = /*#__PURE__*/_interopDefault(TrendingDown);
+var TrendingUp__default = /*#__PURE__*/_interopDefault(TrendingUp);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -1317,28 +1331,28 @@ function StatsCards({ stats, isLoading }) {
       label: "Total de Posts",
       value: stats.totalPosts,
       change: stats.postsChange,
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.FileText, { className: "h-4 w-4" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(FileText__default.default, { className: "h-4 w-4" }),
       color: "from-cyan-500 to-blue-500"
     },
     {
       label: "Total de Visualiza\xE7\xF5es",
       value: stats.totalViews,
       change: stats.viewsChange,
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Eye, { className: "h-4 w-4" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(Eye__default.default, { className: "h-4 w-4" }),
       color: "from-purple-500 to-pink-500"
     },
     {
       label: "Total de Curtidas",
       value: stats.totalLikes,
       change: stats.likesChange,
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Heart, { className: "h-4 w-4" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(Heart__default.default, { className: "h-4 w-4" }),
       color: "from-pink-500 to-red-500"
     },
     {
       label: "Total de Coment\xE1rios",
       value: stats.totalComments,
       change: stats.commentsChange,
-      icon: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.MessageCircle, { className: "h-4 w-4" }),
+      icon: /* @__PURE__ */ jsxRuntime.jsx(MessageCircle__default.default, { className: "h-4 w-4" }),
       color: "from-green-500 to-emerald-500"
     }
   ];
@@ -1382,7 +1396,7 @@ function StatsCards({ stats, isLoading }) {
                   stat.change > 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
                 ),
                 children: [
-                  stat.change > 0 ? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.TrendingUp, { className: "h-3 w-3" }) : /* @__PURE__ */ jsxRuntime.jsx(lucideReact.TrendingDown, { className: "h-3 w-3" }),
+                  stat.change > 0 ? /* @__PURE__ */ jsxRuntime.jsx(TrendingUp__default.default, { className: "h-3 w-3" }) : /* @__PURE__ */ jsxRuntime.jsx(TrendingDown__default.default, { className: "h-3 w-3" }),
                   Math.abs(stat.change),
                   "%"
                 ]

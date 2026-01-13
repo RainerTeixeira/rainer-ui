@@ -1,6 +1,11 @@
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
-import { X, Bell, Info, AlertTriangle, AlertCircle, Check } from 'lucide-react';
+import AlertCircle from 'lucide-react/dist/esm/icons/alert-circle';
+import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle';
+import Bell from 'lucide-react/dist/esm/icons/bell';
+import Check from 'lucide-react/dist/esm/icons/check';
+import Info from 'lucide-react/dist/esm/icons/info';
+import X from 'lucide-react/dist/esm/icons/x';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';

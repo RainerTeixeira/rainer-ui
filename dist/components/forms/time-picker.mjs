@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
-import { Timer } from 'lucide-react';
+import Timer from 'lucide-react/dist/esm/icons/timer';
 import { Slot } from '@radix-ui/react-slot';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -161,10 +161,10 @@ var TimePicker = React.forwardRef(
     disabled = false,
     minuteStep = 1,
     secondStep = 1,
-    minTime,
-    maxTime,
+    // minTime, // TODO: implementar validação de tempo mínimo
+    // maxTime, // TODO: implementar validação de tempo máximo
     ...props
-  }, ref) => {
+  }) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [hours, setHours] = React.useState(value?.hours || 0);
     const [minutes, setMinutes] = React.useState(value?.minutes || 0);

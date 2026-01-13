@@ -2,12 +2,17 @@
 
 var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
-var lucideReact = require('lucide-react');
+var AlertTriangle = require('lucide-react/dist/esm/icons/alert-triangle');
+var CheckCircle = require('lucide-react/dist/esm/icons/check-circle');
+var Info = require('lucide-react/dist/esm/icons/info');
+var X = require('lucide-react/dist/esm/icons/x');
 var reactSlot = require('@radix-ui/react-slot');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -28,6 +33,10 @@ function _interopNamespace(e) {
 }
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var AlertTriangle__default = /*#__PURE__*/_interopDefault(AlertTriangle);
+var CheckCircle__default = /*#__PURE__*/_interopDefault(CheckCircle);
+var Info__default = /*#__PURE__*/_interopDefault(Info);
+var X__default = /*#__PURE__*/_interopDefault(X);
 
 // src/lib/utils.ts
 function cn(...inputs) {
@@ -174,9 +183,9 @@ var ConfirmDialog = React__namespace.forwardRef(
     closeOnCancel = true,
     closeOnBackdrop = true,
     closeOnEscape = true,
-    confirmVariant = "default",
-    ...props
-  }, ref) => {
+    confirmVariant = "default"
+    // props, // Props adicionais não utilizados
+  }) => {
     const [internalLoading, setInternalLoading] = React__namespace.useState(false);
     const isLoading = loading || internalLoading;
     React__namespace.useEffect(() => {
@@ -218,13 +227,13 @@ var ConfirmDialog = React__namespace.forwardRef(
     const getIcon = () => {
       switch (variant) {
         case "destructive":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.AlertTriangle, { className: "h-6 w-6 text-destructive" });
+          return /* @__PURE__ */ jsxRuntime.jsx(AlertTriangle__default.default, { className: "h-6 w-6 text-destructive" });
         case "warning":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.AlertTriangle, { className: "h-6 w-6 text-amber-500" });
+          return /* @__PURE__ */ jsxRuntime.jsx(AlertTriangle__default.default, { className: "h-6 w-6 text-amber-500" });
         case "info":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Info, { className: "h-6 w-6 text-blue-500" });
+          return /* @__PURE__ */ jsxRuntime.jsx(Info__default.default, { className: "h-6 w-6 text-blue-500" });
         case "success":
-          return /* @__PURE__ */ jsxRuntime.jsx(lucideReact.CheckCircle, { className: "h-6 w-6 text-emerald-500" });
+          return /* @__PURE__ */ jsxRuntime.jsx(CheckCircle__default.default, { className: "h-6 w-6 text-emerald-500" });
         default:
           return null;
       }
@@ -256,7 +265,6 @@ var ConfirmDialog = React__namespace.forwardRef(
       /* @__PURE__ */ jsxRuntime.jsxs(
         "div",
         {
-          ref,
           className: cn(
             confirmDialogVariants({ variant, size }),
             "relative z-10 p-6 animate-in fade-in-0 zoom-in-95 duration-[var(--motion-duration-normal)]",
@@ -275,7 +283,7 @@ var ConfirmDialog = React__namespace.forwardRef(
                 onClick: handleCancel,
                 className: "absolute right-4 top-4 h-8 w-8 p-0",
                 disabled: isLoading,
-                children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-4 w-4" })
+                children: /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-4 w-4" })
               }
             ),
             /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col items-center text-center max-w-sm mx-auto", children: [
