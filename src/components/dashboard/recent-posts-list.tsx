@@ -16,12 +16,12 @@ import { Button } from '../ui';
 import { Card, CardContent, CardHeader, CardTitle } from '../layout';
 import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
-import { Tag } from 'lucide-react';
-import { Trash2 } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { Calendar } from 'lucide-react';
-import { Edit } from 'lucide-react';
-import { Eye } from 'lucide-react';
+// import Tag from 'lucide-react/dist/esm/icons/tag'; // TODO: implementar tags
+import Trash2 from 'lucide-react/dist/esm/icons/trash-2';
+import Calendar from 'lucide-react/dist/esm/icons/calendar';
+import Edit from 'lucide-react/dist/esm/icons/edit';
+import Eye from 'lucide-react/dist/esm/icons/eye';
+// import { useEffect, useState } from 'react'; // TODO: implementar loading state
 
 // Tipos para o componente
 interface PostListItem {
@@ -51,7 +51,8 @@ export function RecentPostsList({
   maxPosts = 5,
   className,
 }: RecentPostsListProps) {
-  const [isLoading, setIsLoading] = useState(false);
+  // TODO: implementar loading state
+  const isLoading = false; // Temporariamente desabilitado
   const displayedPosts = posts.slice(0, maxPosts);
 
   if (isLoading) {

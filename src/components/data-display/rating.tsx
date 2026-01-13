@@ -12,8 +12,8 @@
 
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
-import { Star } from 'lucide-react';
-import { StarHalf } from 'lucide-react';
+import Star from 'lucide-react/dist/esm/icons/star';
+import StarHalf from 'lucide-react/dist/esm/icons/star-half';
 
 import { cn } from '../../lib/utils';
 

@@ -48,12 +48,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent } from '../layout/card';
-import { Eye } from 'lucide-react';
-import { FileText } from 'lucide-react';
-import { Heart } from 'lucide-react';
-import { MessageSquare } from 'lucide-react';
-import { TrendingDown } from 'lucide-react';
-import { TrendingUp } from 'lucide-react';
+import Eye from 'lucide-react/dist/esm/icons/eye';
+import FileText from 'lucide-react/dist/esm/icons/file-text';
+import Heart from 'lucide-react/dist/esm/icons/heart';
+import MessageSquare from 'lucide-react/dist/esm/icons/message-square';
+import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
+import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
 
 // Ícones Lucide para as métricas padrão
 
@@ -214,7 +214,7 @@ const DEFAULT_STATS: ReadonlyArray<StatItem> = [
 function QuickStatsComponent({
   stats = [...DEFAULT_STATS],
   animationDelay = DEFAULT_STAGGER_DELAY,
-  animateOnView = true,
+  // animateOnView = true, // TODO: implementar animação ao entrar na viewport
   className,
   theme = 'auto'
 }: QuickStatsProps): React.ReactElement {

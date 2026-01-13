@@ -12,8 +12,8 @@
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { DayPicker } from 'react-day-picker';
-import { CalendarIcon } from 'lucide-react';
-import { ChevronDown } from 'lucide-react';
+import Calendar from 'lucide-react/dist/esm/icons/calendar';
+import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
@@ -62,7 +62,7 @@ export interface DatePickerProps
   /** Se permite selecionar um range de datas */
   range?: boolean;
   /** Datas desabilitadas */
-  disabled?: (date: Date) => boolean;
+  disabledDates?: (date: Date) => boolean;
   /** Data mínima */
   minDate?: Date;
   /** Data máxima */
@@ -80,7 +80,7 @@ export interface DatePickerProps
   /** Se deve fixar a semana */
   fixedWeeks?: boolean;
   /** Locale */
-  locale?: Locale;
+  locale?: string;
 }
 
 /**
@@ -164,7 +164,7 @@ export const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       placeholder = 'Selecione uma data',
       multiple = false,
       range = false,
-      disabled,
+      disabledDates,
       minDate,
       maxDate,
       fromYear,
@@ -172,7 +172,7 @@ export const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       format,
       showWeekNumber = false,
       fixedWeeks = false,
-      locale,
+      disabled = false,
       ...props
     },
     _ref
@@ -207,24 +207,18 @@ export const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
       }
     }, [value, range, multiple, format]);
 
-    // Manipula seleção no calendário
-    const handleSelect = React.useCallback((dates: Date[] | undefined) => {
-      if (!dates) {
-        onChange?.(undefined);
-        return;
-      }
+    // Handlers específicos para cada modo
+    const handleSingleSelect = React.useCallback((day: Date | undefined) => {
+      onChange?.(day);
+    }, [onChange]);
 
-      if (range) {
-        const rangeValue = dates.length > 0 
-          ? { from: dates[0], to: dates[1] } as DateRange
-          : undefined;
-        onChange?.(rangeValue);
-      } else if (multiple) {
-        onChange?.(dates);
-      } else {
-        onChange?.(dates[0]);
-      }
-    }, [range, multiple, onChange]);
+    const handleMultipleSelect = React.useCallback((dates: Date[] | undefined) => {
+      onChange?.(dates);
+    }, [onChange]);
+
+    const handleRangeSelect = React.useCallback((range: DateRange | undefined) => {
+      onChange?.(range);
+    }, [onChange]);
 
     // Fecha ao clicar fora
     React.useEffect(() => {
@@ -286,7 +280,7 @@ export const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
           onClick={() => setIsOpen(!isOpen)}
           disabled={disabled}
         >
-          <CalendarIcon className="mr-2 h-4 w-4" />
+          <Calendar className="mr-2 h-4 w-4" />
           {inputValue || placeholder}
           <ChevronDown className="ml-auto h-4 w-4 opacity-50" />
         </Button>
@@ -294,21 +288,52 @@ export const DatePicker = React.forwardRef<HTMLDivElement, DatePickerProps>(
         {/* Popup do calendário */}
         {isOpen && (
           <div className="absolute top-full left-0 z-50 mt-1 rounded-md border bg-popover p-0 text-popover-foreground shadow-lg animate-in fade-in-0 zoom-in-95">
-            <DayPicker
-              mode={range ? 'range' : multiple ? 'multiple' : 'single'}
-              selected={selectedDates}
-              onSelect={handleSelect}
-              disabled={disabled}
-              fromDate={minDate}
-              toDate={maxDate}
-              fromYear={fromYear}
-              toYear={toYear}
-              showWeekNumber={showWeekNumber}
-              fixedWeeks={fixedWeeks}
-              locale={locale}
-              classNames={dayPickerClassNames}
-              initialFocus
-            />
+            {range ? (
+              <DayPicker
+                mode="range"
+                selected={value as DateRange}
+                onSelect={handleRangeSelect}
+                disabled={disabledDates}
+                fromDate={minDate}
+                toDate={maxDate}
+                fromYear={fromYear}
+                toYear={toYear}
+                showWeekNumber={showWeekNumber}
+                fixedWeeks={fixedWeeks}
+                classNames={dayPickerClassNames}
+                initialFocus
+              />
+            ) : multiple ? (
+              <DayPicker
+                mode="multiple"
+                selected={selectedDates}
+                onSelect={handleMultipleSelect}
+                disabled={disabledDates}
+                fromDate={minDate}
+                toDate={maxDate}
+                fromYear={fromYear}
+                toYear={toYear}
+                showWeekNumber={showWeekNumber}
+                fixedWeeks={fixedWeeks}
+                classNames={dayPickerClassNames}
+                initialFocus
+              />
+            ) : (
+              <DayPicker
+                mode="single"
+                selected={value instanceof Date ? value : undefined}
+                onSelect={handleSingleSelect}
+                disabled={disabledDates}
+                fromDate={minDate}
+                toDate={maxDate}
+                fromYear={fromYear}
+                toYear={toYear}
+                showWeekNumber={showWeekNumber}
+                fixedWeeks={fixedWeeks}
+                classNames={dayPickerClassNames}
+                initialFocus
+              />
+            )}
           </div>
         )}
       </div>

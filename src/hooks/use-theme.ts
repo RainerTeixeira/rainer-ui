@@ -43,6 +43,15 @@ interface UseThemeReturn {
 }
 
 /**
+ * Hook useTheme
+ *
+ * Hook para gerenciar tema (dark/light) com localStorage e system preference.
+ *
+ * @module @rainersoft/ui/hooks
+ * @author Rainer Teixeira
+ */
+
+/**
  * Hook personalizado para gerenciamento de tema com tipagem aprimorada.
  *
  * Fornece uma interface simplificada e tipada para controle de temas,

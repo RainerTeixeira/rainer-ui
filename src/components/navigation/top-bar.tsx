@@ -9,14 +9,14 @@
  * @version 1.0.0
  */
 
-import { MoreVertical } from 'lucide-react';
+import MoreVertical from 'lucide-react/dist/esm/icons/more-vertical';
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { ArrowLeft } from 'lucide-react';
-import { Bell } from 'lucide-react';
-import { Menu } from 'lucide-react';
-import { Search } from 'lucide-react';
-import { Settings } from 'lucide-react';
+import ArrowLeft from 'lucide-react/dist/esm/icons/arrow-left';
+import Bell from 'lucide-react/dist/esm/icons/bell';
+import Menu from 'lucide-react/dist/esm/icons/menu';
+import Search from 'lucide-react/dist/esm/icons/search';
+import Settings from 'lucide-react/dist/esm/icons/settings';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';

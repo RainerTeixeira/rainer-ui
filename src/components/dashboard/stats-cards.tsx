@@ -31,12 +31,12 @@
 import { Card, CardContent, CardHeader, CardTitle } from '../layout';
 import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
-import { Eye } from 'lucide-react';
-import { FileText } from 'lucide-react';
-import { Heart } from 'lucide-react';
-import { MessageCircle } from 'lucide-react';
-import { TrendingDown } from 'lucide-react';
-import { TrendingUp } from 'lucide-react';
+import Eye from 'lucide-react/dist/esm/icons/eye';
+import FileText from 'lucide-react/dist/esm/icons/file-text';
+import Heart from 'lucide-react/dist/esm/icons/heart';
+import MessageCircle from 'lucide-react/dist/esm/icons/message-circle';
+import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
+import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
 
 /**
  * Interface para estatísticas individuais

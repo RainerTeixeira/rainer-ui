@@ -30,11 +30,11 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from '../layout';
 import { cn } from '../../lib/utils';
-import { TrendingUp } from 'lucide-react';
+import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
+import Eye from 'lucide-react/dist/esm/icons/eye';
+import Heart from 'lucide-react/dist/esm/icons/heart';
+import MessageSquare from 'lucide-react/dist/esm/icons/message-square';
 import { useEffect, useState } from 'react';
-import { Eye } from 'lucide-react';
-import { Heart } from 'lucide-react';
-import { MessageSquare } from 'lucide-react';
 
 interface AnalyticsOverviewProps {
   className?: string;

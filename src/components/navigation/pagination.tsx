@@ -11,7 +11,9 @@
 
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
+import ChevronLeft from 'lucide-react/dist/esm/icons/chevron-left';
+import ChevronRight from 'lucide-react/dist/esm/icons/chevron-right';
+import MoreHorizontal from 'lucide-react/dist/esm/icons/more-horizontal';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';

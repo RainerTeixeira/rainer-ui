@@ -1,4 +1,15 @@
 /**
+ * Hook useCarouselKeyboard
+ *
+ * Hook para gerenciar navegação por teclado em carrosséis.
+ *
+ * @module @rainersoft/ui/hooks
+ * @author Rainer Teixeira
+ */
+
+'use client';
+
+/**
  * Hook para controlar carrossel com teclado
  * 
  * @param {Object} params - Parâmetros do hook

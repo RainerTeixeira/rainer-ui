@@ -4,10 +4,10 @@
  * Componente universal de avatar com suporte a imagem, iniciais e fallback.
  * Totalmente acessível e customizável via design tokens.
  *
- * @module @rainersoft/ui/components
- * @author Rainer Teixeira
- * @version 1.0.0
+ * @module @rainersoft/ui/components/ui/avatar
  */
+
+'use client';
 
 import * as React from 'react';
 import { cn } from '../../lib/utils';

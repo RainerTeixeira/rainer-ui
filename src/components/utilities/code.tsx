@@ -9,9 +9,12 @@
  * @version 1.0.0
  */
 
+'use client';
+
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Check as CheckIcon, Copy as CopyIcon } from 'lucide-react';
+import Check from 'lucide-react/dist/esm/icons/check';
+import Copy from 'lucide-react/dist/esm/icons/copy';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
@@ -165,12 +168,12 @@ export const Code = React.forwardRef<HTMLElement, CodeProps>(
               >
                 {copied ? (
                   <>
-                    <CheckIcon className="h-3 w-3 mr-1" />
+                    <Check className="h-3 w-3 mr-1" />
                     Copiado!
                   </>
                 ) : (
                   <>
-                    <CopyIcon className="h-3 w-3 mr-1" />
+                    <Copy className="h-3 w-3 mr-1" />
                     Copiar
                   </>
                 )}

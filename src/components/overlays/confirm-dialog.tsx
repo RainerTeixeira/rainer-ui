@@ -11,10 +11,10 @@
 
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { AlertTriangle } from 'lucide-react';
-import { CheckCircle } from 'lucide-react';
-import { Info } from 'lucide-react';
-import { X } from 'lucide-react';
+import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle';
+import CheckCircle from 'lucide-react/dist/esm/icons/check-circle';
+import Info from 'lucide-react/dist/esm/icons/info';
+import X from 'lucide-react/dist/esm/icons/x';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
@@ -143,9 +143,9 @@ export const ConfirmDialog = React.forwardRef<HTMLDivElement, ConfirmDialogProps
       closeOnBackdrop = true,
       closeOnEscape = true,
       confirmVariant = 'default',
-      ...props
+      // props, // Props adicionais não utilizados
     },
-    ref
+    // ref, // TODO: implementar ref forwarding
   ) => {
     const [internalLoading, setInternalLoading] = React.useState(false);
     const isLoading = loading || internalLoading;
@@ -244,7 +244,7 @@ export const ConfirmDialog = React.forwardRef<HTMLDivElement, ConfirmDialogProps
 
         {/* Dialog */}
         <div
-          ref={ref}
+          // ref={ref} // TODO: implementar ref forwarding
           className={cn(
             confirmDialogVariants({ variant, size }),
             'relative z-10 p-6 animate-in fade-in-0 zoom-in-95 duration-[var(--motion-duration-normal)]',

@@ -14,8 +14,8 @@
 import * as React from 'react';
 import { useTheme } from '../../hooks/use-theme';
 import { cn } from '../../lib/utils';
-import { Moon } from 'lucide-react';
-import { Sun } from 'lucide-react';
+import Moon from 'lucide-react/dist/esm/icons/moon';
+import Sun from 'lucide-react/dist/esm/icons/sun';
 
 export interface ThemeToggleProps {
   className?: string;

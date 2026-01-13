@@ -11,19 +11,17 @@
 
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import {
-  ChevronLeft,
-  ChevronRight,
-  Download,
-  Maximize2,
-  Minimize2,
-  Pause,
-  Play,
-  RotateCw,
-  X,
-  ZoomIn,
-  ZoomOut,
-} from 'lucide-react';
+import ChevronLeft from 'lucide-react/dist/esm/icons/chevron-left';
+import ChevronRight from 'lucide-react/dist/esm/icons/chevron-right';
+import Download from 'lucide-react/dist/esm/icons/download';
+import Maximize2 from 'lucide-react/dist/esm/icons/maximize-2';
+import Minimize2 from 'lucide-react/dist/esm/icons/minimize-2';
+import Pause from 'lucide-react/dist/esm/icons/pause';
+import Play from 'lucide-react/dist/esm/icons/play';
+import RotateCw from 'lucide-react/dist/esm/icons/rotate-cw';
+import X from 'lucide-react/dist/esm/icons/x';
+import ZoomIn from 'lucide-react/dist/esm/icons/zoom-in';
+import ZoomOut from 'lucide-react/dist/esm/icons/zoom-out';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';

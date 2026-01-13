@@ -9,6 +9,8 @@
 import { tokens } from '@rainersoft/design-tokens';
 import { hexToRGBA } from '../../lib/color-utils';
 import { useTheme } from 'next-themes';
+'use client';
+
 import { useEffect, useRef, useState } from 'react';
 
 interface FloatingGridProps {

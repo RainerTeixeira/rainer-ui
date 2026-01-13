@@ -17,6 +17,8 @@
  * @version 1.0.0
  */
 
+'use client';
+
 import { useEffect, useState } from 'react';
 import { tokens } from '@rainersoft/design-tokens';
 import { hexToRGBA } from '../../lib/color-utils';

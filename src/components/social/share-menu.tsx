@@ -43,20 +43,20 @@ import {
   DropdownMenuTrigger,
 } from '../overlays/dropdown-menu';
 import { QRCodeSVG } from 'qrcode.react';
+'use client';
+
 import { useState } from 'react';
-import {
-  Check,
-  Copy,
-  Facebook,
-  Link2,
-  Linkedin,
-  MessageCircle,
-  QrCode,
-  Send,
-  Share2,
-  Smartphone,
-  Twitter,
-} from 'lucide-react';
+import Check from 'lucide-react/dist/esm/icons/check';
+import Copy from 'lucide-react/dist/esm/icons/copy';
+import Facebook from 'lucide-react/dist/esm/icons/facebook';
+import Link2 from 'lucide-react/dist/esm/icons/link-2';
+import Linkedin from 'lucide-react/dist/esm/icons/linkedin';
+import MessageCircle from 'lucide-react/dist/esm/icons/message-circle';
+import QrCode from 'lucide-react/dist/esm/icons/qr-code';
+import Send from 'lucide-react/dist/esm/icons/send';
+import Share2 from 'lucide-react/dist/esm/icons/share-2';
+import Smartphone from 'lucide-react/dist/esm/icons/smartphone';
+import Twitter from 'lucide-react/dist/esm/icons/twitter';
 
 /**
  * Interface para plataformas de compartilhamento

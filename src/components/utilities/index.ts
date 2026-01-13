@@ -38,7 +38,7 @@ export { ThemeToggle } from './ThemeToggle';
 // ERROR HANDLING
 // ============================================================================
 
-export { ErrorBoundary } from './ErrorBoundary';
+// export { ErrorBoundary } from './ErrorBoundary';
 
 // ============================================================================
 // PWA UTILITIES

@@ -66,7 +66,7 @@
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 /**
  * Configuração de animação para o botão
@@ -167,7 +167,7 @@ export function ActionButton({
   const [currentActive, setCurrentActive] = useState(isActive);
 
   // Sincroniza estado externo com interno
-  React.useEffect(() => {
+  useEffect(() => {
     setCurrentActive(isActive);
   }, [isActive]);
 
@@ -300,4 +300,4 @@ export const ActionButtonVariants = {
   ),
 } as const;
 
-export type { ActionButtonProps };
+// ActionButtonProps já exportado como interface

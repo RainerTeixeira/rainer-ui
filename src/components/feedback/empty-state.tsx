@@ -9,14 +9,14 @@
  * @version 1.0.0
  */
 
-import { RefreshCw } from 'lucide-react';
+import RefreshCw from 'lucide-react/dist/esm/icons/refresh-cw';
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
-import { ChevronDown } from 'lucide-react';
-import { Package } from 'lucide-react';
-import { Search } from 'lucide-react';
-import { Wifi } from 'lucide-react';
-import { XCircle } from 'lucide-react';
+import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down';
+import Package from 'lucide-react/dist/esm/icons/package';
+import Search from 'lucide-react/dist/esm/icons/search';
+import Wifi from 'lucide-react/dist/esm/icons/wifi';
+import XCircle from 'lucide-react/dist/esm/icons/x-circle';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';

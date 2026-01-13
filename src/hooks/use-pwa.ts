@@ -1,9 +1,10 @@
 /**
- * Hook de PWA (Progressive Web App)
+ * Hook PWA (Progressive Web App)
  *
- * Copiado do frontend para dentro da biblioteca @rainersoft/ui,
- * permitindo que componentes utilitários que dependem de PWA
- * sejam compilados sem depender do app.
+ * Hook para gerenciar funcionalidades PWA como instalação e atualizações.
+ *
+ * @module @rainersoft/ui/hooks
+ * @author Rainer Teixeira
  */
 
 'use client';

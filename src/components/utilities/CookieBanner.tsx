@@ -16,6 +16,8 @@
 // Hooks do React
 // ============================================================================
 
+'use client';
+
 import React, { useEffect, useRef, useState } from "react";
 import { Check, Settings, X, XCircle } from 'lucide-react';
 

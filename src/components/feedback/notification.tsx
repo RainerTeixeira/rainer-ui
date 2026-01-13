@@ -9,16 +9,18 @@
  * @version 1.0.0
  */
 
+'use client';
+
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { AlertCircle } from 'lucide-react';
-import { AlertTriangle } from 'lucide-react';
-import { Bell } from 'lucide-react';
-import { Check } from 'lucide-react';
-import { Info } from 'lucide-react';
-import { X } from 'lucide-react';
+import AlertCircle from 'lucide-react/dist/esm/icons/alert-circle';
+import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle';
+import Bell from 'lucide-react/dist/esm/icons/bell';
+import Check from 'lucide-react/dist/esm/icons/check';
+import Info from 'lucide-react/dist/esm/icons/info';
+import X from 'lucide-react/dist/esm/icons/x';
 
-import { Button } from '../ui/button';
+// import { Button } from '../ui/button'; // Usado apenas em exemplos de documentação
 import { cn } from '../../lib/utils';
 
 /**

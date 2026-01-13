@@ -61,7 +61,7 @@ import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Bookmark } from 'lucide-react';
+import Bookmark from 'lucide-react/dist/esm/icons/bookmark';
 
 interface BookmarkButtonProps {
   /** ID único do item (post, produto, artigo, etc) */

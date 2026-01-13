@@ -10,13 +10,14 @@
  */
 
 import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
-import { ArrowDown } from 'lucide-react';
-import { ArrowUp } from 'lucide-react';
-import { Info } from 'lucide-react';
-import { Minus } from 'lucide-react';
-import { TrendingDown } from 'lucide-react';
-import { TrendingUp } from 'lucide-react';
+import { cva } from 'class-variance-authority';
+// import { type VariantProps } from 'class-variance-authority'; // TODO: implementar variantes
+import ArrowDown from 'lucide-react/dist/esm/icons/arrow-down';
+import ArrowUp from 'lucide-react/dist/esm/icons/arrow-up';
+// import Info from 'lucide-react/dist/esm/icons/info'; // TODO: implementar tooltip informativo
+import Minus from 'lucide-react/dist/esm/icons/minus';
+import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
+import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
 
 import { cn } from '../../lib/utils';
 
@@ -322,7 +323,7 @@ export const KPIChart = React.forwardRef<HTMLDivElement, KPIChartProps>(
       className,
       chart,
       chartPosition = 'bottom',
-      children,
+      // children, // TODO: implementar children content
       ...props
     },
     ref

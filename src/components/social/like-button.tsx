@@ -61,7 +61,7 @@ import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import { Heart } from 'lucide-react';
+import Heart from 'lucide-react/dist/esm/icons/heart';
 
 /**
  * Propriedades do componente LikeButton

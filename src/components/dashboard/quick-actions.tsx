@@ -39,10 +39,10 @@
 import { Button } from '../ui';
 import { Card, CardContent, CardHeader, CardTitle } from '../layout';
 import { motion } from 'framer-motion';
-import { Plus } from 'lucide-react';
-import { Settings } from 'lucide-react';
-import { BarChart } from 'lucide-react';
-import { FileText } from 'lucide-react';
+import Plus from 'lucide-react/dist/esm/icons/plus';
+import Settings from 'lucide-react/dist/esm/icons/settings';
+import BarChart from 'lucide-react/dist/esm/icons/bar-chart';
+import FileText from 'lucide-react/dist/esm/icons/file-text';
 
 // ============================================================================
 // TYPES & INTERFACES

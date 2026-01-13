@@ -9,12 +9,15 @@
  * @version 1.0.0
  */
 
-import { LogOut } from 'lucide-react';
+import LogOut from 'lucide-react/dist/esm/icons/log-out';
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { ChevronLeft, ChevronRight, Menu, Settings } from 'lucide-react';
-import { User } from 'lucide-react';
-import { X } from 'lucide-react';
+import ChevronLeft from 'lucide-react/dist/esm/icons/chevron-left';
+import ChevronRight from 'lucide-react/dist/esm/icons/chevron-right';
+import Menu from 'lucide-react/dist/esm/icons/menu';
+import Settings from 'lucide-react/dist/esm/icons/settings';
+import User from 'lucide-react/dist/esm/icons/user';
+import X from 'lucide-react/dist/esm/icons/x';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';

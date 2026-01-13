@@ -55,7 +55,7 @@
  */
 
 import { cn } from '../../lib/utils';
-import { Clock } from 'lucide-react';
+import Clock from 'lucide-react/dist/esm/icons/clock';
 
 interface ReadingTimeProps {
   /** Tempo estimado em minutos */

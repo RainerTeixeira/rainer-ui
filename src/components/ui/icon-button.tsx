@@ -5,9 +5,9 @@
  * Suporta múltiplos tamanhos e variantes.
  *
  * @module @rainersoft/ui/components/ui/icon-button
- * @author Rainer Teixeira
- * @version 1.0.0
  */
+
+'use client';
 
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';

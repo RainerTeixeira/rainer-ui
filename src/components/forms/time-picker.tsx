@@ -11,7 +11,7 @@
 
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Timer } from 'lucide-react';
+import Timer from 'lucide-react/dist/esm/icons/timer';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
@@ -148,11 +148,11 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       disabled = false,
       minuteStep = 1,
       secondStep = 1,
-      minTime,
-      maxTime,
+      // minTime, // TODO: implementar validação de tempo mínimo
+      // maxTime, // TODO: implementar validação de tempo máximo
       ...props
     },
-    ref
+    // ref, // TODO: implementar ref forwarding
   ) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [hours, setHours] = React.useState(value?.hours || 0);

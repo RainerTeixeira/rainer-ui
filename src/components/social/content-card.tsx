@@ -1,4 +1,4 @@
-i/**
+/**
  * Content Card Component
  * 
  * Componente de card genérico para exibição de conteúdo com ações interativas.
@@ -78,6 +78,8 @@ i/**
  * - Social Media: Posts, stories, highlights
  */
 
+import React from 'react';
+
 'use client';
 
 import { Card, CardContent, CardFooter, CardHeader } from '../layout/card';
@@ -85,8 +87,8 @@ import { Badge } from '../feedback/badge';
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
-import { Link } from 'lucide-react';
-import Image from 'next/image';
+import Link from 'lucide-react/dist/esm/icons/link';
+// import Image from 'next/image'; // Removido para resolver conflito de tipos
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 
@@ -224,17 +226,15 @@ export function ContentCard({
     return (
       <div className="relative overflow-hidden">
         <div className="aspect-video relative">
-          <Image
-            src={image}
-            alt={imageAlt || title}
-            fill
-            className={cn(
-              "object-cover transition-transform duration-300",
+          {React.createElement('img', {
+            src: image,
+            alt: imageAlt || title,
+            className: cn(
+              "w-full h-full object-cover transition-transform duration-300",
               "group-hover:scale-105"
-            )}
-            priority={imagePriority}
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
+            ),
+            loading: imagePriority ? "eager" : "lazy"
+          })}
           
           {/* Badge sobreposto */}
           {metadata?.badge && (
@@ -517,5 +517,5 @@ export const ContentCardVariants = {
   ),
 } as const;
 
-export type { ContentCardProps, SocialAction, CardActions, ContentMetadata };
+export type { SocialAction, CardActions, ContentMetadata };
 

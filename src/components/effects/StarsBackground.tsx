@@ -1,7 +1,17 @@
 /**
+ * StarsBackground Component
+ *
+ * Componente de fundo estrelado animado.
+ *
+ * @module @rainersoft/ui/components/effects
+ * @author Rainer Teixeira
+ */
+
+'use client';
+
+/**
  * Stars Background Component
  *
- * Componente que renderiza um céu estrelado no fundo das páginas.
  * Cria uma atmosfera espacial com estrelas animadas.
  * Renderizado APENAS no modo dark
  */

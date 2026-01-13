@@ -1,4 +1,15 @@
 /**
+ * UpdateNotification Component
+ *
+ * Componente que exibe notificação de atualização do Service Worker.
+ *
+ * @module @rainersoft/ui/components/utilities
+ * @author Rainer Teixeira
+ */
+
+'use client';
+
+/**
  * Update Notification Component
  *
  * Notificação de atualização PWA que exibe toast quando há nova versão do app

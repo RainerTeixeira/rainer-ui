@@ -53,7 +53,7 @@ const rangeSliderVariants = cva(
  * Props do RangeSlider
  */
 export interface RangeSliderProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'value' | 'onChange'>,
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'value' | 'onChange' | 'defaultValue'>,
     VariantProps<typeof rangeSliderVariants> {
   /** Valor atual */
   value?: RangeValue;
@@ -182,17 +182,15 @@ export const RangeSlider = React.forwardRef<HTMLDivElement, RangeSliderProps>(
     const updateValue = React.useCallback((type: 'min' | 'max', percent: number) => {
       const newValue = percentToValue(percent);
       
-      setValue((prev) => {
-        const updated = { ...prev };
+      const updated = { ...currentValue };
         
         if (type === 'min') {
-          updated.min = Math.min(newValue, prev.max - step);
+          updated.min = Math.min(newValue, currentValue.max - step);
         } else {
-          updated.max = Math.max(newValue, prev.min + step);
+          updated.max = Math.max(newValue, currentValue.min + step);
         }
         
-        return updated;
-      });
+        setValue(updated);
     }, [step]);
 
     // Define valor

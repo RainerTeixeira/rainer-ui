@@ -9,10 +9,12 @@
  * @version 1.0.0
  */
 
+'use client';
+
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Plus } from 'lucide-react';
-import { X } from 'lucide-react';
+import Plus from 'lucide-react/dist/esm/icons/plus';
+import X from 'lucide-react/dist/esm/icons/x';
 
 
 import { Button } from './button';

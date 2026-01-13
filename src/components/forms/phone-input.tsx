@@ -9,10 +9,10 @@
  * @version 1.0.0
  */
 
-import { Globe } from 'lucide-react';
+import Globe from 'lucide-react/dist/esm/icons/globe';
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
-import { Phone } from 'lucide-react';
+import Phone from 'lucide-react/dist/esm/icons/phone';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
@@ -77,7 +77,7 @@ const phoneInputVariants = cva(
  * Props do PhoneInput
  */
 export interface PhoneInputProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange'>,
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'size'>,
     VariantProps<typeof phoneInputVariants> {
   /** Valor do telefone */
   value?: string;
@@ -252,7 +252,7 @@ export const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
 
     return (
       <div
-        className={cn(phoneInputVariants({ size, variant }), className)}
+        className={cn(phoneInputVariants({ size: size as 'sm' | 'md' | 'lg', variant }), className)}
       >
         {/* Seletor de país */}
         {showCountrySelector && (

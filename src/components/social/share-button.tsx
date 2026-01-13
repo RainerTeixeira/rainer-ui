@@ -46,17 +46,15 @@ import {
 } from '../overlays/dropdown-menu';
 import { QRCodeSVG } from 'qrcode.react';
 import { useState } from 'react';
-import {
-  Check,
-  Facebook,
-  Link as LinkIcon,
-  Linkedin,
-  MessageCircle,
-  QrCode,
-  Send,
-  Share2,
-  Twitter,
-} from 'lucide-react';
+import Check from 'lucide-react/dist/esm/icons/check';
+import Facebook from 'lucide-react/dist/esm/icons/facebook';
+import Link from 'lucide-react/dist/esm/icons/link';
+import Linkedin from 'lucide-react/dist/esm/icons/linkedin';
+import MessageCircle from 'lucide-react/dist/esm/icons/message-circle';
+import QrCode from 'lucide-react/dist/esm/icons/qr-code';
+import Send from 'lucide-react/dist/esm/icons/send';
+import Share2 from 'lucide-react/dist/esm/icons/share-2';
+import Twitter from 'lucide-react/dist/esm/icons/twitter';
 
 /**
  * Propriedades do componente ShareButton
@@ -233,7 +231,7 @@ export function ShareButton({
               </>
             ) : (
               <>
-                <LinkIcon className="mr-2 h-4 w-4" />
+                <Link className="mr-2 h-4 w-4" />
                 Copiar link
               </>
             )}
@@ -281,7 +279,7 @@ export function ShareButton({
               className="flex-1" 
               onClick={copyToClipboard}
             >
-              <LinkIcon className="mr-2 h-4 w-4" />
+              <Link className="mr-2 h-4 w-4" />
               Copiar Link
             </Button>
           </div>

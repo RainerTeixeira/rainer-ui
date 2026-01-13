@@ -26,11 +26,11 @@ import {
   CardTitle,
 } from '../layout/card';
 import Link from 'next/link';
-import { BookOpen } from 'lucide-react';
-import { ExternalLink } from 'lucide-react';
-import { HelpCircle } from 'lucide-react';
-import { MessageCircle } from 'lucide-react';
-import { Video } from 'lucide-react';
+import BookOpen from 'lucide-react/dist/esm/icons/book-open';
+import ExternalLink from 'lucide-react/dist/esm/icons/external-link';
+import HelpCircle from 'lucide-react/dist/esm/icons/help-circle';
+import MessageCircle from 'lucide-react/dist/esm/icons/message-circle';
+import Video from 'lucide-react/dist/esm/icons/video';
 
 /**
  * Interface para recursos da central de ajuda
