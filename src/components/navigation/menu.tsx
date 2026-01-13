@@ -9,9 +9,10 @@
  * @version 1.0.0
  */
 
-import { ChevronDown, ChevronRight } from 'lucide-react';
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { ChevronDown } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
@@ -471,3 +472,4 @@ export const NavigationContextMenu = React.forwardRef<HTMLDivElement, Navigation
 );
 
 NavigationContextMenu.displayName = 'NavigationContextMenu';
+

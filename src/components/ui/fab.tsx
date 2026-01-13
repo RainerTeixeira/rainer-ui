@@ -11,8 +11,9 @@
 
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Plus } from 'lucide-react';
+import { X } from 'lucide-react';
 
-import { Plus, X, Edit, Share, Heart } from '../../lib/icons';
 
 import { Button } from './button';
 import { cn } from '../../lib/utils';
@@ -286,3 +287,4 @@ export const FABGroup = React.forwardRef<HTMLDivElement, FABGroupProps>(
 );
 
 FABGroup.displayName = 'FABGroup';
+

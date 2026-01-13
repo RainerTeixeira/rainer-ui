@@ -9,9 +9,9 @@
  * @version 1.0.0
  */
 
-import { Timer } from 'lucide-react';
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Timer } from 'lucide-react';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
@@ -390,3 +390,4 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
 );
 
 TimePicker.displayName = 'TimePicker';
+

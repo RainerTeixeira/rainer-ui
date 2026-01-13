@@ -12,6 +12,15 @@
 
 import { tokens } from '@rainersoft/design-tokens';
 
+type ThemeKey = 'light' | 'dark';
+
+/**
+ * Obtém cores do tema especificado dos design tokens
+ */
+function getThemeColors(theme: ThemeKey) {
+  return tokens.themes[theme];
+}
+
 /**
  * Retorna o valor CSS do token (usa CSS var por padrão)
  * 
@@ -25,26 +34,28 @@ import { tokens } from '@rainersoft/design-tokens';
  * getTokenColor('primary', 'light') // "#0ea5e9" (valor direto do token)
  * ```
  */
-export function getTokenColor(tokenName: string, theme?: 'light' | 'dark'): string {
+export function getTokenColor(tokenName: string, theme?: ThemeKey): string {
   // Se theme especificado, tenta buscar valor direto dos temas
   if (theme) {
-    const themeColors = tokens.themes[theme] as any;
+    const themeColors = getThemeColors(theme) as Record<string, unknown>;
     
     // Busca em diferentes categorias do tema
     const searchPaths = [
-      themeColors.button?.primary?.default,
-      themeColors.text?.primary,
-      themeColors.background?.primary,
-      themeColors.border?.default,
-      themeColors.status?.success?.default,
-      themeColors.status?.error?.default,
-      themeColors.status?.warning?.default,
-      themeColors.status?.info?.default,
+      (themeColors.button as Record<string, unknown>)?.primary,
+      (themeColors.text as Record<string, unknown>)?.primary,
+      (themeColors.background as Record<string, unknown>)?.primary,
+      (themeColors.border as Record<string, unknown>)?.default,
     ];
     
     for (const value of searchPaths) {
       if (typeof value === 'string' && value.startsWith('#')) {
         return value;
+      }
+      if (value && typeof value === 'object' && 'default' in value) {
+        const defaultValue = (value as Record<string, unknown>).default;
+        if (typeof defaultValue === 'string' && defaultValue.startsWith('#')) {
+          return defaultValue;
+        }
       }
     }
   }

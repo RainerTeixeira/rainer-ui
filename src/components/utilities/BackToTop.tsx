@@ -32,12 +32,12 @@
 // ============================================================================
 
 import { useEffect, useState } from 'react';
+import { ArrowUp } from 'lucide-react';
 
 // ============================================================================
 // Icons
 // ============================================================================
 
-import { ArrowUp } from 'lucide-react';
 
 // ============================================================================
 // UI Components
@@ -142,6 +142,7 @@ export function BackToTopButton() {
 export function BackToTop() {
   return <BackToTopButton />;
 }
+
 
 
 

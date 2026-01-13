@@ -60,8 +60,8 @@
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
-import { Bookmark } from 'lucide-react';
 import { useState } from 'react';
+import { Bookmark } from 'lucide-react';
 
 interface BookmarkButtonProps {
   /** ID único do item (post, produto, artigo, etc) */
@@ -186,3 +186,4 @@ export function BookmarkButton({
 }
 
 export type { BookmarkButtonProps };
+

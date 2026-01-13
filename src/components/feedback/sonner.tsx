@@ -5,15 +5,13 @@
  */
 
 import { cn } from '../../lib/utils';
-import {
-  Check,
-  Info,
-  Loader2,
-  Octagon,
-  AlertTriangle,
-} from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Toaster as Sonner } from 'sonner';
+import { AlertTriangle } from 'lucide-react';
+import { Check } from 'lucide-react';
+import { Info } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
+import { Octagon } from 'lucide-react';
 
 type ToasterProps = React.ComponentProps<typeof Sonner>;
 
@@ -54,6 +52,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
 };
 
 export { Toaster };
+
 
 
 

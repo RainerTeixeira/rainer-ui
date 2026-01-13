@@ -9,9 +9,10 @@
  * @version 1.0.0
  */
 
-import { Check, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Check } from 'lucide-react';
 
 import { cn } from '../../lib/utils';
 
@@ -388,3 +389,4 @@ export const StepItem = React.forwardRef<HTMLDivElement, StepItemProps>(
 );
 
 StepItem.displayName = 'StepItem';
+

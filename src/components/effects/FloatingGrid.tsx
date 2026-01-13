@@ -68,7 +68,7 @@ export function FloatingGrid({
       
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      const cyan400 = tokens?.primitives?.color?.blue?.[400] || '#60a5fa';
+      const cyan400 = tokens.primitives.color.cyan['400'];
       const strokeColor = hexToRGBA(cyan400, pulseIntensity * 1.2);
       const fillColor = hexToRGBA(cyan400, pulseIntensity * 0.6);
 

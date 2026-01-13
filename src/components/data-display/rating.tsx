@@ -10,9 +10,10 @@
  * @version 1.0.0
  */
 
-import { Star, StarHalf } from 'lucide-react';
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
+import { Star } from 'lucide-react';
+import { StarHalf } from 'lucide-react';
 
 import { cn } from '../../lib/utils';
 
@@ -371,3 +372,4 @@ export const RatingSummary = React.forwardRef<HTMLDivElement, RatingSummaryProps
 );
 
 RatingSummary.displayName = 'RatingSummary';
+

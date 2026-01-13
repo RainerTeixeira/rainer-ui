@@ -20,6 +20,3 @@ declare module '@radix-ui/react-popover' {
   export * from '@radix-ui/react-popover/dist/index.js'
 }
 
-declare module 'lucide-react' {
-  export * from 'lucide-react/dist/esm/icons/index.js'
-}

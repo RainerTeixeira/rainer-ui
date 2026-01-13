@@ -9,9 +9,12 @@
  * @version 1.0.0
  */
 
-import { AlertTriangle, Info, CheckCircle, X } from 'lucide-react';
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { AlertTriangle } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
+import { Info } from 'lucide-react';
+import { X } from 'lucide-react';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
@@ -366,3 +369,4 @@ export function useConfirm() {
     ConfirmDialog: ConfirmDialogComponent,
   };
 }
+

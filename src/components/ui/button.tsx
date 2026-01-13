@@ -28,6 +28,7 @@ const buttonVariants = cva(
         link: 'text-primary underline-offset-4 hover:underline dark:neon-text',
         neon: 'bg-primary border-2 border-primary text-primary-foreground hover:bg-primary/90 dark:neon-box',
         glass: 'glass neon-border hover:glass-hover dark:text-primary',
+        minimal: 'bg-transparent border-0 shadow-none hover:bg-accent/50 text-foreground',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',

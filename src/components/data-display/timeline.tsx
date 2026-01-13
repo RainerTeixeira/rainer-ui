@@ -10,9 +10,12 @@
  * @version 1.0.0
  */
 
-import { Check, Circle, X, AlertTriangle } from 'lucide-react';
+import { Circle } from 'lucide-react';
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
+import { AlertTriangle } from 'lucide-react';
+import { Check } from 'lucide-react';
+import { X } from 'lucide-react';
 
 import { cn } from '../../lib/utils';
 
@@ -255,3 +258,4 @@ export const TimelineSeparator = React.forwardRef<HTMLDivElement, TimelineSepara
 );
 
 TimelineSeparator.displayName = 'TimelineSeparator';
+

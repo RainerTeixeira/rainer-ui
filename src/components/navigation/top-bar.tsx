@@ -9,16 +9,14 @@
  * @version 1.0.0
  */
 
-import { 
-  Menu, 
-  ArrowLeft,
-  Search,
-  Bell,
-  Settings,
-  MoreVertical
-} from 'lucide-react';
+import { MoreVertical } from 'lucide-react';
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { ArrowLeft } from 'lucide-react';
+import { Bell } from 'lucide-react';
+import { Menu } from 'lucide-react';
+import { Search } from 'lucide-react';
+import { Settings } from 'lucide-react';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
@@ -352,3 +350,4 @@ export const TopBarActions = React.forwardRef<HTMLDivElement, TopBarActionsProps
 );
 
 TopBarActions.displayName = 'TopBarActions';
+

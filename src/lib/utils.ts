@@ -76,56 +76,38 @@ export const SECTION_CLASSES = {
  * Única fonte de verdade para tokens de motion (duração, easing, delay).
  * Importados diretamente do pacote design-tokens via ES modules.
  */
-export const motion = tokens?.primitives?.motion || {
-  duration: {
-    fast: '150ms',
-    normal: '300ms',
-    slow: '500ms',
-  },
-  delay: {
-    none: '0ms',
-    short: '100ms',
-    normal: '200ms',
-    long: '500ms',
-  },
-  easing: {
-    linear: 'linear',
-    easeIn: 'cubic-bezier(0.4, 0, 1, 1)',
-    easeOut: 'cubic-bezier(0, 0, 0.2, 1)',
-    easeInOut: 'cubic-bezier(0.4, 0, 0.2, 1)',
-    spring: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
-  }
-};
+export const motion = tokens.primitives.motion;
 
 /**
  * Motion semântico - Importado dos tokens semânticos
  * 
  * @description
- * Animações organizadas semanticamente para uso em componentes
+ * Animações organizadas semanticamente para uso em componentes.
+ * Usa tokens.semantics.motion como fonte única de verdade.
  */
-export const motionSemantic = (tokens as { semantics?: { motion?: typeof motion } }).semantics?.motion || {
+export const motionSemantic = tokens.semantics.motion || {
   transition: {
     default: {
-      duration: '300ms',
-      easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      duration: motion.duration.normal,
+      easing: motion.easing.easeInOut,
     }
   },
   interaction: {
     hover: {
-      duration: '200ms',
-      easing: 'cubic-bezier(0, 0, 0.2, 1)',
+      duration: motion.duration.fast,
+      easing: motion.easing.easeOut,
     }
   },
   feedback: {
     success: {
-      duration: '500ms',
-      easing: 'cubic-bezier(0.175, 0.885, 0.32, 1.275)',
+      duration: motion.duration.slower,
+      easing: motion.easing.spring,
     }
   },
   navigation: {
     page: {
-      duration: '400ms',
-      easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      duration: motion.duration.slow,
+      easing: motion.easing.easeInOut,
     }
   }
 };
@@ -193,3 +175,6 @@ export const motionPresets = {
   feedback: motionSemantic.feedback.success,
   navigation: motionSemantic.navigation.page,
 };
+
+// Exportar funções de cor para compatibilidade
+export { hexToRGB, hexToRGBA } from './color-utils';

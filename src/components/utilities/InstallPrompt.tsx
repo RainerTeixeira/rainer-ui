@@ -31,11 +31,12 @@
 
 import { useEffect, useState } from 'react';
 import { cn } from '../../lib/utils';
-import { Download, X } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Button } from '../ui/button';
 import { Card } from '../layout/card';
 import { usePWA } from '../../hooks/use-pwa';
+import { Download } from 'lucide-react';
+import { X } from 'lucide-react';
 
 /**
  * Componente InstallPrompt
@@ -240,6 +241,7 @@ export function InstallPrompt() {
     </div>
   );
 }
+
 
 
 

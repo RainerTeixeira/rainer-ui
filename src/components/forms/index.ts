@@ -25,7 +25,7 @@
 // ============================================================================
 
 export * from './checkbox';
-export * from './form';
+// export * from './form'; // Excluído do bundle principal - usar import direto de '@rainersoft/ui/components/forms/form' ou 'react-hook-form'
 export * from './input';
 export * from './label';
 export * from './radio-group';

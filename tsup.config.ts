@@ -1,8 +1,38 @@
 import { defineConfig } from 'tsup';
+import { readdirSync, statSync } from 'fs';
+import { join } from 'path';
+
+// Função para obter todos os arquivos de um diretório recursivamente
+function getEntryPoints(dir: string, base = ''): Record<string, string> {
+  const entries: Record<string, string> = {};
+  const items = readdirSync(dir);
+  
+  for (const item of items) {
+    const fullPath = join(dir, item);
+    const relativePath = base ? `${base}/${item}` : item;
+    
+    if (statSync(fullPath).isDirectory()) {
+      Object.assign(entries, getEntryPoints(fullPath, relativePath));
+    } else if (item.endsWith('.ts') || item.endsWith('.tsx')) {
+      const name = relativePath.replace(/\.(ts|tsx)$/, '');
+      entries[name] = fullPath;
+    }
+  }
+  
+  return entries;
+}
+
+// Gerar entry points para lib, hooks e components
+const libEntries = getEntryPoints('src/lib', 'lib');
+const hooksEntries = getEntryPoints('src/hooks', 'hooks');
+const componentsEntries = getEntryPoints('src/components', 'components');
 
 export default defineConfig({
   entry: {
     index: 'src/index.ts',
+    ...libEntries,
+    ...hooksEntries,
+    ...componentsEntries,
   },
   format: ['esm', 'cjs'],
   dts: false,
@@ -13,17 +43,11 @@ export default defineConfig({
   bundle: true,
   treeshake: true,
   external: [
+    'react-hook-form',
     'react', 
     'react-dom',
     'next-themes',
     'next/link',
-    'react-loading-indicators',
-    '@rainersoft/design-tokens',
-    '@radix-ui/react-avatar',
-    '@radix-ui/react-separator',
-    '@radix-ui/react-progress',
-    'class-variance-authority',
-    'lucide-react',
     'next',
     'framer-motion',
     'date-fns',
@@ -32,7 +56,36 @@ export default defineConfig({
     'sonner',
     'cmdk',
     'embla-carousel-react',
-    'react-hook-form'
+    'react-loading-indicators',
+    '@rainersoft/design-tokens',
+    '@radix-ui/react-avatar',
+    '@radix-ui/react-separator',
+    '@radix-ui/react-progress',
+    '@radix-ui/react-accordion',
+    '@radix-ui/react-alert-dialog',
+    '@radix-ui/react-aspect-ratio',
+    '@radix-ui/react-checkbox',
+    '@radix-ui/react-collapsible',
+    '@radix-ui/react-context-menu',
+    '@radix-ui/react-dialog',
+    '@radix-ui/react-dropdown-menu',
+    '@radix-ui/react-hover-card',
+    '@radix-ui/react-label',
+    '@radix-ui/react-navigation-menu',
+    '@radix-ui/react-popover',
+    '@radix-ui/react-radio-group',
+    '@radix-ui/react-scroll-area',
+    '@radix-ui/react-select',
+    '@radix-ui/react-slider',
+    '@radix-ui/react-slot',
+    '@radix-ui/react-switch',
+    '@radix-ui/react-tabs',
+    '@radix-ui/react-toggle',
+    '@radix-ui/react-tooltip',
+    'class-variance-authority',
+    'clsx',
+    'tailwind-merge',
+    'lucide-react',
   ],
   target: 'es2020',
   outDir: 'dist',

@@ -60,8 +60,8 @@
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
-import { Heart } from 'lucide-react';
 import { useState } from 'react';
+import { Heart } from 'lucide-react';
 
 /**
  * Propriedades do componente LikeButton
@@ -268,3 +268,4 @@ export function LikeButton({
 }
 
 export type { LikeButtonProps };
+

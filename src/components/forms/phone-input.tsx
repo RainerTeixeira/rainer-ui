@@ -9,9 +9,10 @@
  * @version 1.0.0
  */
 
-import { Phone, Globe } from 'lucide-react';
+import { Globe } from 'lucide-react';
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Phone } from 'lucide-react';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
@@ -325,3 +326,4 @@ export const PhoneInput = React.forwardRef<HTMLInputElement, PhoneInputProps>(
 );
 
 PhoneInput.displayName = 'PhoneInput';
+

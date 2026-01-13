@@ -9,9 +9,9 @@
  * @version 1.0.0
  */
 
-import { Quote as QuoteIcon } from 'lucide-react';
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { QuoteIcon } from 'lucide-react';
 
 import { cn } from '../../lib/utils';
 
@@ -309,3 +309,4 @@ export const QuoteBlock = React.forwardRef<HTMLQuoteElement, QuoteBlockProps>(
 );
 
 QuoteBlock.displayName = 'QuoteBlock';
+

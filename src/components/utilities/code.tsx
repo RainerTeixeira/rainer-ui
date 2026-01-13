@@ -9,9 +9,9 @@
  * @version 1.0.0
  */
 
-import { Copy as CopyIcon, Check as CheckIcon } from 'lucide-react';
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { Check as CheckIcon, Copy as CopyIcon } from 'lucide-react';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';

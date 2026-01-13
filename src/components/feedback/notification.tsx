@@ -9,20 +9,17 @@
  * @version 1.0.0
  */
 
-import { 
-  Check, 
-  X, 
-  AlertCircle, 
-  AlertTriangle, 
-  Info,
-  Bell
-} from 'lucide-react';
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { AlertCircle } from 'lucide-react';
+import { AlertTriangle } from 'lucide-react';
+import { Bell } from 'lucide-react';
+import { Check } from 'lucide-react';
+import { Info } from 'lucide-react';
+import { X } from 'lucide-react';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
-import { tokens } from '@rainersoft/design-tokens';
 
 /**
  * Ícones por variante
@@ -389,3 +386,4 @@ export const NotificationProvider: React.FC<NotificationProviderProps> = ({ chil
     </>
   );
 };
+

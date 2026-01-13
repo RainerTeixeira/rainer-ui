@@ -1,5 +1,5 @@
 /**
- * @rainersoft/ui - Biblioteca de Componentes UI
+ * @rainersoft/ui - Biblioteca de Componentes UI Agnóstica
  * 
  * 📦 ESTRUTURA SIMPLIFICADA - 5 CATEGORIAS PRINCIPAIS:
  * 
@@ -22,7 +22,7 @@
  * 
  * @module @rainersoft/ui
  * @author Rainer Teixeira
- * @version 2.2.0
+ * @version 2.3.0
  */
 
 // ============================================================================
@@ -73,7 +73,7 @@ export {
   getButtonPrimaryTextColor,
   getColorFromTheme,
   getBrandColor,
-  SEMANTIC_COLORS,
+  getSemanticColorConstants,
   generateTailwindClasses,
 } from './lib/theme-utils';
 

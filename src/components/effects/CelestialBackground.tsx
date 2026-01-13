@@ -18,8 +18,8 @@
  */
 
 import { useEffect, useState } from 'react';
-import { hexToRGBA } from '../../lib/color-utils';
 import { tokens } from '@rainersoft/design-tokens';
+import { hexToRGBA } from '../../lib/color-utils';
 import { GRADIENT_DIRECTIONS } from '../../lib/constants';
 
 // ============================================================================
@@ -118,10 +118,10 @@ export function CelestialBackground({
   const [stars, setStars] = useState<ReturnType<typeof generateStars>>([]);
   const [isMounted, setIsMounted] = useState(false);
 
-  // Cores do design system (fallback para valores hardcoded se não existirem)
-  const cyan400 = tokens?.primitives?.color?.blue?.[400] || '#60a5fa';
-  const purple400 = tokens?.primitives?.color?.purple?.[400] || '#c084fc';
-  const pink500 = tokens?.primitives?.color?.red?.[500] || '#ef4444';
+  // Cores dos design tokens
+  const cyan400 = tokens.primitives.color.cyan['400'];
+  const purple400 = tokens.primitives.color.purple['400'];
+  const pink500 = tokens.primitives.color.pink['500'];
 
   // Gera estrelas apenas no cliente para evitar hidratação
   useEffect(() => {

@@ -9,16 +9,14 @@
  * @version 1.0.0
  */
 
-import { 
-  Search, 
-  Inbox, 
-  FileX, 
-  FilterX, 
-  WifiOff,
-  RefreshCw
-} from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
+import { ChevronDown } from 'lucide-react';
+import { Package } from 'lucide-react';
+import { Search } from 'lucide-react';
+import { Wifi } from 'lucide-react';
+import { XCircle } from 'lucide-react';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
@@ -28,10 +26,10 @@ import { cn } from '../../lib/utils';
  */
 const defaultIcons = {
   search: Search,
-  empty: Inbox,
-  error: FileX,
-  filtered: FilterX,
-  offline: WifiOff,
+  empty: Package,
+  error: XCircle,
+  filtered: ChevronDown,
+  offline: Wifi,
   loading: RefreshCw,
 } as const;
 
@@ -84,6 +82,10 @@ export interface EmptyStateProps extends React.HTMLAttributes<HTMLDivElement> {
   iconColor?: string;
   /** Tamanho do ícone */
   iconSize?: 'sm' | 'md' | 'lg' | 'xl';
+  /** Variante visual */
+  variant?: 'default' | 'card' | 'glass' | 'minimal';
+  /** Tamanho do componente */
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
 /**
@@ -323,3 +325,4 @@ export const EmptyStatePatterns = {
     />
   ),
 } as const;
+

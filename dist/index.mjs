@@ -1,16 +1,18 @@
-import { tokens } from '@rainersoft/design-tokens';
+import { tokens, themes } from '@rainersoft/design-tokens';
 export { darkTheme, lightTheme, tokens } from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import * as React47 from 'react';
-import React47__default, { memo, useState, useCallback, useEffect, useRef, Component } from 'react';
-import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
-import { Check, Circle, ChevronDown, ChevronUp, Upload, X, Calendar as Calendar$1, Timer, Clock, Search, Filter, Globe, Phone, Loader2, ArrowUp, ArrowDown, TrendingUp, TrendingDown, Minus, ChevronLeft, MoreHorizontal, ChevronRight, User, Settings, LogOut, Menu as Menu$1, Pause, Play, Plus, RotateCw, Download, AlertTriangle, Copy, ImageIcon, FileText, File as File$1, RefreshCw, WifiOff, FilterX, FileX, Inbox, Bell, Info, AlertCircle, ArrowLeft, MoreVertical, CheckCircle, Star, StarHalf, Quote as Quote$1, Octagon, Cookie, XCircle, Moon, Sun, Home, Heart, Share2, Facebook, Twitter, Linkedin, MessageCircle, Send, Link, QrCode, Bookmark, Smartphone, Link2 as Link2$1 } from 'lucide-react';
-import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
+import * as React55 from 'react';
+import React55__default, { memo, useState, useCallback, useEffect, useRef, Component } from 'react';
+import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import { Slot } from '@radix-ui/react-slot';
-import { useFormContext, FormProvider, Controller } from 'react-hook-form';
-import * as LabelPrimitive from '@radix-ui/react-label';
 import { cva } from 'class-variance-authority';
+import * as SliderPrimitive from '@radix-ui/react-slider';
+import * as SwitchPrimitives from '@radix-ui/react-switch';
+import * as TogglePrimitive from '@radix-ui/react-toggle';
+import { X, Plus, Check, Circle, ChevronDown, ChevronUp, Upload, CalendarIcon, Timer, Clock, Search, Filter, Globe, Phone, Loader2, ArrowUp, ArrowDown, TrendingUp, TrendingDown, Minus, ChevronLeft, MoreHorizontal, ChevronRight, User, Settings, LogOut, Menu as Menu$1, Pause, Play, ZoomOut, ZoomIn, Minimize2, RotateCw, Maximize2, Download, AlertTriangle, Copy, ImageIcon, FileText, File as File$1, RefreshCw, Wifi, XCircle, Package, Bell, Info, AlertCircle, ArrowLeft, MoreVertical, CheckCircle, Star, StarHalf, QuoteIcon, Eye, Heart, MessageSquare, Octagon, MessageCircle, Calendar, Edit, Trash2, HelpCircle, BookOpen, Video, ExternalLink, Cookie, Moon, Sun, Home, Share2, Facebook, Twitter, Linkedin, Send, Link, QrCode, Bookmark, Smartphone, Link2 as Link2$1, BarChart } from 'lucide-react';
+import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
+import * as LabelPrimitive from '@radix-ui/react-label';
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import * as SelectPrimitive from '@radix-ui/react-select';
 import { DayPicker } from 'react-day-picker';
@@ -27,6 +29,7 @@ import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
 import { Command as Command$1 } from 'cmdk';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
+import { motion as motion$1 } from 'framer-motion';
 import { SubTrigger, SubContent, Portal as Portal$1, Content as Content$1, Item, CheckboxItem, ItemIndicator, RadioItem, Label as Label$1, Separator, Root, Group, RadioGroup as RadioGroup$1, Sub, Trigger } from '@radix-ui/react-context-menu';
 import { SubTrigger as SubTrigger$1, SubContent as SubContent$1, Portal as Portal$2, Content as Content$2, Item as Item$1, CheckboxItem as CheckboxItem$1, ItemIndicator as ItemIndicator$1, RadioItem as RadioItem$1, Label as Label$2, Separator as Separator$1, Root as Root$2, Group as Group$1, RadioGroup as RadioGroup$2, Sub as Sub$1, Trigger as Trigger$2 } from '@radix-ui/react-dropdown-menu';
 import { Content as Content$3, Root as Root$3, Trigger as Trigger$3 } from '@radix-ui/react-hover-card';
@@ -34,9 +37,7 @@ import { Portal as Portal$3, Content as Content$4, Root as Root$4, Trigger as Tr
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import useEmblaCarousel from 'embla-carousel-react';
 import Link2 from 'next/link';
-import * as SwitchPrimitives from '@radix-ui/react-switch';
 import { Atom } from 'react-loading-indicators';
-import { motion as motion$1 } from 'framer-motion';
 import { QRCodeSVG } from 'qrcode.react';
 import Image2 from 'next/image';
 import { formatDistanceToNow } from 'date-fns';
@@ -187,101 +188,27 @@ function generatePlaceholder(width, height, text = "") {
   }
   return canvas.toDataURL();
 }
-function cn2(...inputs) {
-  return twMerge(clsx(inputs));
+function getThemeColors(theme) {
+  return tokens.themes[theme];
 }
-var SECTION_CLASSES = {
-  /** Container padrão de página com largura máxima e padding responsivo */
-  container: "w-full max-w-6xl mx-auto px-6 py-12"
-};
-var motion = tokens?.primitives?.motion || {
-  duration: {
-    fast: "150ms",
-    normal: "300ms",
-    slow: "500ms"
-  },
-  delay: {
-    none: "0ms",
-    short: "100ms",
-    normal: "200ms",
-    long: "500ms"
-  },
-  easing: {
-    linear: "linear",
-    easeIn: "cubic-bezier(0.4, 0, 1, 1)",
-    easeOut: "cubic-bezier(0, 0, 0.2, 1)",
-    easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
-    spring: "cubic-bezier(0.175, 0.885, 0.32, 1.275)"
-  }
-};
-var motionSemantic = tokens.semantics?.motion || {
-  transition: {
-    default: {
-      duration: "300ms",
-      easing: "cubic-bezier(0.4, 0, 0.2, 1)"
-    }
-  },
-  interaction: {
-    hover: {
-      duration: "200ms",
-      easing: "cubic-bezier(0, 0, 0.2, 1)"
-    }
-  },
-  feedback: {
-    success: {
-      duration: "500ms",
-      easing: "cubic-bezier(0.175, 0.885, 0.32, 1.275)"
-    }
-  },
-  navigation: {
-    page: {
-      duration: "400ms",
-      easing: "cubic-bezier(0.4, 0, 0.2, 1)"
-    }
-  }
-};
-var ANIMATION_DELAYS = motion.delay;
-var ANIMATION_DURATIONS = motion.duration;
-var ANIMATION_EASINGS = motion.easing;
-var motionPresets = {
-  default: {
-    duration: motion.duration.normal,
-    easing: motion.easing.easeInOut
-  },
-  fast: {
-    duration: motion.duration.fast,
-    easing: motion.easing.easeOut
-  },
-  slow: {
-    duration: motion.duration.slow,
-    easing: motion.easing.easeInOut
-  },
-  spring: {
-    duration: motion.duration.normal,
-    easing: motion.easing.spring
-  },
-  // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
-};
 function getTokenColor(tokenName, theme) {
   if (theme) {
-    const themeColors = tokens.themes[theme];
+    const themeColors = getThemeColors(theme);
     const searchPaths = [
-      themeColors.button?.primary?.default,
+      themeColors.button?.primary,
       themeColors.text?.primary,
       themeColors.background?.primary,
-      themeColors.border?.default,
-      themeColors.status?.success?.default,
-      themeColors.status?.error?.default,
-      themeColors.status?.warning?.default,
-      themeColors.status?.info?.default
+      themeColors.border?.default
     ];
     for (const value of searchPaths) {
       if (typeof value === "string" && value.startsWith("#")) {
         return value;
+      }
+      if (value && typeof value === "object" && "default" in value) {
+        const defaultValue = value.default;
+        if (typeof defaultValue === "string" && defaultValue.startsWith("#")) {
+          return defaultValue;
+        }
       }
     }
   }
@@ -322,127 +249,113 @@ function getContrastColor(hex) {
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   return luminance > 0.5 ? "#000000" : "#ffffff";
 }
-function getThemeColors(theme) {
-  return tokens.themes[theme];
+
+// src/lib/utils.ts
+function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
+var SECTION_CLASSES = {
+  /** Container padrão de página com largura máxima e padding responsivo */
+  container: "w-full max-w-6xl mx-auto px-6 py-12"
+};
+var motion = tokens.primitives.motion;
+var motionSemantic = tokens.semantics.motion || {
+  transition: {
+    default: {
+      duration: motion.duration.normal,
+      easing: motion.easing.easeInOut
+    }
+  },
+  interaction: {
+    hover: {
+      duration: motion.duration.fast,
+      easing: motion.easing.easeOut
+    }
+  },
+  feedback: {
+    success: {
+      duration: motion.duration.slower,
+      easing: motion.easing.spring
+    }
+  },
+  navigation: {
+    page: {
+      duration: motion.duration.slow,
+      easing: motion.easing.easeInOut
+    }
+  }
+};
+var ANIMATION_DELAYS = motion.delay;
+var ANIMATION_DURATIONS = motion.duration;
+var ANIMATION_EASINGS = motion.easing;
+var motionPresets = {
+  default: {
+    duration: motion.duration.normal,
+    easing: motion.easing.easeInOut
+  },
+  fast: {
+    duration: motion.duration.fast,
+    easing: motion.easing.easeOut
+  },
+  slow: {
+    duration: motion.duration.slow,
+    easing: motion.easing.easeInOut
+  },
+  spring: {
+    duration: motion.duration.normal,
+    easing: motion.easing.spring
+  },
+  // Presets semânticos
+  transition: motionSemantic.transition.default,
+  interaction: motionSemantic.interaction.hover,
+  feedback: motionSemantic.feedback.success,
+  navigation: motionSemantic.navigation.page
+};
+function getThemeColors2(theme) {
+  return themes[theme];
 }
 function getSemanticColors(theme) {
-  return tokens.themes[theme];
+  return themes[theme];
 }
 function getSemanticColorsSimplified(theme) {
-  const colors = tokens.themes[theme];
+  const themeData = themes[theme];
   return {
-    text: {
-      primary: colors.text.primary,
-      secondary: colors.text.secondary,
-      tertiary: colors.text.tertiary,
-      disabled: colors.text.disabled,
-      inverse: colors.text.inverse,
-      link: colors.text.link || colors.interactive?.link?.default || colors.text.primary,
-      linkHover: colors.text.linkHover || colors.interactive?.link?.hover || colors.text.primary
-    },
-    background: {
-      primary: colors.background.primary,
-      secondary: colors.background.secondary,
-      tertiary: colors.background.tertiary,
-      disabled: colors.background.disabled,
-      overlay: colors.background.overlay
-    },
-    border: {
-      default: colors.border.default,
-      light: colors.border.light,
-      medium: colors.border.medium || colors.border.default,
-      dark: colors.border.dark || colors.border.default,
-      focus: colors.border.focus || colors.border.default,
-      error: colors.border.error || colors.border.default,
-      success: colors.border.success || colors.border.default,
-      warning: colors.border.warning || colors.border.default
-    },
-    button: colors.button,
-    status: colors.status,
-    interactive: colors.interactive || {},
-    surface: colors.surface || {}
+    colors: themeData?.colors || {}
   };
 }
 function getStatusColor(status, theme = "light") {
-  const colors = tokens.themes[theme];
-  const statusColors = colors.status?.[status];
-  if (typeof statusColors === "string") {
-    return statusColors;
-  }
-  if (statusColors && typeof statusColors === "object" && "default" in statusColors) {
-    return statusColors.default;
-  }
-  if (status === "success") return colors.status?.success?.default || "#22c55e";
-  if (status === "error") return colors.status?.error?.default || "#ef4444";
-  if (status === "warning") return colors.status?.warning?.default || "#f87171";
-  return colors.status?.info?.default || "#0ea5e9";
+  const themeData = themes[theme];
+  return themeData?.colors?.[status]?.base || "#000000";
 }
 function getButtonPrimaryColor(theme = "light") {
-  const colors = tokens.themes[theme];
-  const buttonPrimary = colors.button?.primary;
-  if (typeof buttonPrimary === "string") {
-    return buttonPrimary;
-  }
-  return buttonPrimary?.default || "#0ea5e9";
+  const themeData = themes[theme];
+  return themeData?.colors?.primary?.base || "#0891b2";
 }
 function getButtonSecondaryColor(theme = "light") {
-  const colors = tokens.themes[theme];
-  const buttonSecondary = colors.button?.secondary;
-  if (typeof buttonSecondary === "string") {
-    return buttonSecondary;
-  }
-  return buttonSecondary?.default || "#e5e7eb";
+  const themeData = themes[theme];
+  return themeData?.colors?.secondary?.base || "#6366f1";
 }
 function getButtonTertiaryColor(theme = "light") {
-  const colors = tokens.themes[theme];
-  const buttonTertiary = colors.button?.tertiary;
-  if (typeof buttonTertiary === "string") {
-    return buttonTertiary;
-  }
-  return buttonTertiary?.default || "transparent";
+  return "transparent";
 }
 function getButtonPrimaryTextColor(theme = "light") {
-  const colors = tokens.themes[theme];
-  const buttonPrimary = colors.button?.primary;
-  if (typeof buttonPrimary === "string") {
-    return "#ffffff";
-  }
-  return buttonPrimary?.text || "#ffffff";
+  const themeData = themes[theme];
+  return themeData?.colors?.primary?.text || "#ffffff";
 }
 function getColorFromTheme(theme, category, shade) {
-  const colors = tokens.themes[theme];
-  const colorCategory = colors[category];
-  if (!colorCategory || typeof colorCategory !== "object") {
-    return void 0;
-  }
-  const shadeValue = colorCategory[shade];
-  if (typeof shadeValue === "string") {
-    return shadeValue;
-  }
-  if (shadeValue && typeof shadeValue === "object" && "default" in shadeValue) {
-    return shadeValue.default;
-  }
-  return void 0;
+  const themeData = themes[theme];
+  return themeData?.colors?.[category]?.[shade];
 }
 function getBrandColor(variant, theme = "light") {
-  const colors = tokens.themes[theme];
-  const button = colors.button || {};
-  if (variant === "primary") {
-    const primary = button.primary;
-    return typeof primary === "string" ? primary : primary?.default;
-  } else if (variant === "secondary") {
-    const secondary = button.secondary;
-    return typeof secondary === "string" ? secondary : secondary?.default;
-  } else if (variant === "tertiary" && button.tertiary) {
-    const tertiary = button.tertiary;
-    return typeof tertiary === "string" ? tertiary : tertiary?.default;
-  }
-  return void 0;
+  const themeData = themes[theme];
+  return themeData?.colors?.[variant]?.base;
 }
-var SEMANTIC_COLORS = {
-  light: getSemanticColorsSimplified("light"),
-  dark: getSemanticColorsSimplified("dark")
-};
+function getSemanticColorConstants() {
+  return {
+    light: getSemanticColorsSimplified("light"),
+    dark: getSemanticColorsSimplified("dark")
+  };
+}
 function generateTailwindClasses(options) {
   const classes = [];
   if (options.bg) classes.push(`bg-${options.bg}`);
@@ -459,303 +372,127 @@ function generateTailwindClasses(options) {
   });
   return classes.join(" ");
 }
-var Checkbox = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  CheckboxPrimitive.Root,
-  {
-    ref,
-    className: cn2(
-      "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background",
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-      "disabled:cursor-not-allowed disabled:opacity-50",
-      "data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
-      className
-    ),
-    ...props,
-    children: /* @__PURE__ */ jsx(
-      CheckboxPrimitive.Indicator,
-      {
-        className: cn2("flex items-center justify-center text-current"),
-        children: /* @__PURE__ */ jsx(Check, { className: "h-4 w-4" })
-      }
-    )
+function extractInitials(name, maxChars = 2) {
+  if (!name) return "";
+  const parts = name.trim().split(/\s+/);
+  if (parts.length === 1) {
+    return parts[0].slice(0, maxChars).toUpperCase();
   }
-));
-Checkbox.displayName = CheckboxPrimitive.Root.displayName;
-var labelVariants = cva(
-  "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-cyan-200 dark:font-mono"
-);
-var Label = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  LabelPrimitive.Root,
-  {
-    ref,
-    className: cn2(labelVariants(), className),
-    ...props
-  }
-));
-Label.displayName = LabelPrimitive.Root.displayName;
-var Form = FormProvider;
-var FormFieldContext = React47.createContext(
-  {}
-);
-var FormField = ({
-  ...props
-}) => {
-  return /* @__PURE__ */ jsx(FormFieldContext.Provider, { value: { name: props.name }, children: /* @__PURE__ */ jsx(Controller, { ...props }) });
-};
-var useFormField = () => {
-  const fieldContext = React47.useContext(FormFieldContext);
-  const itemContext = React47.useContext(FormItemContext);
-  const { getFieldState, formState } = useFormContext();
-  const fieldState = getFieldState(fieldContext.name, formState);
-  if (!fieldContext) {
-    throw new Error("useFormField should be used within <FormField>");
-  }
-  const { id } = itemContext;
-  return {
-    id,
-    name: fieldContext.name,
-    formItemId: `${id}-form-item`,
-    formDescriptionId: `${id}-form-item-description`,
-    formMessageId: `${id}-form-item-message`,
-    ...fieldState
-  };
-};
-var FormItemContext = React47.createContext(
-  {}
-);
-var FormItem = React47.forwardRef(({ className, ...props }, ref) => {
-  const id = React47.useId();
-  return /* @__PURE__ */ jsx(FormItemContext.Provider, { value: { id }, children: /* @__PURE__ */ jsx("div", { ref, className: cn2("space-y-2", className), ...props }) });
-});
-FormItem.displayName = "FormItem";
-var FormLabel = React47.forwardRef(({ className, ...props }, ref) => {
-  const { error, formItemId } = useFormField();
-  return /* @__PURE__ */ jsx(
-    Label,
-    {
-      ref,
-      className: cn2(error && "text-destructive", className),
-      htmlFor: formItemId,
-      ...props
-    }
-  );
-});
-FormLabel.displayName = "FormLabel";
-var FormControl = React47.forwardRef(({ ...props }, ref) => {
-  const { error, formItemId, formDescriptionId, formMessageId } = useFormField();
-  return /* @__PURE__ */ jsx(
-    Slot,
-    {
-      ref,
-      id: formItemId,
-      "aria-describedby": !error ? `${formDescriptionId}` : `${formDescriptionId} ${formMessageId}`,
-      "aria-invalid": !!error,
-      ...props
-    }
-  );
-});
-FormControl.displayName = "FormControl";
-var FormDescription = React47.forwardRef(({ className, ...props }, ref) => {
-  const { formDescriptionId } = useFormField();
-  return /* @__PURE__ */ jsx(
-    "p",
-    {
-      ref,
-      id: formDescriptionId,
-      className: cn2("text-sm text-muted-foreground", className),
-      ...props
-    }
-  );
-});
-FormDescription.displayName = "FormDescription";
-var FormMessage = React47.forwardRef(({ className, children, ...props }, ref) => {
-  const { error, formMessageId } = useFormField();
-  const body = error ? String(error?.message) : children;
-  if (!body) {
-    return null;
-  }
-  return /* @__PURE__ */ jsx(
-    "p",
-    {
-      ref,
-      id: formMessageId,
-      className: cn2("text-sm font-medium text-destructive", className),
-      ...props,
-      children: body
-    }
-  );
-});
-FormMessage.displayName = "FormMessage";
-function Input({ className, type, ...props }) {
-  return /* @__PURE__ */ jsx(
-    "input",
-    {
-      type,
-      "data-slot": "input",
-      className: cn2(
-        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
-        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-        className
-      ),
-      ...props
-    }
-  );
+  return parts.slice(0, maxChars).map((part) => part[0]).join("").toUpperCase();
 }
-var RadioGroup = React47.forwardRef(({ className, ...props }, ref) => {
-  return /* @__PURE__ */ jsx(
-    RadioGroupPrimitive.Root,
-    {
-      className: cn2("grid gap-2", className),
-      ...props,
-      ref
-    }
-  );
-});
-RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
-var RadioGroupItem = React47.forwardRef(({ className, ...props }, ref) => {
-  return /* @__PURE__ */ jsx(
-    RadioGroupPrimitive.Item,
-    {
-      ref,
-      className: cn2(
-        "aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-        className
-      ),
-      ...props,
-      children: /* @__PURE__ */ jsx(RadioGroupPrimitive.Indicator, { className: "flex items-center justify-center", children: /* @__PURE__ */ jsx(Circle, { className: "h-2.5 w-2.5 fill-current text-current" }) })
-    }
-  );
-});
-RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
-var Select = SelectPrimitive.Root;
-var SelectGroup = SelectPrimitive.Group;
-var SelectValue = SelectPrimitive.Value;
-var SelectTrigger = React47.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
-  SelectPrimitive.Trigger,
-  {
-    ref,
-    className: cn2(
-      "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2",
-      "text-sm ring-offset-background",
-      "placeholder:text-muted-foreground",
-      "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-      "disabled:cursor-not-allowed disabled:opacity-50",
-      "[&>span]:line-clamp-1",
-      className
-    ),
-    ...props,
-    children: [
-      children,
-      /* @__PURE__ */ jsx(SelectPrimitive.Icon, { asChild: true, children: /* @__PURE__ */ jsx(ChevronDown, { className: "h-4 w-4 opacity-50" }) })
-    ]
-  }
-));
-SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
-var SelectScrollUpButton = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  SelectPrimitive.ScrollUpButton,
-  {
-    ref,
-    className: cn2("flex cursor-default items-center justify-center py-1", className),
-    ...props,
-    children: /* @__PURE__ */ jsx(ChevronUp, { className: "h-4 w-4" })
-  }
-));
-SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
-var SelectScrollDownButton = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  SelectPrimitive.ScrollDownButton,
-  {
-    ref,
-    className: cn2("flex cursor-default items-center justify-center py-1", className),
-    ...props,
-    children: /* @__PURE__ */ jsx(ChevronDown, { className: "h-4 w-4" })
-  }
-));
-SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName;
-var SelectContent = React47.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ jsx(SelectPrimitive.Portal, { children: /* @__PURE__ */ jsxs(
-  SelectPrimitive.Content,
-  {
-    ref,
-    className: cn2(
-      "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md",
-      "data-[state=open]:animate-in data-[state=closed]:animate-out",
-      "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-      "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-      "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2",
-      "data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-      position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
-      className
-    ),
-    position,
-    ...props,
-    children: [
-      /* @__PURE__ */ jsx(SelectScrollUpButton, {}),
-      /* @__PURE__ */ jsx(
-        SelectPrimitive.Viewport,
-        {
-          className: cn2(
-            "p-1",
-            position === "popper" && "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
+var sizeClasses = {
+  xs: "h-6 w-6 text-xs",
+  sm: "h-8 w-8 text-sm",
+  md: "h-10 w-10 text-base",
+  lg: "h-12 w-12 text-lg",
+  xl: "h-16 w-16 text-xl",
+  "2xl": "h-20 w-20 text-2xl"
+};
+var variantClasses = {
+  circular: "rounded-full",
+  rounded: "rounded-lg",
+  square: "rounded-none"
+};
+var Avatar = React55.forwardRef(
+  ({
+    className,
+    src,
+    alt,
+    name,
+    size = "md",
+    variant = "circular",
+    fallbackColor = "bg-gray-400",
+    textColor = "text-white",
+    maxInitials = 2,
+    onLoad,
+    onError,
+    children,
+    ...props
+  }, ref) => {
+    const [imageStatus, setImageStatus] = React55.useState("loading");
+    const [showFallback, setShowFallback] = React55.useState(!src);
+    React55.useEffect(() => {
+      if (!src) {
+        setShowFallback(true);
+        setImageStatus("error");
+        return;
+      }
+      setImageStatus("loading");
+      setShowFallback(false);
+      const img = new Image();
+      img.onload = () => {
+        setImageStatus("loaded");
+        onLoad?.();
+      };
+      img.onerror = () => {
+        setImageStatus("error");
+        setShowFallback(true);
+        onError?.();
+      };
+      img.src = src;
+    }, [src, onLoad, onError]);
+    const initials = name ? extractInitials(name, maxInitials) : "";
+    const ariaLabel = alt || name || "Avatar";
+    return /* @__PURE__ */ jsxs(
+      "div",
+      {
+        ref,
+        className: cn(
+          "relative inline-flex items-center justify-center font-medium",
+          sizeClasses[size],
+          variantClasses[variant],
+          showFallback ? fallbackColor : "bg-transparent",
+          textColor,
+          className
+        ),
+        role: "img",
+        "aria-label": ariaLabel,
+        ...props,
+        children: [
+          showFallback ? initials || /* @__PURE__ */ jsx("span", { className: "opacity-50", children: size === "xs" ? "?" : size === "sm" ? "?" : "User" }) : /* @__PURE__ */ jsx(
+            "img",
+            {
+              src,
+              alt,
+              className: cn(
+                "h-full w-full object-cover",
+                variantClasses[variant]
+              ),
+              style: {
+                opacity: imageStatus === "loaded" ? 1 : 0,
+                transition: "opacity 0.2s ease-in-out"
+              }
+            }
           ),
+          imageStatus === "loading" && !showFallback && /* @__PURE__ */ jsx("div", { className: "absolute inset-0 flex items-center justify-center bg-gray-200", children: /* @__PURE__ */ jsx("div", { className: "h-2 w-2 animate-pulse rounded-full bg-gray-400" }) }),
           children
-        }
-      ),
-      /* @__PURE__ */ jsx(SelectScrollDownButton, {})
-    ]
+        ]
+      }
+    );
   }
-) }));
-SelectContent.displayName = SelectPrimitive.Content.displayName;
-var SelectLabel = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  SelectPrimitive.Label,
+);
+Avatar.displayName = "Avatar";
+var AvatarImage = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "img",
   {
     ref,
-    className: cn2("py-1.5 pl-8 pr-2 text-sm font-semibold", className),
+    className: cn("h-full w-full object-cover", className),
     ...props
   }
 ));
-SelectLabel.displayName = SelectPrimitive.Label.displayName;
-var SelectItem = React47.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
-  SelectPrimitive.Item,
+AvatarImage.displayName = "AvatarImage";
+var AvatarFallback = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "div",
   {
     ref,
-    className: cn2(
-      "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none",
-      "focus:bg-accent focus:text-accent-foreground",
-      "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+    className: cn(
+      "flex h-full w-full items-center justify-center rounded-full bg-gray-100",
       className
     ),
-    ...props,
-    children: [
-      /* @__PURE__ */ jsx("span", { className: "absolute left-2 flex h-3.5 w-3.5 items-center justify-center", children: /* @__PURE__ */ jsx(SelectPrimitive.ItemIndicator, { children: /* @__PURE__ */ jsx(Check, { className: "h-4 w-4" }) }) }),
-      /* @__PURE__ */ jsx(SelectPrimitive.ItemText, { children })
-    ]
-  }
-));
-SelectItem.displayName = SelectPrimitive.Item.displayName;
-var SelectSeparator = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  SelectPrimitive.Separator,
-  {
-    ref,
-    className: cn2("-mx-1 my-1 h-px bg-muted", className),
     ...props
   }
 ));
-SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
-var Textarea = React47.forwardRef(({ className, ...props }, ref) => {
-  return /* @__PURE__ */ jsx(
-    "textarea",
-    {
-      className: cn2(
-        "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-        "dark:bg-background dark:border-border dark:text-foreground dark:placeholder:text-muted-foreground dark:focus-visible:ring-ring dark:focus-visible:border-border",
-        className
-      ),
-      ref,
-      ...props
-    }
-  );
-});
-Textarea.displayName = "Textarea";
+AvatarFallback.displayName = "AvatarFallback";
 var buttonVariants = cva(
   `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-[var(--motion-duration,200ms)] ease-[var(--motion-easing,cubic-bezier(.4,0,.2,1))] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive`,
   {
@@ -768,7 +505,8 @@ var buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 dark:hover:text-primary",
         link: "text-primary underline-offset-4 hover:underline dark:neon-text",
         neon: "bg-primary border-2 border-primary text-primary-foreground hover:bg-primary/90 dark:neon-box",
-        glass: "glass neon-border hover:glass-hover dark:text-primary"
+        glass: "glass neon-border hover:glass-hover dark:text-primary",
+        minimal: "bg-transparent border-0 shadow-none hover:bg-accent/50 text-foreground"
       },
       size: {
         default: "h-9 px-4 py-2 has-[>svg]:px-3",
@@ -797,11 +535,810 @@ function Button({
     Comp,
     {
       "data-slot": "button",
-      className: cn2(buttonVariants({ variant, size, className })),
+      className: cn(buttonVariants({ variant, size, className })),
       ...props
     }
   );
 }
+var Slider = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(
+  SliderPrimitive.Root,
+  {
+    ref,
+    className: cn(
+      "relative flex w-full touch-none select-none items-center",
+      className
+    ),
+    ...props,
+    children: [
+      /* @__PURE__ */ jsx(
+        SliderPrimitive.Track,
+        {
+          className: cn(
+            "relative h-2 w-full grow overflow-hidden bg-secondary rounded-full"
+          ),
+          children: /* @__PURE__ */ jsx(SliderPrimitive.Range, { className: "absolute h-full bg-primary" })
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        SliderPrimitive.Thumb,
+        {
+          className: cn(
+            "block h-5 w-5 border-2 border-primary bg-background ring-offset-background rounded-full transition-colors",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            "disabled:pointer-events-none",
+            "disabled:opacity-50"
+          )
+        }
+      )
+    ]
+  }
+));
+Slider.displayName = SliderPrimitive.Root.displayName;
+var Switch = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  SwitchPrimitives.Root,
+  {
+    className: cn(
+      "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent",
+      "transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+      "disabled:cursor-not-allowed disabled:opacity-50",
+      "data-[state=checked]:bg-primary data-[state=unchecked]:bg-input",
+      className
+    ),
+    ...props,
+    ref,
+    children: /* @__PURE__ */ jsx(
+      SwitchPrimitives.Thumb,
+      {
+        className: cn(
+          "pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform",
+          "data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
+        )
+      }
+    )
+  }
+));
+Switch.displayName = SwitchPrimitives.Root.displayName;
+var toggleVariants = cva(
+  "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors hover:bg-muted hover:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=on]:bg-accent data-[state=on]:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 gap-2",
+  {
+    variants: {
+      variant: {
+        default: "bg-transparent",
+        outline: "border border-input bg-transparent hover:bg-accent hover:text-accent-foreground"
+      },
+      size: {
+        default: "h-10 px-3 min-w-10",
+        sm: "h-9 px-2.5 min-w-9",
+        lg: "h-11 px-5 min-w-11"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default"
+    }
+  }
+);
+var Toggle = React55.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsx(
+  TogglePrimitive.Root,
+  {
+    ref,
+    className: cn(toggleVariants({ variant, size, className })),
+    ...props
+  }
+));
+Toggle.displayName = TogglePrimitive.Root.displayName;
+var iconButtonVariants = cva(
+  "inline-flex items-center justify-center rounded-md font-medium transition-all duration-[var(--motion-duration-fast)]",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+        neon: "bg-primary border-2 border-primary text-primary-foreground hover:bg-primary/90 dark:neon-box",
+        glass: "glass neon-border hover:glass-hover dark:text-primary"
+      },
+      size: {
+        xs: "h-6 w-6",
+        sm: "h-8 w-8",
+        md: "h-10 w-10",
+        lg: "h-12 w-12",
+        xl: "h-14 w-14",
+        icon: "h-9 w-9",
+        "icon-sm": "h-8 w-8",
+        "icon-lg": "h-10 w-10"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "md"
+    }
+  }
+);
+var IconButton = React55.forwardRef(
+  ({
+    className,
+    variant = "default",
+    size = "md",
+    icon,
+    tooltip,
+    tooltipPosition = "top",
+    children,
+    ...props
+  }, ref) => {
+    const [showTooltip, setShowTooltip] = React55.useState(false);
+    const tooltipClasses = {
+      top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
+      bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
+      left: "right-full top-1/2 -translate-y-1/2 mr-2",
+      right: "left-full top-1/2 -translate-y-1/2 ml-2"
+    };
+    return /* @__PURE__ */ jsxs("div", { className: "relative inline-block", children: [
+      /* @__PURE__ */ jsxs(
+        Button,
+        {
+          ref,
+          variant,
+          size,
+          className: cn(
+            iconButtonVariants({ variant, size }),
+            "p-0",
+            className
+          ),
+          onMouseEnter: () => setShowTooltip(true),
+          onMouseLeave: () => setShowTooltip(false),
+          ...props,
+          children: [
+            icon,
+            children
+          ]
+        }
+      ),
+      tooltip && showTooltip && /* @__PURE__ */ jsx(
+        "div",
+        {
+          className: cn(
+            "absolute z-50 px-2 py-1 text-xs text-white bg-black rounded whitespace-nowrap animate-in fade-in-0 zoom-in-95",
+            tooltipClasses[tooltipPosition]
+          ),
+          children: tooltip
+        }
+      )
+    ] });
+  }
+);
+IconButton.displayName = "IconButton";
+var linkButtonVariants = cva(
+  "inline-flex items-center justify-center font-medium transition-all duration-[var(--motion-duration-fast)]",
+  {
+    variants: {
+      variant: {
+        default: "text-primary hover:underline underline-offset-4",
+        muted: "text-muted-foreground hover:text-foreground hover:underline underline-offset-4",
+        destructive: "text-destructive hover:underline underline-offset-4",
+        success: "text-emerald-600 hover:text-emerald-700 hover:underline underline-offset-4 dark:text-emerald-400 dark:hover:text-emerald-300",
+        warning: "text-amber-600 hover:text-amber-700 hover:underline underline-offset-4 dark:text-amber-400 dark:hover:text-amber-300",
+        info: "text-blue-600 hover:text-blue-700 hover:underline underline-offset-4 dark:text-blue-400 dark:hover:text-blue-300",
+        neon: "text-primary hover:underline underline-offset-4 dark:neon-text",
+        ghost: "text-foreground hover:bg-accent hover:text-accent-foreground rounded-md px-2 py-1",
+        outline: "border border-border rounded-md px-3 py-1 hover:bg-accent hover:text-accent-foreground"
+      },
+      size: {
+        xs: "text-xs",
+        sm: "text-sm",
+        md: "text-base",
+        lg: "text-lg",
+        xl: "text-xl"
+      },
+      weight: {
+        normal: "font-normal",
+        medium: "font-medium",
+        semibold: "font-semibold",
+        bold: "font-bold"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "md",
+      weight: "medium"
+    }
+  }
+);
+var LinkButton = React55.forwardRef(
+  ({
+    className,
+    variant = "default",
+    size = "md",
+    weight = "medium",
+    noUnderline = false,
+    leftIcon,
+    rightIcon,
+    href,
+    target,
+    children,
+    ...props
+  }, ref) => {
+    const classes = cn(
+      linkButtonVariants({ variant, size, weight }),
+      noUnderline && "hover:no-underline",
+      className
+    );
+    if (href) {
+      return /* @__PURE__ */ jsxs(
+        "a",
+        {
+          href,
+          target,
+          className: classes,
+          rel: target === "_blank" ? "noopener noreferrer" : void 0,
+          children: [
+            leftIcon && /* @__PURE__ */ jsx("span", { className: "mr-1", children: leftIcon }),
+            children,
+            rightIcon && /* @__PURE__ */ jsx("span", { className: "ml-1", children: rightIcon })
+          ]
+        }
+      );
+    }
+    return /* @__PURE__ */ jsxs(
+      "button",
+      {
+        ref,
+        className: classes,
+        ...props,
+        children: [
+          leftIcon && /* @__PURE__ */ jsx("span", { className: "mr-1", children: leftIcon }),
+          children,
+          rightIcon && /* @__PURE__ */ jsx("span", { className: "ml-1", children: rightIcon })
+        ]
+      }
+    );
+  }
+);
+LinkButton.displayName = "LinkButton";
+var fabVariants = cva(
+  "fixed z-40 rounded-full shadow-lg transition-all duration-[var(--motion-duration-normal)]",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
+        outline: "border-2 border-border bg-background hover:bg-accent hover:text-accent-foreground",
+        ghost: "bg-background border border-border hover:bg-accent hover:text-accent-foreground",
+        neon: "bg-primary border-2 border-primary text-primary-foreground hover:bg-primary/90 dark:neon-box",
+        glass: "glass border border-border hover:glass-hover"
+      },
+      size: {
+        sm: "h-12 w-12",
+        md: "h-14 w-14",
+        lg: "h-16 w-16",
+        xl: "h-20 w-20"
+      },
+      position: {
+        "bottom-right": "bottom-6 right-6",
+        "bottom-left": "bottom-6 left-6",
+        "top-right": "top-6 right-6",
+        "top-left": "top-6 left-6",
+        "bottom-center": "bottom-6 left-1/2 -translate-x-1/2",
+        "top-center": "top-6 left-1/2 -translate-x-1/2"
+      },
+      extended: {
+        true: "rounded-full px-6 w-auto",
+        false: "w-14 h-14"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "md",
+      position: "bottom-right",
+      extended: false
+    }
+  }
+);
+var FAB = React55.forwardRef(
+  ({
+    className,
+    variant = "default",
+    size = "md",
+    position = "bottom-right",
+    extended = false,
+    icon,
+    text,
+    active = false,
+    onClick,
+    animate = true,
+    actions = [],
+    ...props
+  }, ref) => {
+    const [showActions, setShowActions] = React55.useState(active);
+    const isExtended = extended && text;
+    React55.useEffect(() => {
+      setShowActions(active);
+    }, [active]);
+    const handleClick = React55.useCallback(() => {
+      if (actions.length > 0) {
+        setShowActions(!showActions);
+      }
+      onClick?.();
+    }, [actions.length, showActions, onClick]);
+    const defaultIcon = actions.length > 0 ? showActions ? /* @__PURE__ */ jsx(X, { className: "h-5 w-5" }) : /* @__PURE__ */ jsx(Plus, { className: "h-5 w-5" }) : /* @__PURE__ */ jsx(Plus, { className: "h-5 w-5" });
+    return /* @__PURE__ */ jsxs("div", { className: "relative", children: [
+      showActions && actions.length > 0 && /* @__PURE__ */ jsx("div", { className: "absolute bottom-0 flex flex-col-reverse gap-3 mb-4", children: actions.map((action, index) => /* @__PURE__ */ jsxs(
+        "div",
+        {
+          className: cn(
+            "flex items-center gap-3 animate-in slide-in-from-bottom-2 fade-in-0",
+            "duration-[var(--motion-duration-normal)]",
+            position.includes("left") && "flex-row-reverse",
+            position.includes("center") && "flex-row-reverse"
+          ),
+          style: {
+            animationDelay: `${index * 50}ms`
+          },
+          children: [
+            /* @__PURE__ */ jsx("span", { className: "text-sm font-medium whitespace-nowrap bg-background px-2 py-1 rounded-md shadow-md", children: action.label }),
+            /* @__PURE__ */ jsx(
+              Button,
+              {
+                variant: "outline",
+                size: "sm",
+                className: "h-10 w-10 rounded-full",
+                onClick: action.onClick,
+                children: action.icon
+              }
+            )
+          ]
+        },
+        index
+      )) }),
+      /* @__PURE__ */ jsx(
+        Button,
+        {
+          ref,
+          variant,
+          className: cn(
+            fabVariants({ variant, size, position, extended: isExtended ? true : false }),
+            animate && "animate-in fade-in-0 zoom-in-95 duration-[var(--motion-duration-normal)]",
+            className
+          ),
+          onClick: handleClick,
+          ...props,
+          children: /* @__PURE__ */ jsxs("span", { className: "flex items-center gap-2", children: [
+            icon || defaultIcon,
+            isExtended && text && /* @__PURE__ */ jsx("span", { className: "font-medium", children: text })
+          ] })
+        }
+      )
+    ] });
+  }
+);
+FAB.displayName = "FAB";
+var FABGroup = React55.forwardRef(
+  ({
+    className,
+    main,
+    secondary = [],
+    position = "bottom-right",
+    ...props
+  }, ref) => {
+    const positionClasses2 = {
+      "bottom-right": "bottom-6 right-6 flex-col-reverse",
+      "bottom-left": "bottom-6 left-6 flex-col-reverse",
+      "top-right": "top-6 right-6 flex-col",
+      "top-left": "top-6 left-6 flex-col",
+      "bottom-center": "bottom-6 left-1/2 -translate-x-1/2 flex-col-reverse",
+      "top-center": "top-6 left-1/2 -translate-x-1/2 flex-col"
+    };
+    return /* @__PURE__ */ jsxs(
+      "div",
+      {
+        ref,
+        className: cn(
+          "fixed z-40 flex gap-3",
+          positionClasses2[position],
+          className
+        ),
+        ...props,
+        children: [
+          secondary.map((fab, index) => /* @__PURE__ */ jsx(
+            "div",
+            {
+              className: "animate-in fade-in-0 zoom-in-95 duration-[var(--motion-duration-normal)]",
+              style: {
+                animationDelay: `${index * 50}ms`
+              },
+              children: fab
+            },
+            index
+          )),
+          main
+        ]
+      }
+    );
+  }
+);
+FABGroup.displayName = "FABGroup";
+var segmentedControlVariants = cva(
+  "inline-flex items-center rounded-lg border border-border bg-background p-1 text-foreground",
+  {
+    variants: {
+      size: {
+        sm: "h-8 text-xs",
+        md: "h-10 text-sm",
+        lg: "h-12 text-base"
+      },
+      variant: {
+        default: "",
+        pill: "rounded-full",
+        neon: "neon-border dark:shadow-glow-cyan",
+        glass: "glass border-border"
+      },
+      fullWidth: {
+        true: "w-full",
+        false: "w-auto"
+      }
+    },
+    defaultVariants: {
+      size: "md",
+      variant: "default",
+      fullWidth: false
+    }
+  }
+);
+var SegmentedControl = React55.forwardRef(
+  ({
+    className,
+    size = "md",
+    variant = "default",
+    fullWidth = false,
+    options,
+    value,
+    onChange,
+    defaultValue,
+    disabled = false,
+    ...props
+  }, ref) => {
+    const [internalValue, setInternalValue] = React55.useState(defaultValue || options[0]?.value);
+    const currentValue = value !== void 0 ? value : internalValue;
+    const handleOptionClick = React55.useCallback((optionValue, isDisabled) => {
+      if (isDisabled || disabled) return;
+      if (value === void 0) {
+        setInternalValue(optionValue);
+      }
+      onChange?.(optionValue);
+    }, [value, onChange, disabled]);
+    const sizeClasses2 = {
+      sm: "px-3 py-1 text-xs",
+      md: "px-4 py-2 text-sm",
+      lg: "px-6 py-3 text-base"
+    };
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn(
+          segmentedControlVariants({ size, variant, fullWidth }),
+          disabled && "opacity-50 pointer-events-none",
+          className
+        ),
+        role: "radiogroup",
+        ...props,
+        children: options.map((option) => {
+          const isActive = currentValue === option.value;
+          const isDisabled = option.disabled || disabled;
+          return /* @__PURE__ */ jsxs(
+            "button",
+            {
+              type: "button",
+              role: "radio",
+              "aria-checked": isActive,
+              disabled: isDisabled,
+              className: cn(
+                "flex items-center justify-center gap-2 font-medium transition-all duration-[var(--motion-duration-fast)]",
+                "rounded-md",
+                sizeClasses2[size],
+                isActive ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground hover:bg-accent/50",
+                isDisabled && "pointer-events-none opacity-50",
+                fullWidth && "flex-1"
+              ),
+              onClick: () => handleOptionClick(option.value, isDisabled),
+              children: [
+                option.icon && /* @__PURE__ */ jsx("span", { className: "h-4 w-4", children: option.icon }),
+                /* @__PURE__ */ jsx("span", { children: option.label })
+              ]
+            },
+            option.value
+          );
+        })
+      }
+    );
+  }
+);
+SegmentedControl.displayName = "SegmentedControl";
+var SegmentedControlItem = React55.forwardRef(
+  ({
+    className,
+    active = false,
+    size = "md",
+    icon,
+    children,
+    ...props
+  }, ref) => {
+    const sizeClasses2 = {
+      sm: "px-3 py-1 text-xs h-8",
+      md: "px-4 py-2 text-sm h-10",
+      lg: "px-6 py-3 text-base h-12"
+    };
+    return /* @__PURE__ */ jsxs(
+      "button",
+      {
+        ref,
+        type: "button",
+        className: cn(
+          "flex items-center justify-center gap-2 font-medium transition-all duration-[var(--motion-duration-fast)]",
+          "rounded-md",
+          sizeClasses2[size],
+          active ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:text-foreground hover:bg-accent/50",
+          className
+        ),
+        ...props,
+        children: [
+          icon && /* @__PURE__ */ jsx("span", { className: "h-4 w-4", children: icon }),
+          children
+        ]
+      }
+    );
+  }
+);
+SegmentedControlItem.displayName = "SegmentedControlItem";
+function InlineLoader({
+  className,
+  size = "sm",
+  variant = "spinner"
+}) {
+  const sizeClasses2 = {
+    sm: "w-3 h-3",
+    md: "w-4 h-4",
+    lg: "w-5 h-5"
+  };
+  if (variant === "dots") {
+    return /* @__PURE__ */ jsx("div", { className: cn("flex items-center gap-1", className), "aria-label": "Carregando", children: /* @__PURE__ */ jsxs("div", { className: "flex gap-1", children: [
+      /* @__PURE__ */ jsx("div", { className: "w-1 h-1 bg-current rounded-full animate-pulse" }),
+      /* @__PURE__ */ jsx("div", { className: "w-1 h-1 bg-current rounded-full animate-pulse delay-75" }),
+      /* @__PURE__ */ jsx("div", { className: "w-1 h-1 bg-current rounded-full animate-pulse delay-150" })
+    ] }) });
+  }
+  return /* @__PURE__ */ jsx(
+    Loader2,
+    {
+      className: cn("animate-spin", sizeClasses2[size], className),
+      "aria-label": "Carregando"
+    }
+  );
+}
+function PageHeader({ title, description, children }) {
+  return (
+    /**
+     * Container principal do header
+     *
+     * Utiliza SECTION_CLASSES.container para padding e layout responsivos
+     * - relative z-10: fica acima de backgrounds e partículas
+     */
+    /* @__PURE__ */ jsx("div", { className: `${SECTION_CLASSES.container} relative z-10`, children: /* @__PURE__ */ jsxs("div", { className: "text-center mb-12", children: [
+      children && /* @__PURE__ */ jsx("div", { className: "relative mb-8", children }),
+      /* @__PURE__ */ jsx("h1", { className: "text-3xl md:text-4xl font-bold mb-4 text-foreground dark:text-cyan-200 dark:font-mono dark:tracking-wider", children: title }),
+      /* @__PURE__ */ jsx("div", { className: "w-24 h-1 bg-linear-to-r from-primary to-primary dark:from-cyan-400 dark:to-purple-400 mx-auto mb-6" }),
+      description && /* @__PURE__ */ jsx("p", { className: "text-muted-foreground dark:text-gray-300 text-lg max-w-2xl mx-auto dark:font-mono px-2", children: description })
+    ] }) })
+  );
+}
+var Checkbox = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  CheckboxPrimitive.Root,
+  {
+    ref,
+    className: cn(
+      "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+      "disabled:cursor-not-allowed disabled:opacity-50",
+      "data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
+      className
+    ),
+    ...props,
+    children: /* @__PURE__ */ jsx(
+      CheckboxPrimitive.Indicator,
+      {
+        className: cn("flex items-center justify-center text-current"),
+        children: /* @__PURE__ */ jsx(Check, { className: "h-4 w-4" })
+      }
+    )
+  }
+));
+Checkbox.displayName = CheckboxPrimitive.Root.displayName;
+function Input({ className, type, ...props }) {
+  return /* @__PURE__ */ jsx(
+    "input",
+    {
+      type,
+      "data-slot": "input",
+      className: cn(
+        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+        className
+      ),
+      ...props
+    }
+  );
+}
+var labelVariants = cva(
+  "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-cyan-200 dark:font-mono"
+);
+var Label = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  LabelPrimitive.Root,
+  {
+    ref,
+    className: cn(labelVariants(), className),
+    ...props
+  }
+));
+Label.displayName = LabelPrimitive.Root.displayName;
+var RadioGroup = React55.forwardRef(({ className, ...props }, ref) => {
+  return /* @__PURE__ */ jsx(
+    RadioGroupPrimitive.Root,
+    {
+      className: cn("grid gap-2", className),
+      ...props,
+      ref
+    }
+  );
+});
+RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
+var RadioGroupItem = React55.forwardRef(({ className, ...props }, ref) => {
+  return /* @__PURE__ */ jsx(
+    RadioGroupPrimitive.Item,
+    {
+      ref,
+      className: cn(
+        "aspect-square h-4 w-4 rounded-full border border-primary text-primary ring-offset-background focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        className
+      ),
+      ...props,
+      children: /* @__PURE__ */ jsx(RadioGroupPrimitive.Indicator, { className: "flex items-center justify-center", children: /* @__PURE__ */ jsx(Circle, { className: "h-2.5 w-2.5 fill-current text-current" }) })
+    }
+  );
+});
+RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
+var Select = SelectPrimitive.Root;
+var SelectGroup = SelectPrimitive.Group;
+var SelectValue = SelectPrimitive.Value;
+var SelectTrigger = React55.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+  SelectPrimitive.Trigger,
+  {
+    ref,
+    className: cn(
+      "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2",
+      "text-sm ring-offset-background",
+      "placeholder:text-muted-foreground",
+      "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+      "disabled:cursor-not-allowed disabled:opacity-50",
+      "[&>span]:line-clamp-1",
+      className
+    ),
+    ...props,
+    children: [
+      children,
+      /* @__PURE__ */ jsx(SelectPrimitive.Icon, { asChild: true, children: /* @__PURE__ */ jsx(ChevronDown, { className: "h-4 w-4 opacity-50" }) })
+    ]
+  }
+));
+SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
+var SelectScrollUpButton = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  SelectPrimitive.ScrollUpButton,
+  {
+    ref,
+    className: cn("flex cursor-default items-center justify-center py-1", className),
+    ...props,
+    children: /* @__PURE__ */ jsx(ChevronUp, { className: "h-4 w-4" })
+  }
+));
+SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
+var SelectScrollDownButton = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  SelectPrimitive.ScrollDownButton,
+  {
+    ref,
+    className: cn("flex cursor-default items-center justify-center py-1", className),
+    ...props,
+    children: /* @__PURE__ */ jsx(ChevronDown, { className: "h-4 w-4" })
+  }
+));
+SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName;
+var SelectContent = React55.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ jsx(SelectPrimitive.Portal, { children: /* @__PURE__ */ jsxs(
+  SelectPrimitive.Content,
+  {
+    ref,
+    className: cn(
+      "relative z-50 max-h-96 min-w-[8rem] overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-md",
+      "data-[state=open]:animate-in data-[state=closed]:animate-out",
+      "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+      "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2",
+      "data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+      position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=left]:-translate-x-1 data-[side=right]:translate-x-1 data-[side=top]:-translate-y-1",
+      className
+    ),
+    position,
+    ...props,
+    children: [
+      /* @__PURE__ */ jsx(SelectScrollUpButton, {}),
+      /* @__PURE__ */ jsx(
+        SelectPrimitive.Viewport,
+        {
+          className: cn(
+            "p-1",
+            position === "popper" && "h-[var(--radix-select-trigger-height)] w-full min-w-[var(--radix-select-trigger-width)]"
+          ),
+          children
+        }
+      ),
+      /* @__PURE__ */ jsx(SelectScrollDownButton, {})
+    ]
+  }
+) }));
+SelectContent.displayName = SelectPrimitive.Content.displayName;
+var SelectLabel = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  SelectPrimitive.Label,
+  {
+    ref,
+    className: cn("py-1.5 pl-8 pr-2 text-sm font-semibold", className),
+    ...props
+  }
+));
+SelectLabel.displayName = SelectPrimitive.Label.displayName;
+var SelectItem = React55.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+  SelectPrimitive.Item,
+  {
+    ref,
+    className: cn(
+      "relative flex w-full cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none",
+      "focus:bg-accent focus:text-accent-foreground",
+      "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      className
+    ),
+    ...props,
+    children: [
+      /* @__PURE__ */ jsx("span", { className: "absolute left-2 flex h-3.5 w-3.5 items-center justify-center", children: /* @__PURE__ */ jsx(SelectPrimitive.ItemIndicator, { children: /* @__PURE__ */ jsx(Check, { className: "h-4 w-4" }) }) }),
+      /* @__PURE__ */ jsx(SelectPrimitive.ItemText, { children })
+    ]
+  }
+));
+SelectItem.displayName = SelectPrimitive.Item.displayName;
+var SelectSeparator = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  SelectPrimitive.Separator,
+  {
+    ref,
+    className: cn("-mx-1 my-1 h-px bg-muted", className),
+    ...props
+  }
+));
+SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
+var Textarea = React55.forwardRef(({ className, ...props }, ref) => {
+  return /* @__PURE__ */ jsx(
+    "textarea",
+    {
+      className: cn(
+        "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        "dark:bg-background dark:border-border dark:text-foreground dark:placeholder:text-muted-foreground dark:focus-visible:ring-ring dark:focus-visible:border-border",
+        className
+      ),
+      ref,
+      ...props
+    }
+  );
+});
+Textarea.displayName = "Textarea";
 var fileUploadVariants = cva(
   "relative flex flex-col items-center justify-center rounded-lg border-2 border-dashed transition-colors duration-[var(--motion-duration-normal)]",
   {
@@ -842,7 +1379,7 @@ function getFileIcon(file) {
     return /* @__PURE__ */ jsx(File$1, { className: "h-4 w-4" });
   }
 }
-var FileUpload = React47.forwardRef(
+var FileUpload = React55.forwardRef(
   ({
     className,
     files = [],
@@ -861,9 +1398,9 @@ var FileUpload = React47.forwardRef(
     size = "md",
     ...props
   }, ref) => {
-    const [isDragging, setIsDragging] = React47.useState(false);
-    const inputRef = React47.useRef(null);
-    const processFiles = React47.useCallback((fileList) => {
+    const [isDragging, setIsDragging] = React55.useState(false);
+    const inputRef = React55.useRef(null);
+    const processFiles = React55.useCallback((fileList) => {
       const filesArray = Array.from(fileList);
       if (!multiple && filesArray.length > 1) {
         console.warn("Apenas um arquivo \xE9 permitido");
@@ -895,7 +1432,7 @@ var FileUpload = React47.forwardRef(
         onFilesAdd?.(newFiles);
       }
     }, [multiple, maxFiles, files.length, maxSize, onFilesAdd]);
-    const handleDrop = React47.useCallback((e) => {
+    const handleDrop = React55.useCallback((e) => {
       e.preventDefault();
       setIsDragging(false);
       if (disabled || loading) return;
@@ -904,39 +1441,39 @@ var FileUpload = React47.forwardRef(
         processFiles(files2);
       }
     }, [disabled, loading, processFiles]);
-    const handleDragOver = React47.useCallback((e) => {
+    const handleDragOver = React55.useCallback((e) => {
       e.preventDefault();
       if (!disabled && !loading) {
         setIsDragging(true);
       }
     }, [disabled, loading]);
-    const handleDragLeave = React47.useCallback((e) => {
+    const handleDragLeave = React55.useCallback((e) => {
       e.preventDefault();
       setIsDragging(false);
     }, []);
-    const handleFileSelect = React47.useCallback((e) => {
+    const handleFileSelect = React55.useCallback((e) => {
       const files2 = e.target.files;
       if (files2 && files2.length > 0) {
         processFiles(files2);
       }
       e.target.value = "";
     }, [processFiles]);
-    const handleClick = React47.useCallback(() => {
+    const handleClick = React55.useCallback(() => {
       if (!disabled && !loading) {
         inputRef.current?.click();
       }
     }, [disabled, loading]);
-    const handleRemoveFile = React47.useCallback((id) => {
+    const handleRemoveFile = React55.useCallback((id) => {
       onFileRemove?.(id);
     }, [onFileRemove]);
-    const handleClear = React47.useCallback(() => {
+    const handleClear = React55.useCallback(() => {
       onClear?.();
     }, [onClear]);
-    return /* @__PURE__ */ jsxs("div", { ref, className: cn2("space-y-4", className), ...props, children: [
+    return /* @__PURE__ */ jsxs("div", { ref, className: cn("space-y-4", className), ...props, children: [
       /* @__PURE__ */ jsxs(
         "div",
         {
-          className: cn2(
+          className: cn(
             fileUploadVariants({ variant, size, disabled }),
             isDragging && "border-primary bg-primary/5",
             "cursor-pointer"
@@ -959,7 +1496,7 @@ var FileUpload = React47.forwardRef(
               }
             ),
             /* @__PURE__ */ jsxs("div", { className: "flex flex-col items-center gap-2 text-center", children: [
-              /* @__PURE__ */ jsx(Upload, { className: cn2(
+              /* @__PURE__ */ jsx(Upload, { className: cn(
                 "h-8 w-8 text-muted-foreground",
                 size === "sm" && "h-6 w-6",
                 size === "lg" && "h-10 w-10"
@@ -1081,7 +1618,7 @@ function formatMultipleDates(dates) {
   if (dates.length === 2) return `${formatDate(dates[0])} e ${formatDate(dates[1])}`;
   return `${formatDate(dates[0])} (+${dates.length - 1})`;
 }
-var DatePicker = React47.forwardRef(
+var DatePicker = React55.forwardRef(
   ({
     className,
     size = "md",
@@ -1101,12 +1638,12 @@ var DatePicker = React47.forwardRef(
     locale,
     ...props
   }, _ref) => {
-    const [isOpen, setIsOpen] = React47.useState(false);
-    const [selectedDates, setSelectedDates] = React47.useState([]);
-    const [inputValue, setInputValue] = React47.useState("");
-    const containerRef = React47.useRef(null);
-    const buttonRef = React47.useRef(null);
-    React47.useEffect(() => {
+    const [isOpen, setIsOpen] = React55.useState(false);
+    const [selectedDates, setSelectedDates] = React55.useState([]);
+    const [inputValue, setInputValue] = React55.useState("");
+    const containerRef = React55.useRef(null);
+    const buttonRef = React55.useRef(null);
+    React55.useEffect(() => {
       if (!value) {
         setInputValue("");
         setSelectedDates([]);
@@ -1126,7 +1663,7 @@ var DatePicker = React47.forwardRef(
         setInputValue(formatDate(value, format));
       }
     }, [value, range, multiple, format]);
-    const handleSelect = React47.useCallback((dates) => {
+    const handleSelect = React55.useCallback((dates) => {
       if (!dates) {
         onChange?.(void 0);
         return;
@@ -1140,7 +1677,7 @@ var DatePicker = React47.forwardRef(
         onChange?.(dates[0]);
       }
     }, [range, multiple, onChange]);
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -1155,7 +1692,7 @@ var DatePicker = React47.forwardRef(
       caption: "flex justify-center pt-1 relative items-center",
       caption_label: "text-sm font-medium",
       nav: "space-x-1 flex items-center",
-      nav_button: cn2(
+      nav_button: cn(
         "inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-7 w-7",
         "absolute"
       ),
@@ -1166,7 +1703,7 @@ var DatePicker = React47.forwardRef(
       head_cell: "text-muted-foreground rounded-md w-9 font-normal text-[0.8rem]",
       row: "flex w-full mt-2",
       cell: "text-center text-sm p-0 relative [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-      day: cn2(
+      day: cn(
         "h-9 w-9 p-0 font-normal aria-selected:opacity-100 hover:bg-accent hover:text-accent-foreground rounded-md"
       ),
       day_range_end: "day-range-end",
@@ -1181,7 +1718,7 @@ var DatePicker = React47.forwardRef(
       "div",
       {
         ref: _ref || containerRef,
-        className: cn2("relative", className),
+        className: cn("relative", className),
         ...props,
         children: [
           /* @__PURE__ */ jsxs(
@@ -1189,7 +1726,7 @@ var DatePicker = React47.forwardRef(
             {
               ref: buttonRef,
               variant: "outline",
-              className: cn2(
+              className: cn(
                 "w-full justify-start text-left font-normal",
                 !value && "text-muted-foreground",
                 datePickerVariants({ size })
@@ -1197,7 +1734,7 @@ var DatePicker = React47.forwardRef(
               onClick: () => setIsOpen(!isOpen),
               disabled,
               children: [
-                /* @__PURE__ */ jsx(Calendar$1, { className: "mr-2 h-4 w-4" }),
+                /* @__PURE__ */ jsx(CalendarIcon, { className: "mr-2 h-4 w-4" }),
                 inputValue || placeholder,
                 /* @__PURE__ */ jsx(ChevronDown, { className: "ml-auto h-4 w-4 opacity-50" })
               ]
@@ -1264,7 +1801,7 @@ function timeToString(time, use12Hours = false, showSeconds = false) {
   const secondsStr = showSeconds ? `:${padNumber(seconds)}` : "";
   return `${timeStr}${secondsStr}${use12Hours ? ` ${period}` : ""}`;
 }
-var TimePicker = React47.forwardRef(
+var TimePicker = React55.forwardRef(
   ({
     className,
     size = "md",
@@ -1281,13 +1818,13 @@ var TimePicker = React47.forwardRef(
     maxTime,
     ...props
   }, ref) => {
-    const [isOpen, setIsOpen] = React47.useState(false);
-    const [hours, setHours] = React47.useState(value?.hours || 0);
-    const [minutes, setMinutes] = React47.useState(value?.minutes || 0);
-    const [seconds, setSeconds] = React47.useState(value?.seconds || 0);
-    const [period, setPeriod] = React47.useState(value?.period || "AM");
-    const containerRef = React47.useRef(null);
-    React47.useEffect(() => {
+    const [isOpen, setIsOpen] = React55.useState(false);
+    const [hours, setHours] = React55.useState(value?.hours || 0);
+    const [minutes, setMinutes] = React55.useState(value?.minutes || 0);
+    const [seconds, setSeconds] = React55.useState(value?.seconds || 0);
+    const [period, setPeriod] = React55.useState(value?.period || "AM");
+    const containerRef = React55.useRef(null);
+    React55.useEffect(() => {
       if (value) {
         setHours(value.hours);
         setMinutes(value.minutes);
@@ -1297,7 +1834,7 @@ var TimePicker = React47.forwardRef(
         }
       }
     }, [value, use12Hours]);
-    const handleHoursChange = React47.useCallback((newHours) => {
+    const handleHoursChange = React55.useCallback((newHours) => {
       if (newHours < 0) newHours = 0;
       if (newHours > 23) newHours = 23;
       setHours(newHours);
@@ -1309,7 +1846,7 @@ var TimePicker = React47.forwardRef(
       };
       onChange?.(newTime);
     }, [minutes, seconds, period, use12Hours, showSeconds, onChange]);
-    const handleMinutesChange = React47.useCallback((newMinutes) => {
+    const handleMinutesChange = React55.useCallback((newMinutes) => {
       if (newMinutes < 0) newMinutes = 0;
       if (newMinutes > 59) newMinutes = 59;
       newMinutes = Math.round(newMinutes / minuteStep) * minuteStep;
@@ -1322,7 +1859,7 @@ var TimePicker = React47.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, seconds, period, use12Hours, showSeconds, minuteStep, onChange]);
-    const handleSecondsChange = React47.useCallback((newSeconds) => {
+    const handleSecondsChange = React55.useCallback((newSeconds) => {
       if (!showSeconds) return;
       if (newSeconds < 0) newSeconds = 0;
       if (newSeconds > 59) newSeconds = 59;
@@ -1336,7 +1873,7 @@ var TimePicker = React47.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, minutes, period, use12Hours, secondStep, onChange]);
-    const handlePeriodChange = React47.useCallback((newPeriod) => {
+    const handlePeriodChange = React55.useCallback((newPeriod) => {
       setPeriod(newPeriod);
       let newHours = hours;
       if (newPeriod === "AM" && hours === 12) {
@@ -1353,7 +1890,7 @@ var TimePicker = React47.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, minutes, seconds, showSeconds, onChange]);
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -1367,14 +1904,14 @@ var TimePicker = React47.forwardRef(
       "div",
       {
         ref: containerRef,
-        className: cn2("relative", className),
+        className: cn("relative", className),
         ...props,
         children: [
           /* @__PURE__ */ jsxs(
             Button,
             {
               variant: "outline",
-              className: cn2(
+              className: cn(
                 "w-full justify-start text-left font-normal",
                 !value && "text-muted-foreground",
                 timePickerVariants({ size, variant })
@@ -1398,7 +1935,7 @@ var TimePicker = React47.forwardRef(
                   max: use12Hours ? 12 : 23,
                   value: hours,
                   onChange: (e) => handleHoursChange(parseInt(e.target.value) || 0),
-                  className: cn2(
+                  className: cn(
                     "w-16 h-10 text-center rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                     "disabled:cursor-not-allowed disabled:opacity-50"
@@ -1418,7 +1955,7 @@ var TimePicker = React47.forwardRef(
                   max: 59,
                   value: minutes,
                   onChange: (e) => handleMinutesChange(parseInt(e.target.value) || 0),
-                  className: cn2(
+                  className: cn(
                     "w-16 h-10 text-center rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background",
                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                     "disabled:cursor-not-allowed disabled:opacity-50"
@@ -1439,7 +1976,7 @@ var TimePicker = React47.forwardRef(
                     max: 59,
                     value: seconds,
                     onChange: (e) => handleSecondsChange(parseInt(e.target.value) || 0),
-                    className: cn2(
+                    className: cn(
                       "w-16 h-10 text-center rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background",
                       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                       "disabled:cursor-not-allowed disabled:opacity-50"
@@ -1508,7 +2045,7 @@ var rangeSliderVariants = cva(
     }
   }
 );
-var RangeSlider = React47.forwardRef(
+var RangeSlider = React55.forwardRef(
   ({
     className,
     size = "md",
@@ -1528,11 +2065,11 @@ var RangeSlider = React47.forwardRef(
     color = "primary",
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React47.useState(defaultValue);
-    const [isDragging, setIsDragging] = React47.useState(null);
-    const sliderRef = React47.useRef(null);
-    const minThumbRef = React47.useRef(null);
-    const maxThumbRef = React47.useRef(null);
+    const [internalValue, setInternalValue] = React55.useState(defaultValue);
+    const [isDragging, setIsDragging] = React55.useState(null);
+    const sliderRef = React55.useRef(null);
+    const minThumbRef = React55.useRef(null);
+    const maxThumbRef = React55.useRef(null);
     const currentValue = value || internalValue;
     const valueToPercent = (val) => {
       return (val - min) / (max - min) * 100;
@@ -1549,7 +2086,7 @@ var RangeSlider = React47.forwardRef(
       const percent = position / rect.width * 100;
       return Math.max(0, Math.min(100, percent));
     };
-    const updateValue = React47.useCallback((type, percent) => {
+    const updateValue = React55.useCallback((type, percent) => {
       const newValue = percentToValue(percent);
       setValue((prev) => {
         const updated = { ...prev };
@@ -1561,26 +2098,26 @@ var RangeSlider = React47.forwardRef(
         return updated;
       });
     }, [step]);
-    const setValue = React47.useCallback((newValue) => {
+    const setValue = React55.useCallback((newValue) => {
       setInternalValue(newValue);
       onChange?.(newValue);
     }, [onChange]);
-    const handleMouseDown = React47.useCallback((type) => {
+    const handleMouseDown = React55.useCallback((type) => {
       if (disabled) return;
       setIsDragging(type);
     }, [disabled]);
-    const handleMouseMove = React47.useCallback((event) => {
+    const handleMouseMove = React55.useCallback((event) => {
       if (!isDragging || disabled) return;
       const percent = getPosition(event);
       updateValue(isDragging, percent);
     }, [isDragging, disabled, updateValue]);
-    const handleMouseUp = React47.useCallback(() => {
+    const handleMouseUp = React55.useCallback(() => {
       if (isDragging) {
         onChangeEnd?.(currentValue);
         setIsDragging(null);
       }
     }, [isDragging, currentValue, onChangeEnd]);
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       if (isDragging) {
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseup", handleMouseUp);
@@ -1601,7 +2138,7 @@ var RangeSlider = React47.forwardRef(
       warning: "bg-amber-500",
       error: "bg-red-500"
     };
-    const thumbClasses = cn2(
+    const thumbClasses = cn(
       "block h-5 w-5 rounded-full border-2 border-background bg-background shadow-lg transition-all",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
       "hover:scale-110 active:scale-95",
@@ -1618,7 +2155,7 @@ var RangeSlider = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("space-y-2", className),
+        className: cn("space-y-2", className),
         ...props,
         children: [
           labels && /* @__PURE__ */ jsxs("div", { className: "flex justify-between text-sm text-muted-foreground", children: [
@@ -1629,7 +2166,7 @@ var RangeSlider = React47.forwardRef(
             "div",
             {
               ref: sliderRef,
-              className: cn2(
+              className: cn(
                 rangeSliderVariants({ size, variant, disabled })
               ),
               children: [
@@ -1637,7 +2174,7 @@ var RangeSlider = React47.forwardRef(
                 /* @__PURE__ */ jsx(
                   "div",
                   {
-                    className: cn2(
+                    className: cn(
                       "absolute h-full rounded-full",
                       colorClasses[color]
                     ),
@@ -1651,7 +2188,7 @@ var RangeSlider = React47.forwardRef(
                   "div",
                   {
                     ref: minThumbRef,
-                    className: cn2(thumbClasses, "absolute"),
+                    className: cn(thumbClasses, "absolute"),
                     style: {
                       left: `calc(${minPercent}% - 10px)`,
                       cursor: disabled ? "not-allowed" : "grab"
@@ -1664,7 +2201,7 @@ var RangeSlider = React47.forwardRef(
                   "div",
                   {
                     ref: maxThumbRef,
-                    className: cn2(thumbClasses, "absolute"),
+                    className: cn(thumbClasses, "absolute"),
                     style: {
                       left: `calc(${maxPercent}% - 10px)`,
                       cursor: disabled ? "not-allowed" : "grab"
@@ -1716,7 +2253,7 @@ var searchInputVariants = cva(
     }
   }
 );
-var SearchInput = React47.forwardRef(
+var SearchInput = React55.forwardRef(
   ({
     className,
     size = "md",
@@ -1737,15 +2274,15 @@ var SearchInput = React47.forwardRef(
     disabled,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React47.useState(value);
-    const [isOpen, setIsOpen] = React47.useState(false);
-    const [selectedIndex, setSelectedIndex] = React47.useState(-1);
-    const [filteredSuggestions, setFilteredSuggestions] = React47.useState([]);
-    const inputRef = React47.useRef(null);
-    const containerRef = React47.useRef(null);
-    const debounceRef = React47.useRef();
+    const [internalValue, setInternalValue] = React55.useState(value);
+    const [isOpen, setIsOpen] = React55.useState(false);
+    const [selectedIndex, setSelectedIndex] = React55.useState(-1);
+    const [filteredSuggestions, setFilteredSuggestions] = React55.useState([]);
+    const inputRef = React55.useRef(null);
+    const containerRef = React55.useRef(null);
+    const debounceRef = React55.useRef();
     const currentValue = value !== void 0 ? value : internalValue;
-    const setValue = React47.useCallback((newValue) => {
+    const setValue = React55.useCallback((newValue) => {
       setInternalValue(newValue);
       if (debounceRef.current) {
         clearTimeout(debounceRef.current);
@@ -1754,7 +2291,7 @@ var SearchInput = React47.forwardRef(
         onChange?.(newValue);
       }, debounceTime);
     }, [onChange, debounceTime]);
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       if (!currentValue.trim()) {
         const historySuggestions = history.slice(0, 5).map((item, index) => ({
           id: `history-${index}`,
@@ -1771,7 +2308,7 @@ var SearchInput = React47.forwardRef(
         setFilteredSuggestions(filtered);
       }
     }, [currentValue, suggestions, history, maxSuggestions]);
-    const handleKeyDown = React47.useCallback((event) => {
+    const handleKeyDown = React55.useCallback((event) => {
       switch (event.key) {
         case "Enter":
           event.preventDefault();
@@ -1805,19 +2342,19 @@ var SearchInput = React47.forwardRef(
           break;
       }
     }, [selectedIndex, filteredSuggestions, currentValue, setValue, onSubmit]);
-    const handleFocus = React47.useCallback(() => {
+    const handleFocus = React55.useCallback(() => {
       setIsOpen(true);
     }, []);
-    const handleBlur = React47.useCallback((event) => {
+    const handleBlur = React55.useCallback((event) => {
       if (!event.relatedTarget?.closest(".search-suggestion")) {
         setTimeout(() => setIsOpen(false), 150);
       }
     }, []);
-    const handleClear = React47.useCallback(() => {
+    const handleClear = React55.useCallback(() => {
       setValue("");
       inputRef.current?.focus();
     }, [setValue]);
-    const handleSuggestionClick = React47.useCallback((suggestion) => {
+    const handleSuggestionClick = React55.useCallback((suggestion) => {
       if (suggestion.action) {
         suggestion.action();
       } else {
@@ -1826,7 +2363,7 @@ var SearchInput = React47.forwardRef(
       }
       setIsOpen(false);
     }, [setValue, onSubmit]);
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -1851,9 +2388,9 @@ var SearchInput = React47.forwardRef(
       "div",
       {
         ref: containerRef,
-        className: cn2("relative", className),
+        className: cn("relative", className),
         children: [
-          /* @__PURE__ */ jsxs("div", { className: cn2(
+          /* @__PURE__ */ jsxs("div", { className: cn(
             searchInputVariants({ size, variant }),
             "rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background",
             "focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2",
@@ -1909,7 +2446,7 @@ var SearchInput = React47.forwardRef(
           isOpen && filteredSuggestions.length > 0 && /* @__PURE__ */ jsx("div", { className: "absolute top-full left-0 right-0 z-50 mt-1 rounded-md border bg-popover p-1 text-popover-foreground shadow-lg animate-in fade-in-0 zoom-in-95", children: filteredSuggestions.map((suggestion, index) => /* @__PURE__ */ jsxs(
             "div",
             {
-              className: cn2(
+              className: cn(
                 "search-suggestion flex items-center gap-3 rounded-sm px-2 py-1.5 text-sm cursor-pointer",
                 "hover:bg-accent hover:text-accent-foreground",
                 "focus:bg-accent focus:text-accent-foreground",
@@ -1986,7 +2523,7 @@ function applyMask(value, mask) {
 function removeMask(value) {
   return value.replace(/\D/g, "");
 }
-var PhoneInput = React47.forwardRef(
+var PhoneInput = React55.forwardRef(
   ({
     className,
     size = "md",
@@ -2003,19 +2540,19 @@ var PhoneInput = React47.forwardRef(
     numbersOnly = true,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React47.useState(value);
-    const [selectedCountry, setSelectedCountry] = React47.useState(
+    const [internalValue, setInternalValue] = React55.useState(value);
+    const [selectedCountry, setSelectedCountry] = React55.useState(
       countries.find((c) => c.code === country) || countries[0]
     );
-    const [isDropdownOpen, setIsDropdownOpen] = React47.useState(false);
-    const inputRef = React47.useRef(null);
-    const dropdownRef = React47.useRef(null);
+    const [isDropdownOpen, setIsDropdownOpen] = React55.useState(false);
+    const inputRef = React55.useRef(null);
+    const dropdownRef = React55.useRef(null);
     const currentValue = value !== void 0 ? value : internalValue;
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       const newCountry = countries.find((c) => c.code === country) || countries[0];
       setSelectedCountry(newCountry);
     }, [country, countries]);
-    const handleInputChange = React47.useCallback((event) => {
+    const handleInputChange = React55.useCallback((event) => {
       let inputValue = event.target.value;
       if (numbersOnly) {
         inputValue = removeMask(inputValue);
@@ -2025,7 +2562,7 @@ var PhoneInput = React47.forwardRef(
       const finalValue = includeDDI ? `${selectedCountry.ddi} ${removeMask(maskedValue)}` : removeMask(maskedValue);
       onChange?.(finalValue, selectedCountry);
     }, [selectedCountry, numbersOnly, includeDDI, onChange]);
-    const handleCountrySelect = React47.useCallback((country2) => {
+    const handleCountrySelect = React55.useCallback((country2) => {
       setSelectedCountry(country2);
       setIsDropdownOpen(false);
       onCountryChange?.(country2);
@@ -2034,7 +2571,7 @@ var PhoneInput = React47.forwardRef(
         onChange?.("", country2);
       }
     }, [selectedCountry, onCountryChange, onChange]);
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       const handleClickOutside = (event) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target) && !inputRef.current?.contains(event.target)) {
           setIsDropdownOpen(false);
@@ -2047,7 +2584,7 @@ var PhoneInput = React47.forwardRef(
     return /* @__PURE__ */ jsxs(
       "div",
       {
-        className: cn2(phoneInputVariants({ size, variant }), className),
+        className: cn(phoneInputVariants({ size, variant }), className),
         children: [
           showCountrySelector && /* @__PURE__ */ jsxs("div", { className: "relative", children: [
             /* @__PURE__ */ jsxs(
@@ -2073,7 +2610,7 @@ var PhoneInput = React47.forwardRef(
                   "button",
                   {
                     type: "button",
-                    className: cn2(
+                    className: cn(
                       "flex items-center gap-2 w-full rounded-sm px-2 py-1.5 text-sm",
                       "hover:bg-accent hover:text-accent-foreground",
                       "focus:bg-accent focus:text-accent-foreground",
@@ -2102,7 +2639,7 @@ var PhoneInput = React47.forwardRef(
                 onChange: handleInputChange,
                 placeholder: inputPlaceholder,
                 disabled,
-                className: cn2(
+                className: cn(
                   "flex h-full w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background",
                   "file:border-0 file:bg-transparent file:text-sm file:font-medium",
                   "placeholder:text-muted-foreground",
@@ -2137,11 +2674,11 @@ var MOTION = {
 var GRADIENT_DIRECTIONS = {
   TO_BOTTOM: "to-b",
   TO_BOTTOM_RIGHT: "to-br"};
-var Card = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Card = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
-    className: cn2(
+    className: cn(
       "rounded-lg border bg-card text-card-foreground shadow-sm",
       className
     ),
@@ -2149,20 +2686,20 @@ var Card = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ 
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardHeader = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
-    className: cn2("flex flex-col space-y-1.5 p-6", className),
+    className: cn("flex flex-col space-y-1.5 p-6", className),
     ...props
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardTitle = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h3",
   {
     ref,
-    className: cn2(
+    className: cn(
       "text-2xl font-semibold leading-none tracking-tight",
       className
     ),
@@ -2170,31 +2707,31 @@ var CardTitle = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardDescription = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "p",
   {
     ref,
-    className: cn2("text-sm text-muted-foreground", className),
+    className: cn("text-sm text-muted-foreground", className),
     ...props
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn2("p-6 pt-0", className), ...props }));
+var CardContent = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardFooter = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
-    className: cn2("flex items-center p-6 pt-0", className),
+    className: cn("flex items-center p-6 pt-0", className),
     ...props
   }
 ));
 CardFooter.displayName = "CardFooter";
-var HighlightCard = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var HighlightCard = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
-    className: cn2(
+    className: cn(
       "text-left bg-card/60 dark:bg-black/50",
       "backdrop-blur-xl",
       "rounded-2xl",
@@ -2217,11 +2754,11 @@ var HighlightCard = React47.forwardRef(({ className, ...props }, ref) => /* @__P
   }
 ));
 HighlightCard.displayName = "HighlightCard";
-var ScrollArea = React47.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var ScrollArea = React55.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   ScrollAreaPrimitive.Root,
   {
     ref,
-    className: cn2("relative overflow-hidden", className),
+    className: cn("relative overflow-hidden", className),
     ...props,
     children: [
       /* @__PURE__ */ jsx(ScrollAreaPrimitive.Viewport, { className: "h-full w-full rounded-[inherit]", children }),
@@ -2231,12 +2768,12 @@ var ScrollArea = React47.forwardRef(({ className, children, ...props }, ref) => 
   }
 ));
 ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
-var ScrollBar = React47.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsx(
+var ScrollBar = React55.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsx(
   ScrollAreaPrimitive.ScrollAreaScrollbar,
   {
     ref,
     orientation,
-    className: cn2(
+    className: cn(
       "flex touch-none select-none transition-colors",
       orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent p-[1px]",
       orientation === "horizontal" && "h-2.5 flex-col border-t border-t-transparent p-[1px]",
@@ -2247,14 +2784,14 @@ var ScrollBar = React47.forwardRef(({ className, orientation = "vertical", ...pr
   }
 ));
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
-var Separator2 = React47.forwardRef(
+var Separator2 = React55.forwardRef(
   ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsx(
     SeparatorPrimitive.Root,
     {
       ref,
       decorative,
       orientation,
-      className: cn2(
+      className: cn(
         "shrink-0 bg-border",
         /** Define dimensões baseado na orientação */
         orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
@@ -2291,7 +2828,7 @@ function SheetOverlay({
     Overlay,
     {
       "data-slot": "sheet-overlay",
-      className: cn2(
+      className: cn(
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
         className
       ),
@@ -2311,7 +2848,7 @@ function SheetContent({
       Content,
       {
         "data-slot": "sheet-content",
-        className: cn2(
+        className: cn(
           "bg-background data-[state=open]:animate-in data-[state=closed]:animate-out fixed z-50 flex flex-col gap-4 shadow-lg transition ease-in-out data-[state=closed]:duration-300 data-[state=open]:duration-500",
           /** Lado direito: slide horizontal da direita, altura total, max 400px */
           side === "right" && "data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm",
@@ -2340,7 +2877,7 @@ function SheetHeader({ className, ...props }) {
     "div",
     {
       "data-slot": "sheet-header",
-      className: cn2("flex flex-col gap-1.5 p-4", className),
+      className: cn("flex flex-col gap-1.5 p-4", className),
       ...props
     }
   );
@@ -2350,7 +2887,7 @@ function SheetFooter({ className, ...props }) {
     "div",
     {
       "data-slot": "sheet-footer",
-      className: cn2("mt-auto flex flex-col gap-2 p-4", className),
+      className: cn("mt-auto flex flex-col gap-2 p-4", className),
       ...props
     }
   );
@@ -2363,7 +2900,7 @@ function SheetTitle({
     Title,
     {
       "data-slot": "sheet-title",
-      className: cn2("text-foreground font-semibold", className),
+      className: cn("text-foreground font-semibold", className),
       ...props
     }
   );
@@ -2376,36 +2913,36 @@ function SheetDescription({
     Description,
     {
       "data-slot": "sheet-description",
-      className: cn2("text-muted-foreground text-sm", className),
+      className: cn("text-muted-foreground text-sm", className),
       ...props
     }
   );
 }
-var Table = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsx(
+var Table = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsx(
   "table",
   {
     ref,
-    className: cn2("w-full caption-bottom text-sm", className),
+    className: cn("w-full caption-bottom text-sm", className),
     ...props
   }
 ) }));
 Table.displayName = "Table";
-var TableHeader = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("thead", { ref, className: cn2("[&_tr]:border-b", className), ...props }));
+var TableHeader = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
 TableHeader.displayName = "TableHeader";
-var TableBody = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableBody = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "tbody",
   {
     ref,
-    className: cn2("[&_tr:last-child]:border-0", className),
+    className: cn("[&_tr:last-child]:border-0", className),
     ...props
   }
 ));
 TableBody.displayName = "TableBody";
-var TableFooter = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableFooter = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "tfoot",
   {
     ref,
-    className: cn2(
+    className: cn(
       "border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
       className
     ),
@@ -2413,11 +2950,11 @@ var TableFooter = React47.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 TableFooter.displayName = "TableFooter";
-var TableRow = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableRow = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "tr",
   {
     ref,
-    className: cn2(
+    className: cn(
       "border-b transition-colors duration-200 hover:bg-muted/50 data-[state=selected]:bg-muted",
       className
     ),
@@ -2425,11 +2962,11 @@ var TableRow = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__
   }
 ));
 TableRow.displayName = "TableRow";
-var TableHead = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableHead = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "th",
   {
     ref,
-    className: cn2(
+    className: cn(
       "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
       className
     ),
@@ -2437,20 +2974,20 @@ var TableHead = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 TableHead.displayName = "TableHead";
-var TableCell = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableCell = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "td",
   {
     ref,
-    className: cn2("p-4 align-middle [&:has([role=checkbox])]:pr-0", className),
+    className: cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className),
     ...props
   }
 ));
 TableCell.displayName = "TableCell";
-var TableCaption = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableCaption = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "caption",
   {
     ref,
-    className: cn2("mt-4 text-sm text-muted-foreground", className),
+    className: cn("mt-4 text-sm text-muted-foreground", className),
     ...props
   }
 ));
@@ -2494,7 +3031,7 @@ var containerVariants = cva(
     }
   }
 );
-var Container = React47.forwardRef(
+var Container = React55.forwardRef(
   ({
     className,
     size = "7xl",
@@ -2508,7 +3045,7 @@ var Container = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           containerVariants({ size, padding, center }),
           fullHeight && "min-h-screen",
           verticalPadding && "py-4 sm:py-6 lg:py-8",
@@ -2520,7 +3057,7 @@ var Container = React47.forwardRef(
   }
 );
 Container.displayName = "Container";
-var ContainerFluid = React47.forwardRef(
+var ContainerFluid = React55.forwardRef(
   ({
     className,
     padding = "md",
@@ -2531,7 +3068,7 @@ var ContainerFluid = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           "w-full",
           padding === "none" && "px-0",
           padding === "sm" && "px-2 sm:px-4",
@@ -2554,7 +3091,7 @@ var spacingClasses = {
   xl: "py-20",
   "2xl": "py-24"
 };
-var ContainerSection = React47.forwardRef(
+var ContainerSection = React55.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -2564,7 +3101,7 @@ var ContainerSection = React47.forwardRef(
       "section",
       {
         ref,
-        className: cn2(
+        className: cn(
           "w-full",
           spacingClasses[spacing],
           className
@@ -2720,7 +3257,7 @@ var gridVariants = cva(
     }
   }
 );
-var Grid = React47.forwardRef(
+var Grid = React55.forwardRef(
   ({
     className,
     cols,
@@ -2740,7 +3277,7 @@ var Grid = React47.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React47.useMemo(() => {
+    const gridStyle = React55.useMemo(() => {
       const customStyle = { ...style };
       if (templateCols) {
         customStyle.gridTemplateColumns = templateCols;
@@ -2760,7 +3297,7 @@ var Grid = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           gridVariants({
             cols,
             sm,
@@ -2782,7 +3319,7 @@ var Grid = React47.forwardRef(
   }
 );
 Grid.displayName = "Grid";
-var GridItem = React47.forwardRef(
+var GridItem = React55.forwardRef(
   ({
     className,
     colStart,
@@ -2793,7 +3330,7 @@ var GridItem = React47.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React47.useMemo(() => {
+    const gridStyle = React55.useMemo(() => {
       const customStyle = { ...style };
       if (colStart !== void 0) {
         customStyle.gridColumnStart = colStart;
@@ -2816,7 +3353,7 @@ var GridItem = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(className),
+        className: cn(className),
         style: gridStyle,
         ...props
       }
@@ -2896,7 +3433,7 @@ var flexVariants = cva(
     }
   }
 );
-var Flex = React47.forwardRef(
+var Flex = React55.forwardRef(
   ({
     className,
     direction = "row",
@@ -2914,7 +3451,7 @@ var Flex = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           flexVariants({
             direction,
             wrap,
@@ -2934,7 +3471,7 @@ var Flex = React47.forwardRef(
   }
 );
 Flex.displayName = "Flex";
-var FlexCenter = React47.forwardRef(
+var FlexCenter = React55.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -2948,7 +3485,7 @@ var FlexCenter = React47.forwardRef(
   }
 );
 FlexCenter.displayName = "FlexCenter";
-var FlexBetween = React47.forwardRef(
+var FlexBetween = React55.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -2961,7 +3498,7 @@ var FlexBetween = React47.forwardRef(
   }
 );
 FlexBetween.displayName = "FlexBetween";
-var FlexStart = React47.forwardRef(
+var FlexStart = React55.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -2975,7 +3512,7 @@ var FlexStart = React47.forwardRef(
   }
 );
 FlexStart.displayName = "FlexStart";
-var FlexEnd = React47.forwardRef(
+var FlexEnd = React55.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -2989,7 +3526,7 @@ var FlexEnd = React47.forwardRef(
   }
 );
 FlexEnd.displayName = "FlexEnd";
-var FlexColumn = React47.forwardRef(
+var FlexColumn = React55.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -3002,7 +3539,7 @@ var FlexColumn = React47.forwardRef(
   }
 );
 FlexColumn.displayName = "FlexColumn";
-var FlexRow = React47.forwardRef(
+var FlexRow = React55.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -3048,7 +3585,7 @@ var spacerVariants = cva(
     }
   }
 );
-var Spacer = React47.forwardRef(
+var Spacer = React55.forwardRef(
   ({
     className,
     size = "md",
@@ -3061,7 +3598,7 @@ var Spacer = React47.forwardRef(
     style,
     ...props
   }, ref) => {
-    const spacerStyle = React47.useMemo(() => {
+    const spacerStyle = React55.useMemo(() => {
       const customStyle = { ...style };
       if (width !== void 0) {
         customStyle.width = typeof width === "number" ? `${width}px` : width;
@@ -3081,7 +3618,7 @@ var Spacer = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           spacerVariants({ size, direction, variant }),
           !flex && "flex-none",
           variant === "dotted" && "border-b border-border",
@@ -3095,7 +3632,7 @@ var Spacer = React47.forwardRef(
   }
 );
 Spacer.displayName = "Spacer";
-var VerticalSpacer = React47.forwardRef(
+var VerticalSpacer = React55.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Spacer,
@@ -3108,7 +3645,7 @@ var VerticalSpacer = React47.forwardRef(
   }
 );
 VerticalSpacer.displayName = "VerticalSpacer";
-var HorizontalSpacer = React47.forwardRef(
+var HorizontalSpacer = React55.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Spacer,
@@ -3152,7 +3689,7 @@ var dividerVariants = cva(
     }
   }
 );
-var Divider = React47.forwardRef(
+var Divider = React55.forwardRef(
   ({
     className,
     variant = "default",
@@ -3168,7 +3705,7 @@ var Divider = React47.forwardRef(
         "div",
         {
           ref,
-          className: cn2(
+          className: cn(
             "flex items-center gap-4",
             orientation === "vertical" && "flex-col",
             className
@@ -3180,7 +3717,7 @@ var Divider = React47.forwardRef(
             /* @__PURE__ */ jsx(
               "div",
               {
-                className: cn2(
+                className: cn(
                   dividerVariants({ variant, size, orientation }),
                   labelPosition === "center" && "flex-1",
                   labelPosition === "end" && "flex-1",
@@ -3192,7 +3729,7 @@ var Divider = React47.forwardRef(
             /* @__PURE__ */ jsx(
               "div",
               {
-                className: cn2(
+                className: cn(
                   dividerVariants({ variant, size, orientation }),
                   labelPosition === "center" && "flex-1",
                   labelPosition === "start" && "flex-1",
@@ -3208,7 +3745,7 @@ var Divider = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           dividerVariants({ variant, size, orientation }),
           className
         ),
@@ -3226,13 +3763,13 @@ var spacingClasses2 = {
   lg: "my-8",
   xl: "my-12"
 };
-var SectionDivider = React47.forwardRef(
+var SectionDivider = React55.forwardRef(
   ({
     className,
     spacing = "lg",
     ...props
   }, ref) => {
-    return /* @__PURE__ */ jsx("div", { className: cn2(spacingClasses2[spacing], className), children: /* @__PURE__ */ jsx(Divider, { ref, size: "md", ...props }) });
+    return /* @__PURE__ */ jsx("div", { className: cn(spacingClasses2[spacing], className), children: /* @__PURE__ */ jsx(Divider, { ref, size: "md", ...props }) });
   }
 );
 SectionDivider.displayName = "SectionDivider";
@@ -3242,7 +3779,7 @@ var textColorClasses = {
   primary: "text-primary",
   secondary: "text-secondary-foreground"
 };
-var TextDivider = React47.forwardRef(
+var TextDivider = React55.forwardRef(
   ({
     className,
     children,
@@ -3253,12 +3790,12 @@ var TextDivider = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("flex items-center gap-4", className),
+        className: cn("flex items-center gap-4", className),
         role: "separator",
         ...props,
         children: [
           /* @__PURE__ */ jsx("div", { className: "flex-1 h-px bg-border" }),
-          /* @__PURE__ */ jsx("span", { className: cn2("text-sm font-medium whitespace-nowrap", textColorClasses[textColor]), children }),
+          /* @__PURE__ */ jsx("span", { className: cn("text-sm font-medium whitespace-nowrap", textColorClasses[textColor]), children }),
           /* @__PURE__ */ jsx("div", { className: "flex-1 h-px bg-border" })
         ]
       }
@@ -3309,7 +3846,7 @@ var panelVariants = cva(
     }
   }
 );
-var Panel = React47.forwardRef(
+var Panel = React55.forwardRef(
   ({
     className,
     variant = "default",
@@ -3326,7 +3863,7 @@ var Panel = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           panelVariants({ variant, size, padding, radius }),
           hover && "transition-all duration-[var(--motion-duration-normal)] hover:shadow-lg hover:-translate-y-0.5",
           clickable && "cursor-pointer active:scale-[0.98]",
@@ -3340,7 +3877,7 @@ var Panel = React47.forwardRef(
   }
 );
 Panel.displayName = "Panel";
-var PanelHeader = React47.forwardRef(
+var PanelHeader = React55.forwardRef(
   ({
     className,
     divider = false,
@@ -3351,7 +3888,7 @@ var PanelHeader = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           "flex flex-col space-y-1.5 p-6",
           divider && "border-b border-border",
           className
@@ -3363,7 +3900,7 @@ var PanelHeader = React47.forwardRef(
   }
 );
 PanelHeader.displayName = "PanelHeader";
-var PanelTitle = React47.forwardRef(
+var PanelTitle = React55.forwardRef(
   ({
     className,
     children,
@@ -3373,7 +3910,7 @@ var PanelTitle = React47.forwardRef(
       "h3",
       {
         ref,
-        className: cn2("text-lg font-semibold leading-none tracking-tight", className),
+        className: cn("text-lg font-semibold leading-none tracking-tight", className),
         ...props,
         children
       }
@@ -3381,7 +3918,7 @@ var PanelTitle = React47.forwardRef(
   }
 );
 PanelTitle.displayName = "PanelTitle";
-var PanelDescription = React47.forwardRef(
+var PanelDescription = React55.forwardRef(
   ({
     className,
     children,
@@ -3391,7 +3928,7 @@ var PanelDescription = React47.forwardRef(
       "p",
       {
         ref,
-        className: cn2("text-sm text-muted-foreground", className),
+        className: cn("text-sm text-muted-foreground", className),
         ...props,
         children
       }
@@ -3399,7 +3936,7 @@ var PanelDescription = React47.forwardRef(
   }
 );
 PanelDescription.displayName = "PanelDescription";
-var PanelContent = React47.forwardRef(
+var PanelContent = React55.forwardRef(
   ({
     className,
     children,
@@ -3409,7 +3946,7 @@ var PanelContent = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("p-6 pt-0", className),
+        className: cn("p-6 pt-0", className),
         ...props,
         children
       }
@@ -3417,7 +3954,7 @@ var PanelContent = React47.forwardRef(
   }
 );
 PanelContent.displayName = "PanelContent";
-var PanelFooter = React47.forwardRef(
+var PanelFooter = React55.forwardRef(
   ({
     className,
     divider = false,
@@ -3428,7 +3965,7 @@ var PanelFooter = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           "flex items-center p-6 pt-0",
           divider && "border-t border-border mt-6 pt-6",
           className
@@ -3446,7 +3983,7 @@ var spacingClasses3 = {
   lg: "gap-8",
   xl: "gap-10"
 };
-var PanelGroup = React47.forwardRef(
+var PanelGroup = React55.forwardRef(
   ({
     className,
     spacing = "md",
@@ -3457,7 +3994,7 @@ var PanelGroup = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("grid", spacingClasses3[spacing], className),
+        className: cn("grid", spacingClasses3[spacing], className),
         ...props,
         children
       }
@@ -3482,30 +4019,30 @@ var alertVariants = cva(
     }
   }
 );
-var Alert = React47.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsx(
+var Alert = React55.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
     role: "alert",
-    className: cn2(alertVariants({ variant }), className),
+    className: cn(alertVariants({ variant }), className),
     ...props
   }
 ));
 Alert.displayName = "Alert";
-var AlertTitle = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertTitle = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h5",
   {
     ref,
-    className: cn2("mb-1 font-medium leading-none tracking-tight", className),
+    className: cn("mb-1 font-medium leading-none tracking-tight", className),
     ...props
   }
 ));
 AlertTitle.displayName = "AlertTitle";
-var AlertDescription = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDescription = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
-    className: cn2("text-sm [&_p]:leading-relaxed", className),
+    className: cn("text-sm [&_p]:leading-relaxed", className),
     ...props
   }
 ));
@@ -3513,10 +4050,10 @@ AlertDescription.displayName = "AlertDescription";
 var AlertDialog = AlertDialogPrimitive.Root;
 var AlertDialogTrigger = AlertDialogPrimitive.Trigger;
 var AlertDialogPortal = AlertDialogPrimitive.Portal;
-var AlertDialogOverlay = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogOverlay = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Overlay,
   {
-    className: cn2(
+    className: cn(
       "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       className
     ),
@@ -3525,13 +4062,13 @@ var AlertDialogOverlay = React47.forwardRef(({ className, ...props }, ref) => /*
   }
 ));
 AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName;
-var AlertDialogContent = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(AlertDialogPortal, { children: [
+var AlertDialogContent = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(AlertDialogPortal, { children: [
   /* @__PURE__ */ jsx(AlertDialogOverlay, {}),
   /* @__PURE__ */ jsx(
     AlertDialogPrimitive.Content,
     {
       ref,
-      className: cn2(
+      className: cn(
         "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
         className
       ),
@@ -3546,7 +4083,7 @@ var AlertDialogHeader = ({
 }) => /* @__PURE__ */ jsx(
   "div",
   {
-    className: cn2(
+    className: cn(
       "flex flex-col space-y-2 text-center sm:text-left",
       className
     ),
@@ -3560,7 +4097,7 @@ var AlertDialogFooter = ({
 }) => /* @__PURE__ */ jsx(
   "div",
   {
-    className: cn2(
+    className: cn(
       "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
       className
     ),
@@ -3568,38 +4105,38 @@ var AlertDialogFooter = ({
   }
 );
 AlertDialogFooter.displayName = "AlertDialogFooter";
-var AlertDialogTitle = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogTitle = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Title,
   {
     ref,
-    className: cn2("text-lg font-semibold", className),
+    className: cn("text-lg font-semibold", className),
     ...props
   }
 ));
 AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName;
-var AlertDialogDescription = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogDescription = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Description,
   {
     ref,
-    className: cn2("text-sm text-muted-foreground", className),
+    className: cn("text-sm text-muted-foreground", className),
     ...props
   }
 ));
 AlertDialogDescription.displayName = AlertDialogPrimitive.Description.displayName;
-var AlertDialogAction = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogAction = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Action,
   {
     ref,
-    className: cn2(buttonVariants(), className),
+    className: cn(buttonVariants(), className),
     ...props
   }
 ));
 AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
-var AlertDialogCancel = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogCancel = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Cancel,
   {
     ref,
-    className: cn2(
+    className: cn(
       buttonVariants({ variant: "outline" }),
       "mt-2 sm:mt-0",
       className
@@ -3636,13 +4173,13 @@ var badgeVariants = cva(
   }
 );
 function Badge({ className, variant, ...props }) {
-  return /* @__PURE__ */ jsx("div", { className: cn2(badgeVariants({ variant }), className), ...props });
+  return /* @__PURE__ */ jsx("div", { className: cn(badgeVariants({ variant }), className), ...props });
 }
-var Progress = React47.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsx(
+var Progress = React55.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsx(
   ProgressPrimitive.Root,
   {
     ref,
-    className: cn2(
+    className: cn(
       "relative h-4 w-full overflow-hidden rounded-full bg-secondary",
       className
     ),
@@ -3650,7 +4187,7 @@ var Progress = React47.forwardRef(({ className, value, ...props }, ref) => /* @_
     children: /* @__PURE__ */ jsx(
       ProgressPrimitive.Indicator,
       {
-        className: cn2("h-full w-full flex-1 transition-all", "bg-primary"),
+        className: cn("h-full w-full flex-1 transition-all", "bg-primary"),
         style: { transform: `translateX(-${100 - (value || 0)}%)` }
       }
     )
@@ -3662,7 +4199,7 @@ function Skeleton({ className, ...props }) {
     "div",
     {
       "data-slot": "skeleton",
-      className: cn2("bg-accent animate-pulse rounded-md", className),
+      className: cn("bg-accent animate-pulse rounded-md", className),
       ...props
     }
   );
@@ -3683,7 +4220,7 @@ var Toaster = ({ ...props }) => {
       },
       toastOptions: {
         classNames: {
-          toast: cn2(
+          toast: cn(
             "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border shadow-lg",
             "dark:group-[.toaster]:bg-background dark:group-[.toaster]:border-border"
           ),
@@ -3735,7 +4272,7 @@ var speedClasses = {
   normal: "animate-spin",
   fast: "animate-spin-fast"
 };
-var Spinner = React47.forwardRef(
+var Spinner = React55.forwardRef(
   ({
     className,
     variant = "default",
@@ -3765,7 +4302,7 @@ var Spinner = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           "inline-flex items-center justify-center",
           layoutClasses,
           spacingClasses6,
@@ -3775,8 +4312,8 @@ var Spinner = React47.forwardRef(
         "aria-label": label,
         ...props,
         children: [
-          /* @__PURE__ */ jsx("div", { className: cn2(animationClass), children: IconComponent }),
-          showLabel && /* @__PURE__ */ jsx("span", { className: cn2(
+          /* @__PURE__ */ jsx("div", { className: cn(animationClass), children: IconComponent }),
+          showLabel && /* @__PURE__ */ jsx("span", { className: cn(
             "text-sm text-muted-foreground",
             (labelPosition === "top" || labelPosition === "bottom") && "text-center",
             variant === "glow" && "text-primary dark:text-cyan-400"
@@ -3788,7 +4325,7 @@ var Spinner = React47.forwardRef(
   }
 );
 Spinner.displayName = "Spinner";
-var SpinnerOverlay = React47.forwardRef(
+var SpinnerOverlay = React55.forwardRef(
   ({
     className,
     fullscreen = false,
@@ -3800,7 +4337,7 @@ var SpinnerOverlay = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           "flex items-center justify-center",
           fullscreen ? "fixed inset-0 z-50" : "absolute inset-0 z-10",
           className
@@ -3819,7 +4356,7 @@ var dotSizeClasses = {
   md: "h-2 w-2",
   lg: "h-3 w-3"
 };
-var DotsSpinner = React47.forwardRef(
+var DotsSpinner = React55.forwardRef(
   ({
     className,
     count = 3,
@@ -3832,7 +4369,7 @@ var DotsSpinner = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("flex items-center gap-1", className),
+        className: cn("flex items-center gap-1", className),
         role: "status",
         "aria-label": label || "Carregando...",
         ...props,
@@ -3840,7 +4377,7 @@ var DotsSpinner = React47.forwardRef(
           Array.from({ length: count }, (_, index) => /* @__PURE__ */ jsx(
             "div",
             {
-              className: cn2(
+              className: cn(
                 "rounded-full bg-current",
                 dotSizeClasses[size],
                 "animate-bounce"
@@ -3866,7 +4403,7 @@ var pulseSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var PulseSpinner = React47.forwardRef(
+var PulseSpinner = React55.forwardRef(
   ({
     className,
     rings = 3,
@@ -3878,12 +4415,12 @@ var PulseSpinner = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("relative flex items-center justify-center", className),
+        className: cn("relative flex items-center justify-center", className),
         ...props,
         children: Array.from({ length: rings }, (_, index) => /* @__PURE__ */ jsx(
           "div",
           {
-            className: cn2(
+            className: cn(
               "absolute rounded-full border-2 border-current opacity-0",
               pulseSizeClasses[size]
             ),
@@ -3951,7 +4488,7 @@ function formatValue(value, format, currency, decimals = 0) {
       return formatted;
   }
 }
-var KPI = React47.forwardRef(
+var KPI = React55.forwardRef(
   ({
     className,
     variant = "default",
@@ -3975,7 +4512,7 @@ var KPI = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(kpiVariants({ variant, size }), className),
+        className: cn(kpiVariants({ variant, size }), className),
         ...props,
         children: [
           /* @__PURE__ */ jsxs("div", { className: "flex items-start justify-between", children: [
@@ -3986,7 +4523,7 @@ var KPI = React47.forwardRef(
             icon && /* @__PURE__ */ jsx(
               "div",
               {
-                className: cn2(
+                className: cn(
                   "rounded-lg p-2",
                   iconColor === "primary" && "bg-primary/10 text-primary",
                   iconColor === "success" && "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400",
@@ -4000,12 +4537,12 @@ var KPI = React47.forwardRef(
           ] }),
           /* @__PURE__ */ jsx("div", { className: "mt-4", children: loading ? /* @__PURE__ */ jsx("div", { className: "h-8 w-24 bg-muted rounded animate-pulse" }) : /* @__PURE__ */ jsxs("div", { className: "flex items-baseline gap-2", children: [
             /* @__PURE__ */ jsx("span", { className: "text-2xl font-semibold text-foreground", children: formatValue(value, format, currency, decimals) }),
-            trend && trendValue && /* @__PURE__ */ jsxs("div", { className: cn2(trendVariants({ trend })), children: [
+            trend && trendValue && /* @__PURE__ */ jsxs("div", { className: cn(trendVariants({ trend })), children: [
               ArrowIcon && /* @__PURE__ */ jsx(ArrowIcon, { className: "h-3 w-3" }),
               trendValue
             ] })
           ] }) }),
-          trend && !trendValue && /* @__PURE__ */ jsxs("div", { className: cn2(
+          trend && !trendValue && /* @__PURE__ */ jsxs("div", { className: cn(
             "mt-3 flex items-center gap-1 text-xs",
             trend === "up" && "text-emerald-600 dark:text-emerald-400",
             trend === "down" && "text-red-600 dark:text-red-400",
@@ -4026,7 +4563,7 @@ var gridColsClasses = {
   3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
   4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
 };
-var KPIGrid = React47.forwardRef(
+var KPIGrid = React55.forwardRef(
   ({
     className,
     cols = 4,
@@ -4037,7 +4574,7 @@ var KPIGrid = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           "grid gap-4",
           gridColsClasses[cols],
           className
@@ -4049,7 +4586,7 @@ var KPIGrid = React47.forwardRef(
   }
 );
 KPIGrid.displayName = "KPIGrid";
-var KPIChart = React47.forwardRef(
+var KPIChart = React55.forwardRef(
   ({
     className,
     chart,
@@ -4062,15 +4599,15 @@ var KPIChart = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           kpiVariants({ variant: props.variant, size: props.size }),
           isRight && "flex flex-row items-center justify-between",
           className
         ),
         ...props,
         children: [
-          /* @__PURE__ */ jsx("div", { className: cn2(isRight && "flex-1"), children: /* @__PURE__ */ jsx(KPI, { ...props }) }),
-          chart && /* @__PURE__ */ jsx("div", { className: cn2(
+          /* @__PURE__ */ jsx("div", { className: cn(isRight && "flex-1"), children: /* @__PURE__ */ jsx(KPI, { ...props }) }),
+          chart && /* @__PURE__ */ jsx("div", { className: cn(
             "mt-4",
             isRight && "mt-0 ml-4 flex-1 max-w-[200px]"
           ), children: chart })
@@ -4082,10 +4619,10 @@ var KPIChart = React47.forwardRef(
 KPIChart.displayName = "KPIChart";
 var defaultIcons = {
   search: Search,
-  empty: Inbox,
-  error: FileX,
-  filtered: FilterX,
-  offline: WifiOff,
+  empty: Package,
+  error: XCircle,
+  filtered: ChevronDown,
+  offline: Wifi,
   loading: RefreshCw
 };
 var emptyStateVariants = cva(
@@ -4117,7 +4654,7 @@ var iconSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var EmptyState = React47.forwardRef(
+var EmptyState = React55.forwardRef(
   ({
     className,
     variant = "default",
@@ -4142,13 +4679,13 @@ var EmptyState = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(emptyStateVariants({ size, variant }), className),
+        className: cn(emptyStateVariants({ size, variant }), className),
         ...props,
         children: [
           IconComponent && /* @__PURE__ */ jsx(
             "div",
             {
-              className: cn2(
+              className: cn(
                 "mb-4 text-muted-foreground",
                 animated && "animate-pulse",
                 iconColor === "primary" && "text-primary",
@@ -4174,7 +4711,7 @@ var EmptyState = React47.forwardRef(
   }
 );
 EmptyState.displayName = "EmptyState";
-var EmptyStateIllustrated = React47.forwardRef(
+var EmptyStateIllustrated = React55.forwardRef(
   ({
     className,
     illustration,
@@ -4187,7 +4724,7 @@ var EmptyStateIllustrated = React47.forwardRef(
       EmptyState,
       {
         ref,
-        className: cn2(className),
+        className: cn(className),
         ...props,
         icon: illustration && /* @__PURE__ */ jsx(
           "img",
@@ -4292,7 +4829,7 @@ var notificationVariants = cva(
     }
   }
 );
-var Notification = React47.forwardRef(
+var Notification = React55.forwardRef(
   ({
     className,
     variant = "default",
@@ -4308,8 +4845,8 @@ var Notification = React47.forwardRef(
     toast = false,
     ...props
   }, ref) => {
-    const [visible, setVisible] = React47.useState(true);
-    React47.useEffect(() => {
+    const [visible, setVisible] = React55.useState(true);
+    React55.useEffect(() => {
       if (autoClose && onDismiss) {
         const timer = setTimeout(() => {
           handleClose();
@@ -4331,14 +4868,14 @@ var Notification = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           notificationVariants({ variant }),
           toast && "animate-in slide-in-from-bottom-full",
           className
         ),
         ...props,
         children: [
-          /* @__PURE__ */ jsx("div", { className: cn2(
+          /* @__PURE__ */ jsx("div", { className: cn(
             "flex-shrink-0",
             variant === "success" && "text-emerald-600 dark:text-emerald-400",
             variant === "error" && "text-red-600 dark:text-red-400",
@@ -4356,7 +4893,7 @@ var Notification = React47.forwardRef(
             "button",
             {
               onClick: handleClose,
-              className: cn2(
+              className: cn(
                 "absolute right-2 top-2 rounded-md p-1",
                 "transition-colors duration-[var(--motion-duration-fast)]",
                 "hover:bg-black/10 dark:hover:bg-white/10",
@@ -4384,7 +4921,7 @@ var spacingClasses4 = {
   md: "gap-3",
   lg: "gap-4"
 };
-var NotificationGroup = React47.forwardRef(
+var NotificationGroup = React55.forwardRef(
   ({
     className,
     children,
@@ -4396,7 +4933,7 @@ var NotificationGroup = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           "fixed z-50 flex max-h-screen w-full flex-col-reverse p-4",
           "md:max-w-[420px]",
           positionClasses[position],
@@ -4410,7 +4947,7 @@ var NotificationGroup = React47.forwardRef(
   }
 );
 NotificationGroup.displayName = "NotificationGroup";
-var NotificationToast = React47.forwardRef(
+var NotificationToast = React55.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Notification,
@@ -4424,8 +4961,8 @@ var NotificationToast = React47.forwardRef(
 );
 NotificationToast.displayName = "NotificationToast";
 function useNotification() {
-  const [notifications, setNotifications] = React47.useState(/* @__PURE__ */ new Map());
-  const notify = React47.useCallback((options) => {
+  const [notifications, setNotifications] = React55.useState(/* @__PURE__ */ new Map());
+  const notify = React55.useCallback((options) => {
     const id = options.id || Math.random().toString(36).substr(2, 9);
     setNotifications((prev) => new Map(prev).set(id, options));
     if (options.autoClose !== false) {
@@ -4436,14 +4973,14 @@ function useNotification() {
     }
     return id;
   }, []);
-  const dismiss = React47.useCallback((id) => {
+  const dismiss = React55.useCallback((id) => {
     setNotifications((prev) => {
       const next = new Map(prev);
       next.delete(id);
       return next;
     });
   }, []);
-  const clear = React47.useCallback(() => {
+  const clear = React55.useCallback(() => {
     setNotifications(/* @__PURE__ */ new Map());
   }, []);
   return {
@@ -4469,20 +5006,20 @@ var NotificationProvider = ({ children }) => {
   ] });
 };
 var Accordion = AccordionPrimitive.Root;
-var AccordionItem = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AccordionItem = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AccordionPrimitive.Item,
   {
     ref,
-    className: cn2("border-b", className),
+    className: cn("border-b", className),
     ...props
   }
 ));
 AccordionItem.displayName = "AccordionItem";
-var AccordionTrigger = React47.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(AccordionPrimitive.Header, { className: "flex", children: /* @__PURE__ */ jsxs(
+var AccordionTrigger = React55.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(AccordionPrimitive.Header, { className: "flex", children: /* @__PURE__ */ jsxs(
   AccordionPrimitive.Trigger,
   {
     ref,
-    className: cn2(
+    className: cn(
       "flex flex-1 items-center justify-between py-4 font-medium transition-all duration-200 ease-in-out hover:underline [&[data-state=open]>svg]:rotate-180",
       className
     ),
@@ -4499,13 +5036,13 @@ var AccordionTrigger = React47.forwardRef(({ className, children, ...props }, re
   }
 ) }));
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
-var AccordionContent = React47.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(
+var AccordionContent = React55.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(
   AccordionPrimitive.Content,
   {
     ref,
     className: "overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
     ...props,
-    children: /* @__PURE__ */ jsx("div", { className: cn2("pb-4 pt-0", className), children })
+    children: /* @__PURE__ */ jsx("div", { className: cn("pb-4 pt-0", className), children })
   }
 ));
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;
@@ -4516,11 +5053,11 @@ var Dialog = Root$1;
 var DialogTrigger = Trigger$1;
 var DialogPortal = Portal;
 var DialogClose = Close;
-var DialogOverlay = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DialogOverlay = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Overlay,
   {
     ref,
-    className: cn2(
+    className: cn(
       "fixed inset-0 bg-black/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
       Z_INDEX.BACKDROP,
       className
@@ -4529,13 +5066,13 @@ var DialogOverlay = React47.forwardRef(({ className, ...props }, ref) => /* @__P
   }
 ));
 DialogOverlay.displayName = Overlay.displayName;
-var DialogContent = React47.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(DialogPortal, { children: [
+var DialogContent = React55.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(DialogPortal, { children: [
   /* @__PURE__ */ jsx(DialogOverlay, {}),
   /* @__PURE__ */ jsxs(
     Content,
     {
       ref,
-      className: cn2(
+      className: cn(
         "fixed left-[50%] top-[50%] grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-border bg-background p-6 shadow-lg rounded-lg sm:rounded-lg",
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
         MOTION.TRANSITION.DEFAULT,
@@ -4561,7 +5098,7 @@ var DialogHeader = ({
 }) => /* @__PURE__ */ jsx(
   "div",
   {
-    className: cn2(
+    className: cn(
       "flex flex-col space-y-1.5 text-center sm:text-left",
       className
     ),
@@ -4575,7 +5112,7 @@ var DialogFooter = ({
 }) => /* @__PURE__ */ jsx(
   "div",
   {
-    className: cn2(
+    className: cn(
       "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
       className
     ),
@@ -4583,11 +5120,11 @@ var DialogFooter = ({
   }
 );
 DialogFooter.displayName = "DialogFooter";
-var DialogTitle = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DialogTitle = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Title,
   {
     ref,
-    className: cn2(
+    className: cn(
       "text-lg font-semibold leading-none tracking-tight dark:text-cyan-200 dark:font-mono",
       className
     ),
@@ -4595,11 +5132,11 @@ var DialogTitle = React47.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 DialogTitle.displayName = Title.displayName;
-var DialogDescription = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DialogDescription = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Description,
   {
     ref,
-    className: cn2(
+    className: cn(
       "text-sm text-muted-foreground dark:text-gray-400",
       className
     ),
@@ -4607,11 +5144,11 @@ var DialogDescription = React47.forwardRef(({ className, ...props }, ref) => /* 
   }
 ));
 DialogDescription.displayName = Description.displayName;
-var Command = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Command = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Command$1,
   {
     ref,
-    className: cn2(
+    className: cn(
       "flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground",
       className
     ),
@@ -4628,13 +5165,13 @@ var CommandDialog = ({
     /* @__PURE__ */ jsx(Command, { className: "[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[data-cmdk-input-wrapper]_svg]:h-5 [&_[data-cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5", children })
   ] }) });
 };
-var CommandInput = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs("div", { className: "flex items-center border-b px-3", "data-cmdk-input-wrapper": "", children: [
+var CommandInput = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs("div", { className: "flex items-center border-b px-3", "data-cmdk-input-wrapper": "", children: [
   /* @__PURE__ */ jsx(Search, { className: "mr-2 h-4 w-4 shrink-0 opacity-50" }),
   /* @__PURE__ */ jsx(
     Command$1.Input,
     {
       ref,
-      className: cn2(
+      className: cn(
         "flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
         className
       ),
@@ -4643,16 +5180,16 @@ var CommandInput = React47.forwardRef(({ className, ...props }, ref) => /* @__PU
   )
 ] }));
 CommandInput.displayName = Command$1.Input.displayName;
-var CommandList = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CommandList = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Command$1.List,
   {
     ref,
-    className: cn2("max-h-[300px] overflow-y-auto overflow-x-hidden", className),
+    className: cn("max-h-[300px] overflow-y-auto overflow-x-hidden", className),
     ...props
   }
 ));
 CommandList.displayName = Command$1.List.displayName;
-var CommandEmpty = React47.forwardRef((props, ref) => /* @__PURE__ */ jsx(
+var CommandEmpty = React55.forwardRef((props, ref) => /* @__PURE__ */ jsx(
   Command$1.Empty,
   {
     ref,
@@ -4661,11 +5198,11 @@ var CommandEmpty = React47.forwardRef((props, ref) => /* @__PURE__ */ jsx(
   }
 ));
 CommandEmpty.displayName = Command$1.Empty.displayName;
-var CommandGroup = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CommandGroup = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Command$1.Group,
   {
     ref,
-    className: cn2(
+    className: cn(
       "overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground",
       className
     ),
@@ -4673,20 +5210,20 @@ var CommandGroup = React47.forwardRef(({ className, ...props }, ref) => /* @__PU
   }
 ));
 CommandGroup.displayName = Command$1.Group.displayName;
-var CommandSeparator = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CommandSeparator = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Command$1.Separator,
   {
     ref,
-    className: cn2("-mx-1 h-px bg-border", className),
+    className: cn("-mx-1 h-px bg-border", className),
     ...props
   }
 ));
 CommandSeparator.displayName = Command$1.Separator.displayName;
-var CommandItem = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CommandItem = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Command$1.Item,
   {
     ref,
-    className: cn2(
+    className: cn(
       "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className
     ),
@@ -4701,7 +5238,7 @@ var CommandShortcut = ({
   return /* @__PURE__ */ jsx(
     "span",
     {
-      className: cn2(
+      className: cn(
         "ml-auto text-xs tracking-widest text-muted-foreground",
         className
       ),
@@ -4710,11 +5247,11 @@ var CommandShortcut = ({
   );
 };
 CommandShortcut.displayName = "CommandShortcut";
-var NavigationMenu = React47.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var NavigationMenu = React55.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   NavigationMenuPrimitive.Root,
   {
     ref,
-    className: cn2(
+    className: cn(
       "relative flex max-w-max flex-1 items-center justify-center",
       Z_INDEX.DROPDOWN,
       className
@@ -4727,11 +5264,11 @@ var NavigationMenu = React47.forwardRef(({ className, children, ...props }, ref)
   }
 ));
 NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName;
-var NavigationMenuList = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var NavigationMenuList = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   NavigationMenuPrimitive.List,
   {
     ref,
-    className: cn2(
+    className: cn(
       "group flex flex-1 list-none items-center justify-center space-x-1",
       className
     ),
@@ -4741,17 +5278,17 @@ var NavigationMenuList = React47.forwardRef(({ className, ...props }, ref) => /*
 NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
 var NavigationMenuItem = NavigationMenuPrimitive.Item;
 var navigationMenuTriggerStyle = cva(
-  cn2(
+  cn(
     "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium",
     MOTION.TRANSITION.COLOR,
     "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-accent-foreground data-[state=open]:bg-accent/50 data-[state=open]:hover:bg-accent data-[state=open]:focus:bg-accent"
   )
 );
-var NavigationMenuTrigger = React47.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var NavigationMenuTrigger = React55.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   NavigationMenuPrimitive.Trigger,
   {
     ref,
-    className: cn2(navigationMenuTriggerStyle(), "group", className),
+    className: cn(navigationMenuTriggerStyle(), "group", className),
     ...props,
     children: [
       children,
@@ -4759,7 +5296,7 @@ var NavigationMenuTrigger = React47.forwardRef(({ className, children, ...props 
       /* @__PURE__ */ jsx(
         ChevronDown,
         {
-          className: cn2(
+          className: cn(
             "relative top-px ml-1 h-3 w-3 group-data-[state=open]:rotate-180",
             MOTION.TRANSITION.TRANSFORM
           ),
@@ -4770,11 +5307,11 @@ var NavigationMenuTrigger = React47.forwardRef(({ className, children, ...props 
   }
 ));
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName;
-var NavigationMenuContent = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var NavigationMenuContent = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   NavigationMenuPrimitive.Content,
   {
     ref,
-    className: cn2(
+    className: cn(
       "left-0 top-0 w-full data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto ",
       className
     ),
@@ -4783,10 +5320,10 @@ var NavigationMenuContent = React47.forwardRef(({ className, ...props }, ref) =>
 ));
 NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName;
 var NavigationMenuLink = NavigationMenuPrimitive.Link;
-var NavigationMenuViewport = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: cn2("absolute left-0 top-full flex justify-center"), children: /* @__PURE__ */ jsx(
+var NavigationMenuViewport = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: cn("absolute left-0 top-full flex justify-center"), children: /* @__PURE__ */ jsx(
   NavigationMenuPrimitive.Viewport,
   {
-    className: cn2(
+    className: cn(
       "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
       className
     ),
@@ -4795,11 +5332,11 @@ var NavigationMenuViewport = React47.forwardRef(({ className, ...props }, ref) =
   }
 ) }));
 NavigationMenuViewport.displayName = NavigationMenuPrimitive.Viewport.displayName;
-var NavigationMenuIndicator = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var NavigationMenuIndicator = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   NavigationMenuPrimitive.Indicator,
   {
     ref,
-    className: cn2(
+    className: cn(
       "top-full flex h-1.5 items-end justify-center overflow-hidden data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in",
       "z-[1]",
       className
@@ -4810,11 +5347,11 @@ var NavigationMenuIndicator = React47.forwardRef(({ className, ...props }, ref) 
 ));
 NavigationMenuIndicator.displayName = NavigationMenuPrimitive.Indicator.displayName;
 var Tabs = TabsPrimitive.Root;
-var TabsList = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TabsList = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   TabsPrimitive.List,
   {
     ref,
-    className: cn2(
+    className: cn(
       "inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground",
       className
     ),
@@ -4822,11 +5359,11 @@ var TabsList = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__
   }
 ));
 TabsList.displayName = TabsPrimitive.List.displayName;
-var TabsTrigger = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TabsTrigger = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   TabsPrimitive.Trigger,
   {
     ref,
-    className: cn2(
+    className: cn(
       "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5",
       "text-sm font-medium ring-offset-background transition-all",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
@@ -4838,11 +5375,11 @@ var TabsTrigger = React47.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
-var TabsContent = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TabsContent = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   TabsPrimitive.Content,
   {
     ref,
-    className: cn2(
+    className: cn(
       "mt-2 ring-offset-background",
       "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
       className
@@ -4872,7 +5409,7 @@ var menuVariants = cva(
     }
   }
 );
-var Menu = React47.forwardRef(
+var Menu = React55.forwardRef(
   ({
     className,
     variant = "default",
@@ -4885,17 +5422,17 @@ var Menu = React47.forwardRef(
     closeOnClick = true,
     ...props
   }, ref) => {
-    const [internalOpen, setInternalOpen] = React47.useState(false);
-    const [openSubmenus, setOpenSubmenus] = React47.useState(/* @__PURE__ */ new Set());
+    const [internalOpen, setInternalOpen] = React55.useState(false);
+    const [openSubmenus, setOpenSubmenus] = React55.useState(/* @__PURE__ */ new Set());
     const isOpen = controlledOpen !== void 0 ? controlledOpen : internalOpen;
-    const containerRef = React47.useRef(null);
-    const handleOpenChange = React47.useCallback((newOpen) => {
+    const containerRef = React55.useRef(null);
+    const handleOpenChange = React55.useCallback((newOpen) => {
       if (controlledOpen === void 0) {
         setInternalOpen(newOpen);
       }
       onOpenChange?.(newOpen);
     }, [controlledOpen, onOpenChange]);
-    const toggleSubmenu = React47.useCallback((itemId) => {
+    const toggleSubmenu = React55.useCallback((itemId) => {
       setOpenSubmenus((prev) => {
         const next = new Set(prev);
         if (next.has(itemId)) {
@@ -4906,7 +5443,7 @@ var Menu = React47.forwardRef(
         return next;
       });
     }, []);
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           handleOpenChange(false);
@@ -4932,7 +5469,7 @@ var Menu = React47.forwardRef(
           /* @__PURE__ */ jsxs(
             "button",
             {
-              className: cn2(
+              className: cn(
                 "relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none",
                 "transition-colors duration-[var(--motion-duration-fast)]",
                 "hover:bg-accent hover:text-accent-foreground",
@@ -4950,7 +5487,7 @@ var Menu = React47.forwardRef(
                 /* @__PURE__ */ jsx(
                   ChevronRight,
                   {
-                    className: cn2(
+                    className: cn(
                       "h-4 w-4 transition-transform duration-[var(--motion-duration-fast)]",
                       isSubmenuOpen && "rotate-90"
                     )
@@ -4965,7 +5502,7 @@ var Menu = React47.forwardRef(
       const content = /* @__PURE__ */ jsxs(
         "button",
         {
-          className: cn2(
+          className: cn(
             "relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none",
             "transition-colors duration-[var(--motion-duration-fast)]",
             "hover:bg-accent hover:text-accent-foreground",
@@ -4995,7 +5532,7 @@ var Menu = React47.forwardRef(
           "a",
           {
             href: item.href,
-            className: cn2(
+            className: cn(
               "relative flex w-full cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none",
               "transition-colors duration-[var(--motion-duration-fast)]",
               "hover:bg-accent hover:text-accent-foreground",
@@ -5024,7 +5561,7 @@ var Menu = React47.forwardRef(
       "div",
       {
         ref: containerRef,
-        className: cn2("relative inline-block", className),
+        className: cn("relative inline-block", className),
         ...props,
         children: [
           trigger && /* @__PURE__ */ jsx("div", { onClick: () => handleOpenChange(!isOpen), children: trigger }),
@@ -5032,7 +5569,7 @@ var Menu = React47.forwardRef(
             "div",
             {
               ref,
-              className: cn2(
+              className: cn(
                 menuVariants({ variant, size }),
                 "absolute z-50 animate-in fade-in-0 zoom-in-95",
                 positionClasses2[position]
@@ -5046,7 +5583,7 @@ var Menu = React47.forwardRef(
   }
 );
 Menu.displayName = "Menu";
-var MenuBar = React47.forwardRef(
+var MenuBar = React55.forwardRef(
   ({
     className,
     menus,
@@ -5056,7 +5593,7 @@ var MenuBar = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           "flex items-center gap-1 rounded-md border bg-background p-1",
           className
         ),
@@ -5077,17 +5614,17 @@ var MenuBar = React47.forwardRef(
   }
 );
 MenuBar.displayName = "MenuBar";
-var NavigationContextMenu = React47.forwardRef(
+var NavigationContextMenu = React55.forwardRef(
   ({
     className,
     children,
     items,
     ...props
   }, ref) => {
-    const [open, setOpen] = React47.useState(false);
-    const [position, setPosition] = React47.useState({ x: 0, y: 0 });
-    const containerRef = React47.useRef(null);
-    const handleContextMenu = React47.useCallback((event) => {
+    const [open, setOpen] = React55.useState(false);
+    const [position, setPosition] = React55.useState({ x: 0, y: 0 });
+    const containerRef = React55.useRef(null);
+    const handleContextMenu = React55.useCallback((event) => {
       event.preventDefault();
       setPosition({ x: event.clientX, y: event.clientY });
       setOpen(true);
@@ -5096,7 +5633,7 @@ var NavigationContextMenu = React47.forwardRef(
       "div",
       {
         ref: containerRef,
-        className: cn2("relative inline-block", className),
+        className: cn("relative inline-block", className),
         onContextMenu: handleContextMenu,
         children: [
           children,
@@ -5104,7 +5641,7 @@ var NavigationContextMenu = React47.forwardRef(
             "div",
             {
               ref,
-              className: cn2(
+              className: cn(
                 menuVariants(),
                 "fixed z-50 animate-in fade-in-0 zoom-in-95"
               ),
@@ -5120,7 +5657,7 @@ var NavigationContextMenu = React47.forwardRef(
                 return /* @__PURE__ */ jsxs(
                   "button",
                   {
-                    className: cn2(
+                    className: cn(
                       "relative flex w-full cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none",
                       "transition-colors duration-[var(--motion-duration-fast)]",
                       "hover:bg-accent hover:text-accent-foreground",
@@ -5198,7 +5735,7 @@ function generateRange(page, totalPages, siblingCount) {
   }
   return range;
 }
-var Pagination = React47.forwardRef(
+var Pagination = React55.forwardRef(
   ({
     className,
     size = "md",
@@ -5215,34 +5752,34 @@ var Pagination = React47.forwardRef(
     siblingCount = 1,
     ...props
   }, ref) => {
-    const pages = React47.useMemo(() => {
+    const pages = React55.useMemo(() => {
       if (totalPages <= 7) {
         return Array.from({ length: totalPages }, (_, i2) => i2 + 1);
       }
       return generateRange(page, totalPages, siblingCount);
     }, [page, totalPages, siblingCount]);
-    const handlePrevious = React47.useCallback(() => {
+    const handlePrevious = React55.useCallback(() => {
       if (page > 1) {
         onPrevious?.();
         onChange?.(page - 1);
       }
     }, [page, onChange, onPrevious]);
-    const handleNext = React47.useCallback(() => {
+    const handleNext = React55.useCallback(() => {
       if (page < totalPages) {
         onNext?.();
         onChange?.(page + 1);
       }
     }, [page, totalPages, onChange, onNext]);
-    const handlePageClick = React47.useCallback((page2) => {
+    const handlePageClick = React55.useCallback((page2) => {
       onChange?.(page2);
     }, [onChange]);
-    const handleFirst = React47.useCallback(() => {
+    const handleFirst = React55.useCallback(() => {
       onChange?.(1);
     }, [onChange]);
-    const handleLast = React47.useCallback(() => {
+    const handleLast = React55.useCallback(() => {
       onChange?.(totalPages);
     }, [onChange, totalPages]);
-    const sizeClasses = {
+    const sizeClasses2 = {
       sm: "h-8 w-8",
       md: "h-10 w-10",
       lg: "h-12 w-12"
@@ -5251,7 +5788,7 @@ var Pagination = React47.forwardRef(
       "nav",
       {
         ref,
-        className: cn2(paginationVariants({ size, variant }), className),
+        className: cn(paginationVariants({ size, variant }), className),
         ...props,
         children: [
           showFirst && totalPages > 1 && /* @__PURE__ */ jsxs(
@@ -5259,7 +5796,7 @@ var Pagination = React47.forwardRef(
             {
               variant: "outline",
               size: "sm",
-              className: cn2(sizeClasses[size], "p-0"),
+              className: cn(sizeClasses2[size], "p-0"),
               onClick: handleFirst,
               disabled: disabled || page === 1,
               children: [
@@ -5274,7 +5811,7 @@ var Pagination = React47.forwardRef(
             {
               variant: "outline",
               size: "sm",
-              className: cn2(sizeClasses[size], "p-0"),
+              className: cn(sizeClasses2[size], "p-0"),
               onClick: handlePrevious,
               disabled: disabled || page === 1,
               children: [
@@ -5288,9 +5825,9 @@ var Pagination = React47.forwardRef(
               return /* @__PURE__ */ jsx(
                 "div",
                 {
-                  className: cn2(
+                  className: cn(
                     "flex items-center justify-center",
-                    sizeClasses[size]
+                    sizeClasses2[size]
                   ),
                   children: /* @__PURE__ */ jsx(MoreHorizontal, { className: "h-4 w-4" })
                 },
@@ -5302,7 +5839,7 @@ var Pagination = React47.forwardRef(
               {
                 variant: page2 === page2 ? "default" : "outline",
                 size: "sm",
-                className: cn2(sizeClasses[size], "p-0"),
+                className: cn(sizeClasses2[size], "p-0"),
                 onClick: () => handlePageClick(page2),
                 disabled,
                 children: page2
@@ -5315,7 +5852,7 @@ var Pagination = React47.forwardRef(
             {
               variant: "outline",
               size: "sm",
-              className: cn2(sizeClasses[size], "p-0"),
+              className: cn(sizeClasses2[size], "p-0"),
               onClick: handleNext,
               disabled: disabled || page === totalPages,
               children: [
@@ -5329,7 +5866,7 @@ var Pagination = React47.forwardRef(
             {
               variant: "outline",
               size: "sm",
-              className: cn2(sizeClasses[size], "p-0"),
+              className: cn(sizeClasses2[size], "p-0"),
               onClick: handleLast,
               disabled: disabled || page === totalPages,
               children: [
@@ -5351,7 +5888,7 @@ var Pagination = React47.forwardRef(
   }
 );
 Pagination.displayName = "Pagination";
-var PaginationInfo = React47.forwardRef(
+var PaginationInfo = React55.forwardRef(
   ({
     className,
     page,
@@ -5366,7 +5903,7 @@ var PaginationInfo = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("text-sm text-muted-foreground", className),
+        className: cn("text-sm text-muted-foreground", className),
         ...props,
         children: totalPagesItems ? /* @__PURE__ */ jsxs(Fragment, { children: [
           "Mostrando ",
@@ -5387,7 +5924,7 @@ var PaginationInfo = React47.forwardRef(
   }
 );
 PaginationInfo.displayName = "PaginationInfo";
-var PaginationCompact = React47.forwardRef(
+var PaginationCompact = React55.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Pagination,
@@ -5443,7 +5980,7 @@ var stepVariants = cva(
     }
   }
 );
-var Steps = React47.forwardRef(
+var Steps = React55.forwardRef(
   ({
     className,
     orientation = "horizontal",
@@ -5455,7 +5992,7 @@ var Steps = React47.forwardRef(
     showConnector = true,
     ...props
   }, ref) => {
-    const stepsWithStatus = React47.useMemo(() => {
+    const stepsWithStatus = React55.useMemo(() => {
       return steps.map((step, index) => {
         let status = "pending";
         if (index < current) {
@@ -5468,7 +6005,7 @@ var Steps = React47.forwardRef(
         return { ...step, status };
       });
     }, [steps, current]);
-    const sizeClasses = {
+    const sizeClasses2 = {
       sm: {
         step: "text-xs",
         icon: "h-6 w-6 text-xs",
@@ -5491,9 +6028,9 @@ var Steps = React47.forwardRef(
       const isError = step.status === "error";
       const isPending = step.status === "pending";
       const isLoading = step.status === "active" && step.disabled;
-      const iconClasses = cn2(
+      const iconClasses = cn(
         "flex items-center justify-center rounded-full border-2 font-medium transition-all duration-[var(--motion-duration-normal)]",
-        sizeClasses[size].icon,
+        sizeClasses2[size].icon,
         isCompleted && "bg-primary border-primary text-primary-foreground",
         isError && "bg-destructive border-destructive text-destructive-foreground",
         isActive && !isLoading && "border-primary bg-background text-primary",
@@ -5502,9 +6039,9 @@ var Steps = React47.forwardRef(
         clickable && !step.disabled && "cursor-pointer hover:border-primary/80",
         step.disabled && "opacity-50 cursor-not-allowed"
       );
-      const connectorClasses = cn2(
+      const connectorClasses = cn(
         "bg-border transition-all duration-[var(--motion-duration-normal)]",
-        sizeClasses[size].connector,
+        sizeClasses2[size].connector,
         orientation === "horizontal" ? "flex-1" : "w-0.5 absolute left-4 top-8 h-full",
         isCompleted && "bg-primary",
         isError && "bg-destructive",
@@ -5513,7 +6050,7 @@ var Steps = React47.forwardRef(
       return /* @__PURE__ */ jsxs(
         "div",
         {
-          className: cn2(
+          className: cn(
             stepVariants({ orientation, size }),
             orientation === "horizontal" && "flex-1",
             className
@@ -5523,7 +6060,7 @@ var Steps = React47.forwardRef(
             /* @__PURE__ */ jsxs(
               "div",
               {
-                className: cn2(
+                className: cn(
                   "flex items-center",
                   orientation === "vertical" && "flex-row gap-4",
                   clickable && !step.disabled && "cursor-pointer",
@@ -5536,7 +6073,7 @@ var Steps = React47.forwardRef(
                   }
                 },
                 children: [
-                  /* @__PURE__ */ jsx("div", { className: cn2("relative", orientation === "vertical" && "flex-shrink-0"), children: /* @__PURE__ */ jsxs("div", { className: iconClasses, children: [
+                  /* @__PURE__ */ jsx("div", { className: cn("relative", orientation === "vertical" && "flex-shrink-0"), children: /* @__PURE__ */ jsxs("div", { className: iconClasses, children: [
                     isCompleted && /* @__PURE__ */ jsx(Check, { className: "h-4 w-4" }),
                     isLoading && /* @__PURE__ */ jsx(Loader2, { className: "h-4 w-4 animate-spin" }),
                     !isCompleted && !isLoading && (step.icon || index + 1)
@@ -5544,17 +6081,17 @@ var Steps = React47.forwardRef(
                   /* @__PURE__ */ jsxs(
                     "div",
                     {
-                      className: cn2(
+                      className: cn(
                         "flex flex-col",
                         orientation === "horizontal" && "items-center text-center",
                         orientation === "vertical" && "items-start",
-                        sizeClasses[size].step
+                        sizeClasses2[size].step
                       ),
                       children: [
                         /* @__PURE__ */ jsx(
                           "div",
                           {
-                            className: cn2(
+                            className: cn(
                               "font-medium",
                               isActive && !isLoading && "text-primary",
                               isCompleted && "text-foreground",
@@ -5567,7 +6104,7 @@ var Steps = React47.forwardRef(
                         step.description && /* @__PURE__ */ jsx(
                           "div",
                           {
-                            className: cn2(
+                            className: cn(
                               "mt-1",
                               isActive && !isLoading && "text-primary",
                               isCompleted && "text-muted-foreground",
@@ -5593,7 +6130,7 @@ var Steps = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(stepsVariants({ orientation, size }), className),
+        className: cn(stepsVariants({ orientation, size }), className),
         ...props,
         children: stepsWithStatus.map(
           (step, index) => renderStep(step, index, index === steps.length - 1)
@@ -5603,7 +6140,7 @@ var Steps = React47.forwardRef(
   }
 );
 Steps.displayName = "Steps";
-var StepItem = React47.forwardRef(
+var StepItem = React55.forwardRef(
   ({
     className,
     number,
@@ -5617,7 +6154,7 @@ var StepItem = React47.forwardRef(
     const isCompleted = status === "completed";
     const isError = status === "error";
     const isLoading = status === "active";
-    const iconClasses = cn2(
+    const iconClasses = cn(
       "flex items-center justify-center rounded-full border-2 font-medium transition-all duration-[var(--motion-duration-normal)] h-8 w-8 text-sm",
       isCompleted && "bg-primary border-primary text-primary-foreground",
       isError && "bg-destructive border-destructive text-destructive-foreground",
@@ -5628,7 +6165,7 @@ var StepItem = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("flex items-center gap-3", className),
+        className: cn("flex items-center gap-3", className),
         ...props,
         children: [
           /* @__PURE__ */ jsxs("div", { className: iconClasses, children: [
@@ -5640,7 +6177,7 @@ var StepItem = React47.forwardRef(
             /* @__PURE__ */ jsx(
               "div",
               {
-                className: cn2(
+                className: cn(
                   "text-sm font-medium",
                   active && !isLoading && "text-primary",
                   isCompleted && "text-foreground",
@@ -5688,7 +6225,7 @@ var sidebarVariants = cva(
     }
   }
 );
-var Sidebar = React47.forwardRef(
+var Sidebar = React55.forwardRef(
   ({
     className,
     variant = "default",
@@ -5706,25 +6243,25 @@ var Sidebar = React47.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [internalCollapsed, setInternalCollapsed] = React47.useState(collapsed);
-    const [internalOpen, setInternalOpen] = React47.useState(open);
+    const [internalCollapsed, setInternalCollapsed] = React55.useState(collapsed);
+    const [internalOpen, setInternalOpen] = React55.useState(open);
     const isCollapsed = onCollapse ? collapsed : internalCollapsed;
     const isOpen = overlay ? onOpenChange ? open : internalOpen : true;
-    const handleCollapse = React47.useCallback(() => {
+    const handleCollapse = React55.useCallback(() => {
       if (onCollapse) {
         onCollapse(!isCollapsed);
       } else {
         setInternalCollapsed(!isCollapsed);
       }
     }, [isCollapsed, onCollapse]);
-    const handleOpenChange = React47.useCallback((newOpen) => {
+    const handleOpenChange = React55.useCallback((newOpen) => {
       if (onOpenChange) {
         onOpenChange(newOpen);
       } else {
         setInternalOpen(newOpen);
       }
     }, [onOpenChange]);
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       if (overlay && isOpen) {
         const handleClickOutside = (event) => {
           const target = event.target;
@@ -5737,7 +6274,7 @@ var Sidebar = React47.forwardRef(
         return () => document.removeEventListener("mousedown", handleClickOutside);
       }
     }, [overlay, isOpen, handleOpenChange]);
-    const sidebarClasses = cn2(
+    const sidebarClasses = cn(
       sidebarVariants({ variant, size, position }),
       overlay && "fixed z-50",
       overlay && !isOpen && "translate-x-full",
@@ -5752,7 +6289,7 @@ var Sidebar = React47.forwardRef(
       return /* @__PURE__ */ jsxs(
         "button",
         {
-          className: cn2(
+          className: cn(
             "w-full flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors duration-[var(--motion-duration-fast)]",
             "hover:bg-accent hover:text-accent-foreground",
             "focus:bg-accent focus:text-accent-foreground",
@@ -5768,7 +6305,7 @@ var Sidebar = React47.forwardRef(
           disabled: item.disabled,
           children: [
             item.icon && /* @__PURE__ */ jsx("span", { className: "h-4 w-4 flex-shrink-0", children: item.icon }),
-            /* @__PURE__ */ jsx("span", { className: cn2(
+            /* @__PURE__ */ jsx("span", { className: cn(
               "truncate",
               isCollapsed && "w-0 opacity-0"
             ), children: item.label }),
@@ -5875,14 +6412,14 @@ var Sidebar = React47.forwardRef(
   }
 );
 Sidebar.displayName = "Sidebar";
-var SidebarTrigger = React47.forwardRef(
+var SidebarTrigger = React55.forwardRef(
   ({
     className,
     children,
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React47.useCallback((event) => {
+    const handleClick = React55.useCallback((event) => {
       onClick?.(event);
       window.dispatchEvent(new CustomEvent("sidebar:toggle"));
     }, [onClick]);
@@ -5892,7 +6429,7 @@ var SidebarTrigger = React47.forwardRef(
         ref,
         variant: "ghost",
         size: "sm",
-        className: cn2("h-8 w-8 p-0", className),
+        className: cn("h-8 w-8 p-0", className),
         onClick: handleClick,
         ...props,
         children: children || /* @__PURE__ */ jsx(Menu$1, { className: "h-4 w-4" })
@@ -5929,7 +6466,7 @@ var topBarVariants = cva(
     }
   }
 );
-var TopBar = React47.forwardRef(
+var TopBar = React55.forwardRef(
   ({
     className,
     variant = "default",
@@ -5995,7 +6532,7 @@ var TopBar = React47.forwardRef(
                   search.onSubmit?.(e.currentTarget.value);
                 }
               },
-              className: cn2(
+              className: cn(
                 "w-full h-9 pl-10 pr-4 rounded-md border border-input bg-background",
                 "text-sm ring-offset-background",
                 "placeholder:text-muted-foreground",
@@ -6051,7 +6588,7 @@ var TopBar = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(topBarVariants({ variant, size, sticky }), className),
+        className: cn(topBarVariants({ variant, size, sticky }), className),
         ...props,
         children: [
           renderLeft(),
@@ -6064,7 +6601,7 @@ var TopBar = React47.forwardRef(
   }
 );
 TopBar.displayName = "TopBar";
-var TopBarTitle = React47.forwardRef(
+var TopBarTitle = React55.forwardRef(
   ({
     className,
     title,
@@ -6075,7 +6612,7 @@ var TopBarTitle = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("flex flex-col items-center", className),
+        className: cn("flex flex-col items-center", className),
         ...props,
         children: [
           /* @__PURE__ */ jsx("h1", { className: "text-lg font-semibold leading-none", children: title }),
@@ -6086,7 +6623,7 @@ var TopBarTitle = React47.forwardRef(
   }
 );
 TopBarTitle.displayName = "TopBarTitle";
-var TopBarActions = React47.forwardRef(
+var TopBarActions = React55.forwardRef(
   ({
     className,
     children,
@@ -6096,7 +6633,7 @@ var TopBarActions = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("flex items-center gap-2", className),
+        className: cn("flex items-center gap-2", className),
         ...props,
         children
       }
@@ -6104,17 +6641,647 @@ var TopBarActions = React47.forwardRef(
   }
 );
 TopBarActions.displayName = "TopBarActions";
+function StatsCards({ stats, isLoading }) {
+  const cards = [
+    {
+      label: "Total de Posts",
+      value: stats.totalPosts,
+      change: stats.postsChange,
+      icon: /* @__PURE__ */ jsx(FileText, { className: "h-4 w-4" }),
+      color: "from-cyan-500 to-blue-500"
+    },
+    {
+      label: "Total de Visualiza\xE7\xF5es",
+      value: stats.totalViews,
+      change: stats.viewsChange,
+      icon: /* @__PURE__ */ jsx(Eye, { className: "h-4 w-4" }),
+      color: "from-purple-500 to-pink-500"
+    },
+    {
+      label: "Total de Curtidas",
+      value: stats.totalLikes,
+      change: stats.likesChange,
+      icon: /* @__PURE__ */ jsx(Heart, { className: "h-4 w-4" }),
+      color: "from-pink-500 to-red-500"
+    },
+    {
+      label: "Total de Coment\xE1rios",
+      value: stats.totalComments,
+      change: stats.commentsChange,
+      icon: /* @__PURE__ */ jsx(MessageCircle, { className: "h-4 w-4" }),
+      color: "from-green-500 to-emerald-500"
+    }
+  ];
+  if (isLoading) {
+    return /* @__PURE__ */ jsx("div", { className: "grid gap-4 md:grid-cols-2 lg:grid-cols-4", children: [...Array(4)].map((_, i2) => /* @__PURE__ */ jsxs(Card, { className: "animate-pulse", children: [
+      /* @__PURE__ */ jsxs(CardHeader, { className: "flex flex-row items-center justify-between pb-2", children: [
+        /* @__PURE__ */ jsx("div", { className: "h-4 w-24 bg-muted rounded" }),
+        /* @__PURE__ */ jsx("div", { className: "h-8 w-8 bg-muted rounded" })
+      ] }),
+      /* @__PURE__ */ jsx(CardContent, { children: /* @__PURE__ */ jsx("div", { className: "h-8 w-16 bg-muted rounded" }) })
+    ] }, i2)) });
+  }
+  return /* @__PURE__ */ jsx("div", { className: "grid gap-4 md:grid-cols-2 lg:grid-cols-4", children: cards.map((stat, index) => /* @__PURE__ */ jsx(
+    motion$1.div,
+    {
+      initial: { opacity: 0, y: 20 },
+      animate: { opacity: 1, y: 0 },
+      transition: { delay: index * 0.1 },
+      children: /* @__PURE__ */ jsxs(Card, { className: "border-2 hover:shadow-lg transition-shadow", children: [
+        /* @__PURE__ */ jsxs(CardHeader, { className: "flex flex-row items-center justify-between pb-2", children: [
+          /* @__PURE__ */ jsx(CardTitle, { className: "text-sm font-medium text-muted-foreground", children: stat.label }),
+          /* @__PURE__ */ jsx(
+            "div",
+            {
+              className: cn(
+                "flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br text-white",
+                stat.color
+              ),
+              children: stat.icon
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxs(CardContent, { children: [
+          /* @__PURE__ */ jsxs("div", { className: "flex items-end justify-between", children: [
+            /* @__PURE__ */ jsx("div", { className: "text-2xl font-bold", children: stat.value.toLocaleString() }),
+            stat.change !== void 0 && /* @__PURE__ */ jsxs(
+              "div",
+              {
+                className: cn(
+                  "flex items-center gap-1 text-xs font-medium",
+                  stat.change > 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
+                ),
+                children: [
+                  stat.change > 0 ? /* @__PURE__ */ jsx(TrendingUp, { className: "h-3 w-3" }) : /* @__PURE__ */ jsx(TrendingDown, { className: "h-3 w-3" }),
+                  Math.abs(stat.change),
+                  "%"
+                ]
+              }
+            )
+          ] }),
+          stat.change !== void 0 && /* @__PURE__ */ jsxs("p", { className: "text-xs text-muted-foreground mt-1", children: [
+            stat.change > 0 ? "+" : "",
+            stat.change,
+            "% em rela\xE7\xE3o ao m\xEAs anterior"
+          ] })
+        ] })
+      ] })
+    },
+    stat.label
+  )) });
+}
+var DEFAULT_STAGGER_DELAY = 0.1;
+var CARD_ANIMATION = {
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: {
+    type: "spring",
+    stiffness: 300,
+    damping: 30
+  }
+};
+var DEFAULT_STATS = [
+  {
+    label: "Total de Posts",
+    value: 42,
+    change: 12.5,
+    icon: /* @__PURE__ */ jsx(FileText, { className: "w-5 h-5", "aria-hidden": "true" }),
+    color: "from-cyan-500 to-blue-500",
+    description: "Artigos publicados no blog"
+  },
+  {
+    label: "Visualiza\xE7\xF5es",
+    value: "2.4K",
+    change: 8.3,
+    icon: /* @__PURE__ */ jsx(Eye, { className: "w-5 h-5", "aria-hidden": "true" }),
+    color: "from-purple-500 to-pink-500",
+    description: "Visualiza\xE7\xF5es totais"
+  },
+  {
+    label: "Curtidas",
+    value: 1.2,
+    change: -3.2,
+    icon: /* @__PURE__ */ jsx(Heart, { className: "w-5 h-5", "aria-hidden": "true" }),
+    color: "from-orange-500 to-red-500",
+    description: "Curtidas recebidas"
+  },
+  {
+    label: "Coment\xE1rios",
+    value: 89,
+    change: 15.7,
+    icon: /* @__PURE__ */ jsx(MessageSquare, { className: "w-5 h-5", "aria-hidden": "true" }),
+    color: "from-green-500 to-emerald-500",
+    description: "Coment\xE1rios ativos"
+  }
+];
+function QuickStatsComponent({
+  stats = [...DEFAULT_STATS],
+  animationDelay = DEFAULT_STAGGER_DELAY,
+  animateOnView = true,
+  className,
+  theme = "auto"
+}) {
+  const formatValue2 = (value) => {
+    if (typeof value === "number") {
+      if (value >= 1e3) {
+        return `${(value / 1e3).toFixed(1)}K`;
+      }
+      return value.toString();
+    }
+    return value;
+  };
+  const renderChangeIndicator = (change) => {
+    if (change === void 0 || change === 0) return null;
+    const isPositive = change > 0;
+    const Icon2 = isPositive ? TrendingUp : TrendingDown;
+    const formattedChange = Math.abs(change).toFixed(1);
+    return /* @__PURE__ */ jsxs(
+      "div",
+      {
+        className: `flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold transition-colors bg-opacity-20 ${isPositive ? "text-green-700 bg-green-100 dark:text-green-300 dark:bg-green-900/30" : "text-red-700 bg-red-100 dark:text-red-300 dark:bg-red-900/30"}`,
+        role: "status",
+        "aria-label": `Varia\xE7\xE3o de ${formattedChange}% ${isPositive ? "positiva" : "negativa"}`,
+        children: [
+          /* @__PURE__ */ jsx(
+            Icon2,
+            {
+              className: "w-3 h-3",
+              "aria-hidden": "true"
+            }
+          ),
+          /* @__PURE__ */ jsxs("span", { children: [
+            formattedChange,
+            "%"
+          ] })
+        ]
+      }
+    );
+  };
+  const renderStatCard = (stat, index) => {
+    const formattedValue = formatValue2(stat.value);
+    const cardId = `stat-card-${index}`;
+    return /* @__PURE__ */ jsx(
+      motion$1.article,
+      {
+        initial: CARD_ANIMATION.initial,
+        animate: CARD_ANIMATION.animate,
+        transition: {
+          ...CARD_ANIMATION.transition,
+          delay: index * animationDelay
+        },
+        whileHover: {
+          scale: 1.02,
+          transition: { duration: 0.2 }
+        },
+        whileTap: { scale: 0.98 },
+        role: "article",
+        "aria-labelledby": `${cardId}-title`,
+        "aria-describedby": stat.description ? `${cardId}-desc` : void 0,
+        className: "h-full",
+        children: /* @__PURE__ */ jsxs(Card, { className: "relative h-full overflow-hidden border shadow-sm transition-all duration-300 hover:shadow-lg dark:border-gray-800 dark:hover:border-gray-700", children: [
+          /* @__PURE__ */ jsx(
+            "div",
+            {
+              className: `absolute -top-12 -right-12 w-32 h-32 opacity-10 bg-gradient-to-br rounded-full blur-3xl transition-opacity duration-500 hover:opacity-15 ${stat.color}`,
+              "aria-hidden": "true"
+            }
+          ),
+          /* @__PURE__ */ jsxs(CardContent, { className: "relative p-6", children: [
+            /* @__PURE__ */ jsxs("div", { className: "flex items-start justify-between mb-4", children: [
+              /* @__PURE__ */ jsx(
+                "div",
+                {
+                  className: `p-3 rounded-xl shadow-sm bg-gradient-to-br ${stat.color} text-white transition-transform duration-300 hover:scale-110`,
+                  "aria-hidden": "true",
+                  children: stat.icon
+                }
+              ),
+              renderChangeIndicator(stat.change)
+            ] }),
+            /* @__PURE__ */ jsxs("div", { className: "space-y-1", children: [
+              /* @__PURE__ */ jsx(
+                "h3",
+                {
+                  id: `${cardId}-title`,
+                  className: "text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100",
+                  children: stat.isLoading ? /* @__PURE__ */ jsx("span", { className: "inline-block h-8 w-16 animate-pulse bg-gray-300 dark:bg-gray-700 rounded" }) : formattedValue
+                }
+              ),
+              /* @__PURE__ */ jsx("p", { className: "text-sm font-medium text-gray-600 dark:text-gray-400", children: stat.label }),
+              stat.description && /* @__PURE__ */ jsx(
+                "p",
+                {
+                  id: `${cardId}-desc`,
+                  className: "text-xs text-gray-500 dark:text-gray-500 mt-2",
+                  children: stat.description
+                }
+              )
+            ] }),
+            stat.change !== void 0 && /* @__PURE__ */ jsx("div", { className: "mt-4 pt-3 border-t border-gray-100 dark:border-gray-800", children: /* @__PURE__ */ jsxs("span", { className: "text-xs text-gray-500 dark:text-gray-500", children: [
+              stat.change > 0 ? "Em alta" : "Em baixa",
+              " este m\xEAs"
+            ] }) })
+          ] })
+        ] })
+      },
+      stat.label
+    );
+  };
+  return /* @__PURE__ */ jsxs(
+    "section",
+    {
+      className: `w-full ${className || ""}`,
+      "aria-labelledby": "quick-stats-heading",
+      "data-theme": theme,
+      children: [
+        /* @__PURE__ */ jsx("h2", { id: "quick-stats-heading", className: "sr-only", children: "Estat\xEDsticas R\xE1pidas do Dashboard" }),
+        /* @__PURE__ */ jsx("div", { className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6", children: stats.map((stat, index) => /* @__PURE__ */ jsx(React55__default.Fragment, { children: renderStatCard(stat, index) }, `${stat.label}-${index}`)) }),
+        /* @__PURE__ */ jsx("div", { className: "mt-4 text-right", children: /* @__PURE__ */ jsxs("p", { className: "text-xs text-gray-500 dark:text-gray-500", children: [
+          "Atualizado em ",
+          (/* @__PURE__ */ new Date()).toLocaleDateString("pt-BR")
+        ] }) })
+      ]
+    }
+  );
+}
+var QuickStats = React55__default.memo(QuickStatsComponent);
+QuickStats.displayName = "QuickStats";
+var STAGGER_DELAY_SECONDS = 0.1;
+function QuickActions({
+  onNewPost,
+  onViewPosts,
+  onViewStats,
+  onSettings
+}) {
+  const actions = [
+    {
+      icon: /* @__PURE__ */ jsx(Plus, { className: "w-5 h-5" }),
+      label: "Novo Post",
+      description: "Criar novo artigo",
+      color: "from-cyan-500 to-blue-500",
+      onClick: onNewPost
+    },
+    {
+      icon: /* @__PURE__ */ jsx(FileText, { className: "w-5 h-5" }),
+      label: "Meus Posts",
+      description: "Ver todos os posts",
+      color: "from-purple-500 to-pink-500",
+      onClick: onViewPosts
+    },
+    {
+      icon: /* @__PURE__ */ jsx(BarChart, { className: "w-5 h-5" }),
+      label: "Estat\xEDsticas",
+      description: "An\xE1lise e m\xE9tricas",
+      color: "from-orange-500 to-red-500",
+      onClick: onViewStats
+    },
+    {
+      icon: /* @__PURE__ */ jsx(Settings, { className: "w-5 h-5" }),
+      label: "Configura\xE7\xF5es",
+      description: "Ajustes do blog",
+      color: "from-green-500 to-emerald-500",
+      onClick: onSettings
+    }
+  ];
+  return /* @__PURE__ */ jsxs(Card, { role: "region", "aria-labelledby": "quick-actions-heading", children: [
+    /* @__PURE__ */ jsx(CardHeader, { children: /* @__PURE__ */ jsx(CardTitle, { id: "quick-actions-heading", children: "A\xE7\xF5es R\xE1pidas" }) }),
+    /* @__PURE__ */ jsx(CardContent, { children: /* @__PURE__ */ jsx("div", { className: "grid grid-cols-2 gap-3", children: actions.map((action, index) => /* @__PURE__ */ jsx(
+      motion$1.div,
+      {
+        initial: { opacity: 0, scale: 0.9 },
+        animate: { opacity: 1, scale: 1 },
+        transition: { delay: index * STAGGER_DELAY_SECONDS },
+        children: /* @__PURE__ */ jsxs(
+          Button,
+          {
+            onClick: action.onClick,
+            variant: "outline",
+            className: "w-full h-auto p-4 flex flex-col items-start gap-2 hover:border-cyan-400/50 dark:hover:bg-cyan-400/5",
+            "aria-label": `${action.label}: ${action.description}`,
+            children: [
+              /* @__PURE__ */ jsx(
+                "div",
+                {
+                  className: `p-2 rounded-lg bg-linear-to-br ${action.color} text-white`,
+                  "aria-hidden": "true",
+                  children: action.icon
+                }
+              ),
+              /* @__PURE__ */ jsxs("div", { className: "text-left", children: [
+                /* @__PURE__ */ jsx("p", { className: "font-semibold text-sm", children: action.label }),
+                /* @__PURE__ */ jsx("p", { className: "text-xs text-muted-foreground", children: action.description })
+              ] })
+            ]
+          }
+        )
+      },
+      action.label
+    )) }) })
+  ] });
+}
+function AnalyticsOverview({ className }) {
+  const [metrics, setMetrics] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const loadStats = async () => {
+      try {
+        setIsLoading(true);
+        const stats = {
+          totalPosts: 42,
+          totalViews: 1250,
+          totalLikes: 89,
+          totalComments: 23
+        };
+        const newMetrics = [
+          {
+            title: "Posts Totais",
+            value: stats.totalPosts.toString(),
+            change: "+0.0%",
+            trend: "up",
+            icon: TrendingUp,
+            color: "text-blue-500"
+          },
+          {
+            title: "Visualiza\xE7\xF5es Totais",
+            value: stats.totalViews.toLocaleString("pt-BR"),
+            change: "+0.0%",
+            trend: "up",
+            icon: Eye,
+            color: "text-cyan-500"
+          },
+          {
+            title: "Curtidas",
+            value: stats.totalLikes.toLocaleString("pt-BR"),
+            change: "+0.0%",
+            trend: "up",
+            icon: Heart,
+            color: "text-pink-500"
+          },
+          {
+            title: "Coment\xE1rios",
+            value: stats.totalComments.toLocaleString("pt-BR"),
+            change: "+0.0%",
+            trend: "up",
+            icon: MessageSquare,
+            color: "text-orange-500"
+          }
+        ];
+        setMetrics(newMetrics);
+      } catch (error) {
+        console.error("Erro ao carregar estat\xEDsticas:", error);
+        setMetrics([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    loadStats();
+  }, []);
+  if (isLoading) {
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        className: cn(
+          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
+          className
+        ),
+        children: [1, 2, 3, 4].map((i2) => /* @__PURE__ */ jsxs(
+          Card,
+          {
+            className: "dark:bg-black/30 dark:border-cyan-400/20 animate-pulse",
+            children: [
+              /* @__PURE__ */ jsxs(CardHeader, { className: "flex flex-row items-center justify-between pb-2", children: [
+                /* @__PURE__ */ jsx("div", { className: "h-4 bg-muted rounded w-24" }),
+                /* @__PURE__ */ jsx("div", { className: "h-4 w-4 bg-muted rounded" })
+              ] }),
+              /* @__PURE__ */ jsxs(CardContent, { children: [
+                /* @__PURE__ */ jsx("div", { className: "h-8 bg-muted rounded w-16 mb-2" }),
+                /* @__PURE__ */ jsx("div", { className: "h-3 bg-muted rounded w-20" })
+              ] })
+            ]
+          },
+          i2
+        ))
+      }
+    );
+  }
+  if (metrics.length === 0) {
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        className: cn(
+          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
+          className
+        ),
+        children: /* @__PURE__ */ jsx(Card, { className: "dark:bg-black/30 dark:border-cyan-400/20", children: /* @__PURE__ */ jsx(CardContent, { className: "p-6 text-center text-muted-foreground", children: "Nenhum dado dispon\xEDvel" }) })
+      }
+    );
+  }
+  return /* @__PURE__ */ jsx(
+    "div",
+    {
+      className: cn(
+        "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
+        className
+      ),
+      children: metrics.map((metric, index) => {
+        const Icon2 = metric.icon;
+        return /* @__PURE__ */ jsxs(
+          Card,
+          {
+            className: "dark:bg-black/30 dark:border-cyan-400/20 hover:shadow-lg transition-shadow",
+            children: [
+              /* @__PURE__ */ jsxs(CardHeader, { className: "flex flex-row items-center justify-between pb-2", children: [
+                /* @__PURE__ */ jsx(CardTitle, { className: "text-sm font-medium text-muted-foreground", children: metric.title }),
+                /* @__PURE__ */ jsx(Icon2, { className: cn("h-4 w-4", metric.color) })
+              ] }),
+              /* @__PURE__ */ jsxs(CardContent, { children: [
+                /* @__PURE__ */ jsx("div", { className: "text-2xl font-bold dark:text-gray-100", children: metric.value }),
+                /* @__PURE__ */ jsxs("p", { className: "text-xs text-muted-foreground mt-1", children: [
+                  /* @__PURE__ */ jsx(
+                    "span",
+                    {
+                      className: cn(
+                        "font-medium",
+                        metric.trend === "up" ? "text-green-500" : "text-red-500"
+                      ),
+                      children: metric.change
+                    }
+                  ),
+                  " ",
+                  "vs per\xEDodo anterior"
+                ] })
+              ] })
+            ]
+          },
+          index
+        );
+      })
+    }
+  );
+}
+function RecentPostsList({
+  posts = [],
+  onEditPost,
+  onDeletePost,
+  onViewPost,
+  maxPosts = 5,
+  className
+}) {
+  const [isLoading, setIsLoading] = useState(false);
+  const displayedPosts = posts.slice(0, maxPosts);
+  if (isLoading) {
+    return /* @__PURE__ */ jsxs(Card, { className: cn("w-full", className), children: [
+      /* @__PURE__ */ jsx(CardHeader, { children: /* @__PURE__ */ jsx(CardTitle, { children: "Posts Recentes" }) }),
+      /* @__PURE__ */ jsx(CardContent, { children: /* @__PURE__ */ jsx("div", { className: "space-y-4", children: [...Array(3)].map((_, i2) => /* @__PURE__ */ jsxs("div", { className: "flex items-center space-x-4", children: [
+        /* @__PURE__ */ jsx("div", { className: "w-16 h-16 bg-muted rounded animate-pulse" }),
+        /* @__PURE__ */ jsxs("div", { className: "flex-1 space-y-2", children: [
+          /* @__PURE__ */ jsx("div", { className: "h-4 bg-muted rounded animate-pulse" }),
+          /* @__PURE__ */ jsx("div", { className: "h-3 bg-muted rounded animate-pulse w-3/4" })
+        ] })
+      ] }, i2)) }) })
+    ] });
+  }
+  if (displayedPosts.length === 0) {
+    return /* @__PURE__ */ jsxs(Card, { className: cn("w-full", className), children: [
+      /* @__PURE__ */ jsx(CardHeader, { children: /* @__PURE__ */ jsx(CardTitle, { children: "Posts Recentes" }) }),
+      /* @__PURE__ */ jsx(CardContent, { children: /* @__PURE__ */ jsx("div", { className: "text-center py-8", children: /* @__PURE__ */ jsx("p", { className: "text-muted-foreground", children: "Nenhum post encontrado." }) }) })
+    ] });
+  }
+  return /* @__PURE__ */ jsxs(Card, { className: cn("w-full", className), children: [
+    /* @__PURE__ */ jsx(CardHeader, { children: /* @__PURE__ */ jsx(CardTitle, { children: "Posts Recentes" }) }),
+    /* @__PURE__ */ jsx(CardContent, { children: /* @__PURE__ */ jsx("div", { className: "space-y-4", children: displayedPosts.map((post, index) => /* @__PURE__ */ jsxs(
+      motion$1.div,
+      {
+        initial: { opacity: 0, y: 20 },
+        animate: { opacity: 1, y: 0 },
+        transition: { delay: index * 0.1 },
+        className: "flex items-start space-x-4 p-4 rounded-lg border hover:bg-muted/50 transition-colors",
+        children: [
+          post.coverImage && /* @__PURE__ */ jsx("div", { className: "w-16 h-16 rounded-lg overflow-hidden flex-shrink-0", children: /* @__PURE__ */ jsx(
+            "img",
+            {
+              src: post.coverImage,
+              alt: post.title,
+              className: "w-full h-full object-cover"
+            }
+          ) }),
+          /* @__PURE__ */ jsxs("div", { className: "flex-1 min-w-0", children: [
+            /* @__PURE__ */ jsx("h3", { className: "font-medium line-clamp-1", children: post.title }),
+            /* @__PURE__ */ jsx("p", { className: "text-sm text-muted-foreground line-clamp-2 mt-1", children: post.excerpt }),
+            /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-4 mt-2", children: [
+              /* @__PURE__ */ jsxs("div", { className: "flex items-center text-xs text-muted-foreground", children: [
+                /* @__PURE__ */ jsx(Calendar, { className: "w-3 h-3 mr-1" }),
+                new Date(post.publishedAt).toLocaleDateString("pt-BR")
+              ] }),
+              post.tags.length > 0 && /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-1", children: [
+                post.tags.slice(0, 2).map((tag) => /* @__PURE__ */ jsx(Badge, { variant: "secondary", className: "text-xs", children: tag }, tag)),
+                post.tags.length > 2 && /* @__PURE__ */ jsxs(Badge, { variant: "outline", className: "text-xs", children: [
+                  "+",
+                  post.tags.length - 2
+                ] })
+              ] })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2 flex-shrink-0", children: [
+            onViewPost && /* @__PURE__ */ jsx(
+              Button,
+              {
+                variant: "ghost",
+                size: "sm",
+                onClick: () => onViewPost(post),
+                className: "h-8 w-8 p-0",
+                children: /* @__PURE__ */ jsx(Eye, { className: "w-4 h-4" })
+              }
+            ),
+            onEditPost && /* @__PURE__ */ jsx(
+              Button,
+              {
+                variant: "ghost",
+                size: "sm",
+                onClick: () => onEditPost(post),
+                className: "h-8 w-8 p-0",
+                children: /* @__PURE__ */ jsx(Edit, { className: "w-4 h-4" })
+              }
+            ),
+            onDeletePost && /* @__PURE__ */ jsx(
+              Button,
+              {
+                variant: "ghost",
+                size: "sm",
+                onClick: () => onDeletePost(post.id),
+                className: "h-8 w-8 p-0 text-destructive hover:text-destructive",
+                children: /* @__PURE__ */ jsx(Trash2, { className: "w-4 h-4" })
+              }
+            )
+          ] })
+        ]
+      },
+      post.id
+    )) }) })
+  ] });
+}
+function HelpCenter() {
+  const resources = [
+    {
+      icon: BookOpen,
+      title: "Documenta\xE7\xE3o",
+      description: "Guias completos de uso",
+      link: "/docs"
+    },
+    {
+      icon: Video,
+      title: "Tutoriais",
+      description: "V\xEDdeos passo a passo",
+      link: "/tutorials"
+    },
+    {
+      icon: MessageCircle,
+      title: "Suporte",
+      description: "Fale com nossa equipe",
+      link: "/contato"
+    }
+  ];
+  return /* @__PURE__ */ jsxs(Card, { className: "dark:bg-black/30 dark:border-purple-400/20", children: [
+    /* @__PURE__ */ jsxs(CardHeader, { children: [
+      /* @__PURE__ */ jsxs(CardTitle, { className: "flex items-center gap-2 dark:text-purple-200", children: [
+        /* @__PURE__ */ jsx(HelpCircle, { className: "h-5 w-5" }),
+        "Central de Ajuda"
+      ] }),
+      /* @__PURE__ */ jsx(CardDescription, { children: "Precisa de ajuda? Acesse nossos recursos" })
+    ] }),
+    /* @__PURE__ */ jsx(CardContent, { className: "space-y-3", children: resources.map((resource, index) => {
+      const Icon2 = resource.icon;
+      return /* @__PURE__ */ jsx(
+        Button,
+        {
+          asChild: true,
+          variant: "outline",
+          className: "w-full justify-between dark:border-purple-400/20 dark:hover:bg-purple-400/10",
+          children: /* @__PURE__ */ jsxs("a", { href: resource.link, className: "flex items-center gap-3 flex-1", children: [
+            /* @__PURE__ */ jsx(Icon2, { className: "h-4 w-4" }),
+            /* @__PURE__ */ jsxs("div", { className: "text-left", children: [
+              /* @__PURE__ */ jsx("div", { className: "font-medium text-sm", children: resource.title }),
+              /* @__PURE__ */ jsx("div", { className: "text-xs text-muted-foreground", children: resource.description })
+            ] }),
+            /* @__PURE__ */ jsx(ExternalLink, { className: "h-4 w-4 ml-auto" })
+          ] })
+        },
+        index
+      );
+    }) })
+  ] });
+}
 var ContextMenu = Root;
 var ContextMenuTrigger = Trigger;
 var ContextMenuGroup = Group;
 var ContextMenuPortal = Portal$1;
 var ContextMenuSub = Sub;
 var ContextMenuRadioGroup = RadioGroup$1;
-var ContextMenuSubTrigger = React47.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var ContextMenuSubTrigger = React55.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   SubTrigger,
   {
     ref,
-    className: cn2(
+    className: cn(
       "flex cursor-default select-none items-center px-2 py-1.5 text-sm outline-none rounded-sm transition-colors duration-200",
       "focus:bg-accent focus:text-accent-foreground",
       "data-[state=open]:bg-accent data-[state=open]:text-accent-foreground",
@@ -6129,11 +7296,11 @@ var ContextMenuSubTrigger = React47.forwardRef(({ className, inset, children, ..
   }
 ));
 ContextMenuSubTrigger.displayName = SubTrigger.displayName;
-var ContextMenuSubContent = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var ContextMenuSubContent = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SubContent,
   {
     ref,
-    className: cn2(
+    className: cn(
       "z-50 min-w-[8rem] overflow-hidden border bg-popover p-1 text-popover-foreground rounded-md shadow-md transition-all duration-200",
       "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-context-menu-content-transform-origin]",
       className
@@ -6142,11 +7309,11 @@ var ContextMenuSubContent = React47.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 ContextMenuSubContent.displayName = SubContent.displayName;
-var ContextMenuContent = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(Portal$1, { children: /* @__PURE__ */ jsx(
+var ContextMenuContent = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(Portal$1, { children: /* @__PURE__ */ jsx(
   Content$1,
   {
     ref,
-    className: cn2(
+    className: cn(
       "z-50 max-h-[--radix-context-menu-content-available-height] min-w-[8rem] overflow-y-auto overflow-x-hidden border bg-popover p-1 text-popover-foreground",
       "rounded-md",
       "shadow-md",
@@ -6158,11 +7325,11 @@ var ContextMenuContent = React47.forwardRef(({ className, ...props }, ref) => /*
   }
 ) }));
 ContextMenuContent.displayName = Content$1.displayName;
-var ContextMenuItem = React47.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
+var ContextMenuItem = React55.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
   Item,
   {
     ref,
-    className: cn2(
+    className: cn(
       "relative flex cursor-default select-none items-center px-2 py-1.5 text-sm outline-none",
       "rounded-sm",
       "transition-colors duration-200 ease-in-out",
@@ -6176,11 +7343,11 @@ var ContextMenuItem = React47.forwardRef(({ className, inset, ...props }, ref) =
   }
 ));
 ContextMenuItem.displayName = Item.displayName;
-var ContextMenuCheckboxItem = React47.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxs(
+var ContextMenuCheckboxItem = React55.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxs(
   CheckboxItem,
   {
     ref,
-    className: cn2(
+    className: cn(
       "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className
     ),
@@ -6193,11 +7360,11 @@ var ContextMenuCheckboxItem = React47.forwardRef(({ className, children, checked
   }
 ));
 ContextMenuCheckboxItem.displayName = CheckboxItem.displayName;
-var ContextMenuRadioItem = React47.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var ContextMenuRadioItem = React55.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   RadioItem,
   {
     ref,
-    className: cn2(
+    className: cn(
       "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
       className
     ),
@@ -6209,11 +7376,11 @@ var ContextMenuRadioItem = React47.forwardRef(({ className, children, ...props }
   }
 ));
 ContextMenuRadioItem.displayName = RadioItem.displayName;
-var ContextMenuLabel = React47.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
+var ContextMenuLabel = React55.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
   Label$1,
   {
     ref,
-    className: cn2(
+    className: cn(
       "px-2 py-1.5 text-sm text-foreground font-semibold",
       inset && "pl-8",
       className
@@ -6222,11 +7389,11 @@ var ContextMenuLabel = React47.forwardRef(({ className, inset, ...props }, ref) 
   }
 ));
 ContextMenuLabel.displayName = Label$1.displayName;
-var ContextMenuSeparator = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var ContextMenuSeparator = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Separator,
   {
     ref,
-    className: cn2("-mx-1 my-1 h-px bg-border", className),
+    className: cn("-mx-1 my-1 h-px bg-border", className),
     ...props
   }
 ));
@@ -6238,7 +7405,7 @@ var ContextMenuShortcut = ({
   return /* @__PURE__ */ jsx(
     "span",
     {
-      className: cn2(
+      className: cn(
         "ml-auto text-xs tracking-widest text-muted-foreground",
         className
       ),
@@ -6253,11 +7420,11 @@ var DropdownMenuGroup = Group$1;
 var DropdownMenuPortal = Portal$2;
 var DropdownMenuSub = Sub$1;
 var DropdownMenuRadioGroup = RadioGroup$2;
-var DropdownMenuSubTrigger = React47.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var DropdownMenuSubTrigger = React55.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   SubTrigger$1,
   {
     ref,
-    className: cn2(
+    className: cn(
       "flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none",
       "focus:bg-accent data-[state=open]:bg-accent",
       inset && "pl-8",
@@ -6271,11 +7438,11 @@ var DropdownMenuSubTrigger = React47.forwardRef(({ className, inset, children, .
   }
 ));
 DropdownMenuSubTrigger.displayName = SubTrigger$1.displayName;
-var DropdownMenuSubContent = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DropdownMenuSubContent = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SubContent$1,
   {
     ref,
-    className: cn2(
+    className: cn(
       "z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-lg",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
@@ -6288,12 +7455,12 @@ var DropdownMenuSubContent = React47.forwardRef(({ className, ...props }, ref) =
   }
 ));
 DropdownMenuSubContent.displayName = SubContent$1.displayName;
-var DropdownMenuContent = React47.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsx(Portal$2, { children: /* @__PURE__ */ jsx(
+var DropdownMenuContent = React55.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsx(Portal$2, { children: /* @__PURE__ */ jsx(
   Content$2,
   {
     ref,
     sideOffset,
-    className: cn2(
+    className: cn(
       "z-50 min-w-[8rem] overflow-hidden rounded-md border bg-popover p-1 text-popover-foreground shadow-md",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
@@ -6306,11 +7473,11 @@ var DropdownMenuContent = React47.forwardRef(({ className, sideOffset = 4, ...pr
   }
 ) }));
 DropdownMenuContent.displayName = Content$2.displayName;
-var DropdownMenuItem = React47.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
+var DropdownMenuItem = React55.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
   Item$1,
   {
     ref,
-    className: cn2(
+    className: cn(
       "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors",
       "focus:bg-accent focus:text-accent-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
@@ -6321,11 +7488,11 @@ var DropdownMenuItem = React47.forwardRef(({ className, inset, ...props }, ref) 
   }
 ));
 DropdownMenuItem.displayName = Item$1.displayName;
-var DropdownMenuCheckboxItem = React47.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxs(
+var DropdownMenuCheckboxItem = React55.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxs(
   CheckboxItem$1,
   {
     ref,
-    className: cn2(
+    className: cn(
       "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors",
       "focus:bg-accent focus:text-accent-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
@@ -6340,11 +7507,11 @@ var DropdownMenuCheckboxItem = React47.forwardRef(({ className, children, checke
   }
 ));
 DropdownMenuCheckboxItem.displayName = CheckboxItem$1.displayName;
-var DropdownMenuRadioItem = React47.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var DropdownMenuRadioItem = React55.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   RadioItem$1,
   {
     ref,
-    className: cn2(
+    className: cn(
       "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors",
       "focus:bg-accent focus:text-accent-foreground",
       "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
@@ -6358,11 +7525,11 @@ var DropdownMenuRadioItem = React47.forwardRef(({ className, children, ...props 
   }
 ));
 DropdownMenuRadioItem.displayName = RadioItem$1.displayName;
-var DropdownMenuLabel = React47.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
+var DropdownMenuLabel = React55.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
   Label$2,
   {
     ref,
-    className: cn2(
+    className: cn(
       "px-2 py-1.5 text-sm font-semibold",
       inset && "pl-8",
       className
@@ -6371,11 +7538,11 @@ var DropdownMenuLabel = React47.forwardRef(({ className, inset, ...props }, ref)
   }
 ));
 DropdownMenuLabel.displayName = Label$2.displayName;
-var DropdownMenuSeparator = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DropdownMenuSeparator = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Separator$1,
   {
     ref,
-    className: cn2("-mx-1 my-1 h-px bg-muted", className),
+    className: cn("-mx-1 my-1 h-px bg-muted", className),
     ...props
   }
 ));
@@ -6387,7 +7554,7 @@ var DropdownMenuShortcut = ({
   return /* @__PURE__ */ jsx(
     "span",
     {
-      className: cn2("ml-auto text-xs tracking-widest opacity-60", className),
+      className: cn("ml-auto text-xs tracking-widest opacity-60", className),
       ...props
     }
   );
@@ -6395,13 +7562,13 @@ var DropdownMenuShortcut = ({
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
 var HoverCard = Root$3;
 var HoverCardTrigger = Trigger$3;
-var HoverCardContent = React47.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsx(
+var HoverCardContent = React55.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsx(
   Content$3,
   {
     ref,
     align,
     sideOffset,
-    className: cn2(
+    className: cn(
       "z-50 w-64 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 origin-[--radix-hover-card-content-transform-origin]",
       className
     ),
@@ -6411,13 +7578,13 @@ var HoverCardContent = React47.forwardRef(({ className, align = "center", sideOf
 HoverCardContent.displayName = Content$3.displayName;
 var Popover = Root$4;
 var PopoverTrigger = Trigger$4;
-var PopoverContent = React47.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsx(Portal$3, { children: /* @__PURE__ */ jsx(
+var PopoverContent = React55.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsx(Portal$3, { children: /* @__PURE__ */ jsx(
   Content$4,
   {
     ref,
     align,
     sideOffset,
-    className: cn2(
+    className: cn(
       "z-50 w-72 rounded-md border bg-popover p-4 text-popover-foreground shadow-md outline-none",
       "data-[state=open]:animate-in data-[state=closed]:animate-out",
       "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
@@ -6464,7 +7631,7 @@ function TooltipContent({
     {
       "data-slot": "tooltip-content",
       sideOffset,
-      className: cn2(
+      className: cn(
         "bg-foreground text-background animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2 z-50 w-fit origin-(--radix-tooltip-content-transform-origin) rounded-md px-3 py-1.5 text-xs text-balance",
         className
       ),
@@ -6508,7 +7675,7 @@ var modalVariants = cva(
     }
   }
 );
-var Modal = React47.forwardRef(
+var Modal = React55.forwardRef(
   ({
     className,
     size = "md",
@@ -6526,8 +7693,8 @@ var Modal = React47.forwardRef(
     children,
     ...props
   }, ref) => {
-    const modalRef = React47.useRef(null);
-    React47.useEffect(() => {
+    const modalRef = React55.useRef(null);
+    React55.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -6535,7 +7702,7 @@ var Modal = React47.forwardRef(
         };
       }
     }, [open, preventBodyScroll]);
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -6545,12 +7712,12 @@ var Modal = React47.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       if (open && modalRef.current) {
         modalRef.current.focus();
       }
     }, [open]);
-    const handleBackdropClick = React47.useCallback((event) => {
+    const handleBackdropClick = React55.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop) {
         onOpenChange(false);
       }
@@ -6568,7 +7735,7 @@ var Modal = React47.forwardRef(
         "div",
         {
           ref: modalRef,
-          className: cn2(
+          className: cn(
             modalVariants({ size, variant }),
             "relative z-10 max-h-[90vh] overflow-hidden",
             "animate-in fade-in-0 zoom-in-95 duration-[var(--motion-duration-normal)]",
@@ -6607,7 +7774,7 @@ var Modal = React47.forwardRef(
   }
 );
 Modal.displayName = "Modal";
-var ModalHeader = React47.forwardRef(
+var ModalHeader = React55.forwardRef(
   ({
     className,
     title,
@@ -6619,7 +7786,7 @@ var ModalHeader = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("flex items-center justify-between p-6 border-b border-border", className),
+        className: cn("flex items-center justify-between p-6 border-b border-border", className),
         ...props,
         children: [
           /* @__PURE__ */ jsxs("div", { children: [
@@ -6633,7 +7800,7 @@ var ModalHeader = React47.forwardRef(
   }
 );
 ModalHeader.displayName = "ModalHeader";
-var ModalContent = React47.forwardRef(
+var ModalContent = React55.forwardRef(
   ({
     className,
     children,
@@ -6643,7 +7810,7 @@ var ModalContent = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("p-6", className),
+        className: cn("p-6", className),
         ...props,
         children
       }
@@ -6651,7 +7818,7 @@ var ModalContent = React47.forwardRef(
   }
 );
 ModalContent.displayName = "ModalContent";
-var ModalFooter = React47.forwardRef(
+var ModalFooter = React55.forwardRef(
   ({
     className,
     children,
@@ -6661,7 +7828,7 @@ var ModalFooter = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           "flex items-center justify-end gap-3 p-6 border-t border-border",
           className
         ),
@@ -6672,7 +7839,7 @@ var ModalFooter = React47.forwardRef(
   }
 );
 ModalFooter.displayName = "ModalFooter";
-var ModalTrigger = React47.forwardRef(
+var ModalTrigger = React55.forwardRef(
   ({
     className,
     children,
@@ -6680,7 +7847,7 @@ var ModalTrigger = React47.forwardRef(
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React47.useCallback((event) => {
+    const handleClick = React55.useCallback((event) => {
       onClick?.(event);
       onOpen?.();
     }, [onClick, onOpen]);
@@ -6727,7 +7894,7 @@ var drawerVariants = cva(
     }
   }
 );
-var Drawer = React47.forwardRef(
+var Drawer = React55.forwardRef(
   ({
     className,
     position = "right",
@@ -6746,8 +7913,8 @@ var Drawer = React47.forwardRef(
     children,
     ...props
   }, ref) => {
-    const drawerRef = React47.useRef(null);
-    React47.useEffect(() => {
+    const drawerRef = React55.useRef(null);
+    React55.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -6755,7 +7922,7 @@ var Drawer = React47.forwardRef(
         };
       }
     }, [open, preventBodyScroll]);
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -6765,12 +7932,12 @@ var Drawer = React47.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       if (open && drawerRef.current) {
         drawerRef.current.focus();
       }
     }, [open]);
-    const handleBackdropClick = React47.useCallback((event) => {
+    const handleBackdropClick = React55.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop) {
         onOpenChange(false);
       }
@@ -6781,7 +7948,7 @@ var Drawer = React47.forwardRef(
       top: open ? "animate-in slide-in-from-top duration-[var(--motion-duration-normal)]" : "animate-out slide-out-to-top duration-[var(--motion-duration-normal)]",
       bottom: open ? "animate-in slide-in-from-bottom duration-[var(--motion-duration-normal)]" : "animate-out slide-out-to-bottom duration-[var(--motion-duration-normal)]"
     };
-    const sizeClasses = {
+    const sizeClasses2 = {
       top: open ? "max-h-[80vh]" : "max-h-0",
       bottom: open ? "max-h-[80vh]" : "max-h-0"
     };
@@ -6798,10 +7965,10 @@ var Drawer = React47.forwardRef(
         "div",
         {
           ref: drawerRef,
-          className: cn2(
+          className: cn(
             drawerVariants({ position, variant }),
-            position === "left" && size && sizeClasses[size],
-            position === "right" && size && sizeClasses[size],
+            position === "left" && size && sizeClasses2[size],
+            position === "right" && size && sizeClasses2[size],
             animationClasses[position],
             loading && "opacity-70",
             !open && "pointer-events-none",
@@ -6831,7 +7998,7 @@ var Drawer = React47.forwardRef(
                 }
               )
             ] }),
-            /* @__PURE__ */ jsx("div", { className: cn2(
+            /* @__PURE__ */ jsx("div", { className: cn(
               "overflow-y-auto",
               position === "top" || position === "bottom" ? "max-h-[60vh]" : "h-full"
             ), children })
@@ -6842,7 +8009,7 @@ var Drawer = React47.forwardRef(
   }
 );
 Drawer.displayName = "Drawer";
-var DrawerHeader = React47.forwardRef(
+var DrawerHeader = React55.forwardRef(
   ({
     className,
     title,
@@ -6854,7 +8021,7 @@ var DrawerHeader = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("flex items-center justify-between p-4 border-b border-border", className),
+        className: cn("flex items-center justify-between p-4 border-b border-border", className),
         ...props,
         children: [
           /* @__PURE__ */ jsxs("div", { children: [
@@ -6868,7 +8035,7 @@ var DrawerHeader = React47.forwardRef(
   }
 );
 DrawerHeader.displayName = "DrawerHeader";
-var DrawerContent = React47.forwardRef(
+var DrawerContent = React55.forwardRef(
   ({
     className,
     children,
@@ -6878,7 +8045,7 @@ var DrawerContent = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("p-4", className),
+        className: cn("p-4", className),
         ...props,
         children
       }
@@ -6886,7 +8053,7 @@ var DrawerContent = React47.forwardRef(
   }
 );
 DrawerContent.displayName = "DrawerContent";
-var DrawerFooter = React47.forwardRef(
+var DrawerFooter = React55.forwardRef(
   ({
     className,
     children,
@@ -6896,7 +8063,7 @@ var DrawerFooter = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           "flex items-center justify-end gap-3 p-4 border-t border-border",
           className
         ),
@@ -6907,7 +8074,7 @@ var DrawerFooter = React47.forwardRef(
   }
 );
 DrawerFooter.displayName = "DrawerFooter";
-var DrawerTrigger = React47.forwardRef(
+var DrawerTrigger = React55.forwardRef(
   ({
     className,
     children,
@@ -6915,7 +8082,7 @@ var DrawerTrigger = React47.forwardRef(
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React47.useCallback((event) => {
+    const handleClick = React55.useCallback((event) => {
       onClick?.(event);
       onOpen?.();
     }, [onClick, onOpen]);
@@ -6932,24 +8099,39 @@ var DrawerTrigger = React47.forwardRef(
   }
 );
 DrawerTrigger.displayName = "DrawerTrigger";
+var ZOOM_CONFIG = {
+  MIN: 0.5,
+  MAX: 4,
+  STEP: 0.25,
+  DEFAULT: 1
+};
 var lightboxVariants = cva(
-  "fixed inset-0 z-50 bg-black/90 backdrop-blur-sm",
+  "fixed inset-0 z-50 bg-black/95 backdrop-blur-sm transition-all duration-300",
   {
     variants: {
       variant: {
         default: "",
-        vignette: "bg-gradient-to-b from-black/50 via-black/90 to-black/50"
+        vignette: "bg-gradient-to-b from-black/60 via-black/95 to-black/60",
+        subtle: "bg-black/85 backdrop-blur-none"
+      },
+      animation: {
+        none: "",
+        fade: "animate-in fade-in duration-300",
+        slideUp: "animate-in slide-in-from-bottom duration-300",
+        slideDown: "animate-in slide-in-from-top duration-300"
       }
     },
     defaultVariants: {
-      variant: "default"
+      variant: "default",
+      animation: "fade"
     }
   }
 );
-var Lightbox = React47.forwardRef(
+var Lightbox = React55.forwardRef(
   ({
     className,
     variant = "default",
+    animation = "fade",
     items,
     index,
     onIndexChange,
@@ -6959,16 +8141,33 @@ var Lightbox = React47.forwardRef(
     showThumbnails = false,
     allowDownload = false,
     allowZoom = false,
+    allowRotation = true,
     closeOnBackdrop = true,
     closeOnEscape = true,
+    showProgress = true,
+    enableGestures = true,
+    autoPlayInterval,
+    autoPlayVideos = false,
+    thumbnailSize = "md",
+    thumbnailsPosition = "bottom",
+    mediaContainerClassName,
     ...props
   }, ref) => {
-    const [zoom, setZoom] = React47.useState(1);
-    const [rotation, setRotation] = React47.useState(0);
-    const [isPlaying, setIsPlaying] = React47.useState(false);
-    const videoRef = React47.useRef(null);
+    const [zoom, setZoom] = React55.useState(ZOOM_CONFIG.DEFAULT);
+    const [rotation, setRotation] = React55.useState(0);
+    const [isPlaying, setIsPlaying] = React55.useState(autoPlayVideos);
+    const [isFullscreen, setIsFullscreen] = React55.useState(false);
+    const [touchStart, setTouchStart] = React55.useState(null);
+    const [isDragging, setIsDragging] = React55.useState(false);
+    const [dragOffset, setDragOffset] = React55.useState({ x: 0, y: 0 });
+    const videoRef = React55.useRef(null);
+    const containerRef = React55.useRef(null);
+    const mediaRef = React55.useRef(null);
     const currentItem = items[index];
-    React47.useEffect(() => {
+    const hasMultipleItems = items.length > 1;
+    const isImage = currentItem?.type === "image";
+    const isVideo = currentItem?.type === "video";
+    React55.useEffect(() => {
       if (open) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -6976,234 +8175,454 @@ var Lightbox = React47.forwardRef(
         };
       }
     }, [open]);
-    React47.useEffect(() => {
-      if (!open || !closeOnEscape) return;
-      const handleEscape = (event) => {
-        if (event.key === "Escape") {
-          onOpenChange(false);
-        }
-      };
-      document.addEventListener("keydown", handleEscape);
-      return () => document.removeEventListener("keydown", handleEscape);
-    }, [open, closeOnEscape, onOpenChange]);
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       if (!open) return;
       const handleKeyDown = (event) => {
-        if (event.key === "ArrowLeft") {
-          handlePrevious();
-        } else if (event.key === "ArrowRight") {
-          handleNext();
+        switch (event.key) {
+          case "Escape":
+            if (closeOnEscape) {
+              onOpenChange(false);
+            }
+            break;
+          case "ArrowLeft":
+            handlePrevious();
+            break;
+          case "ArrowRight":
+            handleNext();
+            break;
+          case " ":
+            if (isVideo) {
+              event.preventDefault();
+              handlePlayPause();
+            }
+            break;
+          case "+":
+          case "=":
+            if (allowZoom && isImage) {
+              event.preventDefault();
+              handleZoomIn();
+            }
+            break;
+          case "-":
+            if (allowZoom && isImage) {
+              event.preventDefault();
+              handleZoomOut();
+            }
+            break;
+          case "0":
+            if (allowZoom && isImage) {
+              event.preventDefault();
+              handleResetZoom();
+            }
+            break;
+          case "r":
+          case "R":
+            if (allowRotation && isImage) {
+              event.preventDefault();
+              handleRotate();
+            }
+            break;
+          case "f":
+          case "F":
+            handleToggleFullscreen();
+            break;
         }
       };
       document.addEventListener("keydown", handleKeyDown);
       return () => document.removeEventListener("keydown", handleKeyDown);
-    }, [open, index]);
-    React47.useEffect(() => {
-      setZoom(1);
+    }, [open, index, zoom, isVideo, allowZoom, allowRotation]);
+    React55.useEffect(() => {
+      if (isVideo && autoPlayVideos && videoRef.current && open) {
+        videoRef.current.play().catch(console.error);
+        setIsPlaying(true);
+      }
+    }, [index, isVideo, autoPlayVideos, open]);
+    React55.useEffect(() => {
+      if (!autoPlayInterval || !hasMultipleItems || !open) return;
+      const interval = setInterval(() => {
+        handleNext();
+      }, autoPlayInterval);
+      return () => clearInterval(interval);
+    }, [autoPlayInterval, hasMultipleItems, open, index]);
+    React55.useEffect(() => {
+      setZoom(ZOOM_CONFIG.DEFAULT);
       setRotation(0);
-      setIsPlaying(false);
-    }, [index]);
-    const handlePrevious = React47.useCallback(() => {
+      setDragOffset({ x: 0, y: 0 });
+      setIsDragging(false);
+      if (isVideo) {
+        setIsPlaying(autoPlayVideos);
+      }
+    }, [index, isVideo, autoPlayVideos]);
+    const handlePrevious = React55.useCallback(() => {
       if (index > 0) {
         onIndexChange(index - 1);
+      } else if (hasMultipleItems) {
+        onIndexChange(items.length - 1);
       }
-    }, [index, onIndexChange]);
-    const handleNext = React47.useCallback(() => {
+    }, [index, items.length, onIndexChange, hasMultipleItems]);
+    const handleNext = React55.useCallback(() => {
       if (index < items.length - 1) {
         onIndexChange(index + 1);
+      } else if (hasMultipleItems) {
+        onIndexChange(0);
       }
-    }, [index, items.length, onIndexChange]);
-    const handleZoomIn = React47.useCallback(() => {
-      setZoom((prev) => Math.min(prev + 0.25, 3));
+    }, [index, items.length, onIndexChange, hasMultipleItems]);
+    const handleZoomIn = React55.useCallback(() => {
+      setZoom((prev) => Math.min(prev + ZOOM_CONFIG.STEP, ZOOM_CONFIG.MAX));
     }, []);
-    const handleZoomOut = React47.useCallback(() => {
-      setZoom((prev) => Math.max(prev - 0.25, 0.5));
+    const handleZoomOut = React55.useCallback(() => {
+      setZoom((prev) => Math.max(prev - ZOOM_CONFIG.STEP, ZOOM_CONFIG.MIN));
     }, []);
-    const handleResetZoom = React47.useCallback(() => {
-      setZoom(1);
+    const handleResetZoom = React55.useCallback(() => {
+      setZoom(ZOOM_CONFIG.DEFAULT);
       setRotation(0);
+      setDragOffset({ x: 0, y: 0 });
     }, []);
-    const handleRotate = React47.useCallback(() => {
+    const handleRotate = React55.useCallback(() => {
       setRotation((prev) => (prev + 90) % 360);
     }, []);
-    const handlePlayPause = React47.useCallback(() => {
+    const handlePlayPause = React55.useCallback(() => {
       if (videoRef.current) {
         if (isPlaying) {
           videoRef.current.pause();
         } else {
-          videoRef.current.play();
+          videoRef.current.play().catch(console.error);
         }
         setIsPlaying(!isPlaying);
       }
     }, [isPlaying]);
-    const handleDownload = React47.useCallback(() => {
+    const handleToggleFullscreen = React55.useCallback(() => {
+      if (!containerRef.current) return;
+      if (!document.fullscreenElement) {
+        containerRef.current.requestFullscreen().then(() => {
+          setIsFullscreen(true);
+        });
+      } else {
+        document.exitFullscreen().then(() => {
+          setIsFullscreen(false);
+        });
+      }
+    }, []);
+    React55.useEffect(() => {
+      const handleFullscreenChange = () => {
+        setIsFullscreen(!!document.fullscreenElement);
+      };
+      document.addEventListener("fullscreenchange", handleFullscreenChange);
+      return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
+    }, []);
+    const handleDownload = React55.useCallback(() => {
       if (currentItem?.downloadUrl || currentItem?.url) {
         const link = document.createElement("a");
         link.href = currentItem.downloadUrl || currentItem.url;
         link.download = currentItem.title || "download";
+        link.target = "_blank";
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
       }
     }, [currentItem]);
-    if (!open || !currentItem) return null;
+    const handleTouchStart = React55.useCallback((e) => {
+      if (!enableGestures || !isImage || zoom <= ZOOM_CONFIG.DEFAULT) return;
+      setTouchStart({
+        x: e.touches[0].clientX,
+        y: e.touches[0].clientY
+      });
+      setIsDragging(true);
+    }, [enableGestures, isImage, zoom]);
+    const handleTouchMove = React55.useCallback((e) => {
+      if (!touchStart || !isDragging || !isImage || zoom <= ZOOM_CONFIG.DEFAULT) return;
+      const deltaX = e.touches[0].clientX - touchStart.x;
+      const deltaY = e.touches[0].clientY - touchStart.y;
+      setDragOffset({
+        x: deltaX,
+        y: deltaY
+      });
+    }, [touchStart, isDragging, isImage, zoom]);
+    const handleTouchEnd = React55.useCallback(() => {
+      if (!enableGestures || !isImage) return;
+      if (!isDragging && touchStart && zoom <= ZOOM_CONFIG.DEFAULT) {
+        const swipeThreshold = 50;
+        const deltaX = dragOffset.x;
+        if (Math.abs(deltaX) > swipeThreshold) {
+          if (deltaX > 0) {
+            handlePrevious();
+          } else {
+            handleNext();
+          }
+        }
+      }
+      setTouchStart(null);
+      setIsDragging(false);
+    }, [enableGestures, isImage, zoom, dragOffset, handlePrevious, handleNext, isDragging, touchStart]);
+    const handleDoubleClick = React55.useCallback(() => {
+      if (allowZoom && isImage) {
+        if (zoom > ZOOM_CONFIG.DEFAULT) {
+          handleResetZoom();
+        } else {
+          handleZoomIn();
+        }
+      }
+    }, [allowZoom, isImage, zoom, handleResetZoom, handleZoomIn]);
     const transformStyle = {
-      transform: `scale(${zoom}) rotate(${rotation}deg)`,
-      transition: "transform 0.3s ease"
+      transform: `scale(${zoom}) rotate(${rotation}deg) translate(${dragOffset.x}px, ${dragOffset.y}px)`,
+      transition: isDragging ? "none" : "transform 0.2s ease-out",
+      cursor: zoom > ZOOM_CONFIG.DEFAULT ? "grab" : "default"
     };
-    return /* @__PURE__ */ jsxs(
+    const thumbnailClasses = {
+      sm: "w-12 h-12",
+      md: "w-16 h-16",
+      lg: "w-20 h-20"
+    };
+    const thumbnailsPositionClasses = {
+      bottom: "bottom-20 left-1/2 -translate-x-1/2 flex-row",
+      left: "left-4 top-1/2 -translate-y-1/2 flex-col",
+      right: "right-4 top-1/2 -translate-y-1/2 flex-col"
+    };
+    if (!open || !currentItem) return null;
+    return /* @__PURE__ */ jsx(
       "div",
       {
         ref,
-        className: cn2(lightboxVariants({ variant }), className),
+        className: cn(lightboxVariants({ variant, animation }), className),
         onClick: closeOnBackdrop ? () => onOpenChange(false) : void 0,
         ...props,
-        children: [
-          /* @__PURE__ */ jsxs("div", { className: "relative flex items-center justify-center h-full", children: [
-            items.length > 1 && /* @__PURE__ */ jsxs(Fragment, { children: [
+        children: /* @__PURE__ */ jsxs(
+          "div",
+          {
+            ref: containerRef,
+            className: "relative w-full h-full",
+            onClick: (e) => e.stopPropagation(),
+            children: [
               /* @__PURE__ */ jsx(
                 Button,
                 {
                   variant: "ghost",
-                  size: "lg",
-                  className: "absolute left-4 top-1/2 -translate-y-1/2 h-12 w-12 p-0 text-white hover:bg-white/20",
-                  onClick: handlePrevious,
-                  disabled: index === 0,
-                  children: /* @__PURE__ */ jsx(ChevronLeft, { className: "h-6 w-6" })
+                  size: "icon",
+                  className: "absolute right-4 top-4 z-10 h-10 w-10 text-white hover:bg-white/20 rounded-full backdrop-blur-sm",
+                  onClick: () => onOpenChange(false),
+                  "aria-label": "Fechar lightbox",
+                  children: /* @__PURE__ */ jsx(X, { className: "h-5 w-5" })
                 }
               ),
-              /* @__PURE__ */ jsx(
-                Button,
-                {
-                  variant: "ghost",
-                  size: "lg",
-                  className: "absolute right-4 top-1/2 -translate-y-1/2 h-12 w-12 p-0 text-white hover:bg-white/20",
-                  onClick: handleNext,
-                  disabled: index === items.length - 1,
-                  children: /* @__PURE__ */ jsx(ChevronRight, { className: "h-6 w-6" })
-                }
-              )
-            ] }),
-            /* @__PURE__ */ jsx("div", { className: "max-w-[90vw] max-h-[90vh]", children: currentItem.type === "image" ? /* @__PURE__ */ jsx(
-              "img",
-              {
-                src: currentItem.url,
-                alt: currentItem.title || "",
-                className: "max-w-full max-h-full object-contain",
-                style: transformStyle,
-                onClick: (e) => e.stopPropagation(),
-                onDoubleClick: allowZoom ? handleResetZoom : void 0
-              }
-            ) : /* @__PURE__ */ jsx(
-              "video",
-              {
-                ref: videoRef,
-                src: currentItem.url,
-                className: "max-w-full max-h-full",
-                controls: showControls,
-                onClick: (e) => e.stopPropagation(),
-                onPlay: () => setIsPlaying(true),
-                onPause: () => setIsPlaying(false)
-              }
-            ) }),
-            /* @__PURE__ */ jsx(
-              Button,
-              {
-                variant: "ghost",
-                size: "lg",
-                className: "absolute right-4 top-4 h-12 w-12 p-0 text-white hover:bg-white/20",
-                onClick: () => onOpenChange(false),
-                children: /* @__PURE__ */ jsx(X, { className: "h-6 w-6" })
-              }
-            )
-          ] }),
-          showControls && /* @__PURE__ */ jsx("div", { className: "absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-4", children: /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-between text-white", children: [
-            /* @__PURE__ */ jsxs("div", { className: "max-w-md", children: [
-              currentItem.title && /* @__PURE__ */ jsx("h3", { className: "text-lg font-semibold", children: currentItem.title }),
-              currentItem.description && /* @__PURE__ */ jsx("p", { className: "text-sm opacity-90", children: currentItem.description }),
-              items.length > 1 && /* @__PURE__ */ jsxs("p", { className: "text-xs opacity-75 mt-1", children: [
-                index + 1,
-                " de ",
-                items.length
-              ] })
-            ] }),
-            /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2", children: [
-              currentItem.type === "video" && /* @__PURE__ */ jsx(
-                Button,
-                {
-                  variant: "ghost",
-                  size: "sm",
-                  className: "text-white hover:bg-white/20",
-                  onClick: handlePlayPause,
-                  children: isPlaying ? /* @__PURE__ */ jsx(Pause, { className: "h-4 w-4" }) : /* @__PURE__ */ jsx(Play, { className: "h-4 w-4" })
-                }
-              ),
-              allowZoom && currentItem.type === "image" && /* @__PURE__ */ jsxs(Fragment, { children: [
-                /* @__PURE__ */ jsx(
+              /* @__PURE__ */ jsxs("div", { className: "flex items-center justify-center h-full px-4", children: [
+                hasMultipleItems && /* @__PURE__ */ jsx(
                   Button,
                   {
                     variant: "ghost",
-                    size: "sm",
-                    className: "text-white hover:bg-white/20",
-                    onClick: handleZoomOut,
-                    disabled: zoom <= 0.5,
-                    children: /* @__PURE__ */ jsx(Minus, { className: "h-4 w-4" })
+                    size: "icon",
+                    className: "absolute left-4 top-1/2 -translate-y-1/2 z-10 h-12 w-12 text-white hover:bg-white/20 rounded-full backdrop-blur-sm",
+                    onClick: handlePrevious,
+                    "aria-label": "Item anterior",
+                    children: /* @__PURE__ */ jsx(ChevronLeft, { className: "h-6 w-6" })
                   }
                 ),
                 /* @__PURE__ */ jsx(
-                  Button,
+                  "div",
                   {
-                    variant: "ghost",
-                    size: "sm",
-                    className: "text-white hover:bg-white/20",
-                    onClick: handleZoomIn,
-                    disabled: zoom >= 3,
-                    children: /* @__PURE__ */ jsx(Plus, { className: "h-4 w-4" })
+                    ref: mediaRef,
+                    className: cn(
+                      "relative max-w-[95vw] max-h-[85vh] overflow-hidden",
+                      mediaContainerClassName
+                    ),
+                    onTouchStart: handleTouchStart,
+                    onTouchMove: handleTouchMove,
+                    onTouchEnd: handleTouchEnd,
+                    onDoubleClick: handleDoubleClick,
+                    children: isImage ? /* @__PURE__ */ jsx("div", { className: "w-full h-full flex items-center justify-center", children: /* @__PURE__ */ jsx(
+                      "img",
+                      {
+                        src: currentItem.url,
+                        alt: currentItem.title || "",
+                        className: "max-w-full max-h-full object-contain select-none",
+                        style: transformStyle,
+                        draggable: false
+                      }
+                    ) }) : /* @__PURE__ */ jsx(
+                      "video",
+                      {
+                        ref: videoRef,
+                        src: currentItem.url,
+                        className: "max-w-full max-h-full object-contain rounded-lg",
+                        controls: showControls,
+                        autoPlay: autoPlayVideos,
+                        playsInline: true,
+                        onEnded: () => setIsPlaying(false),
+                        onPlay: () => setIsPlaying(true),
+                        onPause: () => setIsPlaying(false)
+                      }
+                    )
                   }
                 ),
-                /* @__PURE__ */ jsx(
+                hasMultipleItems && /* @__PURE__ */ jsx(
                   Button,
                   {
                     variant: "ghost",
-                    size: "sm",
-                    className: "text-white hover:bg-white/20",
-                    onClick: handleRotate,
-                    children: /* @__PURE__ */ jsx(RotateCw, { className: "h-4 w-4" })
+                    size: "icon",
+                    className: "absolute right-4 top-1/2 -translate-y-1/2 z-10 h-12 w-12 text-white hover:bg-white/20 rounded-full backdrop-blur-sm",
+                    onClick: handleNext,
+                    "aria-label": "Pr\xF3ximo item",
+                    children: /* @__PURE__ */ jsx(ChevronRight, { className: "h-6 w-6" })
                   }
                 )
               ] }),
-              allowDownload && /* @__PURE__ */ jsx(
-                Button,
+              showProgress && hasMultipleItems && /* @__PURE__ */ jsx("div", { className: "absolute top-4 left-1/2 -translate-x-1/2 z-10 flex gap-1", children: items.map((_, idx) => /* @__PURE__ */ jsx(
+                "button",
                 {
-                  variant: "ghost",
-                  size: "sm",
-                  className: "text-white hover:bg-white/20",
-                  onClick: handleDownload,
-                  children: /* @__PURE__ */ jsx(Download, { className: "h-4 w-4" })
+                  className: cn(
+                    "w-2 h-2 rounded-full transition-all duration-300",
+                    idx === index ? "bg-white w-6" : "bg-white/50 hover:bg-white/70"
+                  ),
+                  onClick: () => onIndexChange(idx),
+                  "aria-label": `Ir para item ${idx + 1}`
+                },
+                idx
+              )) }),
+              showControls && /* @__PURE__ */ jsx("div", { className: "absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4", children: /* @__PURE__ */ jsxs("div", { className: "flex flex-col items-center gap-4 max-w-6xl mx-auto", children: [
+                /* @__PURE__ */ jsxs("div", { className: "text-center text-white max-w-3xl", children: [
+                  currentItem.title && /* @__PURE__ */ jsx("h3", { className: "text-xl font-semibold mb-1", children: currentItem.title }),
+                  currentItem.description && /* @__PURE__ */ jsx("p", { className: "text-sm opacity-90", children: currentItem.description }),
+                  hasMultipleItems && /* @__PURE__ */ jsxs("p", { className: "text-xs opacity-75 mt-2", children: [
+                    index + 1,
+                    " de ",
+                    items.length
+                  ] })
+                ] }),
+                /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-2 bg-black/40 backdrop-blur-sm rounded-full px-4 py-2", children: [
+                  isVideo && /* @__PURE__ */ jsxs(Fragment, { children: [
+                    /* @__PURE__ */ jsx(
+                      Button,
+                      {
+                        variant: "ghost",
+                        size: "icon",
+                        className: "h-8 w-8 text-white hover:bg-white/20",
+                        onClick: handlePlayPause,
+                        "aria-label": isPlaying ? "Pausar" : "Reproduzir",
+                        children: isPlaying ? /* @__PURE__ */ jsx(Pause, { className: "h-4 w-4" }) : /* @__PURE__ */ jsx(Play, { className: "h-4 w-4" })
+                      }
+                    ),
+                    /* @__PURE__ */ jsx("div", { className: "w-px h-4 bg-white/30" })
+                  ] }),
+                  allowZoom && isImage && /* @__PURE__ */ jsxs(Fragment, { children: [
+                    /* @__PURE__ */ jsx(
+                      Button,
+                      {
+                        variant: "ghost",
+                        size: "icon",
+                        className: "h-8 w-8 text-white hover:bg-white/20",
+                        onClick: handleZoomOut,
+                        disabled: zoom <= ZOOM_CONFIG.MIN,
+                        "aria-label": "Reduzir zoom",
+                        children: /* @__PURE__ */ jsx(ZoomOut, { className: "h-4 w-4" })
+                      }
+                    ),
+                    /* @__PURE__ */ jsxs("span", { className: "text-xs text-white min-w-[40px] text-center", children: [
+                      Math.round(zoom * 100),
+                      "%"
+                    ] }),
+                    /* @__PURE__ */ jsx(
+                      Button,
+                      {
+                        variant: "ghost",
+                        size: "icon",
+                        className: "h-8 w-8 text-white hover:bg-white/20",
+                        onClick: handleZoomIn,
+                        disabled: zoom >= ZOOM_CONFIG.MAX,
+                        "aria-label": "Aumentar zoom",
+                        children: /* @__PURE__ */ jsx(ZoomIn, { className: "h-4 w-4" })
+                      }
+                    ),
+                    /* @__PURE__ */ jsx(
+                      Button,
+                      {
+                        variant: "ghost",
+                        size: "icon",
+                        className: "h-8 w-8 text-white hover:bg-white/20",
+                        onClick: handleResetZoom,
+                        disabled: zoom === ZOOM_CONFIG.DEFAULT && rotation === 0,
+                        "aria-label": "Resetar zoom",
+                        children: /* @__PURE__ */ jsx(Minimize2, { className: "h-4 w-4" })
+                      }
+                    ),
+                    /* @__PURE__ */ jsx("div", { className: "w-px h-4 bg-white/30" })
+                  ] }),
+                  allowRotation && isImage && /* @__PURE__ */ jsx(
+                    Button,
+                    {
+                      variant: "ghost",
+                      size: "icon",
+                      className: "h-8 w-8 text-white hover:bg-white/20",
+                      onClick: handleRotate,
+                      "aria-label": "Rotacionar",
+                      children: /* @__PURE__ */ jsx(RotateCw, { className: "h-4 w-4" })
+                    }
+                  ),
+                  /* @__PURE__ */ jsx(
+                    Button,
+                    {
+                      variant: "ghost",
+                      size: "icon",
+                      className: "h-8 w-8 text-white hover:bg-white/20",
+                      onClick: handleToggleFullscreen,
+                      "aria-label": isFullscreen ? "Sair da tela cheia" : "Tela cheia",
+                      children: isFullscreen ? /* @__PURE__ */ jsx(Minimize2, { className: "h-4 w-4" }) : /* @__PURE__ */ jsx(Maximize2, { className: "h-4 w-4" })
+                    }
+                  ),
+                  allowDownload && /* @__PURE__ */ jsxs(Fragment, { children: [
+                    /* @__PURE__ */ jsx("div", { className: "w-px h-4 bg-white/30" }),
+                    /* @__PURE__ */ jsx(
+                      Button,
+                      {
+                        variant: "ghost",
+                        size: "icon",
+                        className: "h-8 w-8 text-white hover:bg-white/20",
+                        onClick: handleDownload,
+                        "aria-label": "Download",
+                        children: /* @__PURE__ */ jsx(Download, { className: "h-4 w-4" })
+                      }
+                    )
+                  ] })
+                ] })
+              ] }) }),
+              showThumbnails && hasMultipleItems && /* @__PURE__ */ jsx(
+                "div",
+                {
+                  className: cn(
+                    "absolute z-10 flex gap-2 p-2 bg-black/50 backdrop-blur-sm rounded-lg",
+                    "overflow-x-auto scrollbar-thin scrollbar-thumb-white/20 scrollbar-track-transparent",
+                    thumbnailsPositionClasses[thumbnailsPosition]
+                  ),
+                  children: items.map((item, idx) => /* @__PURE__ */ jsxs(
+                    "button",
+                    {
+                      className: cn(
+                        "relative flex-shrink-0 overflow-hidden rounded transition-all duration-200",
+                        "border-2 focus:outline-none focus:ring-2 focus:ring-white/50",
+                        idx === index ? "border-white ring-2 ring-white/30" : "border-transparent hover:border-white/50",
+                        thumbnailClasses[thumbnailSize]
+                      ),
+                      onClick: () => onIndexChange(idx),
+                      "aria-label": `Ver item ${idx + 1}`,
+                      "aria-current": idx === index,
+                      children: [
+                        item.thumbnailUrl || item.type === "image" ? /* @__PURE__ */ jsx(
+                          "img",
+                          {
+                            src: item.thumbnailUrl || item.url,
+                            alt: item.title || `Item ${idx + 1}`,
+                            className: "w-full h-full object-cover",
+                            loading: "lazy"
+                          }
+                        ) : /* @__PURE__ */ jsx("div", { className: "w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center", children: /* @__PURE__ */ jsx(Play, { className: "h-5 w-5 text-gray-400" }) }),
+                        item.type === "video" && /* @__PURE__ */ jsx("div", { className: "absolute bottom-1 right-1 bg-black/60 rounded-full p-1", children: /* @__PURE__ */ jsx(Play, { className: "h-2 w-2 text-white" }) })
+                      ]
+                    },
+                    idx
+                  ))
                 }
               )
-            ] })
-          ] }) }),
-          showThumbnails && items.length > 1 && /* @__PURE__ */ jsx("div", { className: "absolute bottom-20 left-1/2 -translate-x-1/2 flex gap-2 p-2 bg-black/60 rounded-lg", children: items.map((item, itemIndex) => /* @__PURE__ */ jsx(
-            "button",
-            {
-              className: cn2(
-                "w-16 h-16 rounded overflow-hidden border-2 transition-all",
-                itemIndex === index ? "border-white" : "border-transparent hover:border-white/50"
-              ),
-              onClick: () => onIndexChange(itemIndex),
-              children: item.type === "image" ? /* @__PURE__ */ jsx(
-                "img",
-                {
-                  src: item.url,
-                  alt: item.title || "",
-                  className: "w-full h-full object-cover"
-                }
-              ) : /* @__PURE__ */ jsx("div", { className: "w-full h-full bg-muted flex items-center justify-center", children: /* @__PURE__ */ jsx(Play, { className: "h-6 w-6 text-muted-foreground" }) })
-            },
-            itemIndex
-          )) })
-        ]
+            ]
+          }
+        )
       }
     );
   }
@@ -7232,7 +8651,7 @@ var confirmDialogVariants = cva(
     }
   }
 );
-var ConfirmDialog = React47.forwardRef(
+var ConfirmDialog = React55.forwardRef(
   ({
     className,
     variant = "default",
@@ -7253,9 +8672,9 @@ var ConfirmDialog = React47.forwardRef(
     confirmVariant = "default",
     ...props
   }, ref) => {
-    const [internalLoading, setInternalLoading] = React47.useState(false);
+    const [internalLoading, setInternalLoading] = React55.useState(false);
     const isLoading = loading || internalLoading;
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -7265,7 +8684,7 @@ var ConfirmDialog = React47.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    const handleConfirm = React47.useCallback(async () => {
+    const handleConfirm = React55.useCallback(async () => {
       if (isLoading) return;
       try {
         if (onConfirm) {
@@ -7279,14 +8698,14 @@ var ConfirmDialog = React47.forwardRef(
         setInternalLoading(false);
       }
     }, [isLoading, onConfirm, closeOnConfirm, onOpenChange]);
-    const handleCancel = React47.useCallback(() => {
+    const handleCancel = React55.useCallback(() => {
       if (isLoading) return;
       onCancel?.();
       if (closeOnCancel) {
         onOpenChange(false);
       }
     }, [isLoading, onCancel, closeOnCancel, onOpenChange]);
-    const handleBackdropClick = React47.useCallback((event) => {
+    const handleBackdropClick = React55.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop && !isLoading) {
         onOpenChange(false);
       }
@@ -7333,7 +8752,7 @@ var ConfirmDialog = React47.forwardRef(
         "div",
         {
           ref,
-          className: cn2(
+          className: cn(
             confirmDialogVariants({ variant, size }),
             "relative z-10 p-6 animate-in fade-in-0 zoom-in-95 duration-[var(--motion-duration-normal)]",
             className
@@ -7389,22 +8808,22 @@ var ConfirmDialog = React47.forwardRef(
 );
 ConfirmDialog.displayName = "ConfirmDialog";
 function useConfirm() {
-  const [isOpen, setIsOpen] = React47.useState(false);
-  const [options, setOptions] = React47.useState(null);
-  const confirm = React47.useCallback((options2) => {
+  const [isOpen, setIsOpen] = React55.useState(false);
+  const [options, setOptions] = React55.useState(null);
+  const confirm = React55.useCallback((options2) => {
     setOptions(options2);
     setIsOpen(true);
   }, []);
-  const handleConfirm = React47.useCallback(async () => {
+  const handleConfirm = React55.useCallback(async () => {
     if (options.onConfirm) {
       await options.onConfirm();
     }
     setIsOpen(false);
   }, [options]);
-  const handleCancel = React47.useCallback(() => {
+  const handleCancel = React55.useCallback(() => {
     setIsOpen(false);
   }, []);
-  const ConfirmDialogComponent = React47.useCallback(() => /* @__PURE__ */ jsx(
+  const ConfirmDialogComponent = React55.useCallback(() => /* @__PURE__ */ jsx(
     ConfirmDialog,
     {
       open: isOpen,
@@ -7459,24 +8878,24 @@ function getWeekdayLabels(locale) {
     return d.toLocaleDateString(locale, { weekday: "short" });
   });
 }
-function Calendar({ className, selected, onSelect, disabled }) {
+function Calendar2({ className, selected, onSelect, disabled }) {
   const initialMonth = selected ?? /* @__PURE__ */ new Date();
-  const [currentMonth, setCurrentMonth] = React47.useState(
+  const [currentMonth, setCurrentMonth] = React55.useState(
     startOfDay(initialMonth)
   );
-  const today = React47.useMemo(() => startOfDay(/* @__PURE__ */ new Date()), []);
-  const days = React47.useMemo(() => getMonthGrid(currentMonth), [currentMonth]);
-  const weekdayLabels = React47.useMemo(
+  const today = React55.useMemo(() => startOfDay(/* @__PURE__ */ new Date()), []);
+  const days = React55.useMemo(() => getMonthGrid(currentMonth), [currentMonth]);
+  const weekdayLabels = React55.useMemo(
     () => getWeekdayLabels("pt-BR"),
     []
   );
-  const handlePrevMonth = React47.useCallback(() => {
+  const handlePrevMonth = React55.useCallback(() => {
     setCurrentMonth((prev) => addMonths(prev, -1));
   }, []);
-  const handleNextMonth = React47.useCallback(() => {
+  const handleNextMonth = React55.useCallback(() => {
     setCurrentMonth((prev) => addMonths(prev, 1));
   }, []);
-  const handleSelect = React47.useCallback(
+  const handleSelect = React55.useCallback(
     (date) => {
       if (disabled?.(date)) return;
       if (onSelect) {
@@ -7489,7 +8908,7 @@ function Calendar({ className, selected, onSelect, disabled }) {
     },
     [disabled, onSelect, selected]
   );
-  const monthLabel = React47.useMemo(
+  const monthLabel = React55.useMemo(
     () => currentMonth.toLocaleDateString("pt-BR", {
       month: "long",
       year: "numeric"
@@ -7499,7 +8918,7 @@ function Calendar({ className, selected, onSelect, disabled }) {
   return /* @__PURE__ */ jsxs(
     "div",
     {
-      className: cn2(
+      className: cn(
         "bg-background group/calendar p-3 [--cell-size:2rem] rounded-lg border border-border shadow-sm",
         className
       ),
@@ -7573,11 +8992,11 @@ function CalendarDayButton({
   onSelect,
   className
 }) {
-  const handleClick = React47.useCallback(() => {
+  const handleClick = React55.useCallback(() => {
     if (disabled) return;
     onSelect?.(date);
   }, [date, disabled, onSelect]);
-  const baseClasses = cn2(
+  const baseClasses = cn(
     "flex aspect-square h-9 w-9 items-center justify-center rounded-md text-sm font-normal transition-colors",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50",
     isOutside && "text-muted-foreground/60",
@@ -7600,15 +9019,15 @@ function CalendarDayButton({
     }
   );
 }
-var CarouselContext = React47.createContext(null);
+var CarouselContext = React55.createContext(null);
 function useCarousel() {
-  const context = React47.useContext(CarouselContext);
+  const context = React55.useContext(CarouselContext);
   if (!context) {
     throw new Error("useCarousel must be used within a <Carousel />");
   }
   return context;
 }
-var Carousel = React47.forwardRef(
+var Carousel = React55.forwardRef(
   ({
     orientation = "horizontal",
     opts,
@@ -7625,22 +9044,22 @@ var Carousel = React47.forwardRef(
       },
       plugins
     );
-    const [canScrollPrev, setCanScrollPrev] = React47.useState(false);
-    const [canScrollNext, setCanScrollNext] = React47.useState(false);
-    const onSelect = React47.useCallback((api2) => {
+    const [canScrollPrev, setCanScrollPrev] = React55.useState(false);
+    const [canScrollNext, setCanScrollNext] = React55.useState(false);
+    const onSelect = React55.useCallback((api2) => {
       if (!api2) {
         return;
       }
       setCanScrollPrev(api2.canScrollPrev());
       setCanScrollNext(api2.canScrollNext());
     }, []);
-    const scrollPrev = React47.useCallback(() => {
+    const scrollPrev = React55.useCallback(() => {
       api?.scrollPrev();
     }, [api]);
-    const scrollNext = React47.useCallback(() => {
+    const scrollNext = React55.useCallback(() => {
       api?.scrollNext();
     }, [api]);
-    const handleKeyDown = React47.useCallback(
+    const handleKeyDown = React55.useCallback(
       (event) => {
         if (event.key === "ArrowLeft") {
           event.preventDefault();
@@ -7652,13 +9071,13 @@ var Carousel = React47.forwardRef(
       },
       [scrollPrev, scrollNext]
     );
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       if (!api || !setApi) {
         return;
       }
       setApi(api);
     }, [api, setApi]);
-    React47.useEffect(() => {
+    React55.useEffect(() => {
       if (!api) {
         return;
       }
@@ -7669,7 +9088,7 @@ var Carousel = React47.forwardRef(
         api?.off("select", onSelect);
       };
     }, [api, onSelect]);
-    const contextValue = React47.useMemo(() => ({
+    const contextValue = React55.useMemo(() => ({
       carouselRef,
       api,
       opts,
@@ -7684,7 +9103,7 @@ var Carousel = React47.forwardRef(
       {
         ref,
         onKeyDownCapture: handleKeyDown,
-        className: cn2("relative", className),
+        className: cn("relative", className),
         "aria-label": "Carousel",
         "aria-roledescription": "carousel",
         ...props,
@@ -7694,13 +9113,13 @@ var Carousel = React47.forwardRef(
   }
 );
 Carousel.displayName = "Carousel";
-var CarouselContent = React47.forwardRef(({ className, ...props }, ref) => {
+var CarouselContent = React55.forwardRef(({ className, ...props }, ref) => {
   const { carouselRef, orientation } = useCarousel();
   return /* @__PURE__ */ jsx("div", { ref: carouselRef, className: "overflow-hidden", children: /* @__PURE__ */ jsx(
     "div",
     {
       ref,
-      className: cn2(
+      className: cn(
         "flex",
         orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
         className
@@ -7710,14 +9129,14 @@ var CarouselContent = React47.forwardRef(({ className, ...props }, ref) => {
   ) });
 });
 CarouselContent.displayName = "CarouselContent";
-var CarouselItem = React47.forwardRef(({ className, ...props }, ref) => {
+var CarouselItem = React55.forwardRef(({ className, ...props }, ref) => {
   const { orientation } = useCarousel();
   return /* @__PURE__ */ jsx(
     "fieldset",
     {
       ref,
       "aria-roledescription": "slide",
-      className: cn2(
+      className: cn(
         "min-w-0 shrink-0 grow-0 basis-full",
         orientation === "horizontal" ? "pl-4" : "pt-4",
         className
@@ -7727,7 +9146,7 @@ var CarouselItem = React47.forwardRef(({ className, ...props }, ref) => {
   );
 });
 CarouselItem.displayName = "CarouselItem";
-var CarouselPrevious = React47.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+var CarouselPrevious = React55.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
   return /* @__PURE__ */ jsxs(
     Button,
@@ -7735,7 +9154,7 @@ var CarouselPrevious = React47.forwardRef(({ className, variant = "outline", siz
       ref,
       variant,
       size,
-      className: cn2(
+      className: cn(
         "absolute h-8 w-8 rounded-full",
         orientation === "horizontal" ? "-left-12 top-1/2 -translate-y-1/2" : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
         className
@@ -7751,7 +9170,7 @@ var CarouselPrevious = React47.forwardRef(({ className, variant = "outline", siz
   );
 });
 CarouselPrevious.displayName = "CarouselPrevious";
-var CarouselNext = React47.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+var CarouselNext = React55.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
   return /* @__PURE__ */ jsxs(
     Button,
@@ -7759,7 +9178,7 @@ var CarouselNext = React47.forwardRef(({ className, variant = "outline", size = 
       ref,
       variant,
       size,
-      className: cn2(
+      className: cn(
         "absolute h-8 w-8 rounded-full",
         orientation === "horizontal" ? "-right-12 top-1/2 -translate-y-1/2" : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
@@ -7802,7 +9221,7 @@ var chipVariants = cva(
     }
   }
 );
-var Chip = React47.forwardRef(
+var Chip = React55.forwardRef(
   ({
     className,
     variant,
@@ -7822,7 +9241,7 @@ var Chip = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           chipVariants({ variant, size, removable }),
           className
         ),
@@ -7834,7 +9253,7 @@ var Chip = React47.forwardRef(
             {
               type: "button",
               onClick: handleRemove,
-              className: cn2(
+              className: cn(
                 "inline-flex items-center justify-center rounded-full p-0.5",
                 "transition-colors duration-[var(--motion-duration-fast)]",
                 "hover:bg-black/10 dark:hover:bg-white/10",
@@ -7865,7 +9284,7 @@ var spacingClasses5 = {
   md: "gap-2",
   lg: "gap-3"
 };
-var ChipGroup = React47.forwardRef(
+var ChipGroup = React55.forwardRef(
   ({
     className,
     spacing = "md",
@@ -7877,7 +9296,7 @@ var ChipGroup = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           "inline-flex items-center",
           spacingClasses5[spacing],
           wrap && "flex-wrap",
@@ -7891,8 +9310,8 @@ var ChipGroup = React47.forwardRef(
 );
 ChipGroup.displayName = "ChipGroup";
 function useMasonryLayout(containerRef, columns, gap) {
-  const [positions, setPositions] = React47.useState([]);
-  React47.useEffect(() => {
+  const [positions, setPositions] = React55.useState([]);
+  React55.useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;
     const containerWidth = container.offsetWidth;
@@ -7913,7 +9332,7 @@ function useMasonryLayout(containerRef, columns, gap) {
   }, [columns, gap]);
   return positions;
 }
-var Masonry = React47.forwardRef(
+var Masonry = React55.forwardRef(
   ({
     className,
     columns = { sm: 1, md: 2, lg: 3, xl: 4 },
@@ -7921,9 +9340,9 @@ var Masonry = React47.forwardRef(
     children,
     ...props
   }, ref) => {
-    const innerRef = React47.useRef(null);
-    const [resolvedColumns, setResolvedColumns] = React47.useState(4);
-    React47.useEffect(() => {
+    const innerRef = React55.useRef(null);
+    const [resolvedColumns, setResolvedColumns] = React55.useState(4);
+    React55.useEffect(() => {
       const handleResize = () => {
         if (typeof columns === "number") {
           setResolvedColumns(columns);
@@ -7942,13 +9361,13 @@ var Masonry = React47.forwardRef(
     }, [columns]);
     const gapValue = typeof gap === "number" ? gap : parseInt(gap) || 16;
     const positions = useMasonryLayout(innerRef, resolvedColumns, gapValue);
-    const childrenWithPositions = React47.Children.toArray(children).map((child, index) => {
-      if (!React47.isValidElement(child)) return child;
+    const childrenWithPositions = React55.Children.toArray(children).map((child, index) => {
+      if (!React55.isValidElement(child)) return child;
       const position = positions[index];
       if (!position) return child;
       const containerWidth = innerRef.current?.offsetWidth || 0;
       const columnWidth = (containerWidth - gapValue * (resolvedColumns - 1)) / resolvedColumns;
-      return React47.cloneElement(child, {
+      return React55.cloneElement(child, {
         style: {
           ...child.props.style,
           position: "absolute",
@@ -7968,7 +9387,7 @@ var Masonry = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("relative", className),
+        className: cn("relative", className),
         ...props,
         children: /* @__PURE__ */ jsx(
           "div",
@@ -7984,13 +9403,13 @@ var Masonry = React47.forwardRef(
   }
 );
 Masonry.displayName = "Masonry";
-var MasonryItem = React47.forwardRef(
+var MasonryItem = React55.forwardRef(
   ({ className, children, ...props }, ref) => {
     return /* @__PURE__ */ jsx(
       "div",
       {
         ref,
-        className: cn2("overflow-hidden", className),
+        className: cn("overflow-hidden", className),
         ...props,
         children
       }
@@ -8029,7 +9448,7 @@ var timelineDotVariants = cva(
     }
   }
 );
-var TimelineItem = React47.forwardRef(
+var TimelineItem = React55.forwardRef(
   ({
     className,
     status = "default",
@@ -8044,7 +9463,7 @@ var TimelineItem = React47.forwardRef(
   }, ref) => {
     let IconComponent = icon;
     if (!IconComponent && iconType) {
-      IconComponent = React47.createElement(defaultIcons2[iconType], {
+      IconComponent = React55.createElement(defaultIcons2[iconType], {
         className: "h-2.5 w-2.5 text-primary-foreground"
       });
     }
@@ -8052,7 +9471,7 @@ var TimelineItem = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("relative flex gap-4 pb-8 last:pb-0", className),
+        className: cn("relative flex gap-4 pb-8 last:pb-0", className),
         ...props,
         children: [
           /* @__PURE__ */ jsx(
@@ -8062,7 +9481,7 @@ var TimelineItem = React47.forwardRef(
               style: { "--dot-size": dotSize === "sm" ? "12px" : dotSize === "lg" ? "20px" : "16px" }
             }
           ),
-          /* @__PURE__ */ jsx("div", { className: cn2(timelineDotVariants({ status, size: dotSize })), children: IconComponent }),
+          /* @__PURE__ */ jsx("div", { className: cn(timelineDotVariants({ status, size: dotSize })), children: IconComponent }),
           /* @__PURE__ */ jsxs("div", { className: "flex-1 min-w-0", children: [
             (date || title) && /* @__PURE__ */ jsxs("div", { className: "mb-1 flex items-baseline gap-2", children: [
               date && /* @__PURE__ */ jsx("time", { className: "text-xs text-muted-foreground whitespace-nowrap", children: date }),
@@ -8077,7 +9496,7 @@ var TimelineItem = React47.forwardRef(
   }
 );
 TimelineItem.displayName = "TimelineItem";
-var Timeline = React47.forwardRef(
+var Timeline = React55.forwardRef(
   ({
     className,
     children,
@@ -8087,13 +9506,13 @@ var Timeline = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("space-y-0", className),
+        className: cn("space-y-0", className),
         ...props,
-        children: React47.Children.map(children, (child) => {
-          if (!React47.isValidElement(child)) return child;
-          return React47.cloneElement(child, {
+        children: React55.Children.map(children, (child) => {
+          if (!React55.isValidElement(child)) return child;
+          return React55.cloneElement(child, {
             ...child.props,
-            className: cn2(child.props.className)
+            className: cn(child.props.className)
           });
         })
       }
@@ -8101,13 +9520,13 @@ var Timeline = React47.forwardRef(
   }
 );
 Timeline.displayName = "Timeline";
-var TimelineSeparator = React47.forwardRef(
+var TimelineSeparator = React55.forwardRef(
   ({ className, children, ...props }, ref) => {
     return /* @__PURE__ */ jsx(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           "relative my-4 py-2",
           "before:absolute before:left-[calc(var(--dot-size)/2)] before:top-0 before:h-full before:w-0.5 before:bg-border",
           className
@@ -8148,7 +9567,7 @@ var starSizeClasses = {
   md: "h-5 w-5",
   lg: "h-6 w-6"
 };
-var Rating = React47.forwardRef(
+var Rating = React55.forwardRef(
   ({
     className,
     value = 0,
@@ -8166,8 +9585,8 @@ var Rating = React47.forwardRef(
     color,
     ...props
   }, ref) => {
-    const [hoverValue, setHoverValue] = React47.useState(0);
-    const [isHovering, setIsHovering] = React47.useState(false);
+    const [hoverValue, setHoverValue] = React55.useState(0);
+    const [isHovering, setIsHovering] = React55.useState(false);
     const displayValue = isHovering ? hoverValue : value;
     const formattedValue = allowHalf ? displayValue.toFixed(1) : Math.round(displayValue).toString();
     const handleStarClick = (starValue) => {
@@ -8214,7 +9633,7 @@ var Rating = React47.forwardRef(
       return /* @__PURE__ */ jsx(
         "div",
         {
-          className: cn2(
+          className: cn(
             "cursor-pointer transition-all duration-[var(--motion-duration-fast)]",
             "hover:scale-110 active:scale-95",
             readOnly && "cursor-default",
@@ -8232,13 +9651,13 @@ var Rating = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(ratingVariants({ size, orientation }), className),
+        className: cn(ratingVariants({ size, orientation }), className),
         onMouseEnter: handleMouseEnter,
         onMouseLeave: handleMouseLeave,
         ...props,
         children: /* @__PURE__ */ jsxs("div", { className: "flex items-center", children: [
           Array.from({ length: max }, (_, index) => renderStar(index)),
-          showValue && /* @__PURE__ */ jsxs("span", { className: cn2(
+          showValue && /* @__PURE__ */ jsxs("span", { className: cn(
             "ml-2 text-sm font-medium",
             orientation === "vertical" && "ml-0 mt-2"
           ), children: [
@@ -8257,7 +9676,7 @@ var progressHeightClasses = {
   md: "h-2",
   lg: "h-3"
 };
-var RatingProgress = React47.forwardRef(
+var RatingProgress = React55.forwardRef(
   ({
     className,
     value,
@@ -8267,19 +9686,19 @@ var RatingProgress = React47.forwardRef(
     ...props
   }, ref) => {
     const percentage = Math.min(100, Math.max(0, value));
-    return /* @__PURE__ */ jsxs("div", { className: cn2("w-full", className), ...props, children: [
+    return /* @__PURE__ */ jsxs("div", { className: cn("w-full", className), ...props, children: [
       /* @__PURE__ */ jsx(
         "div",
         {
           ref,
-          className: cn2(
+          className: cn(
             "w-full bg-muted rounded-full overflow-hidden",
             progressHeightClasses[height]
           ),
           children: /* @__PURE__ */ jsx(
             "div",
             {
-              className: cn2(
+              className: cn(
                 "h-full bg-primary transition-all duration-[var(--motion-duration-normal)] ease-[var(--motion-easing-ease-out)]",
                 color && "opacity-80"
               ),
@@ -8299,7 +9718,7 @@ var RatingProgress = React47.forwardRef(
   }
 );
 RatingProgress.displayName = "RatingProgress";
-var RatingSummary = React47.forwardRef(
+var RatingSummary = React55.forwardRef(
   ({
     className,
     average,
@@ -8311,7 +9730,7 @@ var RatingSummary = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("space-y-2", className),
+        className: cn("space-y-2", className),
         ...props,
         children: [
           /* @__PURE__ */ jsxs("div", { className: "flex items-center gap-4", children: [
@@ -8396,9 +9815,9 @@ function CelestialBackground({
   const config = STAR_CONFIGS[variant];
   const [stars, setStars] = useState([]);
   const [isMounted, setIsMounted] = useState(false);
-  const cyan400 = tokens?.primitives?.color?.blue?.[400] || "#60a5fa";
-  const purple400 = tokens?.primitives?.color?.purple?.[400] || "#c084fc";
-  const pink500 = tokens?.primitives?.color?.red?.[500] || "#ef4444";
+  const cyan400 = tokens.primitives.color.cyan["400"];
+  const purple400 = tokens.primitives.color.purple["400"];
+  const pink500 = tokens.primitives.color.pink["500"];
   useEffect(() => {
     setStars(generateStars(config.count, [...config.sizes], [...config.opacity]));
     setIsMounted(true);
@@ -8484,7 +9903,7 @@ function FloatingGrid({
       time += 0.01;
       const pulseIntensity = intensity * (0.8 + Math.sin(time) * 0.2);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const cyan400 = tokens?.primitives?.color?.blue?.[400] || "#60a5fa";
+      const cyan400 = tokens.primitives.color.cyan["400"];
       const strokeColor = hexToRGBA(cyan400, pulseIntensity * 1.2);
       const fillColor = hexToRGBA(cyan400, pulseIntensity * 0.6);
       ctx.strokeStyle = strokeColor;
@@ -8642,7 +10061,7 @@ function MatrixBackgroundInner({ variant = "global" }) {
     /* @__PURE__ */ jsx(
       "div",
       {
-        className: cn2(
+        className: cn(
           "pointer-events-none overflow-hidden select-none",
           positionClass
         ),
@@ -8659,7 +10078,7 @@ function MatrixBackgroundInner({ variant = "global" }) {
           return /* @__PURE__ */ jsx(
             "div",
             {
-              className: cn2(
+              className: cn(
                 "absolute top-[-110%] h-[220%]",
                 "animate-matrix-fall"
               ),
@@ -8678,7 +10097,7 @@ function MatrixBackgroundInner({ variant = "global" }) {
                 return /* @__PURE__ */ jsx(
                   "span",
                   {
-                    className: cn2(
+                    className: cn(
                       "block font-mono leading-tight",
                       idx === 0 && "font-bold"
                     ),
@@ -8953,30 +10372,6 @@ function BackToTopButton() {
 function BackToTop() {
   return /* @__PURE__ */ jsx(BackToTopButton, {});
 }
-var Switch = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  SwitchPrimitives.Root,
-  {
-    className: cn2(
-      "peer inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent",
-      "transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-      "disabled:cursor-not-allowed disabled:opacity-50",
-      "data-[state=checked]:bg-primary data-[state=unchecked]:bg-input",
-      className
-    ),
-    ...props,
-    ref,
-    children: /* @__PURE__ */ jsx(
-      SwitchPrimitives.Thumb,
-      {
-        className: cn2(
-          "pointer-events-none block h-5 w-5 rounded-full bg-background shadow-lg ring-0 transition-transform",
-          "data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0"
-        )
-      }
-    )
-  }
-));
-Switch.displayName = SwitchPrimitives.Root.displayName;
 
 // src/lib/cookie-utils.ts
 var COOKIE_CONSENT_KEY = "cookie-consent";
@@ -9237,7 +10632,7 @@ function CookieBanner() {
   return /* @__PURE__ */ jsx(
     "dialog",
     {
-      className: cn2(
+      className: cn(
         "fixed bottom-0 left-0 right-0 p-4 sm:p-6",
         "animate-in slide-in-from-bottom-5 duration-300",
         "z-50"
@@ -9248,7 +10643,7 @@ function CookieBanner() {
       children: /* @__PURE__ */ jsx(
         Card,
         {
-          className: cn2(
+          className: cn(
             "mx-auto max-w-4xl shadow-2xl",
             "dark:bg-black/95 dark:border-cyan-400/20",
             "bg-background/95 backdrop-blur-xl",
@@ -9262,7 +10657,7 @@ function CookieBanner() {
                   /* @__PURE__ */ jsx(
                     "div",
                     {
-                      className: cn2(
+                      className: cn(
                         "p-3 rounded-lg",
                         "bg-primary/10 dark:bg-cyan-400/10",
                         "border border-primary/20 dark:border-cyan-400/20"
@@ -9275,7 +10670,7 @@ function CookieBanner() {
                       CardTitle,
                       {
                         id: "cookie-banner-title",
-                        className: cn2(
+                        className: cn(
                           "text-lg",
                           "font-bold",
                           "dark:text-cyan-200"
@@ -9287,7 +10682,7 @@ function CookieBanner() {
                       CardDescription,
                       {
                         id: "cookie-banner-description",
-                        className: cn2("text-sm", "text-muted-foreground"),
+                        className: cn("text-sm", "text-muted-foreground"),
                         children: [
                           "Utilizamos cookies para melhorar sua experi\xEAncia de navega\xE7\xE3o, analisar o tr\xE1fego do site e personalizar conte\xFAdo. Ao continuar navegando, voc\xEA concorda com nossa utiliza\xE7\xE3o de cookies.",
                           " ",
@@ -9346,7 +10741,7 @@ function CookieBanner() {
                   Button,
                   {
                     onClick: handleAcceptAll,
-                    className: cn2(
+                    className: cn(
                       "w-full sm:w-auto",
                       "bg-primary hover:bg-primary/90",
                       "dark:bg-cyan-500 dark:hover:bg-cyan-600"
@@ -9367,7 +10762,7 @@ function CookieBanner() {
                   /* @__PURE__ */ jsx(
                     "div",
                     {
-                      className: cn2(
+                      className: cn(
                         "p-3 rounded-lg",
                         "bg-primary/10 dark:bg-cyan-400/10",
                         "border border-primary/20 dark:border-cyan-400/20"
@@ -9379,7 +10774,7 @@ function CookieBanner() {
                     /* @__PURE__ */ jsx(
                       CardTitle,
                       {
-                        className: cn2(
+                        className: cn(
                           "text-lg",
                           "font-bold",
                           "dark:text-cyan-200"
@@ -9387,7 +10782,7 @@ function CookieBanner() {
                         children: "Personalizar Cookies"
                       }
                     ),
-                    /* @__PURE__ */ jsx(CardDescription, { className: cn2("text-sm"), children: "Escolha quais tipos de cookies voc\xEA deseja permitir. Os cookies essenciais s\xE3o necess\xE1rios para o funcionamento do site." })
+                    /* @__PURE__ */ jsx(CardDescription, { className: cn("text-sm"), children: "Escolha quais tipos de cookies voc\xEA deseja permitir. Os cookies essenciais s\xE3o necess\xE1rios para o funcionamento do site." })
                   ] })
                 ] }),
                 /* @__PURE__ */ jsx(
@@ -9411,7 +10806,7 @@ function CookieBanner() {
                         Label,
                         {
                           htmlFor: "essential",
-                          className: cn2(
+                          className: cn(
                             "text-base",
                             "font-semibold",
                             "cursor-not-allowed"
@@ -9422,7 +10817,7 @@ function CookieBanner() {
                       /* @__PURE__ */ jsx(
                         "span",
                         {
-                          className: cn2(
+                          className: cn(
                             "px-2 py-0.5 rounded text-xs",
                             "bg-primary text-primary-foreground",
                             "font-semibold"
@@ -9431,7 +10826,7 @@ function CookieBanner() {
                         }
                       )
                     ] }),
-                    /* @__PURE__ */ jsx("p", { className: cn2("text-sm", "text-muted-foreground"), children: "Necess\xE1rios para o funcionamento b\xE1sico do site. N\xE3o podem ser desativados." })
+                    /* @__PURE__ */ jsx("p", { className: cn("text-sm", "text-muted-foreground"), children: "Necess\xE1rios para o funcionamento b\xE1sico do site. N\xE3o podem ser desativados." })
                   ] }),
                   /* @__PURE__ */ jsx(
                     Switch,
@@ -9449,7 +10844,7 @@ function CookieBanner() {
                       Label,
                       {
                         htmlFor: "performance",
-                        className: cn2(
+                        className: cn(
                           "text-base",
                           "font-semibold",
                           "cursor-pointer"
@@ -9457,7 +10852,7 @@ function CookieBanner() {
                         children: "Cookies de Performance"
                       }
                     ),
-                    /* @__PURE__ */ jsx("p", { className: cn2("text-sm", "text-muted-foreground"), children: "Nos ajudam a entender como voc\xEA utiliza o site para melhorarmos a performance." })
+                    /* @__PURE__ */ jsx("p", { className: cn("text-sm", "text-muted-foreground"), children: "Nos ajudam a entender como voc\xEA utiliza o site para melhorarmos a performance." })
                   ] }),
                   /* @__PURE__ */ jsx(
                     Switch,
@@ -9475,7 +10870,7 @@ function CookieBanner() {
                       Label,
                       {
                         htmlFor: "functionality",
-                        className: cn2(
+                        className: cn(
                           "text-base",
                           "font-semibold",
                           "cursor-pointer"
@@ -9483,7 +10878,7 @@ function CookieBanner() {
                         children: "Cookies de Funcionalidade"
                       }
                     ),
-                    /* @__PURE__ */ jsx("p", { className: cn2("text-sm", "text-muted-foreground"), children: "Permitem que o site se lembre de suas prefer\xEAncias e ofere\xE7a funcionalidades aprimoradas." })
+                    /* @__PURE__ */ jsx("p", { className: cn("text-sm", "text-muted-foreground"), children: "Permitem que o site se lembre de suas prefer\xEAncias e ofere\xE7a funcionalidades aprimoradas." })
                   ] }),
                   /* @__PURE__ */ jsx(
                     Switch,
@@ -9501,7 +10896,7 @@ function CookieBanner() {
                       Label,
                       {
                         htmlFor: "analytics",
-                        className: cn2(
+                        className: cn(
                           "text-base",
                           "font-semibold",
                           "cursor-pointer"
@@ -9509,7 +10904,7 @@ function CookieBanner() {
                         children: "Cookies de Analytics"
                       }
                     ),
-                    /* @__PURE__ */ jsx("p", { className: cn2("text-sm", "text-muted-foreground"), children: "Coletam informa\xE7\xF5es sobre como voc\xEA utiliza o site para an\xE1lise e melhorias." })
+                    /* @__PURE__ */ jsx("p", { className: cn("text-sm", "text-muted-foreground"), children: "Coletam informa\xE7\xF5es sobre como voc\xEA utiliza o site para an\xE1lise e melhorias." })
                   ] }),
                   /* @__PURE__ */ jsx(
                     Switch,
@@ -9521,7 +10916,7 @@ function CookieBanner() {
                     }
                   )
                 ] }),
-                /* @__PURE__ */ jsx("div", { className: "pt-2", children: /* @__PURE__ */ jsxs("p", { className: cn2("text-xs", "text-muted-foreground"), children: [
+                /* @__PURE__ */ jsx("div", { className: "pt-2", children: /* @__PURE__ */ jsxs("p", { className: cn("text-xs", "text-muted-foreground"), children: [
                   "Para mais informa\xE7\xF5es, consulte nossa",
                   " ",
                   /* @__PURE__ */ jsx(
@@ -9559,7 +10954,7 @@ function CookieBanner() {
                     Button,
                     {
                       onClick: handleSavePreferences,
-                      className: cn2(
+                      className: cn(
                         "w-full sm:w-auto",
                         "bg-primary hover:bg-primary/90",
                         "dark:bg-cyan-500 dark:hover:bg-cyan-600"
@@ -9581,20 +10976,20 @@ function CookieBanner() {
 }
 function useTheme4() {
   const { theme, resolvedTheme, setTheme } = useTheme();
-  const toggle = React47.useCallback(() => {
+  const toggle = React55.useCallback(() => {
     if (theme === "system") {
       setTheme(resolvedTheme === "dark" ? "light" : "dark");
     } else {
       setTheme(theme === "dark" ? "light" : "dark");
     }
   }, [theme, resolvedTheme, setTheme]);
-  const setLight = React47.useCallback(() => {
+  const setLight = React55.useCallback(() => {
     setTheme("light");
   }, [setTheme]);
-  const setDark = React47.useCallback(() => {
+  const setDark = React55.useCallback(() => {
     setTheme("dark");
   }, [setTheme]);
-  const setSystem = React47.useCallback(() => {
+  const setSystem = React55.useCallback(() => {
     setTheme("system");
   }, [setTheme]);
   return {
@@ -9612,8 +11007,8 @@ function useTheme4() {
 }
 function ThemeToggle({ className }) {
   const { toggle, isDark } = useTheme4();
-  const [mounted, setMounted] = React47.useState(false);
-  React47.useEffect(() => {
+  const [mounted, setMounted] = React55.useState(false);
+  React55.useEffect(() => {
     setMounted(true);
   }, []);
   const handleToggle = () => {
@@ -9623,7 +11018,7 @@ function ThemeToggle({ className }) {
     return /* @__PURE__ */ jsxs(
       "button",
       {
-        className: cn2(
+        className: cn(
           // Layout base
           "inline-flex items-center justify-center rounded-md",
           "text-sm font-medium transition-colors duration-200",
@@ -9653,7 +11048,7 @@ function ThemeToggle({ className }) {
     "button",
     {
       onClick: handleToggle,
-      className: cn2(
+      className: cn(
         // Layout base
         "inline-flex items-center justify-center rounded-md",
         "text-sm font-medium transition-colors duration-200",
@@ -9892,27 +11287,27 @@ function InstallPrompt() {
     /* @__PURE__ */ jsx(
       "div",
       {
-        className: cn2(
+        className: cn(
           "fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6 pointer-events-none",
           "animate-in slide-in-from-bottom-5 fade-in duration-300"
         ),
         children: /* @__PURE__ */ jsx(
           Card,
           {
-            className: cn2(
+            className: cn(
               "max-w-2xl mx-auto pointer-events-auto backdrop-blur-xl border-2 shadow-2xl",
-              isDark ? cn2("bg-background/90", "border-primary-base/50", "shadow-glow-cyan") : cn2("bg-background/90", "border-primary-base/50", "shadow-lg")
+              isDark ? cn("bg-background/90", "border-primary-base/50", "shadow-glow-cyan") : cn("bg-background/90", "border-primary-base/50", "shadow-lg")
             ),
             children: /* @__PURE__ */ jsx("div", { className: "p-4 sm:p-6", children: /* @__PURE__ */ jsxs("div", { className: "flex items-start gap-4", children: [
               /* @__PURE__ */ jsx(
                 "div",
                 {
-                  className: cn2(
+                  className: cn(
                     "shrink-0 p-3 rounded-full border",
                     "bg-primary-background",
                     "border-primary-base/30"
                   ),
-                  children: /* @__PURE__ */ jsx(Download, { className: cn2("h-6 w-6", "text-primary-base") })
+                  children: /* @__PURE__ */ jsx(Download, { className: cn("h-6 w-6", "text-primary-base") })
                 }
               ),
               /* @__PURE__ */ jsxs("div", { className: "flex-1 space-y-3", children: [
@@ -9920,7 +11315,7 @@ function InstallPrompt() {
                   /* @__PURE__ */ jsx(
                     "h3",
                     {
-                      className: cn2(
+                      className: cn(
                         "text-lg font-bold font-mono",
                         "text-foreground"
                       ),
@@ -9931,7 +11326,7 @@ function InstallPrompt() {
                     "button",
                     {
                       onClick: handleDismiss,
-                      className: cn2(
+                      className: cn(
                         "transition-colors p-1 rounded",
                         "text-muted-foreground hover:text-foreground hover:bg-muted"
                       ),
@@ -9943,7 +11338,7 @@ function InstallPrompt() {
                 /* @__PURE__ */ jsx(
                   "p",
                   {
-                    className: cn2(
+                    className: cn(
                       "text-sm",
                       "text-muted-foreground"
                     ),
@@ -9956,7 +11351,7 @@ function InstallPrompt() {
                     {
                       onClick: handleInstall,
                       size: "sm",
-                      className: cn2(
+                      className: cn(
                         "font-mono font-bold",
                         "bg-primary text-primary-foreground hover:bg-primary-hover"
                       ),
@@ -9972,7 +11367,7 @@ function InstallPrompt() {
                       onClick: handleDismiss,
                       variant: "ghost",
                       size: "sm",
-                      className: cn2(
+                      className: cn(
                         "text-muted-foreground hover:text-foreground hover:bg-muted"
                       ),
                       children: "Talvez Depois"
@@ -10008,22 +11403,22 @@ function UpdateNotification() {
     /* @__PURE__ */ jsx(
       "div",
       {
-        className: cn2(
+        className: cn(
           "fixed top-20 right-4 z-50 max-w-sm",
           "animate-in slide-in-from-top-5 fade-in duration-300"
         ),
         children: /* @__PURE__ */ jsx(
           Card,
           {
-            className: cn2(
+            className: cn(
               "backdrop-blur-xl border-2 shadow-2xl",
-              isDark ? cn2("bg-background/90", "border-secondary-base/50", "shadow-glow-purple") : cn2("bg-background/90", "border-secondary-base/50", "shadow-lg")
+              isDark ? cn("bg-background/90", "border-secondary-base/50", "shadow-glow-purple") : cn("bg-background/90", "border-secondary-base/50", "shadow-lg")
             ),
             children: /* @__PURE__ */ jsx("div", { className: "p-4", children: /* @__PURE__ */ jsxs("div", { className: "flex items-start gap-3", children: [
               /* @__PURE__ */ jsx(
                 "div",
                 {
-                  className: cn2(
+                  className: cn(
                     "shrink-0 p-2 rounded-full border",
                     "bg-secondary-background",
                     "border-secondary-base/30"
@@ -10031,7 +11426,7 @@ function UpdateNotification() {
                   children: /* @__PURE__ */ jsx(
                     RefreshCw,
                     {
-                      className: cn2(
+                      className: cn(
                         "h-5 w-5 animate-spin text-secondary-base",
                         "[animation-duration:3s]"
                       )
@@ -10043,7 +11438,7 @@ function UpdateNotification() {
                 /* @__PURE__ */ jsx(
                   "h4",
                   {
-                    className: cn2(
+                    className: cn(
                       "text-sm font-bold font-mono",
                       "text-foreground"
                     ),
@@ -10053,7 +11448,7 @@ function UpdateNotification() {
                 /* @__PURE__ */ jsx(
                   "p",
                   {
-                    className: cn2(
+                    className: cn(
                       "text-xs",
                       "text-muted-foreground"
                     ),
@@ -10065,7 +11460,7 @@ function UpdateNotification() {
                   {
                     onClick: updateServiceWorker,
                     size: "sm",
-                    className: cn2(
+                    className: cn(
                       "w-full font-mono font-bold",
                       "bg-secondary text-secondary-foreground hover:bg-secondary-hover"
                     ),
@@ -10093,9 +11488,9 @@ function LoadingScreen({ progress, currentStep }) {
   }, []);
   const currentTheme = mounted ? theme === "system" ? systemTheme : theme : "light";
   const isDark = currentTheme === "dark";
-  const primaryColor = isDark ? tokens?.primitives?.color?.blue?.[400] || "#60a5fa" : tokens?.primitives?.color?.blue?.[600] || "#2563eb";
-  const secondaryColor = isDark ? tokens?.primitives?.color?.purple?.[400] || "#c084fc" : tokens?.primitives?.color?.purple?.[600] || "#9333ea";
-  const accentColor = isDark ? tokens?.primitives?.color?.red?.[400] || "#f87171" : tokens?.primitives?.color?.red?.[600] || "#dc2626";
+  const primaryColor = isDark ? tokens.primitives.color.blue["400"] : tokens.primitives.color.blue["600"];
+  const secondaryColor = isDark ? tokens.primitives.color.purple["400"] : tokens.primitives.color.purple["600"];
+  const accentColor = isDark ? tokens.primitives.color.red["400"] : tokens.primitives.color.red["600"];
   const primaryRGB = hexToRGB(primaryColor);
   const secondaryRGB = hexToRGB(secondaryColor);
   useEffect(() => {
@@ -10133,7 +11528,7 @@ function LoadingScreen({ progress, currentStep }) {
   return /* @__PURE__ */ jsxs(
     "div",
     {
-      className: cn2(
+      className: cn(
         "fixed inset-0 z-[9999] flex flex-col items-center justify-center",
         "bg-background backdrop-blur-sm",
         "transition-opacity duration-500"
@@ -10203,7 +11598,7 @@ function LoadingScreen({ progress, currentStep }) {
             /* @__PURE__ */ jsx(
               "p",
               {
-                className: cn2(
+                className: cn(
                   "text-lg sm:text-xl font-mono font-semibold",
                   "tracking-wider animate-pulse"
                 ),
@@ -10309,22 +11704,6 @@ function LoadingScreen({ progress, currentStep }) {
     }
   );
 }
-function PageHeader({ title, description, children }) {
-  return (
-    /**
-     * Container principal do header
-     *
-     * Utiliza SECTION_CLASSES.container para padding e layout responsivos
-     * - relative z-10: fica acima de backgrounds e partículas
-     */
-    /* @__PURE__ */ jsx("div", { className: `${SECTION_CLASSES.container} relative z-10`, children: /* @__PURE__ */ jsxs("div", { className: "text-center mb-12", children: [
-      children && /* @__PURE__ */ jsx("div", { className: "relative mb-8", children }),
-      /* @__PURE__ */ jsx("h1", { className: "text-3xl md:text-4xl font-bold mb-4 text-foreground dark:text-cyan-200 dark:font-mono dark:tracking-wider", children: title }),
-      /* @__PURE__ */ jsx("div", { className: "w-24 h-1 bg-linear-to-r from-primary to-primary dark:from-cyan-400 dark:to-purple-400 mx-auto mb-6" }),
-      description && /* @__PURE__ */ jsx("p", { className: "text-muted-foreground dark:text-gray-300 text-lg max-w-2xl mx-auto dark:font-mono px-2", children: description })
-    ] }) })
-  );
-}
 function TokensDemo() {
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
@@ -10404,11 +11783,11 @@ function TokensDemo() {
     ] })
   ] });
 }
-var VisuallyHidden = React47.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var VisuallyHidden = React55.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "span",
   {
     ref,
-    className: cn2(
+    className: cn(
       "absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0",
       "[clip:rect(0,0,0,0)]",
       className
@@ -10441,7 +11820,7 @@ var kbdVariants = cva(
     }
   }
 );
-var Kbd = React47.forwardRef(
+var Kbd = React55.forwardRef(
   ({
     className,
     variant = "default",
@@ -10453,7 +11832,7 @@ var Kbd = React47.forwardRef(
       "kbd",
       {
         ref,
-        className: cn2(kbdVariants({ variant, size }), className),
+        className: cn(kbdVariants({ variant, size }), className),
         ...props,
         children
       }
@@ -10461,7 +11840,7 @@ var Kbd = React47.forwardRef(
   }
 );
 Kbd.displayName = "Kbd";
-var KbdCombo = React47.forwardRef(
+var KbdCombo = React55.forwardRef(
   ({
     className,
     keys,
@@ -10474,9 +11853,9 @@ var KbdCombo = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("flex items-center gap-1", className),
+        className: cn("flex items-center gap-1", className),
         ...props,
-        children: keys.map((key, index) => /* @__PURE__ */ jsxs(React47.Fragment, { children: [
+        children: keys.map((key, index) => /* @__PURE__ */ jsxs(React55.Fragment, { children: [
           index > 0 && /* @__PURE__ */ jsx("span", { className: "text-muted-foreground text-xs font-normal", children: separator }),
           /* @__PURE__ */ jsx(Kbd, { size, variant, children: key })
         ] }, index))
@@ -10560,7 +11939,7 @@ var codeVariants = cva(
     }
   }
 );
-var Code = React47.forwardRef(
+var Code = React55.forwardRef(
   ({
     className,
     variant = "inline",
@@ -10573,9 +11952,9 @@ var Code = React47.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [copied, setCopied] = React47.useState(false);
-    const codeRef = React47.useRef(null);
-    const handleCopy = React47.useCallback(async () => {
+    const [copied, setCopied] = React55.useState(false);
+    const codeRef = React55.useRef(null);
+    const handleCopy = React55.useCallback(async () => {
       if (codeRef.current) {
         const text = codeRef.current.textContent || "";
         await navigator.clipboard.writeText(text);
@@ -10588,7 +11967,7 @@ var Code = React47.forwardRef(
         "code",
         {
           ref,
-          className: cn2(codeVariants({ variant, size }), className),
+          className: cn(codeVariants({ variant, size }), className),
           ...props,
           children
         }
@@ -10619,7 +11998,7 @@ var Code = React47.forwardRef(
       /* @__PURE__ */ jsx(
         "pre",
         {
-          className: cn2(
+          className: cn(
             codeVariants({ variant: "block", size }),
             wrap && "whitespace-pre-wrap break-all",
             !showLineNumbers && "overflow-x-auto",
@@ -10636,7 +12015,7 @@ var Code = React47.forwardRef(
   }
 );
 Code.displayName = "Code";
-var CodeInline = React47.forwardRef(
+var CodeInline = React55.forwardRef(
   ({
     className,
     color = "default",
@@ -10654,7 +12033,7 @@ var CodeInline = React47.forwardRef(
   }
 );
 CodeInline.displayName = "CodeInline";
-var CodeBlock = React47.forwardRef(
+var CodeBlock = React55.forwardRef(
   ({
     className,
     ...props
@@ -10701,7 +12080,7 @@ var quoteVariants = cva(
     }
   }
 );
-var Quote = React47.forwardRef(
+var Quote = React55.forwardRef(
   ({
     className,
     variant = "default",
@@ -10715,12 +12094,12 @@ var Quote = React47.forwardRef(
     children,
     ...props
   }, ref) => {
-    const IconComponent = icon || (variant === "testimonial" || variant === "card" ? /* @__PURE__ */ jsx(Quote$1, { className: "h-8 w-8 text-primary/20" }) : /* @__PURE__ */ jsx(Quote$1, { className: "h-4 w-4 text-muted-foreground" }));
+    const IconComponent = icon || (variant === "testimonial" || variant === "card" ? /* @__PURE__ */ jsx(QuoteIcon, { className: "h-8 w-8 text-primary/20" }) : /* @__PURE__ */ jsx(QuoteIcon, { className: "h-4 w-4 text-muted-foreground" }));
     return /* @__PURE__ */ jsxs(
       "blockquote",
       {
         ref,
-        className: cn2(
+        className: cn(
           quoteVariants({ variant, size }),
           (variant === "testimonial" || variant === "card" || variant === "glass" || variant === "neon") && "border-l-0",
           className
@@ -10752,7 +12131,7 @@ var Quote = React47.forwardRef(
   }
 );
 Quote.displayName = "Quote";
-var QuoteTestimonial = React47.forwardRef(
+var QuoteTestimonial = React55.forwardRef(
   ({
     className,
     author,
@@ -10762,7 +12141,7 @@ var QuoteTestimonial = React47.forwardRef(
     children,
     ...props
   }, ref) => {
-    return /* @__PURE__ */ jsxs("div", { className: cn2("bg-card rounded-lg p-6 shadow-sm", className), children: [
+    return /* @__PURE__ */ jsxs("div", { className: cn("bg-card rounded-lg p-6 shadow-sm", className), children: [
       /* @__PURE__ */ jsx(
         Quote,
         {
@@ -10793,7 +12172,7 @@ var QuoteTestimonial = React47.forwardRef(
         rating && /* @__PURE__ */ jsx("div", { className: "flex gap-0.5", children: Array.from({ length: 5 }).map((_, i2) => /* @__PURE__ */ jsx(
           "span",
           {
-            className: cn2(
+            className: cn(
               "text-lg",
               i2 < rating ? "text-amber-400" : "text-muted-foreground/30"
             ),
@@ -10806,7 +12185,7 @@ var QuoteTestimonial = React47.forwardRef(
   }
 );
 QuoteTestimonial.displayName = "QuoteTestimonial";
-var QuoteBlock = React47.forwardRef(
+var QuoteBlock = React55.forwardRef(
   ({
     className,
     children,
@@ -10818,7 +12197,7 @@ var QuoteBlock = React47.forwardRef(
         ref,
         variant: "default",
         size: "xl",
-        className: cn2(
+        className: cn(
           "text-center border-l-0 border-r-0 border-t-2 border-b-2 border-border py-8",
           className
         ),
@@ -10857,7 +12236,7 @@ var aspectRatioBoxVariants = cva(
     }
   }
 );
-var AspectRatioBox = React47.forwardRef(
+var AspectRatioBox = React55.forwardRef(
   ({
     className,
     variant = "default",
@@ -10866,13 +12245,13 @@ var AspectRatioBox = React47.forwardRef(
     objectFit = "cover",
     ...props
   }, ref) => {
-    const resolvedRatio = React47.useMemo(() => {
+    const resolvedRatio = React55.useMemo(() => {
       if (typeof ratio === "string" && ratio in ASPECT_RATIOS) {
         return ASPECT_RATIOS[ratio];
       }
       return ratio;
     }, [ratio]);
-    const paddingBottom = React47.useMemo(() => {
+    const paddingBottom = React55.useMemo(() => {
       const [width, height] = resolvedRatio.split("/").map(Number);
       return `${height / width * 100}%`;
     }, [resolvedRatio]);
@@ -10885,21 +12264,21 @@ var AspectRatioBox = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(aspectRatioBoxVariants({ variant }), className),
+        className: cn(aspectRatioBoxVariants({ variant }), className),
         style: { paddingBottom },
         ...props,
-        children: /* @__PURE__ */ jsx("div", { className: "absolute inset-0", children: React47.isValidElement(children) ? React47.cloneElement(children, {
-          className: cn2(
+        children: /* @__PURE__ */ jsx("div", { className: "absolute inset-0", children: React55.isValidElement(children) ? React55.cloneElement(children, {
+          className: cn(
             objectFitClasses[objectFit],
             children.props.className
           )
-        }) : /* @__PURE__ */ jsx("div", { className: cn2(objectFitClasses[objectFit]), children }) })
+        }) : /* @__PURE__ */ jsx("div", { className: cn(objectFitClasses[objectFit]), children }) })
       }
     );
   }
 );
 AspectRatioBox.displayName = "AspectRatioBox";
-var AspectRatioImage = React47.forwardRef(
+var AspectRatioImage = React55.forwardRef(
   ({
     className,
     ratio = "square",
@@ -10921,7 +12300,7 @@ var AspectRatioImage = React47.forwardRef(
   }
 );
 AspectRatioImage.displayName = "AspectRatioImage";
-var AspectRatioVideo = React47.forwardRef(
+var AspectRatioVideo = React55.forwardRef(
   ({
     className,
     ratio = "video",
@@ -10939,7 +12318,7 @@ var AspectRatioVideo = React47.forwardRef(
   }
 );
 AspectRatioVideo.displayName = "AspectRatioVideo";
-var AspectRatioIframe = React47.forwardRef(
+var AspectRatioIframe = React55.forwardRef(
   ({
     className,
     ratio = "video",
@@ -10977,7 +12356,7 @@ var centerVariants = cva(
     }
   }
 );
-var Center = React47.forwardRef(
+var Center = React55.forwardRef(
   ({
     className,
     direction = "both",
@@ -10990,7 +12369,7 @@ var Center = React47.forwardRef(
     children,
     ...props
   }, ref) => {
-    const centerStyle = React47.useMemo(() => {
+    const centerStyle = React55.useMemo(() => {
       const customStyle = { ...style };
       if (padding !== void 0) {
         customStyle.padding = typeof padding === "number" ? `${padding}px` : padding;
@@ -11005,7 +12384,7 @@ var Center = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2(
+        className: cn(
           centerVariants({ direction, inline }),
           fullHeight && "min-h-screen",
           fullWidth && "w-full",
@@ -11019,7 +12398,7 @@ var Center = React47.forwardRef(
   }
 );
 Center.displayName = "Center";
-var CenterInline = React47.forwardRef(
+var CenterInline = React55.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Center,
@@ -11032,7 +12411,7 @@ var CenterInline = React47.forwardRef(
   }
 );
 CenterInline.displayName = "CenterInline";
-var CenterScreen = React47.forwardRef(
+var CenterScreen = React55.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Center,
@@ -11047,7 +12426,7 @@ var CenterScreen = React47.forwardRef(
   }
 );
 CenterScreen.displayName = "CenterScreen";
-var CenterText = React47.forwardRef(
+var CenterText = React55.forwardRef(
   ({
     className,
     align = "center",
@@ -11058,7 +12437,7 @@ var CenterText = React47.forwardRef(
       "div",
       {
         ref,
-        className: cn2("text-center", className),
+        className: cn("text-center", className),
         style: { textAlign: align },
         ...props,
         children
@@ -11126,7 +12505,7 @@ function LikeButton({
       "button",
       {
         onClick: handleLike,
-        className: cn2(
+        className: cn(
           "inline-flex items-center gap-1.5 text-sm transition-colors",
           isLiked ? getColorClasses2() : "text-muted-foreground hover:text-foreground",
           className
@@ -11143,7 +12522,7 @@ function LikeButton({
               children: /* @__PURE__ */ jsx(
                 Heart,
                 {
-                  className: cn2("h-4 w-4 transition-all", isLiked && "fill-current")
+                  className: cn("h-4 w-4 transition-all", isLiked && "fill-current")
                 }
               )
             }
@@ -11159,7 +12538,7 @@ function LikeButton({
       variant: isLiked ? "default" : "outline",
       size,
       onClick: handleLike,
-      className: cn2(
+      className: cn(
         "gap-2 transition-all",
         isLiked && getActiveBgClasses(),
         className
@@ -11177,7 +12556,7 @@ function LikeButton({
             children: /* @__PURE__ */ jsx(
               Heart,
               {
-                className: cn2("h-4 w-4 transition-all", isLiked && "fill-current")
+                className: cn("h-4 w-4 transition-all", isLiked && "fill-current")
               }
             )
           }
@@ -11186,7 +12565,7 @@ function LikeButton({
         showCount && likes > 0 && /* @__PURE__ */ jsx(
           "span",
           {
-            className: cn2(
+            className: cn(
               "text-xs px-1.5 py-0.5 rounded-full",
               isLiked ? "bg-current/20 text-current" : "bg-muted text-muted-foreground"
             ),
@@ -11197,6 +12576,13 @@ function LikeButton({
     }
   );
 }
+var SHARE_URLS = {
+  facebook: `https://www.facebook.com/sharer/sharer.php?u={url}`,
+  twitter: `https://twitter.com/intent/tweet?url={url}&text={title}`,
+  linkedin: `https://www.linkedin.com/sharing/share-offsite/?url={url}`,
+  whatsapp: `https://api.whatsapp.com/send?text={title}%20{url}`,
+  telegram: `https://t.me/share/url?url={url}&text={title}`
+};
 function ShareButton({
   url,
   title,
@@ -11217,7 +12603,7 @@ function ShareButton({
       onCopy?.();
       setTimeout(() => setCopied(false), 2e3);
     } catch (error) {
-      console.error("Erro ao copiar:", error);
+      console.error("Erro ao copiar link:", error);
     }
   }
   async function shareNative() {
@@ -11239,23 +12625,13 @@ function ShareButton({
   function shareOnPlatform(platform) {
     const encodedUrl = encodeURIComponent(shareUrl);
     const encodedTitle = encodeURIComponent(title);
-    const urls = {
-      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
-      twitter: `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`,
-      linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`,
-      whatsapp: `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`,
-      telegram: `https://t.me/share/url?url=${encodedUrl}&text=${encodedTitle}`,
-      reddit: `https://reddit.com/submit?url=${encodedUrl}&title=${encodedTitle}`
-    };
-    const platformUrl = urls[platform];
-    if (platformUrl) {
-      window.open(
-        platformUrl,
-        "_blank",
-        "noopener,noreferrer,width=600,height=600"
-      );
-      onShare?.(platform);
-    }
+    const platformUrl = SHARE_URLS[platform].replace("{url}", encodedUrl).replace("{title}", encodedTitle);
+    window.open(
+      platformUrl,
+      "_blank",
+      "noopener,noreferrer,width=600,height=600"
+    );
+    onShare?.(platform);
   }
   return /* @__PURE__ */ jsxs(Fragment, { children: [
     /* @__PURE__ */ jsxs(DropdownMenu, { children: [
@@ -11312,7 +12688,15 @@ function ShareButton({
         /* @__PURE__ */ jsx(DialogTitle, { children: "Compartilhar via QR Code" }),
         /* @__PURE__ */ jsx(DialogDescription, { children: "Escaneie o QR Code abaixo para acessar este conte\xFAdo" })
       ] }),
-      /* @__PURE__ */ jsx("div", { className: "flex justify-center p-6 bg-white rounded-lg", children: /* @__PURE__ */ jsx(QRCodeSVG, { value: shareUrl, size: 256, level: "H", includeMargin: true }) }),
+      /* @__PURE__ */ jsx("div", { className: "flex justify-center p-6 bg-white rounded-lg", children: /* @__PURE__ */ jsx(
+        QRCodeSVG,
+        {
+          value: shareUrl,
+          size: 256,
+          level: "H",
+          includeMargin: true
+        }
+      ) }),
       /* @__PURE__ */ jsxs("div", { className: "flex gap-2", children: [
         /* @__PURE__ */ jsx(
           Button,
@@ -11324,10 +12708,19 @@ function ShareButton({
             children: "Fechar"
           }
         ),
-        /* @__PURE__ */ jsxs(Button, { variant: "default", size: "lg", className: "flex-1", onClick: copyToClipboard, children: [
-          /* @__PURE__ */ jsx(Link, { className: "mr-2 h-4 w-4" }),
-          "Copiar Link"
-        ] })
+        /* @__PURE__ */ jsxs(
+          Button,
+          {
+            variant: "default",
+            size: "lg",
+            className: "flex-1",
+            onClick: copyToClipboard,
+            children: [
+              /* @__PURE__ */ jsx(Link, { className: "mr-2 h-4 w-4" }),
+              "Copiar Link"
+            ]
+          }
+        )
       ] })
     ] }) })
   ] });
@@ -11385,7 +12778,7 @@ function BookmarkButton({
       variant: isBookmarked && variant === "default" ? "default" : variant,
       size,
       onClick: handleBookmark,
-      className: cn2(
+      className: cn(
         "gap-2 transition-all",
         isBookmarked && variant === "ghost" && getColorClasses2(),
         isBookmarked && variant === "default" && getActiveBgClasses(),
@@ -11404,7 +12797,7 @@ function BookmarkButton({
             children: /* @__PURE__ */ jsx(
               Bookmark,
               {
-                className: cn2(
+                className: cn(
                   "h-4 w-4 transition-all",
                   isBookmarked && "fill-current"
                 )
@@ -11474,14 +12867,14 @@ function ReadingTime({
   const unitText = getUnitText(unit, readTime);
   const defaultText = text || `${formattedTime} ${unitText}`;
   const colorClasses = getColorClasses(color);
-  const sizeClasses = getSizeClasses(size);
+  const sizeClasses2 = getSizeClasses(size);
   return /* @__PURE__ */ jsxs(
     "div",
     {
-      className: cn2(
+      className: cn(
         "inline-flex items-center gap-1.5 transition-colors",
         colorClasses,
-        sizeClasses,
+        sizeClasses2,
         className
       ),
       role: "timer",
@@ -11538,7 +12931,7 @@ function ActionButton({
     setTimeout(() => setIsAnimating(false), (animation.duration || 0.3) * 1e3);
   };
   const animationConfig = animation.type ? animationPresets[animation.type] : animationPresets.scale;
-  const dynamicClasses = cn2(
+  const dynamicClasses = cn(
     currentActive && activeColorClasses[activeColor],
     currentActive && variant === "ghost" && "text-opacity-80",
     "transition-all duration-200"
@@ -11553,7 +12946,7 @@ function ActionButton({
       size,
       onClick: handleClick,
       disabled,
-      className: cn2("gap-2", dynamicClasses, className),
+      className: cn("gap-2", dynamicClasses, className),
       "aria-label": dynamicAriaLabel,
       "aria-pressed": currentActive,
       children: [
@@ -11573,7 +12966,7 @@ function ActionButton({
         showCount && count !== void 0 && count > 0 && /* @__PURE__ */ jsx(
           "span",
           {
-            className: cn2(
+            className: cn(
               "text-xs px-1.5 py-0.5 rounded-full min-w-[20px] text-center",
               currentActive ? "bg-current/20 text-current" : "bg-muted text-muted-foreground"
             ),
@@ -11642,14 +13035,6 @@ var DEFAULT_PLATFORMS = [
     color: "text-blue-500",
     url: "https://t.me/share/url?url={url}&text={title}",
     order: 5
-  },
-  {
-    id: "reddit",
-    name: "Reddit",
-    icon: /* @__PURE__ */ jsx(MoreHorizontal, { className: "h-4 w-4" }),
-    color: "text-orange-600",
-    url: "https://reddit.com/submit?url={url}&title={title}",
-    order: 6
   }
 ];
 function ShareMenu({
@@ -11803,21 +13188,50 @@ function ShareMenu({
 }
 var ShareMenuVariants = {
   /**
-   * Menu completo para blogs
+   * Variante para blogs com foco em redes sociais
    */
-  Blog: (props) => /* @__PURE__ */ jsx(ShareMenu, { ...props, platforms: ["twitter", "facebook", "linkedin", "whatsapp", "copy", "qr"] }),
+  Blog: (props) => /* @__PURE__ */ jsx(
+    ShareMenu,
+    {
+      ...props,
+      platforms: ["twitter", "facebook", "linkedin", "whatsapp", "copy", "qr"]
+    }
+  ),
   /**
-   * Menu para e-commerce (foco em WhatsApp)
+   * Variante para e-commerce com foco em WhatsApp
    */
-  Ecommerce: (props) => /* @__PURE__ */ jsx(ShareMenu, { ...props, platforms: ["whatsapp", "facebook", "telegram", "copy"], showQRCode: false }),
+  Ecommerce: (props) => /* @__PURE__ */ jsx(
+    ShareMenu,
+    {
+      ...props,
+      platforms: ["whatsapp", "facebook", "telegram", "copy"],
+      showQRCode: false
+    }
+  ),
   /**
-   * Menu minimal para dashboards
+   * Variante minimalista para dashboards
    */
-  Dashboard: (props) => /* @__PURE__ */ jsx(ShareMenu, { ...props, platforms: ["copy", "email"], variant: "ghost", size: "sm", showQRCode: false }),
+  Dashboard: (props) => /* @__PURE__ */ jsx(
+    ShareMenu,
+    {
+      ...props,
+      platforms: ["copy"],
+      variant: "ghost",
+      size: "sm",
+      showQRCode: false
+    }
+  ),
   /**
-   * Menu mobile-first
+   * Variante otimizada para dispositivos móveis
    */
-  Mobile: (props) => /* @__PURE__ */ jsx(ShareMenu, { ...props, platforms: ["native", "whatsapp", "telegram", "copy"], showNativeShare: true })
+  Mobile: (props) => /* @__PURE__ */ jsx(
+    ShareMenu,
+    {
+      ...props,
+      platforms: ["native", "whatsapp", "telegram", "copy"],
+      showNativeShare: true
+    }
+  )
 };
 i;
 var formatRelativeDate = (date) => {
@@ -11857,7 +13271,7 @@ function ContentCard({
           src: image,
           alt: imageAlt || title,
           fill: true,
-          className: cn2(
+          className: cn(
             "object-cover transition-transform duration-300",
             "group-hover:scale-105"
           ),
@@ -11895,13 +13309,13 @@ function ContentCard({
           {
             variant: "ghost",
             size: "sm",
-            className: cn2(
+            className: cn(
               "gap-1.5",
               actions.like.active && "text-red-500"
             ),
             onClick: () => actions.like?.onAction?.("like", actions.like),
             children: [
-              /* @__PURE__ */ jsx("span", { className: cn2(actions.like.active && "fill-current"), children: "\u2764\uFE0F" }),
+              /* @__PURE__ */ jsx("span", { className: cn(actions.like.active && "fill-current"), children: "\u2764\uFE0F" }),
               actions.like.count && /* @__PURE__ */ jsx("span", { className: "text-xs", children: actions.like.count })
             ]
           }
@@ -11911,13 +13325,13 @@ function ContentCard({
           {
             variant: "ghost",
             size: "sm",
-            className: cn2(
+            className: cn(
               "gap-1.5",
               actions.favorite.active && "text-yellow-500"
             ),
             onClick: () => actions.favorite?.onAction?.("favorite", actions.favorite),
             children: [
-              /* @__PURE__ */ jsx("span", { className: cn2(actions.favorite.active && "fill-current"), children: "\u2B50" }),
+              /* @__PURE__ */ jsx("span", { className: cn(actions.favorite.active && "fill-current"), children: "\u2B50" }),
               actions.favorite.count && /* @__PURE__ */ jsx("span", { className: "text-xs", children: actions.favorite.count })
             ]
           }
@@ -11927,12 +13341,12 @@ function ContentCard({
           {
             variant: "ghost",
             size: "sm",
-            className: cn2(
+            className: cn(
               "gap-1.5",
               actions.bookmark.active && "text-blue-500"
             ),
             onClick: () => actions.bookmark?.onAction?.("bookmark", actions.bookmark),
-            children: /* @__PURE__ */ jsx("span", { className: cn2(actions.bookmark.active && "fill-current"), children: "\u{1F516}" })
+            children: /* @__PURE__ */ jsx("span", { className: cn(actions.bookmark.active && "fill-current"), children: "\u{1F516}" })
           }
         )
       ] }),
@@ -11948,7 +13362,7 @@ function ContentCard({
       )
     ] });
   };
-  const variantClasses = {
+  const variantClasses2 = {
     default: "hover:shadow-lg transition-shadow duration-300",
     product: "hover:shadow-xl transition-all duration-300 hover:-translate-y-1",
     news: "border-l-4 border-l-primary hover:shadow-lg transition-shadow duration-300",
@@ -11966,7 +13380,7 @@ function ContentCard({
     {
       whileHover: { y: orientation === "vertical" ? -4 : 0 },
       transition: { duration: 0.2 },
-      className: cn2(
+      className: cn(
         "group",
         orientation === "horizontal" && "flex gap-4",
         className
@@ -11976,32 +13390,32 @@ function ContentCard({
         {
           ...wrapperProps,
           onClick,
-          className: cn2("block", link && "hover:underline-none"),
+          className: cn("block", link && "hover:underline-none"),
           children: /* @__PURE__ */ jsxs(
             Card,
             {
-              className: cn2(
+              className: cn(
                 "h-full overflow-hidden",
-                variantClasses[variant],
+                variantClasses2[variant],
                 orientation === "horizontal" && "flex-row",
                 "transition-all duration-300"
               ),
               children: [
                 orientation === "vertical" && renderImage(),
-                /* @__PURE__ */ jsxs("div", { className: cn2(
+                /* @__PURE__ */ jsxs("div", { className: cn(
                   "flex flex-col",
                   orientation === "horizontal" && "flex-1"
                 ), children: [
                   /* @__PURE__ */ jsxs(CardHeader, { className: "pb-2", children: [
                     renderMetadata(),
-                    /* @__PURE__ */ jsx("h3", { className: cn2(
+                    /* @__PURE__ */ jsx("h3", { className: cn(
                       "font-semibold line-clamp-2",
                       variant === "featured" ? "text-xl" : "text-lg",
                       "group-hover:text-primary transition-colors duration-200"
                     ), children: title })
                   ] }),
                   description && /* @__PURE__ */ jsx(CardContent, { className: "pt-0", children: /* @__PURE__ */ jsx("p", { className: "text-sm text-muted-foreground line-clamp-3", children: description }) }),
-                  (link || showActions) && /* @__PURE__ */ jsxs(CardFooter, { className: cn2(
+                  (link || showActions) && /* @__PURE__ */ jsxs(CardFooter, { className: cn(
                     "pt-4",
                     "flex items-center justify-between",
                     !showActions && "justify-end"
@@ -12067,8 +13481,8 @@ function ThemeProvider({ children, ...props }) {
 }
 var MOBILE_BREAKPOINT2 = 768;
 function useIsMobile() {
-  const [isMobile, setIsMobile] = React47.useState(void 0);
-  React47.useEffect(() => {
+  const [isMobile, setIsMobile] = React55.useState(void 0);
+  React55.useEffect(() => {
     const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT2 - 1}px)`);
     const onChange = () => {
       setIsMobile(window.innerWidth < MOBILE_BREAKPOINT2);
@@ -12092,10 +13506,10 @@ function useCarouselKeyboard({
     pauseOnHover = true,
     keyMap = ["ArrowLeft", "ArrowRight"]
   } = options;
-  const [isPaused, setIsPaused] = React47__default.useState(false);
-  const intervalRef = React47__default.useRef(null);
-  const containerRef = React47__default.useRef(null);
-  const next = React47__default.useCallback(() => {
+  const [isPaused, setIsPaused] = React55__default.useState(false);
+  const intervalRef = React55__default.useRef(null);
+  const containerRef = React55__default.useRef(null);
+  const next = React55__default.useCallback(() => {
     const nextIndex = currentIndex + 1;
     if (nextIndex >= totalItems) {
       if (loop) {
@@ -12105,7 +13519,7 @@ function useCarouselKeyboard({
       onIndexChange?.(nextIndex);
     }
   }, [currentIndex, totalItems, loop, onIndexChange]);
-  const prev = React47__default.useCallback(() => {
+  const prev = React55__default.useCallback(() => {
     const prevIndex = currentIndex - 1;
     if (prevIndex < 0) {
       if (loop) {
@@ -12115,12 +13529,12 @@ function useCarouselKeyboard({
       onIndexChange?.(prevIndex);
     }
   }, [currentIndex, totalItems, loop, onIndexChange]);
-  const goTo = React47__default.useCallback((index) => {
+  const goTo = React55__default.useCallback((index) => {
     if (index >= 0 && index < totalItems) {
       onIndexChange?.(index);
     }
   }, [totalItems, onIndexChange]);
-  React47__default.useEffect(() => {
+  React55__default.useEffect(() => {
     if (autoPlay && !isPaused) {
       intervalRef.current = setInterval(next, autoPlayInterval);
     } else {
@@ -12135,7 +13549,7 @@ function useCarouselKeyboard({
       }
     };
   }, [autoPlay, isPaused, next, autoPlayInterval]);
-  React47__default.useEffect(() => {
+  React55__default.useEffect(() => {
     const handleKeyDown = (event) => {
       if (!keyMap.includes(event.key)) return;
       event.preventDefault();
@@ -12159,7 +13573,7 @@ function useCarouselKeyboard({
       }
     };
   }, [keyMap, next, prev]);
-  React47__default.useEffect(() => {
+  React55__default.useEffect(() => {
     if (!pauseOnHover || !autoPlay) return;
     const container = containerRef.current;
     if (!container) return;
@@ -12172,13 +13586,13 @@ function useCarouselKeyboard({
       container.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [pauseOnHover, autoPlay]);
-  const pause = React47__default.useCallback(() => {
+  const pause = React55__default.useCallback(() => {
     setIsPaused(true);
   }, []);
-  const resume = React47__default.useCallback(() => {
+  const resume = React55__default.useCallback(() => {
     setIsPaused(false);
   }, []);
-  const stop = React47__default.useCallback(() => {
+  const stop = React55__default.useCallback(() => {
     setIsPaused(true);
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -12217,9 +13631,9 @@ function useTableOfContents({
     activeOnScroll = true,
     nested = true
   } = options;
-  const [items, setItems] = React47__default.useState([]);
-  const [activeId, setActiveId] = React47__default.useState(null);
-  const generateTOC = React47__default.useCallback(() => {
+  const [items, setItems] = React55__default.useState([]);
+  const [activeId, setActiveId] = React55__default.useState(null);
+  const generateTOC = React55__default.useCallback(() => {
     const container = containerRef?.current;
     if (!container) return [];
     const headingElements = container.querySelectorAll(headings.join(", "));
@@ -12240,11 +13654,11 @@ function useTableOfContents({
     });
     return tocItems;
   }, [containerRef, headings]);
-  React47__default.useEffect(() => {
+  React55__default.useEffect(() => {
     const tocItems = generateTOC();
     setItems(tocItems);
   }, [generateTOC]);
-  const scrollToItem = React47__default.useCallback((itemId) => {
+  const scrollToItem = React55__default.useCallback((itemId) => {
     const element = document.getElementById(itemId);
     if (!element) return;
     const elementPosition = element.getBoundingClientRect().top;
@@ -12259,7 +13673,7 @@ function useTableOfContents({
     }
     setActiveId(itemId);
   }, [offset, smoothScroll]);
-  React47__default.useEffect(() => {
+  React55__default.useEffect(() => {
     if (!activeOnScroll || items.length === 0) return;
     const observer = new IntersectionObserver(
       (entries) => {
@@ -12287,7 +13701,7 @@ function useTableOfContents({
       });
     };
   }, [activeOnScroll, items, offset]);
-  const nestedItems = React47__default.useMemo(() => {
+  const nestedItems = React55__default.useMemo(() => {
     if (!nested) return items;
     const result = [];
     const stack = [];
@@ -12305,7 +13719,7 @@ function useTableOfContents({
     });
     return result;
   }, [items, nested]);
-  const renderItem = React47__default.useCallback((item, depth = 0) => {
+  const renderItem = React55__default.useCallback((item, depth = 0) => {
     const isActive = item.id === activeId;
     const hasChildren = "children" in item && item.children && item.children.length > 0;
     return {
@@ -12316,7 +13730,7 @@ function useTableOfContents({
       scrollTo: () => scrollToItem(item.id)
     };
   }, [activeId, scrollToItem]);
-  const renderItems = React47__default.useCallback(() => {
+  const renderItems = React55__default.useCallback(() => {
     const flatItems = [];
     const flatten = (items2, depth = 0) => {
       items2.forEach((item) => {
@@ -12329,7 +13743,7 @@ function useTableOfContents({
     flatten(nestedItems);
     return flatItems;
   }, [nestedItems, renderItem]);
-  const stats = React47__default.useMemo(() => {
+  const stats = React55__default.useMemo(() => {
     const levelCounts = {};
     items.forEach((item) => {
       levelCounts[item.level] = (levelCounts[item.level] || 0) + 1;
@@ -12342,11 +13756,11 @@ function useTableOfContents({
       activeIndex: items.findIndex((item) => item.id === activeId)
     };
   }, [items, activeId]);
-  const refresh = React47__default.useCallback(() => {
+  const refresh = React55__default.useCallback(() => {
     const tocItems = generateTOC();
     setItems(tocItems);
   }, [generateTOC]);
-  const reset = React47__default.useCallback(() => {
+  const reset = React55__default.useCallback(() => {
     setItems([]);
     setActiveId(null);
   }, []);
@@ -12369,7 +13783,47 @@ function useTableOfContents({
     renderItem
   };
 }
+/**
+ * Componente de Estatísticas Rápidas para Dashboard
+ * 
+ * Exibe cards com métricas principais do sistema de forma visualmente atrativa,
+ * incluindo ícones, valores e indicadores de variação percentual. O componente
+ * oferece animações suaves, design responsivo e suporte a customização completa.
+ * 
+ * @module components/dashboard/quick-stats
+ * @author Rainer Teixeira
+ * @version 2.1.0
+ * @since 1.0.0
+ * 
+ * @license MIT
+ * 
+ * @example
+ * ```tsx
+ * // Uso básico com estatísticas padrão
+ * <QuickStats />
+ * 
+ * // Com estatísticas personalizadas
+ * const customStats = [
+ *   {
+ *     label: 'Usuários Ativos',
+ *     value: 1250,
+ *     change: 15.5,
+ *     icon: <Users className="w-5 h-5" />,
+ *     color: 'from-blue-500 to-cyan-500'
+ *   }
+ * ];
+ * <QuickStats stats={customStats} />
+ * ```
+ * 
+ * @see {@link https://framer.com/motion Framer Motion} - Biblioteca de animações
+ * @see {@link https://lucide.dev Lucide Icons} - Conjunto de ícones utilizados
+ * 
+ * @performance
+ * - Otimizado para renderização com React.memo
+ * - Animações com hardware acceleration
+ * - Lazy loading de recursos visuais
+ */
 
-export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, ASPECT_RATIOS, Accordion, AccordionContent, AccordionItem, AccordionTrigger, ActionButton, ActionButtonVariants, Alert, AlertDescription, AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, AlertDialogPortal, AlertDialogTitle, AlertDialogTrigger, AlertTitle, AspectRatio, AspectRatioBox, AspectRatioIframe, AspectRatioImage, AspectRatioVideo, BackToTop, Badge, BookmarkButton, Calendar, CalendarDayButton, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CelestialBackground, Center, CenterInline, CenterScreen, CenterText, Checkbox, Chip, ChipGroup, Code, CodeBlock, CodeInline, Collapsible, CollapsibleContent2 as CollapsibleContent, CollapsibleTrigger2 as CollapsibleTrigger, Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, ConfirmDialog, Container, ContainerFluid, ContainerSection, ContentCard, ContentCardVariants, ContextMenu, ContextMenuCheckboxItem, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuLabel, ContextMenuPortal, ContextMenuRadioGroup, ContextMenuRadioItem, ContextMenuSeparator, ContextMenuShortcut, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuTrigger, CookieBanner, DatePicker, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger, Divider, DotsSpinner, Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTrigger, DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger, EmptyState, EmptyStateIllustrated, EmptyStatePatterns, ErrorBoundary, FileUpload, Flex, FlexBetween, FlexCenter, FlexColumn, FlexEnd, FlexRow, FlexStart, FloatingGrid, Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage, Grid, GridItem, HighlightCard, HorizontalSpacer, HoverCard, HoverCardContent, HoverCardTrigger, Input, InstallPrompt, KPI, KPIChart, KPIGrid, Kbd, KbdCombo, KeyboardShortcuts, Label, Lightbox, LikeButton, LoadingScreen, Masonry, MasonryItem, MatrixBackground, Menu, MenuBar, Modal, ModalContent, ModalFooter, ModalHeader, ModalTrigger, NavigationContextMenu, NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport, Notification, NotificationGroup, NotificationProvider, NotificationToast, PageHeader, Pagination, PaginationCompact, PaginationInfo, Panel, PanelContent, PanelDescription, PanelFooter, PanelGroup, PanelHeader, PanelTitle, ParticlesEffect, PhoneInput, Popover, PopoverContent, PopoverTrigger, Progress, PulseSpinner, Quote, QuoteBlock, QuoteTestimonial, RadioGroup, RadioGroupItem, RangeSlider, Rating, RatingProgress, RatingSummary, ReadingTime, SEMANTIC_COLORS, ScrollArea, ScrollBar, SearchInput, SectionDivider, Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, SelectTrigger, SelectValue, Separator2 as Separator, ShareButton, ShareMenu, ShareMenuVariants, Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Sidebar, SidebarTrigger, Skeleton, Spacer, Spinner, SpinnerOverlay, StarsBackground, StepItem, Steps, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow, Tabs, TabsContent, TabsList, TabsTrigger, TextDivider, Textarea, ThemeProvider, ThemeToggle, TimePicker, Timeline, TimelineItem, TimelineSeparator, Toaster, TokensDemo, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, TopBar, TopBarActions, TopBarTitle, UpdateNotification, VerticalSpacer, VisuallyHidden, badgeVariants, cn2 as cn, convertToWebP, generatePlaceholder, generateTailwindClasses, getBrandColor, getButtonPrimaryColor, getButtonPrimaryTextColor, getButtonSecondaryColor, getButtonTertiaryColor, getColorFromTheme, getContrastColor, getImageInfo, getSemanticColors, getSemanticColorsSimplified, getStatusColor, getThemeColors, getTokenColor, hexToRGB, hexToRGBA, isAcceptedFormat, isValidHex, isWebP, motion, motionPresets, motionSemantic, navigationMenuTriggerStyle, overlayFromToken, prepareImageForUpload, resizeImage, supportsWebP, useCarouselKeyboard, useConfirm, useFormField, useIsMobile, useNotification, usePWA, useTableOfContents, useTheme4 as useTheme };
+export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, ASPECT_RATIOS, Accordion, AccordionContent, AccordionItem, AccordionTrigger, ActionButton, ActionButtonVariants, Alert, AlertDescription, AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, AlertDialogPortal, AlertDialogTitle, AlertDialogTrigger, AlertTitle, AnalyticsOverview, AspectRatio, AspectRatioBox, AspectRatioIframe, AspectRatioImage, AspectRatioVideo, Avatar, AvatarFallback, AvatarImage, BackToTop, Badge, BookmarkButton, Button, Calendar2 as Calendar, CalendarDayButton, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CelestialBackground, Center, CenterInline, CenterScreen, CenterText, Checkbox, Chip, ChipGroup, Code, CodeBlock, CodeInline, Collapsible, CollapsibleContent2 as CollapsibleContent, CollapsibleTrigger2 as CollapsibleTrigger, Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, ConfirmDialog, Container, ContainerFluid, ContainerSection, ContentCard, ContentCardVariants, ContextMenu, ContextMenuCheckboxItem, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuLabel, ContextMenuPortal, ContextMenuRadioGroup, ContextMenuRadioItem, ContextMenuSeparator, ContextMenuShortcut, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuTrigger, CookieBanner, DatePicker, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger, Divider, DotsSpinner, Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTrigger, DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger, EmptyState, EmptyStateIllustrated, EmptyStatePatterns, ErrorBoundary, FAB, FABGroup, FileUpload, Flex, FlexBetween, FlexCenter, FlexColumn, FlexEnd, FlexRow, FlexStart, FloatingGrid, Grid, GridItem, HelpCenter, HighlightCard, HorizontalSpacer, HoverCard, HoverCardContent, HoverCardTrigger, IconButton, InlineLoader, Input, InstallPrompt, KPI, KPIChart, KPIGrid, Kbd, KbdCombo, KeyboardShortcuts, Label, Lightbox, LikeButton, LinkButton, LoadingScreen, Masonry, MasonryItem, MatrixBackground, Menu, MenuBar, Modal, ModalContent, ModalFooter, ModalHeader, ModalTrigger, NavigationContextMenu, NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport, Notification, NotificationGroup, NotificationProvider, NotificationToast, PageHeader, Pagination, PaginationCompact, PaginationInfo, Panel, PanelContent, PanelDescription, PanelFooter, PanelGroup, PanelHeader, PanelTitle, ParticlesEffect, PhoneInput, Popover, PopoverContent, PopoverTrigger, Progress, PulseSpinner, QuickActions, QuickStats, Quote, QuoteBlock, QuoteTestimonial, RadioGroup, RadioGroupItem, RangeSlider, Rating, RatingProgress, RatingSummary, ReadingTime, RecentPostsList, ScrollArea, ScrollBar, SearchInput, SectionDivider, SegmentedControl, SegmentedControlItem, Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, SelectTrigger, SelectValue, Separator2 as Separator, ShareButton, ShareMenu, ShareMenuVariants, Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Sidebar, SidebarTrigger, Skeleton, Slider, Spacer, Spinner, SpinnerOverlay, StarsBackground, StatsCards, StepItem, Steps, Switch, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow, Tabs, TabsContent, TabsList, TabsTrigger, TextDivider, Textarea, ThemeProvider, ThemeToggle, TimePicker, Timeline, TimelineItem, TimelineSeparator, Toaster, Toggle, TokensDemo, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, TopBar, TopBarActions, TopBarTitle, UpdateNotification, VerticalSpacer, VisuallyHidden, badgeVariants, buttonVariants, cn, convertToWebP, generatePlaceholder, generateTailwindClasses, getBrandColor, getButtonPrimaryColor, getButtonPrimaryTextColor, getButtonSecondaryColor, getButtonTertiaryColor, getColorFromTheme, getContrastColor, getImageInfo, getSemanticColorConstants, getSemanticColors, getSemanticColorsSimplified, getStatusColor, getThemeColors2 as getThemeColors, getTokenColor, hexToRGB, hexToRGBA, isAcceptedFormat, isValidHex, isWebP, motion, motionPresets, motionSemantic, navigationMenuTriggerStyle, overlayFromToken, prepareImageForUpload, resizeImage, supportsWebP, toggleVariants, useCarouselKeyboard, useConfirm, useIsMobile, useNotification, usePWA, useTableOfContents, useTheme4 as useTheme };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

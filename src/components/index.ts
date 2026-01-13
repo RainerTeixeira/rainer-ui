@@ -24,13 +24,26 @@
 // ============================================================================
 // 🎨 UI - COMPONENTES BÁSICOS
 // ============================================================================
+export * from './ui';
 
 // ============================================================================
-// 📝 FORMS - COMPONENTES DE FORMULÁRIO
+// UTILITIES - EXPORTAR DIRETAMENTE PARA COMPATIBILIDADE
+// ============================================================================
+export { PageHeader } from './utilities/PageHeader';
+
+// Exportar funções de cor para compatibilidade
+export { hexToRGB, hexToRGBA } from '../lib/utils';
+
+// Exportar InlineLoader para compatibilidade
+export { InlineLoader } from './ui/InlineLoader';
+
+// ============================================================================
+// FORMS - COMPONENTES DE FORMULÁRIO
 // ============================================================================
 export * from './forms';
 
 // ============================================================================
+// LAYOUT - COMPONENTES DE LAYOUT
 // 🏗️ LAYOUT - COMPONENTES DE LAYOUT
 // ============================================================================
 export * from './layout';
@@ -44,6 +57,11 @@ export * from './feedback';
 // 🧭 NAVIGATION - COMPONENTES DE NAVEGAÇÃO
 // ============================================================================
 export * from './navigation';
+
+// ============================================================================
+// 📊 DASHBOARD - COMPONENTES DE DASHBOARD
+// ============================================================================
+export * from './dashboard';
 
 // ============================================================================
 // 🎭 OVERLAYS - COMPONENTES SOBREPOSTOS

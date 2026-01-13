@@ -9,9 +9,13 @@
  * @version 1.0.0
  */
 
-import { Upload, X, File, ImageIcon, FileText } from 'lucide-react';
+import { File } from 'lucide-react';
+import { ImageIcon } from 'lucide-react';
+import { FileText } from 'lucide-react';
 import * as React from 'react';
 import { cva } from 'class-variance-authority';
+import { Upload } from 'lucide-react';
+import { X } from 'lucide-react';
 
 import { Button } from '../ui/button';
 import { cn } from '../../lib/utils';
@@ -404,3 +408,4 @@ export const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
 );
 
 FileUpload.displayName = 'FileUpload';
+

@@ -9,19 +9,16 @@
  * @version 1.0.0
  */
 
-import { 
-  TrendingUp, 
-  TrendingDown, 
-  Minus, 
-  ArrowUp, 
-  ArrowDown,
-  Info
-} from 'lucide-react';
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
+import { ArrowDown } from 'lucide-react';
+import { ArrowUp } from 'lucide-react';
+import { Info } from 'lucide-react';
+import { Minus } from 'lucide-react';
+import { TrendingDown } from 'lucide-react';
+import { TrendingUp } from 'lucide-react';
 
 import { cn } from '../../lib/utils';
-import { tokens } from '@rainersoft/design-tokens';
 
 /**
  * Variantes do KPI
@@ -91,6 +88,10 @@ export interface KPIProps extends React.HTMLAttributes<HTMLDivElement> {
   currency?: string;
   /** Casas decimais */
   decimals?: number;
+  /** Variante visual */
+  variant?: 'default' | 'elevated' | 'outlined' | 'glass';
+  /** Tamanho */
+  size?: 'sm' | 'md' | 'lg';
 }
 
 /**
@@ -356,3 +357,4 @@ export const KPIChart = React.forwardRef<HTMLDivElement, KPIChartProps>(
 );
 
 KPIChart.displayName = 'KPIChart';
+

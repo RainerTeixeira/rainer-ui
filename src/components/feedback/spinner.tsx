@@ -14,7 +14,6 @@ import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
 import { cn } from '../../lib/utils';
-import { tokens } from '@rainersoft/design-tokens';
 
 /**
  * Variantes do Spinner
@@ -349,3 +348,4 @@ export const PulseSpinner = React.forwardRef<HTMLDivElement, PulseSpinnerProps>(
 );
 
 PulseSpinner.displayName = 'PulseSpinner';
+

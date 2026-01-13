@@ -11,9 +11,11 @@
 'use client';
 
 import { Component, ErrorInfo, ReactNode } from 'react';
-import { AlertTriangle, Home, RefreshCw } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import { Button } from '../ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../layout/card';
+import { AlertTriangle } from 'lucide-react';
+import { Home } from 'lucide-react';
 
 export interface ErrorBoundaryProps {
   readonly children: ReactNode;
@@ -126,6 +128,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
     return this.props.children;
   }
 }
+
 
 
 

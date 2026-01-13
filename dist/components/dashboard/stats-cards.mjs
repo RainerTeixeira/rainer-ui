@@ -1,0 +1,1382 @@
+import '@radix-ui/react-aspect-ratio';
+import { clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
+import { tokens } from '@rainersoft/design-tokens';
+import * as React4 from 'react';
+import { jsx, jsxs } from 'react/jsx-runtime';
+import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
+import * as SeparatorPrimitive from '@radix-ui/react-separator';
+import { FileText, Eye, Heart, MessageCircle, TrendingUp, TrendingDown } from 'lucide-react';
+import '@radix-ui/react-dialog';
+import { cva } from 'class-variance-authority';
+import { motion as motion$1 } from 'framer-motion';
+
+// src/lib/utils.ts
+function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
+var motion = tokens.primitives.motion;
+var motionSemantic = tokens.semantics.motion || {
+  transition: {
+    default: {
+      duration: motion.duration.normal,
+      easing: motion.easing.easeInOut
+    }
+  },
+  interaction: {
+    hover: {
+      duration: motion.duration.fast,
+      easing: motion.easing.easeOut
+    }
+  },
+  feedback: {
+    success: {
+      duration: motion.duration.slower,
+      easing: motion.easing.spring
+    }
+  },
+  navigation: {
+    page: {
+      duration: motion.duration.slow,
+      easing: motion.easing.easeInOut
+    }
+  }
+};
+motion.delay;
+motion.duration;
+motion.easing;
+({
+  default: {
+    duration: motion.duration.normal,
+    easing: motion.easing.easeInOut
+  },
+  fast: {
+    duration: motion.duration.fast,
+    easing: motion.easing.easeOut
+  },
+  slow: {
+    duration: motion.duration.slow,
+    easing: motion.easing.easeInOut
+  },
+  spring: {
+    duration: motion.duration.normal,
+    easing: motion.easing.spring
+  },
+  // Presets semânticos
+  transition: motionSemantic.transition.default,
+  interaction: motionSemantic.interaction.hover,
+  feedback: motionSemantic.feedback.success,
+  navigation: motionSemantic.navigation.page
+});
+
+// src/lib/constants.ts
+var MOTION = {
+  TRANSITION: {
+    DEFAULT: "transition-all duration-200 ease-in-out"}};
+var GRADIENT_DIRECTIONS = {
+  TO_BOTTOM_RIGHT: "to-br"};
+var Card = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "div",
+  {
+    ref,
+    className: cn(
+      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      className
+    ),
+    ...props
+  }
+));
+Card.displayName = "Card";
+var CardHeader = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "div",
+  {
+    ref,
+    className: cn("flex flex-col space-y-1.5 p-6", className),
+    ...props
+  }
+));
+CardHeader.displayName = "CardHeader";
+var CardTitle = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "h3",
+  {
+    ref,
+    className: cn(
+      "text-2xl font-semibold leading-none tracking-tight",
+      className
+    ),
+    ...props
+  }
+));
+CardTitle.displayName = "CardTitle";
+var CardDescription = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "p",
+  {
+    ref,
+    className: cn("text-sm text-muted-foreground", className),
+    ...props
+  }
+));
+CardDescription.displayName = "CardDescription";
+var CardContent = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+CardContent.displayName = "CardContent";
+var CardFooter = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "div",
+  {
+    ref,
+    className: cn("flex items-center p-6 pt-0", className),
+    ...props
+  }
+));
+CardFooter.displayName = "CardFooter";
+var HighlightCard = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "div",
+  {
+    ref,
+    className: cn(
+      "text-left bg-card/60 dark:bg-black/50",
+      "backdrop-blur-xl",
+      "rounded-2xl",
+      "p-4 xs:p-5 sm:p-6 md:p-8",
+      "border border-border/50 dark:border-cyan-400/20",
+      "hover:border-primary/40 dark:hover:border-cyan-400/50",
+      "hover:bg-card/80 dark:hover:bg-black/70",
+      "hover:shadow-2xl hover:shadow-primary/10 dark:hover:shadow-cyan-500/20",
+      "h-full flex flex-col group",
+      "relative overflow-hidden",
+      `before:absolute before:inset-0 before:${GRADIENT_DIRECTIONS.TO_BOTTOM_RIGHT}`,
+      "before:from-primary/0 before:via-primary/0 before:to-primary/0",
+      "hover:before:from-primary/5 hover:before:via-transparent hover:before:to-primary/5",
+      "dark:hover:before:from-cyan-400/5 dark:hover:before:via-transparent dark:hover:before:to-purple-400/5",
+      "before:transition-all before:duration-500 before:ease-in-out before:pointer-events-none",
+      MOTION.TRANSITION.DEFAULT,
+      className
+    ),
+    ...props
+  }
+));
+HighlightCard.displayName = "HighlightCard";
+var ScrollArea = React4.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+  ScrollAreaPrimitive.Root,
+  {
+    ref,
+    className: cn("relative overflow-hidden", className),
+    ...props,
+    children: [
+      /* @__PURE__ */ jsx(ScrollAreaPrimitive.Viewport, { className: "h-full w-full rounded-[inherit]", children }),
+      /* @__PURE__ */ jsx(ScrollBar, {}),
+      /* @__PURE__ */ jsx(ScrollAreaPrimitive.Corner, {})
+    ]
+  }
+));
+ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
+var ScrollBar = React4.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsx(
+  ScrollAreaPrimitive.ScrollAreaScrollbar,
+  {
+    ref,
+    orientation,
+    className: cn(
+      "flex touch-none select-none transition-colors",
+      orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent p-[1px]",
+      orientation === "horizontal" && "h-2.5 flex-col border-t border-t-transparent p-[1px]",
+      className
+    ),
+    ...props,
+    children: /* @__PURE__ */ jsx(ScrollAreaPrimitive.ScrollAreaThumb, { className: "relative flex-1 rounded-full bg-border" })
+  }
+));
+ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
+var Separator = React4.forwardRef(
+  ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsx(
+    SeparatorPrimitive.Root,
+    {
+      ref,
+      decorative,
+      orientation,
+      className: cn(
+        "shrink-0 bg-border",
+        /** Define dimensões baseado na orientação */
+        orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
+        className
+      ),
+      ...props
+    }
+  )
+);
+Separator.displayName = SeparatorPrimitive.Root.displayName;
+var Table = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsx(
+  "table",
+  {
+    ref,
+    className: cn("w-full caption-bottom text-sm", className),
+    ...props
+  }
+) }));
+Table.displayName = "Table";
+var TableHeader = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
+TableHeader.displayName = "TableHeader";
+var TableBody = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "tbody",
+  {
+    ref,
+    className: cn("[&_tr:last-child]:border-0", className),
+    ...props
+  }
+));
+TableBody.displayName = "TableBody";
+var TableFooter = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "tfoot",
+  {
+    ref,
+    className: cn(
+      "border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
+      className
+    ),
+    ...props
+  }
+));
+TableFooter.displayName = "TableFooter";
+var TableRow = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "tr",
+  {
+    ref,
+    className: cn(
+      "border-b transition-colors duration-200 hover:bg-muted/50 data-[state=selected]:bg-muted",
+      className
+    ),
+    ...props
+  }
+));
+TableRow.displayName = "TableRow";
+var TableHead = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "th",
+  {
+    ref,
+    className: cn(
+      "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
+      className
+    ),
+    ...props
+  }
+));
+TableHead.displayName = "TableHead";
+var TableCell = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "td",
+  {
+    ref,
+    className: cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className),
+    ...props
+  }
+));
+TableCell.displayName = "TableCell";
+var TableCaption = React4.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "caption",
+  {
+    ref,
+    className: cn("mt-4 text-sm text-muted-foreground", className),
+    ...props
+  }
+));
+TableCaption.displayName = "TableCaption";
+var containerVariants = cva(
+  "mx-auto px-4 sm:px-6 lg:px-8",
+  {
+    variants: {
+      size: {
+        xs: "max-w-xs",
+        sm: "max-w-sm",
+        md: "max-w-md",
+        lg: "max-w-lg",
+        xl: "max-w-xl",
+        "2xl": "max-w-2xl",
+        "3xl": "max-w-3xl",
+        "4xl": "max-w-4xl",
+        "5xl": "max-w-5xl",
+        "6xl": "max-w-6xl",
+        "7xl": "max-w-7xl",
+        full: "max-w-full",
+        screen: "max-w-screen-xl",
+        none: ""
+      },
+      padding: {
+        none: "px-0",
+        sm: "px-2 sm:px-4",
+        md: "px-4 sm:px-6 lg:px-8",
+        lg: "px-6 sm:px-8 lg:px-12",
+        xl: "px-8 sm:px-12 lg:px-16"
+      },
+      center: {
+        true: "flex items-center justify-center",
+        false: ""
+      }
+    },
+    defaultVariants: {
+      size: "7xl",
+      padding: "md",
+      center: false
+    }
+  }
+);
+var Container = React4.forwardRef(
+  ({
+    className,
+    size = "7xl",
+    padding = "md",
+    center = false,
+    fullHeight = false,
+    verticalPadding = false,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn(
+          containerVariants({ size, padding, center }),
+          fullHeight && "min-h-screen",
+          verticalPadding && "py-4 sm:py-6 lg:py-8",
+          className
+        ),
+        ...props
+      }
+    );
+  }
+);
+Container.displayName = "Container";
+var ContainerFluid = React4.forwardRef(
+  ({
+    className,
+    padding = "md",
+    verticalPadding = false,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn(
+          "w-full",
+          padding === "none" && "px-0",
+          padding === "sm" && "px-2 sm:px-4",
+          padding === "md" && "px-4 sm:px-6 lg:px-8",
+          padding === "lg" && "px-6 sm:px-8 lg:px-12",
+          padding === "xl" && "px-8 sm:px-12 lg:px-16",
+          verticalPadding && "py-4 sm:py-6 lg:py-8",
+          className
+        ),
+        ...props
+      }
+    );
+  }
+);
+ContainerFluid.displayName = "ContainerFluid";
+var spacingClasses = {
+  sm: "py-8",
+  md: "py-12",
+  lg: "py-16",
+  xl: "py-20",
+  "2xl": "py-24"
+};
+var ContainerSection = React4.forwardRef(
+  ({
+    className,
+    spacing = "lg",
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsx(
+      "section",
+      {
+        ref,
+        className: cn(
+          "w-full",
+          spacingClasses[spacing],
+          className
+        ),
+        children: /* @__PURE__ */ jsx(Container, { ...props })
+      }
+    );
+  }
+);
+ContainerSection.displayName = "ContainerSection";
+var gridVariants = cva(
+  "grid",
+  {
+    variants: {
+      cols: {
+        1: "grid-cols-1",
+        2: "grid-cols-2",
+        3: "grid-cols-3",
+        4: "grid-cols-4",
+        5: "grid-cols-5",
+        6: "grid-cols-6",
+        7: "grid-cols-7",
+        8: "grid-cols-8",
+        9: "grid-cols-9",
+        10: "grid-cols-10",
+        11: "grid-cols-11",
+        12: "grid-cols-12",
+        auto: "grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
+        "auto-fit": "grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
+        "auto-fill": "grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
+      },
+      sm: {
+        1: "sm:grid-cols-1",
+        2: "sm:grid-cols-2",
+        3: "sm:grid-cols-3",
+        4: "sm:grid-cols-4",
+        5: "sm:grid-cols-5",
+        6: "sm:grid-cols-6",
+        7: "sm:grid-cols-7",
+        8: "sm:grid-cols-8",
+        9: "sm:grid-cols-9",
+        10: "sm:grid-cols-10",
+        11: "sm:grid-cols-11",
+        12: "sm:grid-cols-12",
+        auto: "sm:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
+        "auto-fit": "sm:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
+        "auto-fill": "sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
+      },
+      md: {
+        1: "md:grid-cols-1",
+        2: "md:grid-cols-2",
+        3: "md:grid-cols-3",
+        4: "md:grid-cols-4",
+        5: "md:grid-cols-5",
+        6: "md:grid-cols-6",
+        7: "md:grid-cols-7",
+        8: "md:grid-cols-8",
+        9: "md:grid-cols-9",
+        10: "md:grid-cols-10",
+        11: "md:grid-cols-11",
+        12: "md:grid-cols-12",
+        auto: "md:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
+        "auto-fit": "md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
+        "auto-fill": "md:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
+      },
+      lg: {
+        1: "lg:grid-cols-1",
+        2: "lg:grid-cols-2",
+        3: "lg:grid-cols-3",
+        4: "lg:grid-cols-4",
+        5: "lg:grid-cols-5",
+        6: "lg:grid-cols-6",
+        7: "lg:grid-cols-7",
+        8: "lg:grid-cols-8",
+        9: "lg:grid-cols-9",
+        10: "lg:grid-cols-10",
+        11: "lg:grid-cols-11",
+        12: "lg:grid-cols-12",
+        auto: "lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
+        "auto-fit": "lg:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
+        "auto-fill": "lg:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
+      },
+      xl: {
+        1: "xl:grid-cols-1",
+        2: "xl:grid-cols-2",
+        3: "xl:grid-cols-3",
+        4: "xl:grid-cols-4",
+        5: "xl:grid-cols-5",
+        6: "xl:grid-cols-6",
+        7: "xl:grid-cols-7",
+        8: "xl:grid-cols-8",
+        9: "xl:grid-cols-9",
+        10: "xl:grid-cols-10",
+        11: "xl:grid-cols-11",
+        12: "xl:grid-cols-12",
+        auto: "xl:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
+        "auto-fit": "xl:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
+        "auto-fill": "xl:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
+      },
+      gap: {
+        0: "gap-0",
+        1: "gap-1",
+        2: "gap-2",
+        3: "gap-3",
+        4: "gap-4",
+        5: "gap-5",
+        6: "gap-6",
+        8: "gap-8",
+        10: "gap-10",
+        12: "gap-12",
+        px: "gap-px"
+      },
+      gapX: {
+        0: "gap-x-0",
+        1: "gap-x-1",
+        2: "gap-x-2",
+        3: "gap-x-3",
+        4: "gap-x-4",
+        5: "gap-x-5",
+        6: "gap-x-6",
+        8: "gap-x-8",
+        10: "gap-x-10",
+        12: "gap-x-12",
+        px: "gap-x-px"
+      },
+      gapY: {
+        0: "gap-y-0",
+        1: "gap-y-1",
+        2: "gap-y-2",
+        3: "gap-y-3",
+        4: "gap-y-4",
+        5: "gap-y-5",
+        6: "gap-y-6",
+        8: "gap-y-8",
+        10: "gap-y-10",
+        12: "gap-y-12",
+        px: "gap-y-px"
+      },
+      align: {
+        start: "items-start",
+        end: "items-end",
+        center: "items-center",
+        stretch: "items-stretch"
+      },
+      justify: {
+        start: "justify-start",
+        end: "justify-end",
+        center: "justify-center",
+        between: "justify-between",
+        around: "justify-around",
+        evenly: "justify-evenly"
+      }
+    }
+  }
+);
+var Grid = React4.forwardRef(
+  ({
+    className,
+    cols,
+    sm,
+    md,
+    lg,
+    xl,
+    gap,
+    gapX,
+    gapY,
+    align,
+    justify,
+    minColWidth,
+    templateCols,
+    templateRows,
+    areas,
+    style,
+    ...props
+  }, ref) => {
+    const gridStyle = React4.useMemo(() => {
+      const customStyle = { ...style };
+      if (templateCols) {
+        customStyle.gridTemplateColumns = templateCols;
+      }
+      if (templateRows) {
+        customStyle.gridTemplateRows = templateRows;
+      }
+      if (areas) {
+        customStyle.gridTemplateAreas = areas;
+      }
+      if ((cols === "auto-fit" || cols === "auto-fill") && minColWidth) {
+        customStyle.gridTemplateColumns = `repeat(${cols}, minmax(${minColWidth}, 1fr))`;
+      }
+      return customStyle;
+    }, [style, templateCols, templateRows, areas, cols, minColWidth]);
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn(
+          gridVariants({
+            cols,
+            sm,
+            md,
+            lg,
+            xl,
+            gap,
+            gapX,
+            gapY,
+            align,
+            justify
+          }),
+          className
+        ),
+        style: gridStyle,
+        ...props
+      }
+    );
+  }
+);
+Grid.displayName = "Grid";
+var GridItem = React4.forwardRef(
+  ({
+    className,
+    colStart,
+    colEnd,
+    rowStart,
+    rowEnd,
+    area,
+    style,
+    ...props
+  }, ref) => {
+    const gridStyle = React4.useMemo(() => {
+      const customStyle = { ...style };
+      if (colStart !== void 0) {
+        customStyle.gridColumnStart = colStart;
+      }
+      if (colEnd !== void 0) {
+        customStyle.gridColumnEnd = colEnd;
+      }
+      if (rowStart !== void 0) {
+        customStyle.gridRowStart = rowStart;
+      }
+      if (rowEnd !== void 0) {
+        customStyle.gridRowEnd = rowEnd;
+      }
+      if (area) {
+        customStyle.gridArea = area;
+      }
+      return customStyle;
+    }, [style, colStart, colEnd, rowStart, rowEnd, area]);
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn(className),
+        style: gridStyle,
+        ...props
+      }
+    );
+  }
+);
+GridItem.displayName = "GridItem";
+var flexVariants = cva(
+  "flex",
+  {
+    variants: {
+      direction: {
+        row: "flex-row",
+        "row-reverse": "flex-row-reverse",
+        col: "flex-col",
+        "col-reverse": "flex-col-reverse"
+      },
+      wrap: {
+        nowrap: "flex-nowrap",
+        wrap: "flex-wrap",
+        "wrap-reverse": "flex-wrap-reverse"
+      },
+      align: {
+        start: "items-start",
+        end: "items-end",
+        center: "items-center",
+        baseline: "items-baseline",
+        stretch: "items-stretch"
+      },
+      justify: {
+        start: "justify-start",
+        end: "justify-end",
+        center: "justify-center",
+        between: "justify-between",
+        around: "justify-around",
+        evenly: "justify-evenly"
+      },
+      gap: {
+        0: "gap-0",
+        1: "gap-1",
+        2: "gap-2",
+        3: "gap-3",
+        4: "gap-4",
+        5: "gap-5",
+        6: "gap-6",
+        8: "gap-8",
+        10: "gap-10",
+        12: "gap-12",
+        px: "gap-px"
+      },
+      gapX: {
+        0: "gap-x-0",
+        1: "gap-x-1",
+        2: "gap-x-2",
+        3: "gap-x-3",
+        4: "gap-x-4",
+        5: "gap-x-5",
+        6: "gap-x-6",
+        8: "gap-x-8",
+        10: "gap-x-10",
+        12: "gap-x-12",
+        px: "gap-x-px"
+      },
+      gapY: {
+        0: "gap-y-0",
+        1: "gap-y-1",
+        2: "gap-y-2",
+        3: "gap-y-3",
+        4: "gap-y-4",
+        5: "gap-y-5",
+        6: "gap-y-6",
+        8: "gap-y-8",
+        10: "gap-y-10",
+        12: "gap-y-12",
+        px: "gap-y-px"
+      }
+    }
+  }
+);
+var Flex = React4.forwardRef(
+  ({
+    className,
+    direction = "row",
+    wrap = "nowrap",
+    align,
+    justify,
+    gap,
+    gapX,
+    gapY,
+    full = false,
+    fullHeight = false,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn(
+          flexVariants({
+            direction,
+            wrap,
+            align,
+            justify,
+            gap,
+            gapX,
+            gapY
+          }),
+          full && "w-full",
+          fullHeight && "min-h-screen",
+          className
+        ),
+        ...props
+      }
+    );
+  }
+);
+Flex.displayName = "Flex";
+var FlexCenter = React4.forwardRef(
+  (props, ref) => {
+    return /* @__PURE__ */ jsx(
+      Flex,
+      {
+        ref,
+        align: "center",
+        justify: "center",
+        ...props
+      }
+    );
+  }
+);
+FlexCenter.displayName = "FlexCenter";
+var FlexBetween = React4.forwardRef(
+  (props, ref) => {
+    return /* @__PURE__ */ jsx(
+      Flex,
+      {
+        ref,
+        justify: "between",
+        ...props
+      }
+    );
+  }
+);
+FlexBetween.displayName = "FlexBetween";
+var FlexStart = React4.forwardRef(
+  (props, ref) => {
+    return /* @__PURE__ */ jsx(
+      Flex,
+      {
+        ref,
+        align: "start",
+        justify: "start",
+        ...props
+      }
+    );
+  }
+);
+FlexStart.displayName = "FlexStart";
+var FlexEnd = React4.forwardRef(
+  (props, ref) => {
+    return /* @__PURE__ */ jsx(
+      Flex,
+      {
+        ref,
+        align: "end",
+        justify: "end",
+        ...props
+      }
+    );
+  }
+);
+FlexEnd.displayName = "FlexEnd";
+var FlexColumn = React4.forwardRef(
+  (props, ref) => {
+    return /* @__PURE__ */ jsx(
+      Flex,
+      {
+        ref,
+        direction: "col",
+        ...props
+      }
+    );
+  }
+);
+FlexColumn.displayName = "FlexColumn";
+var FlexRow = React4.forwardRef(
+  (props, ref) => {
+    return /* @__PURE__ */ jsx(
+      Flex,
+      {
+        ref,
+        direction: "row",
+        ...props
+      }
+    );
+  }
+);
+FlexRow.displayName = "FlexRow";
+var spacerVariants = cva(
+  "",
+  {
+    variants: {
+      size: {
+        xs: "h-2 w-2",
+        sm: "h-4 w-4",
+        md: "h-6 w-6",
+        lg: "h-8 w-8",
+        xl: "h-10 w-10",
+        "2xl": "h-12 w-12",
+        "3xl": "h-16 w-16",
+        "4xl": "h-20 w-20"
+      },
+      direction: {
+        horizontal: "flex-1 h-px",
+        vertical: "w-px flex-1",
+        both: "flex-1"
+      },
+      variant: {
+        default: "bg-transparent",
+        line: "bg-border",
+        dotted: "bg-transparent border-dashed",
+        gradient: "bg-gradient-to-r from-transparent via-border to-transparent"
+      }
+    },
+    defaultVariants: {
+      size: "md",
+      direction: "both",
+      variant: "default"
+    }
+  }
+);
+var Spacer = React4.forwardRef(
+  ({
+    className,
+    size = "md",
+    direction = "both",
+    variant = "default",
+    width,
+    height,
+    flex = true,
+    invisible = false,
+    style,
+    ...props
+  }, ref) => {
+    const spacerStyle = React4.useMemo(() => {
+      const customStyle = { ...style };
+      if (width !== void 0) {
+        customStyle.width = typeof width === "number" ? `${width}px` : width;
+      }
+      if (height !== void 0) {
+        customStyle.height = typeof height === "number" ? `${height}px` : height;
+      }
+      if (flex) {
+        customStyle.flex = "1";
+      }
+      if (invisible) {
+        customStyle.visibility = "hidden";
+      }
+      return customStyle;
+    }, [style, width, height, flex, invisible]);
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn(
+          spacerVariants({ size, direction, variant }),
+          !flex && "flex-none",
+          variant === "dotted" && "border-b border-border",
+          className
+        ),
+        style: spacerStyle,
+        "aria-hidden": "true",
+        ...props
+      }
+    );
+  }
+);
+Spacer.displayName = "Spacer";
+var VerticalSpacer = React4.forwardRef(
+  (props, ref) => {
+    return /* @__PURE__ */ jsx(
+      Spacer,
+      {
+        ref,
+        direction: "vertical",
+        ...props
+      }
+    );
+  }
+);
+VerticalSpacer.displayName = "VerticalSpacer";
+var HorizontalSpacer = React4.forwardRef(
+  (props, ref) => {
+    return /* @__PURE__ */ jsx(
+      Spacer,
+      {
+        ref,
+        direction: "horizontal",
+        ...props
+      }
+    );
+  }
+);
+HorizontalSpacer.displayName = "HorizontalSpacer";
+var dividerVariants = cva(
+  "border-t",
+  {
+    variants: {
+      variant: {
+        default: "border-border",
+        muted: "border-muted",
+        primary: "border-primary",
+        secondary: "border-secondary",
+        dashed: "border-dashed",
+        dotted: "border-dotted",
+        gradient: "border-none bg-gradient-to-r from-transparent via-border to-transparent h-px"
+      },
+      size: {
+        xs: "border-t-0.5",
+        sm: "border-t",
+        md: "border-t-2",
+        lg: "border-t-4"
+      },
+      orientation: {
+        horizontal: "w-full",
+        vertical: "h-full border-l border-t-0"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "sm",
+      orientation: "horizontal"
+    }
+  }
+);
+var Divider = React4.forwardRef(
+  ({
+    className,
+    variant = "default",
+    size = "sm",
+    orientation = "horizontal",
+    label,
+    labelPosition = "center",
+    labelComponent,
+    ...props
+  }, ref) => {
+    if (label || labelComponent) {
+      return /* @__PURE__ */ jsxs(
+        "div",
+        {
+          ref,
+          className: cn(
+            "flex items-center gap-4",
+            orientation === "vertical" && "flex-col",
+            className
+          ),
+          role: "separator",
+          "aria-orientation": orientation,
+          ...props,
+          children: [
+            /* @__PURE__ */ jsx(
+              "div",
+              {
+                className: cn(
+                  dividerVariants({ variant, size, orientation }),
+                  labelPosition === "center" && "flex-1",
+                  labelPosition === "end" && "flex-1",
+                  labelPosition === "start" && "flex-none w-10"
+                )
+              }
+            ),
+            labelComponent || /* @__PURE__ */ jsx("span", { className: "text-sm text-muted-foreground whitespace-nowrap", children: label }),
+            /* @__PURE__ */ jsx(
+              "div",
+              {
+                className: cn(
+                  dividerVariants({ variant, size, orientation }),
+                  labelPosition === "center" && "flex-1",
+                  labelPosition === "start" && "flex-1",
+                  labelPosition === "end" && "flex-none w-10"
+                )
+              }
+            )
+          ]
+        }
+      );
+    }
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn(
+          dividerVariants({ variant, size, orientation }),
+          className
+        ),
+        role: "separator",
+        "aria-orientation": orientation,
+        ...props
+      }
+    );
+  }
+);
+Divider.displayName = "Divider";
+var spacingClasses2 = {
+  sm: "my-4",
+  md: "my-6",
+  lg: "my-8",
+  xl: "my-12"
+};
+var SectionDivider = React4.forwardRef(
+  ({
+    className,
+    spacing = "lg",
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsx("div", { className: cn(spacingClasses2[spacing], className), children: /* @__PURE__ */ jsx(Divider, { ref, size: "md", ...props }) });
+  }
+);
+SectionDivider.displayName = "SectionDivider";
+var textColorClasses = {
+  default: "text-foreground",
+  muted: "text-muted-foreground",
+  primary: "text-primary",
+  secondary: "text-secondary-foreground"
+};
+var TextDivider = React4.forwardRef(
+  ({
+    className,
+    children,
+    textColor = "muted",
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsxs(
+      "div",
+      {
+        ref,
+        className: cn("flex items-center gap-4", className),
+        role: "separator",
+        ...props,
+        children: [
+          /* @__PURE__ */ jsx("div", { className: "flex-1 h-px bg-border" }),
+          /* @__PURE__ */ jsx("span", { className: cn("text-sm font-medium whitespace-nowrap", textColorClasses[textColor]), children }),
+          /* @__PURE__ */ jsx("div", { className: "flex-1 h-px bg-border" })
+        ]
+      }
+    );
+  }
+);
+TextDivider.displayName = "TextDivider";
+var panelVariants = cva(
+  "rounded-lg border bg-card text-card-foreground",
+  {
+    variants: {
+      variant: {
+        default: "border-border shadow-sm",
+        elevated: "border-border shadow-md",
+        outlined: "border-2 border-border shadow-none",
+        ghost: "border-transparent shadow-none bg-transparent",
+        glass: "glass border-border shadow-sm",
+        neon: "neon-border shadow-lg dark:shadow-glow-cyan",
+        gradient: "bg-gradient-to-br from-background to-muted border-border shadow-sm"
+      },
+      size: {
+        sm: "p-4",
+        md: "p-6",
+        lg: "p-8",
+        xl: "p-10"
+      },
+      padding: {
+        none: "p-0",
+        sm: "p-3",
+        md: "p-4",
+        lg: "p-6",
+        xl: "p-8"
+      },
+      radius: {
+        none: "rounded-none",
+        sm: "rounded",
+        md: "rounded-lg",
+        lg: "rounded-xl",
+        xl: "rounded-2xl",
+        full: "rounded-full"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "md",
+      padding: null,
+      radius: "md"
+    }
+  }
+);
+var Panel = React4.forwardRef(
+  ({
+    className,
+    variant = "default",
+    size,
+    padding,
+    radius = "md",
+    hover = false,
+    clickable = false,
+    selected = false,
+    loading = false,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn(
+          panelVariants({ variant, size, padding, radius }),
+          hover && "transition-all duration-[var(--motion-duration-normal)] hover:shadow-lg hover:-translate-y-0.5",
+          clickable && "cursor-pointer active:scale-[0.98]",
+          selected && "ring-2 ring-primary ring-offset-2",
+          loading && "opacity-70",
+          className
+        ),
+        ...props
+      }
+    );
+  }
+);
+Panel.displayName = "Panel";
+var PanelHeader = React4.forwardRef(
+  ({
+    className,
+    divider = false,
+    children,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn(
+          "flex flex-col space-y-1.5 p-6",
+          divider && "border-b border-border",
+          className
+        ),
+        ...props,
+        children
+      }
+    );
+  }
+);
+PanelHeader.displayName = "PanelHeader";
+var PanelTitle = React4.forwardRef(
+  ({
+    className,
+    children,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsx(
+      "h3",
+      {
+        ref,
+        className: cn("text-lg font-semibold leading-none tracking-tight", className),
+        ...props,
+        children
+      }
+    );
+  }
+);
+PanelTitle.displayName = "PanelTitle";
+var PanelDescription = React4.forwardRef(
+  ({
+    className,
+    children,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsx(
+      "p",
+      {
+        ref,
+        className: cn("text-sm text-muted-foreground", className),
+        ...props,
+        children
+      }
+    );
+  }
+);
+PanelDescription.displayName = "PanelDescription";
+var PanelContent = React4.forwardRef(
+  ({
+    className,
+    children,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn("p-6 pt-0", className),
+        ...props,
+        children
+      }
+    );
+  }
+);
+PanelContent.displayName = "PanelContent";
+var PanelFooter = React4.forwardRef(
+  ({
+    className,
+    divider = false,
+    children,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn(
+          "flex items-center p-6 pt-0",
+          divider && "border-t border-border mt-6 pt-6",
+          className
+        ),
+        ...props,
+        children
+      }
+    );
+  }
+);
+PanelFooter.displayName = "PanelFooter";
+var spacingClasses3 = {
+  sm: "gap-4",
+  md: "gap-6",
+  lg: "gap-8",
+  xl: "gap-10"
+};
+var PanelGroup = React4.forwardRef(
+  ({
+    className,
+    spacing = "md",
+    children,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsx(
+      "div",
+      {
+        ref,
+        className: cn("grid", spacingClasses3[spacing], className),
+        ...props,
+        children
+      }
+    );
+  }
+);
+PanelGroup.displayName = "PanelGroup";
+function StatsCards({ stats, isLoading }) {
+  const cards = [
+    {
+      label: "Total de Posts",
+      value: stats.totalPosts,
+      change: stats.postsChange,
+      icon: /* @__PURE__ */ jsx(FileText, { className: "h-4 w-4" }),
+      color: "from-cyan-500 to-blue-500"
+    },
+    {
+      label: "Total de Visualiza\xE7\xF5es",
+      value: stats.totalViews,
+      change: stats.viewsChange,
+      icon: /* @__PURE__ */ jsx(Eye, { className: "h-4 w-4" }),
+      color: "from-purple-500 to-pink-500"
+    },
+    {
+      label: "Total de Curtidas",
+      value: stats.totalLikes,
+      change: stats.likesChange,
+      icon: /* @__PURE__ */ jsx(Heart, { className: "h-4 w-4" }),
+      color: "from-pink-500 to-red-500"
+    },
+    {
+      label: "Total de Coment\xE1rios",
+      value: stats.totalComments,
+      change: stats.commentsChange,
+      icon: /* @__PURE__ */ jsx(MessageCircle, { className: "h-4 w-4" }),
+      color: "from-green-500 to-emerald-500"
+    }
+  ];
+  if (isLoading) {
+    return /* @__PURE__ */ jsx("div", { className: "grid gap-4 md:grid-cols-2 lg:grid-cols-4", children: [...Array(4)].map((_, i) => /* @__PURE__ */ jsxs(Card, { className: "animate-pulse", children: [
+      /* @__PURE__ */ jsxs(CardHeader, { className: "flex flex-row items-center justify-between pb-2", children: [
+        /* @__PURE__ */ jsx("div", { className: "h-4 w-24 bg-muted rounded" }),
+        /* @__PURE__ */ jsx("div", { className: "h-8 w-8 bg-muted rounded" })
+      ] }),
+      /* @__PURE__ */ jsx(CardContent, { children: /* @__PURE__ */ jsx("div", { className: "h-8 w-16 bg-muted rounded" }) })
+    ] }, i)) });
+  }
+  return /* @__PURE__ */ jsx("div", { className: "grid gap-4 md:grid-cols-2 lg:grid-cols-4", children: cards.map((stat, index) => /* @__PURE__ */ jsx(
+    motion$1.div,
+    {
+      initial: { opacity: 0, y: 20 },
+      animate: { opacity: 1, y: 0 },
+      transition: { delay: index * 0.1 },
+      children: /* @__PURE__ */ jsxs(Card, { className: "border-2 hover:shadow-lg transition-shadow", children: [
+        /* @__PURE__ */ jsxs(CardHeader, { className: "flex flex-row items-center justify-between pb-2", children: [
+          /* @__PURE__ */ jsx(CardTitle, { className: "text-sm font-medium text-muted-foreground", children: stat.label }),
+          /* @__PURE__ */ jsx(
+            "div",
+            {
+              className: cn(
+                "flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br text-white",
+                stat.color
+              ),
+              children: stat.icon
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxs(CardContent, { children: [
+          /* @__PURE__ */ jsxs("div", { className: "flex items-end justify-between", children: [
+            /* @__PURE__ */ jsx("div", { className: "text-2xl font-bold", children: stat.value.toLocaleString() }),
+            stat.change !== void 0 && /* @__PURE__ */ jsxs(
+              "div",
+              {
+                className: cn(
+                  "flex items-center gap-1 text-xs font-medium",
+                  stat.change > 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
+                ),
+                children: [
+                  stat.change > 0 ? /* @__PURE__ */ jsx(TrendingUp, { className: "h-3 w-3" }) : /* @__PURE__ */ jsx(TrendingDown, { className: "h-3 w-3" }),
+                  Math.abs(stat.change),
+                  "%"
+                ]
+              }
+            )
+          ] }),
+          stat.change !== void 0 && /* @__PURE__ */ jsxs("p", { className: "text-xs text-muted-foreground mt-1", children: [
+            stat.change > 0 ? "+" : "",
+            stat.change,
+            "% em rela\xE7\xE3o ao m\xEAs anterior"
+          ] })
+        ] })
+      ] })
+    },
+    stat.label
+  )) });
+}
+
+export { StatsCards };
+//# sourceMappingURL=stats-cards.mjs.map
+//# sourceMappingURL=stats-cards.mjs.map

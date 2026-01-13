@@ -17,6 +17,7 @@
 // ============================================================================
 
 import React, { useEffect, useRef, useState } from "react";
+import { Check, Settings, X, XCircle } from 'lucide-react';
 
 // ============================================================================
 // Importações do Next.js
@@ -28,7 +29,7 @@ import Link from "next/link";
 // Ícones
 // ============================================================================
 
-import { Check, Cookie, Settings, X, XCircle } from "lucide-react";
+import { Cookie } from 'lucide-react';
 
 // ============================================================================
 // Componentes de UI
@@ -614,3 +615,4 @@ export function useCookieConsent(): CookiePreferences | null {
 
 // Re-exportação do tipo para uso externo
 export type { CookiePreferences } from "../../lib/cookie-utils";
+

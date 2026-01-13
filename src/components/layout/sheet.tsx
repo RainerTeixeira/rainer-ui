@@ -18,11 +18,12 @@
  *
  * @fileoverview Sistema de painéis laterais deslizantes
  * @author Rainer Teixeira
- * @version 1.0.0
+ * @version 1.1.1
  * @since 1.0.0
  */
 
 import * as React from 'react';
+import { X } from 'lucide-react';
 import {
   Root as SheetRootPrimitive,
   Trigger as SheetTriggerPrimitive,
@@ -33,7 +34,6 @@ import {
   Title as SheetTitlePrimitive,
   Description as SheetDescriptionPrimitive,
 } from '@radix-ui/react-dialog';
-import { X } from 'lucide-react';
 
 import { cn } from '../../lib/utils';
 
@@ -283,6 +283,7 @@ export {
   SheetTitle,
   SheetDescription,
 };
+
 
 
 

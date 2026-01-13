@@ -13,7 +13,7 @@ module.exports = {
       }
     }],
   },
-  testRegex: String.raw`(/__tests__/.*|(\\.|/)(test|spec))\.tsx?$`,
+  testMatch: ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "**/*.spec.tsx"],
   moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
   collectCoverageFrom: [
     "src/**/*.{ts,tsx}",

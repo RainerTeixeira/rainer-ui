@@ -21,8 +21,8 @@ import {
   Label as ContextMenuLabelPrimitive,
   Separator as ContextMenuSeparatorPrimitive,
 } from '@radix-ui/react-context-menu';
-import { Check, ChevronRight } from 'lucide-react';
 import * as React from 'react';
+import { Check, ChevronRight } from 'lucide-react';
 
 import { cn } from '../../lib/utils';
 

@@ -48,9 +48,9 @@ import { Loader2 } from 'lucide-react';
 // Utils
 // ============================================================================
 
+import { tokens } from '@rainersoft/design-tokens';
 import { cn } from '../../lib/utils';
 import { hexToRGB } from '../../lib/color-utils';
-import { tokens } from '@rainersoft/design-tokens';
 
 // ============================================================================
 // Providers
@@ -326,16 +326,16 @@ export function LoadingScreen({ progress, currentStep }: LoadingScreenProps) {
   const currentTheme = mounted ? (theme === 'system' ? systemTheme : theme) : 'light';
   const isDark = currentTheme === 'dark';
 
-  // Cores usando tokens do design-tokens
-  const primaryColor = isDark
-    ? tokens?.primitives?.color?.blue?.[400] || '#60a5fa'
-    : tokens?.primitives?.color?.blue?.[600] || '#2563eb';
-  const secondaryColor = isDark
-    ? tokens?.primitives?.color?.purple?.[400] || '#c084fc'
-    : tokens?.primitives?.color?.purple?.[600] || '#9333ea';
-  const accentColor = isDark
-    ? tokens?.primitives?.color?.red?.[400] || '#f87171'
-    : tokens?.primitives?.color?.red?.[600] || '#dc2626';
+  // Cores dos design tokens
+  const primaryColor = isDark 
+    ? tokens.primitives.color.blue['400'] 
+    : tokens.primitives.color.blue['600'];
+  const secondaryColor = isDark 
+    ? tokens.primitives.color.purple['400'] 
+    : tokens.primitives.color.purple['600'];
+  const accentColor = isDark 
+    ? tokens.primitives.color.red['400'] 
+    : tokens.primitives.color.red['600'];
 
   // Converter para RGB para uso em estilos
   const primaryRGB = hexToRGB(primaryColor);
@@ -560,6 +560,7 @@ export function LoadingScreen({ progress, currentStep }: LoadingScreenProps) {
     </div>
   );
 }
+
 
 
 

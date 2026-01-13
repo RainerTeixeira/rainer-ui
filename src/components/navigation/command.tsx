@@ -10,8 +10,8 @@
 import { Dialog, DialogContent, DialogTitle } from "../overlays/dialog";
 import { cn } from "../../lib/utils";
 import { Command as CommandPrimitive } from "cmdk";
-import { Search } from "lucide-react";
 import * as React from "react";
+import { Search } from 'lucide-react';
 
 const Command = React.forwardRef<
   React.ComponentRef<typeof CommandPrimitive>,
@@ -160,3 +160,4 @@ export {
   CommandSeparator,
   CommandShortcut,
 };
+

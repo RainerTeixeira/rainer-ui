@@ -1,73 +1,32 @@
-/**
- * Share Menu Component
- * 
- * Componente de menu de compartilhamento genérico e configurável.
- * Suporta múltiplas plataformas, compartilhamento nativo e ações customizáveis.
- * 
- * @module components/social/share-menu
- * @fileoverview Menu de compartilhamento com múltiplas opções
- * @author Rainer Teixeira
- * @version 2.0.0
- * @since 1.0.0
- * 
- * @example
- * ```tsx
- * // Uso básico
- * <ShareMenu
- *   url="https://example.com/product/123"
- *   title="Produto Incrível"
- *   description="Confira este produto amazing!"
- * />
- * 
- * // Com plataformas customizadas
- * <ShareMenu
- *   url="/blog/post-123"
- *   title="Meu Artigo"
- *   platforms={['twitter', 'linkedin', 'whatsapp']}
- *   showCopyLink={true}
- *   showQRCode={false}
- * />
- * 
- * // Para e-commerce
- * <ShareMenu
- *   url="/product/laptop-pro"
- *   title="Laptop Pro - Super Oferta!"
- *   description="Notebook potente com 50% OFF"
- *   platforms={['facebook', 'whatsapp', 'telegram']}
- *   onShare={(platform) => analytics.track('share', { platform })}
- * />
- * 
- * // Para dashboard
- * <ShareMenu
- *   url="/dashboard/report/123"
- *   title="Relatório Mensal"
- *   platforms={['copy', 'email']}
- *   variant="minimal"
- *   size="sm"
- * />
- * ```
- * 
- * Características:
- * - Genérico: Configurável para qualquer tipo de conteúdo
- * - Plataformas: Facebook, Twitter, LinkedIn, WhatsApp, Telegram, Reddit
- * - Nativo: Web Share API para dispositivos móveis
- * - QR Code: Geração automática para compartilhamento
- * - Callback: Eventos personalizados de compartilhamento
- * - Tema: Múltiplas variantes visuais
- * - Acessível: Suporte completo a screen readers
- * 
- * Casos de uso:
- * - Blog: Compartilhar artigos, posts
- * - E-commerce: Compartilhar produtos, ofertas
- * - Social Media: Compartilhar posts, perfis
- * - Dashboards: Compartilhar relatórios, dados
- * - Educação: Compartilhar cursos, aulas
- * - Notícias: Compartilhar notícias, reportagens
- */
-
 'use client';
 
+/**
+ * Componente de Menu de Compartilhamento
+ * 
+ * Menu configurável para compartilhamento em múltiplas plataformas sociais.
+ * Suporta compartilhamento nativo, cópia de link, QR Code e callbacks customizados.
+ * 
+ * @component
+ * @example
+ * // Uso básico
+ * <ShareMenu url="/blog/post-123" title="Título do Post" />
+ * 
+ * // Plataformas específicas
+ * <ShareMenu 
+ *   url="/product/123" 
+ *   title="Produto Incrível"
+ *   platforms={['twitter', 'whatsapp', 'copy']}
+ * />
+ * 
+ * // Com callback
+ * <ShareMenu
+ *   url="/dashboard/report"
+ *   title="Relatório"
+ *   onShare={(platform) => console.log('Compartilhado em:', platform)}
+ * />
+ */
 import { Button } from '../ui/button';
+import { cn } from '../../lib/utils';
 import {
   Dialog,
   DialogContent,
@@ -83,6 +42,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '../overlays/dropdown-menu';
+import { QRCodeSVG } from 'qrcode.react';
+import { useState } from 'react';
 import {
   Check,
   Copy,
@@ -93,34 +54,24 @@ import {
   QrCode,
   Send,
   Share2,
-  Twitter,
-  Mail,
   Smartphone,
-  MoreHorizontal,
+  Twitter,
 } from 'lucide-react';
-import { QRCodeSVG } from 'qrcode.react';
-import { useState } from 'react';
 
 /**
- * Configuração de plataforma de compartilhamento
+ * Interface para plataformas de compartilhamento
  */
 interface SharePlatform {
-  /** Identificador único */
   id: string;
-  /** Nome exibido */
   name: string;
-  /** Ícone */
   icon: React.ReactNode;
-  /** Cor do ícone */
   color?: string;
-  /** URL de compartilhamento */
   url: string;
-  /** Ordem no menu */
   order?: number;
 }
 
 /**
- * Props do componente ShareMenu
+ * Propriedades do componente ShareMenu
  */
 export interface ShareMenuProps {
   /** URL para compartilhar */
@@ -130,33 +81,33 @@ export interface ShareMenuProps {
   /** Descrição do conteúdo */
   description?: string;
   /** Plataformas habilitadas */
-  platforms?: Array<'facebook' | 'twitter' | 'linkedin' | 'whatsapp' | 'telegram' | 'reddit' | 'copy' | 'qr' | 'native'>;
+  platforms?: Array<'facebook' | 'twitter' | 'linkedin' | 'whatsapp' | 'telegram' | 'copy' | 'qr' | 'native'>;
   /** Exibir opção de copiar link */
   showCopyLink?: boolean;
   /** Exibir opção de QR Code */
   showQRCode?: boolean;
-  /** Exibir compartilhamento nativo */
+  /** Exibir compartilhamento nativo (mobile) */
   showNativeShare?: boolean;
-  /** Variante visual */
+  /** Estilo do botão */
   variant?: 'default' | 'ghost' | 'outline' | 'minimal';
   /** Tamanho do botão */
   size?: 'sm' | 'default' | 'lg';
-  /** Label customizado do botão */
+  /** Texto do botão */
   label?: string;
-  /** Exibir label no botão */
+  /** Exibir texto no botão */
   showLabel?: boolean;
   /** Callback ao compartilhar */
   onShare?: (platform: string, data?: any) => void;
   /** Classes CSS adicionais */
   className?: string;
-  /** Direção do menu */
+  /** Posição do menu dropdown */
   side?: 'top' | 'right' | 'bottom' | 'left';
-  /** Alinhamento do menu */
+  /** Alinhamento do menu dropdown */
   align?: 'start' | 'center' | 'end';
 }
 
 /**
- * Configurações padrão de plataformas
+ * Configurações das plataformas de compartilhamento
  */
 const DEFAULT_PLATFORMS: SharePlatform[] = [
   {
@@ -199,21 +150,10 @@ const DEFAULT_PLATFORMS: SharePlatform[] = [
     url: 'https://t.me/share/url?url={url}&text={title}',
     order: 5,
   },
-  {
-    id: 'reddit',
-    name: 'Reddit',
-    icon: <MoreHorizontal className="h-4 w-4" />,
-    color: 'text-orange-600',
-    url: 'https://reddit.com/submit?url={url}&title={title}',
-    order: 6,
-  },
 ];
 
 /**
- * Componente ShareMenu
- * 
- * Menu de compartilhamento genérico com suporte a múltiplas plataformas
- * e ações customizáveis. Ideal para blogs, e-commerce e dashboards.
+ * Componente principal de menu de compartilhamento
  */
 export function ShareMenu({
   url,
@@ -236,7 +176,7 @@ export function ShareMenu({
   const [showQR, setShowQR] = useState(false);
 
   /**
-   * URL completa para compartilhamento
+   * Obtém URL completa para compartilhamento
    */
   const shareUrl = typeof window !== 'undefined' 
     ? url.startsWith('http') 
@@ -261,7 +201,7 @@ export function ShareMenu({
   };
 
   /**
-   * Compartilhamento nativo (Web Share API)
+   * Compartilhamento nativo usando Web Share API (mobile)
    */
   const shareNative = async () => {
     if (!navigator.share) return;
@@ -282,7 +222,7 @@ export function ShareMenu({
   };
 
   /**
-   * Compartilha em plataforma específica
+   * Compartilha em uma plataforma específica
    */
   const shareOnPlatform = (platform: SharePlatform) => {
     const encodedUrl = encodeURIComponent(shareUrl);
@@ -305,14 +245,14 @@ export function ShareMenu({
   };
 
   /**
-   * Plataformas filtradas e ordenadas
+   * Filtra e ordena as plataformas habilitadas
    */
   const enabledPlatforms = DEFAULT_PLATFORMS
     .filter(p => platforms.includes(p.id as any))
     .sort((a, b) => (a.order || 0) - (b.order || 0));
 
   /**
-   * Renderiza o botão trigger
+   * Componente do botão de trigger
    */
   const TriggerButton = () => (
     <Button variant={variant} size={size} className={cn('gap-2', className)}>
@@ -332,7 +272,7 @@ export function ShareMenu({
           <DropdownMenuLabel>Compartilhar em</DropdownMenuLabel>
           <DropdownMenuSeparator />
 
-          {/* Compartilhamento nativo (mobile) */}
+          {/* Compartilhamento nativo para dispositivos móveis */}
           {showNativeShare && typeof navigator !== 'undefined' && 'share' in navigator && (
             <>
               <DropdownMenuItem onClick={shareNative}>
@@ -343,7 +283,7 @@ export function ShareMenu({
             </>
           )}
 
-          {/* Plataformas sociais */}
+          {/* Plataformas sociais habilitadas */}
           {enabledPlatforms.map((platform) => (
             <DropdownMenuItem 
               key={platform.id}
@@ -356,10 +296,10 @@ export function ShareMenu({
             </DropdownMenuItem>
           ))}
 
-          {/* Ações adicionais */}
+          {/* Ações adicionais (copiar link, QR Code) */}
           {(showCopyLink || showQRCode) && <DropdownMenuSeparator />}
 
-          {/* Copiar link */}
+          {/* Copiar link para área de transferência */}
           {showCopyLink && (
             <DropdownMenuItem onClick={copyToClipboard}>
               {copied ? (
@@ -376,7 +316,7 @@ export function ShareMenu({
             </DropdownMenuItem>
           )}
 
-          {/* QR Code */}
+          {/* Gerar QR Code */}
           {showQRCode && (
             <DropdownMenuItem onClick={() => setShowQR(true)}>
               <QrCode className="mr-2 h-4 w-4" />
@@ -386,7 +326,7 @@ export function ShareMenu({
         </DropdownMenuContent>
       </DropdownMenu>
 
-      {/* Modal QR Code */}
+      {/* Modal para exibição do QR Code */}
       {showQRCode && (
         <Dialog open={showQR} onOpenChange={setShowQR}>
           <DialogContent className="sm:max-w-md">
@@ -435,36 +375,51 @@ export function ShareMenu({
 }
 
 /**
- * Variantes pré-configuradas para casos de uso específicos
+ * Variantes pré-configuradas do ShareMenu para diferentes casos de uso
  */
 export const ShareMenuVariants = {
   /**
-   * Menu completo para blogs
+   * Variante para blogs com foco em redes sociais
    */
   Blog: (props: Omit<ShareMenuProps, 'platforms' | 'showCopyLink' | 'showQRCode'>) => (
-    <ShareMenu {...props} platforms={['twitter', 'facebook', 'linkedin', 'whatsapp', 'copy', 'qr']} />
+    <ShareMenu 
+      {...props} 
+      platforms={['twitter', 'facebook', 'linkedin', 'whatsapp', 'copy', 'qr']} 
+    />
   ),
 
   /**
-   * Menu para e-commerce (foco em WhatsApp)
+   * Variante para e-commerce com foco em WhatsApp
    */
   Ecommerce: (props: Omit<ShareMenuProps, 'platforms'>) => (
-    <ShareMenu {...props} platforms={['whatsapp', 'facebook', 'telegram', 'copy']} showQRCode={false} />
+    <ShareMenu 
+      {...props} 
+      platforms={['whatsapp', 'facebook', 'telegram', 'copy']} 
+      showQRCode={false} 
+    />
   ),
 
   /**
-   * Menu minimal para dashboards
+   * Variante minimalista para dashboards
    */
   Dashboard: (props: Omit<ShareMenuProps, 'platforms' | 'variant' | 'size'>) => (
-    <ShareMenu {...props} platforms={['copy', 'email']} variant="ghost" size="sm" showQRCode={false} />
+    <ShareMenu 
+      {...props} 
+      platforms={['copy']} 
+      variant="ghost" 
+      size="sm" 
+      showQRCode={false} 
+    />
   ),
 
   /**
-   * Menu mobile-first
+   * Variante otimizada para dispositivos móveis
    */
   Mobile: (props: Omit<ShareMenuProps, 'platforms' | 'showNativeShare'>) => (
-    <ShareMenu {...props} platforms={['native', 'whatsapp', 'telegram', 'copy']} showNativeShare={true} />
+    <ShareMenu 
+      {...props} 
+      platforms={['native', 'whatsapp', 'telegram', 'copy']} 
+      showNativeShare={true} 
+    />
   ),
 } as const;
-
-export type { ShareMenuProps };
