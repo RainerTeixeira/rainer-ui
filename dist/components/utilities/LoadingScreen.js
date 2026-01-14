@@ -11,6 +11,9 @@ var jsxRuntime = require('react/jsx-runtime');
 
 function hexToRGB(hex) {
   const cleanHex = hex.replace("#", "");
+  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
+    return "0, 0, 0";
+  }
   const r = parseInt(cleanHex.substring(0, 2), 16);
   const g = parseInt(cleanHex.substring(2, 4), 16);
   const b = parseInt(cleanHex.substring(4, 6), 16);
@@ -21,7 +24,7 @@ function hexToRGB(hex) {
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var motion = designTokens.tokens?.primitives?.motion || {
+var motion = designTokens.tokens.MOTION || {
   duration: {
     fast: "100ms",
     normal: "200ms",
@@ -35,7 +38,7 @@ var motion = designTokens.tokens?.primitives?.motion || {
   delay: {
     }
 };
-var motionSemantic = designTokens.tokens.semantics.motion || {
+var motionSemantic = designTokens.tokens.MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -82,10 +85,12 @@ motion.easing;
     easing: motion.easing.spring
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
 });
 function Skeleton({ className, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx(

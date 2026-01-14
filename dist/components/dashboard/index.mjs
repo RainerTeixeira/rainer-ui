@@ -7,7 +7,7 @@ import React4__default, { useState, useEffect } from 'react';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Octagon, AlertTriangle, Info, Check } from 'lucide-react';
 import '@radix-ui/react-dialog';
 import { cva } from 'class-variance-authority';
 import { motion as motion$1 } from 'framer-motion';
@@ -28,8 +28,8 @@ import Settings from 'lucide-react/dist/esm/icons/settings';
 import BarChart from 'lucide-react/dist/esm/icons/bar-chart';
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import * as ProgressPrimitive from '@radix-ui/react-progress';
-import 'next-themes';
-import 'sonner';
+import { useTheme } from 'next-themes';
+import { Toaster as Toaster$1 } from 'sonner';
 import ArrowDown from 'lucide-react/dist/esm/icons/arrow-down';
 import ArrowUp from 'lucide-react/dist/esm/icons/arrow-up';
 import Minus from 'lucide-react/dist/esm/icons/minus';
@@ -56,7 +56,7 @@ import Video from 'lucide-react/dist/esm/icons/video';
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
-var motion = tokens?.primitives?.motion || {
+var motion = tokens.MOTION || {
   duration: {
     fast: "100ms",
     normal: "200ms",
@@ -70,7 +70,7 @@ var motion = tokens?.primitives?.motion || {
   delay: {
     }
 };
-var motionSemantic = tokens.semantics.motion || {
+var motionSemantic = tokens.MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -117,10 +117,12 @@ motion.easing;
     easing: motion.easing.spring
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
 });
 
 // src/lib/constants.ts
@@ -2703,6 +2705,40 @@ var Progress = React4.forwardRef(({ className, value, ...props }, ref) => /* @__
   }
 ));
 Progress.displayName = "Progress";
+var Toaster = React4.forwardRef((props, ref) => {
+  const { theme = "system" } = useTheme();
+  return React4.createElement(
+    Toaster$1,
+    {
+      ref,
+      theme,
+      className: "toaster group",
+      icons: {
+        success: React4.createElement(Check, { className: "h-4 w-4" }),
+        info: React4.createElement(Info, { className: "h-4 w-4" }),
+        warning: React4.createElement(AlertTriangle, { className: "h-4 w-4" }),
+        error: React4.createElement(Octagon, { className: "h-4 w-4" }),
+        loading: React4.createElement(Loader2, { className: "h-4 w-4 animate-spin" })
+      },
+      toastOptions: {
+        classNames: {
+          toast: cn(
+            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border shadow-lg",
+            "dark:group-[.toaster]:bg-background dark:group-[.toaster]:border-border"
+          ),
+          title: "dark:text-foreground",
+          description: "group-[.toast]:text-muted-foreground dark:text-muted-foreground",
+          actionButton: "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
+          cancelButton: "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
+          error: "dark:bg-status-error-background dark:border-status-error-border",
+          success: "dark:bg-status-success-background dark:border-status-success-border"
+        }
+      },
+      ...props
+    }
+  );
+});
+Toaster.displayName = "Toaster";
 var spinnerVariants = cva(
   "animate-spin text-muted-foreground",
   {

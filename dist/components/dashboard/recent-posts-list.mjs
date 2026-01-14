@@ -1,4 +1,4 @@
-import * as React19 from 'react';
+import * as React20 from 'react';
 import { cva } from 'class-variance-authority';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -7,9 +7,9 @@ import { jsx, jsxs } from 'react/jsx-runtime';
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import { Slot } from '@radix-ui/react-slot';
 import * as ProgressPrimitive from '@radix-ui/react-progress';
-import 'next-themes';
-import 'sonner';
-import { Loader2 } from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { Toaster as Toaster$1 } from 'sonner';
+import { Loader2, Octagon, AlertTriangle, Info, Check } from 'lucide-react';
 import ArrowDown from 'lucide-react/dist/esm/icons/arrow-down';
 import ArrowUp from 'lucide-react/dist/esm/icons/arrow-up';
 import Minus from 'lucide-react/dist/esm/icons/minus';
@@ -45,7 +45,7 @@ import Eye from 'lucide-react/dist/esm/icons/eye';
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
-var motion = tokens?.primitives?.motion || {
+var motion = tokens.MOTION || {
   duration: {
     fast: "100ms",
     normal: "200ms",
@@ -59,7 +59,7 @@ var motion = tokens?.primitives?.motion || {
   delay: {
     }
 };
-var motionSemantic = tokens.semantics.motion || {
+var motionSemantic = tokens.MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -106,10 +106,12 @@ motion.easing;
     easing: motion.easing.spring
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
 });
 var alertVariants = cva(
   "relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
@@ -128,7 +130,7 @@ var alertVariants = cva(
     }
   }
 );
-var Alert = React19.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsx(
+var Alert = React20.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -138,7 +140,7 @@ var Alert = React19.forwardRef(({ className, variant, ...props }, ref) => /* @__
   }
 ));
 Alert.displayName = "Alert";
-var AlertTitle = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertTitle = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h5",
   {
     ref,
@@ -147,7 +149,7 @@ var AlertTitle = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 AlertTitle.displayName = "AlertTitle";
-var AlertDescription = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDescription = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -204,7 +206,7 @@ function Button({
   );
 }
 var AlertDialogPortal = AlertDialogPrimitive.Portal;
-var AlertDialogOverlay = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogOverlay = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Overlay,
   {
     className: cn(
@@ -216,7 +218,7 @@ var AlertDialogOverlay = React19.forwardRef(({ className, ...props }, ref) => /*
   }
 ));
 AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName;
-var AlertDialogContent = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(AlertDialogPortal, { children: [
+var AlertDialogContent = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(AlertDialogPortal, { children: [
   /* @__PURE__ */ jsx(AlertDialogOverlay, {}),
   /* @__PURE__ */ jsx(
     AlertDialogPrimitive.Content,
@@ -231,7 +233,7 @@ var AlertDialogContent = React19.forwardRef(({ className, ...props }, ref) => /*
   )
 ] }));
 AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName;
-var AlertDialogTitle = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogTitle = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Title,
   {
     ref,
@@ -240,7 +242,7 @@ var AlertDialogTitle = React19.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName;
-var AlertDialogDescription = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogDescription = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Description,
   {
     ref,
@@ -249,7 +251,7 @@ var AlertDialogDescription = React19.forwardRef(({ className, ...props }, ref) =
   }
 ));
 AlertDialogDescription.displayName = AlertDialogPrimitive.Description.displayName;
-var AlertDialogAction = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogAction = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Action,
   {
     ref,
@@ -258,7 +260,7 @@ var AlertDialogAction = React19.forwardRef(({ className, ...props }, ref) => /* 
   }
 ));
 AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
-var AlertDialogCancel = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogCancel = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Cancel,
   {
     ref,
@@ -301,7 +303,7 @@ var badgeVariants = cva(
 function Badge({ className, variant, ...props }) {
   return /* @__PURE__ */ jsx("div", { className: cn(badgeVariants({ variant }), className), ...props });
 }
-var Progress = React19.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsx(
+var Progress = React20.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsx(
   ProgressPrimitive.Root,
   {
     ref,
@@ -320,6 +322,40 @@ var Progress = React19.forwardRef(({ className, value, ...props }, ref) => /* @_
   }
 ));
 Progress.displayName = "Progress";
+var Toaster = React20.forwardRef((props, ref) => {
+  const { theme = "system" } = useTheme();
+  return React20.createElement(
+    Toaster$1,
+    {
+      ref,
+      theme,
+      className: "toaster group",
+      icons: {
+        success: React20.createElement(Check, { className: "h-4 w-4" }),
+        info: React20.createElement(Info, { className: "h-4 w-4" }),
+        warning: React20.createElement(AlertTriangle, { className: "h-4 w-4" }),
+        error: React20.createElement(Octagon, { className: "h-4 w-4" }),
+        loading: React20.createElement(Loader2, { className: "h-4 w-4 animate-spin" })
+      },
+      toastOptions: {
+        classNames: {
+          toast: cn(
+            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border shadow-lg",
+            "dark:group-[.toaster]:bg-background dark:group-[.toaster]:border-border"
+          ),
+          title: "dark:text-foreground",
+          description: "group-[.toast]:text-muted-foreground dark:text-muted-foreground",
+          actionButton: "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
+          cancelButton: "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
+          error: "dark:bg-status-error-background dark:border-status-error-border",
+          success: "dark:bg-status-success-background dark:border-status-success-border"
+        }
+      },
+      ...props
+    }
+  );
+});
+Toaster.displayName = "Toaster";
 var spinnerVariants = cva(
   "animate-spin text-muted-foreground",
   {
@@ -356,7 +392,7 @@ var speedClasses = {
   normal: "animate-spin",
   fast: "animate-spin-fast"
 };
-var Spinner = React19.forwardRef(
+var Spinner = React20.forwardRef(
   ({
     className,
     variant = "default",
@@ -409,7 +445,7 @@ var Spinner = React19.forwardRef(
   }
 );
 Spinner.displayName = "Spinner";
-var SpinnerOverlay = React19.forwardRef(
+var SpinnerOverlay = React20.forwardRef(
   ({
     className,
     fullscreen = false,
@@ -440,7 +476,7 @@ var dotSizeClasses = {
   md: "h-2 w-2",
   lg: "h-3 w-3"
 };
-var DotsSpinner = React19.forwardRef(
+var DotsSpinner = React20.forwardRef(
   ({
     className,
     count = 3,
@@ -487,7 +523,7 @@ var pulseSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var PulseSpinner = React19.forwardRef(
+var PulseSpinner = React20.forwardRef(
   ({
     className,
     rings = 3,
@@ -572,7 +608,7 @@ function formatValue(value, format, currency, decimals = 0) {
       return formatted;
   }
 }
-var KPI = React19.forwardRef(
+var KPI = React20.forwardRef(
   ({
     className,
     variant = "default",
@@ -647,7 +683,7 @@ var gridColsClasses = {
   3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
   4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
 };
-var KPIGrid = React19.forwardRef(
+var KPIGrid = React20.forwardRef(
   ({
     className,
     cols = 4,
@@ -670,7 +706,7 @@ var KPIGrid = React19.forwardRef(
   }
 );
 KPIGrid.displayName = "KPIGrid";
-var KPIChart = React19.forwardRef(
+var KPIChart = React20.forwardRef(
   ({
     className,
     chart,
@@ -738,7 +774,7 @@ var iconSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var EmptyState = React19.forwardRef(
+var EmptyState = React20.forwardRef(
   ({
     className,
     variant = "default",
@@ -795,7 +831,7 @@ var EmptyState = React19.forwardRef(
   }
 );
 EmptyState.displayName = "EmptyState";
-var EmptyStateIllustrated = React19.forwardRef(
+var EmptyStateIllustrated = React20.forwardRef(
   ({
     className,
     illustration,
@@ -849,7 +885,7 @@ var notificationVariants = cva(
     }
   }
 );
-var Notification = React19.forwardRef(
+var Notification = React20.forwardRef(
   ({
     className,
     variant = "default",
@@ -865,8 +901,8 @@ var Notification = React19.forwardRef(
     toast = false,
     ...props
   }, ref) => {
-    const [visible, setVisible] = React19.useState(true);
-    React19.useEffect(() => {
+    const [visible, setVisible] = React20.useState(true);
+    React20.useEffect(() => {
       if (autoClose && onDismiss) {
         const timer = setTimeout(() => {
           handleClose();
@@ -941,7 +977,7 @@ var spacingClasses = {
   md: "gap-3",
   lg: "gap-4"
 };
-var NotificationGroup = React19.forwardRef(
+var NotificationGroup = React20.forwardRef(
   ({
     className,
     children,
@@ -967,7 +1003,7 @@ var NotificationGroup = React19.forwardRef(
   }
 );
 NotificationGroup.displayName = "NotificationGroup";
-var NotificationToast = React19.forwardRef(
+var NotificationToast = React20.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Notification,
@@ -1001,7 +1037,7 @@ var variantClasses = {
   rounded: "rounded-lg",
   square: "rounded-none"
 };
-var Avatar = React19.forwardRef(
+var Avatar = React20.forwardRef(
   ({
     className,
     src,
@@ -1017,9 +1053,9 @@ var Avatar = React19.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [imageStatus, setImageStatus] = React19.useState("loading");
-    const [showFallback, setShowFallback] = React19.useState(!src);
-    React19.useEffect(() => {
+    const [imageStatus, setImageStatus] = React20.useState("loading");
+    const [showFallback, setShowFallback] = React20.useState(!src);
+    React20.useEffect(() => {
       if (!src) {
         setShowFallback(true);
         setImageStatus("error");
@@ -1080,7 +1116,7 @@ var Avatar = React19.forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var AvatarImage = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AvatarImage = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "img",
   {
     ref,
@@ -1089,7 +1125,7 @@ var AvatarImage = React19.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 AvatarImage.displayName = "AvatarImage";
-var AvatarFallback = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AvatarFallback = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1101,7 +1137,7 @@ var AvatarFallback = React19.forwardRef(({ className, ...props }, ref) => /* @__
   }
 ));
 AvatarFallback.displayName = "AvatarFallback";
-var Slider = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(
+var Slider = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(
   SliderPrimitive.Root,
   {
     ref,
@@ -1135,7 +1171,7 @@ var Slider = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ *
   }
 ));
 Slider.displayName = SliderPrimitive.Root.displayName;
-var Switch = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Switch = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SwitchPrimitives.Root,
   {
     className: cn(
@@ -1179,7 +1215,7 @@ var toggleVariants = cva(
     }
   }
 );
-var Toggle = React19.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsx(
+var Toggle = React20.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsx(
   TogglePrimitive.Root,
   {
     ref,
@@ -1219,7 +1255,7 @@ var iconButtonVariants = cva(
     }
   }
 );
-var IconButton = React19.forwardRef(
+var IconButton = React20.forwardRef(
   ({
     className,
     variant = "default",
@@ -1230,7 +1266,7 @@ var IconButton = React19.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [showTooltip, setShowTooltip] = React19.useState(false);
+    const [showTooltip, setShowTooltip] = React20.useState(false);
     const tooltipClasses = {
       top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
       bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
@@ -1308,7 +1344,7 @@ var linkButtonVariants = cva(
     }
   }
 );
-var LinkButton = React19.forwardRef(
+var LinkButton = React20.forwardRef(
   ({
     className,
     variant = "default",
@@ -1399,7 +1435,7 @@ var fabVariants = cva(
     }
   }
 );
-var FAB = React19.forwardRef(
+var FAB = React20.forwardRef(
   ({
     className,
     variant = "default",
@@ -1414,12 +1450,12 @@ var FAB = React19.forwardRef(
     actions = [],
     ...props
   }, ref) => {
-    const [showActions, setShowActions] = React19.useState(active);
+    const [showActions, setShowActions] = React20.useState(active);
     const isExtended = extended && text;
-    React19.useEffect(() => {
+    React20.useEffect(() => {
       setShowActions(active);
     }, [active]);
-    const handleClick = React19.useCallback(() => {
+    const handleClick = React20.useCallback(() => {
       if (actions.length > 0) {
         setShowActions(!showActions);
       }
@@ -1477,7 +1513,7 @@ var FAB = React19.forwardRef(
   }
 );
 FAB.displayName = "FAB";
-var FABGroup = React19.forwardRef(
+var FABGroup = React20.forwardRef(
   ({
     className,
     main,
@@ -1549,7 +1585,7 @@ var segmentedControlVariants = cva(
     }
   }
 );
-var SegmentedControl = React19.forwardRef(
+var SegmentedControl = React20.forwardRef(
   ({
     className,
     size = "md",
@@ -1562,9 +1598,9 @@ var SegmentedControl = React19.forwardRef(
     disabled = false,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React19.useState(defaultValue || options[0]?.value);
+    const [internalValue, setInternalValue] = React20.useState(defaultValue || options[0]?.value);
     const currentValue = value !== void 0 ? value : internalValue;
-    const handleOptionClick = React19.useCallback((optionValue, isDisabled) => {
+    const handleOptionClick = React20.useCallback((optionValue, isDisabled) => {
       if (isDisabled || disabled) return;
       if (value === void 0) {
         setInternalValue(optionValue);
@@ -1619,7 +1655,7 @@ var SegmentedControl = React19.forwardRef(
   }
 );
 SegmentedControl.displayName = "SegmentedControl";
-var SegmentedControlItem = React19.forwardRef(
+var SegmentedControlItem = React20.forwardRef(
   ({
     className,
     active = false,
@@ -1662,7 +1698,7 @@ var MOTION = {
     DEFAULT: "transition-all duration-200 ease-in-out"}};
 var GRADIENT_DIRECTIONS = {
   TO_BOTTOM_RIGHT: "to-br"};
-var Card = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Card = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1674,7 +1710,7 @@ var Card = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ 
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardHeader = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1683,7 +1719,7 @@ var CardHeader = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardTitle = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h3",
   {
     ref,
@@ -1695,7 +1731,7 @@ var CardTitle = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardDescription = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "p",
   {
     ref,
@@ -1704,9 +1740,9 @@ var CardDescription = React19.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardFooter = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1715,7 +1751,7 @@ var CardFooter = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 CardFooter.displayName = "CardFooter";
-var HighlightCard = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var HighlightCard = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1742,7 +1778,7 @@ var HighlightCard = React19.forwardRef(({ className, ...props }, ref) => /* @__P
   }
 ));
 HighlightCard.displayName = "HighlightCard";
-var ScrollArea = React19.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var ScrollArea = React20.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   ScrollAreaPrimitive.Root,
   {
     ref,
@@ -1756,7 +1792,7 @@ var ScrollArea = React19.forwardRef(({ className, children, ...props }, ref) => 
   }
 ));
 ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
-var ScrollBar = React19.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsx(
+var ScrollBar = React20.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsx(
   ScrollAreaPrimitive.ScrollAreaScrollbar,
   {
     ref,
@@ -1772,7 +1808,7 @@ var ScrollBar = React19.forwardRef(({ className, orientation = "vertical", ...pr
   }
 ));
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
-var Separator = React19.forwardRef(
+var Separator = React20.forwardRef(
   ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsx(
     SeparatorPrimitive.Root,
     {
@@ -1790,7 +1826,7 @@ var Separator = React19.forwardRef(
   )
 );
 Separator.displayName = SeparatorPrimitive.Root.displayName;
-var Table = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsx(
+var Table = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsx(
   "table",
   {
     ref,
@@ -1799,9 +1835,9 @@ var Table = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */
   }
 ) }));
 Table.displayName = "Table";
-var TableHeader = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
+var TableHeader = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
 TableHeader.displayName = "TableHeader";
-var TableBody = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableBody = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "tbody",
   {
     ref,
@@ -1810,7 +1846,7 @@ var TableBody = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 TableBody.displayName = "TableBody";
-var TableFooter = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableFooter = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "tfoot",
   {
     ref,
@@ -1822,7 +1858,7 @@ var TableFooter = React19.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 TableFooter.displayName = "TableFooter";
-var TableRow = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableRow = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "tr",
   {
     ref,
@@ -1834,7 +1870,7 @@ var TableRow = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__
   }
 ));
 TableRow.displayName = "TableRow";
-var TableHead = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableHead = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "th",
   {
     ref,
@@ -1846,7 +1882,7 @@ var TableHead = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 TableHead.displayName = "TableHead";
-var TableCell = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableCell = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "td",
   {
     ref,
@@ -1855,7 +1891,7 @@ var TableCell = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 TableCell.displayName = "TableCell";
-var TableCaption = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableCaption = React20.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "caption",
   {
     ref,
@@ -1903,7 +1939,7 @@ var containerVariants = cva(
     }
   }
 );
-var Container = React19.forwardRef(
+var Container = React20.forwardRef(
   ({
     className,
     size = "7xl",
@@ -1929,7 +1965,7 @@ var Container = React19.forwardRef(
   }
 );
 Container.displayName = "Container";
-var ContainerFluid = React19.forwardRef(
+var ContainerFluid = React20.forwardRef(
   ({
     className,
     padding = "md",
@@ -1963,7 +1999,7 @@ var spacingClasses2 = {
   xl: "py-20",
   "2xl": "py-24"
 };
-var ContainerSection = React19.forwardRef(
+var ContainerSection = React20.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -2129,7 +2165,7 @@ var gridVariants = cva(
     }
   }
 );
-var Grid = React19.forwardRef(
+var Grid = React20.forwardRef(
   ({
     className,
     cols,
@@ -2149,7 +2185,7 @@ var Grid = React19.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React19.useMemo(() => {
+    const gridStyle = React20.useMemo(() => {
       const customStyle = { ...style };
       if (templateCols) {
         customStyle.gridTemplateColumns = templateCols;
@@ -2191,7 +2227,7 @@ var Grid = React19.forwardRef(
   }
 );
 Grid.displayName = "Grid";
-var GridItem = React19.forwardRef(
+var GridItem = React20.forwardRef(
   ({
     className,
     colStart,
@@ -2202,7 +2238,7 @@ var GridItem = React19.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React19.useMemo(() => {
+    const gridStyle = React20.useMemo(() => {
       const customStyle = { ...style };
       if (colStart !== void 0) {
         customStyle.gridColumnStart = colStart;
@@ -2305,7 +2341,7 @@ var flexVariants = cva(
     }
   }
 );
-var Flex = React19.forwardRef(
+var Flex = React20.forwardRef(
   ({
     className,
     direction = "row",
@@ -2343,7 +2379,7 @@ var Flex = React19.forwardRef(
   }
 );
 Flex.displayName = "Flex";
-var FlexCenter = React19.forwardRef(
+var FlexCenter = React20.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -2357,7 +2393,7 @@ var FlexCenter = React19.forwardRef(
   }
 );
 FlexCenter.displayName = "FlexCenter";
-var FlexBetween = React19.forwardRef(
+var FlexBetween = React20.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -2370,7 +2406,7 @@ var FlexBetween = React19.forwardRef(
   }
 );
 FlexBetween.displayName = "FlexBetween";
-var FlexStart = React19.forwardRef(
+var FlexStart = React20.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -2384,7 +2420,7 @@ var FlexStart = React19.forwardRef(
   }
 );
 FlexStart.displayName = "FlexStart";
-var FlexEnd = React19.forwardRef(
+var FlexEnd = React20.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -2398,7 +2434,7 @@ var FlexEnd = React19.forwardRef(
   }
 );
 FlexEnd.displayName = "FlexEnd";
-var FlexColumn = React19.forwardRef(
+var FlexColumn = React20.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -2411,7 +2447,7 @@ var FlexColumn = React19.forwardRef(
   }
 );
 FlexColumn.displayName = "FlexColumn";
-var FlexRow = React19.forwardRef(
+var FlexRow = React20.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -2457,7 +2493,7 @@ var spacerVariants = cva(
     }
   }
 );
-var Spacer = React19.forwardRef(
+var Spacer = React20.forwardRef(
   ({
     className,
     size = "md",
@@ -2470,7 +2506,7 @@ var Spacer = React19.forwardRef(
     style,
     ...props
   }, ref) => {
-    const spacerStyle = React19.useMemo(() => {
+    const spacerStyle = React20.useMemo(() => {
       const customStyle = { ...style };
       if (width !== void 0) {
         customStyle.width = typeof width === "number" ? `${width}px` : width;
@@ -2504,7 +2540,7 @@ var Spacer = React19.forwardRef(
   }
 );
 Spacer.displayName = "Spacer";
-var VerticalSpacer = React19.forwardRef(
+var VerticalSpacer = React20.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Spacer,
@@ -2517,7 +2553,7 @@ var VerticalSpacer = React19.forwardRef(
   }
 );
 VerticalSpacer.displayName = "VerticalSpacer";
-var HorizontalSpacer = React19.forwardRef(
+var HorizontalSpacer = React20.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Spacer,
@@ -2561,7 +2597,7 @@ var dividerVariants = cva(
     }
   }
 );
-var Divider = React19.forwardRef(
+var Divider = React20.forwardRef(
   ({
     className,
     variant = "default",
@@ -2635,7 +2671,7 @@ var spacingClasses3 = {
   lg: "my-8",
   xl: "my-12"
 };
-var SectionDivider = React19.forwardRef(
+var SectionDivider = React20.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -2651,7 +2687,7 @@ var textColorClasses = {
   primary: "text-primary",
   secondary: "text-secondary-foreground"
 };
-var TextDivider = React19.forwardRef(
+var TextDivider = React20.forwardRef(
   ({
     className,
     children,
@@ -2718,7 +2754,7 @@ var panelVariants = cva(
     }
   }
 );
-var Panel = React19.forwardRef(
+var Panel = React20.forwardRef(
   ({
     className,
     variant = "default",
@@ -2749,7 +2785,7 @@ var Panel = React19.forwardRef(
   }
 );
 Panel.displayName = "Panel";
-var PanelHeader = React19.forwardRef(
+var PanelHeader = React20.forwardRef(
   ({
     className,
     divider = false,
@@ -2772,7 +2808,7 @@ var PanelHeader = React19.forwardRef(
   }
 );
 PanelHeader.displayName = "PanelHeader";
-var PanelTitle = React19.forwardRef(
+var PanelTitle = React20.forwardRef(
   ({
     className,
     children,
@@ -2790,7 +2826,7 @@ var PanelTitle = React19.forwardRef(
   }
 );
 PanelTitle.displayName = "PanelTitle";
-var PanelDescription = React19.forwardRef(
+var PanelDescription = React20.forwardRef(
   ({
     className,
     children,
@@ -2808,7 +2844,7 @@ var PanelDescription = React19.forwardRef(
   }
 );
 PanelDescription.displayName = "PanelDescription";
-var PanelContent = React19.forwardRef(
+var PanelContent = React20.forwardRef(
   ({
     className,
     children,
@@ -2826,7 +2862,7 @@ var PanelContent = React19.forwardRef(
   }
 );
 PanelContent.displayName = "PanelContent";
-var PanelFooter = React19.forwardRef(
+var PanelFooter = React20.forwardRef(
   ({
     className,
     divider = false,
@@ -2855,7 +2891,7 @@ var spacingClasses4 = {
   lg: "gap-8",
   xl: "gap-10"
 };
-var PanelGroup = React19.forwardRef(
+var PanelGroup = React20.forwardRef(
   ({
     className,
     spacing = "md",

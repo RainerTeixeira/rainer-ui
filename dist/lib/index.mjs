@@ -6,7 +6,8 @@ var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, key + "" , value);
 function getThemeColors(theme) {
-  return tokens.themes[theme];
+  const tokenObj = tokens;
+  return tokenObj.themes?.[theme] || {};
 }
 function getTokenColor(tokenName, theme) {
   if (theme) {
@@ -34,14 +35,27 @@ function getTokenColor(tokenName, theme) {
 }
 function hexToRGB(hex) {
   const cleanHex = hex.replace("#", "");
+  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
+    return "0, 0, 0";
+  }
   const r = parseInt(cleanHex.substring(0, 2), 16);
   const g = parseInt(cleanHex.substring(2, 4), 16);
   const b = parseInt(cleanHex.substring(4, 6), 16);
   return `${r}, ${g}, ${b}`;
 }
 function hexToRGBA(hex, alpha = 1) {
-  const rgb = hexToRGB(hex);
-  return `rgba(${rgb}, ${alpha})`;
+  const cleanHex = hex.replace("#", "");
+  alpha = Math.max(0, Math.min(1, alpha));
+  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
+    return "rgb(0, 0, 0)";
+  }
+  const r = parseInt(cleanHex.substring(0, 2), 16);
+  const g = parseInt(cleanHex.substring(2, 4), 16);
+  const b = parseInt(cleanHex.substring(4, 6), 16);
+  if (alpha === 1) {
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 function overlayFromToken(tokenName, alpha = 0.08, theme) {
   const cleanName = tokenName.replace(/^color-/, "");
@@ -94,7 +108,7 @@ var SECTION_CLASSES = {
   /** Container padrão de página com largura máxima e padding responsivo */
   container: "w-full max-w-6xl mx-auto px-6 py-12"
 };
-var motion = tokens?.primitives?.motion || {
+var motion = tokens.MOTION || {
   duration: {
     instant: "0ms",
     fast: "100ms",
@@ -117,7 +131,7 @@ var motion = tokens?.primitives?.motion || {
     long: "200ms"
   }
 };
-var motionSemantic = tokens.semantics.motion || {
+var motionSemantic = tokens.MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -164,10 +178,12 @@ var motionPresets = {
     easing: motion.easing.spring
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
 };
 
 // src/lib/image-utils.ts

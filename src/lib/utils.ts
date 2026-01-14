@@ -76,7 +76,8 @@ export const SECTION_CLASSES = {
  * Única fonte de verdade para tokens de motion (duração, easing, delay).
  * Importados diretamente do pacote design-tokens via ES modules.
  */
-export const motion = tokens?.primitives?.motion || {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const motion = (tokens as any).MOTION || {
   duration: {
     instant: "0ms",
     fast: "100ms", 
@@ -101,13 +102,14 @@ export const motion = tokens?.primitives?.motion || {
 };
 
 /**
- * Motion semântico - Importado dos tokens semânticos
+ * Motion semântico - Importado dos tokens de motion
  * 
  * @description
  * Animações organizadas semanticamente para uso em componentes.
- * Usa tokens.semantics.motion como fonte única de verdade.
+ * Usa tokens.MOTION como fonte única de verdade.
  */
-export const motionSemantic = tokens.semantics.motion || {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const motionSemantic = (tokens as any).MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -192,10 +194,12 @@ export const motionPresets = {
     easing: motion.easing.spring,
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page,
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page,
+  }
 };
 
 // Exportar funções de cor para compatibilidade

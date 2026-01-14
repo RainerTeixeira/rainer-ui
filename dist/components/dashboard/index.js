@@ -29,8 +29,8 @@ var Settings = require('lucide-react/dist/esm/icons/settings');
 var BarChart = require('lucide-react/dist/esm/icons/bar-chart');
 var AlertDialogPrimitive = require('@radix-ui/react-alert-dialog');
 var ProgressPrimitive = require('@radix-ui/react-progress');
-require('next-themes');
-require('sonner');
+var nextThemes = require('next-themes');
+var sonner = require('sonner');
 var ArrowDown = require('lucide-react/dist/esm/icons/arrow-down');
 var ArrowUp = require('lucide-react/dist/esm/icons/arrow-up');
 var Minus = require('lucide-react/dist/esm/icons/minus');
@@ -118,7 +118,7 @@ var Video__default = /*#__PURE__*/_interopDefault(Video);
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var motion = designTokens.tokens?.primitives?.motion || {
+var motion = designTokens.tokens.MOTION || {
   duration: {
     fast: "100ms",
     normal: "200ms",
@@ -132,7 +132,7 @@ var motion = designTokens.tokens?.primitives?.motion || {
   delay: {
     }
 };
-var motionSemantic = designTokens.tokens.semantics.motion || {
+var motionSemantic = designTokens.tokens.MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -179,10 +179,12 @@ motion.easing;
     easing: motion.easing.spring
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
 });
 
 // src/lib/constants.ts
@@ -2765,6 +2767,40 @@ var Progress = React4__namespace.forwardRef(({ className, value, ...props }, ref
   }
 ));
 Progress.displayName = "Progress";
+var Toaster = React4__namespace.forwardRef((props, ref) => {
+  const { theme = "system" } = nextThemes.useTheme();
+  return React4__namespace.createElement(
+    sonner.Toaster,
+    {
+      ref,
+      theme,
+      className: "toaster group",
+      icons: {
+        success: React4__namespace.createElement(lucideReact.Check, { className: "h-4 w-4" }),
+        info: React4__namespace.createElement(lucideReact.Info, { className: "h-4 w-4" }),
+        warning: React4__namespace.createElement(lucideReact.AlertTriangle, { className: "h-4 w-4" }),
+        error: React4__namespace.createElement(lucideReact.Octagon, { className: "h-4 w-4" }),
+        loading: React4__namespace.createElement(lucideReact.Loader2, { className: "h-4 w-4 animate-spin" })
+      },
+      toastOptions: {
+        classNames: {
+          toast: cn(
+            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border shadow-lg",
+            "dark:group-[.toaster]:bg-background dark:group-[.toaster]:border-border"
+          ),
+          title: "dark:text-foreground",
+          description: "group-[.toast]:text-muted-foreground dark:text-muted-foreground",
+          actionButton: "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
+          cancelButton: "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
+          error: "dark:bg-status-error-background dark:border-status-error-border",
+          success: "dark:bg-status-success-background dark:border-status-success-border"
+        }
+      },
+      ...props
+    }
+  );
+});
+Toaster.displayName = "Toaster";
 var spinnerVariants = classVarianceAuthority.cva(
   "animate-spin text-muted-foreground",
   {

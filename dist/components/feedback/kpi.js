@@ -43,7 +43,7 @@ var TrendingUp__default = /*#__PURE__*/_interopDefault(TrendingUp);
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var motion = designTokens.tokens?.primitives?.motion || {
+var motion = designTokens.tokens.MOTION || {
   duration: {
     fast: "100ms",
     normal: "200ms",
@@ -57,7 +57,7 @@ var motion = designTokens.tokens?.primitives?.motion || {
   delay: {
     }
 };
-var motionSemantic = designTokens.tokens.semantics.motion || {
+var motionSemantic = designTokens.tokens.MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -104,10 +104,12 @@ motion.easing;
     easing: motion.easing.spring
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
 });
 var kpiVariants = classVarianceAuthority.cva(
   "rounded-lg border bg-card p-6 shadow-sm transition-all duration-[var(--motion-duration-normal)]",

@@ -15,7 +15,7 @@ import { jsx, jsxs } from 'react/jsx-runtime';
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
-var motion = tokens?.primitives?.motion || {
+var motion = tokens.MOTION || {
   duration: {
     fast: "100ms",
     normal: "200ms",
@@ -29,7 +29,7 @@ var motion = tokens?.primitives?.motion || {
   delay: {
     }
 };
-var motionSemantic = tokens.semantics.motion || {
+var motionSemantic = tokens.MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -76,10 +76,12 @@ motion.easing;
     easing: motion.easing.spring
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
 });
 var buttonVariants = cva(
   `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-[var(--motion-duration,200ms)] ease-[var(--motion-easing,cubic-bezier(.4,0,.2,1))] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive`,

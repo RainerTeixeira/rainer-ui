@@ -18,7 +18,9 @@ type ThemeKey = 'light' | 'dark';
  * Obtém cores do tema especificado dos design tokens
  */
 function getThemeColors(theme: ThemeKey) {
-  return tokens.themes[theme];
+  // Acessa themes via index signature para evitar erro de tipo
+  const tokenObj = tokens as Record<string, unknown>;
+  return (tokenObj.themes as Record<string, unknown>)?.[theme] || {};
 }
 
 /**
@@ -81,6 +83,11 @@ export function hexToRGB(hex: string): string {
   // Remove # se presente
   const cleanHex = hex.replace('#', '');
   
+  // Valida hex
+  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
+    return '0, 0, 0';
+  }
+  
   // Converte hex para RGB
   const r = parseInt(cleanHex.substring(0, 2), 16);
   const g = parseInt(cleanHex.substring(2, 4), 16);
@@ -103,8 +110,28 @@ export function hexToRGB(hex: string): string {
  * ```
  */
 export function hexToRGBA(hex: string, alpha: number = 1): string {
-  const rgb = hexToRGB(hex);
-  return `rgba(${rgb}, ${alpha})`;
+  // Remove # se presente
+  const cleanHex = hex.replace('#', '');
+  
+  // Valida e normaliza alpha
+  alpha = Math.max(0, Math.min(1, alpha));
+  
+  // Valida hex
+  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
+    return 'rgb(0, 0, 0)';
+  }
+  
+  // Converte hex para RGB
+  const r = parseInt(cleanHex.substring(0, 2), 16);
+  const g = parseInt(cleanHex.substring(2, 4), 16);
+  const b = parseInt(cleanHex.substring(4, 6), 16);
+  
+  // Retorna rgb se alpha for 1, rgba caso contrário
+  if (alpha === 1) {
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+  
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
 /**

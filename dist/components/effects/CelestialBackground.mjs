@@ -2,16 +2,19 @@ import { useState, useEffect } from 'react';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsxs, jsx } from 'react/jsx-runtime';
 
-function hexToRGB(hex) {
+function hexToRGBA(hex, alpha = 1) {
   const cleanHex = hex.replace("#", "");
+  alpha = Math.max(0, Math.min(1, alpha));
+  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
+    return "rgb(0, 0, 0)";
+  }
   const r = parseInt(cleanHex.substring(0, 2), 16);
   const g = parseInt(cleanHex.substring(2, 4), 16);
   const b = parseInt(cleanHex.substring(4, 6), 16);
-  return `${r}, ${g}, ${b}`;
-}
-function hexToRGBA(hex, alpha = 1) {
-  const rgb = hexToRGB(hex);
-  return `rgba(${rgb}, ${alpha})`;
+  if (alpha === 1) {
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
 // src/lib/constants.ts

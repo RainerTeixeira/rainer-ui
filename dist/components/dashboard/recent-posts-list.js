@@ -1,6 +1,6 @@
 'use strict';
 
-var React19 = require('react');
+var React20 = require('react');
 var classVarianceAuthority = require('class-variance-authority');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
@@ -9,8 +9,8 @@ var jsxRuntime = require('react/jsx-runtime');
 var AlertDialogPrimitive = require('@radix-ui/react-alert-dialog');
 var reactSlot = require('@radix-ui/react-slot');
 var ProgressPrimitive = require('@radix-ui/react-progress');
-require('next-themes');
-require('sonner');
+var nextThemes = require('next-themes');
+var sonner = require('sonner');
 var lucideReact = require('lucide-react');
 var ArrowDown = require('lucide-react/dist/esm/icons/arrow-down');
 var ArrowUp = require('lucide-react/dist/esm/icons/arrow-up');
@@ -63,7 +63,7 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React19__namespace = /*#__PURE__*/_interopNamespace(React19);
+var React20__namespace = /*#__PURE__*/_interopNamespace(React20);
 var AlertDialogPrimitive__namespace = /*#__PURE__*/_interopNamespace(AlertDialogPrimitive);
 var ProgressPrimitive__namespace = /*#__PURE__*/_interopNamespace(ProgressPrimitive);
 var ArrowDown__default = /*#__PURE__*/_interopDefault(ArrowDown);
@@ -98,7 +98,7 @@ var Eye__default = /*#__PURE__*/_interopDefault(Eye);
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var motion = designTokens.tokens?.primitives?.motion || {
+var motion = designTokens.tokens.MOTION || {
   duration: {
     fast: "100ms",
     normal: "200ms",
@@ -112,7 +112,7 @@ var motion = designTokens.tokens?.primitives?.motion || {
   delay: {
     }
 };
-var motionSemantic = designTokens.tokens.semantics.motion || {
+var motionSemantic = designTokens.tokens.MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -159,10 +159,12 @@ motion.easing;
     easing: motion.easing.spring
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
 });
 var alertVariants = classVarianceAuthority.cva(
   "relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
@@ -181,7 +183,7 @@ var alertVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Alert = React19__namespace.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Alert = React20__namespace.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -191,7 +193,7 @@ var Alert = React19__namespace.forwardRef(({ className, variant, ...props }, ref
   }
 ));
 Alert.displayName = "Alert";
-var AlertTitle = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertTitle = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h5",
   {
     ref,
@@ -200,7 +202,7 @@ var AlertTitle = React19__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 AlertTitle.displayName = "AlertTitle";
-var AlertDescription = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDescription = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -257,7 +259,7 @@ function Button({
   );
 }
 var AlertDialogPortal = AlertDialogPrimitive__namespace.Portal;
-var AlertDialogOverlay = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogOverlay = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Overlay,
   {
     className: cn(
@@ -269,7 +271,7 @@ var AlertDialogOverlay = React19__namespace.forwardRef(({ className, ...props },
   }
 ));
 AlertDialogOverlay.displayName = AlertDialogPrimitive__namespace.Overlay.displayName;
-var AlertDialogContent = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(AlertDialogPortal, { children: [
+var AlertDialogContent = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(AlertDialogPortal, { children: [
   /* @__PURE__ */ jsxRuntime.jsx(AlertDialogOverlay, {}),
   /* @__PURE__ */ jsxRuntime.jsx(
     AlertDialogPrimitive__namespace.Content,
@@ -284,7 +286,7 @@ var AlertDialogContent = React19__namespace.forwardRef(({ className, ...props },
   )
 ] }));
 AlertDialogContent.displayName = AlertDialogPrimitive__namespace.Content.displayName;
-var AlertDialogTitle = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogTitle = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Title,
   {
     ref,
@@ -293,7 +295,7 @@ var AlertDialogTitle = React19__namespace.forwardRef(({ className, ...props }, r
   }
 ));
 AlertDialogTitle.displayName = AlertDialogPrimitive__namespace.Title.displayName;
-var AlertDialogDescription = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogDescription = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Description,
   {
     ref,
@@ -302,7 +304,7 @@ var AlertDialogDescription = React19__namespace.forwardRef(({ className, ...prop
   }
 ));
 AlertDialogDescription.displayName = AlertDialogPrimitive__namespace.Description.displayName;
-var AlertDialogAction = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogAction = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Action,
   {
     ref,
@@ -311,7 +313,7 @@ var AlertDialogAction = React19__namespace.forwardRef(({ className, ...props }, 
   }
 ));
 AlertDialogAction.displayName = AlertDialogPrimitive__namespace.Action.displayName;
-var AlertDialogCancel = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogCancel = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Cancel,
   {
     ref,
@@ -354,7 +356,7 @@ var badgeVariants = classVarianceAuthority.cva(
 function Badge({ className, variant, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(badgeVariants({ variant }), className), ...props });
 }
-var Progress = React19__namespace.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Progress = React20__namespace.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   ProgressPrimitive__namespace.Root,
   {
     ref,
@@ -373,6 +375,40 @@ var Progress = React19__namespace.forwardRef(({ className, value, ...props }, re
   }
 ));
 Progress.displayName = "Progress";
+var Toaster = React20__namespace.forwardRef((props, ref) => {
+  const { theme = "system" } = nextThemes.useTheme();
+  return React20__namespace.createElement(
+    sonner.Toaster,
+    {
+      ref,
+      theme,
+      className: "toaster group",
+      icons: {
+        success: React20__namespace.createElement(lucideReact.Check, { className: "h-4 w-4" }),
+        info: React20__namespace.createElement(lucideReact.Info, { className: "h-4 w-4" }),
+        warning: React20__namespace.createElement(lucideReact.AlertTriangle, { className: "h-4 w-4" }),
+        error: React20__namespace.createElement(lucideReact.Octagon, { className: "h-4 w-4" }),
+        loading: React20__namespace.createElement(lucideReact.Loader2, { className: "h-4 w-4 animate-spin" })
+      },
+      toastOptions: {
+        classNames: {
+          toast: cn(
+            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border shadow-lg",
+            "dark:group-[.toaster]:bg-background dark:group-[.toaster]:border-border"
+          ),
+          title: "dark:text-foreground",
+          description: "group-[.toast]:text-muted-foreground dark:text-muted-foreground",
+          actionButton: "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
+          cancelButton: "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
+          error: "dark:bg-status-error-background dark:border-status-error-border",
+          success: "dark:bg-status-success-background dark:border-status-success-border"
+        }
+      },
+      ...props
+    }
+  );
+});
+Toaster.displayName = "Toaster";
 var spinnerVariants = classVarianceAuthority.cva(
   "animate-spin text-muted-foreground",
   {
@@ -409,7 +445,7 @@ var speedClasses = {
   normal: "animate-spin",
   fast: "animate-spin-fast"
 };
-var Spinner = React19__namespace.forwardRef(
+var Spinner = React20__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -462,7 +498,7 @@ var Spinner = React19__namespace.forwardRef(
   }
 );
 Spinner.displayName = "Spinner";
-var SpinnerOverlay = React19__namespace.forwardRef(
+var SpinnerOverlay = React20__namespace.forwardRef(
   ({
     className,
     fullscreen = false,
@@ -493,7 +529,7 @@ var dotSizeClasses = {
   md: "h-2 w-2",
   lg: "h-3 w-3"
 };
-var DotsSpinner = React19__namespace.forwardRef(
+var DotsSpinner = React20__namespace.forwardRef(
   ({
     className,
     count = 3,
@@ -540,7 +576,7 @@ var pulseSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var PulseSpinner = React19__namespace.forwardRef(
+var PulseSpinner = React20__namespace.forwardRef(
   ({
     className,
     rings = 3,
@@ -625,7 +661,7 @@ function formatValue(value, format, currency, decimals = 0) {
       return formatted;
   }
 }
-var KPI = React19__namespace.forwardRef(
+var KPI = React20__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -700,7 +736,7 @@ var gridColsClasses = {
   3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
   4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
 };
-var KPIGrid = React19__namespace.forwardRef(
+var KPIGrid = React20__namespace.forwardRef(
   ({
     className,
     cols = 4,
@@ -723,7 +759,7 @@ var KPIGrid = React19__namespace.forwardRef(
   }
 );
 KPIGrid.displayName = "KPIGrid";
-var KPIChart = React19__namespace.forwardRef(
+var KPIChart = React20__namespace.forwardRef(
   ({
     className,
     chart,
@@ -791,7 +827,7 @@ var iconSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var EmptyState = React19__namespace.forwardRef(
+var EmptyState = React20__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -848,7 +884,7 @@ var EmptyState = React19__namespace.forwardRef(
   }
 );
 EmptyState.displayName = "EmptyState";
-var EmptyStateIllustrated = React19__namespace.forwardRef(
+var EmptyStateIllustrated = React20__namespace.forwardRef(
   ({
     className,
     illustration,
@@ -902,7 +938,7 @@ var notificationVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Notification = React19__namespace.forwardRef(
+var Notification = React20__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -918,8 +954,8 @@ var Notification = React19__namespace.forwardRef(
     toast = false,
     ...props
   }, ref) => {
-    const [visible, setVisible] = React19__namespace.useState(true);
-    React19__namespace.useEffect(() => {
+    const [visible, setVisible] = React20__namespace.useState(true);
+    React20__namespace.useEffect(() => {
       if (autoClose && onDismiss) {
         const timer = setTimeout(() => {
           handleClose();
@@ -994,7 +1030,7 @@ var spacingClasses = {
   md: "gap-3",
   lg: "gap-4"
 };
-var NotificationGroup = React19__namespace.forwardRef(
+var NotificationGroup = React20__namespace.forwardRef(
   ({
     className,
     children,
@@ -1020,7 +1056,7 @@ var NotificationGroup = React19__namespace.forwardRef(
   }
 );
 NotificationGroup.displayName = "NotificationGroup";
-var NotificationToast = React19__namespace.forwardRef(
+var NotificationToast = React20__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Notification,
@@ -1054,7 +1090,7 @@ var variantClasses = {
   rounded: "rounded-lg",
   square: "rounded-none"
 };
-var Avatar = React19__namespace.forwardRef(
+var Avatar = React20__namespace.forwardRef(
   ({
     className,
     src,
@@ -1070,9 +1106,9 @@ var Avatar = React19__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [imageStatus, setImageStatus] = React19__namespace.useState("loading");
-    const [showFallback, setShowFallback] = React19__namespace.useState(!src);
-    React19__namespace.useEffect(() => {
+    const [imageStatus, setImageStatus] = React20__namespace.useState("loading");
+    const [showFallback, setShowFallback] = React20__namespace.useState(!src);
+    React20__namespace.useEffect(() => {
       if (!src) {
         setShowFallback(true);
         setImageStatus("error");
@@ -1133,7 +1169,7 @@ var Avatar = React19__namespace.forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var AvatarImage = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarImage = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "img",
   {
     ref,
@@ -1142,7 +1178,7 @@ var AvatarImage = React19__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 AvatarImage.displayName = "AvatarImage";
-var AvatarFallback = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarFallback = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1154,7 +1190,7 @@ var AvatarFallback = React19__namespace.forwardRef(({ className, ...props }, ref
   }
 ));
 AvatarFallback.displayName = "AvatarFallback";
-var Slider = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var Slider = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SliderPrimitive__namespace.Root,
   {
     ref,
@@ -1188,7 +1224,7 @@ var Slider = React19__namespace.forwardRef(({ className, ...props }, ref) => /* 
   }
 ));
 Slider.displayName = SliderPrimitive__namespace.Root.displayName;
-var Switch = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Switch = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SwitchPrimitives__namespace.Root,
   {
     className: cn(
@@ -1232,7 +1268,7 @@ var toggleVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Toggle = React19__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Toggle = React20__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TogglePrimitive__namespace.Root,
   {
     ref,
@@ -1272,7 +1308,7 @@ var iconButtonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var IconButton = React19__namespace.forwardRef(
+var IconButton = React20__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1283,7 +1319,7 @@ var IconButton = React19__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [showTooltip, setShowTooltip] = React19__namespace.useState(false);
+    const [showTooltip, setShowTooltip] = React20__namespace.useState(false);
     const tooltipClasses = {
       top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
       bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
@@ -1361,7 +1397,7 @@ var linkButtonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var LinkButton = React19__namespace.forwardRef(
+var LinkButton = React20__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1452,7 +1488,7 @@ var fabVariants = classVarianceAuthority.cva(
     }
   }
 );
-var FAB = React19__namespace.forwardRef(
+var FAB = React20__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1467,12 +1503,12 @@ var FAB = React19__namespace.forwardRef(
     actions = [],
     ...props
   }, ref) => {
-    const [showActions, setShowActions] = React19__namespace.useState(active);
+    const [showActions, setShowActions] = React20__namespace.useState(active);
     const isExtended = extended && text;
-    React19__namespace.useEffect(() => {
+    React20__namespace.useEffect(() => {
       setShowActions(active);
     }, [active]);
-    const handleClick = React19__namespace.useCallback(() => {
+    const handleClick = React20__namespace.useCallback(() => {
       if (actions.length > 0) {
         setShowActions(!showActions);
       }
@@ -1530,7 +1566,7 @@ var FAB = React19__namespace.forwardRef(
   }
 );
 FAB.displayName = "FAB";
-var FABGroup = React19__namespace.forwardRef(
+var FABGroup = React20__namespace.forwardRef(
   ({
     className,
     main,
@@ -1602,7 +1638,7 @@ var segmentedControlVariants = classVarianceAuthority.cva(
     }
   }
 );
-var SegmentedControl = React19__namespace.forwardRef(
+var SegmentedControl = React20__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -1615,9 +1651,9 @@ var SegmentedControl = React19__namespace.forwardRef(
     disabled = false,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React19__namespace.useState(defaultValue || options[0]?.value);
+    const [internalValue, setInternalValue] = React20__namespace.useState(defaultValue || options[0]?.value);
     const currentValue = value !== void 0 ? value : internalValue;
-    const handleOptionClick = React19__namespace.useCallback((optionValue, isDisabled) => {
+    const handleOptionClick = React20__namespace.useCallback((optionValue, isDisabled) => {
       if (isDisabled || disabled) return;
       if (value === void 0) {
         setInternalValue(optionValue);
@@ -1672,7 +1708,7 @@ var SegmentedControl = React19__namespace.forwardRef(
   }
 );
 SegmentedControl.displayName = "SegmentedControl";
-var SegmentedControlItem = React19__namespace.forwardRef(
+var SegmentedControlItem = React20__namespace.forwardRef(
   ({
     className,
     active = false,
@@ -1715,7 +1751,7 @@ var MOTION = {
     DEFAULT: "transition-all duration-200 ease-in-out"}};
 var GRADIENT_DIRECTIONS = {
   TO_BOTTOM_RIGHT: "to-br"};
-var Card = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Card = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1727,7 +1763,7 @@ var Card = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardHeader = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1736,7 +1772,7 @@ var CardHeader = React19__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardTitle = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h3",
   {
     ref,
@@ -1748,7 +1784,7 @@ var CardTitle = React19__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardDescription = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "p",
   {
     ref,
@@ -1757,9 +1793,9 @@ var CardDescription = React19__namespace.forwardRef(({ className, ...props }, re
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardFooter = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1768,7 +1804,7 @@ var CardFooter = React19__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 CardFooter.displayName = "CardFooter";
-var HighlightCard = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var HighlightCard = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1795,7 +1831,7 @@ var HighlightCard = React19__namespace.forwardRef(({ className, ...props }, ref)
   }
 ));
 HighlightCard.displayName = "HighlightCard";
-var ScrollArea = React19__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ScrollArea = React20__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   ScrollAreaPrimitive__namespace.Root,
   {
     ref,
@@ -1809,7 +1845,7 @@ var ScrollArea = React19__namespace.forwardRef(({ className, children, ...props 
   }
 ));
 ScrollArea.displayName = ScrollAreaPrimitive__namespace.Root.displayName;
-var ScrollBar = React19__namespace.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ScrollBar = React20__namespace.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   ScrollAreaPrimitive__namespace.ScrollAreaScrollbar,
   {
     ref,
@@ -1825,7 +1861,7 @@ var ScrollBar = React19__namespace.forwardRef(({ className, orientation = "verti
   }
 ));
 ScrollBar.displayName = ScrollAreaPrimitive__namespace.ScrollAreaScrollbar.displayName;
-var Separator = React19__namespace.forwardRef(
+var Separator = React20__namespace.forwardRef(
   ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     SeparatorPrimitive__namespace.Root,
     {
@@ -1843,7 +1879,7 @@ var Separator = React19__namespace.forwardRef(
   )
 );
 Separator.displayName = SeparatorPrimitive__namespace.Root.displayName;
-var Table = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsxRuntime.jsx(
+var Table = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsxRuntime.jsx(
   "table",
   {
     ref,
@@ -1852,9 +1888,9 @@ var Table = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @
   }
 ) }));
 Table.displayName = "Table";
-var TableHeader = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
+var TableHeader = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
 TableHeader.displayName = "TableHeader";
-var TableBody = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableBody = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tbody",
   {
     ref,
@@ -1863,7 +1899,7 @@ var TableBody = React19__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableBody.displayName = "TableBody";
-var TableFooter = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableFooter = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tfoot",
   {
     ref,
@@ -1875,7 +1911,7 @@ var TableFooter = React19__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 TableFooter.displayName = "TableFooter";
-var TableRow = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableRow = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tr",
   {
     ref,
@@ -1887,7 +1923,7 @@ var TableRow = React19__namespace.forwardRef(({ className, ...props }, ref) => /
   }
 ));
 TableRow.displayName = "TableRow";
-var TableHead = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableHead = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "th",
   {
     ref,
@@ -1899,7 +1935,7 @@ var TableHead = React19__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableHead.displayName = "TableHead";
-var TableCell = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableCell = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "td",
   {
     ref,
@@ -1908,7 +1944,7 @@ var TableCell = React19__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableCell.displayName = "TableCell";
-var TableCaption = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableCaption = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "caption",
   {
     ref,
@@ -1956,7 +1992,7 @@ var containerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Container = React19__namespace.forwardRef(
+var Container = React20__namespace.forwardRef(
   ({
     className,
     size = "7xl",
@@ -1982,7 +2018,7 @@ var Container = React19__namespace.forwardRef(
   }
 );
 Container.displayName = "Container";
-var ContainerFluid = React19__namespace.forwardRef(
+var ContainerFluid = React20__namespace.forwardRef(
   ({
     className,
     padding = "md",
@@ -2016,7 +2052,7 @@ var spacingClasses2 = {
   xl: "py-20",
   "2xl": "py-24"
 };
-var ContainerSection = React19__namespace.forwardRef(
+var ContainerSection = React20__namespace.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -2182,7 +2218,7 @@ var gridVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Grid = React19__namespace.forwardRef(
+var Grid = React20__namespace.forwardRef(
   ({
     className,
     cols,
@@ -2202,7 +2238,7 @@ var Grid = React19__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React19__namespace.useMemo(() => {
+    const gridStyle = React20__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (templateCols) {
         customStyle.gridTemplateColumns = templateCols;
@@ -2244,7 +2280,7 @@ var Grid = React19__namespace.forwardRef(
   }
 );
 Grid.displayName = "Grid";
-var GridItem = React19__namespace.forwardRef(
+var GridItem = React20__namespace.forwardRef(
   ({
     className,
     colStart,
@@ -2255,7 +2291,7 @@ var GridItem = React19__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React19__namespace.useMemo(() => {
+    const gridStyle = React20__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (colStart !== void 0) {
         customStyle.gridColumnStart = colStart;
@@ -2358,7 +2394,7 @@ var flexVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Flex = React19__namespace.forwardRef(
+var Flex = React20__namespace.forwardRef(
   ({
     className,
     direction = "row",
@@ -2396,7 +2432,7 @@ var Flex = React19__namespace.forwardRef(
   }
 );
 Flex.displayName = "Flex";
-var FlexCenter = React19__namespace.forwardRef(
+var FlexCenter = React20__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -2410,7 +2446,7 @@ var FlexCenter = React19__namespace.forwardRef(
   }
 );
 FlexCenter.displayName = "FlexCenter";
-var FlexBetween = React19__namespace.forwardRef(
+var FlexBetween = React20__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -2423,7 +2459,7 @@ var FlexBetween = React19__namespace.forwardRef(
   }
 );
 FlexBetween.displayName = "FlexBetween";
-var FlexStart = React19__namespace.forwardRef(
+var FlexStart = React20__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -2437,7 +2473,7 @@ var FlexStart = React19__namespace.forwardRef(
   }
 );
 FlexStart.displayName = "FlexStart";
-var FlexEnd = React19__namespace.forwardRef(
+var FlexEnd = React20__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -2451,7 +2487,7 @@ var FlexEnd = React19__namespace.forwardRef(
   }
 );
 FlexEnd.displayName = "FlexEnd";
-var FlexColumn = React19__namespace.forwardRef(
+var FlexColumn = React20__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -2464,7 +2500,7 @@ var FlexColumn = React19__namespace.forwardRef(
   }
 );
 FlexColumn.displayName = "FlexColumn";
-var FlexRow = React19__namespace.forwardRef(
+var FlexRow = React20__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -2510,7 +2546,7 @@ var spacerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Spacer = React19__namespace.forwardRef(
+var Spacer = React20__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -2523,7 +2559,7 @@ var Spacer = React19__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const spacerStyle = React19__namespace.useMemo(() => {
+    const spacerStyle = React20__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (width !== void 0) {
         customStyle.width = typeof width === "number" ? `${width}px` : width;
@@ -2557,7 +2593,7 @@ var Spacer = React19__namespace.forwardRef(
   }
 );
 Spacer.displayName = "Spacer";
-var VerticalSpacer = React19__namespace.forwardRef(
+var VerticalSpacer = React20__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Spacer,
@@ -2570,7 +2606,7 @@ var VerticalSpacer = React19__namespace.forwardRef(
   }
 );
 VerticalSpacer.displayName = "VerticalSpacer";
-var HorizontalSpacer = React19__namespace.forwardRef(
+var HorizontalSpacer = React20__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Spacer,
@@ -2614,7 +2650,7 @@ var dividerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Divider = React19__namespace.forwardRef(
+var Divider = React20__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -2688,7 +2724,7 @@ var spacingClasses3 = {
   lg: "my-8",
   xl: "my-12"
 };
-var SectionDivider = React19__namespace.forwardRef(
+var SectionDivider = React20__namespace.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -2704,7 +2740,7 @@ var textColorClasses = {
   primary: "text-primary",
   secondary: "text-secondary-foreground"
 };
-var TextDivider = React19__namespace.forwardRef(
+var TextDivider = React20__namespace.forwardRef(
   ({
     className,
     children,
@@ -2771,7 +2807,7 @@ var panelVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Panel = React19__namespace.forwardRef(
+var Panel = React20__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -2802,7 +2838,7 @@ var Panel = React19__namespace.forwardRef(
   }
 );
 Panel.displayName = "Panel";
-var PanelHeader = React19__namespace.forwardRef(
+var PanelHeader = React20__namespace.forwardRef(
   ({
     className,
     divider = false,
@@ -2825,7 +2861,7 @@ var PanelHeader = React19__namespace.forwardRef(
   }
 );
 PanelHeader.displayName = "PanelHeader";
-var PanelTitle = React19__namespace.forwardRef(
+var PanelTitle = React20__namespace.forwardRef(
   ({
     className,
     children,
@@ -2843,7 +2879,7 @@ var PanelTitle = React19__namespace.forwardRef(
   }
 );
 PanelTitle.displayName = "PanelTitle";
-var PanelDescription = React19__namespace.forwardRef(
+var PanelDescription = React20__namespace.forwardRef(
   ({
     className,
     children,
@@ -2861,7 +2897,7 @@ var PanelDescription = React19__namespace.forwardRef(
   }
 );
 PanelDescription.displayName = "PanelDescription";
-var PanelContent = React19__namespace.forwardRef(
+var PanelContent = React20__namespace.forwardRef(
   ({
     className,
     children,
@@ -2879,7 +2915,7 @@ var PanelContent = React19__namespace.forwardRef(
   }
 );
 PanelContent.displayName = "PanelContent";
-var PanelFooter = React19__namespace.forwardRef(
+var PanelFooter = React20__namespace.forwardRef(
   ({
     className,
     divider = false,
@@ -2908,7 +2944,7 @@ var spacingClasses4 = {
   lg: "gap-8",
   xl: "gap-10"
 };
-var PanelGroup = React19__namespace.forwardRef(
+var PanelGroup = React20__namespace.forwardRef(
   ({
     className,
     spacing = "md",

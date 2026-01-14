@@ -1,16 +1,17 @@
+import * as React from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 import { useTheme } from 'next-themes';
 import { Toaster as Toaster$1 } from 'sonner';
+export { Toaster as Sonner } from 'sonner';
 import { Loader2, Octagon, AlertTriangle, Info, Check } from 'lucide-react';
-import { jsx } from 'react/jsx-runtime';
 
 // src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
-var motion = tokens?.primitives?.motion || {
+var motion = tokens.MOTION || {
   duration: {
     fast: "100ms",
     normal: "200ms",
@@ -24,7 +25,7 @@ var motion = tokens?.primitives?.motion || {
   delay: {
     }
 };
-var motionSemantic = tokens.semantics.motion || {
+var motionSemantic = tokens.MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -71,24 +72,27 @@ motion.easing;
     easing: motion.easing.spring
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
 });
-var Toaster = ({ ...props }) => {
+var Toaster = React.forwardRef((props, ref) => {
   const { theme = "system" } = useTheme();
-  return /* @__PURE__ */ jsx(
+  return React.createElement(
     Toaster$1,
     {
+      ref,
       theme,
       className: "toaster group",
       icons: {
-        success: /* @__PURE__ */ jsx(Check, { className: "h-4 w-4" }),
-        info: /* @__PURE__ */ jsx(Info, { className: "h-4 w-4" }),
-        warning: /* @__PURE__ */ jsx(AlertTriangle, { className: "h-4 w-4" }),
-        error: /* @__PURE__ */ jsx(Octagon, { className: "h-4 w-4" }),
-        loading: /* @__PURE__ */ jsx(Loader2, { className: "h-4 w-4 animate-spin" })
+        success: React.createElement(Check, { className: "h-4 w-4" }),
+        info: React.createElement(Info, { className: "h-4 w-4" }),
+        warning: React.createElement(AlertTriangle, { className: "h-4 w-4" }),
+        error: React.createElement(Octagon, { className: "h-4 w-4" }),
+        loading: React.createElement(Loader2, { className: "h-4 w-4 animate-spin" })
       },
       toastOptions: {
         classNames: {
@@ -107,7 +111,8 @@ var Toaster = ({ ...props }) => {
       ...props
     }
   );
-};
+});
+Toaster.displayName = "Toaster";
 
 export { Toaster };
 //# sourceMappingURL=sonner.mjs.map

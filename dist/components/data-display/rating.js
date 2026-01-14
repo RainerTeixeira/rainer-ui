@@ -37,7 +37,7 @@ var StarHalf__default = /*#__PURE__*/_interopDefault(StarHalf);
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var motion = designTokens.tokens?.primitives?.motion || {
+var motion = designTokens.tokens.MOTION || {
   duration: {
     fast: "100ms",
     normal: "200ms",
@@ -51,7 +51,7 @@ var motion = designTokens.tokens?.primitives?.motion || {
   delay: {
     }
 };
-var motionSemantic = designTokens.tokens.semantics.motion || {
+var motionSemantic = designTokens.tokens.MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -98,10 +98,12 @@ motion.easing;
     easing: motion.easing.spring
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
 });
 var ratingVariants = classVarianceAuthority.cva(
   "flex items-center gap-1",

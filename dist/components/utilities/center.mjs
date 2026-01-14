@@ -9,7 +9,7 @@ import { jsx } from 'react/jsx-runtime';
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
-var motion = tokens?.primitives?.motion || {
+var motion = tokens.MOTION || {
   duration: {
     fast: "100ms",
     normal: "200ms",
@@ -23,7 +23,7 @@ var motion = tokens?.primitives?.motion || {
   delay: {
     }
 };
-var motionSemantic = tokens.semantics.motion || {
+var motionSemantic = tokens.MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -70,10 +70,12 @@ motion.easing;
     easing: motion.easing.spring
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
 });
 var centerVariants = cva(
   "flex",

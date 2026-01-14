@@ -1,4 +1,4 @@
-import * as React7 from 'react';
+import * as React8 from 'react';
 import { cva } from 'class-variance-authority';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -9,6 +9,7 @@ import { Slot } from '@radix-ui/react-slot';
 import * as ProgressPrimitive from '@radix-ui/react-progress';
 import { useTheme } from 'next-themes';
 import { Toaster as Toaster$1 } from 'sonner';
+export { Toaster as Sonner } from 'sonner';
 import { Loader2, Octagon, AlertTriangle, Info, Check } from 'lucide-react';
 import ArrowDown from 'lucide-react/dist/esm/icons/arrow-down';
 import ArrowUp from 'lucide-react/dist/esm/icons/arrow-up';
@@ -32,7 +33,7 @@ import X from 'lucide-react/dist/esm/icons/x';
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
-var motion = tokens?.primitives?.motion || {
+var motion = tokens.MOTION || {
   duration: {
     fast: "100ms",
     normal: "200ms",
@@ -46,7 +47,7 @@ var motion = tokens?.primitives?.motion || {
   delay: {
     }
 };
-var motionSemantic = tokens.semantics.motion || {
+var motionSemantic = tokens.MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -93,10 +94,12 @@ motion.easing;
     easing: motion.easing.spring
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
 });
 var alertVariants = cva(
   "relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
@@ -115,7 +118,7 @@ var alertVariants = cva(
     }
   }
 );
-var Alert = React7.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsx(
+var Alert = React8.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -125,7 +128,7 @@ var Alert = React7.forwardRef(({ className, variant, ...props }, ref) => /* @__P
   }
 ));
 Alert.displayName = "Alert";
-var AlertTitle = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertTitle = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h5",
   {
     ref,
@@ -134,7 +137,7 @@ var AlertTitle = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 AlertTitle.displayName = "AlertTitle";
-var AlertDescription = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDescription = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -193,7 +196,7 @@ function Button({
 var AlertDialog = AlertDialogPrimitive.Root;
 var AlertDialogTrigger = AlertDialogPrimitive.Trigger;
 var AlertDialogPortal = AlertDialogPrimitive.Portal;
-var AlertDialogOverlay = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogOverlay = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Overlay,
   {
     className: cn(
@@ -205,7 +208,7 @@ var AlertDialogOverlay = React7.forwardRef(({ className, ...props }, ref) => /* 
   }
 ));
 AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName;
-var AlertDialogContent = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(AlertDialogPortal, { children: [
+var AlertDialogContent = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(AlertDialogPortal, { children: [
   /* @__PURE__ */ jsx(AlertDialogOverlay, {}),
   /* @__PURE__ */ jsx(
     AlertDialogPrimitive.Content,
@@ -248,7 +251,7 @@ var AlertDialogFooter = ({
   }
 );
 AlertDialogFooter.displayName = "AlertDialogFooter";
-var AlertDialogTitle = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogTitle = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Title,
   {
     ref,
@@ -257,7 +260,7 @@ var AlertDialogTitle = React7.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName;
-var AlertDialogDescription = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogDescription = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Description,
   {
     ref,
@@ -266,7 +269,7 @@ var AlertDialogDescription = React7.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 AlertDialogDescription.displayName = AlertDialogPrimitive.Description.displayName;
-var AlertDialogAction = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogAction = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Action,
   {
     ref,
@@ -275,7 +278,7 @@ var AlertDialogAction = React7.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
-var AlertDialogCancel = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogCancel = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Cancel,
   {
     ref,
@@ -318,7 +321,7 @@ var badgeVariants = cva(
 function Badge({ className, variant, ...props }) {
   return /* @__PURE__ */ jsx("div", { className: cn(badgeVariants({ variant }), className), ...props });
 }
-var Progress = React7.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsx(
+var Progress = React8.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsx(
   ProgressPrimitive.Root,
   {
     ref,
@@ -347,19 +350,20 @@ function Skeleton({ className, ...props }) {
     }
   );
 }
-var Toaster = ({ ...props }) => {
+var Toaster = React8.forwardRef((props, ref) => {
   const { theme = "system" } = useTheme();
-  return /* @__PURE__ */ jsx(
+  return React8.createElement(
     Toaster$1,
     {
+      ref,
       theme,
       className: "toaster group",
       icons: {
-        success: /* @__PURE__ */ jsx(Check, { className: "h-4 w-4" }),
-        info: /* @__PURE__ */ jsx(Info, { className: "h-4 w-4" }),
-        warning: /* @__PURE__ */ jsx(AlertTriangle, { className: "h-4 w-4" }),
-        error: /* @__PURE__ */ jsx(Octagon, { className: "h-4 w-4" }),
-        loading: /* @__PURE__ */ jsx(Loader2, { className: "h-4 w-4 animate-spin" })
+        success: React8.createElement(Check, { className: "h-4 w-4" }),
+        info: React8.createElement(Info, { className: "h-4 w-4" }),
+        warning: React8.createElement(AlertTriangle, { className: "h-4 w-4" }),
+        error: React8.createElement(Octagon, { className: "h-4 w-4" }),
+        loading: React8.createElement(Loader2, { className: "h-4 w-4 animate-spin" })
       },
       toastOptions: {
         classNames: {
@@ -378,7 +382,8 @@ var Toaster = ({ ...props }) => {
       ...props
     }
   );
-};
+});
+Toaster.displayName = "Toaster";
 var spinnerVariants = cva(
   "animate-spin text-muted-foreground",
   {
@@ -415,7 +420,7 @@ var speedClasses = {
   normal: "animate-spin",
   fast: "animate-spin-fast"
 };
-var Spinner = React7.forwardRef(
+var Spinner = React8.forwardRef(
   ({
     className,
     variant = "default",
@@ -468,7 +473,7 @@ var Spinner = React7.forwardRef(
   }
 );
 Spinner.displayName = "Spinner";
-var SpinnerOverlay = React7.forwardRef(
+var SpinnerOverlay = React8.forwardRef(
   ({
     className,
     fullscreen = false,
@@ -499,7 +504,7 @@ var dotSizeClasses = {
   md: "h-2 w-2",
   lg: "h-3 w-3"
 };
-var DotsSpinner = React7.forwardRef(
+var DotsSpinner = React8.forwardRef(
   ({
     className,
     count = 3,
@@ -546,7 +551,7 @@ var pulseSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var PulseSpinner = React7.forwardRef(
+var PulseSpinner = React8.forwardRef(
   ({
     className,
     rings = 3,
@@ -631,7 +636,7 @@ function formatValue(value, format, currency, decimals = 0) {
       return formatted;
   }
 }
-var KPI = React7.forwardRef(
+var KPI = React8.forwardRef(
   ({
     className,
     variant = "default",
@@ -706,7 +711,7 @@ var gridColsClasses = {
   3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
   4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
 };
-var KPIGrid = React7.forwardRef(
+var KPIGrid = React8.forwardRef(
   ({
     className,
     cols = 4,
@@ -729,7 +734,7 @@ var KPIGrid = React7.forwardRef(
   }
 );
 KPIGrid.displayName = "KPIGrid";
-var KPIChart = React7.forwardRef(
+var KPIChart = React8.forwardRef(
   ({
     className,
     chart,
@@ -797,7 +802,7 @@ var iconSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var EmptyState = React7.forwardRef(
+var EmptyState = React8.forwardRef(
   ({
     className,
     variant = "default",
@@ -854,7 +859,7 @@ var EmptyState = React7.forwardRef(
   }
 );
 EmptyState.displayName = "EmptyState";
-var EmptyStateIllustrated = React7.forwardRef(
+var EmptyStateIllustrated = React8.forwardRef(
   ({
     className,
     illustration,
@@ -972,7 +977,7 @@ var notificationVariants = cva(
     }
   }
 );
-var Notification = React7.forwardRef(
+var Notification = React8.forwardRef(
   ({
     className,
     variant = "default",
@@ -988,8 +993,8 @@ var Notification = React7.forwardRef(
     toast = false,
     ...props
   }, ref) => {
-    const [visible, setVisible] = React7.useState(true);
-    React7.useEffect(() => {
+    const [visible, setVisible] = React8.useState(true);
+    React8.useEffect(() => {
       if (autoClose && onDismiss) {
         const timer = setTimeout(() => {
           handleClose();
@@ -1064,7 +1069,7 @@ var spacingClasses = {
   md: "gap-3",
   lg: "gap-4"
 };
-var NotificationGroup = React7.forwardRef(
+var NotificationGroup = React8.forwardRef(
   ({
     className,
     children,
@@ -1090,7 +1095,7 @@ var NotificationGroup = React7.forwardRef(
   }
 );
 NotificationGroup.displayName = "NotificationGroup";
-var NotificationToast = React7.forwardRef(
+var NotificationToast = React8.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Notification,
@@ -1104,8 +1109,8 @@ var NotificationToast = React7.forwardRef(
 );
 NotificationToast.displayName = "NotificationToast";
 function useNotification() {
-  const [notifications, setNotifications] = React7.useState(/* @__PURE__ */ new Map());
-  const notify = React7.useCallback((options) => {
+  const [notifications, setNotifications] = React8.useState(/* @__PURE__ */ new Map());
+  const notify = React8.useCallback((options) => {
     const id = options.id || Math.random().toString(36).substr(2, 9);
     setNotifications((prev) => new Map(prev).set(id, options));
     if (options.autoClose !== false) {
@@ -1116,14 +1121,14 @@ function useNotification() {
     }
     return id;
   }, []);
-  const dismiss = React7.useCallback((id) => {
+  const dismiss = React8.useCallback((id) => {
     setNotifications((prev) => {
       const next = new Map(prev);
       next.delete(id);
       return next;
     });
   }, []);
-  const clear = React7.useCallback(() => {
+  const clear = React8.useCallback(() => {
     setNotifications(/* @__PURE__ */ new Map());
   }, []);
   return {

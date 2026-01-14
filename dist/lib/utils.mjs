@@ -4,14 +4,27 @@ import { tokens } from '@rainersoft/design-tokens';
 
 function hexToRGB(hex) {
   const cleanHex = hex.replace("#", "");
+  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
+    return "0, 0, 0";
+  }
   const r = parseInt(cleanHex.substring(0, 2), 16);
   const g = parseInt(cleanHex.substring(2, 4), 16);
   const b = parseInt(cleanHex.substring(4, 6), 16);
   return `${r}, ${g}, ${b}`;
 }
 function hexToRGBA(hex, alpha = 1) {
-  const rgb = hexToRGB(hex);
-  return `rgba(${rgb}, ${alpha})`;
+  const cleanHex = hex.replace("#", "");
+  alpha = Math.max(0, Math.min(1, alpha));
+  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
+    return "rgb(0, 0, 0)";
+  }
+  const r = parseInt(cleanHex.substring(0, 2), 16);
+  const g = parseInt(cleanHex.substring(2, 4), 16);
+  const b = parseInt(cleanHex.substring(4, 6), 16);
+  if (alpha === 1) {
+    return `rgb(${r}, ${g}, ${b})`;
+  }
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
 
 // src/lib/utils.ts
@@ -41,7 +54,7 @@ var SECTION_CLASSES = {
   /** Container padrão de página com largura máxima e padding responsivo */
   container: "w-full max-w-6xl mx-auto px-6 py-12"
 };
-var motion = tokens?.primitives?.motion || {
+var motion = tokens.MOTION || {
   duration: {
     instant: "0ms",
     fast: "100ms",
@@ -64,7 +77,7 @@ var motion = tokens?.primitives?.motion || {
     long: "200ms"
   }
 };
-var motionSemantic = tokens.semantics.motion || {
+var motionSemantic = tokens.MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -111,10 +124,12 @@ var motionPresets = {
     easing: motion.easing.spring
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
 };
 
 export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, COMPONENT_CLASSES, SECTION_CLASSES, cn, hexToRGB, hexToRGBA, motion, motionPresets, motionSemantic };

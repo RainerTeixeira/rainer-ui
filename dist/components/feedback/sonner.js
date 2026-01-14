@@ -1,18 +1,38 @@
 'use strict';
 
+var React = require('react');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var nextThemes = require('next-themes');
 var sonner = require('sonner');
 var lucideReact = require('lucide-react');
-var jsxRuntime = require('react/jsx-runtime');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  var n = Object.create(null);
+  if (e) {
+    Object.keys(e).forEach(function (k) {
+      if (k !== 'default') {
+        var d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: function () { return e[k]; }
+        });
+      }
+    });
+  }
+  n.default = e;
+  return Object.freeze(n);
+}
+
+var React__namespace = /*#__PURE__*/_interopNamespace(React);
 
 // src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var motion = designTokens.tokens?.primitives?.motion || {
+var motion = designTokens.tokens.MOTION || {
   duration: {
     fast: "100ms",
     normal: "200ms",
@@ -26,7 +46,7 @@ var motion = designTokens.tokens?.primitives?.motion || {
   delay: {
     }
 };
-var motionSemantic = designTokens.tokens.semantics.motion || {
+var motionSemantic = designTokens.tokens.MOTION || {
   transition: {
     default: {
       duration: motion.duration.normal,
@@ -73,24 +93,27 @@ motion.easing;
     easing: motion.easing.spring
   },
   // Presets semânticos
-  transition: motionSemantic.transition.default,
-  interaction: motionSemantic.interaction.hover,
-  feedback: motionSemantic.feedback.success,
-  navigation: motionSemantic.navigation.page
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
 });
-var Toaster = ({ ...props }) => {
+var Toaster = React__namespace.forwardRef((props, ref) => {
   const { theme = "system" } = nextThemes.useTheme();
-  return /* @__PURE__ */ jsxRuntime.jsx(
+  return React__namespace.createElement(
     sonner.Toaster,
     {
+      ref,
       theme,
       className: "toaster group",
       icons: {
-        success: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Check, { className: "h-4 w-4" }),
-        info: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Info, { className: "h-4 w-4" }),
-        warning: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.AlertTriangle, { className: "h-4 w-4" }),
-        error: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Octagon, { className: "h-4 w-4" }),
-        loading: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Loader2, { className: "h-4 w-4 animate-spin" })
+        success: React__namespace.createElement(lucideReact.Check, { className: "h-4 w-4" }),
+        info: React__namespace.createElement(lucideReact.Info, { className: "h-4 w-4" }),
+        warning: React__namespace.createElement(lucideReact.AlertTriangle, { className: "h-4 w-4" }),
+        error: React__namespace.createElement(lucideReact.Octagon, { className: "h-4 w-4" }),
+        loading: React__namespace.createElement(lucideReact.Loader2, { className: "h-4 w-4 animate-spin" })
       },
       toastOptions: {
         classNames: {
@@ -109,8 +132,13 @@ var Toaster = ({ ...props }) => {
       ...props
     }
   );
-};
+});
+Toaster.displayName = "Toaster";
 
+Object.defineProperty(exports, "Sonner", {
+  enumerable: true,
+  get: function () { return sonner.Toaster; }
+});
 exports.Toaster = Toaster;
 //# sourceMappingURL=sonner.js.map
 //# sourceMappingURL=sonner.js.map
