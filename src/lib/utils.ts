@@ -76,7 +76,29 @@ export const SECTION_CLASSES = {
  * Única fonte de verdade para tokens de motion (duração, easing, delay).
  * Importados diretamente do pacote design-tokens via ES modules.
  */
-export const motion = tokens.primitives.motion;
+export const motion = tokens?.primitives?.motion || {
+  duration: {
+    instant: "0ms",
+    fast: "100ms", 
+    normal: "200ms",
+    slow: "300ms",
+    slower: "500ms",
+    slowest: "800ms"
+  },
+  easing: {
+    linear: "linear",
+    easeIn: "cubic-bezier(0.4, 0, 1, 1)",
+    easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+    easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+    spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+  },
+  delay: {
+    none: "0ms",
+    short: "50ms",
+    medium: "100ms",
+    long: "200ms"
+  }
+};
 
 /**
  * Motion semântico - Importado dos tokens semânticos

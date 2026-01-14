@@ -35,7 +35,7 @@ export default defineConfig({
     ...componentsEntries,
   },
   format: ['esm', 'cjs'],
-  dts: false,
+  dts: true,
   sourcemap: true,
   clean: true,
   minify: false,

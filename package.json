@@ -87,7 +87,7 @@
     "cmdk": "^1.0.0",
     "embla-carousel-react": "^8.0.0",
     "framer-motion": "^12.24.0",
-    "lucide-react": "^0.562.0",
+    "lucide-react": "0.460.0",
     "qrcode.react": "^4.2.0",
     "react-hook-form": "^7.70.0",
     "sonner": "^1.4.0",
