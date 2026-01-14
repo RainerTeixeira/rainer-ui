@@ -6,7 +6,22 @@ var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
 
 // src/lib/utils.ts
-var motion = designTokens.tokens.primitives.motion;
+var motion = designTokens.tokens?.primitives?.motion || {
+  duration: {
+    fast: "100ms",
+    normal: "200ms",
+    slow: "300ms",
+    slower: "500ms"},
+  easing: {
+    easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+    easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+    spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+  },
+  delay: {
+    short: "50ms",
+    long: "200ms"
+  }
+};
 var motionSemantic = designTokens.tokens.semantics.motion || {
   transition: {
     default: {

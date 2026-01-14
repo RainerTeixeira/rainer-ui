@@ -32,7 +32,20 @@ var ScrollAreaPrimitive__namespace = /*#__PURE__*/_interopNamespace(ScrollAreaPr
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var motion = designTokens.tokens.primitives.motion;
+var motion = designTokens.tokens?.primitives?.motion || {
+  duration: {
+    fast: "100ms",
+    normal: "200ms",
+    slow: "300ms",
+    slower: "500ms"},
+  easing: {
+    easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+    easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+    spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+  },
+  delay: {
+    }
+};
 var motionSemantic = designTokens.tokens.semantics.motion || {
   transition: {
     default: {
