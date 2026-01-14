@@ -1,6 +1,13 @@
 import '@testing-library/jest-dom';
 import React from 'react';
 
+// Declarações globais para TypeScript
+declare global {
+  interface Window {
+    matchMedia: any;
+  }
+}
+
 // Mock para next-themes
 jest.mock('next-themes', () => ({
   useTheme: () => ({
@@ -198,7 +205,7 @@ global.IntersectionObserver = jest.fn().mockImplementation(() => ({
 }));
 
 // Mock para matchMedia
-Object.defineProperty(window, 'matchMedia', {
+Object.defineProperty((global as any).window, 'matchMedia', {
   writable: true,
   value: jest.fn().mockImplementation(query => ({
     matches: false,

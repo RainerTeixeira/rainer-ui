@@ -8,6 +8,10 @@ import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsx, Fragment, jsxs } from 'react/jsx-runtime';
 
+var __defProp = Object.defineProperty;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+
 // src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
@@ -202,16 +206,16 @@ HighlightCard.displayName = "HighlightCard";
 var ErrorBoundary = class extends Component {
   constructor(props) {
     super(props);
-    this.handleReset = () => {
+    __publicField(this, "handleReset", () => {
       this.setState({
         hasError: false,
         error: null,
         errorInfo: null
       });
-    };
-    this.handleGoHome = () => {
+    });
+    __publicField(this, "handleGoHome", () => {
       window.location.href = "/";
-    };
+    });
     this.state = {
       hasError: false,
       error: null,

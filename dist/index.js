@@ -229,6 +229,10 @@ var Bookmark__default = /*#__PURE__*/_interopDefault(Bookmark);
 var Link22__default = /*#__PURE__*/_interopDefault(Link22);
 var Smartphone__default = /*#__PURE__*/_interopDefault(Smartphone);
 
+var __defProp = Object.defineProperty;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __publicField = (obj, key, value) => __defNormalProp(obj, key + "" , value);
+
 // src/lib/image-utils.ts
 function isAcceptedFormat(mimeType) {
   const acceptedTypes = [
@@ -10572,7 +10576,7 @@ function BackToTop() {
 var COOKIE_CONSENT_KEY = "cookie-consent";
 var COOKIE_PREFERENCES_KEY = "cookie-preferences";
 var COOKIE_VERSION = "1.0.0";
-var CookieManager = class _CookieManager {
+var _CookieManager = class _CookieManager {
   constructor() {
   }
   static getInstance() {
@@ -10698,6 +10702,8 @@ var CookieManager = class _CookieManager {
     });
   }
 };
+__publicField(_CookieManager, "instance");
+var CookieManager = _CookieManager;
 function getCookieManager() {
   return CookieManager.getInstance();
 }
