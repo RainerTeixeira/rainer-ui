@@ -4,7 +4,7 @@ import React from 'react';
 // Declarações globais para TypeScript
 declare global {
   interface Window {
-    matchMedia: any;
+    matchMedia: (query: string) => MediaQueryList;
   }
 }
 
