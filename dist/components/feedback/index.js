@@ -1,6 +1,6 @@
 'use strict';
 
-var React8 = require('react');
+var React9 = require('react');
 var classVarianceAuthority = require('class-variance-authority');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
@@ -50,7 +50,7 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React8__namespace = /*#__PURE__*/_interopNamespace(React8);
+var React9__namespace = /*#__PURE__*/_interopNamespace(React9);
 var AlertDialogPrimitive__namespace = /*#__PURE__*/_interopNamespace(AlertDialogPrimitive);
 var ProgressPrimitive__namespace = /*#__PURE__*/_interopNamespace(ProgressPrimitive);
 var ArrowDown__default = /*#__PURE__*/_interopDefault(ArrowDown);
@@ -160,7 +160,7 @@ var alertVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Alert = React8__namespace.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Alert = React9__namespace.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -170,7 +170,7 @@ var Alert = React8__namespace.forwardRef(({ className, variant, ...props }, ref)
   }
 ));
 Alert.displayName = "Alert";
-var AlertTitle = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertTitle = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h5",
   {
     ref,
@@ -179,7 +179,7 @@ var AlertTitle = React8__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 AlertTitle.displayName = "AlertTitle";
-var AlertDescription = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDescription = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -189,56 +189,93 @@ var AlertDescription = React8__namespace.forwardRef(({ className, ...props }, re
 ));
 AlertDescription.displayName = "AlertDescription";
 var buttonVariants = classVarianceAuthority.cva(
-  `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-[var(--motion-duration,200ms)] ease-[var(--motion-easing,cubic-bezier(.4,0,.2,1))] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive`,
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 dark:hover:shadow-glow-cyan",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline: "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 dark:hover:border-primary/50",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 dark:hover:shadow-glow-purple",
-        ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 dark:hover:text-primary",
-        link: "text-primary underline-offset-4 hover:underline dark:neon-text",
-        neon: "bg-primary border-2 border-primary text-primary-foreground hover:bg-primary/90 dark:neon-box",
-        glass: "glass neon-border hover:glass-hover dark:text-primary",
+        default: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md",
+        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-md",
+        outline: "border-2 border-input bg-background shadow-sm hover:bg-accent hover:border-accent",
+        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 hover:shadow-md",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline focus-visible:underline",
+        neon: "relative bg-gradient-to-r from-neon-cyan to-cyan-600 border-2 border-neon-cyan text-gray-950 shadow-lg shadow-neon-cyan hover:shadow-neon-cyan hover:shadow-xl",
+        glass: "relative bg-glass border border-white/20 text-foreground backdrop-blur-sm shadow-sm hover:bg-white/20",
         minimal: "bg-transparent border-0 shadow-none hover:bg-accent/50 text-foreground"
       },
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9",
-        "icon-sm": "size-8",
-        "icon-lg": "size-10"
+        xs: "h-7 px-2 text-xs rounded-md",
+        sm: "h-8 px-3 text-sm rounded-md has-[>svg]:px-2",
+        default: "h-9 px-4 py-2 rounded-md has-[>svg]:px-3",
+        lg: "h-10 px-6 text-base rounded-lg has-[>svg]:px-4",
+        xl: "h-12 px-8 text-lg rounded-lg has-[>svg]:px-5",
+        icon: "size-9 rounded-lg",
+        "icon-sm": "size-8 rounded-md",
+        "icon-lg": "size-10 rounded-lg",
+        "icon-xl": "size-12 rounded-xl"
+      },
+      animation: {
+        none: "",
+        scale: "hover:scale-105 active:scale-95",
+        glow: "hover:shadow-lg active:shadow-sm",
+        bounce: "hover:animate-bounce",
+        pulse: "hover:animate-pulse"
       }
     },
     defaultVariants: {
       variant: "default",
-      size: "default"
+      size: "default",
+      animation: "scale"
     }
   }
 );
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}) {
-  const Comp = asChild ? reactSlot.Slot : "button";
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    Comp,
-    {
-      "data-slot": "button",
-      className: cn(buttonVariants({ variant, size, className })),
-      ...props
-    }
-  );
-}
+var ButtonComponent = React9__namespace.forwardRef(
+  ({
+    className,
+    variant,
+    size,
+    animation,
+    asChild = false,
+    loading = false,
+    loadingIcon,
+    disabled,
+    children,
+    ...props
+  }, ref) => {
+    const Comp = asChild ? reactSlot.Slot : "button";
+    const isDisabled = disabled || loading;
+    return /* @__PURE__ */ jsxRuntime.jsxs(
+      Comp,
+      {
+        className: cn(
+          buttonVariants({ variant, size, animation }),
+          // Efeito neon especial
+          variant === "neon" && [
+            "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+            "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+            "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+            "before:transition-opacity after:transition-opacity",
+            "before:duration-300 after:duration-300"
+          ],
+          className
+        ),
+        ref,
+        disabled: isDisabled,
+        ...props,
+        children: [
+          loading && /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          children
+        ]
+      }
+    );
+  }
+);
+ButtonComponent.displayName = "Button";
+var Button = ButtonComponent;
 var AlertDialog = AlertDialogPrimitive__namespace.Root;
 var AlertDialogTrigger = AlertDialogPrimitive__namespace.Trigger;
 var AlertDialogPortal = AlertDialogPrimitive__namespace.Portal;
-var AlertDialogOverlay = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogOverlay = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Overlay,
   {
     className: cn(
@@ -250,7 +287,7 @@ var AlertDialogOverlay = React8__namespace.forwardRef(({ className, ...props }, 
   }
 ));
 AlertDialogOverlay.displayName = AlertDialogPrimitive__namespace.Overlay.displayName;
-var AlertDialogContent = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(AlertDialogPortal, { children: [
+var AlertDialogContent = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(AlertDialogPortal, { children: [
   /* @__PURE__ */ jsxRuntime.jsx(AlertDialogOverlay, {}),
   /* @__PURE__ */ jsxRuntime.jsx(
     AlertDialogPrimitive__namespace.Content,
@@ -293,7 +330,7 @@ var AlertDialogFooter = ({
   }
 );
 AlertDialogFooter.displayName = "AlertDialogFooter";
-var AlertDialogTitle = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogTitle = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Title,
   {
     ref,
@@ -302,7 +339,7 @@ var AlertDialogTitle = React8__namespace.forwardRef(({ className, ...props }, re
   }
 ));
 AlertDialogTitle.displayName = AlertDialogPrimitive__namespace.Title.displayName;
-var AlertDialogDescription = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogDescription = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Description,
   {
     ref,
@@ -311,7 +348,7 @@ var AlertDialogDescription = React8__namespace.forwardRef(({ className, ...props
   }
 ));
 AlertDialogDescription.displayName = AlertDialogPrimitive__namespace.Description.displayName;
-var AlertDialogAction = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogAction = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Action,
   {
     ref,
@@ -320,7 +357,7 @@ var AlertDialogAction = React8__namespace.forwardRef(({ className, ...props }, r
   }
 ));
 AlertDialogAction.displayName = AlertDialogPrimitive__namespace.Action.displayName;
-var AlertDialogCancel = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogCancel = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Cancel,
   {
     ref,
@@ -363,7 +400,7 @@ var badgeVariants = classVarianceAuthority.cva(
 function Badge({ className, variant, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(badgeVariants({ variant }), className), ...props });
 }
-var Progress = React8__namespace.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Progress = React9__namespace.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   ProgressPrimitive__namespace.Root,
   {
     ref,
@@ -392,20 +429,20 @@ function Skeleton({ className, ...props }) {
     }
   );
 }
-var Toaster = React8__namespace.forwardRef((props, ref) => {
+var Toaster = React9__namespace.forwardRef((props, ref) => {
   const { theme = "system" } = nextThemes.useTheme();
-  return React8__namespace.createElement(
+  return React9__namespace.createElement(
     sonner.Toaster,
     {
       ref,
       theme,
       className: "toaster group",
       icons: {
-        success: React8__namespace.createElement(lucideReact.Check, { className: "h-4 w-4" }),
-        info: React8__namespace.createElement(lucideReact.Info, { className: "h-4 w-4" }),
-        warning: React8__namespace.createElement(lucideReact.AlertTriangle, { className: "h-4 w-4" }),
-        error: React8__namespace.createElement(lucideReact.Octagon, { className: "h-4 w-4" }),
-        loading: React8__namespace.createElement(lucideReact.Loader2, { className: "h-4 w-4 animate-spin" })
+        success: React9__namespace.createElement(lucideReact.Check, { className: "h-4 w-4" }),
+        info: React9__namespace.createElement(lucideReact.Info, { className: "h-4 w-4" }),
+        warning: React9__namespace.createElement(lucideReact.AlertTriangle, { className: "h-4 w-4" }),
+        error: React9__namespace.createElement(lucideReact.Octagon, { className: "h-4 w-4" }),
+        loading: React9__namespace.createElement(lucideReact.Loader2, { className: "h-4 w-4 animate-spin" })
       },
       toastOptions: {
         classNames: {
@@ -462,7 +499,7 @@ var speedClasses = {
   normal: "animate-spin",
   fast: "animate-spin-fast"
 };
-var Spinner = React8__namespace.forwardRef(
+var Spinner = React9__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -515,7 +552,7 @@ var Spinner = React8__namespace.forwardRef(
   }
 );
 Spinner.displayName = "Spinner";
-var SpinnerOverlay = React8__namespace.forwardRef(
+var SpinnerOverlay = React9__namespace.forwardRef(
   ({
     className,
     fullscreen = false,
@@ -546,7 +583,7 @@ var dotSizeClasses = {
   md: "h-2 w-2",
   lg: "h-3 w-3"
 };
-var DotsSpinner = React8__namespace.forwardRef(
+var DotsSpinner = React9__namespace.forwardRef(
   ({
     className,
     count = 3,
@@ -593,7 +630,7 @@ var pulseSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var PulseSpinner = React8__namespace.forwardRef(
+var PulseSpinner = React9__namespace.forwardRef(
   ({
     className,
     rings = 3,
@@ -678,7 +715,7 @@ function formatValue(value, format, currency, decimals = 0) {
       return formatted;
   }
 }
-var KPI = React8__namespace.forwardRef(
+var KPI = React9__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -753,7 +790,7 @@ var gridColsClasses = {
   3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
   4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
 };
-var KPIGrid = React8__namespace.forwardRef(
+var KPIGrid = React9__namespace.forwardRef(
   ({
     className,
     cols = 4,
@@ -776,7 +813,7 @@ var KPIGrid = React8__namespace.forwardRef(
   }
 );
 KPIGrid.displayName = "KPIGrid";
-var KPIChart = React8__namespace.forwardRef(
+var KPIChart = React9__namespace.forwardRef(
   ({
     className,
     chart,
@@ -844,7 +881,7 @@ var iconSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var EmptyState = React8__namespace.forwardRef(
+var EmptyState = React9__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -901,7 +938,7 @@ var EmptyState = React8__namespace.forwardRef(
   }
 );
 EmptyState.displayName = "EmptyState";
-var EmptyStateIllustrated = React8__namespace.forwardRef(
+var EmptyStateIllustrated = React9__namespace.forwardRef(
   ({
     className,
     illustration,
@@ -1019,7 +1056,7 @@ var notificationVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Notification = React8__namespace.forwardRef(
+var Notification = React9__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1035,8 +1072,8 @@ var Notification = React8__namespace.forwardRef(
     toast = false,
     ...props
   }, ref) => {
-    const [visible, setVisible] = React8__namespace.useState(true);
-    React8__namespace.useEffect(() => {
+    const [visible, setVisible] = React9__namespace.useState(true);
+    React9__namespace.useEffect(() => {
       if (autoClose && onDismiss) {
         const timer = setTimeout(() => {
           handleClose();
@@ -1111,7 +1148,7 @@ var spacingClasses = {
   md: "gap-3",
   lg: "gap-4"
 };
-var NotificationGroup = React8__namespace.forwardRef(
+var NotificationGroup = React9__namespace.forwardRef(
   ({
     className,
     children,
@@ -1137,7 +1174,7 @@ var NotificationGroup = React8__namespace.forwardRef(
   }
 );
 NotificationGroup.displayName = "NotificationGroup";
-var NotificationToast = React8__namespace.forwardRef(
+var NotificationToast = React9__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Notification,
@@ -1151,8 +1188,8 @@ var NotificationToast = React8__namespace.forwardRef(
 );
 NotificationToast.displayName = "NotificationToast";
 function useNotification() {
-  const [notifications, setNotifications] = React8__namespace.useState(/* @__PURE__ */ new Map());
-  const notify = React8__namespace.useCallback((options) => {
+  const [notifications, setNotifications] = React9__namespace.useState(/* @__PURE__ */ new Map());
+  const notify = React9__namespace.useCallback((options) => {
     const id = options.id || Math.random().toString(36).substr(2, 9);
     setNotifications((prev) => new Map(prev).set(id, options));
     if (options.autoClose !== false) {
@@ -1163,14 +1200,14 @@ function useNotification() {
     }
     return id;
   }, []);
-  const dismiss = React8__namespace.useCallback((id) => {
+  const dismiss = React9__namespace.useCallback((id) => {
     setNotifications((prev) => {
       const next = new Map(prev);
       next.delete(id);
       return next;
     });
   }, []);
-  const clear = React8__namespace.useCallback(() => {
+  const clear = React9__namespace.useCallback(() => {
     setNotifications(/* @__PURE__ */ new Map());
   }, []);
   return {

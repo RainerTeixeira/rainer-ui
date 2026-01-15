@@ -1,4 +1,4 @@
-import * as React12 from 'react';
+import * as React13 from 'react';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Cookie, X, Settings, XCircle, Check, Download, RefreshCw, ArrowUp } from 'lucide-react';
 import { Slot } from '@radix-ui/react-slot';
@@ -6,7 +6,7 @@ import { cva } from 'class-variance-authority';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
-import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
+import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import Link from 'next/link';
 import * as LabelPrimitive from '@radix-ui/react-label';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
@@ -110,52 +110,89 @@ motion.easing;
   }
 });
 var buttonVariants = cva(
-  `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-[var(--motion-duration,200ms)] ease-[var(--motion-easing,cubic-bezier(.4,0,.2,1))] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive`,
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 dark:hover:shadow-glow-cyan",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline: "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 dark:hover:border-primary/50",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 dark:hover:shadow-glow-purple",
-        ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 dark:hover:text-primary",
-        link: "text-primary underline-offset-4 hover:underline dark:neon-text",
-        neon: "bg-primary border-2 border-primary text-primary-foreground hover:bg-primary/90 dark:neon-box",
-        glass: "glass neon-border hover:glass-hover dark:text-primary",
+        default: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md",
+        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-md",
+        outline: "border-2 border-input bg-background shadow-sm hover:bg-accent hover:border-accent",
+        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 hover:shadow-md",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline focus-visible:underline",
+        neon: "relative bg-gradient-to-r from-neon-cyan to-cyan-600 border-2 border-neon-cyan text-gray-950 shadow-lg shadow-neon-cyan hover:shadow-neon-cyan hover:shadow-xl",
+        glass: "relative bg-glass border border-white/20 text-foreground backdrop-blur-sm shadow-sm hover:bg-white/20",
         minimal: "bg-transparent border-0 shadow-none hover:bg-accent/50 text-foreground"
       },
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9",
-        "icon-sm": "size-8",
-        "icon-lg": "size-10"
+        xs: "h-7 px-2 text-xs rounded-md",
+        sm: "h-8 px-3 text-sm rounded-md has-[>svg]:px-2",
+        default: "h-9 px-4 py-2 rounded-md has-[>svg]:px-3",
+        lg: "h-10 px-6 text-base rounded-lg has-[>svg]:px-4",
+        xl: "h-12 px-8 text-lg rounded-lg has-[>svg]:px-5",
+        icon: "size-9 rounded-lg",
+        "icon-sm": "size-8 rounded-md",
+        "icon-lg": "size-10 rounded-lg",
+        "icon-xl": "size-12 rounded-xl"
+      },
+      animation: {
+        none: "",
+        scale: "hover:scale-105 active:scale-95",
+        glow: "hover:shadow-lg active:shadow-sm",
+        bounce: "hover:animate-bounce",
+        pulse: "hover:animate-pulse"
       }
     },
     defaultVariants: {
       variant: "default",
-      size: "default"
+      size: "default",
+      animation: "scale"
     }
   }
 );
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}) {
-  const Comp = asChild ? Slot : "button";
-  return /* @__PURE__ */ jsx(
-    Comp,
-    {
-      "data-slot": "button",
-      className: cn(buttonVariants({ variant, size, className })),
-      ...props
-    }
-  );
-}
+var ButtonComponent = React13.forwardRef(
+  ({
+    className,
+    variant,
+    size,
+    animation,
+    asChild = false,
+    loading = false,
+    loadingIcon,
+    disabled,
+    children,
+    ...props
+  }, ref) => {
+    const Comp = asChild ? Slot : "button";
+    const isDisabled = disabled || loading;
+    return /* @__PURE__ */ jsxs(
+      Comp,
+      {
+        className: cn(
+          buttonVariants({ variant, size, animation }),
+          // Efeito neon especial
+          variant === "neon" && [
+            "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+            "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+            "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+            "before:transition-opacity after:transition-opacity",
+            "before:duration-300 after:duration-300"
+          ],
+          className
+        ),
+        ref,
+        disabled: isDisabled,
+        ...props,
+        children: [
+          loading && /* @__PURE__ */ jsx(Fragment, { children: loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          children
+        ]
+      }
+    );
+  }
+);
+ButtonComponent.displayName = "Button";
+var Button = ButtonComponent;
 
 // src/lib/scroll-utils.ts
 function prefersReducedMotion() {
@@ -277,7 +314,7 @@ var MOTION = {
     DEFAULT: "transition-all duration-200 ease-in-out"}};
 var GRADIENT_DIRECTIONS = {
   TO_BOTTOM_RIGHT: "to-br"};
-var Card = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Card = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -289,7 +326,7 @@ var Card = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ 
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardHeader = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -298,7 +335,7 @@ var CardHeader = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardTitle = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h3",
   {
     ref,
@@ -310,7 +347,7 @@ var CardTitle = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardDescription = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "p",
   {
     ref,
@@ -319,9 +356,9 @@ var CardDescription = React12.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardFooter = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -330,7 +367,7 @@ var CardFooter = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 CardFooter.displayName = "CardFooter";
-var HighlightCard = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var HighlightCard = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -360,7 +397,7 @@ HighlightCard.displayName = "HighlightCard";
 var labelVariants = cva(
   "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-cyan-200 dark:font-mono"
 );
-var Label = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Label = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   LabelPrimitive.Root,
   {
     ref,
@@ -369,7 +406,7 @@ var Label = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */
   }
 ));
 Label.displayName = LabelPrimitive.Root.displayName;
-var Separator = React12.forwardRef(
+var Separator = React13.forwardRef(
   ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsx(
     SeparatorPrimitive.Root,
     {
@@ -387,7 +424,7 @@ var Separator = React12.forwardRef(
   )
 );
 Separator.displayName = SeparatorPrimitive.Root.displayName;
-var Switch = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Switch = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SwitchPrimitives.Root,
   {
     className: cn(
@@ -1017,20 +1054,20 @@ function CookieBanner() {
 }
 function useTheme() {
   const { theme, resolvedTheme, setTheme } = useTheme$1();
-  const toggle = React12.useCallback(() => {
+  const toggle = React13.useCallback(() => {
     if (theme === "system") {
       setTheme(resolvedTheme === "dark" ? "light" : "dark");
     } else {
       setTheme(theme === "dark" ? "light" : "dark");
     }
   }, [theme, resolvedTheme, setTheme]);
-  const setLight = React12.useCallback(() => {
+  const setLight = React13.useCallback(() => {
     setTheme("light");
   }, [setTheme]);
-  const setDark = React12.useCallback(() => {
+  const setDark = React13.useCallback(() => {
     setTheme("dark");
   }, [setTheme]);
-  const setSystem = React12.useCallback(() => {
+  const setSystem = React13.useCallback(() => {
     setTheme("system");
   }, [setTheme]);
   return {
@@ -1048,8 +1085,8 @@ function useTheme() {
 }
 function ThemeToggle({ className }) {
   const { toggle, isDark } = useTheme();
-  const [mounted, setMounted] = React12.useState(false);
-  React12.useEffect(() => {
+  const [mounted, setMounted] = React13.useState(false);
+  React13.useEffect(() => {
     setMounted(true);
   }, []);
   const handleToggle = () => {
@@ -1770,7 +1807,7 @@ function TokensDemo() {
     ] })
   ] });
 }
-var VisuallyHidden = React12.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var VisuallyHidden = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "span",
   {
     ref,
@@ -1807,7 +1844,7 @@ var kbdVariants = cva(
     }
   }
 );
-var Kbd = React12.forwardRef(
+var Kbd = React13.forwardRef(
   ({
     className,
     variant = "default",
@@ -1827,7 +1864,7 @@ var Kbd = React12.forwardRef(
   }
 );
 Kbd.displayName = "Kbd";
-var KbdCombo = React12.forwardRef(
+var KbdCombo = React13.forwardRef(
   ({
     className,
     keys,
@@ -1842,7 +1879,7 @@ var KbdCombo = React12.forwardRef(
         ref,
         className: cn("flex items-center gap-1", className),
         ...props,
-        children: keys.map((key, index) => /* @__PURE__ */ jsxs(React12.Fragment, { children: [
+        children: keys.map((key, index) => /* @__PURE__ */ jsxs(React13.Fragment, { children: [
           index > 0 && /* @__PURE__ */ jsx("span", { className: "text-muted-foreground text-xs font-normal", children: separator }),
           /* @__PURE__ */ jsx(Kbd, { size, variant, children: key })
         ] }, index))
@@ -1926,7 +1963,7 @@ var codeVariants = cva(
     }
   }
 );
-var Code = React12.forwardRef(
+var Code = React13.forwardRef(
   ({
     className,
     variant = "inline",
@@ -1939,9 +1976,9 @@ var Code = React12.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [copied, setCopied] = React12.useState(false);
-    const codeRef = React12.useRef(null);
-    const handleCopy = React12.useCallback(async () => {
+    const [copied, setCopied] = React13.useState(false);
+    const codeRef = React13.useRef(null);
+    const handleCopy = React13.useCallback(async () => {
       if (codeRef.current) {
         const text = codeRef.current.textContent || "";
         await navigator.clipboard.writeText(text);
@@ -2002,7 +2039,7 @@ var Code = React12.forwardRef(
   }
 );
 Code.displayName = "Code";
-var CodeInline = React12.forwardRef(
+var CodeInline = React13.forwardRef(
   ({
     className,
     color = "default",
@@ -2020,7 +2057,7 @@ var CodeInline = React12.forwardRef(
   }
 );
 CodeInline.displayName = "CodeInline";
-var CodeBlock = React12.forwardRef(
+var CodeBlock = React13.forwardRef(
   ({
     className,
     ...props
@@ -2067,7 +2104,7 @@ var quoteVariants = cva(
     }
   }
 );
-var Quote = React12.forwardRef(
+var Quote = React13.forwardRef(
   ({
     className,
     variant = "default",
@@ -2118,7 +2155,7 @@ var Quote = React12.forwardRef(
   }
 );
 Quote.displayName = "Quote";
-var QuoteTestimonial = React12.forwardRef(
+var QuoteTestimonial = React13.forwardRef(
   ({
     className,
     author,
@@ -2172,7 +2209,7 @@ var QuoteTestimonial = React12.forwardRef(
   }
 );
 QuoteTestimonial.displayName = "QuoteTestimonial";
-var QuoteBlock = React12.forwardRef(
+var QuoteBlock = React13.forwardRef(
   ({
     className,
     children,
@@ -2223,7 +2260,7 @@ var aspectRatioBoxVariants = cva(
     }
   }
 );
-var AspectRatioBox = React12.forwardRef(
+var AspectRatioBox = React13.forwardRef(
   ({
     className,
     variant = "default",
@@ -2232,13 +2269,13 @@ var AspectRatioBox = React12.forwardRef(
     objectFit = "cover",
     ...props
   }, ref) => {
-    const resolvedRatio = React12.useMemo(() => {
+    const resolvedRatio = React13.useMemo(() => {
       if (typeof ratio === "string" && ratio in ASPECT_RATIOS) {
         return ASPECT_RATIOS[ratio];
       }
       return ratio;
     }, [ratio]);
-    const paddingBottom = React12.useMemo(() => {
+    const paddingBottom = React13.useMemo(() => {
       const [width, height] = resolvedRatio.split("/").map(Number);
       return `${height / width * 100}%`;
     }, [resolvedRatio]);
@@ -2254,7 +2291,7 @@ var AspectRatioBox = React12.forwardRef(
         className: cn(aspectRatioBoxVariants({ variant }), className),
         style: { paddingBottom },
         ...props,
-        children: /* @__PURE__ */ jsx("div", { className: "absolute inset-0", children: React12.isValidElement(children) ? React12.cloneElement(children, {
+        children: /* @__PURE__ */ jsx("div", { className: "absolute inset-0", children: React13.isValidElement(children) ? React13.cloneElement(children, {
           className: cn(
             objectFitClasses[objectFit],
             children.props.className
@@ -2265,7 +2302,7 @@ var AspectRatioBox = React12.forwardRef(
   }
 );
 AspectRatioBox.displayName = "AspectRatioBox";
-var AspectRatioImage = React12.forwardRef(
+var AspectRatioImage = React13.forwardRef(
   ({
     className,
     ratio = "square",
@@ -2287,7 +2324,7 @@ var AspectRatioImage = React12.forwardRef(
   }
 );
 AspectRatioImage.displayName = "AspectRatioImage";
-var AspectRatioVideo = React12.forwardRef(
+var AspectRatioVideo = React13.forwardRef(
   ({
     className,
     ratio = "video",
@@ -2305,7 +2342,7 @@ var AspectRatioVideo = React12.forwardRef(
   }
 );
 AspectRatioVideo.displayName = "AspectRatioVideo";
-var AspectRatioIframe = React12.forwardRef(
+var AspectRatioIframe = React13.forwardRef(
   ({
     className,
     ratio = "video",
@@ -2343,7 +2380,7 @@ var centerVariants = cva(
     }
   }
 );
-var Center = React12.forwardRef(
+var Center = React13.forwardRef(
   ({
     className,
     direction = "both",
@@ -2356,7 +2393,7 @@ var Center = React12.forwardRef(
     children,
     ...props
   }, ref) => {
-    const centerStyle = React12.useMemo(() => {
+    const centerStyle = React13.useMemo(() => {
       const customStyle = { ...style };
       if (padding !== void 0) {
         customStyle.padding = typeof padding === "number" ? `${padding}px` : padding;
@@ -2385,7 +2422,7 @@ var Center = React12.forwardRef(
   }
 );
 Center.displayName = "Center";
-var CenterInline = React12.forwardRef(
+var CenterInline = React13.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Center,
@@ -2398,7 +2435,7 @@ var CenterInline = React12.forwardRef(
   }
 );
 CenterInline.displayName = "CenterInline";
-var CenterScreen = React12.forwardRef(
+var CenterScreen = React13.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Center,
@@ -2413,7 +2450,7 @@ var CenterScreen = React12.forwardRef(
   }
 );
 CenterScreen.displayName = "CenterScreen";
-var CenterText = React12.forwardRef(
+var CenterText = React13.forwardRef(
   ({
     className,
     align = "center",

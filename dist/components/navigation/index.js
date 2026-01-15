@@ -1,7 +1,7 @@
 'use strict';
 
 var AccordionPrimitive = require('@radix-ui/react-accordion');
-var React6 = require('react');
+var React7 = require('react');
 var lucideReact = require('lucide-react');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
@@ -48,7 +48,7 @@ function _interopNamespace(e) {
 }
 
 var AccordionPrimitive__namespace = /*#__PURE__*/_interopNamespace(AccordionPrimitive);
-var React6__namespace = /*#__PURE__*/_interopNamespace(React6);
+var React7__namespace = /*#__PURE__*/_interopNamespace(React7);
 var CollapsiblePrimitive__namespace = /*#__PURE__*/_interopNamespace(CollapsiblePrimitive);
 var NavigationMenuPrimitive__namespace = /*#__PURE__*/_interopNamespace(NavigationMenuPrimitive);
 var TabsPrimitive__namespace = /*#__PURE__*/_interopNamespace(TabsPrimitive);
@@ -138,7 +138,7 @@ motion.easing;
   }
 });
 var Accordion = AccordionPrimitive__namespace.Root;
-var AccordionItem = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AccordionItem = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AccordionPrimitive__namespace.Item,
   {
     ref,
@@ -147,7 +147,7 @@ var AccordionItem = React6__namespace.forwardRef(({ className, ...props }, ref) 
   }
 ));
 AccordionItem.displayName = "AccordionItem";
-var AccordionTrigger = React6__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
+var AccordionTrigger = React7__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
   AccordionPrimitive__namespace.Trigger,
   {
     ref,
@@ -168,7 +168,7 @@ var AccordionTrigger = React6__namespace.forwardRef(({ className, children, ...p
   }
 ) }));
 AccordionTrigger.displayName = AccordionPrimitive__namespace.Trigger.displayName;
-var AccordionContent = React6__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AccordionContent = React7__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AccordionPrimitive__namespace.Content,
   {
     ref,
@@ -194,7 +194,7 @@ var MOTION = {
     TRANSFORM: "transition-transform duration-200 ease-in-out"}};
 var Dialog = reactDialog.Root;
 var DialogPortal = reactDialog.Portal;
-var DialogOverlay = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogOverlay = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Overlay,
   {
     ref,
@@ -207,7 +207,7 @@ var DialogOverlay = React6__namespace.forwardRef(({ className, ...props }, ref) 
   }
 ));
 DialogOverlay.displayName = reactDialog.Overlay.displayName;
-var DialogContent = React6__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(DialogPortal, { children: [
+var DialogContent = React7__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(DialogPortal, { children: [
   /* @__PURE__ */ jsxRuntime.jsx(DialogOverlay, {}),
   /* @__PURE__ */ jsxRuntime.jsxs(
     reactDialog.Content,
@@ -233,7 +233,7 @@ var DialogContent = React6__namespace.forwardRef(({ className, children, ...prop
   )
 ] }));
 DialogContent.displayName = reactDialog.Content.displayName;
-var DialogTitle = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogTitle = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Title,
   {
     ref,
@@ -245,7 +245,7 @@ var DialogTitle = React6__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 DialogTitle.displayName = reactDialog.Title.displayName;
-var DialogDescription = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogDescription = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Description,
   {
     ref,
@@ -257,7 +257,7 @@ var DialogDescription = React6__namespace.forwardRef(({ className, ...props }, r
   }
 ));
 DialogDescription.displayName = reactDialog.Description.displayName;
-var Command = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Command = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command,
   {
     ref,
@@ -278,7 +278,7 @@ var CommandDialog = ({
     /* @__PURE__ */ jsxRuntime.jsx(Command, { className: "[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[data-cmdk-input-wrapper]_svg]:h-5 [&_[data-cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5", children })
   ] }) });
 };
-var CommandInput = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center border-b px-3", "data-cmdk-input-wrapper": "", children: [
+var CommandInput = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center border-b px-3", "data-cmdk-input-wrapper": "", children: [
   /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { className: "mr-2 h-4 w-4 shrink-0 opacity-50" }),
   /* @__PURE__ */ jsxRuntime.jsx(
     cmdk.Command.Input,
@@ -293,7 +293,7 @@ var CommandInput = React6__namespace.forwardRef(({ className, ...props }, ref) =
   )
 ] }));
 CommandInput.displayName = cmdk.Command.Input.displayName;
-var CommandList = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandList = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.List,
   {
     ref,
@@ -302,7 +302,7 @@ var CommandList = React6__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 CommandList.displayName = cmdk.Command.List.displayName;
-var CommandEmpty = React6__namespace.forwardRef((props, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandEmpty = React7__namespace.forwardRef((props, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Empty,
   {
     ref,
@@ -311,7 +311,7 @@ var CommandEmpty = React6__namespace.forwardRef((props, ref) => /* @__PURE__ */ 
   }
 ));
 CommandEmpty.displayName = cmdk.Command.Empty.displayName;
-var CommandGroup = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandGroup = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Group,
   {
     ref,
@@ -323,7 +323,7 @@ var CommandGroup = React6__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 CommandGroup.displayName = cmdk.Command.Group.displayName;
-var CommandSeparator = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandSeparator = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Separator,
   {
     ref,
@@ -332,7 +332,7 @@ var CommandSeparator = React6__namespace.forwardRef(({ className, ...props }, re
   }
 ));
 CommandSeparator.displayName = cmdk.Command.Separator.displayName;
-var CommandItem = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandItem = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Item,
   {
     ref,
@@ -360,7 +360,7 @@ var CommandShortcut = ({
   );
 };
 CommandShortcut.displayName = "CommandShortcut";
-var NavigationMenu = React6__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var NavigationMenu = React7__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   NavigationMenuPrimitive__namespace.Root,
   {
     ref,
@@ -377,7 +377,7 @@ var NavigationMenu = React6__namespace.forwardRef(({ className, children, ...pro
   }
 ));
 NavigationMenu.displayName = NavigationMenuPrimitive__namespace.Root.displayName;
-var NavigationMenuList = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuList = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.List,
   {
     ref,
@@ -397,7 +397,7 @@ var navigationMenuTriggerStyle = classVarianceAuthority.cva(
     "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-accent-foreground data-[state=open]:bg-accent/50 data-[state=open]:hover:bg-accent data-[state=open]:focus:bg-accent"
   )
 );
-var NavigationMenuTrigger = React6__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var NavigationMenuTrigger = React7__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   NavigationMenuPrimitive__namespace.Trigger,
   {
     ref,
@@ -420,7 +420,7 @@ var NavigationMenuTrigger = React6__namespace.forwardRef(({ className, children,
   }
 ));
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive__namespace.Trigger.displayName;
-var NavigationMenuContent = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuContent = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.Content,
   {
     ref,
@@ -433,7 +433,7 @@ var NavigationMenuContent = React6__namespace.forwardRef(({ className, ...props 
 ));
 NavigationMenuContent.displayName = NavigationMenuPrimitive__namespace.Content.displayName;
 var NavigationMenuLink = NavigationMenuPrimitive__namespace.Link;
-var NavigationMenuViewport = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn("absolute left-0 top-full flex justify-center"), children: /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuViewport = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn("absolute left-0 top-full flex justify-center"), children: /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.Viewport,
   {
     className: cn(
@@ -445,7 +445,7 @@ var NavigationMenuViewport = React6__namespace.forwardRef(({ className, ...props
   }
 ) }));
 NavigationMenuViewport.displayName = NavigationMenuPrimitive__namespace.Viewport.displayName;
-var NavigationMenuIndicator = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuIndicator = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.Indicator,
   {
     ref,
@@ -460,7 +460,7 @@ var NavigationMenuIndicator = React6__namespace.forwardRef(({ className, ...prop
 ));
 NavigationMenuIndicator.displayName = NavigationMenuPrimitive__namespace.Indicator.displayName;
 var Tabs = TabsPrimitive__namespace.Root;
-var TabsList = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TabsList = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TabsPrimitive__namespace.List,
   {
     ref,
@@ -472,7 +472,7 @@ var TabsList = React6__namespace.forwardRef(({ className, ...props }, ref) => /*
   }
 ));
 TabsList.displayName = TabsPrimitive__namespace.List.displayName;
-var TabsTrigger = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TabsTrigger = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TabsPrimitive__namespace.Trigger,
   {
     ref,
@@ -488,7 +488,7 @@ var TabsTrigger = React6__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 TabsTrigger.displayName = TabsPrimitive__namespace.Trigger.displayName;
-var TabsContent = React6__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TabsContent = React7__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TabsPrimitive__namespace.Content,
   {
     ref,
@@ -502,52 +502,89 @@ var TabsContent = React6__namespace.forwardRef(({ className, ...props }, ref) =>
 ));
 TabsContent.displayName = TabsPrimitive__namespace.Content.displayName;
 var buttonVariants = classVarianceAuthority.cva(
-  `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-[var(--motion-duration,200ms)] ease-[var(--motion-easing,cubic-bezier(.4,0,.2,1))] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive`,
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 dark:hover:shadow-glow-cyan",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline: "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 dark:hover:border-primary/50",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 dark:hover:shadow-glow-purple",
-        ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 dark:hover:text-primary",
-        link: "text-primary underline-offset-4 hover:underline dark:neon-text",
-        neon: "bg-primary border-2 border-primary text-primary-foreground hover:bg-primary/90 dark:neon-box",
-        glass: "glass neon-border hover:glass-hover dark:text-primary",
+        default: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md",
+        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-md",
+        outline: "border-2 border-input bg-background shadow-sm hover:bg-accent hover:border-accent",
+        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 hover:shadow-md",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline focus-visible:underline",
+        neon: "relative bg-gradient-to-r from-neon-cyan to-cyan-600 border-2 border-neon-cyan text-gray-950 shadow-lg shadow-neon-cyan hover:shadow-neon-cyan hover:shadow-xl",
+        glass: "relative bg-glass border border-white/20 text-foreground backdrop-blur-sm shadow-sm hover:bg-white/20",
         minimal: "bg-transparent border-0 shadow-none hover:bg-accent/50 text-foreground"
       },
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9",
-        "icon-sm": "size-8",
-        "icon-lg": "size-10"
+        xs: "h-7 px-2 text-xs rounded-md",
+        sm: "h-8 px-3 text-sm rounded-md has-[>svg]:px-2",
+        default: "h-9 px-4 py-2 rounded-md has-[>svg]:px-3",
+        lg: "h-10 px-6 text-base rounded-lg has-[>svg]:px-4",
+        xl: "h-12 px-8 text-lg rounded-lg has-[>svg]:px-5",
+        icon: "size-9 rounded-lg",
+        "icon-sm": "size-8 rounded-md",
+        "icon-lg": "size-10 rounded-lg",
+        "icon-xl": "size-12 rounded-xl"
+      },
+      animation: {
+        none: "",
+        scale: "hover:scale-105 active:scale-95",
+        glow: "hover:shadow-lg active:shadow-sm",
+        bounce: "hover:animate-bounce",
+        pulse: "hover:animate-pulse"
       }
     },
     defaultVariants: {
       variant: "default",
-      size: "default"
+      size: "default",
+      animation: "scale"
     }
   }
 );
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}) {
-  const Comp = asChild ? reactSlot.Slot : "button";
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    Comp,
-    {
-      "data-slot": "button",
-      className: cn(buttonVariants({ variant, size, className })),
-      ...props
-    }
-  );
-}
+var ButtonComponent = React7__namespace.forwardRef(
+  ({
+    className,
+    variant,
+    size,
+    animation,
+    asChild = false,
+    loading = false,
+    loadingIcon,
+    disabled,
+    children,
+    ...props
+  }, ref) => {
+    const Comp = asChild ? reactSlot.Slot : "button";
+    const isDisabled = disabled || loading;
+    return /* @__PURE__ */ jsxRuntime.jsxs(
+      Comp,
+      {
+        className: cn(
+          buttonVariants({ variant, size, animation }),
+          // Efeito neon especial
+          variant === "neon" && [
+            "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+            "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+            "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+            "before:transition-opacity after:transition-opacity",
+            "before:duration-300 after:duration-300"
+          ],
+          className
+        ),
+        ref,
+        disabled: isDisabled,
+        ...props,
+        children: [
+          loading && /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          children
+        ]
+      }
+    );
+  }
+);
+ButtonComponent.displayName = "Button";
+var Button = ButtonComponent;
 var menuVariants = classVarianceAuthority.cva(
   "min-w-[200px] rounded-md border bg-popover p-1 text-popover-foreground shadow-lg",
   {
@@ -569,7 +606,7 @@ var menuVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Menu = React6__namespace.forwardRef(
+var Menu = React7__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -582,17 +619,17 @@ var Menu = React6__namespace.forwardRef(
     closeOnClick = true,
     ...props
   }, ref) => {
-    const [internalOpen, setInternalOpen] = React6__namespace.useState(false);
-    const [openSubmenus, setOpenSubmenus] = React6__namespace.useState(/* @__PURE__ */ new Set());
+    const [internalOpen, setInternalOpen] = React7__namespace.useState(false);
+    const [openSubmenus, setOpenSubmenus] = React7__namespace.useState(/* @__PURE__ */ new Set());
     const isOpen = controlledOpen !== void 0 ? controlledOpen : internalOpen;
-    const containerRef = React6__namespace.useRef(null);
-    const handleOpenChange = React6__namespace.useCallback((newOpen) => {
+    const containerRef = React7__namespace.useRef(null);
+    const handleOpenChange = React7__namespace.useCallback((newOpen) => {
       if (controlledOpen === void 0) {
         setInternalOpen(newOpen);
       }
       onOpenChange?.(newOpen);
     }, [controlledOpen, onOpenChange]);
-    const toggleSubmenu = React6__namespace.useCallback((itemId) => {
+    const toggleSubmenu = React7__namespace.useCallback((itemId) => {
       setOpenSubmenus((prev) => {
         const next = new Set(prev);
         if (next.has(itemId)) {
@@ -603,7 +640,7 @@ var Menu = React6__namespace.forwardRef(
         return next;
       });
     }, []);
-    React6__namespace.useEffect(() => {
+    React7__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           handleOpenChange(false);
@@ -743,7 +780,7 @@ var Menu = React6__namespace.forwardRef(
   }
 );
 Menu.displayName = "Menu";
-var MenuBar = React6__namespace.forwardRef(
+var MenuBar = React7__namespace.forwardRef(
   ({
     className,
     menus,
@@ -774,17 +811,17 @@ var MenuBar = React6__namespace.forwardRef(
   }
 );
 MenuBar.displayName = "MenuBar";
-var NavigationContextMenu = React6__namespace.forwardRef(
+var NavigationContextMenu = React7__namespace.forwardRef(
   ({
     className,
     children,
     items,
     ...props
   }, ref) => {
-    const [open, setOpen] = React6__namespace.useState(false);
-    const [position, setPosition] = React6__namespace.useState({ x: 0, y: 0 });
-    const containerRef = React6__namespace.useRef(null);
-    const handleContextMenu = React6__namespace.useCallback((event) => {
+    const [open, setOpen] = React7__namespace.useState(false);
+    const [position, setPosition] = React7__namespace.useState({ x: 0, y: 0 });
+    const containerRef = React7__namespace.useRef(null);
+    const handleContextMenu = React7__namespace.useCallback((event) => {
       event.preventDefault();
       setPosition({ x: event.clientX, y: event.clientY });
       setOpen(true);
@@ -895,7 +932,7 @@ function generateRange(page, totalPages, siblingCount) {
   }
   return range;
 }
-var Pagination = React6__namespace.forwardRef(
+var Pagination = React7__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -912,31 +949,31 @@ var Pagination = React6__namespace.forwardRef(
     siblingCount = 1,
     ...props
   }, ref) => {
-    const pages = React6__namespace.useMemo(() => {
+    const pages = React7__namespace.useMemo(() => {
       if (totalPages <= 7) {
         return Array.from({ length: totalPages }, (_, i) => i + 1);
       }
       return generateRange(page, totalPages, siblingCount);
     }, [page, totalPages, siblingCount]);
-    const handlePrevious = React6__namespace.useCallback(() => {
+    const handlePrevious = React7__namespace.useCallback(() => {
       if (page > 1) {
         onPrevious?.();
         onChange?.(page - 1);
       }
     }, [page, onChange, onPrevious]);
-    const handleNext = React6__namespace.useCallback(() => {
+    const handleNext = React7__namespace.useCallback(() => {
       if (page < totalPages) {
         onNext?.();
         onChange?.(page + 1);
       }
     }, [page, totalPages, onChange, onNext]);
-    const handlePageClick = React6__namespace.useCallback((page2) => {
+    const handlePageClick = React7__namespace.useCallback((page2) => {
       onChange?.(page2);
     }, [onChange]);
-    const handleFirst = React6__namespace.useCallback(() => {
+    const handleFirst = React7__namespace.useCallback(() => {
       onChange?.(1);
     }, [onChange]);
-    const handleLast = React6__namespace.useCallback(() => {
+    const handleLast = React7__namespace.useCallback(() => {
       onChange?.(totalPages);
     }, [onChange, totalPages]);
     const sizeClasses = {
@@ -1048,7 +1085,7 @@ var Pagination = React6__namespace.forwardRef(
   }
 );
 Pagination.displayName = "Pagination";
-var PaginationInfo = React6__namespace.forwardRef(
+var PaginationInfo = React7__namespace.forwardRef(
   ({
     className,
     page,
@@ -1084,7 +1121,7 @@ var PaginationInfo = React6__namespace.forwardRef(
   }
 );
 PaginationInfo.displayName = "PaginationInfo";
-var PaginationCompact = React6__namespace.forwardRef(
+var PaginationCompact = React7__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Pagination,
@@ -1140,7 +1177,7 @@ var stepVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Steps = React6__namespace.forwardRef(
+var Steps = React7__namespace.forwardRef(
   ({
     className,
     orientation = "horizontal",
@@ -1152,7 +1189,7 @@ var Steps = React6__namespace.forwardRef(
     showConnector = true,
     ...props
   }, ref) => {
-    const stepsWithStatus = React6__namespace.useMemo(() => {
+    const stepsWithStatus = React7__namespace.useMemo(() => {
       return steps.map((step, index) => {
         let status = "pending";
         if (index < current) {
@@ -1300,7 +1337,7 @@ var Steps = React6__namespace.forwardRef(
   }
 );
 Steps.displayName = "Steps";
-var StepItem = React6__namespace.forwardRef(
+var StepItem = React7__namespace.forwardRef(
   ({
     className,
     number,
@@ -1385,7 +1422,7 @@ var sidebarVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Sidebar = React6__namespace.forwardRef(
+var Sidebar = React7__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1403,25 +1440,25 @@ var Sidebar = React6__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [internalCollapsed, setInternalCollapsed] = React6__namespace.useState(collapsed);
-    const [internalOpen, setInternalOpen] = React6__namespace.useState(open);
+    const [internalCollapsed, setInternalCollapsed] = React7__namespace.useState(collapsed);
+    const [internalOpen, setInternalOpen] = React7__namespace.useState(open);
     const isCollapsed = onCollapse ? collapsed : internalCollapsed;
     const isOpen = overlay ? onOpenChange ? open : internalOpen : true;
-    const handleCollapse = React6__namespace.useCallback(() => {
+    const handleCollapse = React7__namespace.useCallback(() => {
       if (onCollapse) {
         onCollapse(!isCollapsed);
       } else {
         setInternalCollapsed(!isCollapsed);
       }
     }, [isCollapsed, onCollapse]);
-    const handleOpenChange = React6__namespace.useCallback((newOpen) => {
+    const handleOpenChange = React7__namespace.useCallback((newOpen) => {
       if (onOpenChange) {
         onOpenChange(newOpen);
       } else {
         setInternalOpen(newOpen);
       }
     }, [onOpenChange]);
-    React6__namespace.useEffect(() => {
+    React7__namespace.useEffect(() => {
       if (overlay && isOpen) {
         const handleClickOutside = (event) => {
           const target = event.target;
@@ -1572,14 +1609,14 @@ var Sidebar = React6__namespace.forwardRef(
   }
 );
 Sidebar.displayName = "Sidebar";
-var SidebarTrigger = React6__namespace.forwardRef(
+var SidebarTrigger = React7__namespace.forwardRef(
   ({
     className,
     children,
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React6__namespace.useCallback((event) => {
+    const handleClick = React7__namespace.useCallback((event) => {
       onClick?.(event);
       window.dispatchEvent(new CustomEvent("sidebar:toggle"));
     }, [onClick]);
@@ -1626,7 +1663,7 @@ var topBarVariants = classVarianceAuthority.cva(
     }
   }
 );
-var TopBar = React6__namespace.forwardRef(
+var TopBar = React7__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1761,7 +1798,7 @@ var TopBar = React6__namespace.forwardRef(
   }
 );
 TopBar.displayName = "TopBar";
-var TopBarTitle = React6__namespace.forwardRef(
+var TopBarTitle = React7__namespace.forwardRef(
   ({
     className,
     title,
@@ -1783,7 +1820,7 @@ var TopBarTitle = React6__namespace.forwardRef(
   }
 );
 TopBarTitle.displayName = "TopBarTitle";
-var TopBarActions = React6__namespace.forwardRef(
+var TopBarActions = React7__namespace.forwardRef(
   ({
     className,
     children,

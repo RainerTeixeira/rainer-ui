@@ -78,38 +78,47 @@ motion.easing;
   }
 });
 var linkButtonVariants = cva(
-  "inline-flex items-center justify-center font-medium transition-all duration-[var(--motion-duration-fast)]",
+  "inline-flex items-center justify-center font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 select-none",
   {
     variants: {
       variant: {
-        default: "text-primary hover:underline underline-offset-4",
+        default: "text-primary hover:underline underline-offset-4 hover:text-primary/80",
         muted: "text-muted-foreground hover:text-foreground hover:underline underline-offset-4",
-        destructive: "text-destructive hover:underline underline-offset-4",
+        destructive: "text-destructive hover:text-destructive/80 hover:underline underline-offset-4",
         success: "text-emerald-600 hover:text-emerald-700 hover:underline underline-offset-4 dark:text-emerald-400 dark:hover:text-emerald-300",
         warning: "text-amber-600 hover:text-amber-700 hover:underline underline-offset-4 dark:text-amber-400 dark:hover:text-amber-300",
         info: "text-blue-600 hover:text-blue-700 hover:underline underline-offset-4 dark:text-blue-400 dark:hover:text-blue-300",
-        neon: "text-primary hover:underline underline-offset-4 dark:neon-text",
-        ghost: "text-foreground hover:bg-accent hover:text-accent-foreground rounded-md px-2 py-1",
-        outline: "border border-border rounded-md px-3 py-1 hover:bg-accent hover:text-accent-foreground"
+        neon: "text-primary hover:underline underline-offset-4 hover:text-primary/80 dark:hover:text-cyan-400",
+        ghost: "text-foreground hover:bg-accent hover:text-accent-foreground rounded-md px-3 py-2",
+        outline: "border-2 border-border rounded-md px-4 py-2 hover:bg-accent hover:border-accent hover:text-accent-foreground",
+        pill: "bg-gray-100 text-gray-900 rounded-full px-4 py-2 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
       },
       size: {
-        xs: "text-xs",
-        sm: "text-sm",
-        md: "text-base",
-        lg: "text-lg",
-        xl: "text-xl"
+        xs: "text-xs px-2 py-1",
+        sm: "text-sm px-3 py-1.5",
+        md: "text-base px-4 py-2",
+        lg: "text-lg px-5 py-2.5",
+        xl: "text-xl px-6 py-3"
       },
       weight: {
         normal: "font-normal",
         medium: "font-medium",
         semibold: "font-semibold",
         bold: "font-bold"
+      },
+      animation: {
+        none: "",
+        scale: "hover:scale-105 active:scale-95",
+        glow: "hover:text-current",
+        slide: "hover:translate-x-1",
+        bounce: "hover:animate-bounce"
       }
     },
     defaultVariants: {
       variant: "default",
       size: "md",
-      weight: "medium"
+      weight: "medium",
+      animation: "scale"
     }
   }
 );
@@ -119,20 +128,26 @@ var LinkButton = React.forwardRef(
     variant = "default",
     size = "md",
     weight = "medium",
+    animation = "scale",
     noUnderline = false,
     leftIcon,
     rightIcon,
     href,
     target,
+    loading = false,
+    loadingIcon,
+    disabled,
     children,
     ...props
   }, ref) => {
     const classes = cn(
-      linkButtonVariants({ variant, size, weight }),
+      linkButtonVariants({ variant, size, weight, animation }),
       noUnderline && "hover:no-underline",
+      loading && "cursor-not-allowed opacity-70",
       className
     );
-    if (href) {
+    const isDisabled = disabled || loading;
+    if (href && !loading) {
       return /* @__PURE__ */ jsxs(
         "a",
         {
@@ -141,9 +156,10 @@ var LinkButton = React.forwardRef(
           className: classes,
           rel: target === "_blank" ? "noopener noreferrer" : void 0,
           children: [
-            leftIcon && /* @__PURE__ */ jsx("span", { className: "mr-1", children: leftIcon }),
+            loading && (loadingIcon || /* @__PURE__ */ jsx("div", { className: "mr-2 h-3 w-3 animate-spin rounded-full border border-current border-t-transparent" })),
+            leftIcon && /* @__PURE__ */ jsx("span", { className: "mr-2", children: leftIcon }),
             children,
-            rightIcon && /* @__PURE__ */ jsx("span", { className: "ml-1", children: rightIcon })
+            rightIcon && /* @__PURE__ */ jsx("span", { className: "ml-2", children: rightIcon })
           ]
         }
       );
@@ -153,11 +169,13 @@ var LinkButton = React.forwardRef(
       {
         ref,
         className: classes,
+        disabled: isDisabled,
         ...props,
         children: [
-          leftIcon && /* @__PURE__ */ jsx("span", { className: "mr-1", children: leftIcon }),
+          loading && (loadingIcon || /* @__PURE__ */ jsx("div", { className: "mr-2 h-3 w-3 animate-spin rounded-full border border-current border-t-transparent" })),
+          leftIcon && /* @__PURE__ */ jsx("span", { className: "mr-2", children: leftIcon }),
           children,
-          rightIcon && /* @__PURE__ */ jsx("span", { className: "ml-1", children: rightIcon })
+          rightIcon && /* @__PURE__ */ jsx("span", { className: "ml-2", children: rightIcon })
         ]
       }
     );

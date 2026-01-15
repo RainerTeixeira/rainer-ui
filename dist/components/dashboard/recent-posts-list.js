@@ -1,6 +1,6 @@
 'use strict';
 
-var React20 = require('react');
+var React23 = require('react');
 var classVarianceAuthority = require('class-variance-authority');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
@@ -33,6 +33,8 @@ var SliderPrimitive = require('@radix-ui/react-slider');
 var SwitchPrimitives = require('@radix-ui/react-switch');
 var TogglePrimitive = require('@radix-ui/react-toggle');
 var Plus = require('lucide-react/dist/esm/icons/plus');
+require('lucide-react/dist/esm/icons/moon');
+require('lucide-react/dist/esm/icons/sun');
 require('@radix-ui/react-aspect-ratio');
 var ScrollAreaPrimitive = require('@radix-ui/react-scroll-area');
 var SeparatorPrimitive = require('@radix-ui/react-separator');
@@ -63,7 +65,7 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React20__namespace = /*#__PURE__*/_interopNamespace(React20);
+var React23__namespace = /*#__PURE__*/_interopNamespace(React23);
 var AlertDialogPrimitive__namespace = /*#__PURE__*/_interopNamespace(AlertDialogPrimitive);
 var ProgressPrimitive__namespace = /*#__PURE__*/_interopNamespace(ProgressPrimitive);
 var ArrowDown__default = /*#__PURE__*/_interopDefault(ArrowDown);
@@ -183,7 +185,7 @@ var alertVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Alert = React20__namespace.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Alert = React23__namespace.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -193,7 +195,7 @@ var Alert = React20__namespace.forwardRef(({ className, variant, ...props }, ref
   }
 ));
 Alert.displayName = "Alert";
-var AlertTitle = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertTitle = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h5",
   {
     ref,
@@ -202,7 +204,7 @@ var AlertTitle = React20__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 AlertTitle.displayName = "AlertTitle";
-var AlertDescription = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDescription = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -212,54 +214,91 @@ var AlertDescription = React20__namespace.forwardRef(({ className, ...props }, r
 ));
 AlertDescription.displayName = "AlertDescription";
 var buttonVariants = classVarianceAuthority.cva(
-  `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-[var(--motion-duration,200ms)] ease-[var(--motion-easing,cubic-bezier(.4,0,.2,1))] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive`,
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 dark:hover:shadow-glow-cyan",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline: "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 dark:hover:border-primary/50",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 dark:hover:shadow-glow-purple",
-        ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 dark:hover:text-primary",
-        link: "text-primary underline-offset-4 hover:underline dark:neon-text",
-        neon: "bg-primary border-2 border-primary text-primary-foreground hover:bg-primary/90 dark:neon-box",
-        glass: "glass neon-border hover:glass-hover dark:text-primary",
+        default: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md",
+        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-md",
+        outline: "border-2 border-input bg-background shadow-sm hover:bg-accent hover:border-accent",
+        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 hover:shadow-md",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline focus-visible:underline",
+        neon: "relative bg-gradient-to-r from-neon-cyan to-cyan-600 border-2 border-neon-cyan text-gray-950 shadow-lg shadow-neon-cyan hover:shadow-neon-cyan hover:shadow-xl",
+        glass: "relative bg-glass border border-white/20 text-foreground backdrop-blur-sm shadow-sm hover:bg-white/20",
         minimal: "bg-transparent border-0 shadow-none hover:bg-accent/50 text-foreground"
       },
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9",
-        "icon-sm": "size-8",
-        "icon-lg": "size-10"
+        xs: "h-7 px-2 text-xs rounded-md",
+        sm: "h-8 px-3 text-sm rounded-md has-[>svg]:px-2",
+        default: "h-9 px-4 py-2 rounded-md has-[>svg]:px-3",
+        lg: "h-10 px-6 text-base rounded-lg has-[>svg]:px-4",
+        xl: "h-12 px-8 text-lg rounded-lg has-[>svg]:px-5",
+        icon: "size-9 rounded-lg",
+        "icon-sm": "size-8 rounded-md",
+        "icon-lg": "size-10 rounded-lg",
+        "icon-xl": "size-12 rounded-xl"
+      },
+      animation: {
+        none: "",
+        scale: "hover:scale-105 active:scale-95",
+        glow: "hover:shadow-lg active:shadow-sm",
+        bounce: "hover:animate-bounce",
+        pulse: "hover:animate-pulse"
       }
     },
     defaultVariants: {
       variant: "default",
-      size: "default"
+      size: "default",
+      animation: "scale"
     }
   }
 );
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}) {
-  const Comp = asChild ? reactSlot.Slot : "button";
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    Comp,
-    {
-      "data-slot": "button",
-      className: cn(buttonVariants({ variant, size, className })),
-      ...props
-    }
-  );
-}
+var ButtonComponent = React23__namespace.forwardRef(
+  ({
+    className,
+    variant,
+    size,
+    animation,
+    asChild = false,
+    loading = false,
+    loadingIcon,
+    disabled,
+    children,
+    ...props
+  }, ref) => {
+    const Comp = asChild ? reactSlot.Slot : "button";
+    const isDisabled = disabled || loading;
+    return /* @__PURE__ */ jsxRuntime.jsxs(
+      Comp,
+      {
+        className: cn(
+          buttonVariants({ variant, size, animation }),
+          // Efeito neon especial
+          variant === "neon" && [
+            "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+            "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+            "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+            "before:transition-opacity after:transition-opacity",
+            "before:duration-300 after:duration-300"
+          ],
+          className
+        ),
+        ref,
+        disabled: isDisabled,
+        ...props,
+        children: [
+          loading && /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          children
+        ]
+      }
+    );
+  }
+);
+ButtonComponent.displayName = "Button";
+var Button = ButtonComponent;
 var AlertDialogPortal = AlertDialogPrimitive__namespace.Portal;
-var AlertDialogOverlay = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogOverlay = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Overlay,
   {
     className: cn(
@@ -271,7 +310,7 @@ var AlertDialogOverlay = React20__namespace.forwardRef(({ className, ...props },
   }
 ));
 AlertDialogOverlay.displayName = AlertDialogPrimitive__namespace.Overlay.displayName;
-var AlertDialogContent = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(AlertDialogPortal, { children: [
+var AlertDialogContent = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(AlertDialogPortal, { children: [
   /* @__PURE__ */ jsxRuntime.jsx(AlertDialogOverlay, {}),
   /* @__PURE__ */ jsxRuntime.jsx(
     AlertDialogPrimitive__namespace.Content,
@@ -286,7 +325,7 @@ var AlertDialogContent = React20__namespace.forwardRef(({ className, ...props },
   )
 ] }));
 AlertDialogContent.displayName = AlertDialogPrimitive__namespace.Content.displayName;
-var AlertDialogTitle = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogTitle = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Title,
   {
     ref,
@@ -295,7 +334,7 @@ var AlertDialogTitle = React20__namespace.forwardRef(({ className, ...props }, r
   }
 ));
 AlertDialogTitle.displayName = AlertDialogPrimitive__namespace.Title.displayName;
-var AlertDialogDescription = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogDescription = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Description,
   {
     ref,
@@ -304,7 +343,7 @@ var AlertDialogDescription = React20__namespace.forwardRef(({ className, ...prop
   }
 ));
 AlertDialogDescription.displayName = AlertDialogPrimitive__namespace.Description.displayName;
-var AlertDialogAction = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogAction = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Action,
   {
     ref,
@@ -313,7 +352,7 @@ var AlertDialogAction = React20__namespace.forwardRef(({ className, ...props }, 
   }
 ));
 AlertDialogAction.displayName = AlertDialogPrimitive__namespace.Action.displayName;
-var AlertDialogCancel = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogCancel = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Cancel,
   {
     ref,
@@ -356,7 +395,7 @@ var badgeVariants = classVarianceAuthority.cva(
 function Badge({ className, variant, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(badgeVariants({ variant }), className), ...props });
 }
-var Progress = React20__namespace.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Progress = React23__namespace.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   ProgressPrimitive__namespace.Root,
   {
     ref,
@@ -375,20 +414,20 @@ var Progress = React20__namespace.forwardRef(({ className, value, ...props }, re
   }
 ));
 Progress.displayName = "Progress";
-var Toaster = React20__namespace.forwardRef((props, ref) => {
+var Toaster = React23__namespace.forwardRef((props, ref) => {
   const { theme = "system" } = nextThemes.useTheme();
-  return React20__namespace.createElement(
+  return React23__namespace.createElement(
     sonner.Toaster,
     {
       ref,
       theme,
       className: "toaster group",
       icons: {
-        success: React20__namespace.createElement(lucideReact.Check, { className: "h-4 w-4" }),
-        info: React20__namespace.createElement(lucideReact.Info, { className: "h-4 w-4" }),
-        warning: React20__namespace.createElement(lucideReact.AlertTriangle, { className: "h-4 w-4" }),
-        error: React20__namespace.createElement(lucideReact.Octagon, { className: "h-4 w-4" }),
-        loading: React20__namespace.createElement(lucideReact.Loader2, { className: "h-4 w-4 animate-spin" })
+        success: React23__namespace.createElement(lucideReact.Check, { className: "h-4 w-4" }),
+        info: React23__namespace.createElement(lucideReact.Info, { className: "h-4 w-4" }),
+        warning: React23__namespace.createElement(lucideReact.AlertTriangle, { className: "h-4 w-4" }),
+        error: React23__namespace.createElement(lucideReact.Octagon, { className: "h-4 w-4" }),
+        loading: React23__namespace.createElement(lucideReact.Loader2, { className: "h-4 w-4 animate-spin" })
       },
       toastOptions: {
         classNames: {
@@ -445,7 +484,7 @@ var speedClasses = {
   normal: "animate-spin",
   fast: "animate-spin-fast"
 };
-var Spinner = React20__namespace.forwardRef(
+var Spinner = React23__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -498,7 +537,7 @@ var Spinner = React20__namespace.forwardRef(
   }
 );
 Spinner.displayName = "Spinner";
-var SpinnerOverlay = React20__namespace.forwardRef(
+var SpinnerOverlay = React23__namespace.forwardRef(
   ({
     className,
     fullscreen = false,
@@ -529,7 +568,7 @@ var dotSizeClasses = {
   md: "h-2 w-2",
   lg: "h-3 w-3"
 };
-var DotsSpinner = React20__namespace.forwardRef(
+var DotsSpinner = React23__namespace.forwardRef(
   ({
     className,
     count = 3,
@@ -576,7 +615,7 @@ var pulseSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var PulseSpinner = React20__namespace.forwardRef(
+var PulseSpinner = React23__namespace.forwardRef(
   ({
     className,
     rings = 3,
@@ -661,7 +700,7 @@ function formatValue(value, format, currency, decimals = 0) {
       return formatted;
   }
 }
-var KPI = React20__namespace.forwardRef(
+var KPI = React23__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -736,7 +775,7 @@ var gridColsClasses = {
   3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
   4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
 };
-var KPIGrid = React20__namespace.forwardRef(
+var KPIGrid = React23__namespace.forwardRef(
   ({
     className,
     cols = 4,
@@ -759,7 +798,7 @@ var KPIGrid = React20__namespace.forwardRef(
   }
 );
 KPIGrid.displayName = "KPIGrid";
-var KPIChart = React20__namespace.forwardRef(
+var KPIChart = React23__namespace.forwardRef(
   ({
     className,
     chart,
@@ -827,7 +866,7 @@ var iconSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var EmptyState = React20__namespace.forwardRef(
+var EmptyState = React23__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -884,7 +923,7 @@ var EmptyState = React20__namespace.forwardRef(
   }
 );
 EmptyState.displayName = "EmptyState";
-var EmptyStateIllustrated = React20__namespace.forwardRef(
+var EmptyStateIllustrated = React23__namespace.forwardRef(
   ({
     className,
     illustration,
@@ -938,7 +977,7 @@ var notificationVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Notification = React20__namespace.forwardRef(
+var Notification = React23__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -954,8 +993,8 @@ var Notification = React20__namespace.forwardRef(
     toast = false,
     ...props
   }, ref) => {
-    const [visible, setVisible] = React20__namespace.useState(true);
-    React20__namespace.useEffect(() => {
+    const [visible, setVisible] = React23__namespace.useState(true);
+    React23__namespace.useEffect(() => {
       if (autoClose && onDismiss) {
         const timer = setTimeout(() => {
           handleClose();
@@ -1030,7 +1069,7 @@ var spacingClasses = {
   md: "gap-3",
   lg: "gap-4"
 };
-var NotificationGroup = React20__namespace.forwardRef(
+var NotificationGroup = React23__namespace.forwardRef(
   ({
     className,
     children,
@@ -1056,7 +1095,7 @@ var NotificationGroup = React20__namespace.forwardRef(
   }
 );
 NotificationGroup.displayName = "NotificationGroup";
-var NotificationToast = React20__namespace.forwardRef(
+var NotificationToast = React23__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Notification,
@@ -1069,28 +1108,48 @@ var NotificationToast = React20__namespace.forwardRef(
   }
 );
 NotificationToast.displayName = "NotificationToast";
-function extractInitials(name, maxChars = 2) {
-  if (!name) return "";
-  const parts = name.trim().split(/\s+/);
-  if (parts.length === 1) {
-    return parts[0].slice(0, maxChars).toUpperCase();
-  }
-  return parts.slice(0, maxChars).map((part) => part[0]).join("").toUpperCase();
-}
 var sizeClasses = {
   xs: "h-6 w-6 text-xs",
   sm: "h-8 w-8 text-sm",
-  md: "h-10 w-10 text-base",
-  lg: "h-12 w-12 text-lg",
-  xl: "h-16 w-16 text-xl",
-  "2xl": "h-20 w-20 text-2xl"
+  md: "h-10 w-10 text-sm",
+  lg: "h-12 w-12 text-base",
+  xl: "h-16 w-16 text-lg",
+  "2xl": "h-20 w-20 text-xl",
+  "3xl": "h-24 w-24 text-2xl"
 };
 var variantClasses = {
   circular: "rounded-full",
-  rounded: "rounded-lg",
-  square: "rounded-none"
+  rounded: "rounded-xl",
+  square: "rounded-lg"
 };
-var Avatar = React20__namespace.forwardRef(
+function getInitials(name, max = 2) {
+  if (!name) return "";
+  const words = name.trim().split(/\s+/);
+  if (words.length === 1) {
+    return words[0].slice(0, Math.min(max, 2)).toUpperCase();
+  }
+  return words.slice(0, max).map((word) => word[0]).join("").toUpperCase();
+}
+function getColorFromName(name) {
+  const colors = [
+    "from-blue-400 to-blue-600",
+    "from-green-400 to-green-600",
+    "from-purple-400 to-purple-600",
+    "from-pink-400 to-pink-600",
+    "from-indigo-400 to-indigo-600",
+    "from-cyan-400 to-cyan-600",
+    "from-emerald-400 to-emerald-600",
+    "from-rose-400 to-rose-600",
+    "from-amber-400 to-amber-600",
+    "from-teal-400 to-teal-600"
+  ];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  return colors[Math.abs(hash) % colors.length];
+}
+var Avatar = React23__namespace.forwardRef(
   ({
     className,
     src,
@@ -1098,7 +1157,7 @@ var Avatar = React20__namespace.forwardRef(
     name,
     size = "md",
     variant = "circular",
-    fallbackColor = "bg-gray-400",
+    fallbackColor,
     textColor = "text-white",
     maxInitials = 2,
     onLoad,
@@ -1106,9 +1165,9 @@ var Avatar = React20__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [imageStatus, setImageStatus] = React20__namespace.useState("loading");
-    const [showFallback, setShowFallback] = React20__namespace.useState(!src);
-    React20__namespace.useEffect(() => {
+    const [imageStatus, setImageStatus] = React23__namespace.useState("loading");
+    const [showFallback, setShowFallback] = React23__namespace.useState(!src);
+    React23__namespace.useEffect(() => {
       if (!src) {
         setShowFallback(true);
         setImageStatus("error");
@@ -1128,40 +1187,44 @@ var Avatar = React20__namespace.forwardRef(
       };
       img.src = src;
     }, [src, onLoad, onError]);
-    const initials = name ? extractInitials(name, maxInitials) : "";
+    const initials = name ? getInitials(name, maxInitials) : "";
     const ariaLabel = alt || name || "Avatar";
+    const autoColor = name && !fallbackColor ? getColorFromName(name) : "";
+    const bgClass = fallbackColor || (autoColor ? `bg-gradient-to-br ${autoColor}` : "bg-gray-500");
     return /* @__PURE__ */ jsxRuntime.jsxs(
       "div",
       {
         ref,
         className: cn(
-          "relative inline-flex items-center justify-center font-medium",
+          "relative inline-flex items-center justify-center font-medium select-none",
+          "transition-all duration-200 ease-in-out",
           sizeClasses[size],
           variantClasses[variant],
-          showFallback ? fallbackColor : "bg-transparent",
+          showFallback ? bgClass : "bg-transparent",
           textColor,
+          "shadow-sm hover:shadow-md",
           className
         ),
         role: "img",
         "aria-label": ariaLabel,
         ...props,
         children: [
-          showFallback ? initials || /* @__PURE__ */ jsxRuntime.jsx("span", { className: "opacity-50", children: size === "xs" ? "?" : size === "sm" ? "?" : "User" }) : /* @__PURE__ */ jsxRuntime.jsx(
+          showFallback ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex items-center justify-center", children: initials ? /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-semibold tracking-wide", children: initials }) : /* @__PURE__ */ jsxRuntime.jsx("span", { className: "opacity-60 text-2xl", children: "?" }) }) : /* @__PURE__ */ jsxRuntime.jsx(
             "img",
             {
               src,
               alt,
               className: cn(
                 "h-full w-full object-cover",
-                variantClasses[variant]
+                variantClasses[variant],
+                "transition-opacity duration-200"
               ),
               style: {
-                opacity: imageStatus === "loaded" ? 1 : 0,
-                transition: "opacity 0.2s ease-in-out"
+                opacity: imageStatus === "loaded" ? 1 : 0
               }
             }
           ),
-          imageStatus === "loading" && !showFallback && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute inset-0 flex items-center justify-center bg-gray-200", children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-2 w-2 animate-pulse rounded-full bg-gray-400" }) }),
+          imageStatus === "loading" && !showFallback && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute inset-0 flex items-center justify-center bg-gray-100/80 backdrop-blur-sm", children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-3 w-3 animate-spin rounded-full border-2 border-gray-300 border-t-gray-600" }) }),
           children
         ]
       }
@@ -1169,7 +1232,7 @@ var Avatar = React20__namespace.forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var AvatarImage = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarImage = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "img",
   {
     ref,
@@ -1178,19 +1241,19 @@ var AvatarImage = React20__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 AvatarImage.displayName = "AvatarImage";
-var AvatarFallback = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarFallback = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
     className: cn(
-      "flex h-full w-full items-center justify-center rounded-full bg-gray-100",
+      "flex h-full w-full items-center justify-center font-medium",
       className
     ),
     ...props
   }
 ));
 AvatarFallback.displayName = "AvatarFallback";
-var Slider = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var Slider = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SliderPrimitive__namespace.Root,
   {
     ref,
@@ -1224,7 +1287,7 @@ var Slider = React20__namespace.forwardRef(({ className, ...props }, ref) => /* 
   }
 ));
 Slider.displayName = SliderPrimitive__namespace.Root.displayName;
-var Switch = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Switch = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SwitchPrimitives__namespace.Root,
   {
     className: cn(
@@ -1268,7 +1331,7 @@ var toggleVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Toggle = React20__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Toggle = React23__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TogglePrimitive__namespace.Root,
   {
     ref,
@@ -1278,54 +1341,85 @@ var Toggle = React20__namespace.forwardRef(({ className, variant, size, ...props
 ));
 Toggle.displayName = TogglePrimitive__namespace.Root.displayName;
 var iconButtonVariants = classVarianceAuthority.cva(
-  "inline-flex items-center justify-center rounded-md font-medium transition-all duration-[var(--motion-duration-fast)]",
+  "inline-flex items-center justify-center font-medium transition-all duration-200 ease-in-out",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        default: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md",
+        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-md",
+        outline: "border-2 border-input bg-background shadow-sm hover:bg-accent hover:border-accent",
+        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 hover:shadow-md",
         ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        neon: "bg-primary border-2 border-primary text-primary-foreground hover:bg-primary/90 dark:neon-box",
-        glass: "glass neon-border hover:glass-hover dark:text-primary"
+        link: "text-primary underline-offset-4 hover:underline focus-visible:underline",
+        neon: "relative bg-primary border-2 border-primary text-primary-foreground shadow-lg",
+        glass: "relative bg-white/10 border border-white/20 text-foreground backdrop-blur-sm shadow-sm hover:bg-white/20",
+        minimal: "bg-transparent border-0 shadow-none hover:bg-accent/50 text-foreground"
       },
       size: {
-        xs: "h-6 w-6",
-        sm: "h-8 w-8",
-        md: "h-10 w-10",
-        lg: "h-12 w-12",
-        xl: "h-14 w-14",
-        icon: "h-9 w-9",
-        "icon-sm": "h-8 w-8",
-        "icon-lg": "h-10 w-10"
+        xs: "h-6 w-6 rounded-md",
+        sm: "h-8 w-8 rounded-md",
+        md: "h-10 w-10 rounded-lg",
+        lg: "h-12 w-12 rounded-lg",
+        xl: "h-14 w-14 rounded-xl",
+        icon: "size-9 rounded-lg",
+        "icon-sm": "size-8 rounded-md",
+        "icon-lg": "size-10 rounded-lg",
+        "icon-xl": "size-12 rounded-xl"
+      },
+      animation: {
+        none: "",
+        scale: "hover:scale-105 active:scale-95",
+        glow: "hover:shadow-lg active:shadow-sm",
+        bounce: "hover:animate-bounce",
+        pulse: "hover:animate-pulse",
+        rotate: "hover:rotate-90"
       }
     },
     defaultVariants: {
       variant: "default",
-      size: "md"
+      size: "md",
+      animation: "scale"
     }
   }
 );
-var IconButton = React20__namespace.forwardRef(
+var IconButton = React23__namespace.forwardRef(
   ({
     className,
     variant = "default",
     size = "md",
+    animation = "scale",
     icon,
     tooltip,
     tooltipPosition = "top",
+    loading = false,
+    loadingIcon,
+    disabled,
     children,
     ...props
   }, ref) => {
-    const [showTooltip, setShowTooltip] = React20__namespace.useState(false);
+    const [showTooltip, setShowTooltip] = React23__namespace.useState(false);
+    const [tooltipVisible, setTooltipVisible] = React23__namespace.useState(false);
     const tooltipClasses = {
       top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
       bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
       left: "right-full top-1/2 -translate-y-1/2 mr-2",
       right: "left-full top-1/2 -translate-y-1/2 ml-2"
     };
+    const tooltipArrowClasses = {
+      top: "top-full left-1/2 -translate-x-1/2 -mt-1 border-l-transparent border-r-transparent border-b-transparent border-t-current",
+      bottom: "bottom-full left-1/2 -translate-x-1/2 -mb-1 border-l-transparent border-r-transparent border-t-transparent border-b-current",
+      left: "left-full top-1/2 -translate-y-1/2 -ml-1 border-t-transparent border-b-transparent border-r-transparent border-l-current",
+      right: "right-full top-1/2 -translate-y-1/2 -mr-1 border-t-transparent border-b-transparent border-l-transparent border-r-current"
+    };
+    React23__namespace.useEffect(() => {
+      if (showTooltip) {
+        const timer = setTimeout(() => setTooltipVisible(true), 100);
+        return () => clearTimeout(timer);
+      } else {
+        setTooltipVisible(false);
+      }
+    }, [showTooltip]);
+    const isDisabled = disabled || loading;
     return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative inline-block", children: [
       /* @__PURE__ */ jsxRuntime.jsxs(
         Button,
@@ -1334,15 +1428,26 @@ var IconButton = React20__namespace.forwardRef(
           variant,
           size,
           className: cn(
-            iconButtonVariants({ variant, size }),
+            iconButtonVariants({ variant, size, animation }),
             "p-0",
+            // Efeito neon especial
+            variant === "neon" && [
+              "before:absolute before:inset-0 before:rounded-inherit before:bg-primary before:opacity-20",
+              "after:absolute after:inset-0 after:rounded-inherit after:bg-primary after:opacity-0",
+              "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+              "before:transition-opacity after:transition-opacity",
+              "before:duration-300 after:duration-300"
+            ],
             className
           ),
+          disabled: isDisabled,
           onMouseEnter: () => setShowTooltip(true),
           onMouseLeave: () => setShowTooltip(false),
+          onFocus: () => setShowTooltip(true),
+          onBlur: () => setShowTooltip(false),
           ...props,
           children: [
-            icon,
+            loading ? loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) : icon,
             children
           ]
         }
@@ -1351,10 +1456,23 @@ var IconButton = React20__namespace.forwardRef(
         "div",
         {
           className: cn(
-            "absolute z-50 px-2 py-1 text-xs text-white bg-black rounded whitespace-nowrap animate-in fade-in-0 zoom-in-95",
+            "absolute z-50 px-3 py-2 text-sm text-white bg-gray-900 rounded-lg shadow-lg border border-gray-700",
+            "transition-all duration-200 ease-in-out",
+            tooltipVisible ? "opacity-100 scale-100" : "opacity-0 scale-95",
             tooltipClasses[tooltipPosition]
           ),
-          children: tooltip
+          children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", children: [
+            tooltip,
+            /* @__PURE__ */ jsxRuntime.jsx(
+              "div",
+              {
+                className: cn(
+                  "absolute w-2 h-2 bg-gray-900 border border-gray-700 rotate-45",
+                  tooltipArrowClasses[tooltipPosition]
+                )
+              }
+            )
+          ] })
         }
       )
     ] });
@@ -1362,61 +1480,76 @@ var IconButton = React20__namespace.forwardRef(
 );
 IconButton.displayName = "IconButton";
 var linkButtonVariants = classVarianceAuthority.cva(
-  "inline-flex items-center justify-center font-medium transition-all duration-[var(--motion-duration-fast)]",
+  "inline-flex items-center justify-center font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 select-none",
   {
     variants: {
       variant: {
-        default: "text-primary hover:underline underline-offset-4",
+        default: "text-primary hover:underline underline-offset-4 hover:text-primary/80",
         muted: "text-muted-foreground hover:text-foreground hover:underline underline-offset-4",
-        destructive: "text-destructive hover:underline underline-offset-4",
+        destructive: "text-destructive hover:text-destructive/80 hover:underline underline-offset-4",
         success: "text-emerald-600 hover:text-emerald-700 hover:underline underline-offset-4 dark:text-emerald-400 dark:hover:text-emerald-300",
         warning: "text-amber-600 hover:text-amber-700 hover:underline underline-offset-4 dark:text-amber-400 dark:hover:text-amber-300",
         info: "text-blue-600 hover:text-blue-700 hover:underline underline-offset-4 dark:text-blue-400 dark:hover:text-blue-300",
-        neon: "text-primary hover:underline underline-offset-4 dark:neon-text",
-        ghost: "text-foreground hover:bg-accent hover:text-accent-foreground rounded-md px-2 py-1",
-        outline: "border border-border rounded-md px-3 py-1 hover:bg-accent hover:text-accent-foreground"
+        neon: "text-primary hover:underline underline-offset-4 hover:text-primary/80 dark:hover:text-cyan-400",
+        ghost: "text-foreground hover:bg-accent hover:text-accent-foreground rounded-md px-3 py-2",
+        outline: "border-2 border-border rounded-md px-4 py-2 hover:bg-accent hover:border-accent hover:text-accent-foreground",
+        pill: "bg-gray-100 text-gray-900 rounded-full px-4 py-2 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
       },
       size: {
-        xs: "text-xs",
-        sm: "text-sm",
-        md: "text-base",
-        lg: "text-lg",
-        xl: "text-xl"
+        xs: "text-xs px-2 py-1",
+        sm: "text-sm px-3 py-1.5",
+        md: "text-base px-4 py-2",
+        lg: "text-lg px-5 py-2.5",
+        xl: "text-xl px-6 py-3"
       },
       weight: {
         normal: "font-normal",
         medium: "font-medium",
         semibold: "font-semibold",
         bold: "font-bold"
+      },
+      animation: {
+        none: "",
+        scale: "hover:scale-105 active:scale-95",
+        glow: "hover:text-current",
+        slide: "hover:translate-x-1",
+        bounce: "hover:animate-bounce"
       }
     },
     defaultVariants: {
       variant: "default",
       size: "md",
-      weight: "medium"
+      weight: "medium",
+      animation: "scale"
     }
   }
 );
-var LinkButton = React20__namespace.forwardRef(
+var LinkButton = React23__namespace.forwardRef(
   ({
     className,
     variant = "default",
     size = "md",
     weight = "medium",
+    animation = "scale",
     noUnderline = false,
     leftIcon,
     rightIcon,
     href,
     target,
+    loading = false,
+    loadingIcon,
+    disabled,
     children,
     ...props
   }, ref) => {
     const classes = cn(
-      linkButtonVariants({ variant, size, weight }),
+      linkButtonVariants({ variant, size, weight, animation }),
       noUnderline && "hover:no-underline",
+      loading && "cursor-not-allowed opacity-70",
       className
     );
-    if (href) {
+    const isDisabled = disabled || loading;
+    if (href && !loading) {
       return /* @__PURE__ */ jsxRuntime.jsxs(
         "a",
         {
@@ -1425,9 +1558,10 @@ var LinkButton = React20__namespace.forwardRef(
           className: classes,
           rel: target === "_blank" ? "noopener noreferrer" : void 0,
           children: [
-            leftIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "mr-1", children: leftIcon }),
+            loading && (loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mr-2 h-3 w-3 animate-spin rounded-full border border-current border-t-transparent" })),
+            leftIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "mr-2", children: leftIcon }),
             children,
-            rightIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ml-1", children: rightIcon })
+            rightIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ml-2", children: rightIcon })
           ]
         }
       );
@@ -1437,11 +1571,13 @@ var LinkButton = React20__namespace.forwardRef(
       {
         ref,
         className: classes,
+        disabled: isDisabled,
         ...props,
         children: [
-          leftIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "mr-1", children: leftIcon }),
+          loading && (loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mr-2 h-3 w-3 animate-spin rounded-full border border-current border-t-transparent" })),
+          leftIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "mr-2", children: leftIcon }),
           children,
-          rightIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ml-1", children: rightIcon })
+          rightIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ml-2", children: rightIcon })
         ]
       }
     );
@@ -1488,7 +1624,7 @@ var fabVariants = classVarianceAuthority.cva(
     }
   }
 );
-var FAB = React20__namespace.forwardRef(
+var FAB = React23__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1503,12 +1639,12 @@ var FAB = React20__namespace.forwardRef(
     actions = [],
     ...props
   }, ref) => {
-    const [showActions, setShowActions] = React20__namespace.useState(active);
+    const [showActions, setShowActions] = React23__namespace.useState(active);
     const isExtended = extended && text;
-    React20__namespace.useEffect(() => {
+    React23__namespace.useEffect(() => {
       setShowActions(active);
     }, [active]);
-    const handleClick = React20__namespace.useCallback(() => {
+    const handleClick = React23__namespace.useCallback(() => {
       if (actions.length > 0) {
         setShowActions(!showActions);
       }
@@ -1566,7 +1702,7 @@ var FAB = React20__namespace.forwardRef(
   }
 );
 FAB.displayName = "FAB";
-var FABGroup = React20__namespace.forwardRef(
+var FABGroup = React23__namespace.forwardRef(
   ({
     className,
     main,
@@ -1638,7 +1774,7 @@ var segmentedControlVariants = classVarianceAuthority.cva(
     }
   }
 );
-var SegmentedControl = React20__namespace.forwardRef(
+var SegmentedControl = React23__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -1651,9 +1787,9 @@ var SegmentedControl = React20__namespace.forwardRef(
     disabled = false,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React20__namespace.useState(defaultValue || options[0]?.value);
+    const [internalValue, setInternalValue] = React23__namespace.useState(defaultValue || options[0]?.value);
     const currentValue = value !== void 0 ? value : internalValue;
-    const handleOptionClick = React20__namespace.useCallback((optionValue, isDisabled) => {
+    const handleOptionClick = React23__namespace.useCallback((optionValue, isDisabled) => {
       if (isDisabled || disabled) return;
       if (value === void 0) {
         setInternalValue(optionValue);
@@ -1708,7 +1844,7 @@ var SegmentedControl = React20__namespace.forwardRef(
   }
 );
 SegmentedControl.displayName = "SegmentedControl";
-var SegmentedControlItem = React20__namespace.forwardRef(
+var SegmentedControlItem = React23__namespace.forwardRef(
   ({
     className,
     active = false,
@@ -1751,7 +1887,7 @@ var MOTION = {
     DEFAULT: "transition-all duration-200 ease-in-out"}};
 var GRADIENT_DIRECTIONS = {
   TO_BOTTOM_RIGHT: "to-br"};
-var Card = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Card = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1763,7 +1899,7 @@ var Card = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardHeader = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1772,7 +1908,7 @@ var CardHeader = React20__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardTitle = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h3",
   {
     ref,
@@ -1784,7 +1920,7 @@ var CardTitle = React20__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardDescription = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "p",
   {
     ref,
@@ -1793,9 +1929,9 @@ var CardDescription = React20__namespace.forwardRef(({ className, ...props }, re
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardFooter = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1804,7 +1940,7 @@ var CardFooter = React20__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 CardFooter.displayName = "CardFooter";
-var HighlightCard = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var HighlightCard = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1831,7 +1967,7 @@ var HighlightCard = React20__namespace.forwardRef(({ className, ...props }, ref)
   }
 ));
 HighlightCard.displayName = "HighlightCard";
-var ScrollArea = React20__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ScrollArea = React23__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   ScrollAreaPrimitive__namespace.Root,
   {
     ref,
@@ -1845,7 +1981,7 @@ var ScrollArea = React20__namespace.forwardRef(({ className, children, ...props 
   }
 ));
 ScrollArea.displayName = ScrollAreaPrimitive__namespace.Root.displayName;
-var ScrollBar = React20__namespace.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ScrollBar = React23__namespace.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   ScrollAreaPrimitive__namespace.ScrollAreaScrollbar,
   {
     ref,
@@ -1861,7 +1997,7 @@ var ScrollBar = React20__namespace.forwardRef(({ className, orientation = "verti
   }
 ));
 ScrollBar.displayName = ScrollAreaPrimitive__namespace.ScrollAreaScrollbar.displayName;
-var Separator = React20__namespace.forwardRef(
+var Separator = React23__namespace.forwardRef(
   ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     SeparatorPrimitive__namespace.Root,
     {
@@ -1879,7 +2015,7 @@ var Separator = React20__namespace.forwardRef(
   )
 );
 Separator.displayName = SeparatorPrimitive__namespace.Root.displayName;
-var Table = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsxRuntime.jsx(
+var Table = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsxRuntime.jsx(
   "table",
   {
     ref,
@@ -1888,9 +2024,9 @@ var Table = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @
   }
 ) }));
 Table.displayName = "Table";
-var TableHeader = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
+var TableHeader = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
 TableHeader.displayName = "TableHeader";
-var TableBody = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableBody = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tbody",
   {
     ref,
@@ -1899,7 +2035,7 @@ var TableBody = React20__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableBody.displayName = "TableBody";
-var TableFooter = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableFooter = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tfoot",
   {
     ref,
@@ -1911,7 +2047,7 @@ var TableFooter = React20__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 TableFooter.displayName = "TableFooter";
-var TableRow = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableRow = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tr",
   {
     ref,
@@ -1923,7 +2059,7 @@ var TableRow = React20__namespace.forwardRef(({ className, ...props }, ref) => /
   }
 ));
 TableRow.displayName = "TableRow";
-var TableHead = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableHead = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "th",
   {
     ref,
@@ -1935,7 +2071,7 @@ var TableHead = React20__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableHead.displayName = "TableHead";
-var TableCell = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableCell = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "td",
   {
     ref,
@@ -1944,7 +2080,7 @@ var TableCell = React20__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableCell.displayName = "TableCell";
-var TableCaption = React20__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableCaption = React23__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "caption",
   {
     ref,
@@ -1992,7 +2128,7 @@ var containerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Container = React20__namespace.forwardRef(
+var Container = React23__namespace.forwardRef(
   ({
     className,
     size = "7xl",
@@ -2018,7 +2154,7 @@ var Container = React20__namespace.forwardRef(
   }
 );
 Container.displayName = "Container";
-var ContainerFluid = React20__namespace.forwardRef(
+var ContainerFluid = React23__namespace.forwardRef(
   ({
     className,
     padding = "md",
@@ -2052,7 +2188,7 @@ var spacingClasses2 = {
   xl: "py-20",
   "2xl": "py-24"
 };
-var ContainerSection = React20__namespace.forwardRef(
+var ContainerSection = React23__namespace.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -2218,7 +2354,7 @@ var gridVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Grid = React20__namespace.forwardRef(
+var Grid = React23__namespace.forwardRef(
   ({
     className,
     cols,
@@ -2238,7 +2374,7 @@ var Grid = React20__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React20__namespace.useMemo(() => {
+    const gridStyle = React23__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (templateCols) {
         customStyle.gridTemplateColumns = templateCols;
@@ -2280,7 +2416,7 @@ var Grid = React20__namespace.forwardRef(
   }
 );
 Grid.displayName = "Grid";
-var GridItem = React20__namespace.forwardRef(
+var GridItem = React23__namespace.forwardRef(
   ({
     className,
     colStart,
@@ -2291,7 +2427,7 @@ var GridItem = React20__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React20__namespace.useMemo(() => {
+    const gridStyle = React23__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (colStart !== void 0) {
         customStyle.gridColumnStart = colStart;
@@ -2394,7 +2530,7 @@ var flexVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Flex = React20__namespace.forwardRef(
+var Flex = React23__namespace.forwardRef(
   ({
     className,
     direction = "row",
@@ -2432,7 +2568,7 @@ var Flex = React20__namespace.forwardRef(
   }
 );
 Flex.displayName = "Flex";
-var FlexCenter = React20__namespace.forwardRef(
+var FlexCenter = React23__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -2446,7 +2582,7 @@ var FlexCenter = React20__namespace.forwardRef(
   }
 );
 FlexCenter.displayName = "FlexCenter";
-var FlexBetween = React20__namespace.forwardRef(
+var FlexBetween = React23__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -2459,7 +2595,7 @@ var FlexBetween = React20__namespace.forwardRef(
   }
 );
 FlexBetween.displayName = "FlexBetween";
-var FlexStart = React20__namespace.forwardRef(
+var FlexStart = React23__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -2473,7 +2609,7 @@ var FlexStart = React20__namespace.forwardRef(
   }
 );
 FlexStart.displayName = "FlexStart";
-var FlexEnd = React20__namespace.forwardRef(
+var FlexEnd = React23__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -2487,7 +2623,7 @@ var FlexEnd = React20__namespace.forwardRef(
   }
 );
 FlexEnd.displayName = "FlexEnd";
-var FlexColumn = React20__namespace.forwardRef(
+var FlexColumn = React23__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -2500,7 +2636,7 @@ var FlexColumn = React20__namespace.forwardRef(
   }
 );
 FlexColumn.displayName = "FlexColumn";
-var FlexRow = React20__namespace.forwardRef(
+var FlexRow = React23__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -2546,7 +2682,7 @@ var spacerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Spacer = React20__namespace.forwardRef(
+var Spacer = React23__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -2559,7 +2695,7 @@ var Spacer = React20__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const spacerStyle = React20__namespace.useMemo(() => {
+    const spacerStyle = React23__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (width !== void 0) {
         customStyle.width = typeof width === "number" ? `${width}px` : width;
@@ -2593,7 +2729,7 @@ var Spacer = React20__namespace.forwardRef(
   }
 );
 Spacer.displayName = "Spacer";
-var VerticalSpacer = React20__namespace.forwardRef(
+var VerticalSpacer = React23__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Spacer,
@@ -2606,7 +2742,7 @@ var VerticalSpacer = React20__namespace.forwardRef(
   }
 );
 VerticalSpacer.displayName = "VerticalSpacer";
-var HorizontalSpacer = React20__namespace.forwardRef(
+var HorizontalSpacer = React23__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Spacer,
@@ -2650,7 +2786,7 @@ var dividerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Divider = React20__namespace.forwardRef(
+var Divider = React23__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -2724,7 +2860,7 @@ var spacingClasses3 = {
   lg: "my-8",
   xl: "my-12"
 };
-var SectionDivider = React20__namespace.forwardRef(
+var SectionDivider = React23__namespace.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -2740,7 +2876,7 @@ var textColorClasses = {
   primary: "text-primary",
   secondary: "text-secondary-foreground"
 };
-var TextDivider = React20__namespace.forwardRef(
+var TextDivider = React23__namespace.forwardRef(
   ({
     className,
     children,
@@ -2807,7 +2943,7 @@ var panelVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Panel = React20__namespace.forwardRef(
+var Panel = React23__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -2838,7 +2974,7 @@ var Panel = React20__namespace.forwardRef(
   }
 );
 Panel.displayName = "Panel";
-var PanelHeader = React20__namespace.forwardRef(
+var PanelHeader = React23__namespace.forwardRef(
   ({
     className,
     divider = false,
@@ -2861,7 +2997,7 @@ var PanelHeader = React20__namespace.forwardRef(
   }
 );
 PanelHeader.displayName = "PanelHeader";
-var PanelTitle = React20__namespace.forwardRef(
+var PanelTitle = React23__namespace.forwardRef(
   ({
     className,
     children,
@@ -2879,7 +3015,7 @@ var PanelTitle = React20__namespace.forwardRef(
   }
 );
 PanelTitle.displayName = "PanelTitle";
-var PanelDescription = React20__namespace.forwardRef(
+var PanelDescription = React23__namespace.forwardRef(
   ({
     className,
     children,
@@ -2897,7 +3033,7 @@ var PanelDescription = React20__namespace.forwardRef(
   }
 );
 PanelDescription.displayName = "PanelDescription";
-var PanelContent = React20__namespace.forwardRef(
+var PanelContent = React23__namespace.forwardRef(
   ({
     className,
     children,
@@ -2915,7 +3051,7 @@ var PanelContent = React20__namespace.forwardRef(
   }
 );
 PanelContent.displayName = "PanelContent";
-var PanelFooter = React20__namespace.forwardRef(
+var PanelFooter = React23__namespace.forwardRef(
   ({
     className,
     divider = false,
@@ -2944,7 +3080,7 @@ var spacingClasses4 = {
   lg: "gap-8",
   xl: "gap-10"
 };
-var PanelGroup = React20__namespace.forwardRef(
+var PanelGroup = React23__namespace.forwardRef(
   ({
     className,
     spacing = "md",

@@ -1,7 +1,7 @@
 'use strict';
 
 var reactContextMenu = require('@radix-ui/react-context-menu');
-var React8 = require('react');
+var React9 = require('react');
 var lucideReact = require('lucide-react');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
@@ -49,7 +49,7 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React8__namespace = /*#__PURE__*/_interopNamespace(React8);
+var React9__namespace = /*#__PURE__*/_interopNamespace(React9);
 var TooltipPrimitive__namespace = /*#__PURE__*/_interopNamespace(TooltipPrimitive);
 var ChevronLeft__default = /*#__PURE__*/_interopDefault(ChevronLeft);
 var ChevronRight3__default = /*#__PURE__*/_interopDefault(ChevronRight3);
@@ -144,7 +144,7 @@ var ContextMenuGroup = reactContextMenu.Group;
 var ContextMenuPortal = reactContextMenu.Portal;
 var ContextMenuSub = reactContextMenu.Sub;
 var ContextMenuRadioGroup = reactContextMenu.RadioGroup;
-var ContextMenuSubTrigger = React8__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ContextMenuSubTrigger = React9__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactContextMenu.SubTrigger,
   {
     ref,
@@ -163,7 +163,7 @@ var ContextMenuSubTrigger = React8__namespace.forwardRef(({ className, inset, ch
   }
 ));
 ContextMenuSubTrigger.displayName = reactContextMenu.SubTrigger.displayName;
-var ContextMenuSubContent = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuSubContent = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.SubContent,
   {
     ref,
@@ -176,7 +176,7 @@ var ContextMenuSubContent = React8__namespace.forwardRef(({ className, ...props 
   }
 ));
 ContextMenuSubContent.displayName = reactContextMenu.SubContent.displayName;
-var ContextMenuContent = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactContextMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuContent = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactContextMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Content,
   {
     ref,
@@ -192,7 +192,7 @@ var ContextMenuContent = React8__namespace.forwardRef(({ className, ...props }, 
   }
 ) }));
 ContextMenuContent.displayName = reactContextMenu.Content.displayName;
-var ContextMenuItem = React8__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuItem = React9__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Item,
   {
     ref,
@@ -210,7 +210,7 @@ var ContextMenuItem = React8__namespace.forwardRef(({ className, inset, ...props
   }
 ));
 ContextMenuItem.displayName = reactContextMenu.Item.displayName;
-var ContextMenuCheckboxItem = React8__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ContextMenuCheckboxItem = React9__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactContextMenu.CheckboxItem,
   {
     ref,
@@ -227,7 +227,7 @@ var ContextMenuCheckboxItem = React8__namespace.forwardRef(({ className, childre
   }
 ));
 ContextMenuCheckboxItem.displayName = reactContextMenu.CheckboxItem.displayName;
-var ContextMenuRadioItem = React8__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ContextMenuRadioItem = React9__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactContextMenu.RadioItem,
   {
     ref,
@@ -243,7 +243,7 @@ var ContextMenuRadioItem = React8__namespace.forwardRef(({ className, children, 
   }
 ));
 ContextMenuRadioItem.displayName = reactContextMenu.RadioItem.displayName;
-var ContextMenuLabel = React8__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuLabel = React9__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Label,
   {
     ref,
@@ -256,7 +256,7 @@ var ContextMenuLabel = React8__namespace.forwardRef(({ className, inset, ...prop
   }
 ));
 ContextMenuLabel.displayName = reactContextMenu.Label.displayName;
-var ContextMenuSeparator = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuSeparator = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Separator,
   {
     ref,
@@ -293,7 +293,7 @@ var Dialog = reactDialog.Root;
 var DialogTrigger = reactDialog.Trigger;
 var DialogPortal = reactDialog.Portal;
 var DialogClose = reactDialog.Close;
-var DialogOverlay = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogOverlay = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Overlay,
   {
     ref,
@@ -306,7 +306,7 @@ var DialogOverlay = React8__namespace.forwardRef(({ className, ...props }, ref) 
   }
 ));
 DialogOverlay.displayName = reactDialog.Overlay.displayName;
-var DialogContent = React8__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(DialogPortal, { children: [
+var DialogContent = React9__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(DialogPortal, { children: [
   /* @__PURE__ */ jsxRuntime.jsx(DialogOverlay, {}),
   /* @__PURE__ */ jsxRuntime.jsxs(
     reactDialog.Content,
@@ -360,7 +360,7 @@ var DialogFooter = ({
   }
 );
 DialogFooter.displayName = "DialogFooter";
-var DialogTitle = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogTitle = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Title,
   {
     ref,
@@ -372,7 +372,7 @@ var DialogTitle = React8__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 DialogTitle.displayName = reactDialog.Title.displayName;
-var DialogDescription = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogDescription = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Description,
   {
     ref,
@@ -390,7 +390,7 @@ var DropdownMenuGroup = reactDropdownMenu.Group;
 var DropdownMenuPortal = reactDropdownMenu.Portal;
 var DropdownMenuSub = reactDropdownMenu.Sub;
 var DropdownMenuRadioGroup = reactDropdownMenu.RadioGroup;
-var DropdownMenuSubTrigger = React8__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuSubTrigger = React9__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.SubTrigger,
   {
     ref,
@@ -408,7 +408,7 @@ var DropdownMenuSubTrigger = React8__namespace.forwardRef(({ className, inset, c
   }
 ));
 DropdownMenuSubTrigger.displayName = reactDropdownMenu.SubTrigger.displayName;
-var DropdownMenuSubContent = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuSubContent = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.SubContent,
   {
     ref,
@@ -425,7 +425,7 @@ var DropdownMenuSubContent = React8__namespace.forwardRef(({ className, ...props
   }
 ));
 DropdownMenuSubContent.displayName = reactDropdownMenu.SubContent.displayName;
-var DropdownMenuContent = React8__namespace.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactDropdownMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuContent = React9__namespace.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactDropdownMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Content,
   {
     ref,
@@ -443,7 +443,7 @@ var DropdownMenuContent = React8__namespace.forwardRef(({ className, sideOffset 
   }
 ) }));
 DropdownMenuContent.displayName = reactDropdownMenu.Content.displayName;
-var DropdownMenuItem = React8__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuItem = React9__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Item,
   {
     ref,
@@ -458,7 +458,7 @@ var DropdownMenuItem = React8__namespace.forwardRef(({ className, inset, ...prop
   }
 ));
 DropdownMenuItem.displayName = reactDropdownMenu.Item.displayName;
-var DropdownMenuCheckboxItem = React8__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuCheckboxItem = React9__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.CheckboxItem,
   {
     ref,
@@ -477,7 +477,7 @@ var DropdownMenuCheckboxItem = React8__namespace.forwardRef(({ className, childr
   }
 ));
 DropdownMenuCheckboxItem.displayName = reactDropdownMenu.CheckboxItem.displayName;
-var DropdownMenuRadioItem = React8__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuRadioItem = React9__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.RadioItem,
   {
     ref,
@@ -495,7 +495,7 @@ var DropdownMenuRadioItem = React8__namespace.forwardRef(({ className, children,
   }
 ));
 DropdownMenuRadioItem.displayName = reactDropdownMenu.RadioItem.displayName;
-var DropdownMenuLabel = React8__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuLabel = React9__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Label,
   {
     ref,
@@ -508,7 +508,7 @@ var DropdownMenuLabel = React8__namespace.forwardRef(({ className, inset, ...pro
   }
 ));
 DropdownMenuLabel.displayName = reactDropdownMenu.Label.displayName;
-var DropdownMenuSeparator = React8__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuSeparator = React9__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Separator,
   {
     ref,
@@ -532,7 +532,7 @@ var DropdownMenuShortcut = ({
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
 var HoverCard = reactHoverCard.Root;
 var HoverCardTrigger = reactHoverCard.Trigger;
-var HoverCardContent = React8__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var HoverCardContent = React9__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactHoverCard.Content,
   {
     ref,
@@ -548,7 +548,7 @@ var HoverCardContent = React8__namespace.forwardRef(({ className, align = "cente
 HoverCardContent.displayName = reactHoverCard.Content.displayName;
 var Popover = reactPopover.Root;
 var PopoverTrigger = reactPopover.Trigger;
-var PopoverContent = React8__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactPopover.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
+var PopoverContent = React9__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactPopover.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
   reactPopover.Content,
   {
     ref,
@@ -614,52 +614,89 @@ function TooltipContent({
   ) });
 }
 var buttonVariants = classVarianceAuthority.cva(
-  `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all duration-[var(--motion-duration,200ms)] ease-[var(--motion-easing,cubic-bezier(.4,0,.2,1))] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive`,
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 dark:hover:shadow-glow-cyan",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
-        outline: "border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 dark:hover:border-primary/50",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 dark:hover:shadow-glow-purple",
-        ghost: "hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50 dark:hover:text-primary",
-        link: "text-primary underline-offset-4 hover:underline dark:neon-text",
-        neon: "bg-primary border-2 border-primary text-primary-foreground hover:bg-primary/90 dark:neon-box",
-        glass: "glass neon-border hover:glass-hover dark:text-primary",
+        default: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md",
+        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-md",
+        outline: "border-2 border-input bg-background shadow-sm hover:bg-accent hover:border-accent",
+        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 hover:shadow-md",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline focus-visible:underline",
+        neon: "relative bg-gradient-to-r from-neon-cyan to-cyan-600 border-2 border-neon-cyan text-gray-950 shadow-lg shadow-neon-cyan hover:shadow-neon-cyan hover:shadow-xl",
+        glass: "relative bg-glass border border-white/20 text-foreground backdrop-blur-sm shadow-sm hover:bg-white/20",
         minimal: "bg-transparent border-0 shadow-none hover:bg-accent/50 text-foreground"
       },
       size: {
-        default: "h-9 px-4 py-2 has-[>svg]:px-3",
-        sm: "h-8 rounded-md gap-1.5 px-3 has-[>svg]:px-2.5",
-        lg: "h-10 rounded-md px-6 has-[>svg]:px-4",
-        icon: "size-9",
-        "icon-sm": "size-8",
-        "icon-lg": "size-10"
+        xs: "h-7 px-2 text-xs rounded-md",
+        sm: "h-8 px-3 text-sm rounded-md has-[>svg]:px-2",
+        default: "h-9 px-4 py-2 rounded-md has-[>svg]:px-3",
+        lg: "h-10 px-6 text-base rounded-lg has-[>svg]:px-4",
+        xl: "h-12 px-8 text-lg rounded-lg has-[>svg]:px-5",
+        icon: "size-9 rounded-lg",
+        "icon-sm": "size-8 rounded-md",
+        "icon-lg": "size-10 rounded-lg",
+        "icon-xl": "size-12 rounded-xl"
+      },
+      animation: {
+        none: "",
+        scale: "hover:scale-105 active:scale-95",
+        glow: "hover:shadow-lg active:shadow-sm",
+        bounce: "hover:animate-bounce",
+        pulse: "hover:animate-pulse"
       }
     },
     defaultVariants: {
       variant: "default",
-      size: "default"
+      size: "default",
+      animation: "scale"
     }
   }
 );
-function Button({
-  className,
-  variant,
-  size,
-  asChild = false,
-  ...props
-}) {
-  const Comp = asChild ? reactSlot.Slot : "button";
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    Comp,
-    {
-      "data-slot": "button",
-      className: cn(buttonVariants({ variant, size, className })),
-      ...props
-    }
-  );
-}
+var ButtonComponent = React9__namespace.forwardRef(
+  ({
+    className,
+    variant,
+    size,
+    animation,
+    asChild = false,
+    loading = false,
+    loadingIcon,
+    disabled,
+    children,
+    ...props
+  }, ref) => {
+    const Comp = asChild ? reactSlot.Slot : "button";
+    const isDisabled = disabled || loading;
+    return /* @__PURE__ */ jsxRuntime.jsxs(
+      Comp,
+      {
+        className: cn(
+          buttonVariants({ variant, size, animation }),
+          // Efeito neon especial
+          variant === "neon" && [
+            "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+            "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+            "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+            "before:transition-opacity after:transition-opacity",
+            "before:duration-300 after:duration-300"
+          ],
+          className
+        ),
+        ref,
+        disabled: isDisabled,
+        ...props,
+        children: [
+          loading && /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          children
+        ]
+      }
+    );
+  }
+);
+ButtonComponent.displayName = "Button";
+var Button = ButtonComponent;
 var modalVariants = classVarianceAuthority.cva(
   "relative bg-background text-foreground shadow-lg rounded-lg",
   {
@@ -692,7 +729,7 @@ var modalVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Modal = React8__namespace.forwardRef(
+var Modal = React9__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -710,8 +747,8 @@ var Modal = React8__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const modalRef = React8__namespace.useRef(null);
-    React8__namespace.useEffect(() => {
+    const modalRef = React9__namespace.useRef(null);
+    React9__namespace.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -719,7 +756,7 @@ var Modal = React8__namespace.forwardRef(
         };
       }
     }, [open, preventBodyScroll]);
-    React8__namespace.useEffect(() => {
+    React9__namespace.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -729,12 +766,12 @@ var Modal = React8__namespace.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    React8__namespace.useEffect(() => {
+    React9__namespace.useEffect(() => {
       if (open && modalRef.current) {
         modalRef.current.focus();
       }
     }, [open]);
-    const handleBackdropClick = React8__namespace.useCallback((event) => {
+    const handleBackdropClick = React9__namespace.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop) {
         onOpenChange(false);
       }
@@ -791,7 +828,7 @@ var Modal = React8__namespace.forwardRef(
   }
 );
 Modal.displayName = "Modal";
-var ModalHeader = React8__namespace.forwardRef(
+var ModalHeader = React9__namespace.forwardRef(
   ({
     className,
     title,
@@ -817,7 +854,7 @@ var ModalHeader = React8__namespace.forwardRef(
   }
 );
 ModalHeader.displayName = "ModalHeader";
-var ModalContent = React8__namespace.forwardRef(
+var ModalContent = React9__namespace.forwardRef(
   ({
     className,
     children,
@@ -835,7 +872,7 @@ var ModalContent = React8__namespace.forwardRef(
   }
 );
 ModalContent.displayName = "ModalContent";
-var ModalFooter = React8__namespace.forwardRef(
+var ModalFooter = React9__namespace.forwardRef(
   ({
     className,
     children,
@@ -856,7 +893,7 @@ var ModalFooter = React8__namespace.forwardRef(
   }
 );
 ModalFooter.displayName = "ModalFooter";
-var ModalTrigger = React8__namespace.forwardRef(
+var ModalTrigger = React9__namespace.forwardRef(
   ({
     className,
     children,
@@ -864,7 +901,7 @@ var ModalTrigger = React8__namespace.forwardRef(
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React8__namespace.useCallback((event) => {
+    const handleClick = React9__namespace.useCallback((event) => {
       onClick?.(event);
       onOpen?.();
     }, [onClick, onOpen]);
@@ -911,7 +948,7 @@ var drawerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Drawer = React8__namespace.forwardRef(
+var Drawer = React9__namespace.forwardRef(
   ({
     className,
     position = "right",
@@ -930,8 +967,8 @@ var Drawer = React8__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const drawerRef = React8__namespace.useRef(null);
-    React8__namespace.useEffect(() => {
+    const drawerRef = React9__namespace.useRef(null);
+    React9__namespace.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -939,7 +976,7 @@ var Drawer = React8__namespace.forwardRef(
         };
       }
     }, [open, preventBodyScroll]);
-    React8__namespace.useEffect(() => {
+    React9__namespace.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -949,12 +986,12 @@ var Drawer = React8__namespace.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    React8__namespace.useEffect(() => {
+    React9__namespace.useEffect(() => {
       if (open && drawerRef.current) {
         drawerRef.current.focus();
       }
     }, [open]);
-    const handleBackdropClick = React8__namespace.useCallback((event) => {
+    const handleBackdropClick = React9__namespace.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop) {
         onOpenChange(false);
       }
@@ -1026,7 +1063,7 @@ var Drawer = React8__namespace.forwardRef(
   }
 );
 Drawer.displayName = "Drawer";
-var DrawerHeader = React8__namespace.forwardRef(
+var DrawerHeader = React9__namespace.forwardRef(
   ({
     className,
     title,
@@ -1052,7 +1089,7 @@ var DrawerHeader = React8__namespace.forwardRef(
   }
 );
 DrawerHeader.displayName = "DrawerHeader";
-var DrawerContent = React8__namespace.forwardRef(
+var DrawerContent = React9__namespace.forwardRef(
   ({
     className,
     children,
@@ -1070,7 +1107,7 @@ var DrawerContent = React8__namespace.forwardRef(
   }
 );
 DrawerContent.displayName = "DrawerContent";
-var DrawerFooter = React8__namespace.forwardRef(
+var DrawerFooter = React9__namespace.forwardRef(
   ({
     className,
     children,
@@ -1091,7 +1128,7 @@ var DrawerFooter = React8__namespace.forwardRef(
   }
 );
 DrawerFooter.displayName = "DrawerFooter";
-var DrawerTrigger = React8__namespace.forwardRef(
+var DrawerTrigger = React9__namespace.forwardRef(
   ({
     className,
     children,
@@ -1099,7 +1136,7 @@ var DrawerTrigger = React8__namespace.forwardRef(
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React8__namespace.useCallback((event) => {
+    const handleClick = React9__namespace.useCallback((event) => {
       onClick?.(event);
       onOpen?.();
     }, [onClick, onOpen]);
@@ -1144,7 +1181,7 @@ var lightboxVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Lightbox = React8__namespace.forwardRef(
+var Lightbox = React9__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1170,21 +1207,21 @@ var Lightbox = React8__namespace.forwardRef(
     mediaContainerClassName,
     ...props
   }, ref) => {
-    const [zoom, setZoom] = React8__namespace.useState(ZOOM_CONFIG.DEFAULT);
-    const [rotation, setRotation] = React8__namespace.useState(0);
-    const [isPlaying, setIsPlaying] = React8__namespace.useState(autoPlayVideos);
-    const [isFullscreen, setIsFullscreen] = React8__namespace.useState(false);
-    const [touchStart, setTouchStart] = React8__namespace.useState(null);
-    const [isDragging, setIsDragging] = React8__namespace.useState(false);
-    const [dragOffset, setDragOffset] = React8__namespace.useState({ x: 0, y: 0 });
-    const videoRef = React8__namespace.useRef(null);
-    const containerRef = React8__namespace.useRef(null);
-    const mediaRef = React8__namespace.useRef(null);
+    const [zoom, setZoom] = React9__namespace.useState(ZOOM_CONFIG.DEFAULT);
+    const [rotation, setRotation] = React9__namespace.useState(0);
+    const [isPlaying, setIsPlaying] = React9__namespace.useState(autoPlayVideos);
+    const [isFullscreen, setIsFullscreen] = React9__namespace.useState(false);
+    const [touchStart, setTouchStart] = React9__namespace.useState(null);
+    const [isDragging, setIsDragging] = React9__namespace.useState(false);
+    const [dragOffset, setDragOffset] = React9__namespace.useState({ x: 0, y: 0 });
+    const videoRef = React9__namespace.useRef(null);
+    const containerRef = React9__namespace.useRef(null);
+    const mediaRef = React9__namespace.useRef(null);
     const currentItem = items[index];
     const hasMultipleItems = items.length > 1;
     const isImage = currentItem?.type === "image";
     const isVideo = currentItem?.type === "video";
-    React8__namespace.useEffect(() => {
+    React9__namespace.useEffect(() => {
       if (open) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -1192,7 +1229,7 @@ var Lightbox = React8__namespace.forwardRef(
         };
       }
     }, [open]);
-    React8__namespace.useEffect(() => {
+    React9__namespace.useEffect(() => {
       if (!open) return;
       const handleKeyDown = (event) => {
         switch (event.key) {
@@ -1248,20 +1285,20 @@ var Lightbox = React8__namespace.forwardRef(
       document.addEventListener("keydown", handleKeyDown);
       return () => document.removeEventListener("keydown", handleKeyDown);
     }, [open, index, zoom, isVideo, allowZoom, allowRotation]);
-    React8__namespace.useEffect(() => {
+    React9__namespace.useEffect(() => {
       if (isVideo && autoPlayVideos && videoRef.current && open) {
         videoRef.current.play().catch(console.error);
         setIsPlaying(true);
       }
     }, [index, isVideo, autoPlayVideos, open]);
-    React8__namespace.useEffect(() => {
+    React9__namespace.useEffect(() => {
       if (!autoPlayInterval || !hasMultipleItems || !open) return;
       const interval = setInterval(() => {
         handleNext();
       }, autoPlayInterval);
       return () => clearInterval(interval);
     }, [autoPlayInterval, hasMultipleItems, open, index]);
-    React8__namespace.useEffect(() => {
+    React9__namespace.useEffect(() => {
       setZoom(ZOOM_CONFIG.DEFAULT);
       setRotation(0);
       setDragOffset({ x: 0, y: 0 });
@@ -1270,35 +1307,35 @@ var Lightbox = React8__namespace.forwardRef(
         setIsPlaying(autoPlayVideos);
       }
     }, [index, isVideo, autoPlayVideos]);
-    const handlePrevious = React8__namespace.useCallback(() => {
+    const handlePrevious = React9__namespace.useCallback(() => {
       if (index > 0) {
         onIndexChange(index - 1);
       } else if (hasMultipleItems) {
         onIndexChange(items.length - 1);
       }
     }, [index, items.length, onIndexChange, hasMultipleItems]);
-    const handleNext = React8__namespace.useCallback(() => {
+    const handleNext = React9__namespace.useCallback(() => {
       if (index < items.length - 1) {
         onIndexChange(index + 1);
       } else if (hasMultipleItems) {
         onIndexChange(0);
       }
     }, [index, items.length, onIndexChange, hasMultipleItems]);
-    const handleZoomIn = React8__namespace.useCallback(() => {
+    const handleZoomIn = React9__namespace.useCallback(() => {
       setZoom((prev) => Math.min(prev + ZOOM_CONFIG.STEP, ZOOM_CONFIG.MAX));
     }, []);
-    const handleZoomOut = React8__namespace.useCallback(() => {
+    const handleZoomOut = React9__namespace.useCallback(() => {
       setZoom((prev) => Math.max(prev - ZOOM_CONFIG.STEP, ZOOM_CONFIG.MIN));
     }, []);
-    const handleResetZoom = React8__namespace.useCallback(() => {
+    const handleResetZoom = React9__namespace.useCallback(() => {
       setZoom(ZOOM_CONFIG.DEFAULT);
       setRotation(0);
       setDragOffset({ x: 0, y: 0 });
     }, []);
-    const handleRotate = React8__namespace.useCallback(() => {
+    const handleRotate = React9__namespace.useCallback(() => {
       setRotation((prev) => (prev + 90) % 360);
     }, []);
-    const handlePlayPause = React8__namespace.useCallback(() => {
+    const handlePlayPause = React9__namespace.useCallback(() => {
       if (videoRef.current) {
         if (isPlaying) {
           videoRef.current.pause();
@@ -1308,7 +1345,7 @@ var Lightbox = React8__namespace.forwardRef(
         setIsPlaying(!isPlaying);
       }
     }, [isPlaying]);
-    const handleToggleFullscreen = React8__namespace.useCallback(() => {
+    const handleToggleFullscreen = React9__namespace.useCallback(() => {
       if (!containerRef.current) return;
       if (!document.fullscreenElement) {
         containerRef.current.requestFullscreen().then(() => {
@@ -1320,14 +1357,14 @@ var Lightbox = React8__namespace.forwardRef(
         });
       }
     }, []);
-    React8__namespace.useEffect(() => {
+    React9__namespace.useEffect(() => {
       const handleFullscreenChange = () => {
         setIsFullscreen(!!document.fullscreenElement);
       };
       document.addEventListener("fullscreenchange", handleFullscreenChange);
       return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
     }, []);
-    const handleDownload = React8__namespace.useCallback(() => {
+    const handleDownload = React9__namespace.useCallback(() => {
       if (currentItem?.downloadUrl || currentItem?.url) {
         const link = document.createElement("a");
         link.href = currentItem.downloadUrl || currentItem.url;
@@ -1338,7 +1375,7 @@ var Lightbox = React8__namespace.forwardRef(
         document.body.removeChild(link);
       }
     }, [currentItem]);
-    const handleTouchStart = React8__namespace.useCallback((e) => {
+    const handleTouchStart = React9__namespace.useCallback((e) => {
       if (!enableGestures || !isImage || zoom <= ZOOM_CONFIG.DEFAULT) return;
       setTouchStart({
         x: e.touches[0].clientX,
@@ -1346,7 +1383,7 @@ var Lightbox = React8__namespace.forwardRef(
       });
       setIsDragging(true);
     }, [enableGestures, isImage, zoom]);
-    const handleTouchMove = React8__namespace.useCallback((e) => {
+    const handleTouchMove = React9__namespace.useCallback((e) => {
       if (!touchStart || !isDragging || !isImage || zoom <= ZOOM_CONFIG.DEFAULT) return;
       const deltaX = e.touches[0].clientX - touchStart.x;
       const deltaY = e.touches[0].clientY - touchStart.y;
@@ -1355,7 +1392,7 @@ var Lightbox = React8__namespace.forwardRef(
         y: deltaY
       });
     }, [touchStart, isDragging, isImage, zoom]);
-    const handleTouchEnd = React8__namespace.useCallback(() => {
+    const handleTouchEnd = React9__namespace.useCallback(() => {
       if (!enableGestures || !isImage) return;
       if (!isDragging && touchStart && zoom <= ZOOM_CONFIG.DEFAULT) {
         const swipeThreshold = 50;
@@ -1371,7 +1408,7 @@ var Lightbox = React8__namespace.forwardRef(
       setTouchStart(null);
       setIsDragging(false);
     }, [enableGestures, isImage, zoom, dragOffset, handlePrevious, handleNext, isDragging, touchStart]);
-    const handleDoubleClick = React8__namespace.useCallback(() => {
+    const handleDoubleClick = React9__namespace.useCallback(() => {
       if (allowZoom && isImage) {
         if (zoom > ZOOM_CONFIG.DEFAULT) {
           handleResetZoom();
@@ -1668,7 +1705,7 @@ var confirmDialogVariants = classVarianceAuthority.cva(
     }
   }
 );
-var ConfirmDialog = React8__namespace.forwardRef(
+var ConfirmDialog = React9__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1689,9 +1726,9 @@ var ConfirmDialog = React8__namespace.forwardRef(
     confirmVariant = "default"
     // props, // Props adicionais não utilizados
   }) => {
-    const [internalLoading, setInternalLoading] = React8__namespace.useState(false);
+    const [internalLoading, setInternalLoading] = React9__namespace.useState(false);
     const isLoading = loading || internalLoading;
-    React8__namespace.useEffect(() => {
+    React9__namespace.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -1701,7 +1738,7 @@ var ConfirmDialog = React8__namespace.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    const handleConfirm = React8__namespace.useCallback(async () => {
+    const handleConfirm = React9__namespace.useCallback(async () => {
       if (isLoading) return;
       try {
         if (onConfirm) {
@@ -1715,14 +1752,14 @@ var ConfirmDialog = React8__namespace.forwardRef(
         setInternalLoading(false);
       }
     }, [isLoading, onConfirm, closeOnConfirm, onOpenChange]);
-    const handleCancel = React8__namespace.useCallback(() => {
+    const handleCancel = React9__namespace.useCallback(() => {
       if (isLoading) return;
       onCancel?.();
       if (closeOnCancel) {
         onOpenChange(false);
       }
     }, [isLoading, onCancel, closeOnCancel, onOpenChange]);
-    const handleBackdropClick = React8__namespace.useCallback((event) => {
+    const handleBackdropClick = React9__namespace.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop && !isLoading) {
         onOpenChange(false);
       }
@@ -1824,22 +1861,22 @@ var ConfirmDialog = React8__namespace.forwardRef(
 );
 ConfirmDialog.displayName = "ConfirmDialog";
 function useConfirm() {
-  const [isOpen, setIsOpen] = React8__namespace.useState(false);
-  const [options, setOptions] = React8__namespace.useState(null);
-  const confirm = React8__namespace.useCallback((options2) => {
+  const [isOpen, setIsOpen] = React9__namespace.useState(false);
+  const [options, setOptions] = React9__namespace.useState(null);
+  const confirm = React9__namespace.useCallback((options2) => {
     setOptions(options2);
     setIsOpen(true);
   }, []);
-  const handleConfirm = React8__namespace.useCallback(async () => {
+  const handleConfirm = React9__namespace.useCallback(async () => {
     if (options.onConfirm) {
       await options.onConfirm();
     }
     setIsOpen(false);
   }, [options]);
-  const handleCancel = React8__namespace.useCallback(() => {
+  const handleCancel = React9__namespace.useCallback(() => {
     setIsOpen(false);
   }, []);
-  const ConfirmDialogComponent = React8__namespace.useCallback(() => /* @__PURE__ */ jsxRuntime.jsx(
+  const ConfirmDialogComponent = React9__namespace.useCallback(() => /* @__PURE__ */ jsxRuntime.jsx(
     ConfirmDialog,
     {
       open: isOpen,

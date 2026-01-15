@@ -35,3 +35,6 @@ export * from './segmented-control';
 
 // Estados de Carregamento
 export { InlineLoader } from './InlineLoader';
+
+// Utilitários
+export { ThemeToggle } from '../utilities/ThemeToggle';
