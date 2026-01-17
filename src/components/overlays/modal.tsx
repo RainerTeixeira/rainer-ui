@@ -136,6 +136,15 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   ) => {
     const modalRef = React.useRef<HTMLDivElement>(null);
 
+    const setModalRef = React.useCallback((node: HTMLDivElement | null) => {
+      modalRef.current = node;
+      if (typeof ref === 'function') {
+        ref(node);
+      } else if (ref) {
+        (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      }
+    }, [ref]);
+
     // Previnir scroll do body
     React.useEffect(() => {
       if (open && preventBodyScroll) {
@@ -188,7 +197,7 @@ export const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
 
         {/* Modal */}
         <div
-          ref={modalRef}
+          ref={setModalRef}
           className={cn(
             modalVariants({ size, variant }),
             'relative z-10 max-h-[90vh] overflow-hidden',

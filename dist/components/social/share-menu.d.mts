@@ -27,7 +27,7 @@ interface ShareMenuProps {
     /** Exibir texto no botão */
     showLabel?: boolean;
     /** Callback ao compartilhar */
-    onShare?: (platform: string, data?: any) => void;
+    onShare?: (platform: string, data?: Record<string, unknown>) => void;
     /** Classes CSS adicionais */
     className?: string;
     /** Posição do menu dropdown */

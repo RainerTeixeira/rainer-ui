@@ -2,10 +2,30 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var designTokens = require('@rainersoft/design-tokens');
+require('@rainersoft/design-tokens');
 var nextThemes = require('next-themes');
-var react = require('react');
+var React = require('react');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  var n = Object.create(null);
+  if (e) {
+    Object.keys(e).forEach(function (k) {
+      if (k !== 'default') {
+        var d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: function () { return e[k]; }
+        });
+      }
+    });
+  }
+  n.default = e;
+  return Object.freeze(n);
+}
+
+var React__namespace = /*#__PURE__*/_interopNamespace(React);
 
 function hexToRGBA(hex, alpha = 1) {
   const cleanHex = hex.replace("#", "");
@@ -21,17 +41,28 @@ function hexToRGBA(hex, alpha = 1) {
   }
   return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }
+var TokensContext = React__namespace.createContext(null);
+function useTokens() {
+  const context = React__namespace.useContext(TokensContext);
+  if (!context) {
+    throw new Error(
+      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
+    );
+  }
+  return context;
+}
 function FloatingGrid({
   variant = "default",
   intensity = 0.5
 } = {}) {
-  const canvasRef = react.useRef(null);
+  const canvasRef = React.useRef(null);
   const { theme } = nextThemes.useTheme();
-  const [mounted, setMounted] = react.useState(false);
-  react.useEffect(() => {
+  const { getColor } = useTokens();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
     setMounted(true);
   }, []);
-  react.useEffect(() => {
+  React.useEffect(() => {
     if (!mounted || theme !== "dark") return;
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -55,7 +86,7 @@ function FloatingGrid({
       time += 0.01;
       const pulseIntensity = intensity * (0.8 + Math.sin(time) * 0.2);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const cyan400 = designTokens.tokens.primitives.color.cyan["400"];
+      const cyan400 = getColor("primitives.colors.cyan.400", "#22d3ee");
       const strokeColor = hexToRGBA(cyan400, pulseIntensity * 1.2);
       const fillColor = hexToRGBA(cyan400, pulseIntensity * 0.6);
       ctx.strokeStyle = strokeColor;

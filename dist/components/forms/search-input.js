@@ -166,10 +166,36 @@ var ButtonComponent = React2__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const Comp = asChild ? reactSlot.Slot : "button";
     const isDisabled = disabled || loading;
+    if (asChild) {
+      const child = React2__namespace.Children.only(children);
+      return /* @__PURE__ */ jsxRuntime.jsx(
+        reactSlot.Slot,
+        {
+          className: cn(
+            buttonVariants({ variant, size, animation }),
+            // Efeito neon especial
+            variant === "neon" && [
+              "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+              "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+              "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+              "before:transition-opacity after:transition-opacity",
+              "before:duration-300 after:duration-300"
+            ],
+            className
+          ),
+          ref,
+          "aria-busy": loading || void 0,
+          ...props,
+          children: loading ? /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "inline-flex items-center gap-2", children: [
+            loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }),
+            child
+          ] }) : child
+        }
+      );
+    }
     return /* @__PURE__ */ jsxRuntime.jsxs(
-      Comp,
+      "button",
       {
         className: cn(
           buttonVariants({ variant, size, animation }),
@@ -185,9 +211,10 @@ var ButtonComponent = React2__namespace.forwardRef(
         ),
         ref,
         disabled: isDisabled,
+        "aria-busy": loading || void 0,
         ...props,
         children: [
-          loading && /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          loading && (loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" })),
           children
         ]
       }
@@ -238,7 +265,7 @@ var SearchInput = React2__namespace.forwardRef(
     // saveToHistory, // TODO: implementar funcionalidade de histórico
     disabled
     // props, // Props adicionais não utilizados
-  }) => {
+  }, ref) => {
     const [internalValue, setInternalValue] = React2__namespace.useState(value);
     const [isOpen, setIsOpen] = React2__namespace.useState(false);
     const [selectedIndex, setSelectedIndex] = React2__namespace.useState(-1);
@@ -352,7 +379,7 @@ var SearchInput = React2__namespace.forwardRef(
     return /* @__PURE__ */ jsxRuntime.jsxs(
       "div",
       {
-        ref: containerRef,
+        ref: ref || containerRef,
         className: cn("relative", className),
         children: [
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: cn(

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
-import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
+import { jsxs, jsx } from 'react/jsx-runtime';
 import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 import * as SliderPrimitive from '@radix-ui/react-slider';
@@ -10,7 +10,9 @@ import * as SwitchPrimitives from '@radix-ui/react-switch';
 import * as TogglePrimitive from '@radix-ui/react-toggle';
 import Plus from 'lucide-react/dist/esm/icons/plus';
 import X from 'lucide-react/dist/esm/icons/x';
-import { Loader2 } from 'lucide-react';
+import * as ProgressPrimitive from '@radix-ui/react-progress';
+import * as AccordionPrimitive from '@radix-ui/react-accordion';
+import { ChevronDown, Loader2 } from 'lucide-react';
 import { useTheme as useTheme$1 } from 'next-themes';
 import Moon from 'lucide-react/dist/esm/icons/moon';
 import Sun from 'lucide-react/dist/esm/icons/sun';
@@ -232,6 +234,172 @@ var AvatarFallback = React.forwardRef(({ className, ...props }, ref) => /* @__PU
   }
 ));
 AvatarFallback.displayName = "AvatarFallback";
+var Input = React.forwardRef(
+  ({ className, type, error, helperText, label, required, id, ...props }, ref) => {
+    const inputId = id || `input-${React.useId()}`;
+    return /* @__PURE__ */ jsxs("div", { className: "space-y-2", children: [
+      label && /* @__PURE__ */ jsxs(
+        "label",
+        {
+          htmlFor: inputId,
+          className: cn(
+            "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+            error ? "text-destructive" : "text-foreground",
+            "dark:text-cyan-200 dark:font-mono"
+          ),
+          children: [
+            label,
+            required && /* @__PURE__ */ jsx("span", { className: "text-destructive ml-1", children: "*" })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        "input",
+        {
+          type,
+          id: inputId,
+          className: cn(
+            // Base styles
+            "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2",
+            "text-sm ring-offset-background file:border-0 file:bg-transparent",
+            "file:text-sm file:font-medium placeholder:text-muted-foreground",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            "focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+            // Dark mode
+            "dark:bg-black/50 dark:border-cyan-400/30 dark:text-cyan-100",
+            "dark:placeholder:text-cyan-400/50 dark:ring-offset-black",
+            "dark:focus-visible:ring-cyan-400 dark:focus-visible:ring-offset-black",
+            // Error state
+            error && "border-destructive focus-visible:ring-destructive",
+            "dark:border-red-400/50 dark:focus-visible:ring-red-400",
+            // Transitions
+            "transition-all duration-200",
+            className
+          ),
+          ref,
+          ...props
+        }
+      ),
+      helperText && /* @__PURE__ */ jsx(
+        "p",
+        {
+          className: cn(
+            "text-xs",
+            error ? "text-destructive" : "text-muted-foreground",
+            "dark:text-cyan-400/70 dark:text-red-400/70"
+          ),
+          children: helperText
+        }
+      )
+    ] });
+  }
+);
+Input.displayName = "Input";
+var Textarea = React.forwardRef(
+  ({
+    className,
+    error,
+    helperText,
+    label,
+    required,
+    id,
+    maxLength,
+    showCount,
+    value,
+    ...props
+  }, ref) => {
+    const inputId = id || `textarea-${React.useId()}`;
+    const [characterCount, setCharacterCount] = React.useState(0);
+    React.useEffect(() => {
+      if (typeof value === "string") {
+        setCharacterCount(value.length);
+      }
+    }, [value]);
+    const handleInputChange = (e) => {
+      if (maxLength) {
+        const newValue = e.target.value.slice(0, maxLength);
+        e.target.value = newValue;
+        setCharacterCount(newValue.length);
+      }
+      props.onChange?.(e);
+    };
+    return /* @__PURE__ */ jsxs("div", { className: "space-y-2", children: [
+      label && /* @__PURE__ */ jsxs(
+        "label",
+        {
+          htmlFor: inputId,
+          className: cn(
+            "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+            error ? "text-destructive" : "text-foreground",
+            "dark:text-cyan-200 dark:font-mono"
+          ),
+          children: [
+            label,
+            required && /* @__PURE__ */ jsx("span", { className: "text-destructive ml-1", children: "*" })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        "textarea",
+        {
+          id: inputId,
+          className: cn(
+            // Base styles
+            "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2",
+            "text-sm ring-offset-background placeholder:text-muted-foreground",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            "focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+            "resize-none",
+            // Dark mode
+            "dark:bg-black/50 dark:border-cyan-400/30 dark:text-cyan-100",
+            "dark:placeholder:text-cyan-400/50 dark:ring-offset-black",
+            "dark:focus-visible:ring-cyan-400 dark:focus-visible:ring-offset-black",
+            // Error state
+            error && "border-destructive focus-visible:ring-destructive",
+            "dark:border-red-400/50 dark:focus-visible:ring-red-400",
+            // Transitions
+            "transition-all duration-200",
+            className
+          ),
+          ref,
+          maxLength,
+          value,
+          onChange: handleInputChange,
+          ...props
+        }
+      ),
+      (helperText || showCount && maxLength) && /* @__PURE__ */ jsxs("div", { className: "flex justify-between items-center", children: [
+        helperText && /* @__PURE__ */ jsx(
+          "p",
+          {
+            className: cn(
+              "text-xs",
+              error ? "text-destructive" : "text-muted-foreground",
+              "dark:text-cyan-400/70 dark:text-red-400/70"
+            ),
+            children: helperText
+          }
+        ),
+        showCount && maxLength && /* @__PURE__ */ jsxs(
+          "p",
+          {
+            className: cn(
+              "text-xs",
+              characterCount >= maxLength ? "text-destructive" : "text-muted-foreground",
+              "dark:text-cyan-400/70"
+            ),
+            children: [
+              characterCount,
+              "/",
+              maxLength
+            ]
+          }
+        )
+      ] })
+    ] });
+  }
+);
+Textarea.displayName = "Textarea";
 var buttonVariants = cva(
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {
@@ -286,10 +454,36 @@ var ButtonComponent = React.forwardRef(
     children,
     ...props
   }, ref) => {
-    const Comp = asChild ? Slot : "button";
     const isDisabled = disabled || loading;
+    if (asChild) {
+      const child = React.Children.only(children);
+      return /* @__PURE__ */ jsx(
+        Slot,
+        {
+          className: cn(
+            buttonVariants({ variant, size, animation }),
+            // Efeito neon especial
+            variant === "neon" && [
+              "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+              "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+              "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+              "before:transition-opacity after:transition-opacity",
+              "before:duration-300 after:duration-300"
+            ],
+            className
+          ),
+          ref,
+          "aria-busy": loading || void 0,
+          ...props,
+          children: loading ? /* @__PURE__ */ jsxs("div", { className: "inline-flex items-center gap-2", children: [
+            loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }),
+            child
+          ] }) : child
+        }
+      );
+    }
     return /* @__PURE__ */ jsxs(
-      Comp,
+      "button",
       {
         className: cn(
           buttonVariants({ variant, size, animation }),
@@ -305,9 +499,10 @@ var ButtonComponent = React.forwardRef(
         ),
         ref,
         disabled: isDisabled,
+        "aria-busy": loading || void 0,
         ...props,
         children: [
-          loading && /* @__PURE__ */ jsx(Fragment, { children: loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          loading && (loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" })),
           children
         ]
       }
@@ -943,6 +1138,199 @@ var SegmentedControlItem = React.forwardRef(
   }
 );
 SegmentedControlItem.displayName = "SegmentedControlItem";
+var Card = React.forwardRef(({ className, variant = "default", ...props }, ref) => /* @__PURE__ */ jsx(
+  "div",
+  {
+    ref,
+    className: cn(
+      // Base styles
+      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      // Variant styles
+      variant === "default" && "border-border bg-background dark:bg-black/40 dark:border-cyan-400/20",
+      variant === "outline" && "border-2 border-border bg-transparent dark:border-cyan-400/30",
+      variant === "elevated" && "border-border/50 shadow-lg dark:bg-black/60 dark:border-cyan-400/20 dark:shadow-cyan-500/10",
+      variant === "glass" && "border-border/20 bg-background/80 backdrop-blur-md dark:bg-black/40 dark:border-cyan-400/30 dark:backdrop-blur-xl",
+      // Transitions
+      "transition-all duration-200",
+      className
+    ),
+    ...props
+  }
+));
+Card.displayName = "Card";
+var CardHeader = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "div",
+  {
+    ref,
+    className: cn(
+      "flex flex-col space-y-1.5 p-6",
+      "dark:border-cyan-400/10",
+      className
+    ),
+    ...props
+  }
+));
+CardHeader.displayName = "CardHeader";
+var CardTitle = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "h3",
+  {
+    ref,
+    className: cn(
+      "text-2xl font-semibold leading-none tracking-tight",
+      "dark:text-cyan-200 dark:font-mono",
+      className
+    ),
+    ...props
+  }
+));
+CardTitle.displayName = "CardTitle";
+var CardDescription = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "p",
+  {
+    ref,
+    className: cn(
+      "text-sm text-muted-foreground",
+      "dark:text-cyan-400/80",
+      className
+    ),
+    ...props
+  }
+));
+CardDescription.displayName = "CardDescription";
+var CardContent = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+CardContent.displayName = "CardContent";
+var CardFooter = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "div",
+  {
+    ref,
+    className: cn(
+      "flex items-center p-6 pt-0",
+      "dark:border-t dark:border-cyan-400/10",
+      className
+    ),
+    ...props
+  }
+));
+CardFooter.displayName = "CardFooter";
+var badgeVariants = cva(
+  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 dark:ring-offset-black",
+  {
+    variants: {
+      variant: {
+        default: "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+        secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        destructive: "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
+        outline: "text-foreground border-border dark:border-cyan-400/30 dark:text-cyan-300",
+        count: "border-transparent bg-muted text-foreground shadow-sm px-2.5 py-1 text-[11px] tracking-wide",
+        success: "border-transparent bg-green-500 text-white hover:bg-green-600 dark:bg-green-400/20 dark:text-green-300 dark:hover:bg-green-400/30",
+        warning: "border-transparent bg-yellow-500 text-white hover:bg-yellow-600 dark:bg-yellow-400/20 dark:text-yellow-300 dark:hover:bg-yellow-400/30",
+        info: "border-transparent bg-blue-500 text-white hover:bg-blue-600 dark:bg-cyan-400/20 dark:text-cyan-300 dark:hover:bg-cyan-400/30",
+        cyberpunk: "border-transparent bg-gradient-to-r from-cyan-500 to-purple-500 text-white hover:from-cyan-600 hover:to-purple-600 dark:from-cyan-400 dark:to-purple-400 dark:hover:from-cyan-300 dark:hover:to-purple-300",
+        neon: "border-cyan-400/30 bg-cyan-400/10 text-cyan-300 shadow-lg shadow-cyan-400/20 dark:border-cyan-300/50 dark:bg-cyan-300/10 dark:text-cyan-200 dark:shadow-cyan-300/30"
+      },
+      size: {
+        sm: "px-2 py-0.5 text-xs",
+        md: "px-2.5 py-0.5 text-xs",
+        lg: "px-3 py-1 text-sm"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "md"
+    }
+  }
+);
+function Badge({ className, variant, size, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn(badgeVariants({ variant, size }), className), ...props });
+}
+var Progress = React.forwardRef(({ className, value, color = "default", ...props }, ref) => /* @__PURE__ */ jsx(
+  ProgressPrimitive.Root,
+  {
+    ref,
+    className: cn(
+      // Base styles
+      "relative h-2 w-full overflow-hidden rounded-full bg-secondary",
+      // Dark mode
+      "dark:bg-black/40 dark:border dark:border-cyan-400/20",
+      className
+    ),
+    ...props,
+    children: /* @__PURE__ */ jsx(
+      ProgressPrimitive.Indicator,
+      {
+        className: cn(
+          // Base indicator
+          "h-full w-full flex-1 bg-primary transition-all duration-300",
+          // Color variants
+          color === "default" && "bg-primary dark:bg-cyan-400",
+          color === "success" && "bg-green-500 dark:bg-green-400",
+          color === "warning" && "bg-yellow-500 dark:bg-yellow-400",
+          color === "destructive" && "bg-red-500 dark:bg-red-400",
+          color === "cyberpunk" && "bg-gradient-to-r from-cyan-500 to-purple-500 dark:from-cyan-400 dark:to-purple-400"
+        ),
+        style: { transform: `translateX(-${100 - (value || 0)}%)` }
+      }
+    )
+  }
+));
+Progress.displayName = ProgressPrimitive.Root.displayName;
+var Accordion = AccordionPrimitive.Root;
+var AccordionItem = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  AccordionPrimitive.Item,
+  {
+    ref,
+    className: cn(
+      "border-b border-border dark:border-cyan-400/20",
+      className
+    ),
+    ...props
+  }
+));
+AccordionItem.displayName = "AccordionItem";
+var AccordionTrigger = React.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(AccordionPrimitive.Header, { className: "flex", children: /* @__PURE__ */ jsxs(
+  AccordionPrimitive.Trigger,
+  {
+    ref,
+    className: cn(
+      // Base styles
+      "flex flex-1 items-center justify-between py-4 text-sm font-medium",
+      "transition-all hover:underline",
+      // Focus styles
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+      "focus-visible:ring-offset-2 dark:ring-offset-black dark:focus-visible:ring-cyan-400",
+      // Dark mode
+      "dark:text-cyan-200 dark:hover:text-cyan-100",
+      // Disabled state
+      "[&[data-state=open]>svg]:rotate-180",
+      className
+    ),
+    ...props,
+    children: [
+      children,
+      /* @__PURE__ */ jsx(ChevronDown, { className: "h-4 w-4 shrink-0 transition-transform duration-200 dark:text-cyan-400" })
+    ]
+  }
+) }));
+AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
+var AccordionContent = React.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(
+  AccordionPrimitive.Content,
+  {
+    ref,
+    className: cn(
+      // Base styles
+      "overflow-hidden text-sm data-[state=closed]:animate-accordion-up",
+      "data-[state=open]:animate-accordion-down",
+      // Spacing
+      "pb-4 pt-0",
+      // Text color
+      "dark:text-cyan-400/80",
+      className
+    ),
+    ...props,
+    children: /* @__PURE__ */ jsx("div", { className: cn("pb-4 pt-0", className), children })
+  }
+));
+AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 function InlineLoader({
   className,
   size = "sm",
@@ -1080,6 +1468,6 @@ function ThemeToggle({ className }) {
   );
 }
 
-export { Avatar, AvatarFallback, AvatarImage, Button, FAB, FABGroup, IconButton, InlineLoader, LinkButton, SegmentedControl, SegmentedControlItem, Slider, Switch, ThemeToggle, Toggle, buttonVariants, toggleVariants };
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Avatar, AvatarFallback, AvatarImage, Badge, Button, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, FAB, FABGroup, IconButton, InlineLoader, Input, LinkButton, Progress, SegmentedControl, SegmentedControlItem, Slider, Switch, Textarea, ThemeToggle, Toggle, badgeVariants, buttonVariants, toggleVariants };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

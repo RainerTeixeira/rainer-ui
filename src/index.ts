@@ -85,6 +85,45 @@ export * from './components';
 // Export direto para garantir compatibilidade
 export { InlineLoader } from './components/ui/InlineLoader';
 
+// Exportar componentes UI diretamente para compatibilidade
+export { Badge, badgeVariants } from './components/ui/badge';
+export { Progress } from './components/ui/progress';
+export { 
+  Card, 
+  CardHeader, 
+  CardFooter, 
+  CardTitle, 
+  CardDescription, 
+  CardContent 
+} from './components/ui/card';
+export { Input } from './components/ui/input';
+export { Textarea } from './components/ui/textarea';
+export { Slider } from './components/ui/slider';
+export { Switch } from './components/ui/switch';
+export { Toggle } from './components/ui/toggle';
+export * from './components/ui/button';
+export * from './components/ui/avatar';
+export * from './components/ui/icon-button';
+export * from './components/ui/link-button';
+export * from './components/ui/fab';
+export * from './components/ui/segmented-control';
+
+// Exportar Accordion diretamente para compatibilidade
+export { 
+  Accordion, 
+  AccordionItem, 
+  AccordionTrigger, 
+  AccordionContent 
+} from './components/navigation/accordion';
+
+// Exportar Tabs diretamente para compatibilidade
+export { 
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent
+} from './components/navigation/tabs';
+
 // ============================================================================
 // HOOKS
 // ============================================================================
@@ -93,3 +132,8 @@ export * from './hooks/use-pwa';
 export * from './hooks/use-theme';
 export * from './hooks/use-carousel-keyboard';
 export * from './hooks/use-table-of-contents';
+
+// ============================================================================
+// PROVIDERS
+// ============================================================================
+export { ThemeProvider, TokensProvider, useTokens, DEFAULT_TOKENS, TokensContext } from './components/providers';

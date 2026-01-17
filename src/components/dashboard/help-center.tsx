@@ -17,7 +17,6 @@
  *   <HelpCenter />
  * </section>
  */
-import { Button } from '../ui/button';
 import {
   Card,
   CardContent,
@@ -25,7 +24,6 @@ import {
   CardHeader,
   CardTitle,
 } from '../layout/card';
-import Link from 'next/link';
 import BookOpen from 'lucide-react/dist/esm/icons/book-open';
 import ExternalLink from 'lucide-react/dist/esm/icons/external-link';
 import HelpCircle from 'lucide-react/dist/esm/icons/help-circle';
@@ -93,23 +91,19 @@ export function HelpCenter() {
         {resources.map((resource, index) => {
           const Icon = resource.icon;
           return (
-            <Button
+            <button
               key={index}
-              asChild
-              variant="outline"
-              className="w-full justify-between dark:border-purple-400/20 dark:hover:bg-purple-400/10"
+              type="button"
+              className="w-full justify-between dark:border-purple-400/20 inline-flex items-center gap-3 rounded-md border px-3 py-2 text-sm font-medium shadow-sm bg-white hover:bg-gray-50 dark:bg-black/30 dark:hover:bg-purple-400/10"
+              onClick={() => (window.location.href = resource.link)}
             >
-              <a href={resource.link} className="flex items-center gap-3 flex-1">
-                <Icon className="h-4 w-4" />
-                <div className="text-left">
-                  <div className="font-medium text-sm">{resource.title}</div>
-                  <div className="text-xs text-muted-foreground">
-                    {resource.description}
-                  </div>
-                </div>
-                <ExternalLink className="h-4 w-4 ml-auto" />
-              </a>
-            </Button>
+              <Icon className="h-4 w-4" />
+              <span className="text-left flex-1">
+                <span className="font-medium text-sm block">{resource.title}</span>
+                <span className="text-xs text-muted-foreground block">{resource.description}</span>
+              </span>
+              <ExternalLink className="h-4 w-4 ml-auto" />
+            </button>
           );
         })}
       </CardContent>

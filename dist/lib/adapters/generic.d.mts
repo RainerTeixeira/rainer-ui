@@ -1,5 +1,5 @@
-import { A as AdapterConfig, a as AdapterFactory } from '../../adapter-BueEAZsa.mjs';
-import { D as DesignTokens } from '../../tokens-A_UK8Q2r.mjs';
+import { A as AdapterConfig, a as AdapterFactory } from '../../adapter-Ao-UsVV1.mjs';
+import { D as DesignTokens } from '../../tokens-B1TMkK7f.mjs';
 
 /**
  * Adaptador Genérico para @rainersoft/ui

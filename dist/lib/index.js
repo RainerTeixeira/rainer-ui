@@ -591,11 +591,12 @@ var _CookieManager = class _CookieManager {
     );
     scripts.forEach((script) => script.remove());
     this.clearAnalyticsCookies();
-    if (window.dataLayer) {
-      window.dataLayer = [];
+    const win = window;
+    if (win.dataLayer) {
+      win.dataLayer = [];
     }
-    if (window.gtag) {
-      delete window.gtag;
+    if (win.gtag) {
+      delete win.gtag;
     }
   }
   clearAnalyticsCookies() {

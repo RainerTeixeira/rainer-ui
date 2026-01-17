@@ -152,7 +152,7 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
       // maxTime, // TODO: implementar validação de tempo máximo
       ...props
     },
-    // ref, // TODO: implementar ref forwarding
+    ref
   ) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const [hours, setHours] = React.useState(value?.hours || 0);
@@ -269,7 +269,7 @@ export const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
 
     return (
       <div
-        ref={containerRef}
+        ref={ref || containerRef}
         className={cn('relative', className)}
         {...props}
       >

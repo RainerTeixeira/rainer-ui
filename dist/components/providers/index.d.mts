@@ -4,5 +4,5 @@ export { UIProvider, UIProviderProps } from './ui-provider.mjs';
 import 'react/jsx-runtime';
 import 'next-themes';
 import 'react';
-import '../../tokens-A_UK8Q2r.mjs';
-import '../../adapter-BueEAZsa.mjs';
+import '../../tokens-B1TMkK7f.mjs';
+import '../../adapter-Ao-UsVV1.mjs';

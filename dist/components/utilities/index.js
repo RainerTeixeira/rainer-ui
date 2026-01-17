@@ -1,6 +1,6 @@
 'use strict';
 
-var React13 = require('react');
+var React14 = require('react');
 var lucideReact = require('lucide-react');
 var reactSlot = require('@radix-ui/react-slot');
 var classVarianceAuthority = require('class-variance-authority');
@@ -40,7 +40,7 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React13__namespace = /*#__PURE__*/_interopNamespace(React13);
+var React14__namespace = /*#__PURE__*/_interopNamespace(React14);
 var Link__default = /*#__PURE__*/_interopDefault(Link);
 var LabelPrimitive__namespace = /*#__PURE__*/_interopNamespace(LabelPrimitive);
 var SeparatorPrimitive__namespace = /*#__PURE__*/_interopNamespace(SeparatorPrimitive);
@@ -182,7 +182,7 @@ var buttonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var ButtonComponent = React13__namespace.forwardRef(
+var ButtonComponent = React14__namespace.forwardRef(
   ({
     className,
     variant,
@@ -195,10 +195,36 @@ var ButtonComponent = React13__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const Comp = asChild ? reactSlot.Slot : "button";
     const isDisabled = disabled || loading;
+    if (asChild) {
+      const child = React14__namespace.Children.only(children);
+      return /* @__PURE__ */ jsxRuntime.jsx(
+        reactSlot.Slot,
+        {
+          className: cn(
+            buttonVariants({ variant, size, animation }),
+            // Efeito neon especial
+            variant === "neon" && [
+              "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+              "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+              "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+              "before:transition-opacity after:transition-opacity",
+              "before:duration-300 after:duration-300"
+            ],
+            className
+          ),
+          ref,
+          "aria-busy": loading || void 0,
+          ...props,
+          children: loading ? /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "inline-flex items-center gap-2", children: [
+            loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }),
+            child
+          ] }) : child
+        }
+      );
+    }
     return /* @__PURE__ */ jsxRuntime.jsxs(
-      Comp,
+      "button",
       {
         className: cn(
           buttonVariants({ variant, size, animation }),
@@ -214,9 +240,10 @@ var ButtonComponent = React13__namespace.forwardRef(
         ),
         ref,
         disabled: isDisabled,
+        "aria-busy": loading || void 0,
         ...props,
         children: [
-          loading && /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          loading && (loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" })),
           children
         ]
       }
@@ -283,24 +310,24 @@ function onReducedMotionChange(callback) {
   };
 }
 function useSmoothScroll() {
-  const [reducedMotion, setReducedMotion] = React13.useState(false);
-  React13.useEffect(() => {
+  const [reducedMotion, setReducedMotion] = React14.useState(false);
+  React14.useEffect(() => {
     setReducedMotion(prefersReducedMotion());
     const cleanup = onReducedMotionChange((matches) => {
       setReducedMotion(matches);
     });
     return cleanup;
   }, []);
-  const scrollTo = React13.useCallback(
+  const scrollTo = React14.useCallback(
     (target, options) => {
       smoothScrollTo(target, options);
     },
     []
   );
-  const toTop = React13.useCallback(() => {
+  const toTop = React14.useCallback(() => {
     scrollToTop();
   }, []);
-  const toPosition = React13.useCallback((top, left = 0) => {
+  const toPosition = React14.useCallback((top, left = 0) => {
     scrollToPosition(left, top);
   }, []);
   return {
@@ -313,9 +340,9 @@ function useSmoothScroll() {
 }
 var SCROLL_THRESHOLD_PX = 300;
 function BackToTopButton() {
-  const [isButtonVisible, setIsButtonVisible] = React13.useState(false);
+  const [isButtonVisible, setIsButtonVisible] = React14.useState(false);
   const { scrollToTop: scrollToTop2, reducedMotion } = useSmoothScroll();
-  React13.useEffect(() => {
+  React14.useEffect(() => {
     const handleScrollEvent = () => {
       setIsButtonVisible(window.scrollY > SCROLL_THRESHOLD_PX);
     };
@@ -346,7 +373,7 @@ var MOTION = {
     DEFAULT: "transition-all duration-200 ease-in-out"}};
 var GRADIENT_DIRECTIONS = {
   TO_BOTTOM_RIGHT: "to-br"};
-var Card = React13__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Card = React14__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -358,7 +385,7 @@ var Card = React13__namespace.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React13__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardHeader = React14__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -367,7 +394,7 @@ var CardHeader = React13__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React13__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardTitle = React14__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h3",
   {
     ref,
@@ -379,7 +406,7 @@ var CardTitle = React13__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React13__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardDescription = React14__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "p",
   {
     ref,
@@ -388,9 +415,9 @@ var CardDescription = React13__namespace.forwardRef(({ className, ...props }, re
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React13__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React14__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React13__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardFooter = React14__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -399,7 +426,7 @@ var CardFooter = React13__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 CardFooter.displayName = "CardFooter";
-var HighlightCard = React13__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var HighlightCard = React14__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -429,7 +456,7 @@ HighlightCard.displayName = "HighlightCard";
 var labelVariants = classVarianceAuthority.cva(
   "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-cyan-200 dark:font-mono"
 );
-var Label = React13__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Label = React14__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   LabelPrimitive__namespace.Root,
   {
     ref,
@@ -438,7 +465,7 @@ var Label = React13__namespace.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 Label.displayName = LabelPrimitive__namespace.Root.displayName;
-var Separator = React13__namespace.forwardRef(
+var Separator = React14__namespace.forwardRef(
   ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     SeparatorPrimitive__namespace.Root,
     {
@@ -456,7 +483,7 @@ var Separator = React13__namespace.forwardRef(
   )
 );
 Separator.displayName = SeparatorPrimitive__namespace.Root.displayName;
-var Switch = React13__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Switch = React14__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SwitchPrimitives__namespace.Root,
   {
     className: cn(
@@ -572,11 +599,12 @@ var _CookieManager = class _CookieManager {
     );
     scripts.forEach((script) => script.remove());
     this.clearAnalyticsCookies();
-    if (window.dataLayer) {
-      window.dataLayer = [];
+    const win = window;
+    if (win.dataLayer) {
+      win.dataLayer = [];
     }
-    if (window.gtag) {
-      delete window.gtag;
+    if (win.gtag) {
+      delete win.gtag;
     }
   }
   clearAnalyticsCookies() {
@@ -618,10 +646,10 @@ function getCookieManager() {
 }
 var NextLink = Link__default.default;
 function CookieBanner() {
-  const [showBanner, setShowBanner] = React13.useState(false);
-  const [canShowBanner, setCanShowBanner] = React13.useState(false);
-  const [showCustomize, setShowCustomize] = React13.useState(false);
-  const [preferences, setPreferences] = React13.useState({
+  const [showBanner, setShowBanner] = React14.useState(false);
+  const [canShowBanner, setCanShowBanner] = React14.useState(false);
+  const [showCustomize, setShowCustomize] = React14.useState(false);
+  const [preferences, setPreferences] = React14.useState({
     essential: true,
     // Sempre verdadeiro, não pode ser desabilitado
     performance: true,
@@ -629,7 +657,7 @@ function CookieBanner() {
     analytics: true
   });
   const cookieManager = getCookieManager();
-  React13.useEffect(() => {
+  React14.useEffect(() => {
     if (typeof globalThis.window === "undefined") return;
     if (cookieManager.hasConsent()) {
       const savedPreferences = cookieManager.getPreferences();
@@ -644,11 +672,11 @@ function CookieBanner() {
       }
     }
   }, [cookieManager]);
-  const hasShownBannerRef = React13.useRef(false);
-  const scrollThresholdRef = React13.useRef(0);
-  const scrollTimeoutRef = React13.useRef(null);
-  const mouseTimeoutRef = React13.useRef(null);
-  React13.useEffect(() => {
+  const hasShownBannerRef = React14.useRef(false);
+  const scrollThresholdRef = React14.useRef(0);
+  const scrollTimeoutRef = React14.useRef(null);
+  const mouseTimeoutRef = React14.useRef(null);
+  React14.useEffect(() => {
     if (typeof globalThis.window === "undefined" || !canShowBanner || hasShownBannerRef.current)
       return;
     const heroHeight = globalThis.window.innerHeight;
@@ -1086,20 +1114,20 @@ function CookieBanner() {
 }
 function useTheme() {
   const { theme, resolvedTheme, setTheme } = nextThemes.useTheme();
-  const toggle = React13__namespace.useCallback(() => {
+  const toggle = React14__namespace.useCallback(() => {
     if (theme === "system") {
       setTheme(resolvedTheme === "dark" ? "light" : "dark");
     } else {
       setTheme(theme === "dark" ? "light" : "dark");
     }
   }, [theme, resolvedTheme, setTheme]);
-  const setLight = React13__namespace.useCallback(() => {
+  const setLight = React14__namespace.useCallback(() => {
     setTheme("light");
   }, [setTheme]);
-  const setDark = React13__namespace.useCallback(() => {
+  const setDark = React14__namespace.useCallback(() => {
     setTheme("dark");
   }, [setTheme]);
-  const setSystem = React13__namespace.useCallback(() => {
+  const setSystem = React14__namespace.useCallback(() => {
     setTheme("system");
   }, [setTheme]);
   return {
@@ -1117,8 +1145,8 @@ function useTheme() {
 }
 function ThemeToggle({ className }) {
   const { toggle, isDark } = useTheme();
-  const [mounted, setMounted] = React13__namespace.useState(false);
-  React13__namespace.useEffect(() => {
+  const [mounted, setMounted] = React14__namespace.useState(false);
+  React14__namespace.useEffect(() => {
     setMounted(true);
   }, []);
   const handleToggle = () => {
@@ -1196,13 +1224,13 @@ function ThemeToggle({ className }) {
   );
 }
 function usePWA() {
-  const [deferredPrompt, setDeferredPrompt] = React13.useState(null);
-  const [isInstallable, setIsInstallable] = React13.useState(false);
-  const [isInstalled, setIsInstalled] = React13.useState(false);
-  const [isStandalone, setIsStandalone] = React13.useState(false);
-  const [updateAvailable, setUpdateAvailable] = React13.useState(false);
-  const [swRegistration, setSwRegistration] = React13.useState(null);
-  React13.useEffect(() => {
+  const [deferredPrompt, setDeferredPrompt] = React14.useState(null);
+  const [isInstallable, setIsInstallable] = React14.useState(false);
+  const [isInstalled, setIsInstalled] = React14.useState(false);
+  const [isStandalone, setIsStandalone] = React14.useState(false);
+  const [updateAvailable, setUpdateAvailable] = React14.useState(false);
+  const [swRegistration, setSwRegistration] = React14.useState(null);
+  React14.useEffect(() => {
     if (typeof window === "undefined" || !("serviceWorker" in navigator)) {
       return;
     }
@@ -1224,9 +1252,10 @@ function usePWA() {
     }).catch(() => {
     });
   }, []);
-  React13.useEffect(() => {
+  React14.useEffect(() => {
     if (typeof window === "undefined") return;
-    const isStandaloneiOS = window.navigator.standalone === true;
+    const nav = window.navigator;
+    const isStandaloneiOS = nav.standalone === true;
     const isStandaloneAndroid = window.matchMedia(
       "(display-mode: standalone)"
     ).matches;
@@ -1237,7 +1266,7 @@ function usePWA() {
     setIsStandalone(standalone);
     setIsInstalled(standalone);
   }, []);
-  React13.useEffect(() => {
+  React14.useEffect(() => {
     if (typeof window === "undefined") return;
     const handleBeforeInstallPrompt = (e) => {
       e.preventDefault();
@@ -1259,7 +1288,7 @@ function usePWA() {
       window.removeEventListener("appinstalled", handleAppInstalled);
     };
   }, []);
-  const promptInstall = React13.useCallback(async () => {
+  const promptInstall = React14.useCallback(async () => {
     if (!deferredPrompt) {
       return;
     }
@@ -1268,7 +1297,7 @@ function usePWA() {
     setDeferredPrompt(null);
     setIsInstallable(false);
   }, [deferredPrompt]);
-  const updateServiceWorker = React13.useCallback(() => {
+  const updateServiceWorker = React14.useCallback(() => {
     if (!swRegistration || !swRegistration.waiting) {
       return;
     }
@@ -1288,13 +1317,13 @@ function usePWA() {
 }
 function InstallPrompt() {
   const { resolvedTheme } = nextThemes.useTheme();
-  const [mounted, setMounted] = React13.useState(false);
+  const [mounted, setMounted] = React14.useState(false);
   const { isInstallable, isStandalone, promptInstall } = usePWA();
-  const [showPrompt, setShowPrompt] = React13.useState(false);
-  React13.useEffect(() => {
+  const [showPrompt, setShowPrompt] = React14.useState(false);
+  React14.useEffect(() => {
     setMounted(true);
   }, []);
-  React13.useEffect(() => {
+  React14.useEffect(() => {
     if (typeof window === "undefined") return;
     const dismissed = localStorage.getItem("pwa-install-dismissed");
     if (isInstallable && !isStandalone && !dismissed) {
@@ -1424,9 +1453,9 @@ function InstallPrompt() {
 }
 function UpdateNotification() {
   const { resolvedTheme } = nextThemes.useTheme();
-  const [mounted, setMounted] = React13.useState(false);
+  const [mounted, setMounted] = React14.useState(false);
   const { updateAvailable, updateServiceWorker } = usePWA();
-  React13.useEffect(() => {
+  React14.useEffect(() => {
     setMounted(true);
   }, []);
   const isDark = mounted ? resolvedTheme === "dark" : false;
@@ -1518,22 +1547,33 @@ function UpdateNotification() {
     )
   );
 }
-function LoadingScreen({ progress, currentStep }) {
-  const [displayedProgress, setDisplayedProgress] = React13.useState(0);
-  const [stars, setStars] = React13.useState([]);
-  const [mounted, setMounted] = React13.useState(false);
+var TokensContext = React14__namespace.createContext(null);
+function useTokens() {
+  const context = React14__namespace.useContext(TokensContext);
+  if (!context) {
+    throw new Error(
+      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
+    );
+  }
+  return context;
+}
+function LoadingScreen({ progress = 0, currentStep = "Inicializando..." }) {
+  const [displayedProgress, setDisplayedProgress] = React14.useState(0);
+  const [stars, setStars] = React14.useState([]);
+  const [mounted, setMounted] = React14.useState(false);
   const { theme, systemTheme } = nextThemes.useTheme();
-  React13.useEffect(() => {
+  const { getColor } = useTokens();
+  React14.useEffect(() => {
     setMounted(true);
   }, []);
   const currentTheme = mounted ? theme === "system" ? systemTheme : theme : "light";
   const isDark = currentTheme === "dark";
-  const primaryColor = isDark ? designTokens.tokens.primitives.color.blue["400"] : designTokens.tokens.primitives.color.blue["600"];
-  const secondaryColor = isDark ? designTokens.tokens.primitives.color.purple["400"] : designTokens.tokens.primitives.color.purple["600"];
-  const accentColor = isDark ? designTokens.tokens.primitives.color.red["400"] : designTokens.tokens.primitives.color.red["600"];
+  const primaryColor = isDark ? getColor("primitives.colors.blue.400", "#60a5fa") : getColor("primitives.colors.blue.600", "#2563eb");
+  const secondaryColor = isDark ? getColor("primitives.colors.purple.400", "#c084fc") : getColor("primitives.colors.purple.600", "#7c3aed");
+  const accentColor = isDark ? getColor("primitives.colors.red.400", "#f87171") : getColor("primitives.colors.red.600", "#dc2626");
   const primaryRGB = hexToRGB(primaryColor);
   const secondaryRGB = hexToRGB(secondaryColor);
-  React13.useEffect(() => {
+  React14.useEffect(() => {
     const starsCount = 100;
     const newStars = Array.from({ length: starsCount }, (_, i) => ({
       id: i,
@@ -1545,7 +1585,7 @@ function LoadingScreen({ progress, currentStep }) {
     }));
     setStars(newStars);
   }, []);
-  React13.useEffect(() => {
+  React14.useEffect(() => {
     if (progress === void 0) {
       setDisplayedProgress(0);
       return;
@@ -1761,8 +1801,8 @@ function PageHeader({ title, description, children }) {
   );
 }
 function TokensDemo() {
-  const [mounted, setMounted] = React13.useState(false);
-  React13.useEffect(() => {
+  const [mounted, setMounted] = React14.useState(false);
+  React14.useEffect(() => {
     setMounted(true);
   }, []);
   if (!mounted) return null;
@@ -1839,7 +1879,7 @@ function TokensDemo() {
     ] })
   ] });
 }
-var VisuallyHidden = React13__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var VisuallyHidden = React14__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "span",
   {
     ref,
@@ -1876,7 +1916,7 @@ var kbdVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Kbd = React13__namespace.forwardRef(
+var Kbd = React14__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1896,7 +1936,7 @@ var Kbd = React13__namespace.forwardRef(
   }
 );
 Kbd.displayName = "Kbd";
-var KbdCombo = React13__namespace.forwardRef(
+var KbdCombo = React14__namespace.forwardRef(
   ({
     className,
     keys,
@@ -1911,7 +1951,7 @@ var KbdCombo = React13__namespace.forwardRef(
         ref,
         className: cn("flex items-center gap-1", className),
         ...props,
-        children: keys.map((key, index) => /* @__PURE__ */ jsxRuntime.jsxs(React13__namespace.Fragment, { children: [
+        children: keys.map((key, index) => /* @__PURE__ */ jsxRuntime.jsxs(React14__namespace.Fragment, { children: [
           index > 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-muted-foreground text-xs font-normal", children: separator }),
           /* @__PURE__ */ jsxRuntime.jsx(Kbd, { size, variant, children: key })
         ] }, index))
@@ -1995,7 +2035,7 @@ var codeVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Code = React13__namespace.forwardRef(
+var Code = React14__namespace.forwardRef(
   ({
     className,
     variant = "inline",
@@ -2008,9 +2048,9 @@ var Code = React13__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [copied, setCopied] = React13__namespace.useState(false);
-    const codeRef = React13__namespace.useRef(null);
-    const handleCopy = React13__namespace.useCallback(async () => {
+    const [copied, setCopied] = React14__namespace.useState(false);
+    const codeRef = React14__namespace.useRef(null);
+    const handleCopy = React14__namespace.useCallback(async () => {
       if (codeRef.current) {
         const text = codeRef.current.textContent || "";
         await navigator.clipboard.writeText(text);
@@ -2071,17 +2111,18 @@ var Code = React13__namespace.forwardRef(
   }
 );
 Code.displayName = "Code";
-var CodeInline = React13__namespace.forwardRef(
+var CodeInline = React14__namespace.forwardRef(
   ({
     className,
     color = "default",
     ...props
   }, ref) => {
+    const resolvedVariant = color === "default" ? "inline" : color;
     return /* @__PURE__ */ jsxRuntime.jsx(
       Code,
       {
         ref,
-        variant: color,
+        variant: resolvedVariant,
         className,
         ...props
       }
@@ -2089,7 +2130,7 @@ var CodeInline = React13__namespace.forwardRef(
   }
 );
 CodeInline.displayName = "CodeInline";
-var CodeBlock = React13__namespace.forwardRef(
+var CodeBlock = React14__namespace.forwardRef(
   ({
     className,
     ...props
@@ -2136,7 +2177,7 @@ var quoteVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Quote = React13__namespace.forwardRef(
+var Quote = React14__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -2187,7 +2228,7 @@ var Quote = React13__namespace.forwardRef(
   }
 );
 Quote.displayName = "Quote";
-var QuoteTestimonial = React13__namespace.forwardRef(
+var QuoteTestimonial = React14__namespace.forwardRef(
   ({
     className,
     author,
@@ -2241,7 +2282,7 @@ var QuoteTestimonial = React13__namespace.forwardRef(
   }
 );
 QuoteTestimonial.displayName = "QuoteTestimonial";
-var QuoteBlock = React13__namespace.forwardRef(
+var QuoteBlock = React14__namespace.forwardRef(
   ({
     className,
     children,
@@ -2292,7 +2333,7 @@ var aspectRatioBoxVariants = classVarianceAuthority.cva(
     }
   }
 );
-var AspectRatioBox = React13__namespace.forwardRef(
+var AspectRatioBox = React14__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -2301,13 +2342,13 @@ var AspectRatioBox = React13__namespace.forwardRef(
     objectFit = "cover",
     ...props
   }, ref) => {
-    const resolvedRatio = React13__namespace.useMemo(() => {
+    const resolvedRatio = React14__namespace.useMemo(() => {
       if (typeof ratio === "string" && ratio in ASPECT_RATIOS) {
         return ASPECT_RATIOS[ratio];
       }
       return ratio;
     }, [ratio]);
-    const paddingBottom = React13__namespace.useMemo(() => {
+    const paddingBottom = React14__namespace.useMemo(() => {
       const [width, height] = resolvedRatio.split("/").map(Number);
       return `${height / width * 100}%`;
     }, [resolvedRatio]);
@@ -2323,7 +2364,7 @@ var AspectRatioBox = React13__namespace.forwardRef(
         className: cn(aspectRatioBoxVariants({ variant }), className),
         style: { paddingBottom },
         ...props,
-        children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute inset-0", children: React13__namespace.isValidElement(children) ? React13__namespace.cloneElement(children, {
+        children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute inset-0", children: React14__namespace.isValidElement(children) ? React14__namespace.cloneElement(children, {
           className: cn(
             objectFitClasses[objectFit],
             children.props.className
@@ -2334,7 +2375,7 @@ var AspectRatioBox = React13__namespace.forwardRef(
   }
 );
 AspectRatioBox.displayName = "AspectRatioBox";
-var AspectRatioImage = React13__namespace.forwardRef(
+var AspectRatioImage = React14__namespace.forwardRef(
   ({
     className,
     ratio = "square",
@@ -2349,14 +2390,14 @@ var AspectRatioImage = React13__namespace.forwardRef(
         ref,
         src,
         alt,
-        className: "w-full h-full object-cover",
+        className: cn("w-full h-full object-cover", className),
         ...props
       }
     ) });
   }
 );
 AspectRatioImage.displayName = "AspectRatioImage";
-var AspectRatioVideo = React13__namespace.forwardRef(
+var AspectRatioVideo = React14__namespace.forwardRef(
   ({
     className,
     ratio = "video",
@@ -2367,14 +2408,14 @@ var AspectRatioVideo = React13__namespace.forwardRef(
       "video",
       {
         ref,
-        className: "w-full h-full object-cover",
+        className: cn("w-full h-full object-cover", className),
         ...props
       }
     ) });
   }
 );
 AspectRatioVideo.displayName = "AspectRatioVideo";
-var AspectRatioIframe = React13__namespace.forwardRef(
+var AspectRatioIframe = React14__namespace.forwardRef(
   ({
     className,
     ratio = "video",
@@ -2385,7 +2426,7 @@ var AspectRatioIframe = React13__namespace.forwardRef(
       "iframe",
       {
         ref,
-        className: "w-full h-full",
+        className: cn("w-full h-full", className),
         ...props
       }
     ) });
@@ -2412,7 +2453,7 @@ var centerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Center = React13__namespace.forwardRef(
+var Center = React14__namespace.forwardRef(
   ({
     className,
     direction = "both",
@@ -2425,7 +2466,7 @@ var Center = React13__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const centerStyle = React13__namespace.useMemo(() => {
+    const centerStyle = React14__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (padding !== void 0) {
         customStyle.padding = typeof padding === "number" ? `${padding}px` : padding;
@@ -2454,7 +2495,7 @@ var Center = React13__namespace.forwardRef(
   }
 );
 Center.displayName = "Center";
-var CenterInline = React13__namespace.forwardRef(
+var CenterInline = React14__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Center,
@@ -2467,7 +2508,7 @@ var CenterInline = React13__namespace.forwardRef(
   }
 );
 CenterInline.displayName = "CenterInline";
-var CenterScreen = React13__namespace.forwardRef(
+var CenterScreen = React14__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Center,
@@ -2482,7 +2523,7 @@ var CenterScreen = React13__namespace.forwardRef(
   }
 );
 CenterScreen.displayName = "CenterScreen";
-var CenterText = React13__namespace.forwardRef(
+var CenterText = React14__namespace.forwardRef(
   ({
     className,
     align = "center",

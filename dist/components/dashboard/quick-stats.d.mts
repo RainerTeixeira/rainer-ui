@@ -1,4 +1,6 @@
 import React__default from 'react';
+import { MetricCardItem } from './stats-cards.mjs';
+import 'react/jsx-runtime';
 
 /**
  * Componente de Estatísticas Rápidas para Dashboard
@@ -49,18 +51,13 @@ import React__default from 'react';
  * @property {string | number} value - Valor atual da métrica (pode ser formatado)
  * @property {number} [change] - Variação percentual em relação ao período anterior
  * @property {React.ReactNode} icon - Elemento React contendo o ícone da métrica
- * @property {string} color - Classes CSS do gradiente de cor (formato Tailwind)
+ * @property {string} [accentKey] - Caminho de cor nos tokens (ex: status.success.base)
+ * @property {string} [accentColor] - Cor direta caso não use token
+ * @property {string} [secondaryColor] - Cor secundária para gradiente/fundo
  * @property {string} [description] - Texto explicativo adicional (opcional)
  * @property {boolean} [isLoading] - Indica se os dados estão sendo carregados
  */
-interface StatItem {
-    label: string;
-    value: string | number;
-    change?: number;
-    icon: React__default.ReactNode;
-    color: string;
-    description?: string;
-    isLoading?: boolean;
+interface StatItem extends MetricCardItem {
 }
 /**
  * Propriedades do componente QuickStats
@@ -75,10 +72,25 @@ interface StatItem {
 interface QuickStatsProps {
     stats?: StatItem[];
     animationDelay?: number;
-    animateOnView?: boolean;
     className?: string;
     theme?: 'light' | 'dark' | 'auto';
 }
+/**
+ * Estatísticas padrão do dashboard (mapeadas para tokens)
+ *
+ * @constant {ReadonlyArray<StatItem>}
+ *
+ * @example
+ * // Estrutura de exemplo:
+ * {
+ *   label: 'Total de Posts',
+ *   value: 42,
+ *   change: 12.5,
+ *   icon: <FileText />,
+ *   color: 'from-cyan-500 to-blue-500',
+ *   description: 'Artigos publicados no blog'
+ * }
+ */
 /**
  * Componente QuickStats
  *

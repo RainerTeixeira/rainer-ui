@@ -26,11 +26,12 @@
 
 export * from './checkbox';
 // export * from './form'; // Excluído do bundle principal - usar import direto de '@rainersoft/ui/components/forms/form' ou 'react-hook-form'
-export * from './input';
+// Input/Textarea já exportados via '@rainersoft/ui/ui'
+// export * from './input';
 export * from './label';
 export * from './radio-group';
 export * from './select';
-export * from './textarea';
+// export * from './textarea';
 export * from './file-upload';
 export * from './date-picker';
 export * from './time-picker';

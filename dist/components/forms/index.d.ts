@@ -1,9 +1,7 @@
 export { Checkbox } from './checkbox.js';
-export { Input } from './input.js';
 export { Label } from './label.js';
 export { RadioGroup, RadioGroupItem } from './radio-group.js';
 export { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, SelectTrigger, SelectValue } from './select.js';
-export { Textarea } from './textarea.js';
 export { FileItem, FileUpload, FileUploadProps } from './file-upload.js';
 export { DatePicker, DatePickerProps, DateRange } from './date-picker.js';
 export { TimePicker, TimePickerProps, TimeValue } from './time-picker.js';
@@ -12,7 +10,6 @@ export { SearchInput, SearchInputProps, SearchSuggestion } from './search-input.
 export { Country, PhoneInput, PhoneInputProps } from './phone-input.js';
 import 'react';
 import '@radix-ui/react-checkbox';
-import 'react/jsx-runtime';
 import 'class-variance-authority/types';
 import '@radix-ui/react-label';
 import 'class-variance-authority';

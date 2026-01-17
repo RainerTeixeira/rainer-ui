@@ -178,27 +178,27 @@ function TokensProvider({ tokens: customTokens, children }) {
   const getMotion = React.useCallback((type, key, fallback = "") => {
     return tokens.primitives?.motion?.[type]?.[key] ?? fallback;
   }, [tokens]);
+  const getGradient = React.useCallback((key, fallback = "") => {
+    const value2 = tokens.primitives?.gradients?.[key];
+    return typeof value2 === "string" ? value2 : fallback;
+  }, [tokens]);
   const value = React.useMemo(() => ({
     tokens,
     getColor,
     getSpacing,
     getRadius,
     getShadow,
-    getMotion
-  }), [tokens, getColor, getSpacing, getRadius, getShadow, getMotion]);
+    getMotion,
+    getGradient
+  }), [tokens, getColor, getSpacing, getRadius, getShadow, getMotion, getGradient]);
   return /* @__PURE__ */ jsx(TokensContext.Provider, { value, children });
 }
 function useTokens() {
   const context = React.useContext(TokensContext);
   if (!context) {
-    return {
-      tokens: DEFAULT_TOKENS,
-      getColor: (path, fallback = "#000000") => getNestedValue(DEFAULT_TOKENS.primitives?.colors, path, fallback) || getNestedValue(DEFAULT_TOKENS.semantics, path, fallback),
-      getSpacing: (key, fallback = "0") => DEFAULT_TOKENS.primitives?.spacing?.[key] ?? fallback,
-      getRadius: (key, fallback = "0") => DEFAULT_TOKENS.primitives?.radius?.[key] ?? fallback,
-      getShadow: (key, fallback = "none") => DEFAULT_TOKENS.primitives?.shadows?.[key] ?? fallback,
-      getMotion: (type, key, fallback = "") => DEFAULT_TOKENS.primitives?.motion?.[type]?.[key] ?? fallback
-    };
+    throw new Error(
+      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
+    );
   }
   return context;
 }

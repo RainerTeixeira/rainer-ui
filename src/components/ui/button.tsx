@@ -118,12 +118,45 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, ButtonProps>(
     children,
     ...props
   }, ref) => {
-    const Comp = asChild ? Slot : 'button';
-    
     const isDisabled = disabled || loading;
 
+    // Quando usamos Slot (asChild), precisamos garantir apenas um filho direto
+    if (asChild) {
+      const child = React.Children.only(children as React.ReactElement);
+      return (
+        <Slot
+          className={cn(
+            buttonVariants({ variant, size, animation }),
+            // Efeito neon especial
+            variant === 'neon' && [
+              'before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20',
+              'after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0',
+              'hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl',
+              'before:transition-opacity after:transition-opacity',
+              'before:duration-300 after:duration-300',
+            ],
+            className
+          )}
+          ref={ref}
+          aria-busy={loading || undefined}
+          {...props}
+        >
+          {loading ? (
+            <div className="inline-flex items-center gap-2">
+              {loadingIcon || (
+                <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+              )}
+              {child}
+            </div>
+          ) : (
+            child
+          )}
+        </Slot>
+      );
+    }
+
     return (
-      <Comp
+      <button
         className={cn(
           buttonVariants({ variant, size, animation }),
           // Efeito neon especial
@@ -138,17 +171,16 @@ const ButtonComponent = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         ref={ref}
         disabled={isDisabled}
+        aria-busy={loading || undefined}
         {...props}
       >
         {loading && (
-          <>
-            {loadingIcon || (
-              <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-            )}
-          </>
+          loadingIcon || (
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+          )
         )}
         {children}
-      </Comp>
+      </button>
     );
   }
 );

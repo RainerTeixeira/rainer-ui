@@ -145,7 +145,7 @@ export const ConfirmDialog = React.forwardRef<HTMLDivElement, ConfirmDialogProps
       confirmVariant = 'default',
       // props, // Props adicionais não utilizados
     },
-    // ref, // TODO: implementar ref forwarding
+    ref
   ) => {
     const [internalLoading, setInternalLoading] = React.useState(false);
     const isLoading = loading || internalLoading;
@@ -244,7 +244,7 @@ export const ConfirmDialog = React.forwardRef<HTMLDivElement, ConfirmDialogProps
 
         {/* Dialog */}
         <div
-          // ref={ref} // TODO: implementar ref forwarding
+          ref={ref}
           className={cn(
             confirmDialogVariants({ variant, size }),
             'relative z-10 p-6 animate-in fade-in-0 zoom-in-95 duration-[var(--motion-duration-normal)]',

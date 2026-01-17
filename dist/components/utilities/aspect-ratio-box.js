@@ -184,7 +184,7 @@ var AspectRatioImage = React__namespace.forwardRef(
         ref,
         src,
         alt,
-        className: "w-full h-full object-cover",
+        className: cn("w-full h-full object-cover", className),
         ...props
       }
     ) });
@@ -202,7 +202,7 @@ var AspectRatioVideo = React__namespace.forwardRef(
       "video",
       {
         ref,
-        className: "w-full h-full object-cover",
+        className: cn("w-full h-full object-cover", className),
         ...props
       }
     ) });
@@ -220,7 +220,7 @@ var AspectRatioIframe = React__namespace.forwardRef(
       "iframe",
       {
         ref,
-        className: "w-full h-full",
+        className: cn("w-full h-full", className),
         ...props
       }
     ) });

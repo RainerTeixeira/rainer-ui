@@ -24,7 +24,9 @@
 // ============================================================================
 
 export * from './aspect-ratio';
-export * from './card';
+export * from './breadcrumb';
+// Card já exportado via '@rainersoft/ui/ui'
+// export * from './card';
 export * from './scroll-area';
 export * from './separator';
 export * from './sheet';

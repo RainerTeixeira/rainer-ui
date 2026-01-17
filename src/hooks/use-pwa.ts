@@ -63,7 +63,8 @@ export function usePWA() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    const isStandaloneiOS = (window.navigator as any).standalone === true;
+    const nav = window.navigator as Navigator & { standalone?: boolean };
+    const isStandaloneiOS = nav.standalone === true;
     const isStandaloneAndroid = window.matchMedia(
       '(display-mode: standalone)'
     ).matches;

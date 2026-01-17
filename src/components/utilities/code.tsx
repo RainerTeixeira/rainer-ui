@@ -225,9 +225,9 @@ Code.displayName = 'Code';
 /**
  * CodeInline - Atalho para código inline
  */
-export interface CodeInlineProps extends Omit<CodeProps, 'variant'> {
-  /** Variante de cor */
-  color?: 'default' | 'ghost' | 'neon' | 'success' | 'warning' | 'error';
+export interface CodeInlineProps extends React.HTMLAttributes<HTMLElement> {
+  className?: string;
+  color?: 'default' | Exclude<VariantProps<typeof codeVariants>['variant'], 'block'>;
 }
 
 export const CodeInline = React.forwardRef<HTMLElement, CodeInlineProps>(
@@ -239,10 +239,11 @@ export const CodeInline = React.forwardRef<HTMLElement, CodeInlineProps>(
     },
     ref
   ) => {
+    const resolvedVariant = color === 'default' ? 'inline' : color;
     return (
       <Code
         ref={ref}
-        variant={color as any}
+        variant={resolvedVariant}
         className={className}
         {...props}
       />

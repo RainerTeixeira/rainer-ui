@@ -6,7 +6,7 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes do Panel
  */
 declare const panelVariants: (props?: {
-    variant?: "default" | "ghost" | "neon" | "glass" | "outlined" | "gradient" | "elevated";
+    variant?: "default" | "ghost" | "neon" | "glass" | "elevated" | "outlined" | "gradient";
     size?: "sm" | "md" | "lg" | "xl";
     padding?: "sm" | "md" | "lg" | "xl" | "none";
     radius?: "sm" | "md" | "lg" | "xl" | "none" | "full";

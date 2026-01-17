@@ -22,6 +22,7 @@ export { QuickStats } from './quick-stats';
 export { QuickActions } from './quick-actions';
 
 export { AnalyticsOverview } from './analytics-overview';
+export { StatsOverview } from './stats-overview';
 
 export { RecentPostsList } from './recent-posts-list';
 

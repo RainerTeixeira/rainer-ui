@@ -1,4 +1,4 @@
-import * as React9 from 'react';
+import * as React8 from 'react';
 import { cva } from 'class-variance-authority';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -6,7 +6,6 @@ import { tokens } from '@rainersoft/design-tokens';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import { Slot } from '@radix-ui/react-slot';
-import * as ProgressPrimitive from '@radix-ui/react-progress';
 import { useTheme } from 'next-themes';
 import { Toaster as Toaster$1 } from 'sonner';
 export { Toaster as Sonner } from 'sonner';
@@ -118,7 +117,7 @@ var alertVariants = cva(
     }
   }
 );
-var Alert = React9.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsx(
+var Alert = React8.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -128,7 +127,7 @@ var Alert = React9.forwardRef(({ className, variant, ...props }, ref) => /* @__P
   }
 ));
 Alert.displayName = "Alert";
-var AlertTitle = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertTitle = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h5",
   {
     ref,
@@ -137,7 +136,7 @@ var AlertTitle = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 AlertTitle.displayName = "AlertTitle";
-var AlertDescription = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDescription = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -187,7 +186,7 @@ var buttonVariants = cva(
     }
   }
 );
-var ButtonComponent = React9.forwardRef(
+var ButtonComponent = React8.forwardRef(
   ({
     className,
     variant,
@@ -200,10 +199,36 @@ var ButtonComponent = React9.forwardRef(
     children,
     ...props
   }, ref) => {
-    const Comp = asChild ? Slot : "button";
     const isDisabled = disabled || loading;
+    if (asChild) {
+      const child = React8.Children.only(children);
+      return /* @__PURE__ */ jsx(
+        Slot,
+        {
+          className: cn(
+            buttonVariants({ variant, size, animation }),
+            // Efeito neon especial
+            variant === "neon" && [
+              "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+              "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+              "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+              "before:transition-opacity after:transition-opacity",
+              "before:duration-300 after:duration-300"
+            ],
+            className
+          ),
+          ref,
+          "aria-busy": loading || void 0,
+          ...props,
+          children: loading ? /* @__PURE__ */ jsxs("div", { className: "inline-flex items-center gap-2", children: [
+            loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }),
+            child
+          ] }) : child
+        }
+      );
+    }
     return /* @__PURE__ */ jsxs(
-      Comp,
+      "button",
       {
         className: cn(
           buttonVariants({ variant, size, animation }),
@@ -219,9 +244,10 @@ var ButtonComponent = React9.forwardRef(
         ),
         ref,
         disabled: isDisabled,
+        "aria-busy": loading || void 0,
         ...props,
         children: [
-          loading && /* @__PURE__ */ jsx(Fragment, { children: loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          loading && (loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" })),
           children
         ]
       }
@@ -233,7 +259,7 @@ var Button = ButtonComponent;
 var AlertDialog = AlertDialogPrimitive.Root;
 var AlertDialogTrigger = AlertDialogPrimitive.Trigger;
 var AlertDialogPortal = AlertDialogPrimitive.Portal;
-var AlertDialogOverlay = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogOverlay = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Overlay,
   {
     className: cn(
@@ -245,7 +271,7 @@ var AlertDialogOverlay = React9.forwardRef(({ className, ...props }, ref) => /* 
   }
 ));
 AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName;
-var AlertDialogContent = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(AlertDialogPortal, { children: [
+var AlertDialogContent = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(AlertDialogPortal, { children: [
   /* @__PURE__ */ jsx(AlertDialogOverlay, {}),
   /* @__PURE__ */ jsx(
     AlertDialogPrimitive.Content,
@@ -288,7 +314,7 @@ var AlertDialogFooter = ({
   }
 );
 AlertDialogFooter.displayName = "AlertDialogFooter";
-var AlertDialogTitle = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogTitle = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Title,
   {
     ref,
@@ -297,7 +323,7 @@ var AlertDialogTitle = React9.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName;
-var AlertDialogDescription = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogDescription = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Description,
   {
     ref,
@@ -306,7 +332,7 @@ var AlertDialogDescription = React9.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 AlertDialogDescription.displayName = AlertDialogPrimitive.Description.displayName;
-var AlertDialogAction = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogAction = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Action,
   {
     ref,
@@ -315,7 +341,7 @@ var AlertDialogAction = React9.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
-var AlertDialogCancel = React9.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogCancel = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Cancel,
   {
     ref,
@@ -328,55 +354,6 @@ var AlertDialogCancel = React9.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 AlertDialogCancel.displayName = AlertDialogPrimitive.Cancel.displayName;
-var badgeVariants = cva(
-  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-  {
-    /**
-     * Variantes de estilo
-     * Cada variante define aparência diferente do badge
-     */
-    variants: {
-      variant: {
-        /** Badge primário - cor primária com borda transparente */
-        default: "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
-        /** Badge secundário - cor secundária */
-        secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        /** Badge destrutivo - para status negativos/erros */
-        destructive: "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        /** Badge outline - apenas borda, fundo transparente */
-        outline: "text-foreground"
-      }
-    },
-    /**
-     * Variante padrão aplicada quando prop não é fornecida
-     */
-    defaultVariants: {
-      variant: "default"
-    }
-  }
-);
-function Badge({ className, variant, ...props }) {
-  return /* @__PURE__ */ jsx("div", { className: cn(badgeVariants({ variant }), className), ...props });
-}
-var Progress = React9.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsx(
-  ProgressPrimitive.Root,
-  {
-    ref,
-    className: cn(
-      "relative h-4 w-full overflow-hidden rounded-full bg-secondary",
-      className
-    ),
-    ...props,
-    children: /* @__PURE__ */ jsx(
-      ProgressPrimitive.Indicator,
-      {
-        className: cn("h-full w-full flex-1 transition-all", "bg-primary"),
-        style: { transform: `translateX(-${100 - (value || 0)}%)` }
-      }
-    )
-  }
-));
-Progress.displayName = "Progress";
 function Skeleton({ className, ...props }) {
   return /* @__PURE__ */ jsx(
     "div",
@@ -387,20 +364,20 @@ function Skeleton({ className, ...props }) {
     }
   );
 }
-var Toaster = React9.forwardRef((props, ref) => {
+var Toaster = React8.forwardRef((props, ref) => {
   const { theme = "system" } = useTheme();
-  return React9.createElement(
+  return React8.createElement(
     Toaster$1,
     {
       ref,
       theme,
       className: "toaster group",
       icons: {
-        success: React9.createElement(Check, { className: "h-4 w-4" }),
-        info: React9.createElement(Info, { className: "h-4 w-4" }),
-        warning: React9.createElement(AlertTriangle, { className: "h-4 w-4" }),
-        error: React9.createElement(Octagon, { className: "h-4 w-4" }),
-        loading: React9.createElement(Loader2, { className: "h-4 w-4 animate-spin" })
+        success: React8.createElement(Check, { className: "h-4 w-4" }),
+        info: React8.createElement(Info, { className: "h-4 w-4" }),
+        warning: React8.createElement(AlertTriangle, { className: "h-4 w-4" }),
+        error: React8.createElement(Octagon, { className: "h-4 w-4" }),
+        loading: React8.createElement(Loader2, { className: "h-4 w-4 animate-spin" })
       },
       toastOptions: {
         classNames: {
@@ -457,7 +434,7 @@ var speedClasses = {
   normal: "animate-spin",
   fast: "animate-spin-fast"
 };
-var Spinner = React9.forwardRef(
+var Spinner = React8.forwardRef(
   ({
     className,
     variant = "default",
@@ -510,7 +487,7 @@ var Spinner = React9.forwardRef(
   }
 );
 Spinner.displayName = "Spinner";
-var SpinnerOverlay = React9.forwardRef(
+var SpinnerOverlay = React8.forwardRef(
   ({
     className,
     fullscreen = false,
@@ -541,7 +518,7 @@ var dotSizeClasses = {
   md: "h-2 w-2",
   lg: "h-3 w-3"
 };
-var DotsSpinner = React9.forwardRef(
+var DotsSpinner = React8.forwardRef(
   ({
     className,
     count = 3,
@@ -588,7 +565,7 @@ var pulseSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var PulseSpinner = React9.forwardRef(
+var PulseSpinner = React8.forwardRef(
   ({
     className,
     rings = 3,
@@ -673,7 +650,7 @@ function formatValue(value, format, currency, decimals = 0) {
       return formatted;
   }
 }
-var KPI = React9.forwardRef(
+var KPI = React8.forwardRef(
   ({
     className,
     variant = "default",
@@ -748,7 +725,7 @@ var gridColsClasses = {
   3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
   4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
 };
-var KPIGrid = React9.forwardRef(
+var KPIGrid = React8.forwardRef(
   ({
     className,
     cols = 4,
@@ -771,7 +748,7 @@ var KPIGrid = React9.forwardRef(
   }
 );
 KPIGrid.displayName = "KPIGrid";
-var KPIChart = React9.forwardRef(
+var KPIChart = React8.forwardRef(
   ({
     className,
     chart,
@@ -839,7 +816,7 @@ var iconSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var EmptyState = React9.forwardRef(
+var EmptyState = React8.forwardRef(
   ({
     className,
     variant = "default",
@@ -896,7 +873,7 @@ var EmptyState = React9.forwardRef(
   }
 );
 EmptyState.displayName = "EmptyState";
-var EmptyStateIllustrated = React9.forwardRef(
+var EmptyStateIllustrated = React8.forwardRef(
   ({
     className,
     illustration,
@@ -1014,7 +991,7 @@ var notificationVariants = cva(
     }
   }
 );
-var Notification = React9.forwardRef(
+var Notification = React8.forwardRef(
   ({
     className,
     variant = "default",
@@ -1030,8 +1007,8 @@ var Notification = React9.forwardRef(
     toast = false,
     ...props
   }, ref) => {
-    const [visible, setVisible] = React9.useState(true);
-    React9.useEffect(() => {
+    const [visible, setVisible] = React8.useState(true);
+    React8.useEffect(() => {
       if (autoClose && onDismiss) {
         const timer = setTimeout(() => {
           handleClose();
@@ -1106,7 +1083,7 @@ var spacingClasses = {
   md: "gap-3",
   lg: "gap-4"
 };
-var NotificationGroup = React9.forwardRef(
+var NotificationGroup = React8.forwardRef(
   ({
     className,
     children,
@@ -1132,7 +1109,7 @@ var NotificationGroup = React9.forwardRef(
   }
 );
 NotificationGroup.displayName = "NotificationGroup";
-var NotificationToast = React9.forwardRef(
+var NotificationToast = React8.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Notification,
@@ -1146,8 +1123,8 @@ var NotificationToast = React9.forwardRef(
 );
 NotificationToast.displayName = "NotificationToast";
 function useNotification() {
-  const [notifications, setNotifications] = React9.useState(/* @__PURE__ */ new Map());
-  const notify = React9.useCallback((options) => {
+  const [notifications, setNotifications] = React8.useState(/* @__PURE__ */ new Map());
+  const notify = React8.useCallback((options) => {
     const id = options.id || Math.random().toString(36).substr(2, 9);
     setNotifications((prev) => new Map(prev).set(id, options));
     if (options.autoClose !== false) {
@@ -1158,14 +1135,14 @@ function useNotification() {
     }
     return id;
   }, []);
-  const dismiss = React9.useCallback((id) => {
+  const dismiss = React8.useCallback((id) => {
     setNotifications((prev) => {
       const next = new Map(prev);
       next.delete(id);
       return next;
     });
   }, []);
-  const clear = React9.useCallback(() => {
+  const clear = React8.useCallback(() => {
     setNotifications(/* @__PURE__ */ new Map());
   }, []);
   return {
@@ -1191,6 +1168,6 @@ var NotificationProvider = ({ children }) => {
   ] });
 };
 
-export { Alert, AlertDescription, AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, AlertDialogPortal, AlertDialogTitle, AlertDialogTrigger, AlertTitle, Badge, DotsSpinner, EmptyState, EmptyStateIllustrated, EmptyStatePatterns, KPI, KPIChart, KPIGrid, Notification, NotificationGroup, NotificationProvider, NotificationToast, Progress, PulseSpinner, Skeleton, Spinner, SpinnerOverlay, Toaster, badgeVariants, useNotification };
+export { Alert, AlertDescription, AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, AlertDialogPortal, AlertDialogTitle, AlertDialogTrigger, AlertTitle, DotsSpinner, EmptyState, EmptyStateIllustrated, EmptyStatePatterns, KPI, KPIChart, KPIGrid, Notification, NotificationGroup, NotificationProvider, NotificationToast, PulseSpinner, Skeleton, Spinner, SpinnerOverlay, Toaster, useNotification };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
-import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
+import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import { Overlay, Portal, Content, Close, Title, Description, Root as Root$1 } from '@radix-ui/react-dialog';
 import { X, ChevronRight, Check } from 'lucide-react';
 import { SubTrigger, SubContent, Portal as Portal$1, Content as Content$1, Item, CheckboxItem, ItemIndicator, RadioItem, Label, Separator, Root, Trigger } from '@radix-ui/react-dropdown-menu';
@@ -148,10 +148,36 @@ var ButtonComponent = React3.forwardRef(
     children,
     ...props
   }, ref) => {
-    const Comp = asChild ? Slot : "button";
     const isDisabled = disabled || loading;
+    if (asChild) {
+      const child = React3.Children.only(children);
+      return /* @__PURE__ */ jsx(
+        Slot,
+        {
+          className: cn(
+            buttonVariants({ variant, size, animation }),
+            // Efeito neon especial
+            variant === "neon" && [
+              "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+              "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+              "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+              "before:transition-opacity after:transition-opacity",
+              "before:duration-300 after:duration-300"
+            ],
+            className
+          ),
+          ref,
+          "aria-busy": loading || void 0,
+          ...props,
+          children: loading ? /* @__PURE__ */ jsxs("div", { className: "inline-flex items-center gap-2", children: [
+            loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }),
+            child
+          ] }) : child
+        }
+      );
+    }
     return /* @__PURE__ */ jsxs(
-      Comp,
+      "button",
       {
         className: cn(
           buttonVariants({ variant, size, animation }),
@@ -167,9 +193,10 @@ var ButtonComponent = React3.forwardRef(
         ),
         ref,
         disabled: isDisabled,
+        "aria-busy": loading || void 0,
         ...props,
         children: [
-          loading && /* @__PURE__ */ jsx(Fragment, { children: loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          loading && (loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" })),
           children
         ]
       }
@@ -498,7 +525,9 @@ function ShareMenu({
       title
     });
   };
-  const enabledPlatforms = DEFAULT_PLATFORMS.filter((p) => platforms.includes(p.id)).sort((a, b) => (a.order || 0) - (b.order || 0));
+  const enabledPlatforms = DEFAULT_PLATFORMS.filter(
+    (p) => platforms.includes(p.id)
+  ).sort((a, b) => (a.order || 0) - (b.order || 0));
   const TriggerButton = () => /* @__PURE__ */ jsxs(Button, { variant, size, className: cn("gap-2", className), children: [
     /* @__PURE__ */ jsx(Share2, { className: "h-4 w-4" }),
     showLabel && /* @__PURE__ */ jsx("span", { children: label })

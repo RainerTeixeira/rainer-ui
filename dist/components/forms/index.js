@@ -1,6 +1,6 @@
 'use strict';
 
-var React11 = require('react');
+var React10 = require('react');
 var CheckboxPrimitive = require('@radix-ui/react-checkbox');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
@@ -48,7 +48,7 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React11__namespace = /*#__PURE__*/_interopNamespace(React11);
+var React10__namespace = /*#__PURE__*/_interopNamespace(React10);
 var CheckboxPrimitive__namespace = /*#__PURE__*/_interopNamespace(CheckboxPrimitive);
 var LabelPrimitive__namespace = /*#__PURE__*/_interopNamespace(LabelPrimitive);
 var RadioGroupPrimitive__namespace = /*#__PURE__*/_interopNamespace(RadioGroupPrimitive);
@@ -140,7 +140,7 @@ motion.easing;
     navigation: motionSemantic.navigation.page
   }
 });
-var Checkbox = React11__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Checkbox = React10__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   CheckboxPrimitive__namespace.Root,
   {
     ref,
@@ -162,26 +162,10 @@ var Checkbox = React11__namespace.forwardRef(({ className, ...props }, ref) => /
   }
 ));
 Checkbox.displayName = CheckboxPrimitive__namespace.Root.displayName;
-function Input({ className, type, ...props }) {
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    "input",
-    {
-      type,
-      "data-slot": "input",
-      className: cn(
-        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
-        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-        className
-      ),
-      ...props
-    }
-  );
-}
 var labelVariants = classVarianceAuthority.cva(
   "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-cyan-200 dark:font-mono"
 );
-var Label = React11__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Label = React10__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   LabelPrimitive__namespace.Root,
   {
     ref,
@@ -190,7 +174,7 @@ var Label = React11__namespace.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 Label.displayName = LabelPrimitive__namespace.Root.displayName;
-var RadioGroup = React11__namespace.forwardRef(({ className, ...props }, ref) => {
+var RadioGroup = React10__namespace.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsxRuntime.jsx(
     RadioGroupPrimitive__namespace.Root,
     {
@@ -201,7 +185,7 @@ var RadioGroup = React11__namespace.forwardRef(({ className, ...props }, ref) =>
   );
 });
 RadioGroup.displayName = RadioGroupPrimitive__namespace.Root.displayName;
-var RadioGroupItem = React11__namespace.forwardRef(({ className, ...props }, ref) => {
+var RadioGroupItem = React10__namespace.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsxRuntime.jsx(
     RadioGroupPrimitive__namespace.Item,
     {
@@ -219,7 +203,7 @@ RadioGroupItem.displayName = RadioGroupPrimitive__namespace.Item.displayName;
 var Select = SelectPrimitive__namespace.Root;
 var SelectGroup = SelectPrimitive__namespace.Group;
 var SelectValue = SelectPrimitive__namespace.Value;
-var SelectTrigger = React11__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var SelectTrigger = React10__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SelectPrimitive__namespace.Trigger,
   {
     ref,
@@ -240,7 +224,7 @@ var SelectTrigger = React11__namespace.forwardRef(({ className, children, ...pro
   }
 ));
 SelectTrigger.displayName = SelectPrimitive__namespace.Trigger.displayName;
-var SelectScrollUpButton = React11__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectScrollUpButton = React10__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.ScrollUpButton,
   {
     ref,
@@ -250,7 +234,7 @@ var SelectScrollUpButton = React11__namespace.forwardRef(({ className, ...props 
   }
 ));
 SelectScrollUpButton.displayName = SelectPrimitive__namespace.ScrollUpButton.displayName;
-var SelectScrollDownButton = React11__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectScrollDownButton = React10__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.ScrollDownButton,
   {
     ref,
@@ -260,7 +244,7 @@ var SelectScrollDownButton = React11__namespace.forwardRef(({ className, ...prop
   }
 ));
 SelectScrollDownButton.displayName = SelectPrimitive__namespace.ScrollDownButton.displayName;
-var SelectContent = React11__namespace.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.Portal, { children: /* @__PURE__ */ jsxRuntime.jsxs(
+var SelectContent = React10__namespace.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.Portal, { children: /* @__PURE__ */ jsxRuntime.jsxs(
   SelectPrimitive__namespace.Content,
   {
     ref,
@@ -293,7 +277,7 @@ var SelectContent = React11__namespace.forwardRef(({ className, children, positi
   }
 ) }));
 SelectContent.displayName = SelectPrimitive__namespace.Content.displayName;
-var SelectLabel = React11__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectLabel = React10__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.Label,
   {
     ref,
@@ -302,7 +286,7 @@ var SelectLabel = React11__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 SelectLabel.displayName = SelectPrimitive__namespace.Label.displayName;
-var SelectItem = React11__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var SelectItem = React10__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SelectPrimitive__namespace.Item,
   {
     ref,
@@ -320,7 +304,7 @@ var SelectItem = React11__namespace.forwardRef(({ className, children, ...props 
   }
 ));
 SelectItem.displayName = SelectPrimitive__namespace.Item.displayName;
-var SelectSeparator = React11__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectSeparator = React10__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.Separator,
   {
     ref,
@@ -329,21 +313,6 @@ var SelectSeparator = React11__namespace.forwardRef(({ className, ...props }, re
   }
 ));
 SelectSeparator.displayName = SelectPrimitive__namespace.Separator.displayName;
-var Textarea = React11__namespace.forwardRef(({ className, ...props }, ref) => {
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    "textarea",
-    {
-      className: cn(
-        "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-        "dark:bg-background dark:border-border dark:text-foreground dark:placeholder:text-muted-foreground dark:focus-visible:ring-ring dark:focus-visible:border-border",
-        className
-      ),
-      ref,
-      ...props
-    }
-  );
-});
-Textarea.displayName = "Textarea";
 var buttonVariants = classVarianceAuthority.cva(
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {
@@ -385,7 +354,7 @@ var buttonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var ButtonComponent = React11__namespace.forwardRef(
+var ButtonComponent = React10__namespace.forwardRef(
   ({
     className,
     variant,
@@ -398,10 +367,36 @@ var ButtonComponent = React11__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const Comp = asChild ? reactSlot.Slot : "button";
     const isDisabled = disabled || loading;
+    if (asChild) {
+      const child = React10__namespace.Children.only(children);
+      return /* @__PURE__ */ jsxRuntime.jsx(
+        reactSlot.Slot,
+        {
+          className: cn(
+            buttonVariants({ variant, size, animation }),
+            // Efeito neon especial
+            variant === "neon" && [
+              "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+              "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+              "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+              "before:transition-opacity after:transition-opacity",
+              "before:duration-300 after:duration-300"
+            ],
+            className
+          ),
+          ref,
+          "aria-busy": loading || void 0,
+          ...props,
+          children: loading ? /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "inline-flex items-center gap-2", children: [
+            loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }),
+            child
+          ] }) : child
+        }
+      );
+    }
     return /* @__PURE__ */ jsxRuntime.jsxs(
-      Comp,
+      "button",
       {
         className: cn(
           buttonVariants({ variant, size, animation }),
@@ -417,9 +412,10 @@ var ButtonComponent = React11__namespace.forwardRef(
         ),
         ref,
         disabled: isDisabled,
+        "aria-busy": loading || void 0,
         ...props,
         children: [
-          loading && /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          loading && (loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" })),
           children
         ]
       }
@@ -468,7 +464,7 @@ function getFileIcon(file) {
     return /* @__PURE__ */ jsxRuntime.jsx(File__default.default, { className: "h-4 w-4" });
   }
 }
-var FileUpload = React11__namespace.forwardRef(
+var FileUpload = React10__namespace.forwardRef(
   ({
     className,
     files = [],
@@ -487,9 +483,9 @@ var FileUpload = React11__namespace.forwardRef(
     size = "md",
     ...props
   }, ref) => {
-    const [isDragging, setIsDragging] = React11__namespace.useState(false);
-    const inputRef = React11__namespace.useRef(null);
-    const processFiles = React11__namespace.useCallback((fileList) => {
+    const [isDragging, setIsDragging] = React10__namespace.useState(false);
+    const inputRef = React10__namespace.useRef(null);
+    const processFiles = React10__namespace.useCallback((fileList) => {
       const filesArray = Array.from(fileList);
       if (!multiple && filesArray.length > 1) {
         console.warn("Apenas um arquivo \xE9 permitido");
@@ -521,7 +517,7 @@ var FileUpload = React11__namespace.forwardRef(
         onFilesAdd?.(newFiles);
       }
     }, [multiple, maxFiles, files.length, maxSize, onFilesAdd]);
-    const handleDrop = React11__namespace.useCallback((e) => {
+    const handleDrop = React10__namespace.useCallback((e) => {
       e.preventDefault();
       setIsDragging(false);
       if (disabled || loading) return;
@@ -530,32 +526,32 @@ var FileUpload = React11__namespace.forwardRef(
         processFiles(files2);
       }
     }, [disabled, loading, processFiles]);
-    const handleDragOver = React11__namespace.useCallback((e) => {
+    const handleDragOver = React10__namespace.useCallback((e) => {
       e.preventDefault();
       if (!disabled && !loading) {
         setIsDragging(true);
       }
     }, [disabled, loading]);
-    const handleDragLeave = React11__namespace.useCallback((e) => {
+    const handleDragLeave = React10__namespace.useCallback((e) => {
       e.preventDefault();
       setIsDragging(false);
     }, []);
-    const handleFileSelect = React11__namespace.useCallback((e) => {
+    const handleFileSelect = React10__namespace.useCallback((e) => {
       const files2 = e.target.files;
       if (files2 && files2.length > 0) {
         processFiles(files2);
       }
       e.target.value = "";
     }, [processFiles]);
-    const handleClick = React11__namespace.useCallback(() => {
+    const handleClick = React10__namespace.useCallback(() => {
       if (!disabled && !loading) {
         inputRef.current?.click();
       }
     }, [disabled, loading]);
-    const handleRemoveFile = React11__namespace.useCallback((id) => {
+    const handleRemoveFile = React10__namespace.useCallback((id) => {
       onFileRemove?.(id);
     }, [onFileRemove]);
-    const handleClear = React11__namespace.useCallback(() => {
+    const handleClear = React10__namespace.useCallback(() => {
       onClear?.();
     }, [onClear]);
     return /* @__PURE__ */ jsxRuntime.jsxs("div", { ref, className: cn("space-y-4", className), ...props, children: [
@@ -707,7 +703,7 @@ function formatMultipleDates(dates) {
   if (dates.length === 2) return `${formatDate(dates[0])} e ${formatDate(dates[1])}`;
   return `${formatDate(dates[0])} (+${dates.length - 1})`;
 }
-var DatePicker = React11__namespace.forwardRef(
+var DatePicker = React10__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -727,12 +723,12 @@ var DatePicker = React11__namespace.forwardRef(
     disabled = false,
     ...props
   }, _ref) => {
-    const [isOpen, setIsOpen] = React11__namespace.useState(false);
-    const [selectedDates, setSelectedDates] = React11__namespace.useState([]);
-    const [inputValue, setInputValue] = React11__namespace.useState("");
-    const containerRef = React11__namespace.useRef(null);
-    const buttonRef = React11__namespace.useRef(null);
-    React11__namespace.useEffect(() => {
+    const [isOpen, setIsOpen] = React10__namespace.useState(false);
+    const [selectedDates, setSelectedDates] = React10__namespace.useState([]);
+    const [inputValue, setInputValue] = React10__namespace.useState("");
+    const containerRef = React10__namespace.useRef(null);
+    const buttonRef = React10__namespace.useRef(null);
+    React10__namespace.useEffect(() => {
       if (!value) {
         setInputValue("");
         setSelectedDates([]);
@@ -752,16 +748,16 @@ var DatePicker = React11__namespace.forwardRef(
         setInputValue(formatDate(value, format));
       }
     }, [value, range, multiple, format]);
-    const handleSingleSelect = React11__namespace.useCallback((day) => {
+    const handleSingleSelect = React10__namespace.useCallback((day) => {
       onChange?.(day);
     }, [onChange]);
-    const handleMultipleSelect = React11__namespace.useCallback((dates) => {
+    const handleMultipleSelect = React10__namespace.useCallback((dates) => {
       onChange?.(dates);
     }, [onChange]);
-    const handleRangeSelect = React11__namespace.useCallback((range2) => {
+    const handleRangeSelect = React10__namespace.useCallback((range2) => {
       onChange?.(range2);
     }, [onChange]);
-    React11__namespace.useEffect(() => {
+    React10__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -916,7 +912,7 @@ function timeToString(time, use12Hours = false, showSeconds = false) {
   const secondsStr = showSeconds ? `:${padNumber(seconds)}` : "";
   return `${timeStr}${secondsStr}${use12Hours ? ` ${period}` : ""}`;
 }
-var TimePicker = React11__namespace.forwardRef(
+var TimePicker = React10__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -932,14 +928,14 @@ var TimePicker = React11__namespace.forwardRef(
     // minTime, // TODO: implementar validação de tempo mínimo
     // maxTime, // TODO: implementar validação de tempo máximo
     ...props
-  }) => {
-    const [isOpen, setIsOpen] = React11__namespace.useState(false);
-    const [hours, setHours] = React11__namespace.useState(value?.hours || 0);
-    const [minutes, setMinutes] = React11__namespace.useState(value?.minutes || 0);
-    const [seconds, setSeconds] = React11__namespace.useState(value?.seconds || 0);
-    const [period, setPeriod] = React11__namespace.useState(value?.period || "AM");
-    const containerRef = React11__namespace.useRef(null);
-    React11__namespace.useEffect(() => {
+  }, ref) => {
+    const [isOpen, setIsOpen] = React10__namespace.useState(false);
+    const [hours, setHours] = React10__namespace.useState(value?.hours || 0);
+    const [minutes, setMinutes] = React10__namespace.useState(value?.minutes || 0);
+    const [seconds, setSeconds] = React10__namespace.useState(value?.seconds || 0);
+    const [period, setPeriod] = React10__namespace.useState(value?.period || "AM");
+    const containerRef = React10__namespace.useRef(null);
+    React10__namespace.useEffect(() => {
       if (value) {
         setHours(value.hours);
         setMinutes(value.minutes);
@@ -949,7 +945,7 @@ var TimePicker = React11__namespace.forwardRef(
         }
       }
     }, [value, use12Hours]);
-    const handleHoursChange = React11__namespace.useCallback((newHours) => {
+    const handleHoursChange = React10__namespace.useCallback((newHours) => {
       if (newHours < 0) newHours = 0;
       if (newHours > 23) newHours = 23;
       setHours(newHours);
@@ -961,7 +957,7 @@ var TimePicker = React11__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [minutes, seconds, period, use12Hours, showSeconds, onChange]);
-    const handleMinutesChange = React11__namespace.useCallback((newMinutes) => {
+    const handleMinutesChange = React10__namespace.useCallback((newMinutes) => {
       if (newMinutes < 0) newMinutes = 0;
       if (newMinutes > 59) newMinutes = 59;
       newMinutes = Math.round(newMinutes / minuteStep) * minuteStep;
@@ -974,7 +970,7 @@ var TimePicker = React11__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, seconds, period, use12Hours, showSeconds, minuteStep, onChange]);
-    const handleSecondsChange = React11__namespace.useCallback((newSeconds) => {
+    const handleSecondsChange = React10__namespace.useCallback((newSeconds) => {
       if (!showSeconds) return;
       if (newSeconds < 0) newSeconds = 0;
       if (newSeconds > 59) newSeconds = 59;
@@ -988,7 +984,7 @@ var TimePicker = React11__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, minutes, period, use12Hours, secondStep, onChange]);
-    const handlePeriodChange = React11__namespace.useCallback((newPeriod) => {
+    const handlePeriodChange = React10__namespace.useCallback((newPeriod) => {
       setPeriod(newPeriod);
       let newHours = hours;
       if (newPeriod === "AM" && hours === 12) {
@@ -1005,7 +1001,7 @@ var TimePicker = React11__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, minutes, seconds, showSeconds, onChange]);
-    React11__namespace.useEffect(() => {
+    React10__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -1018,7 +1014,7 @@ var TimePicker = React11__namespace.forwardRef(
     return /* @__PURE__ */ jsxRuntime.jsxs(
       "div",
       {
-        ref: containerRef,
+        ref: ref || containerRef,
         className: cn("relative", className),
         ...props,
         children: [
@@ -1160,7 +1156,7 @@ var rangeSliderVariants = classVarianceAuthority.cva(
     }
   }
 );
-var RangeSlider = React11__namespace.forwardRef(
+var RangeSlider = React10__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -1180,11 +1176,11 @@ var RangeSlider = React11__namespace.forwardRef(
     color = "primary",
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React11__namespace.useState(defaultValue);
-    const [isDragging, setIsDragging] = React11__namespace.useState(null);
-    const sliderRef = React11__namespace.useRef(null);
-    const minThumbRef = React11__namespace.useRef(null);
-    const maxThumbRef = React11__namespace.useRef(null);
+    const [internalValue, setInternalValue] = React10__namespace.useState(defaultValue);
+    const [isDragging, setIsDragging] = React10__namespace.useState(null);
+    const sliderRef = React10__namespace.useRef(null);
+    const minThumbRef = React10__namespace.useRef(null);
+    const maxThumbRef = React10__namespace.useRef(null);
     const currentValue = value || internalValue;
     const valueToPercent = (val) => {
       return (val - min) / (max - min) * 100;
@@ -1201,7 +1197,7 @@ var RangeSlider = React11__namespace.forwardRef(
       const percent = position / rect.width * 100;
       return Math.max(0, Math.min(100, percent));
     };
-    const updateValue = React11__namespace.useCallback((type, percent) => {
+    const updateValue = React10__namespace.useCallback((type, percent) => {
       const newValue = percentToValue(percent);
       const updated = { ...currentValue };
       if (type === "min") {
@@ -1211,26 +1207,26 @@ var RangeSlider = React11__namespace.forwardRef(
       }
       setValue(updated);
     }, [step]);
-    const setValue = React11__namespace.useCallback((newValue) => {
+    const setValue = React10__namespace.useCallback((newValue) => {
       setInternalValue(newValue);
       onChange?.(newValue);
     }, [onChange]);
-    const handleMouseDown = React11__namespace.useCallback((type) => {
+    const handleMouseDown = React10__namespace.useCallback((type) => {
       if (disabled) return;
       setIsDragging(type);
     }, [disabled]);
-    const handleMouseMove = React11__namespace.useCallback((event) => {
+    const handleMouseMove = React10__namespace.useCallback((event) => {
       if (!isDragging || disabled) return;
       const percent = getPosition(event);
       updateValue(isDragging, percent);
     }, [isDragging, disabled, updateValue]);
-    const handleMouseUp = React11__namespace.useCallback(() => {
+    const handleMouseUp = React10__namespace.useCallback(() => {
       if (isDragging) {
         onChangeEnd?.(currentValue);
         setIsDragging(null);
       }
     }, [isDragging, currentValue, onChangeEnd]);
-    React11__namespace.useEffect(() => {
+    React10__namespace.useEffect(() => {
       if (isDragging) {
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseup", handleMouseUp);
@@ -1366,7 +1362,7 @@ var searchInputVariants = classVarianceAuthority.cva(
     }
   }
 );
-var SearchInput = React11__namespace.forwardRef(
+var SearchInput = React10__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -1386,16 +1382,16 @@ var SearchInput = React11__namespace.forwardRef(
     // saveToHistory, // TODO: implementar funcionalidade de histórico
     disabled
     // props, // Props adicionais não utilizados
-  }) => {
-    const [internalValue, setInternalValue] = React11__namespace.useState(value);
-    const [isOpen, setIsOpen] = React11__namespace.useState(false);
-    const [selectedIndex, setSelectedIndex] = React11__namespace.useState(-1);
-    const [filteredSuggestions, setFilteredSuggestions] = React11__namespace.useState([]);
-    const inputRef = React11__namespace.useRef(null);
-    const containerRef = React11__namespace.useRef(null);
-    const debounceRef = React11__namespace.useRef();
+  }, ref) => {
+    const [internalValue, setInternalValue] = React10__namespace.useState(value);
+    const [isOpen, setIsOpen] = React10__namespace.useState(false);
+    const [selectedIndex, setSelectedIndex] = React10__namespace.useState(-1);
+    const [filteredSuggestions, setFilteredSuggestions] = React10__namespace.useState([]);
+    const inputRef = React10__namespace.useRef(null);
+    const containerRef = React10__namespace.useRef(null);
+    const debounceRef = React10__namespace.useRef();
     const currentValue = value !== void 0 ? value : internalValue;
-    const setValue = React11__namespace.useCallback((newValue) => {
+    const setValue = React10__namespace.useCallback((newValue) => {
       setInternalValue(newValue);
       if (debounceRef.current) {
         clearTimeout(debounceRef.current);
@@ -1404,7 +1400,7 @@ var SearchInput = React11__namespace.forwardRef(
         onChange?.(newValue);
       }, debounceTime);
     }, [onChange, debounceTime]);
-    React11__namespace.useEffect(() => {
+    React10__namespace.useEffect(() => {
       if (!currentValue.trim()) {
         const historySuggestions = history.slice(0, 5).map((item, index) => ({
           id: `history-${index}`,
@@ -1421,7 +1417,7 @@ var SearchInput = React11__namespace.forwardRef(
         setFilteredSuggestions(filtered);
       }
     }, [currentValue, suggestions, history, maxSuggestions]);
-    const handleKeyDown = React11__namespace.useCallback((event) => {
+    const handleKeyDown = React10__namespace.useCallback((event) => {
       switch (event.key) {
         case "Enter":
           event.preventDefault();
@@ -1455,19 +1451,19 @@ var SearchInput = React11__namespace.forwardRef(
           break;
       }
     }, [selectedIndex, filteredSuggestions, currentValue, setValue, onSubmit]);
-    const handleFocus = React11__namespace.useCallback(() => {
+    const handleFocus = React10__namespace.useCallback(() => {
       setIsOpen(true);
     }, []);
-    const handleBlur = React11__namespace.useCallback((event) => {
+    const handleBlur = React10__namespace.useCallback((event) => {
       if (!event.relatedTarget?.closest(".search-suggestion")) {
         setTimeout(() => setIsOpen(false), 150);
       }
     }, []);
-    const handleClear = React11__namespace.useCallback(() => {
+    const handleClear = React10__namespace.useCallback(() => {
       setValue("");
       inputRef.current?.focus();
     }, [setValue]);
-    const handleSuggestionClick = React11__namespace.useCallback((suggestion) => {
+    const handleSuggestionClick = React10__namespace.useCallback((suggestion) => {
       if (suggestion.action) {
         suggestion.action();
       } else {
@@ -1476,7 +1472,7 @@ var SearchInput = React11__namespace.forwardRef(
       }
       setIsOpen(false);
     }, [setValue, onSubmit]);
-    React11__namespace.useEffect(() => {
+    React10__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -1500,7 +1496,7 @@ var SearchInput = React11__namespace.forwardRef(
     return /* @__PURE__ */ jsxRuntime.jsxs(
       "div",
       {
-        ref: containerRef,
+        ref: ref || containerRef,
         className: cn("relative", className),
         children: [
           /* @__PURE__ */ jsxRuntime.jsxs("div", { className: cn(
@@ -1635,7 +1631,7 @@ function applyMask(value, mask) {
 function removeMask(value) {
   return value.replace(/\D/g, "");
 }
-var PhoneInput = React11__namespace.forwardRef(
+var PhoneInput = React10__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -1652,19 +1648,19 @@ var PhoneInput = React11__namespace.forwardRef(
     numbersOnly = true,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React11__namespace.useState(value);
-    const [selectedCountry, setSelectedCountry] = React11__namespace.useState(
+    const [internalValue, setInternalValue] = React10__namespace.useState(value);
+    const [selectedCountry, setSelectedCountry] = React10__namespace.useState(
       countries.find((c) => c.code === country) || countries[0]
     );
-    const [isDropdownOpen, setIsDropdownOpen] = React11__namespace.useState(false);
-    const inputRef = React11__namespace.useRef(null);
-    const dropdownRef = React11__namespace.useRef(null);
+    const [isDropdownOpen, setIsDropdownOpen] = React10__namespace.useState(false);
+    const inputRef = React10__namespace.useRef(null);
+    const dropdownRef = React10__namespace.useRef(null);
     const currentValue = value !== void 0 ? value : internalValue;
-    React11__namespace.useEffect(() => {
+    React10__namespace.useEffect(() => {
       const newCountry = countries.find((c) => c.code === country) || countries[0];
       setSelectedCountry(newCountry);
     }, [country, countries]);
-    const handleInputChange = React11__namespace.useCallback((event) => {
+    const handleInputChange = React10__namespace.useCallback((event) => {
       let inputValue = event.target.value;
       if (numbersOnly) {
         inputValue = removeMask(inputValue);
@@ -1674,7 +1670,7 @@ var PhoneInput = React11__namespace.forwardRef(
       const finalValue = includeDDI ? `${selectedCountry.ddi} ${removeMask(maskedValue)}` : removeMask(maskedValue);
       onChange?.(finalValue, selectedCountry);
     }, [selectedCountry, numbersOnly, includeDDI, onChange]);
-    const handleCountrySelect = React11__namespace.useCallback((country2) => {
+    const handleCountrySelect = React10__namespace.useCallback((country2) => {
       setSelectedCountry(country2);
       setIsDropdownOpen(false);
       onCountryChange?.(country2);
@@ -1683,7 +1679,7 @@ var PhoneInput = React11__namespace.forwardRef(
         onChange?.("", country2);
       }
     }, [selectedCountry, onCountryChange, onChange]);
-    React11__namespace.useEffect(() => {
+    React10__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target) && !inputRef.current?.contains(event.target)) {
           setIsDropdownOpen(false);
@@ -1775,7 +1771,6 @@ PhoneInput.displayName = "PhoneInput";
 exports.Checkbox = Checkbox;
 exports.DatePicker = DatePicker;
 exports.FileUpload = FileUpload;
-exports.Input = Input;
 exports.Label = Label;
 exports.PhoneInput = PhoneInput;
 exports.RadioGroup = RadioGroup;
@@ -1792,7 +1787,6 @@ exports.SelectScrollUpButton = SelectScrollUpButton;
 exports.SelectSeparator = SelectSeparator;
 exports.SelectTrigger = SelectTrigger;
 exports.SelectValue = SelectValue;
-exports.Textarea = Textarea;
 exports.TimePicker = TimePicker;
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

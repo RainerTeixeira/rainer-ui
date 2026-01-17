@@ -1,6 +1,6 @@
 export { GENERIC_TOKENS as FALLBACK_TOKENS } from './generic.js';
-import { A as AdapterConfig, a as AdapterFactory } from '../../adapter-C0BoFTMd.js';
-import '../../tokens-A_UK8Q2r.js';
+import { A as AdapterConfig, a as AdapterFactory } from '../../adapter-CFF0zOIE.js';
+import '../../tokens-B1TMkK7f.js';
 
 /**
  * Adaptador Rainersoft para @rainersoft/ui

@@ -50,9 +50,9 @@ import { Loader2 } from 'lucide-react';
 // Utils
 // ============================================================================
 
-import { tokens } from '@rainersoft/design-tokens';
 import { cn } from '../../lib/utils';
 import { hexToRGB } from '../../lib/color-utils';
+import { useTokens } from '../providers/tokens-provider';
 
 // ============================================================================
 // Providers
@@ -293,7 +293,7 @@ export function EmptyState({
  * @param progress - Progresso de 0 a 100 (opcional)
  * @param currentStep - Etapa atual de inicialização (opcional)
  */
-export function LoadingScreen({ progress, currentStep }: LoadingScreenProps) {
+export function LoadingScreen({ progress = 0, currentStep = 'Inicializando...' }: LoadingScreenProps) {
   // ============================================================================
   // State
   // ============================================================================
@@ -316,6 +316,7 @@ export function LoadingScreen({ progress, currentStep }: LoadingScreenProps) {
   // ============================================================================
 
   const { theme, systemTheme } = useTheme();
+  const { getColor } = useTokens();
 
   // ============================================================================
   // Theme Colors (com fallbacks seguros)
@@ -330,14 +331,14 @@ export function LoadingScreen({ progress, currentStep }: LoadingScreenProps) {
 
   // Cores dos design tokens
   const primaryColor = isDark 
-    ? tokens.primitives.color.blue['400'] 
-    : tokens.primitives.color.blue['600'];
+    ? getColor('primitives.colors.blue.400', '#60a5fa')
+    : getColor('primitives.colors.blue.600', '#2563eb');
   const secondaryColor = isDark 
-    ? tokens.primitives.color.purple['400'] 
-    : tokens.primitives.color.purple['600'];
+    ? getColor('primitives.colors.purple.400', '#c084fc')
+    : getColor('primitives.colors.purple.600', '#7c3aed');
   const accentColor = isDark 
-    ? tokens.primitives.color.red['400'] 
-    : tokens.primitives.color.red['600'];
+    ? getColor('primitives.colors.red.400', '#f87171')
+    : getColor('primitives.colors.red.600', '#dc2626');
 
   // Converter para RGB para uso em estilos
   const primaryRGB = hexToRGB(primaryColor);

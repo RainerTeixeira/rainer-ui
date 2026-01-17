@@ -1,6 +1,6 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
 import * as React from 'react';
-import { D as DesignTokens, T as TokensContextValue } from '../../tokens-A_UK8Q2r.mjs';
+import { D as DesignTokens, T as TokensContextValue } from '../../tokens-B1TMkK7f.mjs';
 
 declare const DEFAULT_TOKENS: DesignTokens;
 declare const TokensContext: React.Context<TokensContextValue>;

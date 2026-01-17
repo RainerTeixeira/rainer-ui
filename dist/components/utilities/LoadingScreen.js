@@ -1,13 +1,33 @@
 'use strict';
 
-var react = require('react');
+var React = require('react');
 var reactLoadingIndicators = require('react-loading-indicators');
 var lucideReact = require('lucide-react');
-var designTokens = require('@rainersoft/design-tokens');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
-var nextThemes = require('next-themes');
+var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+var nextThemes = require('next-themes');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  var n = Object.create(null);
+  if (e) {
+    Object.keys(e).forEach(function (k) {
+      if (k !== 'default') {
+        var d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: function () { return e[k]; }
+        });
+      }
+    });
+  }
+  n.default = e;
+  return Object.freeze(n);
+}
+
+var React__namespace = /*#__PURE__*/_interopNamespace(React);
 
 function hexToRGB(hex) {
   const cleanHex = hex.replace("#", "");
@@ -92,6 +112,16 @@ motion.easing;
     navigation: motionSemantic.navigation.page
   }
 });
+var TokensContext = React__namespace.createContext(null);
+function useTokens() {
+  const context = React__namespace.useContext(TokensContext);
+  if (!context) {
+    throw new Error(
+      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
+    );
+  }
+  return context;
+}
 function Skeleton({ className, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx(
     "div",
@@ -201,22 +231,23 @@ function EmptyState({
     action && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex justify-center", children: action })
   ] });
 }
-function LoadingScreen({ progress, currentStep }) {
-  const [displayedProgress, setDisplayedProgress] = react.useState(0);
-  const [stars, setStars] = react.useState([]);
-  const [mounted, setMounted] = react.useState(false);
+function LoadingScreen({ progress = 0, currentStep = "Inicializando..." }) {
+  const [displayedProgress, setDisplayedProgress] = React.useState(0);
+  const [stars, setStars] = React.useState([]);
+  const [mounted, setMounted] = React.useState(false);
   const { theme, systemTheme } = nextThemes.useTheme();
-  react.useEffect(() => {
+  const { getColor } = useTokens();
+  React.useEffect(() => {
     setMounted(true);
   }, []);
   const currentTheme = mounted ? theme === "system" ? systemTheme : theme : "light";
   const isDark = currentTheme === "dark";
-  const primaryColor = isDark ? designTokens.tokens.primitives.color.blue["400"] : designTokens.tokens.primitives.color.blue["600"];
-  const secondaryColor = isDark ? designTokens.tokens.primitives.color.purple["400"] : designTokens.tokens.primitives.color.purple["600"];
-  const accentColor = isDark ? designTokens.tokens.primitives.color.red["400"] : designTokens.tokens.primitives.color.red["600"];
+  const primaryColor = isDark ? getColor("primitives.colors.blue.400", "#60a5fa") : getColor("primitives.colors.blue.600", "#2563eb");
+  const secondaryColor = isDark ? getColor("primitives.colors.purple.400", "#c084fc") : getColor("primitives.colors.purple.600", "#7c3aed");
+  const accentColor = isDark ? getColor("primitives.colors.red.400", "#f87171") : getColor("primitives.colors.red.600", "#dc2626");
   const primaryRGB = hexToRGB(primaryColor);
   const secondaryRGB = hexToRGB(secondaryColor);
-  react.useEffect(() => {
+  React.useEffect(() => {
     const starsCount = 100;
     const newStars = Array.from({ length: starsCount }, (_, i) => ({
       id: i,
@@ -228,7 +259,7 @@ function LoadingScreen({ progress, currentStep }) {
     }));
     setStars(newStars);
   }, []);
-  react.useEffect(() => {
+  React.useEffect(() => {
     if (progress === void 0) {
       setDisplayedProgress(0);
       return;

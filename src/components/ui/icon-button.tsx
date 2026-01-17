@@ -12,7 +12,7 @@
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-import { Button } from './button';
+import { Button, type ButtonProps } from './button';
 import { cn } from '../../lib/utils';
 
 /**
@@ -167,8 +167,8 @@ export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       <div className="relative inline-block">
         <Button
           ref={ref}
-          variant={variant as any}
-          size={size as any}
+          variant={variant as ButtonProps['variant']}
+          size={size as ButtonProps['size']}
           className={cn(
             iconButtonVariants({ variant, size, animation }),
             'p-0',

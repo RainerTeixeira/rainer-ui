@@ -2,10 +2,12 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "jsx": "react-jsx",
-    "types": ["vite/client"],
+    "types": ["vite/client", "node"],
     "baseUrl": ".",
     "paths": {
-      "@ui/*": ["../src/*"]
+      "@ui/*": ["../src/*"],
+      "@rainersoft/ui": ["../src/index.ts"],
+      "@rainersoft/ui/*": ["../src/*"]
     }
   },
   "include": ["src"],

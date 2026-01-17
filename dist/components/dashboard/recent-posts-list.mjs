@@ -1,42 +1,21 @@
-import * as React23 from 'react';
-import { cva } from 'class-variance-authority';
+import * as React from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
-import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
-import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
+import { jsxs, jsx } from 'react/jsx-runtime';
 import { Slot } from '@radix-ui/react-slot';
-import * as ProgressPrimitive from '@radix-ui/react-progress';
-import { useTheme } from 'next-themes';
-import { Toaster as Toaster$1 } from 'sonner';
-import { Loader2, Octagon, AlertTriangle, Info, Check } from 'lucide-react';
-import ArrowDown from 'lucide-react/dist/esm/icons/arrow-down';
-import ArrowUp from 'lucide-react/dist/esm/icons/arrow-up';
-import Minus from 'lucide-react/dist/esm/icons/minus';
-import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
-import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
-import RefreshCw from 'lucide-react/dist/esm/icons/refresh-cw';
-import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down';
-import Package from 'lucide-react/dist/esm/icons/package';
-import Search from 'lucide-react/dist/esm/icons/search';
-import Wifi from 'lucide-react/dist/esm/icons/wifi';
-import XCircle from 'lucide-react/dist/esm/icons/x-circle';
-import AlertCircle from 'lucide-react/dist/esm/icons/alert-circle';
-import AlertTriangle2 from 'lucide-react/dist/esm/icons/alert-triangle';
-import Bell from 'lucide-react/dist/esm/icons/bell';
-import Check2 from 'lucide-react/dist/esm/icons/check';
-import Info2 from 'lucide-react/dist/esm/icons/info';
-import X from 'lucide-react/dist/esm/icons/x';
+import { cva } from 'class-variance-authority';
 import * as SliderPrimitive from '@radix-ui/react-slider';
 import * as SwitchPrimitives from '@radix-ui/react-switch';
 import * as TogglePrimitive from '@radix-ui/react-toggle';
 import Plus from 'lucide-react/dist/esm/icons/plus';
+import X from 'lucide-react/dist/esm/icons/x';
+import * as ProgressPrimitive from '@radix-ui/react-progress';
+import * as AccordionPrimitive from '@radix-ui/react-accordion';
+import { ChevronDown } from 'lucide-react';
+import 'next-themes';
 import 'lucide-react/dist/esm/icons/moon';
 import 'lucide-react/dist/esm/icons/sun';
-import '@radix-ui/react-aspect-ratio';
-import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
-import * as SeparatorPrimitive from '@radix-ui/react-separator';
-import '@radix-ui/react-dialog';
 import { motion as motion$1 } from 'framer-motion';
 import Trash2 from 'lucide-react/dist/esm/icons/trash-2';
 import Calendar from 'lucide-react/dist/esm/icons/calendar';
@@ -115,946 +94,6 @@ motion.easing;
     navigation: motionSemantic.navigation.page
   }
 });
-var alertVariants = cva(
-  "relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
-  {
-    variants: {
-      variant: {
-        default: "bg-background text-foreground",
-        destructive: "border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive",
-        success: "border-status-success-base/50 bg-status-success-background text-status-success-text-on-background dark:border-status-success-base dark:text-status-success-text-on-background [&>svg]:text-status-success-text-on-background",
-        warning: "border-status-warning-base/50 bg-status-warning-background text-status-warning-text-on-background dark:border-status-warning-base dark:text-status-warning-text-on-background [&>svg]:text-status-warning-text-on-background",
-        info: "border-status-info-base/50 bg-status-info-background text-status-info-text-on-background dark:border-status-info-base dark:text-status-info-text-on-background [&>svg]:text-status-info-text-on-background"
-      }
-    },
-    defaultVariants: {
-      variant: "default"
-    }
-  }
-);
-var Alert = React23.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsx(
-  "div",
-  {
-    ref,
-    role: "alert",
-    className: cn(alertVariants({ variant }), className),
-    ...props
-  }
-));
-Alert.displayName = "Alert";
-var AlertTitle = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  "h5",
-  {
-    ref,
-    className: cn("mb-1 font-medium leading-none tracking-tight", className),
-    ...props
-  }
-));
-AlertTitle.displayName = "AlertTitle";
-var AlertDescription = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  "div",
-  {
-    ref,
-    className: cn("text-sm [&_p]:leading-relaxed", className),
-    ...props
-  }
-));
-AlertDescription.displayName = "AlertDescription";
-var buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
-  {
-    variants: {
-      variant: {
-        default: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md",
-        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-md",
-        outline: "border-2 border-input bg-background shadow-sm hover:bg-accent hover:border-accent",
-        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 hover:shadow-md",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline focus-visible:underline",
-        neon: "relative bg-gradient-to-r from-neon-cyan to-cyan-600 border-2 border-neon-cyan text-gray-950 shadow-lg shadow-neon-cyan hover:shadow-neon-cyan hover:shadow-xl",
-        glass: "relative bg-glass border border-white/20 text-foreground backdrop-blur-sm shadow-sm hover:bg-white/20",
-        minimal: "bg-transparent border-0 shadow-none hover:bg-accent/50 text-foreground"
-      },
-      size: {
-        xs: "h-7 px-2 text-xs rounded-md",
-        sm: "h-8 px-3 text-sm rounded-md has-[>svg]:px-2",
-        default: "h-9 px-4 py-2 rounded-md has-[>svg]:px-3",
-        lg: "h-10 px-6 text-base rounded-lg has-[>svg]:px-4",
-        xl: "h-12 px-8 text-lg rounded-lg has-[>svg]:px-5",
-        icon: "size-9 rounded-lg",
-        "icon-sm": "size-8 rounded-md",
-        "icon-lg": "size-10 rounded-lg",
-        "icon-xl": "size-12 rounded-xl"
-      },
-      animation: {
-        none: "",
-        scale: "hover:scale-105 active:scale-95",
-        glow: "hover:shadow-lg active:shadow-sm",
-        bounce: "hover:animate-bounce",
-        pulse: "hover:animate-pulse"
-      }
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
-      animation: "scale"
-    }
-  }
-);
-var ButtonComponent = React23.forwardRef(
-  ({
-    className,
-    variant,
-    size,
-    animation,
-    asChild = false,
-    loading = false,
-    loadingIcon,
-    disabled,
-    children,
-    ...props
-  }, ref) => {
-    const Comp = asChild ? Slot : "button";
-    const isDisabled = disabled || loading;
-    return /* @__PURE__ */ jsxs(
-      Comp,
-      {
-        className: cn(
-          buttonVariants({ variant, size, animation }),
-          // Efeito neon especial
-          variant === "neon" && [
-            "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
-            "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
-            "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
-            "before:transition-opacity after:transition-opacity",
-            "before:duration-300 after:duration-300"
-          ],
-          className
-        ),
-        ref,
-        disabled: isDisabled,
-        ...props,
-        children: [
-          loading && /* @__PURE__ */ jsx(Fragment, { children: loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
-          children
-        ]
-      }
-    );
-  }
-);
-ButtonComponent.displayName = "Button";
-var Button = ButtonComponent;
-var AlertDialogPortal = AlertDialogPrimitive.Portal;
-var AlertDialogOverlay = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  AlertDialogPrimitive.Overlay,
-  {
-    className: cn(
-      "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-      className
-    ),
-    ...props,
-    ref
-  }
-));
-AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName;
-var AlertDialogContent = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(AlertDialogPortal, { children: [
-  /* @__PURE__ */ jsx(AlertDialogOverlay, {}),
-  /* @__PURE__ */ jsx(
-    AlertDialogPrimitive.Content,
-    {
-      ref,
-      className: cn(
-        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
-        className
-      ),
-      ...props
-    }
-  )
-] }));
-AlertDialogContent.displayName = AlertDialogPrimitive.Content.displayName;
-var AlertDialogTitle = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  AlertDialogPrimitive.Title,
-  {
-    ref,
-    className: cn("text-lg font-semibold", className),
-    ...props
-  }
-));
-AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName;
-var AlertDialogDescription = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  AlertDialogPrimitive.Description,
-  {
-    ref,
-    className: cn("text-sm text-muted-foreground", className),
-    ...props
-  }
-));
-AlertDialogDescription.displayName = AlertDialogPrimitive.Description.displayName;
-var AlertDialogAction = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  AlertDialogPrimitive.Action,
-  {
-    ref,
-    className: cn(buttonVariants(), className),
-    ...props
-  }
-));
-AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
-var AlertDialogCancel = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  AlertDialogPrimitive.Cancel,
-  {
-    ref,
-    className: cn(
-      buttonVariants({ variant: "outline" }),
-      "mt-2 sm:mt-0",
-      className
-    ),
-    ...props
-  }
-));
-AlertDialogCancel.displayName = AlertDialogPrimitive.Cancel.displayName;
-var badgeVariants = cva(
-  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-  {
-    /**
-     * Variantes de estilo
-     * Cada variante define aparência diferente do badge
-     */
-    variants: {
-      variant: {
-        /** Badge primário - cor primária com borda transparente */
-        default: "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
-        /** Badge secundário - cor secundária */
-        secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        /** Badge destrutivo - para status negativos/erros */
-        destructive: "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        /** Badge outline - apenas borda, fundo transparente */
-        outline: "text-foreground"
-      }
-    },
-    /**
-     * Variante padrão aplicada quando prop não é fornecida
-     */
-    defaultVariants: {
-      variant: "default"
-    }
-  }
-);
-function Badge({ className, variant, ...props }) {
-  return /* @__PURE__ */ jsx("div", { className: cn(badgeVariants({ variant }), className), ...props });
-}
-var Progress = React23.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsx(
-  ProgressPrimitive.Root,
-  {
-    ref,
-    className: cn(
-      "relative h-4 w-full overflow-hidden rounded-full bg-secondary",
-      className
-    ),
-    ...props,
-    children: /* @__PURE__ */ jsx(
-      ProgressPrimitive.Indicator,
-      {
-        className: cn("h-full w-full flex-1 transition-all", "bg-primary"),
-        style: { transform: `translateX(-${100 - (value || 0)}%)` }
-      }
-    )
-  }
-));
-Progress.displayName = "Progress";
-var Toaster = React23.forwardRef((props, ref) => {
-  const { theme = "system" } = useTheme();
-  return React23.createElement(
-    Toaster$1,
-    {
-      ref,
-      theme,
-      className: "toaster group",
-      icons: {
-        success: React23.createElement(Check, { className: "h-4 w-4" }),
-        info: React23.createElement(Info, { className: "h-4 w-4" }),
-        warning: React23.createElement(AlertTriangle, { className: "h-4 w-4" }),
-        error: React23.createElement(Octagon, { className: "h-4 w-4" }),
-        loading: React23.createElement(Loader2, { className: "h-4 w-4 animate-spin" })
-      },
-      toastOptions: {
-        classNames: {
-          toast: cn(
-            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border shadow-lg",
-            "dark:group-[.toaster]:bg-background dark:group-[.toaster]:border-border"
-          ),
-          title: "dark:text-foreground",
-          description: "group-[.toast]:text-muted-foreground dark:text-muted-foreground",
-          actionButton: "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
-          cancelButton: "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
-          error: "dark:bg-status-error-background dark:border-status-error-border",
-          success: "dark:bg-status-success-background dark:border-status-success-border"
-        }
-      },
-      ...props
-    }
-  );
-});
-Toaster.displayName = "Toaster";
-var spinnerVariants = cva(
-  "animate-spin text-muted-foreground",
-  {
-    variants: {
-      variant: {
-        default: "",
-        primary: "text-primary",
-        secondary: "text-secondary",
-        destructive: "text-destructive",
-        success: "text-emerald-600 dark:text-emerald-500",
-        warning: "text-amber-600 dark:text-amber-500",
-        glow: "text-primary dark:text-cyan-400",
-        pulse: "animate-pulse",
-        dots: "animate-bounce"
-      },
-      size: {
-        xs: "h-3 w-3",
-        sm: "h-4 w-4",
-        md: "h-5 w-5",
-        lg: "h-6 w-6",
-        xl: "h-8 w-8",
-        "2xl": "h-12 w-12",
-        "3xl": "h-16 w-16"
-      }
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "md"
-    }
-  }
-);
-var speedClasses = {
-  slow: "animate-spin-slow",
-  normal: "animate-spin",
-  fast: "animate-spin-fast"
-};
-var Spinner = React23.forwardRef(
-  ({
-    className,
-    variant = "default",
-    size = "md",
-    label = "Carregando...",
-    showLabel = false,
-    labelPosition = "bottom",
-    icon,
-    speed = "normal",
-    ...props
-  }, ref) => {
-    const IconComponent = icon || /* @__PURE__ */ jsx(Loader2, { className: spinnerVariants({ variant, size }) });
-    const animationClass = variant === "pulse" ? "animate-pulse" : variant === "dots" ? "animate-bounce" : speedClasses[speed];
-    const layoutClasses = {
-      top: "flex-col-reverse",
-      bottom: "flex-col",
-      left: "flex-row-reverse",
-      right: "flex-row"
-    }[labelPosition];
-    const spacingClasses5 = {
-      top: "gap-1",
-      bottom: "gap-1",
-      left: "gap-2",
-      right: "gap-2"
-    }[labelPosition];
-    return /* @__PURE__ */ jsxs(
-      "div",
-      {
-        ref,
-        className: cn(
-          "inline-flex items-center justify-center",
-          layoutClasses,
-          spacingClasses5,
-          className
-        ),
-        role: "status",
-        "aria-label": label,
-        ...props,
-        children: [
-          /* @__PURE__ */ jsx("div", { className: cn(animationClass), children: IconComponent }),
-          showLabel && /* @__PURE__ */ jsx("span", { className: cn(
-            "text-sm text-muted-foreground",
-            (labelPosition === "top" || labelPosition === "bottom") && "text-center",
-            variant === "glow" && "text-primary dark:text-cyan-400"
-          ), children: label }),
-          /* @__PURE__ */ jsx("span", { className: "sr-only", children: label })
-        ]
-      }
-    );
-  }
-);
-Spinner.displayName = "Spinner";
-var SpinnerOverlay = React23.forwardRef(
-  ({
-    className,
-    fullscreen = false,
-    overlayColor = "rgba(0, 0, 0, 0.5)",
-    opacity = 0.5,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "flex items-center justify-center",
-          fullscreen ? "fixed inset-0 z-50" : "absolute inset-0 z-10",
-          className
-        ),
-        style: {
-          backgroundColor: overlayColor.replace(/[\d.]+\)$/, `${opacity})`)
-        },
-        children: /* @__PURE__ */ jsx("div", { className: "bg-background rounded-lg p-4 shadow-lg", children: /* @__PURE__ */ jsx(Spinner, { ...props, showLabel: true }) })
-      }
-    );
-  }
-);
-SpinnerOverlay.displayName = "SpinnerOverlay";
-var dotSizeClasses = {
-  sm: "h-1 w-1",
-  md: "h-2 w-2",
-  lg: "h-3 w-3"
-};
-var DotsSpinner = React23.forwardRef(
-  ({
-    className,
-    count = 3,
-    size = "md",
-    color,
-    label,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxs(
-      "div",
-      {
-        ref,
-        className: cn("flex items-center gap-1", className),
-        role: "status",
-        "aria-label": label || "Carregando...",
-        ...props,
-        children: [
-          Array.from({ length: count }, (_, index) => /* @__PURE__ */ jsx(
-            "div",
-            {
-              className: cn(
-                "rounded-full bg-current",
-                dotSizeClasses[size],
-                "animate-bounce"
-              ),
-              style: {
-                color: color || "hsl(var(--muted-foreground))",
-                animationDelay: `${index * 0.1}s`,
-                animationDuration: "0.6s"
-              }
-            },
-            index
-          )),
-          label && /* @__PURE__ */ jsx("span", { className: "ml-2 text-sm text-muted-foreground", children: label })
-        ]
-      }
-    );
-  }
-);
-DotsSpinner.displayName = "DotsSpinner";
-var pulseSizeClasses = {
-  sm: "h-8 w-8",
-  md: "h-12 w-12",
-  lg: "h-16 w-16",
-  xl: "h-20 w-20"
-};
-var PulseSpinner = React23.forwardRef(
-  ({
-    className,
-    rings = 3,
-    size = "md",
-    color,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn("relative flex items-center justify-center", className),
-        ...props,
-        children: Array.from({ length: rings }, (_, index) => /* @__PURE__ */ jsx(
-          "div",
-          {
-            className: cn(
-              "absolute rounded-full border-2 border-current opacity-0",
-              pulseSizeClasses[size]
-            ),
-            style: {
-              color: color || "hsl(var(--primary))",
-              animation: `ping ${1.5 + index * 0.3}s cubic-bezier(0, 0, 0.2, 1) infinite`,
-              animationDelay: `${index * 0.2}s`
-            }
-          },
-          index
-        ))
-      }
-    );
-  }
-);
-PulseSpinner.displayName = "PulseSpinner";
-var kpiVariants = cva(
-  "rounded-lg border bg-card p-6 shadow-sm transition-all duration-[var(--motion-duration-normal)]",
-  {
-    variants: {
-      variant: {
-        default: "border-border hover:shadow-md",
-        elevated: "border-border shadow-md hover:shadow-lg",
-        outlined: "border-2 border-border hover:border-primary",
-        glass: "glass border-border hover:glass-hover"
-      },
-      size: {
-        sm: "p-4",
-        md: "p-6",
-        lg: "p-8"
-      }
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "md"
-    }
-  }
-);
-var trendVariants = cva(
-  "inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium",
-  {
-    variants: {
-      trend: {
-        up: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300",
-        down: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
-        neutral: "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300"
-      }
-    }
-  }
-);
-function formatValue(value, format, currency, decimals = 0) {
-  if (format === "custom") return value.toString();
-  const numValue = typeof value === "number" ? value : parseFloat(value.toString());
-  if (isNaN(numValue)) return value.toString();
-  const formatted = numValue.toLocaleString("pt-BR", {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
-  });
-  switch (format) {
-    case "currency":
-      return `${currency || "R$"} ${formatted}`;
-    case "percentage":
-      return `${formatted}%`;
-    default:
-      return formatted;
-  }
-}
-var KPI = React23.forwardRef(
-  ({
-    className,
-    variant = "default",
-    size = "md",
-    title,
-    value,
-    description,
-    trend,
-    trendValue,
-    icon,
-    iconColor,
-    loading = false,
-    format = "number",
-    currency,
-    decimals = 0,
-    ...props
-  }, ref) => {
-    const TrendIcon = trend === "up" ? TrendingUp : trend === "down" ? TrendingDown : Minus;
-    const ArrowIcon = trend === "up" ? ArrowUp : trend === "down" ? ArrowDown : null;
-    return /* @__PURE__ */ jsxs(
-      "div",
-      {
-        ref,
-        className: cn(kpiVariants({ variant, size }), className),
-        ...props,
-        children: [
-          /* @__PURE__ */ jsxs("div", { className: "flex items-start justify-between", children: [
-            /* @__PURE__ */ jsxs("div", { className: "space-y-1", children: [
-              /* @__PURE__ */ jsx("h3", { className: "text-sm font-medium text-muted-foreground", children: title }),
-              description && /* @__PURE__ */ jsx("p", { className: "text-xs text-muted-foreground/70", children: description })
-            ] }),
-            icon && /* @__PURE__ */ jsx(
-              "div",
-              {
-                className: cn(
-                  "rounded-lg p-2",
-                  iconColor === "primary" && "bg-primary/10 text-primary",
-                  iconColor === "success" && "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400",
-                  iconColor === "warning" && "bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400",
-                  iconColor === "error" && "bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400",
-                  !iconColor && "text-muted-foreground"
-                ),
-                children: icon
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsx("div", { className: "mt-4", children: loading ? /* @__PURE__ */ jsx("div", { className: "h-8 w-24 bg-muted rounded animate-pulse" }) : /* @__PURE__ */ jsxs("div", { className: "flex items-baseline gap-2", children: [
-            /* @__PURE__ */ jsx("span", { className: "text-2xl font-semibold text-foreground", children: formatValue(value, format, currency, decimals) }),
-            trend && trendValue && /* @__PURE__ */ jsxs("div", { className: cn(trendVariants({ trend })), children: [
-              ArrowIcon && /* @__PURE__ */ jsx(ArrowIcon, { className: "h-3 w-3" }),
-              trendValue
-            ] })
-          ] }) }),
-          trend && !trendValue && /* @__PURE__ */ jsxs("div", { className: cn(
-            "mt-3 flex items-center gap-1 text-xs",
-            trend === "up" && "text-emerald-600 dark:text-emerald-400",
-            trend === "down" && "text-red-600 dark:text-red-400",
-            trend === "neutral" && "text-muted-foreground"
-          ), children: [
-            /* @__PURE__ */ jsx(TrendIcon, { className: "h-3 w-3" }),
-            /* @__PURE__ */ jsx("span", { children: trend === "up" ? "Aumentando" : trend === "down" ? "Diminuindo" : "Est\xE1vel" })
-          ] })
-        ]
-      }
-    );
-  }
-);
-KPI.displayName = "KPI";
-var gridColsClasses = {
-  1: "grid-cols-1",
-  2: "grid-cols-1 md:grid-cols-2",
-  3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
-  4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-};
-var KPIGrid = React23.forwardRef(
-  ({
-    className,
-    cols = 4,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "grid gap-4",
-          gridColsClasses[cols],
-          className
-        ),
-        ...props,
-        children
-      }
-    );
-  }
-);
-KPIGrid.displayName = "KPIGrid";
-var KPIChart = React23.forwardRef(
-  ({
-    className,
-    chart,
-    chartPosition = "bottom",
-    // children, // TODO: implementar children content
-    ...props
-  }, ref) => {
-    const isRight = chartPosition === "right";
-    return /* @__PURE__ */ jsxs(
-      "div",
-      {
-        ref,
-        className: cn(
-          kpiVariants({ variant: props.variant, size: props.size }),
-          isRight && "flex flex-row items-center justify-between",
-          className
-        ),
-        ...props,
-        children: [
-          /* @__PURE__ */ jsx("div", { className: cn(isRight && "flex-1"), children: /* @__PURE__ */ jsx(KPI, { ...props }) }),
-          chart && /* @__PURE__ */ jsx("div", { className: cn(
-            "mt-4",
-            isRight && "mt-0 ml-4 flex-1 max-w-[200px]"
-          ), children: chart })
-        ]
-      }
-    );
-  }
-);
-KPIChart.displayName = "KPIChart";
-var defaultIcons = {
-  search: Search,
-  empty: Package,
-  error: XCircle,
-  filtered: ChevronDown,
-  offline: Wifi,
-  loading: RefreshCw
-};
-var emptyStateVariants = cva(
-  "flex flex-col items-center justify-center text-center p-8",
-  {
-    variants: {
-      size: {
-        sm: "p-6",
-        md: "p-8",
-        lg: "p-12",
-        xl: "p-16"
-      },
-      variant: {
-        default: "",
-        card: "rounded-lg border border-border bg-card",
-        glass: "glass rounded-lg",
-        minimal: "p-4"
-      }
-    },
-    defaultVariants: {
-      size: "md",
-      variant: "default"
-    }
-  }
-);
-var iconSizeClasses = {
-  sm: "h-8 w-8",
-  md: "h-12 w-12",
-  lg: "h-16 w-16",
-  xl: "h-20 w-20"
-};
-var EmptyState = React23.forwardRef(
-  ({
-    className,
-    variant = "default",
-    size = "md",
-    type,
-    icon,
-    title,
-    description,
-    actions,
-    secondaryActions,
-    animated = false,
-    iconColor,
-    iconSize = "md",
-    ...props
-  }, ref) => {
-    let IconComponent = icon;
-    if (!IconComponent && type) {
-      const DefaultIcon = defaultIcons[type];
-      IconComponent = /* @__PURE__ */ jsx(DefaultIcon, { className: iconSizeClasses[iconSize] });
-    }
-    return /* @__PURE__ */ jsxs(
-      "div",
-      {
-        ref,
-        className: cn(emptyStateVariants({ size, variant }), className),
-        ...props,
-        children: [
-          IconComponent && /* @__PURE__ */ jsx(
-            "div",
-            {
-              className: cn(
-                "mb-4 text-muted-foreground",
-                animated && "animate-pulse",
-                iconColor === "primary" && "text-primary",
-                iconColor === "success" && "text-emerald-600 dark:text-emerald-500",
-                iconColor === "warning" && "text-amber-600 dark:text-amber-500",
-                iconColor === "error" && "text-red-600 dark:text-red-500",
-                !iconColor && "text-muted-foreground"
-              ),
-              children: IconComponent
-            }
-          ),
-          /* @__PURE__ */ jsxs("div", { className: "max-w-md space-y-2", children: [
-            /* @__PURE__ */ jsx("h3", { className: "text-lg font-semibold text-foreground", children: title }),
-            description && /* @__PURE__ */ jsx("p", { className: "text-sm text-muted-foreground leading-relaxed", children: description })
-          ] }),
-          (actions || secondaryActions) && /* @__PURE__ */ jsxs("div", { className: "mt-6 flex flex-col items-center gap-3 sm:flex-row", children: [
-            actions,
-            secondaryActions
-          ] })
-        ]
-      }
-    );
-  }
-);
-EmptyState.displayName = "EmptyState";
-var EmptyStateIllustrated = React23.forwardRef(
-  ({
-    className,
-    illustration,
-    illustrationAlt = "Ilustra\xE7\xE3o",
-    illustrationWidth = 200,
-    illustrationHeight = 200,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      EmptyState,
-      {
-        ref,
-        className: cn(className),
-        ...props,
-        icon: illustration && /* @__PURE__ */ jsx(
-          "img",
-          {
-            src: illustration,
-            alt: illustrationAlt,
-            width: illustrationWidth,
-            height: illustrationHeight,
-            className: "object-contain"
-          }
-        )
-      }
-    );
-  }
-);
-EmptyStateIllustrated.displayName = "EmptyStateIllustrated";
-var variantIcons = {
-  success: Check2,
-  error: AlertCircle,
-  warning: AlertTriangle2,
-  info: Info2,
-  default: Bell
-};
-var notificationVariants = cva(
-  "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-4 pr-8 shadow-lg transition-all duration-[var(--motion-duration-normal)]",
-  {
-    variants: {
-      variant: {
-        default: "border-border bg-background text-foreground",
-        success: "border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-200",
-        error: "border-red-200 bg-red-50 text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-200",
-        warning: "border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-200",
-        info: "border-blue-200 bg-blue-50 text-blue-800 dark:border-blue-800 dark:bg-blue-950 dark:text-blue-200"
-      }
-    },
-    defaultVariants: {
-      variant: "default"
-    }
-  }
-);
-var Notification = React23.forwardRef(
-  ({
-    className,
-    variant = "default",
-    title,
-    description,
-    dismissible = true,
-    onDismiss,
-    actions,
-    icon,
-    timestamp,
-    autoClose = false,
-    autoCloseDelay = 5e3,
-    toast = false,
-    ...props
-  }, ref) => {
-    const [visible, setVisible] = React23.useState(true);
-    React23.useEffect(() => {
-      if (autoClose && onDismiss) {
-        const timer = setTimeout(() => {
-          handleClose();
-        }, autoCloseDelay);
-        return () => clearTimeout(timer);
-      }
-    }, [autoClose, autoCloseDelay, onDismiss]);
-    const handleClose = () => {
-      setVisible(false);
-      onDismiss?.();
-    };
-    let IconComponent = icon;
-    if (!IconComponent) {
-      const VariantIcon = variantIcons[variant];
-      IconComponent = /* @__PURE__ */ jsx(VariantIcon, { className: "h-5 w-5" });
-    }
-    if (!visible) return null;
-    return /* @__PURE__ */ jsxs(
-      "div",
-      {
-        ref,
-        className: cn(
-          notificationVariants({ variant }),
-          toast && "animate-in slide-in-from-bottom-full",
-          className
-        ),
-        ...props,
-        children: [
-          /* @__PURE__ */ jsx("div", { className: cn(
-            "flex-shrink-0",
-            variant === "success" && "text-emerald-600 dark:text-emerald-400",
-            variant === "error" && "text-red-600 dark:text-red-400",
-            variant === "warning" && "text-amber-600 dark:text-amber-400",
-            variant === "info" && "text-blue-600 dark:text-blue-400",
-            variant === "default" && "text-muted-foreground"
-          ), children: IconComponent }),
-          /* @__PURE__ */ jsxs("div", { className: "flex-1 space-y-1", children: [
-            title && /* @__PURE__ */ jsx("p", { className: "text-sm font-medium", children: title }),
-            description && /* @__PURE__ */ jsx("p", { className: "text-sm opacity-90", children: description }),
-            timestamp && /* @__PURE__ */ jsx("p", { className: "text-xs opacity-70", children: timestamp })
-          ] }),
-          actions && /* @__PURE__ */ jsx("div", { className: "flex flex-shrink-0 gap-2", children: actions }),
-          dismissible && /* @__PURE__ */ jsx(
-            "button",
-            {
-              onClick: handleClose,
-              className: cn(
-                "absolute right-2 top-2 rounded-md p-1",
-                "transition-colors duration-[var(--motion-duration-fast)]",
-                "hover:bg-black/10 dark:hover:bg-white/10",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              ),
-              children: /* @__PURE__ */ jsx(X, { className: "h-4 w-4 opacity-60 hover:opacity-100" })
-            }
-          )
-        ]
-      }
-    );
-  }
-);
-Notification.displayName = "Notification";
-var positionClasses = {
-  "top-right": "top-0 right-0",
-  "top-left": "top-0 left-0",
-  "bottom-right": "bottom-0 right-0",
-  "bottom-left": "bottom-0 left-0",
-  "top-center": "top-0 left-1/2 -translate-x-1/2",
-  "bottom-center": "bottom-0 left-1/2 -translate-x-1/2"
-};
-var spacingClasses = {
-  sm: "gap-2",
-  md: "gap-3",
-  lg: "gap-4"
-};
-var NotificationGroup = React23.forwardRef(
-  ({
-    className,
-    children,
-    position = "top-right",
-    spacing = "md",
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "fixed z-50 flex max-h-screen w-full flex-col-reverse p-4",
-          "md:max-w-[420px]",
-          positionClasses[position],
-          spacingClasses[spacing],
-          className
-        ),
-        ...props,
-        children
-      }
-    );
-  }
-);
-NotificationGroup.displayName = "NotificationGroup";
-var NotificationToast = React23.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsx(
-      Notification,
-      {
-        ref,
-        toast: true,
-        ...props
-      }
-    );
-  }
-);
-NotificationToast.displayName = "NotificationToast";
 var sizeClasses = {
   xs: "h-6 w-6 text-xs",
   sm: "h-8 w-8 text-sm",
@@ -1096,7 +135,7 @@ function getColorFromName(name) {
   }
   return colors[Math.abs(hash) % colors.length];
 }
-var Avatar = React23.forwardRef(
+var Avatar = React.forwardRef(
   ({
     className,
     src,
@@ -1112,9 +151,9 @@ var Avatar = React23.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [imageStatus, setImageStatus] = React23.useState("loading");
-    const [showFallback, setShowFallback] = React23.useState(!src);
-    React23.useEffect(() => {
+    const [imageStatus, setImageStatus] = React.useState("loading");
+    const [showFallback, setShowFallback] = React.useState(!src);
+    React.useEffect(() => {
       if (!src) {
         setShowFallback(true);
         setImageStatus("error");
@@ -1179,7 +218,7 @@ var Avatar = React23.forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var AvatarImage = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AvatarImage = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "img",
   {
     ref,
@@ -1188,7 +227,7 @@ var AvatarImage = React23.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 AvatarImage.displayName = "AvatarImage";
-var AvatarFallback = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AvatarFallback = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1200,7 +239,284 @@ var AvatarFallback = React23.forwardRef(({ className, ...props }, ref) => /* @__
   }
 ));
 AvatarFallback.displayName = "AvatarFallback";
-var Slider = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(
+var Input = React.forwardRef(
+  ({ className, type, error, helperText, label, required, id, ...props }, ref) => {
+    const inputId = id || `input-${React.useId()}`;
+    return /* @__PURE__ */ jsxs("div", { className: "space-y-2", children: [
+      label && /* @__PURE__ */ jsxs(
+        "label",
+        {
+          htmlFor: inputId,
+          className: cn(
+            "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+            error ? "text-destructive" : "text-foreground",
+            "dark:text-cyan-200 dark:font-mono"
+          ),
+          children: [
+            label,
+            required && /* @__PURE__ */ jsx("span", { className: "text-destructive ml-1", children: "*" })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        "input",
+        {
+          type,
+          id: inputId,
+          className: cn(
+            // Base styles
+            "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2",
+            "text-sm ring-offset-background file:border-0 file:bg-transparent",
+            "file:text-sm file:font-medium placeholder:text-muted-foreground",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            "focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+            // Dark mode
+            "dark:bg-black/50 dark:border-cyan-400/30 dark:text-cyan-100",
+            "dark:placeholder:text-cyan-400/50 dark:ring-offset-black",
+            "dark:focus-visible:ring-cyan-400 dark:focus-visible:ring-offset-black",
+            // Error state
+            error && "border-destructive focus-visible:ring-destructive",
+            "dark:border-red-400/50 dark:focus-visible:ring-red-400",
+            // Transitions
+            "transition-all duration-200",
+            className
+          ),
+          ref,
+          ...props
+        }
+      ),
+      helperText && /* @__PURE__ */ jsx(
+        "p",
+        {
+          className: cn(
+            "text-xs",
+            error ? "text-destructive" : "text-muted-foreground",
+            "dark:text-cyan-400/70 dark:text-red-400/70"
+          ),
+          children: helperText
+        }
+      )
+    ] });
+  }
+);
+Input.displayName = "Input";
+var Textarea = React.forwardRef(
+  ({
+    className,
+    error,
+    helperText,
+    label,
+    required,
+    id,
+    maxLength,
+    showCount,
+    value,
+    ...props
+  }, ref) => {
+    const inputId = id || `textarea-${React.useId()}`;
+    const [characterCount, setCharacterCount] = React.useState(0);
+    React.useEffect(() => {
+      if (typeof value === "string") {
+        setCharacterCount(value.length);
+      }
+    }, [value]);
+    const handleInputChange = (e) => {
+      if (maxLength) {
+        const newValue = e.target.value.slice(0, maxLength);
+        e.target.value = newValue;
+        setCharacterCount(newValue.length);
+      }
+      props.onChange?.(e);
+    };
+    return /* @__PURE__ */ jsxs("div", { className: "space-y-2", children: [
+      label && /* @__PURE__ */ jsxs(
+        "label",
+        {
+          htmlFor: inputId,
+          className: cn(
+            "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+            error ? "text-destructive" : "text-foreground",
+            "dark:text-cyan-200 dark:font-mono"
+          ),
+          children: [
+            label,
+            required && /* @__PURE__ */ jsx("span", { className: "text-destructive ml-1", children: "*" })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsx(
+        "textarea",
+        {
+          id: inputId,
+          className: cn(
+            // Base styles
+            "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2",
+            "text-sm ring-offset-background placeholder:text-muted-foreground",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            "focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+            "resize-none",
+            // Dark mode
+            "dark:bg-black/50 dark:border-cyan-400/30 dark:text-cyan-100",
+            "dark:placeholder:text-cyan-400/50 dark:ring-offset-black",
+            "dark:focus-visible:ring-cyan-400 dark:focus-visible:ring-offset-black",
+            // Error state
+            error && "border-destructive focus-visible:ring-destructive",
+            "dark:border-red-400/50 dark:focus-visible:ring-red-400",
+            // Transitions
+            "transition-all duration-200",
+            className
+          ),
+          ref,
+          maxLength,
+          value,
+          onChange: handleInputChange,
+          ...props
+        }
+      ),
+      (helperText || showCount && maxLength) && /* @__PURE__ */ jsxs("div", { className: "flex justify-between items-center", children: [
+        helperText && /* @__PURE__ */ jsx(
+          "p",
+          {
+            className: cn(
+              "text-xs",
+              error ? "text-destructive" : "text-muted-foreground",
+              "dark:text-cyan-400/70 dark:text-red-400/70"
+            ),
+            children: helperText
+          }
+        ),
+        showCount && maxLength && /* @__PURE__ */ jsxs(
+          "p",
+          {
+            className: cn(
+              "text-xs",
+              characterCount >= maxLength ? "text-destructive" : "text-muted-foreground",
+              "dark:text-cyan-400/70"
+            ),
+            children: [
+              characterCount,
+              "/",
+              maxLength
+            ]
+          }
+        )
+      ] })
+    ] });
+  }
+);
+Textarea.displayName = "Textarea";
+var buttonVariants = cva(
+  'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
+  {
+    variants: {
+      variant: {
+        default: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md",
+        destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-md",
+        outline: "border-2 border-input bg-background shadow-sm hover:bg-accent hover:border-accent",
+        secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80 hover:shadow-md",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline focus-visible:underline",
+        neon: "relative bg-gradient-to-r from-neon-cyan to-cyan-600 border-2 border-neon-cyan text-gray-950 shadow-lg shadow-neon-cyan hover:shadow-neon-cyan hover:shadow-xl",
+        glass: "relative bg-glass border border-white/20 text-foreground backdrop-blur-sm shadow-sm hover:bg-white/20",
+        minimal: "bg-transparent border-0 shadow-none hover:bg-accent/50 text-foreground"
+      },
+      size: {
+        xs: "h-7 px-2 text-xs rounded-md",
+        sm: "h-8 px-3 text-sm rounded-md has-[>svg]:px-2",
+        default: "h-9 px-4 py-2 rounded-md has-[>svg]:px-3",
+        lg: "h-10 px-6 text-base rounded-lg has-[>svg]:px-4",
+        xl: "h-12 px-8 text-lg rounded-lg has-[>svg]:px-5",
+        icon: "size-9 rounded-lg",
+        "icon-sm": "size-8 rounded-md",
+        "icon-lg": "size-10 rounded-lg",
+        "icon-xl": "size-12 rounded-xl"
+      },
+      animation: {
+        none: "",
+        scale: "hover:scale-105 active:scale-95",
+        glow: "hover:shadow-lg active:shadow-sm",
+        bounce: "hover:animate-bounce",
+        pulse: "hover:animate-pulse"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+      animation: "scale"
+    }
+  }
+);
+var ButtonComponent = React.forwardRef(
+  ({
+    className,
+    variant,
+    size,
+    animation,
+    asChild = false,
+    loading = false,
+    loadingIcon,
+    disabled,
+    children,
+    ...props
+  }, ref) => {
+    const isDisabled = disabled || loading;
+    if (asChild) {
+      const child = React.Children.only(children);
+      return /* @__PURE__ */ jsx(
+        Slot,
+        {
+          className: cn(
+            buttonVariants({ variant, size, animation }),
+            // Efeito neon especial
+            variant === "neon" && [
+              "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+              "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+              "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+              "before:transition-opacity after:transition-opacity",
+              "before:duration-300 after:duration-300"
+            ],
+            className
+          ),
+          ref,
+          "aria-busy": loading || void 0,
+          ...props,
+          children: loading ? /* @__PURE__ */ jsxs("div", { className: "inline-flex items-center gap-2", children: [
+            loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }),
+            child
+          ] }) : child
+        }
+      );
+    }
+    return /* @__PURE__ */ jsxs(
+      "button",
+      {
+        className: cn(
+          buttonVariants({ variant, size, animation }),
+          // Efeito neon especial
+          variant === "neon" && [
+            "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+            "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+            "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+            "before:transition-opacity after:transition-opacity",
+            "before:duration-300 after:duration-300"
+          ],
+          className
+        ),
+        ref,
+        disabled: isDisabled,
+        "aria-busy": loading || void 0,
+        ...props,
+        children: [
+          loading && (loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" })),
+          children
+        ]
+      }
+    );
+  }
+);
+ButtonComponent.displayName = "Button";
+var Button = ButtonComponent;
+var Slider = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(
   SliderPrimitive.Root,
   {
     ref,
@@ -1234,7 +550,7 @@ var Slider = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ *
   }
 ));
 Slider.displayName = SliderPrimitive.Root.displayName;
-var Switch = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Switch = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SwitchPrimitives.Root,
   {
     className: cn(
@@ -1278,7 +594,7 @@ var toggleVariants = cva(
     }
   }
 );
-var Toggle = React23.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsx(
+var Toggle = React.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsx(
   TogglePrimitive.Root,
   {
     ref,
@@ -1329,7 +645,7 @@ var iconButtonVariants = cva(
     }
   }
 );
-var IconButton = React23.forwardRef(
+var IconButton = React.forwardRef(
   ({
     className,
     variant = "default",
@@ -1344,8 +660,8 @@ var IconButton = React23.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [showTooltip, setShowTooltip] = React23.useState(false);
-    const [tooltipVisible, setTooltipVisible] = React23.useState(false);
+    const [showTooltip, setShowTooltip] = React.useState(false);
+    const [tooltipVisible, setTooltipVisible] = React.useState(false);
     const tooltipClasses = {
       top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
       bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
@@ -1358,7 +674,7 @@ var IconButton = React23.forwardRef(
       left: "left-full top-1/2 -translate-y-1/2 -ml-1 border-t-transparent border-b-transparent border-r-transparent border-l-current",
       right: "right-full top-1/2 -translate-y-1/2 -mr-1 border-t-transparent border-b-transparent border-l-transparent border-r-current"
     };
-    React23.useEffect(() => {
+    React.useEffect(() => {
       if (showTooltip) {
         const timer = setTimeout(() => setTooltipVisible(true), 100);
         return () => clearTimeout(timer);
@@ -1471,7 +787,7 @@ var linkButtonVariants = cva(
     }
   }
 );
-var LinkButton = React23.forwardRef(
+var LinkButton = React.forwardRef(
   ({
     className,
     variant = "default",
@@ -1571,7 +887,7 @@ var fabVariants = cva(
     }
   }
 );
-var FAB = React23.forwardRef(
+var FAB = React.forwardRef(
   ({
     className,
     variant = "default",
@@ -1586,12 +902,12 @@ var FAB = React23.forwardRef(
     actions = [],
     ...props
   }, ref) => {
-    const [showActions, setShowActions] = React23.useState(active);
+    const [showActions, setShowActions] = React.useState(active);
     const isExtended = extended && text;
-    React23.useEffect(() => {
+    React.useEffect(() => {
       setShowActions(active);
     }, [active]);
-    const handleClick = React23.useCallback(() => {
+    const handleClick = React.useCallback(() => {
       if (actions.length > 0) {
         setShowActions(!showActions);
       }
@@ -1649,7 +965,7 @@ var FAB = React23.forwardRef(
   }
 );
 FAB.displayName = "FAB";
-var FABGroup = React23.forwardRef(
+var FABGroup = React.forwardRef(
   ({
     className,
     main,
@@ -1657,7 +973,7 @@ var FABGroup = React23.forwardRef(
     position = "bottom-right",
     ...props
   }, ref) => {
-    const positionClasses2 = {
+    const positionClasses = {
       "bottom-right": "bottom-6 right-6 flex-col-reverse",
       "bottom-left": "bottom-6 left-6 flex-col-reverse",
       "top-right": "top-6 right-6 flex-col",
@@ -1671,7 +987,7 @@ var FABGroup = React23.forwardRef(
         ref,
         className: cn(
           "fixed z-40 flex gap-3",
-          positionClasses2[position],
+          positionClasses[position],
           className
         ),
         ...props,
@@ -1721,7 +1037,7 @@ var segmentedControlVariants = cva(
     }
   }
 );
-var SegmentedControl = React23.forwardRef(
+var SegmentedControl = React.forwardRef(
   ({
     className,
     size = "md",
@@ -1734,9 +1050,9 @@ var SegmentedControl = React23.forwardRef(
     disabled = false,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React23.useState(defaultValue || options[0]?.value);
+    const [internalValue, setInternalValue] = React.useState(defaultValue || options[0]?.value);
     const currentValue = value !== void 0 ? value : internalValue;
-    const handleOptionClick = React23.useCallback((optionValue, isDisabled) => {
+    const handleOptionClick = React.useCallback((optionValue, isDisabled) => {
       if (isDisabled || disabled) return;
       if (value === void 0) {
         setInternalValue(optionValue);
@@ -1791,7 +1107,7 @@ var SegmentedControl = React23.forwardRef(
   }
 );
 SegmentedControl.displayName = "SegmentedControl";
-var SegmentedControlItem = React23.forwardRef(
+var SegmentedControlItem = React.forwardRef(
   ({
     className,
     active = false,
@@ -1827,1225 +1143,198 @@ var SegmentedControlItem = React23.forwardRef(
   }
 );
 SegmentedControlItem.displayName = "SegmentedControlItem";
-
-// src/lib/constants.ts
-var MOTION = {
-  TRANSITION: {
-    DEFAULT: "transition-all duration-200 ease-in-out"}};
-var GRADIENT_DIRECTIONS = {
-  TO_BOTTOM_RIGHT: "to-br"};
-var Card = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Card = React.forwardRef(({ className, variant = "default", ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
     className: cn(
+      // Base styles
       "rounded-lg border bg-card text-card-foreground shadow-sm",
+      // Variant styles
+      variant === "default" && "border-border bg-background dark:bg-black/40 dark:border-cyan-400/20",
+      variant === "outline" && "border-2 border-border bg-transparent dark:border-cyan-400/30",
+      variant === "elevated" && "border-border/50 shadow-lg dark:bg-black/60 dark:border-cyan-400/20 dark:shadow-cyan-500/10",
+      variant === "glass" && "border-border/20 bg-background/80 backdrop-blur-md dark:bg-black/40 dark:border-cyan-400/30 dark:backdrop-blur-xl",
+      // Transitions
+      "transition-all duration-200",
       className
     ),
     ...props
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardHeader = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
-    className: cn("flex flex-col space-y-1.5 p-6", className),
+    className: cn(
+      "flex flex-col space-y-1.5 p-6",
+      "dark:border-cyan-400/10",
+      className
+    ),
     ...props
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardTitle = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h3",
   {
     ref,
     className: cn(
       "text-2xl font-semibold leading-none tracking-tight",
+      "dark:text-cyan-200 dark:font-mono",
       className
     ),
     ...props
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardDescription = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "p",
   {
     ref,
-    className: cn("text-sm text-muted-foreground", className),
+    className: cn(
+      "text-sm text-muted-foreground",
+      "dark:text-cyan-400/80",
+      className
+    ),
     ...props
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardFooter = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
-    className: cn("flex items-center p-6 pt-0", className),
+    className: cn(
+      "flex items-center p-6 pt-0",
+      "dark:border-t dark:border-cyan-400/10",
+      className
+    ),
     ...props
   }
 ));
 CardFooter.displayName = "CardFooter";
-var HighlightCard = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  "div",
+var badgeVariants = cva(
+  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 dark:ring-offset-black",
+  {
+    variants: {
+      variant: {
+        default: "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+        secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        destructive: "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
+        outline: "text-foreground border-border dark:border-cyan-400/30 dark:text-cyan-300",
+        count: "border-transparent bg-muted text-foreground shadow-sm px-2.5 py-1 text-[11px] tracking-wide",
+        success: "border-transparent bg-green-500 text-white hover:bg-green-600 dark:bg-green-400/20 dark:text-green-300 dark:hover:bg-green-400/30",
+        warning: "border-transparent bg-yellow-500 text-white hover:bg-yellow-600 dark:bg-yellow-400/20 dark:text-yellow-300 dark:hover:bg-yellow-400/30",
+        info: "border-transparent bg-blue-500 text-white hover:bg-blue-600 dark:bg-cyan-400/20 dark:text-cyan-300 dark:hover:bg-cyan-400/30",
+        cyberpunk: "border-transparent bg-gradient-to-r from-cyan-500 to-purple-500 text-white hover:from-cyan-600 hover:to-purple-600 dark:from-cyan-400 dark:to-purple-400 dark:hover:from-cyan-300 dark:hover:to-purple-300",
+        neon: "border-cyan-400/30 bg-cyan-400/10 text-cyan-300 shadow-lg shadow-cyan-400/20 dark:border-cyan-300/50 dark:bg-cyan-300/10 dark:text-cyan-200 dark:shadow-cyan-300/30"
+      },
+      size: {
+        sm: "px-2 py-0.5 text-xs",
+        md: "px-2.5 py-0.5 text-xs",
+        lg: "px-3 py-1 text-sm"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "md"
+    }
+  }
+);
+function Badge({ className, variant, size, ...props }) {
+  return /* @__PURE__ */ jsx("div", { className: cn(badgeVariants({ variant, size }), className), ...props });
+}
+var Progress = React.forwardRef(({ className, value, color = "default", ...props }, ref) => /* @__PURE__ */ jsx(
+  ProgressPrimitive.Root,
   {
     ref,
     className: cn(
-      "text-left bg-card/60 dark:bg-black/50",
-      "backdrop-blur-xl",
-      "rounded-2xl",
-      "p-4 xs:p-5 sm:p-6 md:p-8",
-      "border border-border/50 dark:border-cyan-400/20",
-      "hover:border-primary/40 dark:hover:border-cyan-400/50",
-      "hover:bg-card/80 dark:hover:bg-black/70",
-      "hover:shadow-2xl hover:shadow-primary/10 dark:hover:shadow-cyan-500/20",
-      "h-full flex flex-col group",
-      "relative overflow-hidden",
-      `before:absolute before:inset-0 before:${GRADIENT_DIRECTIONS.TO_BOTTOM_RIGHT}`,
-      "before:from-primary/0 before:via-primary/0 before:to-primary/0",
-      "hover:before:from-primary/5 hover:before:via-transparent hover:before:to-primary/5",
-      "dark:hover:before:from-cyan-400/5 dark:hover:before:via-transparent dark:hover:before:to-purple-400/5",
-      "before:transition-all before:duration-500 before:ease-in-out before:pointer-events-none",
-      MOTION.TRANSITION.DEFAULT,
+      // Base styles
+      "relative h-2 w-full overflow-hidden rounded-full bg-secondary",
+      // Dark mode
+      "dark:bg-black/40 dark:border dark:border-cyan-400/20",
+      className
+    ),
+    ...props,
+    children: /* @__PURE__ */ jsx(
+      ProgressPrimitive.Indicator,
+      {
+        className: cn(
+          // Base indicator
+          "h-full w-full flex-1 bg-primary transition-all duration-300",
+          // Color variants
+          color === "default" && "bg-primary dark:bg-cyan-400",
+          color === "success" && "bg-green-500 dark:bg-green-400",
+          color === "warning" && "bg-yellow-500 dark:bg-yellow-400",
+          color === "destructive" && "bg-red-500 dark:bg-red-400",
+          color === "cyberpunk" && "bg-gradient-to-r from-cyan-500 to-purple-500 dark:from-cyan-400 dark:to-purple-400"
+        ),
+        style: { transform: `translateX(-${100 - (value || 0)}%)` }
+      }
+    )
+  }
+));
+Progress.displayName = ProgressPrimitive.Root.displayName;
+var AccordionItem = React.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  AccordionPrimitive.Item,
+  {
+    ref,
+    className: cn(
+      "border-b border-border dark:border-cyan-400/20",
       className
     ),
     ...props
   }
 ));
-HighlightCard.displayName = "HighlightCard";
-var ScrollArea = React23.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
-  ScrollAreaPrimitive.Root,
+AccordionItem.displayName = "AccordionItem";
+var AccordionTrigger = React.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(AccordionPrimitive.Header, { className: "flex", children: /* @__PURE__ */ jsxs(
+  AccordionPrimitive.Trigger,
   {
     ref,
-    className: cn("relative overflow-hidden", className),
+    className: cn(
+      // Base styles
+      "flex flex-1 items-center justify-between py-4 text-sm font-medium",
+      "transition-all hover:underline",
+      // Focus styles
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+      "focus-visible:ring-offset-2 dark:ring-offset-black dark:focus-visible:ring-cyan-400",
+      // Dark mode
+      "dark:text-cyan-200 dark:hover:text-cyan-100",
+      // Disabled state
+      "[&[data-state=open]>svg]:rotate-180",
+      className
+    ),
     ...props,
     children: [
-      /* @__PURE__ */ jsx(ScrollAreaPrimitive.Viewport, { className: "h-full w-full rounded-[inherit]", children }),
-      /* @__PURE__ */ jsx(ScrollBar, {}),
-      /* @__PURE__ */ jsx(ScrollAreaPrimitive.Corner, {})
+      children,
+      /* @__PURE__ */ jsx(ChevronDown, { className: "h-4 w-4 shrink-0 transition-transform duration-200 dark:text-cyan-400" })
     ]
   }
-));
-ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
-var ScrollBar = React23.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsx(
-  ScrollAreaPrimitive.ScrollAreaScrollbar,
+) }));
+AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
+var AccordionContent = React.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(
+  AccordionPrimitive.Content,
   {
     ref,
-    orientation,
     className: cn(
-      "flex touch-none select-none transition-colors",
-      orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent p-[1px]",
-      orientation === "horizontal" && "h-2.5 flex-col border-t border-t-transparent p-[1px]",
+      // Base styles
+      "overflow-hidden text-sm data-[state=closed]:animate-accordion-up",
+      "data-[state=open]:animate-accordion-down",
+      // Spacing
+      "pb-4 pt-0",
+      // Text color
+      "dark:text-cyan-400/80",
       className
     ),
     ...props,
-    children: /* @__PURE__ */ jsx(ScrollAreaPrimitive.ScrollAreaThumb, { className: "relative flex-1 rounded-full bg-border" })
+    children: /* @__PURE__ */ jsx("div", { className: cn("pb-4 pt-0", className), children })
   }
 ));
-ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
-var Separator = React23.forwardRef(
-  ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsx(
-    SeparatorPrimitive.Root,
-    {
-      ref,
-      decorative,
-      orientation,
-      className: cn(
-        "shrink-0 bg-border",
-        /** Define dimensões baseado na orientação */
-        orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
-        className
-      ),
-      ...props
-    }
-  )
-);
-Separator.displayName = SeparatorPrimitive.Root.displayName;
-var Table = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsx(
-  "table",
-  {
-    ref,
-    className: cn("w-full caption-bottom text-sm", className),
-    ...props
-  }
-) }));
-Table.displayName = "Table";
-var TableHeader = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
-TableHeader.displayName = "TableHeader";
-var TableBody = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  "tbody",
-  {
-    ref,
-    className: cn("[&_tr:last-child]:border-0", className),
-    ...props
-  }
-));
-TableBody.displayName = "TableBody";
-var TableFooter = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  "tfoot",
-  {
-    ref,
-    className: cn(
-      "border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
-      className
-    ),
-    ...props
-  }
-));
-TableFooter.displayName = "TableFooter";
-var TableRow = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  "tr",
-  {
-    ref,
-    className: cn(
-      "border-b transition-colors duration-200 hover:bg-muted/50 data-[state=selected]:bg-muted",
-      className
-    ),
-    ...props
-  }
-));
-TableRow.displayName = "TableRow";
-var TableHead = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  "th",
-  {
-    ref,
-    className: cn(
-      "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
-      className
-    ),
-    ...props
-  }
-));
-TableHead.displayName = "TableHead";
-var TableCell = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  "td",
-  {
-    ref,
-    className: cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className),
-    ...props
-  }
-));
-TableCell.displayName = "TableCell";
-var TableCaption = React23.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  "caption",
-  {
-    ref,
-    className: cn("mt-4 text-sm text-muted-foreground", className),
-    ...props
-  }
-));
-TableCaption.displayName = "TableCaption";
-var containerVariants = cva(
-  "mx-auto px-4 sm:px-6 lg:px-8",
-  {
-    variants: {
-      size: {
-        xs: "max-w-xs",
-        sm: "max-w-sm",
-        md: "max-w-md",
-        lg: "max-w-lg",
-        xl: "max-w-xl",
-        "2xl": "max-w-2xl",
-        "3xl": "max-w-3xl",
-        "4xl": "max-w-4xl",
-        "5xl": "max-w-5xl",
-        "6xl": "max-w-6xl",
-        "7xl": "max-w-7xl",
-        full: "max-w-full",
-        screen: "max-w-screen-xl",
-        none: ""
-      },
-      padding: {
-        none: "px-0",
-        sm: "px-2 sm:px-4",
-        md: "px-4 sm:px-6 lg:px-8",
-        lg: "px-6 sm:px-8 lg:px-12",
-        xl: "px-8 sm:px-12 lg:px-16"
-      },
-      center: {
-        true: "flex items-center justify-center",
-        false: ""
-      }
-    },
-    defaultVariants: {
-      size: "7xl",
-      padding: "md",
-      center: false
-    }
-  }
-);
-var Container = React23.forwardRef(
-  ({
-    className,
-    size = "7xl",
-    padding = "md",
-    center = false,
-    fullHeight = false,
-    verticalPadding = false,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          containerVariants({ size, padding, center }),
-          fullHeight && "min-h-screen",
-          verticalPadding && "py-4 sm:py-6 lg:py-8",
-          className
-        ),
-        ...props
-      }
-    );
-  }
-);
-Container.displayName = "Container";
-var ContainerFluid = React23.forwardRef(
-  ({
-    className,
-    padding = "md",
-    verticalPadding = false,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "w-full",
-          padding === "none" && "px-0",
-          padding === "sm" && "px-2 sm:px-4",
-          padding === "md" && "px-4 sm:px-6 lg:px-8",
-          padding === "lg" && "px-6 sm:px-8 lg:px-12",
-          padding === "xl" && "px-8 sm:px-12 lg:px-16",
-          verticalPadding && "py-4 sm:py-6 lg:py-8",
-          className
-        ),
-        ...props
-      }
-    );
-  }
-);
-ContainerFluid.displayName = "ContainerFluid";
-var spacingClasses2 = {
-  sm: "py-8",
-  md: "py-12",
-  lg: "py-16",
-  xl: "py-20",
-  "2xl": "py-24"
-};
-var ContainerSection = React23.forwardRef(
-  ({
-    className,
-    spacing = "lg",
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "section",
-      {
-        ref,
-        className: cn(
-          "w-full",
-          spacingClasses2[spacing],
-          className
-        ),
-        children: /* @__PURE__ */ jsx(Container, { ...props })
-      }
-    );
-  }
-);
-ContainerSection.displayName = "ContainerSection";
-var gridVariants = cva(
-  "grid",
-  {
-    variants: {
-      cols: {
-        1: "grid-cols-1",
-        2: "grid-cols-2",
-        3: "grid-cols-3",
-        4: "grid-cols-4",
-        5: "grid-cols-5",
-        6: "grid-cols-6",
-        7: "grid-cols-7",
-        8: "grid-cols-8",
-        9: "grid-cols-9",
-        10: "grid-cols-10",
-        11: "grid-cols-11",
-        12: "grid-cols-12",
-        auto: "grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      sm: {
-        1: "sm:grid-cols-1",
-        2: "sm:grid-cols-2",
-        3: "sm:grid-cols-3",
-        4: "sm:grid-cols-4",
-        5: "sm:grid-cols-5",
-        6: "sm:grid-cols-6",
-        7: "sm:grid-cols-7",
-        8: "sm:grid-cols-8",
-        9: "sm:grid-cols-9",
-        10: "sm:grid-cols-10",
-        11: "sm:grid-cols-11",
-        12: "sm:grid-cols-12",
-        auto: "sm:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "sm:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      md: {
-        1: "md:grid-cols-1",
-        2: "md:grid-cols-2",
-        3: "md:grid-cols-3",
-        4: "md:grid-cols-4",
-        5: "md:grid-cols-5",
-        6: "md:grid-cols-6",
-        7: "md:grid-cols-7",
-        8: "md:grid-cols-8",
-        9: "md:grid-cols-9",
-        10: "md:grid-cols-10",
-        11: "md:grid-cols-11",
-        12: "md:grid-cols-12",
-        auto: "md:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "md:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      lg: {
-        1: "lg:grid-cols-1",
-        2: "lg:grid-cols-2",
-        3: "lg:grid-cols-3",
-        4: "lg:grid-cols-4",
-        5: "lg:grid-cols-5",
-        6: "lg:grid-cols-6",
-        7: "lg:grid-cols-7",
-        8: "lg:grid-cols-8",
-        9: "lg:grid-cols-9",
-        10: "lg:grid-cols-10",
-        11: "lg:grid-cols-11",
-        12: "lg:grid-cols-12",
-        auto: "lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "lg:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "lg:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      xl: {
-        1: "xl:grid-cols-1",
-        2: "xl:grid-cols-2",
-        3: "xl:grid-cols-3",
-        4: "xl:grid-cols-4",
-        5: "xl:grid-cols-5",
-        6: "xl:grid-cols-6",
-        7: "xl:grid-cols-7",
-        8: "xl:grid-cols-8",
-        9: "xl:grid-cols-9",
-        10: "xl:grid-cols-10",
-        11: "xl:grid-cols-11",
-        12: "xl:grid-cols-12",
-        auto: "xl:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "xl:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "xl:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      gap: {
-        0: "gap-0",
-        1: "gap-1",
-        2: "gap-2",
-        3: "gap-3",
-        4: "gap-4",
-        5: "gap-5",
-        6: "gap-6",
-        8: "gap-8",
-        10: "gap-10",
-        12: "gap-12",
-        px: "gap-px"
-      },
-      gapX: {
-        0: "gap-x-0",
-        1: "gap-x-1",
-        2: "gap-x-2",
-        3: "gap-x-3",
-        4: "gap-x-4",
-        5: "gap-x-5",
-        6: "gap-x-6",
-        8: "gap-x-8",
-        10: "gap-x-10",
-        12: "gap-x-12",
-        px: "gap-x-px"
-      },
-      gapY: {
-        0: "gap-y-0",
-        1: "gap-y-1",
-        2: "gap-y-2",
-        3: "gap-y-3",
-        4: "gap-y-4",
-        5: "gap-y-5",
-        6: "gap-y-6",
-        8: "gap-y-8",
-        10: "gap-y-10",
-        12: "gap-y-12",
-        px: "gap-y-px"
-      },
-      align: {
-        start: "items-start",
-        end: "items-end",
-        center: "items-center",
-        stretch: "items-stretch"
-      },
-      justify: {
-        start: "justify-start",
-        end: "justify-end",
-        center: "justify-center",
-        between: "justify-between",
-        around: "justify-around",
-        evenly: "justify-evenly"
-      }
-    }
-  }
-);
-var Grid = React23.forwardRef(
-  ({
-    className,
-    cols,
-    sm,
-    md,
-    lg,
-    xl,
-    gap,
-    gapX,
-    gapY,
-    align,
-    justify,
-    minColWidth,
-    templateCols,
-    templateRows,
-    areas,
-    style,
-    ...props
-  }, ref) => {
-    const gridStyle = React23.useMemo(() => {
-      const customStyle = { ...style };
-      if (templateCols) {
-        customStyle.gridTemplateColumns = templateCols;
-      }
-      if (templateRows) {
-        customStyle.gridTemplateRows = templateRows;
-      }
-      if (areas) {
-        customStyle.gridTemplateAreas = areas;
-      }
-      if ((cols === "auto-fit" || cols === "auto-fill") && minColWidth) {
-        customStyle.gridTemplateColumns = `repeat(${cols}, minmax(${minColWidth}, 1fr))`;
-      }
-      return customStyle;
-    }, [style, templateCols, templateRows, areas, cols, minColWidth]);
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          gridVariants({
-            cols,
-            sm,
-            md,
-            lg,
-            xl,
-            gap,
-            gapX,
-            gapY,
-            align,
-            justify
-          }),
-          className
-        ),
-        style: gridStyle,
-        ...props
-      }
-    );
-  }
-);
-Grid.displayName = "Grid";
-var GridItem = React23.forwardRef(
-  ({
-    className,
-    colStart,
-    colEnd,
-    rowStart,
-    rowEnd,
-    area,
-    style,
-    ...props
-  }, ref) => {
-    const gridStyle = React23.useMemo(() => {
-      const customStyle = { ...style };
-      if (colStart !== void 0) {
-        customStyle.gridColumnStart = colStart;
-      }
-      if (colEnd !== void 0) {
-        customStyle.gridColumnEnd = colEnd;
-      }
-      if (rowStart !== void 0) {
-        customStyle.gridRowStart = rowStart;
-      }
-      if (rowEnd !== void 0) {
-        customStyle.gridRowEnd = rowEnd;
-      }
-      if (area) {
-        customStyle.gridArea = area;
-      }
-      return customStyle;
-    }, [style, colStart, colEnd, rowStart, rowEnd, area]);
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn(className),
-        style: gridStyle,
-        ...props
-      }
-    );
-  }
-);
-GridItem.displayName = "GridItem";
-var flexVariants = cva(
-  "flex",
-  {
-    variants: {
-      direction: {
-        row: "flex-row",
-        "row-reverse": "flex-row-reverse",
-        col: "flex-col",
-        "col-reverse": "flex-col-reverse"
-      },
-      wrap: {
-        nowrap: "flex-nowrap",
-        wrap: "flex-wrap",
-        "wrap-reverse": "flex-wrap-reverse"
-      },
-      align: {
-        start: "items-start",
-        end: "items-end",
-        center: "items-center",
-        baseline: "items-baseline",
-        stretch: "items-stretch"
-      },
-      justify: {
-        start: "justify-start",
-        end: "justify-end",
-        center: "justify-center",
-        between: "justify-between",
-        around: "justify-around",
-        evenly: "justify-evenly"
-      },
-      gap: {
-        0: "gap-0",
-        1: "gap-1",
-        2: "gap-2",
-        3: "gap-3",
-        4: "gap-4",
-        5: "gap-5",
-        6: "gap-6",
-        8: "gap-8",
-        10: "gap-10",
-        12: "gap-12",
-        px: "gap-px"
-      },
-      gapX: {
-        0: "gap-x-0",
-        1: "gap-x-1",
-        2: "gap-x-2",
-        3: "gap-x-3",
-        4: "gap-x-4",
-        5: "gap-x-5",
-        6: "gap-x-6",
-        8: "gap-x-8",
-        10: "gap-x-10",
-        12: "gap-x-12",
-        px: "gap-x-px"
-      },
-      gapY: {
-        0: "gap-y-0",
-        1: "gap-y-1",
-        2: "gap-y-2",
-        3: "gap-y-3",
-        4: "gap-y-4",
-        5: "gap-y-5",
-        6: "gap-y-6",
-        8: "gap-y-8",
-        10: "gap-y-10",
-        12: "gap-y-12",
-        px: "gap-y-px"
-      }
-    }
-  }
-);
-var Flex = React23.forwardRef(
-  ({
-    className,
-    direction = "row",
-    wrap = "nowrap",
-    align,
-    justify,
-    gap,
-    gapX,
-    gapY,
-    full = false,
-    fullHeight = false,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          flexVariants({
-            direction,
-            wrap,
-            align,
-            justify,
-            gap,
-            gapX,
-            gapY
-          }),
-          full && "w-full",
-          fullHeight && "min-h-screen",
-          className
-        ),
-        ...props
-      }
-    );
-  }
-);
-Flex.displayName = "Flex";
-var FlexCenter = React23.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsx(
-      Flex,
-      {
-        ref,
-        align: "center",
-        justify: "center",
-        ...props
-      }
-    );
-  }
-);
-FlexCenter.displayName = "FlexCenter";
-var FlexBetween = React23.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsx(
-      Flex,
-      {
-        ref,
-        justify: "between",
-        ...props
-      }
-    );
-  }
-);
-FlexBetween.displayName = "FlexBetween";
-var FlexStart = React23.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsx(
-      Flex,
-      {
-        ref,
-        align: "start",
-        justify: "start",
-        ...props
-      }
-    );
-  }
-);
-FlexStart.displayName = "FlexStart";
-var FlexEnd = React23.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsx(
-      Flex,
-      {
-        ref,
-        align: "end",
-        justify: "end",
-        ...props
-      }
-    );
-  }
-);
-FlexEnd.displayName = "FlexEnd";
-var FlexColumn = React23.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsx(
-      Flex,
-      {
-        ref,
-        direction: "col",
-        ...props
-      }
-    );
-  }
-);
-FlexColumn.displayName = "FlexColumn";
-var FlexRow = React23.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsx(
-      Flex,
-      {
-        ref,
-        direction: "row",
-        ...props
-      }
-    );
-  }
-);
-FlexRow.displayName = "FlexRow";
-var spacerVariants = cva(
-  "",
-  {
-    variants: {
-      size: {
-        xs: "h-2 w-2",
-        sm: "h-4 w-4",
-        md: "h-6 w-6",
-        lg: "h-8 w-8",
-        xl: "h-10 w-10",
-        "2xl": "h-12 w-12",
-        "3xl": "h-16 w-16",
-        "4xl": "h-20 w-20"
-      },
-      direction: {
-        horizontal: "flex-1 h-px",
-        vertical: "w-px flex-1",
-        both: "flex-1"
-      },
-      variant: {
-        default: "bg-transparent",
-        line: "bg-border",
-        dotted: "bg-transparent border-dashed",
-        gradient: "bg-gradient-to-r from-transparent via-border to-transparent"
-      }
-    },
-    defaultVariants: {
-      size: "md",
-      direction: "both",
-      variant: "default"
-    }
-  }
-);
-var Spacer = React23.forwardRef(
-  ({
-    className,
-    size = "md",
-    direction = "both",
-    variant = "default",
-    width,
-    height,
-    flex = true,
-    invisible = false,
-    style,
-    ...props
-  }, ref) => {
-    const spacerStyle = React23.useMemo(() => {
-      const customStyle = { ...style };
-      if (width !== void 0) {
-        customStyle.width = typeof width === "number" ? `${width}px` : width;
-      }
-      if (height !== void 0) {
-        customStyle.height = typeof height === "number" ? `${height}px` : height;
-      }
-      if (flex) {
-        customStyle.flex = "1";
-      }
-      if (invisible) {
-        customStyle.visibility = "hidden";
-      }
-      return customStyle;
-    }, [style, width, height, flex, invisible]);
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          spacerVariants({ size, direction, variant }),
-          !flex && "flex-none",
-          variant === "dotted" && "border-b border-border",
-          className
-        ),
-        style: spacerStyle,
-        "aria-hidden": "true",
-        ...props
-      }
-    );
-  }
-);
-Spacer.displayName = "Spacer";
-var VerticalSpacer = React23.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsx(
-      Spacer,
-      {
-        ref,
-        direction: "vertical",
-        ...props
-      }
-    );
-  }
-);
-VerticalSpacer.displayName = "VerticalSpacer";
-var HorizontalSpacer = React23.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsx(
-      Spacer,
-      {
-        ref,
-        direction: "horizontal",
-        ...props
-      }
-    );
-  }
-);
-HorizontalSpacer.displayName = "HorizontalSpacer";
-var dividerVariants = cva(
-  "border-t",
-  {
-    variants: {
-      variant: {
-        default: "border-border",
-        muted: "border-muted",
-        primary: "border-primary",
-        secondary: "border-secondary",
-        dashed: "border-dashed",
-        dotted: "border-dotted",
-        gradient: "border-none bg-gradient-to-r from-transparent via-border to-transparent h-px"
-      },
-      size: {
-        xs: "border-t-0.5",
-        sm: "border-t",
-        md: "border-t-2",
-        lg: "border-t-4"
-      },
-      orientation: {
-        horizontal: "w-full",
-        vertical: "h-full border-l border-t-0"
-      }
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "sm",
-      orientation: "horizontal"
-    }
-  }
-);
-var Divider = React23.forwardRef(
-  ({
-    className,
-    variant = "default",
-    size = "sm",
-    orientation = "horizontal",
-    label,
-    labelPosition = "center",
-    labelComponent,
-    ...props
-  }, ref) => {
-    if (label || labelComponent) {
-      return /* @__PURE__ */ jsxs(
-        "div",
-        {
-          ref,
-          className: cn(
-            "flex items-center gap-4",
-            orientation === "vertical" && "flex-col",
-            className
-          ),
-          role: "separator",
-          "aria-orientation": orientation,
-          ...props,
-          children: [
-            /* @__PURE__ */ jsx(
-              "div",
-              {
-                className: cn(
-                  dividerVariants({ variant, size, orientation }),
-                  labelPosition === "center" && "flex-1",
-                  labelPosition === "end" && "flex-1",
-                  labelPosition === "start" && "flex-none w-10"
-                )
-              }
-            ),
-            labelComponent || /* @__PURE__ */ jsx("span", { className: "text-sm text-muted-foreground whitespace-nowrap", children: label }),
-            /* @__PURE__ */ jsx(
-              "div",
-              {
-                className: cn(
-                  dividerVariants({ variant, size, orientation }),
-                  labelPosition === "center" && "flex-1",
-                  labelPosition === "start" && "flex-1",
-                  labelPosition === "end" && "flex-none w-10"
-                )
-              }
-            )
-          ]
-        }
-      );
-    }
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          dividerVariants({ variant, size, orientation }),
-          className
-        ),
-        role: "separator",
-        "aria-orientation": orientation,
-        ...props
-      }
-    );
-  }
-);
-Divider.displayName = "Divider";
-var spacingClasses3 = {
-  sm: "my-4",
-  md: "my-6",
-  lg: "my-8",
-  xl: "my-12"
-};
-var SectionDivider = React23.forwardRef(
-  ({
-    className,
-    spacing = "lg",
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx("div", { className: cn(spacingClasses3[spacing], className), children: /* @__PURE__ */ jsx(Divider, { ref, size: "md", ...props }) });
-  }
-);
-SectionDivider.displayName = "SectionDivider";
-var textColorClasses = {
-  default: "text-foreground",
-  muted: "text-muted-foreground",
-  primary: "text-primary",
-  secondary: "text-secondary-foreground"
-};
-var TextDivider = React23.forwardRef(
-  ({
-    className,
-    children,
-    textColor = "muted",
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxs(
-      "div",
-      {
-        ref,
-        className: cn("flex items-center gap-4", className),
-        role: "separator",
-        ...props,
-        children: [
-          /* @__PURE__ */ jsx("div", { className: "flex-1 h-px bg-border" }),
-          /* @__PURE__ */ jsx("span", { className: cn("text-sm font-medium whitespace-nowrap", textColorClasses[textColor]), children }),
-          /* @__PURE__ */ jsx("div", { className: "flex-1 h-px bg-border" })
-        ]
-      }
-    );
-  }
-);
-TextDivider.displayName = "TextDivider";
-var panelVariants = cva(
-  "rounded-lg border bg-card text-card-foreground",
-  {
-    variants: {
-      variant: {
-        default: "border-border shadow-sm",
-        elevated: "border-border shadow-md",
-        outlined: "border-2 border-border shadow-none",
-        ghost: "border-transparent shadow-none bg-transparent",
-        glass: "glass border-border shadow-sm",
-        neon: "neon-border shadow-lg dark:shadow-glow-cyan",
-        gradient: "bg-gradient-to-br from-background to-muted border-border shadow-sm"
-      },
-      size: {
-        sm: "p-4",
-        md: "p-6",
-        lg: "p-8",
-        xl: "p-10"
-      },
-      padding: {
-        none: "p-0",
-        sm: "p-3",
-        md: "p-4",
-        lg: "p-6",
-        xl: "p-8"
-      },
-      radius: {
-        none: "rounded-none",
-        sm: "rounded",
-        md: "rounded-lg",
-        lg: "rounded-xl",
-        xl: "rounded-2xl",
-        full: "rounded-full"
-      }
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "md",
-      padding: null,
-      radius: "md"
-    }
-  }
-);
-var Panel = React23.forwardRef(
-  ({
-    className,
-    variant = "default",
-    size,
-    padding,
-    radius = "md",
-    hover = false,
-    clickable = false,
-    selected = false,
-    loading = false,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          panelVariants({ variant, size, padding, radius }),
-          hover && "transition-all duration-[var(--motion-duration-normal)] hover:shadow-lg hover:-translate-y-0.5",
-          clickable && "cursor-pointer active:scale-[0.98]",
-          selected && "ring-2 ring-primary ring-offset-2",
-          loading && "opacity-70",
-          className
-        ),
-        ...props
-      }
-    );
-  }
-);
-Panel.displayName = "Panel";
-var PanelHeader = React23.forwardRef(
-  ({
-    className,
-    divider = false,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "flex flex-col space-y-1.5 p-6",
-          divider && "border-b border-border",
-          className
-        ),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelHeader.displayName = "PanelHeader";
-var PanelTitle = React23.forwardRef(
-  ({
-    className,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "h3",
-      {
-        ref,
-        className: cn("text-lg font-semibold leading-none tracking-tight", className),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelTitle.displayName = "PanelTitle";
-var PanelDescription = React23.forwardRef(
-  ({
-    className,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "p",
-      {
-        ref,
-        className: cn("text-sm text-muted-foreground", className),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelDescription.displayName = "PanelDescription";
-var PanelContent = React23.forwardRef(
-  ({
-    className,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn("p-6 pt-0", className),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelContent.displayName = "PanelContent";
-var PanelFooter = React23.forwardRef(
-  ({
-    className,
-    divider = false,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "flex items-center p-6 pt-0",
-          divider && "border-t border-border mt-6 pt-6",
-          className
-        ),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelFooter.displayName = "PanelFooter";
-var spacingClasses4 = {
-  sm: "gap-4",
-  md: "gap-6",
-  lg: "gap-8",
-  xl: "gap-10"
-};
-var PanelGroup = React23.forwardRef(
-  ({
-    className,
-    spacing = "md",
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsx(
-      "div",
-      {
-        ref,
-        className: cn("grid", spacingClasses4[spacing], className),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelGroup.displayName = "PanelGroup";
+AccordionContent.displayName = AccordionPrimitive.Content.displayName;
 function RecentPostsList({
   posts = [],
   onEditPost,

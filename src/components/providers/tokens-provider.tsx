@@ -201,6 +201,11 @@ export function TokensProvider({ tokens: customTokens, children }: TokensProvide
     return tokens.primitives?.motion?.[type]?.[key] ?? fallback;
   }, [tokens]);
 
+  const getGradient = React.useCallback((key: string, fallback = '') => {
+    const value = tokens.primitives?.gradients?.[key];
+    return typeof value === 'string' ? value : fallback;
+  }, [tokens]);
+
   const value: TokensContextValue = React.useMemo(() => ({
     tokens,
     getColor,
@@ -208,7 +213,8 @@ export function TokensProvider({ tokens: customTokens, children }: TokensProvide
     getRadius,
     getShadow,
     getMotion,
-  }), [tokens, getColor, getSpacing, getRadius, getShadow, getMotion]);
+    getGradient,
+  }), [tokens, getColor, getSpacing, getRadius, getShadow, getMotion, getGradient]);
 
   return (
     <TokensContext.Provider value={value}>
@@ -220,20 +226,9 @@ export function TokensProvider({ tokens: customTokens, children }: TokensProvide
 export function useTokens(): TokensContextValue {
   const context = React.useContext(TokensContext);
   if (!context) {
-    return {
-      tokens: DEFAULT_TOKENS,
-      getColor: (path: string, fallback = '#000000') => 
-        getNestedValue(DEFAULT_TOKENS.primitives?.colors, path, fallback) ||
-        getNestedValue(DEFAULT_TOKENS.semantics, path, fallback),
-      getSpacing: (key: string, fallback = '0') => 
-        DEFAULT_TOKENS.primitives?.spacing?.[key] ?? fallback,
-      getRadius: (key: string, fallback = '0') => 
-        DEFAULT_TOKENS.primitives?.radius?.[key] ?? fallback,
-      getShadow: (key: string, fallback = 'none') => 
-        DEFAULT_TOKENS.primitives?.shadows?.[key] ?? fallback,
-      getMotion: (type: 'duration' | 'easing' | 'delay', key: string, fallback = '') => 
-        DEFAULT_TOKENS.primitives?.motion?.[type]?.[key] ?? fallback,
-    };
+    throw new Error(
+      'useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais.'
+    );
   }
   return context;
 }

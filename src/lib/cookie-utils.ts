@@ -140,12 +140,14 @@ export class CookieManager {
 
     this.clearAnalyticsCookies();
 
-    if ((window as any).dataLayer) {
-      (window as any).dataLayer = [];
+    const win = window as Window & { dataLayer?: unknown[]; gtag?: unknown };
+
+    if (win.dataLayer) {
+      win.dataLayer = [];
     }
 
-    if ((window as any).gtag) {
-      delete (window as any).gtag;
+    if (win.gtag) {
+      delete win.gtag;
     }
   }
 

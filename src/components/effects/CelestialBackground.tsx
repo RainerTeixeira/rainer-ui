@@ -20,9 +20,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { tokens } from '@rainersoft/design-tokens';
 import { hexToRGBA } from '../../lib/color-utils';
 import { GRADIENT_DIRECTIONS } from '../../lib/constants';
+import { useTokens } from '../providers/tokens-provider';
 
 // ============================================================================
 // Types
@@ -31,6 +31,12 @@ import { GRADIENT_DIRECTIONS } from '../../lib/constants';
 interface CelestialBackgroundProps {
   /** Variante do background (default, dense, sparse) */
   variant?: 'default' | 'dense' | 'sparse';
+  /** Permite sobrescrever as cores principais */
+  colors?: {
+    cyan?: string;
+    purple?: string;
+    pink?: string;
+  };
 }
 
 // ============================================================================
@@ -115,15 +121,17 @@ function Star({ star }: { star: ReturnType<typeof generateStars>[0] }) {
  */
 export function CelestialBackground({
   variant = 'default',
+  colors,
 }: CelestialBackgroundProps = {}) {
   const config = STAR_CONFIGS[variant];
   const [stars, setStars] = useState<ReturnType<typeof generateStars>>([]);
   const [isMounted, setIsMounted] = useState(false);
 
-  // Cores dos design tokens
-  const cyan400 = tokens.primitives.color.cyan['400'];
-  const purple400 = tokens.primitives.color.purple['400'];
-  const pink500 = tokens.primitives.color.pink['500'];
+  const { getColor } = useTokens();
+
+  const cyan400 = colors?.cyan ?? getColor('primitives.colors.cyan.400', '#22d3ee');
+  const purple400 = colors?.purple ?? getColor('primitives.colors.purple.400', '#a855f7');
+  const pink500 = colors?.pink ?? getColor('primitives.colors.pink.500', '#ec4899');
 
   // Gera estrelas apenas no cliente para evitar hidratação
   useEffect(() => {

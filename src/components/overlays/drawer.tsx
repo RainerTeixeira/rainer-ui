@@ -139,6 +139,15 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
   ) => {
     const drawerRef = React.useRef<HTMLDivElement>(null);
 
+    const setDrawerRef = React.useCallback((node: HTMLDivElement | null) => {
+      drawerRef.current = node;
+      if (typeof ref === 'function') {
+        ref(node);
+      } else if (ref) {
+        (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      }
+    }, [ref]);
+
     // Previnir scroll do body
     React.useEffect(() => {
       if (open && preventBodyScroll) {
@@ -213,15 +222,14 @@ export const Drawer = React.forwardRef<HTMLDivElement, DrawerProps>(
 
         {/* Drawer */}
         <div
-          ref={drawerRef}
+          ref={setDrawerRef}
           className={cn(
-            drawerVariants({ position, variant }),
+            drawerVariants({ position, size, variant, className }),
             position === 'left' && size && sizeClasses[size],
             position === 'right' && size && sizeClasses[size],
             animationClasses[position],
             loading && 'opacity-70',
             !open && 'pointer-events-none',
-            className
           )}
           role="dialog"
           aria-modal="true"

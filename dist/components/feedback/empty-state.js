@@ -1,7 +1,7 @@
 'use strict';
 
 var RefreshCw = require('lucide-react/dist/esm/icons/refresh-cw');
-var React2 = require('react');
+var React = require('react');
 var classVarianceAuthority = require('class-variance-authority');
 var ChevronDown = require('lucide-react/dist/esm/icons/chevron-down');
 var Package = require('lucide-react/dist/esm/icons/package');
@@ -35,7 +35,7 @@ function _interopNamespace(e) {
 }
 
 var RefreshCw__default = /*#__PURE__*/_interopDefault(RefreshCw);
-var React2__namespace = /*#__PURE__*/_interopNamespace(React2);
+var React__namespace = /*#__PURE__*/_interopNamespace(React);
 var ChevronDown__default = /*#__PURE__*/_interopDefault(ChevronDown);
 var Package__default = /*#__PURE__*/_interopDefault(Package);
 var Search__default = /*#__PURE__*/_interopDefault(Search);
@@ -155,7 +155,7 @@ var buttonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var ButtonComponent = React2__namespace.forwardRef(
+var ButtonComponent = React__namespace.forwardRef(
   ({
     className,
     variant,
@@ -168,10 +168,36 @@ var ButtonComponent = React2__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const Comp = asChild ? reactSlot.Slot : "button";
     const isDisabled = disabled || loading;
+    if (asChild) {
+      const child = React__namespace.Children.only(children);
+      return /* @__PURE__ */ jsxRuntime.jsx(
+        reactSlot.Slot,
+        {
+          className: cn(
+            buttonVariants({ variant, size, animation }),
+            // Efeito neon especial
+            variant === "neon" && [
+              "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+              "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+              "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+              "before:transition-opacity after:transition-opacity",
+              "before:duration-300 after:duration-300"
+            ],
+            className
+          ),
+          ref,
+          "aria-busy": loading || void 0,
+          ...props,
+          children: loading ? /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "inline-flex items-center gap-2", children: [
+            loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }),
+            child
+          ] }) : child
+        }
+      );
+    }
     return /* @__PURE__ */ jsxRuntime.jsxs(
-      Comp,
+      "button",
       {
         className: cn(
           buttonVariants({ variant, size, animation }),
@@ -187,9 +213,10 @@ var ButtonComponent = React2__namespace.forwardRef(
         ),
         ref,
         disabled: isDisabled,
+        "aria-busy": loading || void 0,
         ...props,
         children: [
-          loading && /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          loading && (loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" })),
           children
         ]
       }
@@ -235,7 +262,7 @@ var iconSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var EmptyState = React2__namespace.forwardRef(
+var EmptyState = React__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -292,7 +319,7 @@ var EmptyState = React2__namespace.forwardRef(
   }
 );
 EmptyState.displayName = "EmptyState";
-var EmptyStateIllustrated = React2__namespace.forwardRef(
+var EmptyStateIllustrated = React__namespace.forwardRef(
   ({
     className,
     illustration,

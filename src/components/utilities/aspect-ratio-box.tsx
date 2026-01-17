@@ -138,7 +138,7 @@ export const AspectRatioBox = React.forwardRef<HTMLDivElement, AspectRatioBoxPro
       >
         <div className="absolute inset-0">
           {React.isValidElement(children) ? (
-            React.cloneElement(children as React.ReactElement<any>, {
+            React.cloneElement(children as React.ReactElement<{ className?: string }>, {
               className: cn(
                 objectFitClasses[objectFit],
                 children.props.className
@@ -185,7 +185,7 @@ export const AspectRatioImage = React.forwardRef<HTMLImageElement, AspectRatioIm
           ref={ref}
           src={src}
           alt={alt}
-          className="w-full h-full object-cover"
+          className={cn('w-full h-full object-cover', className)}
           {...props}
         />
       </AspectRatioBox>
@@ -219,7 +219,7 @@ export const AspectRatioVideo = React.forwardRef<HTMLVideoElement, AspectRatioVi
       <AspectRatioBox ratio={ratio} variant={variant}>
         <video
           ref={ref}
-          className="w-full h-full object-cover"
+          className={cn('w-full h-full object-cover', className)}
           {...props}
         />
       </AspectRatioBox>
@@ -253,7 +253,7 @@ export const AspectRatioIframe = React.forwardRef<HTMLIFrameElement, AspectRatio
       <AspectRatioBox ratio={ratio} variant={variant}>
         <iframe
           ref={ref}
-          className="w-full h-full"
+          className={cn('w-full h-full', className)}
           {...props}
         />
       </AspectRatioBox>

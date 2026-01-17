@@ -23,8 +23,9 @@
 
 export * from './alert';
 export * from './alert-dialog';
-export * from './badge';
-export * from './progress';
+// Badge/Progress já exportados via '@rainersoft/ui/ui'
+// export * from './badge';
+// export * from './progress';
 export * from './skeleton';
 export * from './sonner';
 export * from './spinner';

@@ -97,7 +97,7 @@ export interface ShareMenuProps {
   /** Exibir texto no botão */
   showLabel?: boolean;
   /** Callback ao compartilhar */
-  onShare?: (platform: string, data?: any) => void;
+  onShare?: (platform: string, data?: Record<string, unknown>) => void;
   /** Classes CSS adicionais */
   className?: string;
   /** Posição do menu dropdown */
@@ -248,7 +248,9 @@ export function ShareMenu({
    * Filtra e ordena as plataformas habilitadas
    */
   const enabledPlatforms = DEFAULT_PLATFORMS
-    .filter(p => platforms.includes(p.id as any))
+    .filter((p): p is SharePlatform =>
+      platforms.includes(p.id as ShareMenuProps['platforms'][number])
+    )
     .sort((a, b) => (a.order || 0) - (b.order || 0));
 
   /**

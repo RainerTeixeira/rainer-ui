@@ -34,8 +34,6 @@ export { PageHeader } from './utilities/PageHeader';
 // Exportar funções de cor para compatibilidade
 export { hexToRGB, hexToRGBA } from '../lib/utils';
 
-// Exportar InlineLoader para compatibilidade
-export { InlineLoader } from './ui/InlineLoader';
 
 // ============================================================================
 // FORMS - COMPONENTES DE FORMULÁRIO
@@ -43,23 +41,25 @@ export { InlineLoader } from './ui/InlineLoader';
 export * from './forms';
 
 // ============================================================================
-// LAYOUT - COMPONENTES DE LAYOUT
 // 🏗️ LAYOUT - COMPONENTES DE LAYOUT
 // ============================================================================
 export * from './layout';
 
 // ============================================================================
-// 💬 FEEDBACK - COMPONENTES DE FEEDBACK
+// FEEDBACK - COMPONENTES DE FEEDBACK
 // ============================================================================
 export * from './feedback';
 
 // ============================================================================
-// 🧭 NAVIGATION - COMPONENTES DE NAVEGAÇÃO
+// NAVIGATION - COMPONENTES DE NAVEGAÇÃO (reexport completo)
 // ============================================================================
 export * from './navigation';
+// Exports diretos mantidos para compatibilidade
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from './navigation/accordion';
+export { Tabs, TabsList, TabsTrigger, TabsContent } from './navigation/tabs';
 
 // ============================================================================
-// 📊 DASHBOARD - COMPONENTES DE DASHBOARD
+// DASHBOARD - COMPONENTES DE DASHBOARD
 // ============================================================================
 export * from './dashboard';
 

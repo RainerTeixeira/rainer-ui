@@ -21,6 +21,12 @@ import * as react_jsx_runtime from 'react/jsx-runtime';
 interface CelestialBackgroundProps {
     /** Variante do background (default, dense, sparse) */
     variant?: 'default' | 'dense' | 'sparse';
+    /** Permite sobrescrever as cores principais */
+    colors?: {
+        cyan?: string;
+        purple?: string;
+        pink?: string;
+    };
 }
 /**
  * CelestialBackground - Background celestial para dark mode
@@ -28,6 +34,6 @@ interface CelestialBackgroundProps {
  * @param variant - Variante de densidade (default, dense, sparse)
  * @returns Container fixo com efeito celestial
  */
-declare function CelestialBackground({ variant, }?: CelestialBackgroundProps): react_jsx_runtime.JSX.Element;
+declare function CelestialBackground({ variant, colors, }?: CelestialBackgroundProps): react_jsx_runtime.JSX.Element;
 
 export { CelestialBackground, CelestialBackground as default };

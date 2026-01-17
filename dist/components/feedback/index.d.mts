@@ -1,7 +1,5 @@
 export { Alert, AlertDescription, AlertTitle } from './alert.mjs';
 export { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, AlertDialogPortal, AlertDialogTitle, AlertDialogTrigger } from './alert-dialog.mjs';
-export { Badge, BadgeProps, badgeVariants } from './badge.mjs';
-export { Progress } from './progress.mjs';
 export { Skeleton } from './skeleton.mjs';
 export { Toaster } from './sonner.mjs';
 export { DotsSpinner, DotsSpinnerProps, PulseSpinner, PulseSpinnerProps, Spinner, SpinnerOverlay, SpinnerOverlayProps, SpinnerProps } from './spinner.mjs';
@@ -14,4 +12,3 @@ import 'react';
 import 'class-variance-authority';
 import 'react/jsx-runtime';
 import '@radix-ui/react-alert-dialog';
-import '@radix-ui/react-progress';

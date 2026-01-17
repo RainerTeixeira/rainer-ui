@@ -1,6 +1,6 @@
 'use strict';
 
-var React15 = require('react');
+var React = require('react');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
@@ -12,14 +12,12 @@ var SwitchPrimitives = require('@radix-ui/react-switch');
 var TogglePrimitive = require('@radix-ui/react-toggle');
 var Plus = require('lucide-react/dist/esm/icons/plus');
 var X = require('lucide-react/dist/esm/icons/x');
-require('lucide-react');
+var ProgressPrimitive = require('@radix-ui/react-progress');
+var AccordionPrimitive = require('@radix-ui/react-accordion');
+var lucideReact = require('lucide-react');
 require('next-themes');
 require('lucide-react/dist/esm/icons/moon');
 require('lucide-react/dist/esm/icons/sun');
-require('@radix-ui/react-aspect-ratio');
-var ScrollAreaPrimitive = require('@radix-ui/react-scroll-area');
-var SeparatorPrimitive = require('@radix-ui/react-separator');
-require('@radix-ui/react-dialog');
 var framerMotion = require('framer-motion');
 var Settings = require('lucide-react/dist/esm/icons/settings');
 var BarChart = require('lucide-react/dist/esm/icons/bar-chart');
@@ -45,14 +43,14 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React15__namespace = /*#__PURE__*/_interopNamespace(React15);
+var React__namespace = /*#__PURE__*/_interopNamespace(React);
 var SliderPrimitive__namespace = /*#__PURE__*/_interopNamespace(SliderPrimitive);
 var SwitchPrimitives__namespace = /*#__PURE__*/_interopNamespace(SwitchPrimitives);
 var TogglePrimitive__namespace = /*#__PURE__*/_interopNamespace(TogglePrimitive);
 var Plus__default = /*#__PURE__*/_interopDefault(Plus);
 var X__default = /*#__PURE__*/_interopDefault(X);
-var ScrollAreaPrimitive__namespace = /*#__PURE__*/_interopNamespace(ScrollAreaPrimitive);
-var SeparatorPrimitive__namespace = /*#__PURE__*/_interopNamespace(SeparatorPrimitive);
+var ProgressPrimitive__namespace = /*#__PURE__*/_interopNamespace(ProgressPrimitive);
+var AccordionPrimitive__namespace = /*#__PURE__*/_interopNamespace(AccordionPrimitive);
 var Settings__default = /*#__PURE__*/_interopDefault(Settings);
 var BarChart__default = /*#__PURE__*/_interopDefault(BarChart);
 var FileText__default = /*#__PURE__*/_interopDefault(FileText);
@@ -170,7 +168,7 @@ function getColorFromName(name) {
   }
   return colors[Math.abs(hash) % colors.length];
 }
-var Avatar = React15__namespace.forwardRef(
+var Avatar = React__namespace.forwardRef(
   ({
     className,
     src,
@@ -186,9 +184,9 @@ var Avatar = React15__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [imageStatus, setImageStatus] = React15__namespace.useState("loading");
-    const [showFallback, setShowFallback] = React15__namespace.useState(!src);
-    React15__namespace.useEffect(() => {
+    const [imageStatus, setImageStatus] = React__namespace.useState("loading");
+    const [showFallback, setShowFallback] = React__namespace.useState(!src);
+    React__namespace.useEffect(() => {
       if (!src) {
         setShowFallback(true);
         setImageStatus("error");
@@ -253,7 +251,7 @@ var Avatar = React15__namespace.forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var AvatarImage = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarImage = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "img",
   {
     ref,
@@ -262,7 +260,7 @@ var AvatarImage = React15__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 AvatarImage.displayName = "AvatarImage";
-var AvatarFallback = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarFallback = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -274,6 +272,172 @@ var AvatarFallback = React15__namespace.forwardRef(({ className, ...props }, ref
   }
 ));
 AvatarFallback.displayName = "AvatarFallback";
+var Input = React__namespace.forwardRef(
+  ({ className, type, error, helperText, label, required, id, ...props }, ref) => {
+    const inputId = id || `input-${React__namespace.useId()}`;
+    return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "space-y-2", children: [
+      label && /* @__PURE__ */ jsxRuntime.jsxs(
+        "label",
+        {
+          htmlFor: inputId,
+          className: cn(
+            "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+            error ? "text-destructive" : "text-foreground",
+            "dark:text-cyan-200 dark:font-mono"
+          ),
+          children: [
+            label,
+            required && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-destructive ml-1", children: "*" })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntime.jsx(
+        "input",
+        {
+          type,
+          id: inputId,
+          className: cn(
+            // Base styles
+            "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2",
+            "text-sm ring-offset-background file:border-0 file:bg-transparent",
+            "file:text-sm file:font-medium placeholder:text-muted-foreground",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            "focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+            // Dark mode
+            "dark:bg-black/50 dark:border-cyan-400/30 dark:text-cyan-100",
+            "dark:placeholder:text-cyan-400/50 dark:ring-offset-black",
+            "dark:focus-visible:ring-cyan-400 dark:focus-visible:ring-offset-black",
+            // Error state
+            error && "border-destructive focus-visible:ring-destructive",
+            "dark:border-red-400/50 dark:focus-visible:ring-red-400",
+            // Transitions
+            "transition-all duration-200",
+            className
+          ),
+          ref,
+          ...props
+        }
+      ),
+      helperText && /* @__PURE__ */ jsxRuntime.jsx(
+        "p",
+        {
+          className: cn(
+            "text-xs",
+            error ? "text-destructive" : "text-muted-foreground",
+            "dark:text-cyan-400/70 dark:text-red-400/70"
+          ),
+          children: helperText
+        }
+      )
+    ] });
+  }
+);
+Input.displayName = "Input";
+var Textarea = React__namespace.forwardRef(
+  ({
+    className,
+    error,
+    helperText,
+    label,
+    required,
+    id,
+    maxLength,
+    showCount,
+    value,
+    ...props
+  }, ref) => {
+    const inputId = id || `textarea-${React__namespace.useId()}`;
+    const [characterCount, setCharacterCount] = React__namespace.useState(0);
+    React__namespace.useEffect(() => {
+      if (typeof value === "string") {
+        setCharacterCount(value.length);
+      }
+    }, [value]);
+    const handleInputChange = (e) => {
+      if (maxLength) {
+        const newValue = e.target.value.slice(0, maxLength);
+        e.target.value = newValue;
+        setCharacterCount(newValue.length);
+      }
+      props.onChange?.(e);
+    };
+    return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "space-y-2", children: [
+      label && /* @__PURE__ */ jsxRuntime.jsxs(
+        "label",
+        {
+          htmlFor: inputId,
+          className: cn(
+            "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+            error ? "text-destructive" : "text-foreground",
+            "dark:text-cyan-200 dark:font-mono"
+          ),
+          children: [
+            label,
+            required && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-destructive ml-1", children: "*" })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntime.jsx(
+        "textarea",
+        {
+          id: inputId,
+          className: cn(
+            // Base styles
+            "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2",
+            "text-sm ring-offset-background placeholder:text-muted-foreground",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            "focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+            "resize-none",
+            // Dark mode
+            "dark:bg-black/50 dark:border-cyan-400/30 dark:text-cyan-100",
+            "dark:placeholder:text-cyan-400/50 dark:ring-offset-black",
+            "dark:focus-visible:ring-cyan-400 dark:focus-visible:ring-offset-black",
+            // Error state
+            error && "border-destructive focus-visible:ring-destructive",
+            "dark:border-red-400/50 dark:focus-visible:ring-red-400",
+            // Transitions
+            "transition-all duration-200",
+            className
+          ),
+          ref,
+          maxLength,
+          value,
+          onChange: handleInputChange,
+          ...props
+        }
+      ),
+      (helperText || showCount && maxLength) && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex justify-between items-center", children: [
+        helperText && /* @__PURE__ */ jsxRuntime.jsx(
+          "p",
+          {
+            className: cn(
+              "text-xs",
+              error ? "text-destructive" : "text-muted-foreground",
+              "dark:text-cyan-400/70 dark:text-red-400/70"
+            ),
+            children: helperText
+          }
+        ),
+        showCount && maxLength && /* @__PURE__ */ jsxRuntime.jsxs(
+          "p",
+          {
+            className: cn(
+              "text-xs",
+              characterCount >= maxLength ? "text-destructive" : "text-muted-foreground",
+              "dark:text-cyan-400/70"
+            ),
+            children: [
+              characterCount,
+              "/",
+              maxLength
+            ]
+          }
+        )
+      ] })
+    ] });
+  }
+);
+Textarea.displayName = "Textarea";
 var buttonVariants = classVarianceAuthority.cva(
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {
@@ -315,7 +479,7 @@ var buttonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var ButtonComponent = React15__namespace.forwardRef(
+var ButtonComponent = React__namespace.forwardRef(
   ({
     className,
     variant,
@@ -328,10 +492,36 @@ var ButtonComponent = React15__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const Comp = asChild ? reactSlot.Slot : "button";
     const isDisabled = disabled || loading;
+    if (asChild) {
+      const child = React__namespace.Children.only(children);
+      return /* @__PURE__ */ jsxRuntime.jsx(
+        reactSlot.Slot,
+        {
+          className: cn(
+            buttonVariants({ variant, size, animation }),
+            // Efeito neon especial
+            variant === "neon" && [
+              "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+              "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+              "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+              "before:transition-opacity after:transition-opacity",
+              "before:duration-300 after:duration-300"
+            ],
+            className
+          ),
+          ref,
+          "aria-busy": loading || void 0,
+          ...props,
+          children: loading ? /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "inline-flex items-center gap-2", children: [
+            loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }),
+            child
+          ] }) : child
+        }
+      );
+    }
     return /* @__PURE__ */ jsxRuntime.jsxs(
-      Comp,
+      "button",
       {
         className: cn(
           buttonVariants({ variant, size, animation }),
@@ -347,9 +537,10 @@ var ButtonComponent = React15__namespace.forwardRef(
         ),
         ref,
         disabled: isDisabled,
+        "aria-busy": loading || void 0,
         ...props,
         children: [
-          loading && /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          loading && (loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" })),
           children
         ]
       }
@@ -358,7 +549,7 @@ var ButtonComponent = React15__namespace.forwardRef(
 );
 ButtonComponent.displayName = "Button";
 var Button = ButtonComponent;
-var Slider = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var Slider = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SliderPrimitive__namespace.Root,
   {
     ref,
@@ -392,7 +583,7 @@ var Slider = React15__namespace.forwardRef(({ className, ...props }, ref) => /* 
   }
 ));
 Slider.displayName = SliderPrimitive__namespace.Root.displayName;
-var Switch = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Switch = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SwitchPrimitives__namespace.Root,
   {
     className: cn(
@@ -436,7 +627,7 @@ var toggleVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Toggle = React15__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Toggle = React__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TogglePrimitive__namespace.Root,
   {
     ref,
@@ -487,7 +678,7 @@ var iconButtonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var IconButton = React15__namespace.forwardRef(
+var IconButton = React__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -502,8 +693,8 @@ var IconButton = React15__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [showTooltip, setShowTooltip] = React15__namespace.useState(false);
-    const [tooltipVisible, setTooltipVisible] = React15__namespace.useState(false);
+    const [showTooltip, setShowTooltip] = React__namespace.useState(false);
+    const [tooltipVisible, setTooltipVisible] = React__namespace.useState(false);
     const tooltipClasses = {
       top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
       bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
@@ -516,7 +707,7 @@ var IconButton = React15__namespace.forwardRef(
       left: "left-full top-1/2 -translate-y-1/2 -ml-1 border-t-transparent border-b-transparent border-r-transparent border-l-current",
       right: "right-full top-1/2 -translate-y-1/2 -mr-1 border-t-transparent border-b-transparent border-l-transparent border-r-current"
     };
-    React15__namespace.useEffect(() => {
+    React__namespace.useEffect(() => {
       if (showTooltip) {
         const timer = setTimeout(() => setTooltipVisible(true), 100);
         return () => clearTimeout(timer);
@@ -629,7 +820,7 @@ var linkButtonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var LinkButton = React15__namespace.forwardRef(
+var LinkButton = React__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -729,7 +920,7 @@ var fabVariants = classVarianceAuthority.cva(
     }
   }
 );
-var FAB = React15__namespace.forwardRef(
+var FAB = React__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -744,12 +935,12 @@ var FAB = React15__namespace.forwardRef(
     actions = [],
     ...props
   }, ref) => {
-    const [showActions, setShowActions] = React15__namespace.useState(active);
+    const [showActions, setShowActions] = React__namespace.useState(active);
     const isExtended = extended && text;
-    React15__namespace.useEffect(() => {
+    React__namespace.useEffect(() => {
       setShowActions(active);
     }, [active]);
-    const handleClick = React15__namespace.useCallback(() => {
+    const handleClick = React__namespace.useCallback(() => {
       if (actions.length > 0) {
         setShowActions(!showActions);
       }
@@ -807,7 +998,7 @@ var FAB = React15__namespace.forwardRef(
   }
 );
 FAB.displayName = "FAB";
-var FABGroup = React15__namespace.forwardRef(
+var FABGroup = React__namespace.forwardRef(
   ({
     className,
     main,
@@ -879,7 +1070,7 @@ var segmentedControlVariants = classVarianceAuthority.cva(
     }
   }
 );
-var SegmentedControl = React15__namespace.forwardRef(
+var SegmentedControl = React__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -892,9 +1083,9 @@ var SegmentedControl = React15__namespace.forwardRef(
     disabled = false,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React15__namespace.useState(defaultValue || options[0]?.value);
+    const [internalValue, setInternalValue] = React__namespace.useState(defaultValue || options[0]?.value);
     const currentValue = value !== void 0 ? value : internalValue;
-    const handleOptionClick = React15__namespace.useCallback((optionValue, isDisabled) => {
+    const handleOptionClick = React__namespace.useCallback((optionValue, isDisabled) => {
       if (isDisabled || disabled) return;
       if (value === void 0) {
         setInternalValue(optionValue);
@@ -949,7 +1140,7 @@ var SegmentedControl = React15__namespace.forwardRef(
   }
 );
 SegmentedControl.displayName = "SegmentedControl";
-var SegmentedControlItem = React15__namespace.forwardRef(
+var SegmentedControlItem = React__namespace.forwardRef(
   ({
     className,
     active = false,
@@ -985,1225 +1176,195 @@ var SegmentedControlItem = React15__namespace.forwardRef(
   }
 );
 SegmentedControlItem.displayName = "SegmentedControlItem";
-
-// src/lib/constants.ts
-var MOTION = {
-  TRANSITION: {
-    DEFAULT: "transition-all duration-200 ease-in-out"}};
-var GRADIENT_DIRECTIONS = {
-  TO_BOTTOM_RIGHT: "to-br"};
-var Card = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Card = React__namespace.forwardRef(({ className, variant = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
     className: cn(
+      // Base styles
       "rounded-lg border bg-card text-card-foreground shadow-sm",
+      // Variant styles
+      variant === "default" && "border-border bg-background dark:bg-black/40 dark:border-cyan-400/20",
+      variant === "outline" && "border-2 border-border bg-transparent dark:border-cyan-400/30",
+      variant === "elevated" && "border-border/50 shadow-lg dark:bg-black/60 dark:border-cyan-400/20 dark:shadow-cyan-500/10",
+      variant === "glass" && "border-border/20 bg-background/80 backdrop-blur-md dark:bg-black/40 dark:border-cyan-400/30 dark:backdrop-blur-xl",
+      // Transitions
+      "transition-all duration-200",
       className
     ),
     ...props
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardHeader = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
-    className: cn("flex flex-col space-y-1.5 p-6", className),
+    className: cn(
+      "flex flex-col space-y-1.5 p-6",
+      "dark:border-cyan-400/10",
+      className
+    ),
     ...props
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardTitle = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h3",
   {
     ref,
     className: cn(
       "text-2xl font-semibold leading-none tracking-tight",
+      "dark:text-cyan-200 dark:font-mono",
       className
     ),
     ...props
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardDescription = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "p",
   {
     ref,
-    className: cn("text-sm text-muted-foreground", className),
+    className: cn(
+      "text-sm text-muted-foreground",
+      "dark:text-cyan-400/80",
+      className
+    ),
     ...props
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardFooter = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
-    className: cn("flex items-center p-6 pt-0", className),
+    className: cn(
+      "flex items-center p-6 pt-0",
+      "dark:border-t dark:border-cyan-400/10",
+      className
+    ),
     ...props
   }
 ));
 CardFooter.displayName = "CardFooter";
-var HighlightCard = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "div",
+classVarianceAuthority.cva(
+  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 dark:ring-offset-black",
+  {
+    variants: {
+      variant: {
+        default: "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+        secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        destructive: "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
+        outline: "text-foreground border-border dark:border-cyan-400/30 dark:text-cyan-300",
+        count: "border-transparent bg-muted text-foreground shadow-sm px-2.5 py-1 text-[11px] tracking-wide",
+        success: "border-transparent bg-green-500 text-white hover:bg-green-600 dark:bg-green-400/20 dark:text-green-300 dark:hover:bg-green-400/30",
+        warning: "border-transparent bg-yellow-500 text-white hover:bg-yellow-600 dark:bg-yellow-400/20 dark:text-yellow-300 dark:hover:bg-yellow-400/30",
+        info: "border-transparent bg-blue-500 text-white hover:bg-blue-600 dark:bg-cyan-400/20 dark:text-cyan-300 dark:hover:bg-cyan-400/30",
+        cyberpunk: "border-transparent bg-gradient-to-r from-cyan-500 to-purple-500 text-white hover:from-cyan-600 hover:to-purple-600 dark:from-cyan-400 dark:to-purple-400 dark:hover:from-cyan-300 dark:hover:to-purple-300",
+        neon: "border-cyan-400/30 bg-cyan-400/10 text-cyan-300 shadow-lg shadow-cyan-400/20 dark:border-cyan-300/50 dark:bg-cyan-300/10 dark:text-cyan-200 dark:shadow-cyan-300/30"
+      },
+      size: {
+        sm: "px-2 py-0.5 text-xs",
+        md: "px-2.5 py-0.5 text-xs",
+        lg: "px-3 py-1 text-sm"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "md"
+    }
+  }
+);
+var Progress = React__namespace.forwardRef(({ className, value, color = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  ProgressPrimitive__namespace.Root,
   {
     ref,
     className: cn(
-      "text-left bg-card/60 dark:bg-black/50",
-      "backdrop-blur-xl",
-      "rounded-2xl",
-      "p-4 xs:p-5 sm:p-6 md:p-8",
-      "border border-border/50 dark:border-cyan-400/20",
-      "hover:border-primary/40 dark:hover:border-cyan-400/50",
-      "hover:bg-card/80 dark:hover:bg-black/70",
-      "hover:shadow-2xl hover:shadow-primary/10 dark:hover:shadow-cyan-500/20",
-      "h-full flex flex-col group",
-      "relative overflow-hidden",
-      `before:absolute before:inset-0 before:${GRADIENT_DIRECTIONS.TO_BOTTOM_RIGHT}`,
-      "before:from-primary/0 before:via-primary/0 before:to-primary/0",
-      "hover:before:from-primary/5 hover:before:via-transparent hover:before:to-primary/5",
-      "dark:hover:before:from-cyan-400/5 dark:hover:before:via-transparent dark:hover:before:to-purple-400/5",
-      "before:transition-all before:duration-500 before:ease-in-out before:pointer-events-none",
-      MOTION.TRANSITION.DEFAULT,
+      // Base styles
+      "relative h-2 w-full overflow-hidden rounded-full bg-secondary",
+      // Dark mode
+      "dark:bg-black/40 dark:border dark:border-cyan-400/20",
+      className
+    ),
+    ...props,
+    children: /* @__PURE__ */ jsxRuntime.jsx(
+      ProgressPrimitive__namespace.Indicator,
+      {
+        className: cn(
+          // Base indicator
+          "h-full w-full flex-1 bg-primary transition-all duration-300",
+          // Color variants
+          color === "default" && "bg-primary dark:bg-cyan-400",
+          color === "success" && "bg-green-500 dark:bg-green-400",
+          color === "warning" && "bg-yellow-500 dark:bg-yellow-400",
+          color === "destructive" && "bg-red-500 dark:bg-red-400",
+          color === "cyberpunk" && "bg-gradient-to-r from-cyan-500 to-purple-500 dark:from-cyan-400 dark:to-purple-400"
+        ),
+        style: { transform: `translateX(-${100 - (value || 0)}%)` }
+      }
+    )
+  }
+));
+Progress.displayName = ProgressPrimitive__namespace.Root.displayName;
+var AccordionItem = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  AccordionPrimitive__namespace.Item,
+  {
+    ref,
+    className: cn(
+      "border-b border-border dark:border-cyan-400/20",
       className
     ),
     ...props
   }
 ));
-HighlightCard.displayName = "HighlightCard";
-var ScrollArea = React15__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
-  ScrollAreaPrimitive__namespace.Root,
+AccordionItem.displayName = "AccordionItem";
+var AccordionTrigger = React__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
+  AccordionPrimitive__namespace.Trigger,
   {
     ref,
-    className: cn("relative overflow-hidden", className),
+    className: cn(
+      // Base styles
+      "flex flex-1 items-center justify-between py-4 text-sm font-medium",
+      "transition-all hover:underline",
+      // Focus styles
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+      "focus-visible:ring-offset-2 dark:ring-offset-black dark:focus-visible:ring-cyan-400",
+      // Dark mode
+      "dark:text-cyan-200 dark:hover:text-cyan-100",
+      // Disabled state
+      "[&[data-state=open]>svg]:rotate-180",
+      className
+    ),
     ...props,
     children: [
-      /* @__PURE__ */ jsxRuntime.jsx(ScrollAreaPrimitive__namespace.Viewport, { className: "h-full w-full rounded-[inherit]", children }),
-      /* @__PURE__ */ jsxRuntime.jsx(ScrollBar, {}),
-      /* @__PURE__ */ jsxRuntime.jsx(ScrollAreaPrimitive__namespace.Corner, {})
+      children,
+      /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { className: "h-4 w-4 shrink-0 transition-transform duration-200 dark:text-cyan-400" })
     ]
   }
-));
-ScrollArea.displayName = ScrollAreaPrimitive__namespace.Root.displayName;
-var ScrollBar = React15__namespace.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  ScrollAreaPrimitive__namespace.ScrollAreaScrollbar,
+) }));
+AccordionTrigger.displayName = AccordionPrimitive__namespace.Trigger.displayName;
+var AccordionContent = React__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  AccordionPrimitive__namespace.Content,
   {
     ref,
-    orientation,
     className: cn(
-      "flex touch-none select-none transition-colors",
-      orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent p-[1px]",
-      orientation === "horizontal" && "h-2.5 flex-col border-t border-t-transparent p-[1px]",
+      // Base styles
+      "overflow-hidden text-sm data-[state=closed]:animate-accordion-up",
+      "data-[state=open]:animate-accordion-down",
+      // Spacing
+      "pb-4 pt-0",
+      // Text color
+      "dark:text-cyan-400/80",
       className
     ),
     ...props,
-    children: /* @__PURE__ */ jsxRuntime.jsx(ScrollAreaPrimitive__namespace.ScrollAreaThumb, { className: "relative flex-1 rounded-full bg-border" })
+    children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn("pb-4 pt-0", className), children })
   }
 ));
-ScrollBar.displayName = ScrollAreaPrimitive__namespace.ScrollAreaScrollbar.displayName;
-var Separator = React15__namespace.forwardRef(
-  ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-    SeparatorPrimitive__namespace.Root,
-    {
-      ref,
-      decorative,
-      orientation,
-      className: cn(
-        "shrink-0 bg-border",
-        /** Define dimensões baseado na orientação */
-        orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
-        className
-      ),
-      ...props
-    }
-  )
-);
-Separator.displayName = SeparatorPrimitive__namespace.Root.displayName;
-var Table = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsxRuntime.jsx(
-  "table",
-  {
-    ref,
-    className: cn("w-full caption-bottom text-sm", className),
-    ...props
-  }
-) }));
-Table.displayName = "Table";
-var TableHeader = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
-TableHeader.displayName = "TableHeader";
-var TableBody = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "tbody",
-  {
-    ref,
-    className: cn("[&_tr:last-child]:border-0", className),
-    ...props
-  }
-));
-TableBody.displayName = "TableBody";
-var TableFooter = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "tfoot",
-  {
-    ref,
-    className: cn(
-      "border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
-      className
-    ),
-    ...props
-  }
-));
-TableFooter.displayName = "TableFooter";
-var TableRow = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "tr",
-  {
-    ref,
-    className: cn(
-      "border-b transition-colors duration-200 hover:bg-muted/50 data-[state=selected]:bg-muted",
-      className
-    ),
-    ...props
-  }
-));
-TableRow.displayName = "TableRow";
-var TableHead = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "th",
-  {
-    ref,
-    className: cn(
-      "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
-      className
-    ),
-    ...props
-  }
-));
-TableHead.displayName = "TableHead";
-var TableCell = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "td",
-  {
-    ref,
-    className: cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className),
-    ...props
-  }
-));
-TableCell.displayName = "TableCell";
-var TableCaption = React15__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "caption",
-  {
-    ref,
-    className: cn("mt-4 text-sm text-muted-foreground", className),
-    ...props
-  }
-));
-TableCaption.displayName = "TableCaption";
-var containerVariants = classVarianceAuthority.cva(
-  "mx-auto px-4 sm:px-6 lg:px-8",
-  {
-    variants: {
-      size: {
-        xs: "max-w-xs",
-        sm: "max-w-sm",
-        md: "max-w-md",
-        lg: "max-w-lg",
-        xl: "max-w-xl",
-        "2xl": "max-w-2xl",
-        "3xl": "max-w-3xl",
-        "4xl": "max-w-4xl",
-        "5xl": "max-w-5xl",
-        "6xl": "max-w-6xl",
-        "7xl": "max-w-7xl",
-        full: "max-w-full",
-        screen: "max-w-screen-xl",
-        none: ""
-      },
-      padding: {
-        none: "px-0",
-        sm: "px-2 sm:px-4",
-        md: "px-4 sm:px-6 lg:px-8",
-        lg: "px-6 sm:px-8 lg:px-12",
-        xl: "px-8 sm:px-12 lg:px-16"
-      },
-      center: {
-        true: "flex items-center justify-center",
-        false: ""
-      }
-    },
-    defaultVariants: {
-      size: "7xl",
-      padding: "md",
-      center: false
-    }
-  }
-);
-var Container = React15__namespace.forwardRef(
-  ({
-    className,
-    size = "7xl",
-    padding = "md",
-    center = false,
-    fullHeight = false,
-    verticalPadding = false,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          containerVariants({ size, padding, center }),
-          fullHeight && "min-h-screen",
-          verticalPadding && "py-4 sm:py-6 lg:py-8",
-          className
-        ),
-        ...props
-      }
-    );
-  }
-);
-Container.displayName = "Container";
-var ContainerFluid = React15__namespace.forwardRef(
-  ({
-    className,
-    padding = "md",
-    verticalPadding = false,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "w-full",
-          padding === "none" && "px-0",
-          padding === "sm" && "px-2 sm:px-4",
-          padding === "md" && "px-4 sm:px-6 lg:px-8",
-          padding === "lg" && "px-6 sm:px-8 lg:px-12",
-          padding === "xl" && "px-8 sm:px-12 lg:px-16",
-          verticalPadding && "py-4 sm:py-6 lg:py-8",
-          className
-        ),
-        ...props
-      }
-    );
-  }
-);
-ContainerFluid.displayName = "ContainerFluid";
-var spacingClasses = {
-  sm: "py-8",
-  md: "py-12",
-  lg: "py-16",
-  xl: "py-20",
-  "2xl": "py-24"
-};
-var ContainerSection = React15__namespace.forwardRef(
-  ({
-    className,
-    spacing = "lg",
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "section",
-      {
-        ref,
-        className: cn(
-          "w-full",
-          spacingClasses[spacing],
-          className
-        ),
-        children: /* @__PURE__ */ jsxRuntime.jsx(Container, { ...props })
-      }
-    );
-  }
-);
-ContainerSection.displayName = "ContainerSection";
-var gridVariants = classVarianceAuthority.cva(
-  "grid",
-  {
-    variants: {
-      cols: {
-        1: "grid-cols-1",
-        2: "grid-cols-2",
-        3: "grid-cols-3",
-        4: "grid-cols-4",
-        5: "grid-cols-5",
-        6: "grid-cols-6",
-        7: "grid-cols-7",
-        8: "grid-cols-8",
-        9: "grid-cols-9",
-        10: "grid-cols-10",
-        11: "grid-cols-11",
-        12: "grid-cols-12",
-        auto: "grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      sm: {
-        1: "sm:grid-cols-1",
-        2: "sm:grid-cols-2",
-        3: "sm:grid-cols-3",
-        4: "sm:grid-cols-4",
-        5: "sm:grid-cols-5",
-        6: "sm:grid-cols-6",
-        7: "sm:grid-cols-7",
-        8: "sm:grid-cols-8",
-        9: "sm:grid-cols-9",
-        10: "sm:grid-cols-10",
-        11: "sm:grid-cols-11",
-        12: "sm:grid-cols-12",
-        auto: "sm:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "sm:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      md: {
-        1: "md:grid-cols-1",
-        2: "md:grid-cols-2",
-        3: "md:grid-cols-3",
-        4: "md:grid-cols-4",
-        5: "md:grid-cols-5",
-        6: "md:grid-cols-6",
-        7: "md:grid-cols-7",
-        8: "md:grid-cols-8",
-        9: "md:grid-cols-9",
-        10: "md:grid-cols-10",
-        11: "md:grid-cols-11",
-        12: "md:grid-cols-12",
-        auto: "md:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "md:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      lg: {
-        1: "lg:grid-cols-1",
-        2: "lg:grid-cols-2",
-        3: "lg:grid-cols-3",
-        4: "lg:grid-cols-4",
-        5: "lg:grid-cols-5",
-        6: "lg:grid-cols-6",
-        7: "lg:grid-cols-7",
-        8: "lg:grid-cols-8",
-        9: "lg:grid-cols-9",
-        10: "lg:grid-cols-10",
-        11: "lg:grid-cols-11",
-        12: "lg:grid-cols-12",
-        auto: "lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "lg:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "lg:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      xl: {
-        1: "xl:grid-cols-1",
-        2: "xl:grid-cols-2",
-        3: "xl:grid-cols-3",
-        4: "xl:grid-cols-4",
-        5: "xl:grid-cols-5",
-        6: "xl:grid-cols-6",
-        7: "xl:grid-cols-7",
-        8: "xl:grid-cols-8",
-        9: "xl:grid-cols-9",
-        10: "xl:grid-cols-10",
-        11: "xl:grid-cols-11",
-        12: "xl:grid-cols-12",
-        auto: "xl:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "xl:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "xl:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      gap: {
-        0: "gap-0",
-        1: "gap-1",
-        2: "gap-2",
-        3: "gap-3",
-        4: "gap-4",
-        5: "gap-5",
-        6: "gap-6",
-        8: "gap-8",
-        10: "gap-10",
-        12: "gap-12",
-        px: "gap-px"
-      },
-      gapX: {
-        0: "gap-x-0",
-        1: "gap-x-1",
-        2: "gap-x-2",
-        3: "gap-x-3",
-        4: "gap-x-4",
-        5: "gap-x-5",
-        6: "gap-x-6",
-        8: "gap-x-8",
-        10: "gap-x-10",
-        12: "gap-x-12",
-        px: "gap-x-px"
-      },
-      gapY: {
-        0: "gap-y-0",
-        1: "gap-y-1",
-        2: "gap-y-2",
-        3: "gap-y-3",
-        4: "gap-y-4",
-        5: "gap-y-5",
-        6: "gap-y-6",
-        8: "gap-y-8",
-        10: "gap-y-10",
-        12: "gap-y-12",
-        px: "gap-y-px"
-      },
-      align: {
-        start: "items-start",
-        end: "items-end",
-        center: "items-center",
-        stretch: "items-stretch"
-      },
-      justify: {
-        start: "justify-start",
-        end: "justify-end",
-        center: "justify-center",
-        between: "justify-between",
-        around: "justify-around",
-        evenly: "justify-evenly"
-      }
-    }
-  }
-);
-var Grid = React15__namespace.forwardRef(
-  ({
-    className,
-    cols,
-    sm,
-    md,
-    lg,
-    xl,
-    gap,
-    gapX,
-    gapY,
-    align,
-    justify,
-    minColWidth,
-    templateCols,
-    templateRows,
-    areas,
-    style,
-    ...props
-  }, ref) => {
-    const gridStyle = React15__namespace.useMemo(() => {
-      const customStyle = { ...style };
-      if (templateCols) {
-        customStyle.gridTemplateColumns = templateCols;
-      }
-      if (templateRows) {
-        customStyle.gridTemplateRows = templateRows;
-      }
-      if (areas) {
-        customStyle.gridTemplateAreas = areas;
-      }
-      if ((cols === "auto-fit" || cols === "auto-fill") && minColWidth) {
-        customStyle.gridTemplateColumns = `repeat(${cols}, minmax(${minColWidth}, 1fr))`;
-      }
-      return customStyle;
-    }, [style, templateCols, templateRows, areas, cols, minColWidth]);
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          gridVariants({
-            cols,
-            sm,
-            md,
-            lg,
-            xl,
-            gap,
-            gapX,
-            gapY,
-            align,
-            justify
-          }),
-          className
-        ),
-        style: gridStyle,
-        ...props
-      }
-    );
-  }
-);
-Grid.displayName = "Grid";
-var GridItem = React15__namespace.forwardRef(
-  ({
-    className,
-    colStart,
-    colEnd,
-    rowStart,
-    rowEnd,
-    area,
-    style,
-    ...props
-  }, ref) => {
-    const gridStyle = React15__namespace.useMemo(() => {
-      const customStyle = { ...style };
-      if (colStart !== void 0) {
-        customStyle.gridColumnStart = colStart;
-      }
-      if (colEnd !== void 0) {
-        customStyle.gridColumnEnd = colEnd;
-      }
-      if (rowStart !== void 0) {
-        customStyle.gridRowStart = rowStart;
-      }
-      if (rowEnd !== void 0) {
-        customStyle.gridRowEnd = rowEnd;
-      }
-      if (area) {
-        customStyle.gridArea = area;
-      }
-      return customStyle;
-    }, [style, colStart, colEnd, rowStart, rowEnd, area]);
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(className),
-        style: gridStyle,
-        ...props
-      }
-    );
-  }
-);
-GridItem.displayName = "GridItem";
-var flexVariants = classVarianceAuthority.cva(
-  "flex",
-  {
-    variants: {
-      direction: {
-        row: "flex-row",
-        "row-reverse": "flex-row-reverse",
-        col: "flex-col",
-        "col-reverse": "flex-col-reverse"
-      },
-      wrap: {
-        nowrap: "flex-nowrap",
-        wrap: "flex-wrap",
-        "wrap-reverse": "flex-wrap-reverse"
-      },
-      align: {
-        start: "items-start",
-        end: "items-end",
-        center: "items-center",
-        baseline: "items-baseline",
-        stretch: "items-stretch"
-      },
-      justify: {
-        start: "justify-start",
-        end: "justify-end",
-        center: "justify-center",
-        between: "justify-between",
-        around: "justify-around",
-        evenly: "justify-evenly"
-      },
-      gap: {
-        0: "gap-0",
-        1: "gap-1",
-        2: "gap-2",
-        3: "gap-3",
-        4: "gap-4",
-        5: "gap-5",
-        6: "gap-6",
-        8: "gap-8",
-        10: "gap-10",
-        12: "gap-12",
-        px: "gap-px"
-      },
-      gapX: {
-        0: "gap-x-0",
-        1: "gap-x-1",
-        2: "gap-x-2",
-        3: "gap-x-3",
-        4: "gap-x-4",
-        5: "gap-x-5",
-        6: "gap-x-6",
-        8: "gap-x-8",
-        10: "gap-x-10",
-        12: "gap-x-12",
-        px: "gap-x-px"
-      },
-      gapY: {
-        0: "gap-y-0",
-        1: "gap-y-1",
-        2: "gap-y-2",
-        3: "gap-y-3",
-        4: "gap-y-4",
-        5: "gap-y-5",
-        6: "gap-y-6",
-        8: "gap-y-8",
-        10: "gap-y-10",
-        12: "gap-y-12",
-        px: "gap-y-px"
-      }
-    }
-  }
-);
-var Flex = React15__namespace.forwardRef(
-  ({
-    className,
-    direction = "row",
-    wrap = "nowrap",
-    align,
-    justify,
-    gap,
-    gapX,
-    gapY,
-    full = false,
-    fullHeight = false,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          flexVariants({
-            direction,
-            wrap,
-            align,
-            justify,
-            gap,
-            gapX,
-            gapY
-          }),
-          full && "w-full",
-          fullHeight && "min-h-screen",
-          className
-        ),
-        ...props
-      }
-    );
-  }
-);
-Flex.displayName = "Flex";
-var FlexCenter = React15__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Flex,
-      {
-        ref,
-        align: "center",
-        justify: "center",
-        ...props
-      }
-    );
-  }
-);
-FlexCenter.displayName = "FlexCenter";
-var FlexBetween = React15__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Flex,
-      {
-        ref,
-        justify: "between",
-        ...props
-      }
-    );
-  }
-);
-FlexBetween.displayName = "FlexBetween";
-var FlexStart = React15__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Flex,
-      {
-        ref,
-        align: "start",
-        justify: "start",
-        ...props
-      }
-    );
-  }
-);
-FlexStart.displayName = "FlexStart";
-var FlexEnd = React15__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Flex,
-      {
-        ref,
-        align: "end",
-        justify: "end",
-        ...props
-      }
-    );
-  }
-);
-FlexEnd.displayName = "FlexEnd";
-var FlexColumn = React15__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Flex,
-      {
-        ref,
-        direction: "col",
-        ...props
-      }
-    );
-  }
-);
-FlexColumn.displayName = "FlexColumn";
-var FlexRow = React15__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Flex,
-      {
-        ref,
-        direction: "row",
-        ...props
-      }
-    );
-  }
-);
-FlexRow.displayName = "FlexRow";
-var spacerVariants = classVarianceAuthority.cva(
-  "",
-  {
-    variants: {
-      size: {
-        xs: "h-2 w-2",
-        sm: "h-4 w-4",
-        md: "h-6 w-6",
-        lg: "h-8 w-8",
-        xl: "h-10 w-10",
-        "2xl": "h-12 w-12",
-        "3xl": "h-16 w-16",
-        "4xl": "h-20 w-20"
-      },
-      direction: {
-        horizontal: "flex-1 h-px",
-        vertical: "w-px flex-1",
-        both: "flex-1"
-      },
-      variant: {
-        default: "bg-transparent",
-        line: "bg-border",
-        dotted: "bg-transparent border-dashed",
-        gradient: "bg-gradient-to-r from-transparent via-border to-transparent"
-      }
-    },
-    defaultVariants: {
-      size: "md",
-      direction: "both",
-      variant: "default"
-    }
-  }
-);
-var Spacer = React15__namespace.forwardRef(
-  ({
-    className,
-    size = "md",
-    direction = "both",
-    variant = "default",
-    width,
-    height,
-    flex = true,
-    invisible = false,
-    style,
-    ...props
-  }, ref) => {
-    const spacerStyle = React15__namespace.useMemo(() => {
-      const customStyle = { ...style };
-      if (width !== void 0) {
-        customStyle.width = typeof width === "number" ? `${width}px` : width;
-      }
-      if (height !== void 0) {
-        customStyle.height = typeof height === "number" ? `${height}px` : height;
-      }
-      if (flex) {
-        customStyle.flex = "1";
-      }
-      if (invisible) {
-        customStyle.visibility = "hidden";
-      }
-      return customStyle;
-    }, [style, width, height, flex, invisible]);
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          spacerVariants({ size, direction, variant }),
-          !flex && "flex-none",
-          variant === "dotted" && "border-b border-border",
-          className
-        ),
-        style: spacerStyle,
-        "aria-hidden": "true",
-        ...props
-      }
-    );
-  }
-);
-Spacer.displayName = "Spacer";
-var VerticalSpacer = React15__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Spacer,
-      {
-        ref,
-        direction: "vertical",
-        ...props
-      }
-    );
-  }
-);
-VerticalSpacer.displayName = "VerticalSpacer";
-var HorizontalSpacer = React15__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Spacer,
-      {
-        ref,
-        direction: "horizontal",
-        ...props
-      }
-    );
-  }
-);
-HorizontalSpacer.displayName = "HorizontalSpacer";
-var dividerVariants = classVarianceAuthority.cva(
-  "border-t",
-  {
-    variants: {
-      variant: {
-        default: "border-border",
-        muted: "border-muted",
-        primary: "border-primary",
-        secondary: "border-secondary",
-        dashed: "border-dashed",
-        dotted: "border-dotted",
-        gradient: "border-none bg-gradient-to-r from-transparent via-border to-transparent h-px"
-      },
-      size: {
-        xs: "border-t-0.5",
-        sm: "border-t",
-        md: "border-t-2",
-        lg: "border-t-4"
-      },
-      orientation: {
-        horizontal: "w-full",
-        vertical: "h-full border-l border-t-0"
-      }
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "sm",
-      orientation: "horizontal"
-    }
-  }
-);
-var Divider = React15__namespace.forwardRef(
-  ({
-    className,
-    variant = "default",
-    size = "sm",
-    orientation = "horizontal",
-    label,
-    labelPosition = "center",
-    labelComponent,
-    ...props
-  }, ref) => {
-    if (label || labelComponent) {
-      return /* @__PURE__ */ jsxRuntime.jsxs(
-        "div",
-        {
-          ref,
-          className: cn(
-            "flex items-center gap-4",
-            orientation === "vertical" && "flex-col",
-            className
-          ),
-          role: "separator",
-          "aria-orientation": orientation,
-          ...props,
-          children: [
-            /* @__PURE__ */ jsxRuntime.jsx(
-              "div",
-              {
-                className: cn(
-                  dividerVariants({ variant, size, orientation }),
-                  labelPosition === "center" && "flex-1",
-                  labelPosition === "end" && "flex-1",
-                  labelPosition === "start" && "flex-none w-10"
-                )
-              }
-            ),
-            labelComponent || /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-sm text-muted-foreground whitespace-nowrap", children: label }),
-            /* @__PURE__ */ jsxRuntime.jsx(
-              "div",
-              {
-                className: cn(
-                  dividerVariants({ variant, size, orientation }),
-                  labelPosition === "center" && "flex-1",
-                  labelPosition === "start" && "flex-1",
-                  labelPosition === "end" && "flex-none w-10"
-                )
-              }
-            )
-          ]
-        }
-      );
-    }
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          dividerVariants({ variant, size, orientation }),
-          className
-        ),
-        role: "separator",
-        "aria-orientation": orientation,
-        ...props
-      }
-    );
-  }
-);
-Divider.displayName = "Divider";
-var spacingClasses2 = {
-  sm: "my-4",
-  md: "my-6",
-  lg: "my-8",
-  xl: "my-12"
-};
-var SectionDivider = React15__namespace.forwardRef(
-  ({
-    className,
-    spacing = "lg",
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(spacingClasses2[spacing], className), children: /* @__PURE__ */ jsxRuntime.jsx(Divider, { ref, size: "md", ...props }) });
-  }
-);
-SectionDivider.displayName = "SectionDivider";
-var textColorClasses = {
-  default: "text-foreground",
-  muted: "text-muted-foreground",
-  primary: "text-primary",
-  secondary: "text-secondary-foreground"
-};
-var TextDivider = React15__namespace.forwardRef(
-  ({
-    className,
-    children,
-    textColor = "muted",
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsxs(
-      "div",
-      {
-        ref,
-        className: cn("flex items-center gap-4", className),
-        role: "separator",
-        ...props,
-        children: [
-          /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex-1 h-px bg-border" }),
-          /* @__PURE__ */ jsxRuntime.jsx("span", { className: cn("text-sm font-medium whitespace-nowrap", textColorClasses[textColor]), children }),
-          /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex-1 h-px bg-border" })
-        ]
-      }
-    );
-  }
-);
-TextDivider.displayName = "TextDivider";
-var panelVariants = classVarianceAuthority.cva(
-  "rounded-lg border bg-card text-card-foreground",
-  {
-    variants: {
-      variant: {
-        default: "border-border shadow-sm",
-        elevated: "border-border shadow-md",
-        outlined: "border-2 border-border shadow-none",
-        ghost: "border-transparent shadow-none bg-transparent",
-        glass: "glass border-border shadow-sm",
-        neon: "neon-border shadow-lg dark:shadow-glow-cyan",
-        gradient: "bg-gradient-to-br from-background to-muted border-border shadow-sm"
-      },
-      size: {
-        sm: "p-4",
-        md: "p-6",
-        lg: "p-8",
-        xl: "p-10"
-      },
-      padding: {
-        none: "p-0",
-        sm: "p-3",
-        md: "p-4",
-        lg: "p-6",
-        xl: "p-8"
-      },
-      radius: {
-        none: "rounded-none",
-        sm: "rounded",
-        md: "rounded-lg",
-        lg: "rounded-xl",
-        xl: "rounded-2xl",
-        full: "rounded-full"
-      }
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "md",
-      padding: null,
-      radius: "md"
-    }
-  }
-);
-var Panel = React15__namespace.forwardRef(
-  ({
-    className,
-    variant = "default",
-    size,
-    padding,
-    radius = "md",
-    hover = false,
-    clickable = false,
-    selected = false,
-    loading = false,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          panelVariants({ variant, size, padding, radius }),
-          hover && "transition-all duration-[var(--motion-duration-normal)] hover:shadow-lg hover:-translate-y-0.5",
-          clickable && "cursor-pointer active:scale-[0.98]",
-          selected && "ring-2 ring-primary ring-offset-2",
-          loading && "opacity-70",
-          className
-        ),
-        ...props
-      }
-    );
-  }
-);
-Panel.displayName = "Panel";
-var PanelHeader = React15__namespace.forwardRef(
-  ({
-    className,
-    divider = false,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "flex flex-col space-y-1.5 p-6",
-          divider && "border-b border-border",
-          className
-        ),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelHeader.displayName = "PanelHeader";
-var PanelTitle = React15__namespace.forwardRef(
-  ({
-    className,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "h3",
-      {
-        ref,
-        className: cn("text-lg font-semibold leading-none tracking-tight", className),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelTitle.displayName = "PanelTitle";
-var PanelDescription = React15__namespace.forwardRef(
-  ({
-    className,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "p",
-      {
-        ref,
-        className: cn("text-sm text-muted-foreground", className),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelDescription.displayName = "PanelDescription";
-var PanelContent = React15__namespace.forwardRef(
-  ({
-    className,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn("p-6 pt-0", className),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelContent.displayName = "PanelContent";
-var PanelFooter = React15__namespace.forwardRef(
-  ({
-    className,
-    divider = false,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "flex items-center p-6 pt-0",
-          divider && "border-t border-border mt-6 pt-6",
-          className
-        ),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelFooter.displayName = "PanelFooter";
-var spacingClasses3 = {
-  sm: "gap-4",
-  md: "gap-6",
-  lg: "gap-8",
-  xl: "gap-10"
-};
-var PanelGroup = React15__namespace.forwardRef(
-  ({
-    className,
-    spacing = "md",
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn("grid", spacingClasses3[spacing], className),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelGroup.displayName = "PanelGroup";
+AccordionContent.displayName = AccordionPrimitive__namespace.Content.displayName;
 var STAGGER_DELAY_SECONDS = 0.1;
 function QuickActions({
   onNewPost,
@@ -2249,27 +1410,27 @@ function QuickActions({
         initial: { opacity: 0, scale: 0.9 },
         animate: { opacity: 1, scale: 1 },
         transition: { delay: index * STAGGER_DELAY_SECONDS },
-        children: /* @__PURE__ */ jsxRuntime.jsxs(
+        children: /* @__PURE__ */ jsxRuntime.jsx(
           Button,
           {
             onClick: action.onClick,
             variant: "outline",
             className: "w-full h-auto p-4 flex flex-col items-start gap-2 hover:border-cyan-400/50 dark:hover:bg-cyan-400/5",
             "aria-label": `${action.label}: ${action.description}`,
-            children: [
+            children: /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex flex-col gap-2 w-full", children: [
               /* @__PURE__ */ jsxRuntime.jsx(
-                "div",
+                "span",
                 {
-                  className: `p-2 rounded-lg bg-linear-to-br ${action.color} text-white`,
+                  className: `p-2 rounded-lg bg-linear-to-br ${action.color} text-white inline-flex w-fit`,
                   "aria-hidden": "true",
                   children: action.icon
                 }
               ),
-              /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-left", children: [
-                /* @__PURE__ */ jsxRuntime.jsx("p", { className: "font-semibold text-sm", children: action.label }),
-                /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-xs text-muted-foreground", children: action.description })
+              /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-left", children: [
+                /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-semibold text-sm block", children: action.label }),
+                /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted-foreground block", children: action.description })
               ] })
-            ]
+            ] })
           }
         )
       },

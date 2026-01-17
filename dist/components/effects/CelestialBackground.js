@@ -2,9 +2,29 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var react = require('react');
-var designTokens = require('@rainersoft/design-tokens');
+var React = require('react');
+require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
+
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  var n = Object.create(null);
+  if (e) {
+    Object.keys(e).forEach(function (k) {
+      if (k !== 'default') {
+        var d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: function () { return e[k]; }
+        });
+      }
+    });
+  }
+  n.default = e;
+  return Object.freeze(n);
+}
+
+var React__namespace = /*#__PURE__*/_interopNamespace(React);
 
 function hexToRGBA(hex, alpha = 1) {
   const cleanHex = hex.replace("#", "");
@@ -24,6 +44,16 @@ function hexToRGBA(hex, alpha = 1) {
 // src/lib/constants.ts
 var GRADIENT_DIRECTIONS = {
   TO_BOTTOM: "to-b"};
+var TokensContext = React__namespace.createContext(null);
+function useTokens() {
+  const context = React__namespace.useContext(TokensContext);
+  if (!context) {
+    throw new Error(
+      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
+    );
+  }
+  return context;
+}
 var STAR_CONFIGS = {
   default: {
     count: 150,
@@ -72,15 +102,17 @@ function Star({ star }) {
   );
 }
 function CelestialBackground({
-  variant = "default"
+  variant = "default",
+  colors
 } = {}) {
   const config = STAR_CONFIGS[variant];
-  const [stars, setStars] = react.useState([]);
-  const [isMounted, setIsMounted] = react.useState(false);
-  const cyan400 = designTokens.tokens.primitives.color.cyan["400"];
-  const purple400 = designTokens.tokens.primitives.color.purple["400"];
-  const pink500 = designTokens.tokens.primitives.color.pink["500"];
-  react.useEffect(() => {
+  const [stars, setStars] = React.useState([]);
+  const [isMounted, setIsMounted] = React.useState(false);
+  const { getColor } = useTokens();
+  const cyan400 = colors?.cyan ?? getColor("primitives.colors.cyan.400", "#22d3ee");
+  const purple400 = colors?.purple ?? getColor("primitives.colors.purple.400", "#a855f7");
+  const pink500 = colors?.pink ?? getColor("primitives.colors.pink.500", "#ec4899");
+  React.useEffect(() => {
     setStars(generateStars(config.count, [...config.sizes], [...config.opacity]));
     setIsMounted(true);
   }, [config.count, config.sizes, config.opacity]);

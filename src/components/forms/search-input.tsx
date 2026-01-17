@@ -1,4 +1,4 @@
-/**
+ /**
  * Componente SearchInput
  *
  * Campo de busca com sugestões e filtros.
@@ -140,7 +140,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
       disabled,
       // props, // Props adicionais não utilizados
     },
-    // ref, // TODO: implementar ref forwarding
+    ref
   ) => {
     const [internalValue, setInternalValue] = React.useState(value);
     const [isOpen, setIsOpen] = React.useState(false);
@@ -171,8 +171,9 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
 
     // Filtra sugestões
     React.useEffect(() => {
+      let next: SearchSuggestion[]
+
       if (!currentValue.trim()) {
-        // Mostra histórico e trending
         const historySuggestions: SearchSuggestion[] = history
           .slice(0, 5)
           .map((item, index) => ({
@@ -180,22 +181,26 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
             text: item,
             type: 'history' as const,
             icon: <Clock className="h-4 w-4" />,
-          }));
-        
+          }))
+
         const trendingSuggestions: SearchSuggestion[] = suggestions
-          .filter(s => s.type === 'trending')
-          .slice(0, 5);
-        
-        setFilteredSuggestions([...historySuggestions, ...trendingSuggestions]);
+          .filter((s) => s.type === 'trending')
+          .slice(0, 5)
+
+        next = [...historySuggestions, ...trendingSuggestions]
       } else {
-        // Filtra por texto
-        const filtered = suggestions.filter(s => 
-          s.text.toLowerCase().includes(currentValue.toLowerCase())
-        ).slice(0, maxSuggestions);
-        
-        setFilteredSuggestions(filtered);
+        next = suggestions
+          .filter((s) => s.text.toLowerCase().includes(currentValue.toLowerCase()))
+          .slice(0, maxSuggestions)
       }
-    }, [currentValue, suggestions, history, maxSuggestions]);
+
+      const sameLength = next.length === filteredSuggestions.length
+      const sameItems = sameLength && next.every((item, idx) => item.id === filteredSuggestions[idx]?.id && item.text === filteredSuggestions[idx]?.text)
+
+      if (!sameItems) {
+        setFilteredSuggestions(next)
+      }
+    }, [currentValue, suggestions, history, maxSuggestions, filteredSuggestions]);
 
     // Manipuladores de eventos
     const handleKeyDown = React.useCallback((event: React.KeyboardEvent) => {
@@ -290,7 +295,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
 
     return (
       <div
-        ref={containerRef}
+        ref={ref || containerRef}
         className={cn('relative', className)}
       >
         {/* Input */}

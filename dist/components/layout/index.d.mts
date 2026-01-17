@@ -1,5 +1,4 @@
 export { AspectRatio } from './aspect-ratio.mjs';
-export { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, HighlightCard } from './card.mjs';
 export { ScrollArea, ScrollBar } from './scroll-area.mjs';
 export { Separator } from './separator.mjs';
 export { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from './sheet.mjs';

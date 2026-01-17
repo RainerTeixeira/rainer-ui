@@ -8,18 +8,21 @@
  * @author Rainer Teixeira
  */
 
+import { createRequire } from 'node:module';
 import type { AdapterConfig, AdapterFactory } from '../../types/adapter';
 import type { DesignTokens } from '../../types/tokens';
 import type { ThemeColors } from '../../types/theme';
 import { genericAdapter, GENERIC_TOKENS } from './generic';
 import { DEFAULT_LIGHT_COLORS, DEFAULT_DARK_COLORS } from '../../types/theme';
 
+const require = createRequire(import.meta.url);
+
 let rainersoftTokens: DesignTokens | null = null;
 let rainersoftLightColors: ThemeColors | null = null;
 let rainersoftDarkColors: ThemeColors | null = null;
 
 try {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
   const designTokens = require('@rainersoft/design-tokens');
   if (designTokens?.tokens) {
     rainersoftTokens = designTokens.tokens as DesignTokens;

@@ -90,9 +90,9 @@ interface SocialAction {
     /** Estado ativo */
     active?: boolean;
     /** Callback */
-    onAction?: (type: string, data: any) => void;
+    onAction?: (type: string, action?: SocialAction) => void;
     /** Dados específicos da ação */
-    data?: Record<string, any>;
+    data?: Record<string, unknown>;
 }
 /**
  * Configuração de ações do card

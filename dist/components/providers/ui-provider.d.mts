@@ -1,7 +1,7 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
 import * as React from 'react';
-import { D as DesignTokens } from '../../tokens-A_UK8Q2r.mjs';
-import { A as AdapterConfig } from '../../adapter-BueEAZsa.mjs';
+import { D as DesignTokens } from '../../tokens-B1TMkK7f.mjs';
+import { A as AdapterConfig } from '../../adapter-Ao-UsVV1.mjs';
 
 interface UIProviderProps {
     children: React.ReactNode;

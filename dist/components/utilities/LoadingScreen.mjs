@@ -1,11 +1,12 @@
+import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { Atom } from 'react-loading-indicators';
 import { Loader2 } from 'lucide-react';
-import { tokens } from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import { useTheme } from 'next-themes';
+import { tokens } from '@rainersoft/design-tokens';
 import { jsx, jsxs } from 'react/jsx-runtime';
+import { useTheme } from 'next-themes';
 
 function hexToRGB(hex) {
   const cleanHex = hex.replace("#", "");
@@ -90,6 +91,16 @@ motion.easing;
     navigation: motionSemantic.navigation.page
   }
 });
+var TokensContext = React.createContext(null);
+function useTokens() {
+  const context = React.useContext(TokensContext);
+  if (!context) {
+    throw new Error(
+      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
+    );
+  }
+  return context;
+}
 function Skeleton({ className, ...props }) {
   return /* @__PURE__ */ jsx(
     "div",
@@ -199,19 +210,20 @@ function EmptyState({
     action && /* @__PURE__ */ jsx("div", { className: "flex justify-center", children: action })
   ] });
 }
-function LoadingScreen({ progress, currentStep }) {
+function LoadingScreen({ progress = 0, currentStep = "Inicializando..." }) {
   const [displayedProgress, setDisplayedProgress] = useState(0);
   const [stars, setStars] = useState([]);
   const [mounted, setMounted] = useState(false);
   const { theme, systemTheme } = useTheme();
+  const { getColor } = useTokens();
   useEffect(() => {
     setMounted(true);
   }, []);
   const currentTheme = mounted ? theme === "system" ? systemTheme : theme : "light";
   const isDark = currentTheme === "dark";
-  const primaryColor = isDark ? tokens.primitives.color.blue["400"] : tokens.primitives.color.blue["600"];
-  const secondaryColor = isDark ? tokens.primitives.color.purple["400"] : tokens.primitives.color.purple["600"];
-  const accentColor = isDark ? tokens.primitives.color.red["400"] : tokens.primitives.color.red["600"];
+  const primaryColor = isDark ? getColor("primitives.colors.blue.400", "#60a5fa") : getColor("primitives.colors.blue.600", "#2563eb");
+  const secondaryColor = isDark ? getColor("primitives.colors.purple.400", "#c084fc") : getColor("primitives.colors.purple.600", "#7c3aed");
+  const accentColor = isDark ? getColor("primitives.colors.red.400", "#f87171") : getColor("primitives.colors.red.600", "#dc2626");
   const primaryRGB = hexToRGB(primaryColor);
   const secondaryRGB = hexToRGB(secondaryColor);
   useEffect(() => {

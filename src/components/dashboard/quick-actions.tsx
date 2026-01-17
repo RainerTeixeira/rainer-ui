@@ -37,7 +37,7 @@
 // ============================================================================
 
 import { Button } from '../ui';
-import { Card, CardContent, CardHeader, CardTitle } from '../layout';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui';
 import { motion } from 'framer-motion';
 import Plus from 'lucide-react/dist/esm/icons/plus';
 import Settings from 'lucide-react/dist/esm/icons/settings';
@@ -184,18 +184,20 @@ export function QuickActions({
                 className="w-full h-auto p-4 flex flex-col items-start gap-2 hover:border-cyan-400/50 dark:hover:bg-cyan-400/5"
                 aria-label={`${action.label}: ${action.description}`}
               >
-                <div
-                  className={`p-2 rounded-lg bg-linear-to-br ${action.color} text-white`}
-                  aria-hidden="true"
-                >
-                  {action.icon}
-                </div>
-                <div className="text-left">
-                  <p className="font-semibold text-sm">{action.label}</p>
-                  <p className="text-xs text-muted-foreground">
-                    {action.description}
-                  </p>
-                </div>
+                <span className="flex flex-col gap-2 w-full">
+                  <span
+                    className={`p-2 rounded-lg bg-linear-to-br ${action.color} text-white inline-flex w-fit`}
+                    aria-hidden="true"
+                  >
+                    {action.icon}
+                  </span>
+                  <span className="text-left">
+                    <span className="font-semibold text-sm block">{action.label}</span>
+                    <span className="text-xs text-muted-foreground block">
+                      {action.description}
+                    </span>
+                  </span>
+                </span>
               </Button>
             </motion.div>
           ))}

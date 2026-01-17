@@ -28,6 +28,24 @@ pnpm add @rainersoft/ui @rainersoft/design-tokens
 npm install @rainersoft/ui @rainersoft/design-tokens
 ```
 
+### Tokens e dados
+
+- **Tokens obrigatórios**: todos os componentes requerem que seu app esteja envolvido por `TokensProvider tokens={seusTokens}` (ex.: no App/Storybook). Sem o provider, `useTokens` lança erro para evitar uso sem design tokens oficiais.
+- **Dados externos**: os componentes (incluindo dashboard) **não carregam dados internos** nem presets. Tudo que aparece em tela vem das props que você fornecer.
+- Exemplos e dados de demonstração ficam apenas no app `Teste-ui` e **não são publicados** no pacote.
+- Para usar métricas/cards, sempre passe seus dados via props:
+
+```tsx
+import { StatsCards } from '@rainersoft/ui/components/dashboard/stats-cards';
+
+const metrics = [
+  { label: 'Receita', value: 1000, change: 5.2, trend: 'up' },
+  { label: 'Pedidos', value: 120, change: -2.1, trend: 'down' },
+];
+
+<StatsCards items={metrics} showFooterDate />;
+```
+
 ## 📖 Uso
 
 ### Setup Inicial
@@ -163,6 +181,7 @@ import { ShareMenu } from '@rainersoft/ui/components/social/share-menu';
 import { ShareMenu } from '@rainersoft/ui/components/social/share-menu';
 import { KPI } from '@rainersoft/ui/components/feedback/kpi';
 import { Table } from '@rainersoft/ui/components/layout/table';
+import { StatsCards } from '@rainersoft/ui/components/dashboard/stats-cards';
 
 // Relatório compartilhável
 <ShareMenu
@@ -171,6 +190,56 @@ import { Table } from '@rainersoft/ui/components/layout/table';
   platforms={['copy', 'email']}
   variant="ghost"
   size="sm"
+/>
+
+// Métricas de vendas genéricas
+<StatsCards
+  items={[
+    {
+      label: 'Receita Mensal',
+      value: 125000,
+      change: 8.5,
+      trend: 'up',
+      icon: <DollarSign className="h-4 w-4" />,
+      accentKey: 'status.success.base',
+      secondaryColor: 'status.success.background',
+      formatValue: (v) =>
+        typeof v === 'number'
+          ? v.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+          : v
+    },
+    {
+      label: 'Pedidos',
+      value: 320,
+      change: 5.1,
+      trend: 'up',
+      icon: <ShoppingBag className="h-4 w-4" />,
+      accentKey: 'status.info.base',
+      secondaryColor: 'status.info.background',
+      description: 'Pedidos processados'
+    },
+    {
+      label: 'Taxa de Conversão',
+      value: 3.4,
+      change: 0.4,
+      trend: 'up',
+      icon: <Activity className="h-4 w-4" />,
+      accentKey: 'status.warning.base',
+      secondaryColor: 'status.warning.background',
+      valueSuffix: '%'
+    },
+    {
+      label: 'Clientes Ativos',
+      value: 1240,
+      change: -2.1,
+      trend: 'down',
+      icon: <Users className="h-4 w-4" />,
+      accentKey: 'status.error.base',
+      secondaryColor: 'status.error.background',
+      description: 'Compras nos últimos 30 dias'
+    },
+  ]}
+  showFooterDate
 />
 ```
 

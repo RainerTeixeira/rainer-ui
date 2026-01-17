@@ -1,4 +1,4 @@
-import * as React13 from 'react';
+import * as React14 from 'react';
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Cookie, X, Settings, XCircle, Check, Download, RefreshCw, ArrowUp } from 'lucide-react';
 import { Slot } from '@radix-ui/react-slot';
@@ -6,7 +6,7 @@ import { cva } from 'class-variance-authority';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
-import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
+import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import Link from 'next/link';
 import * as LabelPrimitive from '@radix-ui/react-label';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
@@ -150,7 +150,7 @@ var buttonVariants = cva(
     }
   }
 );
-var ButtonComponent = React13.forwardRef(
+var ButtonComponent = React14.forwardRef(
   ({
     className,
     variant,
@@ -163,10 +163,36 @@ var ButtonComponent = React13.forwardRef(
     children,
     ...props
   }, ref) => {
-    const Comp = asChild ? Slot : "button";
     const isDisabled = disabled || loading;
+    if (asChild) {
+      const child = React14.Children.only(children);
+      return /* @__PURE__ */ jsx(
+        Slot,
+        {
+          className: cn(
+            buttonVariants({ variant, size, animation }),
+            // Efeito neon especial
+            variant === "neon" && [
+              "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+              "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+              "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+              "before:transition-opacity after:transition-opacity",
+              "before:duration-300 after:duration-300"
+            ],
+            className
+          ),
+          ref,
+          "aria-busy": loading || void 0,
+          ...props,
+          children: loading ? /* @__PURE__ */ jsxs("div", { className: "inline-flex items-center gap-2", children: [
+            loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }),
+            child
+          ] }) : child
+        }
+      );
+    }
     return /* @__PURE__ */ jsxs(
-      Comp,
+      "button",
       {
         className: cn(
           buttonVariants({ variant, size, animation }),
@@ -182,9 +208,10 @@ var ButtonComponent = React13.forwardRef(
         ),
         ref,
         disabled: isDisabled,
+        "aria-busy": loading || void 0,
         ...props,
         children: [
-          loading && /* @__PURE__ */ jsx(Fragment, { children: loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          loading && (loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" })),
           children
         ]
       }
@@ -314,7 +341,7 @@ var MOTION = {
     DEFAULT: "transition-all duration-200 ease-in-out"}};
 var GRADIENT_DIRECTIONS = {
   TO_BOTTOM_RIGHT: "to-br"};
-var Card = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Card = React14.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -326,7 +353,7 @@ var Card = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ 
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardHeader = React14.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -335,7 +362,7 @@ var CardHeader = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardTitle = React14.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h3",
   {
     ref,
@@ -347,7 +374,7 @@ var CardTitle = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardDescription = React14.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "p",
   {
     ref,
@@ -356,9 +383,9 @@ var CardDescription = React13.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React14.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardFooter = React14.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -367,7 +394,7 @@ var CardFooter = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 CardFooter.displayName = "CardFooter";
-var HighlightCard = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var HighlightCard = React14.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -397,7 +424,7 @@ HighlightCard.displayName = "HighlightCard";
 var labelVariants = cva(
   "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-cyan-200 dark:font-mono"
 );
-var Label = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Label = React14.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   LabelPrimitive.Root,
   {
     ref,
@@ -406,7 +433,7 @@ var Label = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */
   }
 ));
 Label.displayName = LabelPrimitive.Root.displayName;
-var Separator = React13.forwardRef(
+var Separator = React14.forwardRef(
   ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsx(
     SeparatorPrimitive.Root,
     {
@@ -424,7 +451,7 @@ var Separator = React13.forwardRef(
   )
 );
 Separator.displayName = SeparatorPrimitive.Root.displayName;
-var Switch = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Switch = React14.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SwitchPrimitives.Root,
   {
     className: cn(
@@ -540,11 +567,12 @@ var _CookieManager = class _CookieManager {
     );
     scripts.forEach((script) => script.remove());
     this.clearAnalyticsCookies();
-    if (window.dataLayer) {
-      window.dataLayer = [];
+    const win = window;
+    if (win.dataLayer) {
+      win.dataLayer = [];
     }
-    if (window.gtag) {
-      delete window.gtag;
+    if (win.gtag) {
+      delete win.gtag;
     }
   }
   clearAnalyticsCookies() {
@@ -1054,20 +1082,20 @@ function CookieBanner() {
 }
 function useTheme() {
   const { theme, resolvedTheme, setTheme } = useTheme$1();
-  const toggle = React13.useCallback(() => {
+  const toggle = React14.useCallback(() => {
     if (theme === "system") {
       setTheme(resolvedTheme === "dark" ? "light" : "dark");
     } else {
       setTheme(theme === "dark" ? "light" : "dark");
     }
   }, [theme, resolvedTheme, setTheme]);
-  const setLight = React13.useCallback(() => {
+  const setLight = React14.useCallback(() => {
     setTheme("light");
   }, [setTheme]);
-  const setDark = React13.useCallback(() => {
+  const setDark = React14.useCallback(() => {
     setTheme("dark");
   }, [setTheme]);
-  const setSystem = React13.useCallback(() => {
+  const setSystem = React14.useCallback(() => {
     setTheme("system");
   }, [setTheme]);
   return {
@@ -1085,8 +1113,8 @@ function useTheme() {
 }
 function ThemeToggle({ className }) {
   const { toggle, isDark } = useTheme();
-  const [mounted, setMounted] = React13.useState(false);
-  React13.useEffect(() => {
+  const [mounted, setMounted] = React14.useState(false);
+  React14.useEffect(() => {
     setMounted(true);
   }, []);
   const handleToggle = () => {
@@ -1194,7 +1222,8 @@ function usePWA() {
   }, []);
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const isStandaloneiOS = window.navigator.standalone === true;
+    const nav = window.navigator;
+    const isStandaloneiOS = nav.standalone === true;
     const isStandaloneAndroid = window.matchMedia(
       "(display-mode: standalone)"
     ).matches;
@@ -1486,19 +1515,30 @@ function UpdateNotification() {
     )
   );
 }
-function LoadingScreen({ progress, currentStep }) {
+var TokensContext = React14.createContext(null);
+function useTokens() {
+  const context = React14.useContext(TokensContext);
+  if (!context) {
+    throw new Error(
+      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
+    );
+  }
+  return context;
+}
+function LoadingScreen({ progress = 0, currentStep = "Inicializando..." }) {
   const [displayedProgress, setDisplayedProgress] = useState(0);
   const [stars, setStars] = useState([]);
   const [mounted, setMounted] = useState(false);
   const { theme, systemTheme } = useTheme$1();
+  const { getColor } = useTokens();
   useEffect(() => {
     setMounted(true);
   }, []);
   const currentTheme = mounted ? theme === "system" ? systemTheme : theme : "light";
   const isDark = currentTheme === "dark";
-  const primaryColor = isDark ? tokens.primitives.color.blue["400"] : tokens.primitives.color.blue["600"];
-  const secondaryColor = isDark ? tokens.primitives.color.purple["400"] : tokens.primitives.color.purple["600"];
-  const accentColor = isDark ? tokens.primitives.color.red["400"] : tokens.primitives.color.red["600"];
+  const primaryColor = isDark ? getColor("primitives.colors.blue.400", "#60a5fa") : getColor("primitives.colors.blue.600", "#2563eb");
+  const secondaryColor = isDark ? getColor("primitives.colors.purple.400", "#c084fc") : getColor("primitives.colors.purple.600", "#7c3aed");
+  const accentColor = isDark ? getColor("primitives.colors.red.400", "#f87171") : getColor("primitives.colors.red.600", "#dc2626");
   const primaryRGB = hexToRGB(primaryColor);
   const secondaryRGB = hexToRGB(secondaryColor);
   useEffect(() => {
@@ -1807,7 +1847,7 @@ function TokensDemo() {
     ] })
   ] });
 }
-var VisuallyHidden = React13.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var VisuallyHidden = React14.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "span",
   {
     ref,
@@ -1844,7 +1884,7 @@ var kbdVariants = cva(
     }
   }
 );
-var Kbd = React13.forwardRef(
+var Kbd = React14.forwardRef(
   ({
     className,
     variant = "default",
@@ -1864,7 +1904,7 @@ var Kbd = React13.forwardRef(
   }
 );
 Kbd.displayName = "Kbd";
-var KbdCombo = React13.forwardRef(
+var KbdCombo = React14.forwardRef(
   ({
     className,
     keys,
@@ -1879,7 +1919,7 @@ var KbdCombo = React13.forwardRef(
         ref,
         className: cn("flex items-center gap-1", className),
         ...props,
-        children: keys.map((key, index) => /* @__PURE__ */ jsxs(React13.Fragment, { children: [
+        children: keys.map((key, index) => /* @__PURE__ */ jsxs(React14.Fragment, { children: [
           index > 0 && /* @__PURE__ */ jsx("span", { className: "text-muted-foreground text-xs font-normal", children: separator }),
           /* @__PURE__ */ jsx(Kbd, { size, variant, children: key })
         ] }, index))
@@ -1963,7 +2003,7 @@ var codeVariants = cva(
     }
   }
 );
-var Code = React13.forwardRef(
+var Code = React14.forwardRef(
   ({
     className,
     variant = "inline",
@@ -1976,9 +2016,9 @@ var Code = React13.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [copied, setCopied] = React13.useState(false);
-    const codeRef = React13.useRef(null);
-    const handleCopy = React13.useCallback(async () => {
+    const [copied, setCopied] = React14.useState(false);
+    const codeRef = React14.useRef(null);
+    const handleCopy = React14.useCallback(async () => {
       if (codeRef.current) {
         const text = codeRef.current.textContent || "";
         await navigator.clipboard.writeText(text);
@@ -2039,17 +2079,18 @@ var Code = React13.forwardRef(
   }
 );
 Code.displayName = "Code";
-var CodeInline = React13.forwardRef(
+var CodeInline = React14.forwardRef(
   ({
     className,
     color = "default",
     ...props
   }, ref) => {
+    const resolvedVariant = color === "default" ? "inline" : color;
     return /* @__PURE__ */ jsx(
       Code,
       {
         ref,
-        variant: color,
+        variant: resolvedVariant,
         className,
         ...props
       }
@@ -2057,7 +2098,7 @@ var CodeInline = React13.forwardRef(
   }
 );
 CodeInline.displayName = "CodeInline";
-var CodeBlock = React13.forwardRef(
+var CodeBlock = React14.forwardRef(
   ({
     className,
     ...props
@@ -2104,7 +2145,7 @@ var quoteVariants = cva(
     }
   }
 );
-var Quote = React13.forwardRef(
+var Quote = React14.forwardRef(
   ({
     className,
     variant = "default",
@@ -2155,7 +2196,7 @@ var Quote = React13.forwardRef(
   }
 );
 Quote.displayName = "Quote";
-var QuoteTestimonial = React13.forwardRef(
+var QuoteTestimonial = React14.forwardRef(
   ({
     className,
     author,
@@ -2209,7 +2250,7 @@ var QuoteTestimonial = React13.forwardRef(
   }
 );
 QuoteTestimonial.displayName = "QuoteTestimonial";
-var QuoteBlock = React13.forwardRef(
+var QuoteBlock = React14.forwardRef(
   ({
     className,
     children,
@@ -2260,7 +2301,7 @@ var aspectRatioBoxVariants = cva(
     }
   }
 );
-var AspectRatioBox = React13.forwardRef(
+var AspectRatioBox = React14.forwardRef(
   ({
     className,
     variant = "default",
@@ -2269,13 +2310,13 @@ var AspectRatioBox = React13.forwardRef(
     objectFit = "cover",
     ...props
   }, ref) => {
-    const resolvedRatio = React13.useMemo(() => {
+    const resolvedRatio = React14.useMemo(() => {
       if (typeof ratio === "string" && ratio in ASPECT_RATIOS) {
         return ASPECT_RATIOS[ratio];
       }
       return ratio;
     }, [ratio]);
-    const paddingBottom = React13.useMemo(() => {
+    const paddingBottom = React14.useMemo(() => {
       const [width, height] = resolvedRatio.split("/").map(Number);
       return `${height / width * 100}%`;
     }, [resolvedRatio]);
@@ -2291,7 +2332,7 @@ var AspectRatioBox = React13.forwardRef(
         className: cn(aspectRatioBoxVariants({ variant }), className),
         style: { paddingBottom },
         ...props,
-        children: /* @__PURE__ */ jsx("div", { className: "absolute inset-0", children: React13.isValidElement(children) ? React13.cloneElement(children, {
+        children: /* @__PURE__ */ jsx("div", { className: "absolute inset-0", children: React14.isValidElement(children) ? React14.cloneElement(children, {
           className: cn(
             objectFitClasses[objectFit],
             children.props.className
@@ -2302,7 +2343,7 @@ var AspectRatioBox = React13.forwardRef(
   }
 );
 AspectRatioBox.displayName = "AspectRatioBox";
-var AspectRatioImage = React13.forwardRef(
+var AspectRatioImage = React14.forwardRef(
   ({
     className,
     ratio = "square",
@@ -2317,14 +2358,14 @@ var AspectRatioImage = React13.forwardRef(
         ref,
         src,
         alt,
-        className: "w-full h-full object-cover",
+        className: cn("w-full h-full object-cover", className),
         ...props
       }
     ) });
   }
 );
 AspectRatioImage.displayName = "AspectRatioImage";
-var AspectRatioVideo = React13.forwardRef(
+var AspectRatioVideo = React14.forwardRef(
   ({
     className,
     ratio = "video",
@@ -2335,14 +2376,14 @@ var AspectRatioVideo = React13.forwardRef(
       "video",
       {
         ref,
-        className: "w-full h-full object-cover",
+        className: cn("w-full h-full object-cover", className),
         ...props
       }
     ) });
   }
 );
 AspectRatioVideo.displayName = "AspectRatioVideo";
-var AspectRatioIframe = React13.forwardRef(
+var AspectRatioIframe = React14.forwardRef(
   ({
     className,
     ratio = "video",
@@ -2353,7 +2394,7 @@ var AspectRatioIframe = React13.forwardRef(
       "iframe",
       {
         ref,
-        className: "w-full h-full",
+        className: cn("w-full h-full", className),
         ...props
       }
     ) });
@@ -2380,7 +2421,7 @@ var centerVariants = cva(
     }
   }
 );
-var Center = React13.forwardRef(
+var Center = React14.forwardRef(
   ({
     className,
     direction = "both",
@@ -2393,7 +2434,7 @@ var Center = React13.forwardRef(
     children,
     ...props
   }, ref) => {
-    const centerStyle = React13.useMemo(() => {
+    const centerStyle = React14.useMemo(() => {
       const customStyle = { ...style };
       if (padding !== void 0) {
         customStyle.padding = typeof padding === "number" ? `${padding}px` : padding;
@@ -2422,7 +2463,7 @@ var Center = React13.forwardRef(
   }
 );
 Center.displayName = "Center";
-var CenterInline = React13.forwardRef(
+var CenterInline = React14.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Center,
@@ -2435,7 +2476,7 @@ var CenterInline = React13.forwardRef(
   }
 );
 CenterInline.displayName = "CenterInline";
-var CenterScreen = React13.forwardRef(
+var CenterScreen = React14.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Center,
@@ -2450,7 +2491,7 @@ var CenterScreen = React13.forwardRef(
   }
 );
 CenterScreen.displayName = "CenterScreen";
-var CenterText = React13.forwardRef(
+var CenterText = React14.forwardRef(
   ({
     className,
     align = "center",

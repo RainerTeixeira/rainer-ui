@@ -27,7 +27,7 @@ interface LightboxItem {
  * Variantes do Lightbox
  */
 declare const lightboxVariants: (props?: {
-    variant?: "default" | "vignette" | "subtle";
+    variant?: "default" | "subtle" | "vignette";
     animation?: "none" | "fade" | "slideUp" | "slideDown";
 } & class_variance_authority_types.ClassProp) => string;
 /**

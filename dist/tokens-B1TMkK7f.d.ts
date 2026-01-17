@@ -23,6 +23,15 @@ interface ColorScale {
 interface ColorPalette {
     [colorName: string]: ColorScale | string;
 }
+interface BorderToken {
+    width?: string;
+    style?: string;
+    color?: string;
+    [key: string]: string | undefined;
+}
+type BorderValue = string | BorderToken | {
+    [key: string]: BorderValue;
+};
 interface SemanticColors {
     text?: {
         primary?: string;
@@ -45,15 +54,15 @@ interface SemanticColors {
         [key: string]: string | undefined;
     };
     border?: {
-        default?: string;
-        light?: string;
-        medium?: string;
-        dark?: string;
-        focus?: string;
-        error?: string;
-        success?: string;
-        warning?: string;
-        [key: string]: string | undefined;
+        default?: BorderValue;
+        light?: BorderValue;
+        medium?: BorderValue;
+        dark?: BorderValue;
+        focus?: BorderValue;
+        error?: BorderValue;
+        success?: BorderValue;
+        warning?: BorderValue;
+        [key: string]: BorderValue | undefined;
     };
     button?: {
         primary?: {
@@ -264,6 +273,48 @@ interface ZIndexTokens {
     tooltip?: number;
     [key: string]: number | string | undefined;
 }
+interface GradientTokens {
+    text?: {
+        primary?: string;
+        secondary?: string;
+        accent?: string;
+        cyberpunk?: string;
+        neon?: string;
+        [key: string]: string | undefined;
+    };
+    background?: {
+        hero?: string;
+        subtle?: string;
+        cyberpunk?: string;
+        neon?: string;
+        glass?: string;
+        [key: string]: string | undefined;
+    };
+    cyberpunk?: {
+        primary?: string;
+        secondary?: string;
+        accent?: string;
+        neon?: string;
+        glow?: string;
+        [key: string]: string | undefined;
+    };
+    neon?: {
+        cyan?: string;
+        purple?: string;
+        green?: string;
+        pink?: string;
+        yellow?: string;
+        [key: string]: string | undefined;
+    };
+    status?: {
+        success?: string;
+        warning?: string;
+        error?: string;
+        info?: string;
+        [key: string]: string | undefined;
+    };
+    [key: string]: Record<string, string | undefined> | undefined;
+}
 interface DesignTokens {
     primitives?: {
         colors?: ColorPalette;
@@ -274,6 +325,7 @@ interface DesignTokens {
         motion?: MotionTokens;
         breakpoints?: BreakpointTokens;
         zIndex?: ZIndexTokens;
+        gradients?: GradientTokens;
         [key: string]: unknown;
     };
     semantics?: SemanticColors;
@@ -291,6 +343,7 @@ interface TokensContextValue {
     getRadius: (key: string, fallback?: string) => string;
     getShadow: (key: string, fallback?: string) => string;
     getMotion: (type: 'duration' | 'easing' | 'delay', key: string, fallback?: string) => string;
+    getGradient: (path: string, fallback?: string) => string;
 }
 
 export type { DesignTokens as D, TokensContextValue as T };

@@ -1,4 +1,4 @@
-import * as React11 from 'react';
+import * as React10 from 'react';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
@@ -98,7 +98,7 @@ motion.easing;
     navigation: motionSemantic.navigation.page
   }
 });
-var Checkbox = React11.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Checkbox = React10.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   CheckboxPrimitive.Root,
   {
     ref,
@@ -120,26 +120,10 @@ var Checkbox = React11.forwardRef(({ className, ...props }, ref) => /* @__PURE__
   }
 ));
 Checkbox.displayName = CheckboxPrimitive.Root.displayName;
-function Input({ className, type, ...props }) {
-  return /* @__PURE__ */ jsx(
-    "input",
-    {
-      type,
-      "data-slot": "input",
-      className: cn(
-        "file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
-        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-        className
-      ),
-      ...props
-    }
-  );
-}
 var labelVariants = cva(
   "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-cyan-200 dark:font-mono"
 );
-var Label = React11.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Label = React10.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   LabelPrimitive.Root,
   {
     ref,
@@ -148,7 +132,7 @@ var Label = React11.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */
   }
 ));
 Label.displayName = LabelPrimitive.Root.displayName;
-var RadioGroup = React11.forwardRef(({ className, ...props }, ref) => {
+var RadioGroup = React10.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsx(
     RadioGroupPrimitive.Root,
     {
@@ -159,7 +143,7 @@ var RadioGroup = React11.forwardRef(({ className, ...props }, ref) => {
   );
 });
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
-var RadioGroupItem = React11.forwardRef(({ className, ...props }, ref) => {
+var RadioGroupItem = React10.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsx(
     RadioGroupPrimitive.Item,
     {
@@ -177,7 +161,7 @@ RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 var Select = SelectPrimitive.Root;
 var SelectGroup = SelectPrimitive.Group;
 var SelectValue = SelectPrimitive.Value;
-var SelectTrigger = React11.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var SelectTrigger = React10.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   SelectPrimitive.Trigger,
   {
     ref,
@@ -198,7 +182,7 @@ var SelectTrigger = React11.forwardRef(({ className, children, ...props }, ref) 
   }
 ));
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
-var SelectScrollUpButton = React11.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var SelectScrollUpButton = React10.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SelectPrimitive.ScrollUpButton,
   {
     ref,
@@ -208,7 +192,7 @@ var SelectScrollUpButton = React11.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
-var SelectScrollDownButton = React11.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var SelectScrollDownButton = React10.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SelectPrimitive.ScrollDownButton,
   {
     ref,
@@ -218,7 +202,7 @@ var SelectScrollDownButton = React11.forwardRef(({ className, ...props }, ref) =
   }
 ));
 SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName;
-var SelectContent = React11.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ jsx(SelectPrimitive.Portal, { children: /* @__PURE__ */ jsxs(
+var SelectContent = React10.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ jsx(SelectPrimitive.Portal, { children: /* @__PURE__ */ jsxs(
   SelectPrimitive.Content,
   {
     ref,
@@ -251,7 +235,7 @@ var SelectContent = React11.forwardRef(({ className, children, position = "poppe
   }
 ) }));
 SelectContent.displayName = SelectPrimitive.Content.displayName;
-var SelectLabel = React11.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var SelectLabel = React10.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SelectPrimitive.Label,
   {
     ref,
@@ -260,7 +244,7 @@ var SelectLabel = React11.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
-var SelectItem = React11.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var SelectItem = React10.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   SelectPrimitive.Item,
   {
     ref,
@@ -278,7 +262,7 @@ var SelectItem = React11.forwardRef(({ className, children, ...props }, ref) => 
   }
 ));
 SelectItem.displayName = SelectPrimitive.Item.displayName;
-var SelectSeparator = React11.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var SelectSeparator = React10.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SelectPrimitive.Separator,
   {
     ref,
@@ -287,21 +271,6 @@ var SelectSeparator = React11.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 SelectSeparator.displayName = SelectPrimitive.Separator.displayName;
-var Textarea = React11.forwardRef(({ className, ...props }, ref) => {
-  return /* @__PURE__ */ jsx(
-    "textarea",
-    {
-      className: cn(
-        "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
-        "dark:bg-background dark:border-border dark:text-foreground dark:placeholder:text-muted-foreground dark:focus-visible:ring-ring dark:focus-visible:border-border",
-        className
-      ),
-      ref,
-      ...props
-    }
-  );
-});
-Textarea.displayName = "Textarea";
 var buttonVariants = cva(
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {
@@ -343,7 +312,7 @@ var buttonVariants = cva(
     }
   }
 );
-var ButtonComponent = React11.forwardRef(
+var ButtonComponent = React10.forwardRef(
   ({
     className,
     variant,
@@ -356,10 +325,36 @@ var ButtonComponent = React11.forwardRef(
     children,
     ...props
   }, ref) => {
-    const Comp = asChild ? Slot : "button";
     const isDisabled = disabled || loading;
+    if (asChild) {
+      const child = React10.Children.only(children);
+      return /* @__PURE__ */ jsx(
+        Slot,
+        {
+          className: cn(
+            buttonVariants({ variant, size, animation }),
+            // Efeito neon especial
+            variant === "neon" && [
+              "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+              "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+              "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+              "before:transition-opacity after:transition-opacity",
+              "before:duration-300 after:duration-300"
+            ],
+            className
+          ),
+          ref,
+          "aria-busy": loading || void 0,
+          ...props,
+          children: loading ? /* @__PURE__ */ jsxs("div", { className: "inline-flex items-center gap-2", children: [
+            loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }),
+            child
+          ] }) : child
+        }
+      );
+    }
     return /* @__PURE__ */ jsxs(
-      Comp,
+      "button",
       {
         className: cn(
           buttonVariants({ variant, size, animation }),
@@ -375,9 +370,10 @@ var ButtonComponent = React11.forwardRef(
         ),
         ref,
         disabled: isDisabled,
+        "aria-busy": loading || void 0,
         ...props,
         children: [
-          loading && /* @__PURE__ */ jsx(Fragment, { children: loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          loading && (loadingIcon || /* @__PURE__ */ jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" })),
           children
         ]
       }
@@ -426,7 +422,7 @@ function getFileIcon(file) {
     return /* @__PURE__ */ jsx(File, { className: "h-4 w-4" });
   }
 }
-var FileUpload = React11.forwardRef(
+var FileUpload = React10.forwardRef(
   ({
     className,
     files = [],
@@ -445,9 +441,9 @@ var FileUpload = React11.forwardRef(
     size = "md",
     ...props
   }, ref) => {
-    const [isDragging, setIsDragging] = React11.useState(false);
-    const inputRef = React11.useRef(null);
-    const processFiles = React11.useCallback((fileList) => {
+    const [isDragging, setIsDragging] = React10.useState(false);
+    const inputRef = React10.useRef(null);
+    const processFiles = React10.useCallback((fileList) => {
       const filesArray = Array.from(fileList);
       if (!multiple && filesArray.length > 1) {
         console.warn("Apenas um arquivo \xE9 permitido");
@@ -479,7 +475,7 @@ var FileUpload = React11.forwardRef(
         onFilesAdd?.(newFiles);
       }
     }, [multiple, maxFiles, files.length, maxSize, onFilesAdd]);
-    const handleDrop = React11.useCallback((e) => {
+    const handleDrop = React10.useCallback((e) => {
       e.preventDefault();
       setIsDragging(false);
       if (disabled || loading) return;
@@ -488,32 +484,32 @@ var FileUpload = React11.forwardRef(
         processFiles(files2);
       }
     }, [disabled, loading, processFiles]);
-    const handleDragOver = React11.useCallback((e) => {
+    const handleDragOver = React10.useCallback((e) => {
       e.preventDefault();
       if (!disabled && !loading) {
         setIsDragging(true);
       }
     }, [disabled, loading]);
-    const handleDragLeave = React11.useCallback((e) => {
+    const handleDragLeave = React10.useCallback((e) => {
       e.preventDefault();
       setIsDragging(false);
     }, []);
-    const handleFileSelect = React11.useCallback((e) => {
+    const handleFileSelect = React10.useCallback((e) => {
       const files2 = e.target.files;
       if (files2 && files2.length > 0) {
         processFiles(files2);
       }
       e.target.value = "";
     }, [processFiles]);
-    const handleClick = React11.useCallback(() => {
+    const handleClick = React10.useCallback(() => {
       if (!disabled && !loading) {
         inputRef.current?.click();
       }
     }, [disabled, loading]);
-    const handleRemoveFile = React11.useCallback((id) => {
+    const handleRemoveFile = React10.useCallback((id) => {
       onFileRemove?.(id);
     }, [onFileRemove]);
-    const handleClear = React11.useCallback(() => {
+    const handleClear = React10.useCallback(() => {
       onClear?.();
     }, [onClear]);
     return /* @__PURE__ */ jsxs("div", { ref, className: cn("space-y-4", className), ...props, children: [
@@ -665,7 +661,7 @@ function formatMultipleDates(dates) {
   if (dates.length === 2) return `${formatDate(dates[0])} e ${formatDate(dates[1])}`;
   return `${formatDate(dates[0])} (+${dates.length - 1})`;
 }
-var DatePicker = React11.forwardRef(
+var DatePicker = React10.forwardRef(
   ({
     className,
     size = "md",
@@ -685,12 +681,12 @@ var DatePicker = React11.forwardRef(
     disabled = false,
     ...props
   }, _ref) => {
-    const [isOpen, setIsOpen] = React11.useState(false);
-    const [selectedDates, setSelectedDates] = React11.useState([]);
-    const [inputValue, setInputValue] = React11.useState("");
-    const containerRef = React11.useRef(null);
-    const buttonRef = React11.useRef(null);
-    React11.useEffect(() => {
+    const [isOpen, setIsOpen] = React10.useState(false);
+    const [selectedDates, setSelectedDates] = React10.useState([]);
+    const [inputValue, setInputValue] = React10.useState("");
+    const containerRef = React10.useRef(null);
+    const buttonRef = React10.useRef(null);
+    React10.useEffect(() => {
       if (!value) {
         setInputValue("");
         setSelectedDates([]);
@@ -710,16 +706,16 @@ var DatePicker = React11.forwardRef(
         setInputValue(formatDate(value, format));
       }
     }, [value, range, multiple, format]);
-    const handleSingleSelect = React11.useCallback((day) => {
+    const handleSingleSelect = React10.useCallback((day) => {
       onChange?.(day);
     }, [onChange]);
-    const handleMultipleSelect = React11.useCallback((dates) => {
+    const handleMultipleSelect = React10.useCallback((dates) => {
       onChange?.(dates);
     }, [onChange]);
-    const handleRangeSelect = React11.useCallback((range2) => {
+    const handleRangeSelect = React10.useCallback((range2) => {
       onChange?.(range2);
     }, [onChange]);
-    React11.useEffect(() => {
+    React10.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -874,7 +870,7 @@ function timeToString(time, use12Hours = false, showSeconds = false) {
   const secondsStr = showSeconds ? `:${padNumber(seconds)}` : "";
   return `${timeStr}${secondsStr}${use12Hours ? ` ${period}` : ""}`;
 }
-var TimePicker = React11.forwardRef(
+var TimePicker = React10.forwardRef(
   ({
     className,
     size = "md",
@@ -890,14 +886,14 @@ var TimePicker = React11.forwardRef(
     // minTime, // TODO: implementar validação de tempo mínimo
     // maxTime, // TODO: implementar validação de tempo máximo
     ...props
-  }) => {
-    const [isOpen, setIsOpen] = React11.useState(false);
-    const [hours, setHours] = React11.useState(value?.hours || 0);
-    const [minutes, setMinutes] = React11.useState(value?.minutes || 0);
-    const [seconds, setSeconds] = React11.useState(value?.seconds || 0);
-    const [period, setPeriod] = React11.useState(value?.period || "AM");
-    const containerRef = React11.useRef(null);
-    React11.useEffect(() => {
+  }, ref) => {
+    const [isOpen, setIsOpen] = React10.useState(false);
+    const [hours, setHours] = React10.useState(value?.hours || 0);
+    const [minutes, setMinutes] = React10.useState(value?.minutes || 0);
+    const [seconds, setSeconds] = React10.useState(value?.seconds || 0);
+    const [period, setPeriod] = React10.useState(value?.period || "AM");
+    const containerRef = React10.useRef(null);
+    React10.useEffect(() => {
       if (value) {
         setHours(value.hours);
         setMinutes(value.minutes);
@@ -907,7 +903,7 @@ var TimePicker = React11.forwardRef(
         }
       }
     }, [value, use12Hours]);
-    const handleHoursChange = React11.useCallback((newHours) => {
+    const handleHoursChange = React10.useCallback((newHours) => {
       if (newHours < 0) newHours = 0;
       if (newHours > 23) newHours = 23;
       setHours(newHours);
@@ -919,7 +915,7 @@ var TimePicker = React11.forwardRef(
       };
       onChange?.(newTime);
     }, [minutes, seconds, period, use12Hours, showSeconds, onChange]);
-    const handleMinutesChange = React11.useCallback((newMinutes) => {
+    const handleMinutesChange = React10.useCallback((newMinutes) => {
       if (newMinutes < 0) newMinutes = 0;
       if (newMinutes > 59) newMinutes = 59;
       newMinutes = Math.round(newMinutes / minuteStep) * minuteStep;
@@ -932,7 +928,7 @@ var TimePicker = React11.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, seconds, period, use12Hours, showSeconds, minuteStep, onChange]);
-    const handleSecondsChange = React11.useCallback((newSeconds) => {
+    const handleSecondsChange = React10.useCallback((newSeconds) => {
       if (!showSeconds) return;
       if (newSeconds < 0) newSeconds = 0;
       if (newSeconds > 59) newSeconds = 59;
@@ -946,7 +942,7 @@ var TimePicker = React11.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, minutes, period, use12Hours, secondStep, onChange]);
-    const handlePeriodChange = React11.useCallback((newPeriod) => {
+    const handlePeriodChange = React10.useCallback((newPeriod) => {
       setPeriod(newPeriod);
       let newHours = hours;
       if (newPeriod === "AM" && hours === 12) {
@@ -963,7 +959,7 @@ var TimePicker = React11.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, minutes, seconds, showSeconds, onChange]);
-    React11.useEffect(() => {
+    React10.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -976,7 +972,7 @@ var TimePicker = React11.forwardRef(
     return /* @__PURE__ */ jsxs(
       "div",
       {
-        ref: containerRef,
+        ref: ref || containerRef,
         className: cn("relative", className),
         ...props,
         children: [
@@ -1118,7 +1114,7 @@ var rangeSliderVariants = cva(
     }
   }
 );
-var RangeSlider = React11.forwardRef(
+var RangeSlider = React10.forwardRef(
   ({
     className,
     size = "md",
@@ -1138,11 +1134,11 @@ var RangeSlider = React11.forwardRef(
     color = "primary",
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React11.useState(defaultValue);
-    const [isDragging, setIsDragging] = React11.useState(null);
-    const sliderRef = React11.useRef(null);
-    const minThumbRef = React11.useRef(null);
-    const maxThumbRef = React11.useRef(null);
+    const [internalValue, setInternalValue] = React10.useState(defaultValue);
+    const [isDragging, setIsDragging] = React10.useState(null);
+    const sliderRef = React10.useRef(null);
+    const minThumbRef = React10.useRef(null);
+    const maxThumbRef = React10.useRef(null);
     const currentValue = value || internalValue;
     const valueToPercent = (val) => {
       return (val - min) / (max - min) * 100;
@@ -1159,7 +1155,7 @@ var RangeSlider = React11.forwardRef(
       const percent = position / rect.width * 100;
       return Math.max(0, Math.min(100, percent));
     };
-    const updateValue = React11.useCallback((type, percent) => {
+    const updateValue = React10.useCallback((type, percent) => {
       const newValue = percentToValue(percent);
       const updated = { ...currentValue };
       if (type === "min") {
@@ -1169,26 +1165,26 @@ var RangeSlider = React11.forwardRef(
       }
       setValue(updated);
     }, [step]);
-    const setValue = React11.useCallback((newValue) => {
+    const setValue = React10.useCallback((newValue) => {
       setInternalValue(newValue);
       onChange?.(newValue);
     }, [onChange]);
-    const handleMouseDown = React11.useCallback((type) => {
+    const handleMouseDown = React10.useCallback((type) => {
       if (disabled) return;
       setIsDragging(type);
     }, [disabled]);
-    const handleMouseMove = React11.useCallback((event) => {
+    const handleMouseMove = React10.useCallback((event) => {
       if (!isDragging || disabled) return;
       const percent = getPosition(event);
       updateValue(isDragging, percent);
     }, [isDragging, disabled, updateValue]);
-    const handleMouseUp = React11.useCallback(() => {
+    const handleMouseUp = React10.useCallback(() => {
       if (isDragging) {
         onChangeEnd?.(currentValue);
         setIsDragging(null);
       }
     }, [isDragging, currentValue, onChangeEnd]);
-    React11.useEffect(() => {
+    React10.useEffect(() => {
       if (isDragging) {
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseup", handleMouseUp);
@@ -1324,7 +1320,7 @@ var searchInputVariants = cva(
     }
   }
 );
-var SearchInput = React11.forwardRef(
+var SearchInput = React10.forwardRef(
   ({
     className,
     size = "md",
@@ -1344,16 +1340,16 @@ var SearchInput = React11.forwardRef(
     // saveToHistory, // TODO: implementar funcionalidade de histórico
     disabled
     // props, // Props adicionais não utilizados
-  }) => {
-    const [internalValue, setInternalValue] = React11.useState(value);
-    const [isOpen, setIsOpen] = React11.useState(false);
-    const [selectedIndex, setSelectedIndex] = React11.useState(-1);
-    const [filteredSuggestions, setFilteredSuggestions] = React11.useState([]);
-    const inputRef = React11.useRef(null);
-    const containerRef = React11.useRef(null);
-    const debounceRef = React11.useRef();
+  }, ref) => {
+    const [internalValue, setInternalValue] = React10.useState(value);
+    const [isOpen, setIsOpen] = React10.useState(false);
+    const [selectedIndex, setSelectedIndex] = React10.useState(-1);
+    const [filteredSuggestions, setFilteredSuggestions] = React10.useState([]);
+    const inputRef = React10.useRef(null);
+    const containerRef = React10.useRef(null);
+    const debounceRef = React10.useRef();
     const currentValue = value !== void 0 ? value : internalValue;
-    const setValue = React11.useCallback((newValue) => {
+    const setValue = React10.useCallback((newValue) => {
       setInternalValue(newValue);
       if (debounceRef.current) {
         clearTimeout(debounceRef.current);
@@ -1362,7 +1358,7 @@ var SearchInput = React11.forwardRef(
         onChange?.(newValue);
       }, debounceTime);
     }, [onChange, debounceTime]);
-    React11.useEffect(() => {
+    React10.useEffect(() => {
       if (!currentValue.trim()) {
         const historySuggestions = history.slice(0, 5).map((item, index) => ({
           id: `history-${index}`,
@@ -1379,7 +1375,7 @@ var SearchInput = React11.forwardRef(
         setFilteredSuggestions(filtered);
       }
     }, [currentValue, suggestions, history, maxSuggestions]);
-    const handleKeyDown = React11.useCallback((event) => {
+    const handleKeyDown = React10.useCallback((event) => {
       switch (event.key) {
         case "Enter":
           event.preventDefault();
@@ -1413,19 +1409,19 @@ var SearchInput = React11.forwardRef(
           break;
       }
     }, [selectedIndex, filteredSuggestions, currentValue, setValue, onSubmit]);
-    const handleFocus = React11.useCallback(() => {
+    const handleFocus = React10.useCallback(() => {
       setIsOpen(true);
     }, []);
-    const handleBlur = React11.useCallback((event) => {
+    const handleBlur = React10.useCallback((event) => {
       if (!event.relatedTarget?.closest(".search-suggestion")) {
         setTimeout(() => setIsOpen(false), 150);
       }
     }, []);
-    const handleClear = React11.useCallback(() => {
+    const handleClear = React10.useCallback(() => {
       setValue("");
       inputRef.current?.focus();
     }, [setValue]);
-    const handleSuggestionClick = React11.useCallback((suggestion) => {
+    const handleSuggestionClick = React10.useCallback((suggestion) => {
       if (suggestion.action) {
         suggestion.action();
       } else {
@@ -1434,7 +1430,7 @@ var SearchInput = React11.forwardRef(
       }
       setIsOpen(false);
     }, [setValue, onSubmit]);
-    React11.useEffect(() => {
+    React10.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -1458,7 +1454,7 @@ var SearchInput = React11.forwardRef(
     return /* @__PURE__ */ jsxs(
       "div",
       {
-        ref: containerRef,
+        ref: ref || containerRef,
         className: cn("relative", className),
         children: [
           /* @__PURE__ */ jsxs("div", { className: cn(
@@ -1593,7 +1589,7 @@ function applyMask(value, mask) {
 function removeMask(value) {
   return value.replace(/\D/g, "");
 }
-var PhoneInput = React11.forwardRef(
+var PhoneInput = React10.forwardRef(
   ({
     className,
     size = "md",
@@ -1610,19 +1606,19 @@ var PhoneInput = React11.forwardRef(
     numbersOnly = true,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React11.useState(value);
-    const [selectedCountry, setSelectedCountry] = React11.useState(
+    const [internalValue, setInternalValue] = React10.useState(value);
+    const [selectedCountry, setSelectedCountry] = React10.useState(
       countries.find((c) => c.code === country) || countries[0]
     );
-    const [isDropdownOpen, setIsDropdownOpen] = React11.useState(false);
-    const inputRef = React11.useRef(null);
-    const dropdownRef = React11.useRef(null);
+    const [isDropdownOpen, setIsDropdownOpen] = React10.useState(false);
+    const inputRef = React10.useRef(null);
+    const dropdownRef = React10.useRef(null);
     const currentValue = value !== void 0 ? value : internalValue;
-    React11.useEffect(() => {
+    React10.useEffect(() => {
       const newCountry = countries.find((c) => c.code === country) || countries[0];
       setSelectedCountry(newCountry);
     }, [country, countries]);
-    const handleInputChange = React11.useCallback((event) => {
+    const handleInputChange = React10.useCallback((event) => {
       let inputValue = event.target.value;
       if (numbersOnly) {
         inputValue = removeMask(inputValue);
@@ -1632,7 +1628,7 @@ var PhoneInput = React11.forwardRef(
       const finalValue = includeDDI ? `${selectedCountry.ddi} ${removeMask(maskedValue)}` : removeMask(maskedValue);
       onChange?.(finalValue, selectedCountry);
     }, [selectedCountry, numbersOnly, includeDDI, onChange]);
-    const handleCountrySelect = React11.useCallback((country2) => {
+    const handleCountrySelect = React10.useCallback((country2) => {
       setSelectedCountry(country2);
       setIsDropdownOpen(false);
       onCountryChange?.(country2);
@@ -1641,7 +1637,7 @@ var PhoneInput = React11.forwardRef(
         onChange?.("", country2);
       }
     }, [selectedCountry, onCountryChange, onChange]);
-    React11.useEffect(() => {
+    React10.useEffect(() => {
       const handleClickOutside = (event) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target) && !inputRef.current?.contains(event.target)) {
           setIsDropdownOpen(false);
@@ -1730,6 +1726,6 @@ var PhoneInput = React11.forwardRef(
 );
 PhoneInput.displayName = "PhoneInput";
 
-export { Checkbox, DatePicker, FileUpload, Input, Label, PhoneInput, RadioGroup, RadioGroupItem, RangeSlider, SearchInput, Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, SelectTrigger, SelectValue, Textarea, TimePicker };
+export { Checkbox, DatePicker, FileUpload, Label, PhoneInput, RadioGroup, RadioGroupItem, RangeSlider, SearchInput, Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, SelectTrigger, SelectValue, TimePicker };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

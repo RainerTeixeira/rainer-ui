@@ -214,14 +214,19 @@ function TokensProvider({ tokens: customTokens, children }) {
   const getMotion = React__namespace.useCallback((type, key, fallback = "") => {
     return tokens.primitives?.motion?.[type]?.[key] ?? fallback;
   }, [tokens]);
+  const getGradient = React__namespace.useCallback((key, fallback = "") => {
+    const value2 = tokens.primitives?.gradients?.[key];
+    return typeof value2 === "string" ? value2 : fallback;
+  }, [tokens]);
   const value = React__namespace.useMemo(() => ({
     tokens,
     getColor,
     getSpacing,
     getRadius,
     getShadow,
-    getMotion
-  }), [tokens, getColor, getSpacing, getRadius, getShadow, getMotion]);
+    getMotion,
+    getGradient
+  }), [tokens, getColor, getSpacing, getRadius, getShadow, getMotion, getGradient]);
   return /* @__PURE__ */ jsxRuntime.jsx(TokensContext.Provider, { value, children });
 }
 function UIProvider({

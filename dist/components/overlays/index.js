@@ -667,10 +667,36 @@ var ButtonComponent = React9__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const Comp = asChild ? reactSlot.Slot : "button";
     const isDisabled = disabled || loading;
+    if (asChild) {
+      const child = React9__namespace.Children.only(children);
+      return /* @__PURE__ */ jsxRuntime.jsx(
+        reactSlot.Slot,
+        {
+          className: cn(
+            buttonVariants({ variant, size, animation }),
+            // Efeito neon especial
+            variant === "neon" && [
+              "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+              "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+              "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+              "before:transition-opacity after:transition-opacity",
+              "before:duration-300 after:duration-300"
+            ],
+            className
+          ),
+          ref,
+          "aria-busy": loading || void 0,
+          ...props,
+          children: loading ? /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "inline-flex items-center gap-2", children: [
+            loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }),
+            child
+          ] }) : child
+        }
+      );
+    }
     return /* @__PURE__ */ jsxRuntime.jsxs(
-      Comp,
+      "button",
       {
         className: cn(
           buttonVariants({ variant, size, animation }),
@@ -686,9 +712,10 @@ var ButtonComponent = React9__namespace.forwardRef(
         ),
         ref,
         disabled: isDisabled,
+        "aria-busy": loading || void 0,
         ...props,
         children: [
-          loading && /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          loading && (loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" })),
           children
         ]
       }
@@ -746,7 +773,7 @@ var Modal = React9__namespace.forwardRef(
     loading = false,
     children,
     ...props
-  }, ref) => {
+  }) => {
     const modalRef = React9__namespace.useRef(null);
     React9__namespace.useEffect(() => {
       if (open && preventBodyScroll) {
@@ -966,7 +993,7 @@ var Drawer = React9__namespace.forwardRef(
     loading = false,
     children,
     ...props
-  }, ref) => {
+  }) => {
     const drawerRef = React9__namespace.useRef(null);
     React9__namespace.useEffect(() => {
       if (open && preventBodyScroll) {
@@ -1725,7 +1752,7 @@ var ConfirmDialog = React9__namespace.forwardRef(
     closeOnEscape = true,
     confirmVariant = "default"
     // props, // Props adicionais não utilizados
-  }) => {
+  }, ref) => {
     const [internalLoading, setInternalLoading] = React9__namespace.useState(false);
     const isLoading = loading || internalLoading;
     React9__namespace.useEffect(() => {
@@ -1805,6 +1832,7 @@ var ConfirmDialog = React9__namespace.forwardRef(
       /* @__PURE__ */ jsxRuntime.jsxs(
         "div",
         {
+          ref,
           className: cn(
             confirmDialogVariants({ variant, size }),
             "relative z-10 p-6 animate-in fade-in-0 zoom-in-95 duration-[var(--motion-duration-normal)]",

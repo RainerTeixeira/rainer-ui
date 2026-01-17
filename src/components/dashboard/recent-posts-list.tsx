@@ -11,9 +11,8 @@
 
 'use client';
 
-import { Badge } from '../feedback';
-import { Button } from '../ui';
-import { Card, CardContent, CardHeader, CardTitle } from '../layout';
+import { Badge, Button } from '../ui';
+import { Card, CardContent, CardHeader, CardTitle } from '../ui';
 import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
 // import Tag from 'lucide-react/dist/esm/icons/tag'; // TODO: implementar tags

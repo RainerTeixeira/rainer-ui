@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { memo, useState, useCallback, useEffect, useRef } from 'react';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsxs, Fragment, jsx } from 'react/jsx-runtime';
@@ -23,6 +24,16 @@ function hexToRGBA(hex, alpha = 1) {
 // src/lib/constants.ts
 var GRADIENT_DIRECTIONS = {
   TO_BOTTOM: "to-b"};
+var TokensContext = React.createContext(null);
+function useTokens() {
+  const context = React.useContext(TokensContext);
+  if (!context) {
+    throw new Error(
+      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
+    );
+  }
+  return context;
+}
 var STAR_CONFIGS = {
   default: {
     count: 150,
@@ -71,14 +82,16 @@ function Star({ star }) {
   );
 }
 function CelestialBackground({
-  variant = "default"
+  variant = "default",
+  colors
 } = {}) {
   const config = STAR_CONFIGS[variant];
   const [stars, setStars] = useState([]);
   const [isMounted, setIsMounted] = useState(false);
-  const cyan400 = tokens.primitives.color.cyan["400"];
-  const purple400 = tokens.primitives.color.purple["400"];
-  const pink500 = tokens.primitives.color.pink["500"];
+  const { getColor } = useTokens();
+  const cyan400 = colors?.cyan ?? getColor("primitives.colors.cyan.400", "#22d3ee");
+  const purple400 = colors?.purple ?? getColor("primitives.colors.purple.400", "#a855f7");
+  const pink500 = colors?.pink ?? getColor("primitives.colors.pink.500", "#ec4899");
   useEffect(() => {
     setStars(generateStars(config.count, [...config.sizes], [...config.opacity]));
     setIsMounted(true);
@@ -136,6 +149,7 @@ function FloatingGrid({
 } = {}) {
   const canvasRef = useRef(null);
   const { theme } = useTheme();
+  const { getColor } = useTokens();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -164,7 +178,7 @@ function FloatingGrid({
       time += 0.01;
       const pulseIntensity = intensity * (0.8 + Math.sin(time) * 0.2);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const cyan400 = tokens.primitives.color.cyan["400"];
+      const cyan400 = getColor("primitives.colors.cyan.400", "#22d3ee");
       const strokeColor = hexToRGBA(cyan400, pulseIntensity * 1.2);
       const fillColor = hexToRGBA(cyan400, pulseIntensity * 0.6);
       ctx.strokeStyle = strokeColor;

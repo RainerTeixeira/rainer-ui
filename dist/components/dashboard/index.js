@@ -1,58 +1,37 @@
 'use strict';
 
-require('@radix-ui/react-aspect-ratio');
+var React19 = require('react');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
-var React4 = require('react');
 var jsxRuntime = require('react/jsx-runtime');
-var ScrollAreaPrimitive = require('@radix-ui/react-scroll-area');
-var SeparatorPrimitive = require('@radix-ui/react-separator');
-var lucideReact = require('lucide-react');
-require('@radix-ui/react-dialog');
-var classVarianceAuthority = require('class-variance-authority');
-var framerMotion = require('framer-motion');
-var Eye = require('lucide-react/dist/esm/icons/eye');
-var FileText = require('lucide-react/dist/esm/icons/file-text');
-var Heart = require('lucide-react/dist/esm/icons/heart');
-var MessageCircle = require('lucide-react/dist/esm/icons/message-circle');
-var TrendingDown = require('lucide-react/dist/esm/icons/trending-down');
-var TrendingUp = require('lucide-react/dist/esm/icons/trending-up');
-var MessageSquare = require('lucide-react/dist/esm/icons/message-square');
 var reactSlot = require('@radix-ui/react-slot');
+var classVarianceAuthority = require('class-variance-authority');
 var SliderPrimitive = require('@radix-ui/react-slider');
 var SwitchPrimitives = require('@radix-ui/react-switch');
 var TogglePrimitive = require('@radix-ui/react-toggle');
 var Plus = require('lucide-react/dist/esm/icons/plus');
-var X2 = require('lucide-react/dist/esm/icons/x');
-var nextThemes = require('next-themes');
+var X = require('lucide-react/dist/esm/icons/x');
+var ProgressPrimitive = require('@radix-ui/react-progress');
+var AccordionPrimitive = require('@radix-ui/react-accordion');
+var lucideReact = require('lucide-react');
+require('next-themes');
 require('lucide-react/dist/esm/icons/moon');
 require('lucide-react/dist/esm/icons/sun');
+var framerMotion = require('framer-motion');
+var TrendingDown = require('lucide-react/dist/esm/icons/trending-down');
+var TrendingUp = require('lucide-react/dist/esm/icons/trending-up');
 var Settings = require('lucide-react/dist/esm/icons/settings');
 var BarChart = require('lucide-react/dist/esm/icons/bar-chart');
-var AlertDialogPrimitive = require('@radix-ui/react-alert-dialog');
-var ProgressPrimitive = require('@radix-ui/react-progress');
-var sonner = require('sonner');
-var ArrowDown = require('lucide-react/dist/esm/icons/arrow-down');
-var ArrowUp = require('lucide-react/dist/esm/icons/arrow-up');
-var Minus = require('lucide-react/dist/esm/icons/minus');
-var RefreshCw = require('lucide-react/dist/esm/icons/refresh-cw');
-var ChevronDown = require('lucide-react/dist/esm/icons/chevron-down');
-var Package = require('lucide-react/dist/esm/icons/package');
-var Search = require('lucide-react/dist/esm/icons/search');
-var Wifi = require('lucide-react/dist/esm/icons/wifi');
-var XCircle = require('lucide-react/dist/esm/icons/x-circle');
-var AlertCircle = require('lucide-react/dist/esm/icons/alert-circle');
-var AlertTriangle2 = require('lucide-react/dist/esm/icons/alert-triangle');
-var Bell = require('lucide-react/dist/esm/icons/bell');
-var Check2 = require('lucide-react/dist/esm/icons/check');
-var Info2 = require('lucide-react/dist/esm/icons/info');
+var FileText = require('lucide-react/dist/esm/icons/file-text');
 var Trash2 = require('lucide-react/dist/esm/icons/trash-2');
 var Calendar = require('lucide-react/dist/esm/icons/calendar');
 var Edit = require('lucide-react/dist/esm/icons/edit');
+var Eye = require('lucide-react/dist/esm/icons/eye');
 var BookOpen = require('lucide-react/dist/esm/icons/book-open');
 var ExternalLink = require('lucide-react/dist/esm/icons/external-link');
 var HelpCircle = require('lucide-react/dist/esm/icons/help-circle');
+var MessageCircle = require('lucide-react/dist/esm/icons/message-circle');
 var Video = require('lucide-react/dist/esm/icons/video');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
@@ -75,45 +54,27 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React4__namespace = /*#__PURE__*/_interopNamespace(React4);
-var ScrollAreaPrimitive__namespace = /*#__PURE__*/_interopNamespace(ScrollAreaPrimitive);
-var SeparatorPrimitive__namespace = /*#__PURE__*/_interopNamespace(SeparatorPrimitive);
-var Eye__default = /*#__PURE__*/_interopDefault(Eye);
-var FileText__default = /*#__PURE__*/_interopDefault(FileText);
-var Heart__default = /*#__PURE__*/_interopDefault(Heart);
-var MessageCircle__default = /*#__PURE__*/_interopDefault(MessageCircle);
-var TrendingDown__default = /*#__PURE__*/_interopDefault(TrendingDown);
-var TrendingUp__default = /*#__PURE__*/_interopDefault(TrendingUp);
-var MessageSquare__default = /*#__PURE__*/_interopDefault(MessageSquare);
+var React19__namespace = /*#__PURE__*/_interopNamespace(React19);
 var SliderPrimitive__namespace = /*#__PURE__*/_interopNamespace(SliderPrimitive);
 var SwitchPrimitives__namespace = /*#__PURE__*/_interopNamespace(SwitchPrimitives);
 var TogglePrimitive__namespace = /*#__PURE__*/_interopNamespace(TogglePrimitive);
 var Plus__default = /*#__PURE__*/_interopDefault(Plus);
-var X2__default = /*#__PURE__*/_interopDefault(X2);
+var X__default = /*#__PURE__*/_interopDefault(X);
+var ProgressPrimitive__namespace = /*#__PURE__*/_interopNamespace(ProgressPrimitive);
+var AccordionPrimitive__namespace = /*#__PURE__*/_interopNamespace(AccordionPrimitive);
+var TrendingDown__default = /*#__PURE__*/_interopDefault(TrendingDown);
+var TrendingUp__default = /*#__PURE__*/_interopDefault(TrendingUp);
 var Settings__default = /*#__PURE__*/_interopDefault(Settings);
 var BarChart__default = /*#__PURE__*/_interopDefault(BarChart);
-var AlertDialogPrimitive__namespace = /*#__PURE__*/_interopNamespace(AlertDialogPrimitive);
-var ProgressPrimitive__namespace = /*#__PURE__*/_interopNamespace(ProgressPrimitive);
-var ArrowDown__default = /*#__PURE__*/_interopDefault(ArrowDown);
-var ArrowUp__default = /*#__PURE__*/_interopDefault(ArrowUp);
-var Minus__default = /*#__PURE__*/_interopDefault(Minus);
-var RefreshCw__default = /*#__PURE__*/_interopDefault(RefreshCw);
-var ChevronDown__default = /*#__PURE__*/_interopDefault(ChevronDown);
-var Package__default = /*#__PURE__*/_interopDefault(Package);
-var Search__default = /*#__PURE__*/_interopDefault(Search);
-var Wifi__default = /*#__PURE__*/_interopDefault(Wifi);
-var XCircle__default = /*#__PURE__*/_interopDefault(XCircle);
-var AlertCircle__default = /*#__PURE__*/_interopDefault(AlertCircle);
-var AlertTriangle2__default = /*#__PURE__*/_interopDefault(AlertTriangle2);
-var Bell__default = /*#__PURE__*/_interopDefault(Bell);
-var Check2__default = /*#__PURE__*/_interopDefault(Check2);
-var Info2__default = /*#__PURE__*/_interopDefault(Info2);
+var FileText__default = /*#__PURE__*/_interopDefault(FileText);
 var Trash2__default = /*#__PURE__*/_interopDefault(Trash2);
 var Calendar__default = /*#__PURE__*/_interopDefault(Calendar);
 var Edit__default = /*#__PURE__*/_interopDefault(Edit);
+var Eye__default = /*#__PURE__*/_interopDefault(Eye);
 var BookOpen__default = /*#__PURE__*/_interopDefault(BookOpen);
 var ExternalLink__default = /*#__PURE__*/_interopDefault(ExternalLink);
 var HelpCircle__default = /*#__PURE__*/_interopDefault(HelpCircle);
+var MessageCircle__default = /*#__PURE__*/_interopDefault(MessageCircle);
 var Video__default = /*#__PURE__*/_interopDefault(Video);
 
 // src/lib/utils.ts
@@ -188,1490 +149,6 @@ motion.easing;
     navigation: motionSemantic.navigation.page
   }
 });
-
-// src/lib/constants.ts
-var MOTION = {
-  TRANSITION: {
-    DEFAULT: "transition-all duration-200 ease-in-out"}};
-var GRADIENT_DIRECTIONS = {
-  TO_BOTTOM_RIGHT: "to-br"};
-var Card = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "div",
-  {
-    ref,
-    className: cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
-      className
-    ),
-    ...props
-  }
-));
-Card.displayName = "Card";
-var CardHeader = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "div",
-  {
-    ref,
-    className: cn("flex flex-col space-y-1.5 p-6", className),
-    ...props
-  }
-));
-CardHeader.displayName = "CardHeader";
-var CardTitle = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "h3",
-  {
-    ref,
-    className: cn(
-      "text-2xl font-semibold leading-none tracking-tight",
-      className
-    ),
-    ...props
-  }
-));
-CardTitle.displayName = "CardTitle";
-var CardDescription = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "p",
-  {
-    ref,
-    className: cn("text-sm text-muted-foreground", className),
-    ...props
-  }
-));
-CardDescription.displayName = "CardDescription";
-var CardContent = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
-CardContent.displayName = "CardContent";
-var CardFooter = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "div",
-  {
-    ref,
-    className: cn("flex items-center p-6 pt-0", className),
-    ...props
-  }
-));
-CardFooter.displayName = "CardFooter";
-var HighlightCard = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "div",
-  {
-    ref,
-    className: cn(
-      "text-left bg-card/60 dark:bg-black/50",
-      "backdrop-blur-xl",
-      "rounded-2xl",
-      "p-4 xs:p-5 sm:p-6 md:p-8",
-      "border border-border/50 dark:border-cyan-400/20",
-      "hover:border-primary/40 dark:hover:border-cyan-400/50",
-      "hover:bg-card/80 dark:hover:bg-black/70",
-      "hover:shadow-2xl hover:shadow-primary/10 dark:hover:shadow-cyan-500/20",
-      "h-full flex flex-col group",
-      "relative overflow-hidden",
-      `before:absolute before:inset-0 before:${GRADIENT_DIRECTIONS.TO_BOTTOM_RIGHT}`,
-      "before:from-primary/0 before:via-primary/0 before:to-primary/0",
-      "hover:before:from-primary/5 hover:before:via-transparent hover:before:to-primary/5",
-      "dark:hover:before:from-cyan-400/5 dark:hover:before:via-transparent dark:hover:before:to-purple-400/5",
-      "before:transition-all before:duration-500 before:ease-in-out before:pointer-events-none",
-      MOTION.TRANSITION.DEFAULT,
-      className
-    ),
-    ...props
-  }
-));
-HighlightCard.displayName = "HighlightCard";
-var ScrollArea = React4__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
-  ScrollAreaPrimitive__namespace.Root,
-  {
-    ref,
-    className: cn("relative overflow-hidden", className),
-    ...props,
-    children: [
-      /* @__PURE__ */ jsxRuntime.jsx(ScrollAreaPrimitive__namespace.Viewport, { className: "h-full w-full rounded-[inherit]", children }),
-      /* @__PURE__ */ jsxRuntime.jsx(ScrollBar, {}),
-      /* @__PURE__ */ jsxRuntime.jsx(ScrollAreaPrimitive__namespace.Corner, {})
-    ]
-  }
-));
-ScrollArea.displayName = ScrollAreaPrimitive__namespace.Root.displayName;
-var ScrollBar = React4__namespace.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  ScrollAreaPrimitive__namespace.ScrollAreaScrollbar,
-  {
-    ref,
-    orientation,
-    className: cn(
-      "flex touch-none select-none transition-colors",
-      orientation === "vertical" && "h-full w-2.5 border-l border-l-transparent p-[1px]",
-      orientation === "horizontal" && "h-2.5 flex-col border-t border-t-transparent p-[1px]",
-      className
-    ),
-    ...props,
-    children: /* @__PURE__ */ jsxRuntime.jsx(ScrollAreaPrimitive__namespace.ScrollAreaThumb, { className: "relative flex-1 rounded-full bg-border" })
-  }
-));
-ScrollBar.displayName = ScrollAreaPrimitive__namespace.ScrollAreaScrollbar.displayName;
-var Separator = React4__namespace.forwardRef(
-  ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-    SeparatorPrimitive__namespace.Root,
-    {
-      ref,
-      decorative,
-      orientation,
-      className: cn(
-        "shrink-0 bg-border",
-        /** Define dimensões baseado na orientação */
-        orientation === "horizontal" ? "h-px w-full" : "h-full w-px",
-        className
-      ),
-      ...props
-    }
-  )
-);
-Separator.displayName = SeparatorPrimitive__namespace.Root.displayName;
-var Table = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsxRuntime.jsx(
-  "table",
-  {
-    ref,
-    className: cn("w-full caption-bottom text-sm", className),
-    ...props
-  }
-) }));
-Table.displayName = "Table";
-var TableHeader = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
-TableHeader.displayName = "TableHeader";
-var TableBody = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "tbody",
-  {
-    ref,
-    className: cn("[&_tr:last-child]:border-0", className),
-    ...props
-  }
-));
-TableBody.displayName = "TableBody";
-var TableFooter = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "tfoot",
-  {
-    ref,
-    className: cn(
-      "border-t bg-muted/50 font-medium [&>tr]:last:border-b-0",
-      className
-    ),
-    ...props
-  }
-));
-TableFooter.displayName = "TableFooter";
-var TableRow = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "tr",
-  {
-    ref,
-    className: cn(
-      "border-b transition-colors duration-200 hover:bg-muted/50 data-[state=selected]:bg-muted",
-      className
-    ),
-    ...props
-  }
-));
-TableRow.displayName = "TableRow";
-var TableHead = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "th",
-  {
-    ref,
-    className: cn(
-      "h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
-      className
-    ),
-    ...props
-  }
-));
-TableHead.displayName = "TableHead";
-var TableCell = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "td",
-  {
-    ref,
-    className: cn("p-4 align-middle [&:has([role=checkbox])]:pr-0", className),
-    ...props
-  }
-));
-TableCell.displayName = "TableCell";
-var TableCaption = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "caption",
-  {
-    ref,
-    className: cn("mt-4 text-sm text-muted-foreground", className),
-    ...props
-  }
-));
-TableCaption.displayName = "TableCaption";
-var containerVariants = classVarianceAuthority.cva(
-  "mx-auto px-4 sm:px-6 lg:px-8",
-  {
-    variants: {
-      size: {
-        xs: "max-w-xs",
-        sm: "max-w-sm",
-        md: "max-w-md",
-        lg: "max-w-lg",
-        xl: "max-w-xl",
-        "2xl": "max-w-2xl",
-        "3xl": "max-w-3xl",
-        "4xl": "max-w-4xl",
-        "5xl": "max-w-5xl",
-        "6xl": "max-w-6xl",
-        "7xl": "max-w-7xl",
-        full: "max-w-full",
-        screen: "max-w-screen-xl",
-        none: ""
-      },
-      padding: {
-        none: "px-0",
-        sm: "px-2 sm:px-4",
-        md: "px-4 sm:px-6 lg:px-8",
-        lg: "px-6 sm:px-8 lg:px-12",
-        xl: "px-8 sm:px-12 lg:px-16"
-      },
-      center: {
-        true: "flex items-center justify-center",
-        false: ""
-      }
-    },
-    defaultVariants: {
-      size: "7xl",
-      padding: "md",
-      center: false
-    }
-  }
-);
-var Container = React4__namespace.forwardRef(
-  ({
-    className,
-    size = "7xl",
-    padding = "md",
-    center = false,
-    fullHeight = false,
-    verticalPadding = false,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          containerVariants({ size, padding, center }),
-          fullHeight && "min-h-screen",
-          verticalPadding && "py-4 sm:py-6 lg:py-8",
-          className
-        ),
-        ...props
-      }
-    );
-  }
-);
-Container.displayName = "Container";
-var ContainerFluid = React4__namespace.forwardRef(
-  ({
-    className,
-    padding = "md",
-    verticalPadding = false,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "w-full",
-          padding === "none" && "px-0",
-          padding === "sm" && "px-2 sm:px-4",
-          padding === "md" && "px-4 sm:px-6 lg:px-8",
-          padding === "lg" && "px-6 sm:px-8 lg:px-12",
-          padding === "xl" && "px-8 sm:px-12 lg:px-16",
-          verticalPadding && "py-4 sm:py-6 lg:py-8",
-          className
-        ),
-        ...props
-      }
-    );
-  }
-);
-ContainerFluid.displayName = "ContainerFluid";
-var spacingClasses = {
-  sm: "py-8",
-  md: "py-12",
-  lg: "py-16",
-  xl: "py-20",
-  "2xl": "py-24"
-};
-var ContainerSection = React4__namespace.forwardRef(
-  ({
-    className,
-    spacing = "lg",
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "section",
-      {
-        ref,
-        className: cn(
-          "w-full",
-          spacingClasses[spacing],
-          className
-        ),
-        children: /* @__PURE__ */ jsxRuntime.jsx(Container, { ...props })
-      }
-    );
-  }
-);
-ContainerSection.displayName = "ContainerSection";
-var gridVariants = classVarianceAuthority.cva(
-  "grid",
-  {
-    variants: {
-      cols: {
-        1: "grid-cols-1",
-        2: "grid-cols-2",
-        3: "grid-cols-3",
-        4: "grid-cols-4",
-        5: "grid-cols-5",
-        6: "grid-cols-6",
-        7: "grid-cols-7",
-        8: "grid-cols-8",
-        9: "grid-cols-9",
-        10: "grid-cols-10",
-        11: "grid-cols-11",
-        12: "grid-cols-12",
-        auto: "grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      sm: {
-        1: "sm:grid-cols-1",
-        2: "sm:grid-cols-2",
-        3: "sm:grid-cols-3",
-        4: "sm:grid-cols-4",
-        5: "sm:grid-cols-5",
-        6: "sm:grid-cols-6",
-        7: "sm:grid-cols-7",
-        8: "sm:grid-cols-8",
-        9: "sm:grid-cols-9",
-        10: "sm:grid-cols-10",
-        11: "sm:grid-cols-11",
-        12: "sm:grid-cols-12",
-        auto: "sm:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "sm:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      md: {
-        1: "md:grid-cols-1",
-        2: "md:grid-cols-2",
-        3: "md:grid-cols-3",
-        4: "md:grid-cols-4",
-        5: "md:grid-cols-5",
-        6: "md:grid-cols-6",
-        7: "md:grid-cols-7",
-        8: "md:grid-cols-8",
-        9: "md:grid-cols-9",
-        10: "md:grid-cols-10",
-        11: "md:grid-cols-11",
-        12: "md:grid-cols-12",
-        auto: "md:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "md:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      lg: {
-        1: "lg:grid-cols-1",
-        2: "lg:grid-cols-2",
-        3: "lg:grid-cols-3",
-        4: "lg:grid-cols-4",
-        5: "lg:grid-cols-5",
-        6: "lg:grid-cols-6",
-        7: "lg:grid-cols-7",
-        8: "lg:grid-cols-8",
-        9: "lg:grid-cols-9",
-        10: "lg:grid-cols-10",
-        11: "lg:grid-cols-11",
-        12: "lg:grid-cols-12",
-        auto: "lg:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "lg:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "lg:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      xl: {
-        1: "xl:grid-cols-1",
-        2: "xl:grid-cols-2",
-        3: "xl:grid-cols-3",
-        4: "xl:grid-cols-4",
-        5: "xl:grid-cols-5",
-        6: "xl:grid-cols-6",
-        7: "xl:grid-cols-7",
-        8: "xl:grid-cols-8",
-        9: "xl:grid-cols-9",
-        10: "xl:grid-cols-10",
-        11: "xl:grid-cols-11",
-        12: "xl:grid-cols-12",
-        auto: "xl:grid-cols-[repeat(auto-fit,minmax(0,1fr))]",
-        "auto-fit": "xl:grid-cols-[repeat(auto-fit,minmax(250px,1fr))]",
-        "auto-fill": "xl:grid-cols-[repeat(auto-fill,minmax(250px,1fr))]"
-      },
-      gap: {
-        0: "gap-0",
-        1: "gap-1",
-        2: "gap-2",
-        3: "gap-3",
-        4: "gap-4",
-        5: "gap-5",
-        6: "gap-6",
-        8: "gap-8",
-        10: "gap-10",
-        12: "gap-12",
-        px: "gap-px"
-      },
-      gapX: {
-        0: "gap-x-0",
-        1: "gap-x-1",
-        2: "gap-x-2",
-        3: "gap-x-3",
-        4: "gap-x-4",
-        5: "gap-x-5",
-        6: "gap-x-6",
-        8: "gap-x-8",
-        10: "gap-x-10",
-        12: "gap-x-12",
-        px: "gap-x-px"
-      },
-      gapY: {
-        0: "gap-y-0",
-        1: "gap-y-1",
-        2: "gap-y-2",
-        3: "gap-y-3",
-        4: "gap-y-4",
-        5: "gap-y-5",
-        6: "gap-y-6",
-        8: "gap-y-8",
-        10: "gap-y-10",
-        12: "gap-y-12",
-        px: "gap-y-px"
-      },
-      align: {
-        start: "items-start",
-        end: "items-end",
-        center: "items-center",
-        stretch: "items-stretch"
-      },
-      justify: {
-        start: "justify-start",
-        end: "justify-end",
-        center: "justify-center",
-        between: "justify-between",
-        around: "justify-around",
-        evenly: "justify-evenly"
-      }
-    }
-  }
-);
-var Grid = React4__namespace.forwardRef(
-  ({
-    className,
-    cols,
-    sm,
-    md,
-    lg,
-    xl,
-    gap,
-    gapX,
-    gapY,
-    align,
-    justify,
-    minColWidth,
-    templateCols,
-    templateRows,
-    areas,
-    style,
-    ...props
-  }, ref) => {
-    const gridStyle = React4__namespace.useMemo(() => {
-      const customStyle = { ...style };
-      if (templateCols) {
-        customStyle.gridTemplateColumns = templateCols;
-      }
-      if (templateRows) {
-        customStyle.gridTemplateRows = templateRows;
-      }
-      if (areas) {
-        customStyle.gridTemplateAreas = areas;
-      }
-      if ((cols === "auto-fit" || cols === "auto-fill") && minColWidth) {
-        customStyle.gridTemplateColumns = `repeat(${cols}, minmax(${minColWidth}, 1fr))`;
-      }
-      return customStyle;
-    }, [style, templateCols, templateRows, areas, cols, minColWidth]);
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          gridVariants({
-            cols,
-            sm,
-            md,
-            lg,
-            xl,
-            gap,
-            gapX,
-            gapY,
-            align,
-            justify
-          }),
-          className
-        ),
-        style: gridStyle,
-        ...props
-      }
-    );
-  }
-);
-Grid.displayName = "Grid";
-var GridItem = React4__namespace.forwardRef(
-  ({
-    className,
-    colStart,
-    colEnd,
-    rowStart,
-    rowEnd,
-    area,
-    style,
-    ...props
-  }, ref) => {
-    const gridStyle = React4__namespace.useMemo(() => {
-      const customStyle = { ...style };
-      if (colStart !== void 0) {
-        customStyle.gridColumnStart = colStart;
-      }
-      if (colEnd !== void 0) {
-        customStyle.gridColumnEnd = colEnd;
-      }
-      if (rowStart !== void 0) {
-        customStyle.gridRowStart = rowStart;
-      }
-      if (rowEnd !== void 0) {
-        customStyle.gridRowEnd = rowEnd;
-      }
-      if (area) {
-        customStyle.gridArea = area;
-      }
-      return customStyle;
-    }, [style, colStart, colEnd, rowStart, rowEnd, area]);
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(className),
-        style: gridStyle,
-        ...props
-      }
-    );
-  }
-);
-GridItem.displayName = "GridItem";
-var flexVariants = classVarianceAuthority.cva(
-  "flex",
-  {
-    variants: {
-      direction: {
-        row: "flex-row",
-        "row-reverse": "flex-row-reverse",
-        col: "flex-col",
-        "col-reverse": "flex-col-reverse"
-      },
-      wrap: {
-        nowrap: "flex-nowrap",
-        wrap: "flex-wrap",
-        "wrap-reverse": "flex-wrap-reverse"
-      },
-      align: {
-        start: "items-start",
-        end: "items-end",
-        center: "items-center",
-        baseline: "items-baseline",
-        stretch: "items-stretch"
-      },
-      justify: {
-        start: "justify-start",
-        end: "justify-end",
-        center: "justify-center",
-        between: "justify-between",
-        around: "justify-around",
-        evenly: "justify-evenly"
-      },
-      gap: {
-        0: "gap-0",
-        1: "gap-1",
-        2: "gap-2",
-        3: "gap-3",
-        4: "gap-4",
-        5: "gap-5",
-        6: "gap-6",
-        8: "gap-8",
-        10: "gap-10",
-        12: "gap-12",
-        px: "gap-px"
-      },
-      gapX: {
-        0: "gap-x-0",
-        1: "gap-x-1",
-        2: "gap-x-2",
-        3: "gap-x-3",
-        4: "gap-x-4",
-        5: "gap-x-5",
-        6: "gap-x-6",
-        8: "gap-x-8",
-        10: "gap-x-10",
-        12: "gap-x-12",
-        px: "gap-x-px"
-      },
-      gapY: {
-        0: "gap-y-0",
-        1: "gap-y-1",
-        2: "gap-y-2",
-        3: "gap-y-3",
-        4: "gap-y-4",
-        5: "gap-y-5",
-        6: "gap-y-6",
-        8: "gap-y-8",
-        10: "gap-y-10",
-        12: "gap-y-12",
-        px: "gap-y-px"
-      }
-    }
-  }
-);
-var Flex = React4__namespace.forwardRef(
-  ({
-    className,
-    direction = "row",
-    wrap = "nowrap",
-    align,
-    justify,
-    gap,
-    gapX,
-    gapY,
-    full = false,
-    fullHeight = false,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          flexVariants({
-            direction,
-            wrap,
-            align,
-            justify,
-            gap,
-            gapX,
-            gapY
-          }),
-          full && "w-full",
-          fullHeight && "min-h-screen",
-          className
-        ),
-        ...props
-      }
-    );
-  }
-);
-Flex.displayName = "Flex";
-var FlexCenter = React4__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Flex,
-      {
-        ref,
-        align: "center",
-        justify: "center",
-        ...props
-      }
-    );
-  }
-);
-FlexCenter.displayName = "FlexCenter";
-var FlexBetween = React4__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Flex,
-      {
-        ref,
-        justify: "between",
-        ...props
-      }
-    );
-  }
-);
-FlexBetween.displayName = "FlexBetween";
-var FlexStart = React4__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Flex,
-      {
-        ref,
-        align: "start",
-        justify: "start",
-        ...props
-      }
-    );
-  }
-);
-FlexStart.displayName = "FlexStart";
-var FlexEnd = React4__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Flex,
-      {
-        ref,
-        align: "end",
-        justify: "end",
-        ...props
-      }
-    );
-  }
-);
-FlexEnd.displayName = "FlexEnd";
-var FlexColumn = React4__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Flex,
-      {
-        ref,
-        direction: "col",
-        ...props
-      }
-    );
-  }
-);
-FlexColumn.displayName = "FlexColumn";
-var FlexRow = React4__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Flex,
-      {
-        ref,
-        direction: "row",
-        ...props
-      }
-    );
-  }
-);
-FlexRow.displayName = "FlexRow";
-var spacerVariants = classVarianceAuthority.cva(
-  "",
-  {
-    variants: {
-      size: {
-        xs: "h-2 w-2",
-        sm: "h-4 w-4",
-        md: "h-6 w-6",
-        lg: "h-8 w-8",
-        xl: "h-10 w-10",
-        "2xl": "h-12 w-12",
-        "3xl": "h-16 w-16",
-        "4xl": "h-20 w-20"
-      },
-      direction: {
-        horizontal: "flex-1 h-px",
-        vertical: "w-px flex-1",
-        both: "flex-1"
-      },
-      variant: {
-        default: "bg-transparent",
-        line: "bg-border",
-        dotted: "bg-transparent border-dashed",
-        gradient: "bg-gradient-to-r from-transparent via-border to-transparent"
-      }
-    },
-    defaultVariants: {
-      size: "md",
-      direction: "both",
-      variant: "default"
-    }
-  }
-);
-var Spacer = React4__namespace.forwardRef(
-  ({
-    className,
-    size = "md",
-    direction = "both",
-    variant = "default",
-    width,
-    height,
-    flex = true,
-    invisible = false,
-    style,
-    ...props
-  }, ref) => {
-    const spacerStyle = React4__namespace.useMemo(() => {
-      const customStyle = { ...style };
-      if (width !== void 0) {
-        customStyle.width = typeof width === "number" ? `${width}px` : width;
-      }
-      if (height !== void 0) {
-        customStyle.height = typeof height === "number" ? `${height}px` : height;
-      }
-      if (flex) {
-        customStyle.flex = "1";
-      }
-      if (invisible) {
-        customStyle.visibility = "hidden";
-      }
-      return customStyle;
-    }, [style, width, height, flex, invisible]);
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          spacerVariants({ size, direction, variant }),
-          !flex && "flex-none",
-          variant === "dotted" && "border-b border-border",
-          className
-        ),
-        style: spacerStyle,
-        "aria-hidden": "true",
-        ...props
-      }
-    );
-  }
-);
-Spacer.displayName = "Spacer";
-var VerticalSpacer = React4__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Spacer,
-      {
-        ref,
-        direction: "vertical",
-        ...props
-      }
-    );
-  }
-);
-VerticalSpacer.displayName = "VerticalSpacer";
-var HorizontalSpacer = React4__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Spacer,
-      {
-        ref,
-        direction: "horizontal",
-        ...props
-      }
-    );
-  }
-);
-HorizontalSpacer.displayName = "HorizontalSpacer";
-var dividerVariants = classVarianceAuthority.cva(
-  "border-t",
-  {
-    variants: {
-      variant: {
-        default: "border-border",
-        muted: "border-muted",
-        primary: "border-primary",
-        secondary: "border-secondary",
-        dashed: "border-dashed",
-        dotted: "border-dotted",
-        gradient: "border-none bg-gradient-to-r from-transparent via-border to-transparent h-px"
-      },
-      size: {
-        xs: "border-t-0.5",
-        sm: "border-t",
-        md: "border-t-2",
-        lg: "border-t-4"
-      },
-      orientation: {
-        horizontal: "w-full",
-        vertical: "h-full border-l border-t-0"
-      }
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "sm",
-      orientation: "horizontal"
-    }
-  }
-);
-var Divider = React4__namespace.forwardRef(
-  ({
-    className,
-    variant = "default",
-    size = "sm",
-    orientation = "horizontal",
-    label,
-    labelPosition = "center",
-    labelComponent,
-    ...props
-  }, ref) => {
-    if (label || labelComponent) {
-      return /* @__PURE__ */ jsxRuntime.jsxs(
-        "div",
-        {
-          ref,
-          className: cn(
-            "flex items-center gap-4",
-            orientation === "vertical" && "flex-col",
-            className
-          ),
-          role: "separator",
-          "aria-orientation": orientation,
-          ...props,
-          children: [
-            /* @__PURE__ */ jsxRuntime.jsx(
-              "div",
-              {
-                className: cn(
-                  dividerVariants({ variant, size, orientation }),
-                  labelPosition === "center" && "flex-1",
-                  labelPosition === "end" && "flex-1",
-                  labelPosition === "start" && "flex-none w-10"
-                )
-              }
-            ),
-            labelComponent || /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-sm text-muted-foreground whitespace-nowrap", children: label }),
-            /* @__PURE__ */ jsxRuntime.jsx(
-              "div",
-              {
-                className: cn(
-                  dividerVariants({ variant, size, orientation }),
-                  labelPosition === "center" && "flex-1",
-                  labelPosition === "start" && "flex-1",
-                  labelPosition === "end" && "flex-none w-10"
-                )
-              }
-            )
-          ]
-        }
-      );
-    }
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          dividerVariants({ variant, size, orientation }),
-          className
-        ),
-        role: "separator",
-        "aria-orientation": orientation,
-        ...props
-      }
-    );
-  }
-);
-Divider.displayName = "Divider";
-var spacingClasses2 = {
-  sm: "my-4",
-  md: "my-6",
-  lg: "my-8",
-  xl: "my-12"
-};
-var SectionDivider = React4__namespace.forwardRef(
-  ({
-    className,
-    spacing = "lg",
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(spacingClasses2[spacing], className), children: /* @__PURE__ */ jsxRuntime.jsx(Divider, { ref, size: "md", ...props }) });
-  }
-);
-SectionDivider.displayName = "SectionDivider";
-var textColorClasses = {
-  default: "text-foreground",
-  muted: "text-muted-foreground",
-  primary: "text-primary",
-  secondary: "text-secondary-foreground"
-};
-var TextDivider = React4__namespace.forwardRef(
-  ({
-    className,
-    children,
-    textColor = "muted",
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsxs(
-      "div",
-      {
-        ref,
-        className: cn("flex items-center gap-4", className),
-        role: "separator",
-        ...props,
-        children: [
-          /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex-1 h-px bg-border" }),
-          /* @__PURE__ */ jsxRuntime.jsx("span", { className: cn("text-sm font-medium whitespace-nowrap", textColorClasses[textColor]), children }),
-          /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex-1 h-px bg-border" })
-        ]
-      }
-    );
-  }
-);
-TextDivider.displayName = "TextDivider";
-var panelVariants = classVarianceAuthority.cva(
-  "rounded-lg border bg-card text-card-foreground",
-  {
-    variants: {
-      variant: {
-        default: "border-border shadow-sm",
-        elevated: "border-border shadow-md",
-        outlined: "border-2 border-border shadow-none",
-        ghost: "border-transparent shadow-none bg-transparent",
-        glass: "glass border-border shadow-sm",
-        neon: "neon-border shadow-lg dark:shadow-glow-cyan",
-        gradient: "bg-gradient-to-br from-background to-muted border-border shadow-sm"
-      },
-      size: {
-        sm: "p-4",
-        md: "p-6",
-        lg: "p-8",
-        xl: "p-10"
-      },
-      padding: {
-        none: "p-0",
-        sm: "p-3",
-        md: "p-4",
-        lg: "p-6",
-        xl: "p-8"
-      },
-      radius: {
-        none: "rounded-none",
-        sm: "rounded",
-        md: "rounded-lg",
-        lg: "rounded-xl",
-        xl: "rounded-2xl",
-        full: "rounded-full"
-      }
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "md",
-      padding: null,
-      radius: "md"
-    }
-  }
-);
-var Panel = React4__namespace.forwardRef(
-  ({
-    className,
-    variant = "default",
-    size,
-    padding,
-    radius = "md",
-    hover = false,
-    clickable = false,
-    selected = false,
-    loading = false,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          panelVariants({ variant, size, padding, radius }),
-          hover && "transition-all duration-[var(--motion-duration-normal)] hover:shadow-lg hover:-translate-y-0.5",
-          clickable && "cursor-pointer active:scale-[0.98]",
-          selected && "ring-2 ring-primary ring-offset-2",
-          loading && "opacity-70",
-          className
-        ),
-        ...props
-      }
-    );
-  }
-);
-Panel.displayName = "Panel";
-var PanelHeader = React4__namespace.forwardRef(
-  ({
-    className,
-    divider = false,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "flex flex-col space-y-1.5 p-6",
-          divider && "border-b border-border",
-          className
-        ),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelHeader.displayName = "PanelHeader";
-var PanelTitle = React4__namespace.forwardRef(
-  ({
-    className,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "h3",
-      {
-        ref,
-        className: cn("text-lg font-semibold leading-none tracking-tight", className),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelTitle.displayName = "PanelTitle";
-var PanelDescription = React4__namespace.forwardRef(
-  ({
-    className,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "p",
-      {
-        ref,
-        className: cn("text-sm text-muted-foreground", className),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelDescription.displayName = "PanelDescription";
-var PanelContent = React4__namespace.forwardRef(
-  ({
-    className,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn("p-6 pt-0", className),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelContent.displayName = "PanelContent";
-var PanelFooter = React4__namespace.forwardRef(
-  ({
-    className,
-    divider = false,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "flex items-center p-6 pt-0",
-          divider && "border-t border-border mt-6 pt-6",
-          className
-        ),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelFooter.displayName = "PanelFooter";
-var spacingClasses3 = {
-  sm: "gap-4",
-  md: "gap-6",
-  lg: "gap-8",
-  xl: "gap-10"
-};
-var PanelGroup = React4__namespace.forwardRef(
-  ({
-    className,
-    spacing = "md",
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn("grid", spacingClasses3[spacing], className),
-        ...props,
-        children
-      }
-    );
-  }
-);
-PanelGroup.displayName = "PanelGroup";
-function StatsCards({ stats, isLoading }) {
-  const cards = [
-    {
-      label: "Total de Posts",
-      value: stats.totalPosts,
-      change: stats.postsChange,
-      icon: /* @__PURE__ */ jsxRuntime.jsx(FileText__default.default, { className: "h-4 w-4" }),
-      color: "from-cyan-500 to-blue-500"
-    },
-    {
-      label: "Total de Visualiza\xE7\xF5es",
-      value: stats.totalViews,
-      change: stats.viewsChange,
-      icon: /* @__PURE__ */ jsxRuntime.jsx(Eye__default.default, { className: "h-4 w-4" }),
-      color: "from-purple-500 to-pink-500"
-    },
-    {
-      label: "Total de Curtidas",
-      value: stats.totalLikes,
-      change: stats.likesChange,
-      icon: /* @__PURE__ */ jsxRuntime.jsx(Heart__default.default, { className: "h-4 w-4" }),
-      color: "from-pink-500 to-red-500"
-    },
-    {
-      label: "Total de Coment\xE1rios",
-      value: stats.totalComments,
-      change: stats.commentsChange,
-      icon: /* @__PURE__ */ jsxRuntime.jsx(MessageCircle__default.default, { className: "h-4 w-4" }),
-      color: "from-green-500 to-emerald-500"
-    }
-  ];
-  if (isLoading) {
-    return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid gap-4 md:grid-cols-2 lg:grid-cols-4", children: [...Array(4)].map((_, i) => /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: "animate-pulse", children: [
-      /* @__PURE__ */ jsxRuntime.jsxs(CardHeader, { className: "flex flex-row items-center justify-between pb-2", children: [
-        /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-24 bg-muted rounded" }),
-        /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-8 w-8 bg-muted rounded" })
-      ] }),
-      /* @__PURE__ */ jsxRuntime.jsx(CardContent, { children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-8 w-16 bg-muted rounded" }) })
-    ] }, i)) });
-  }
-  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid gap-4 md:grid-cols-2 lg:grid-cols-4", children: cards.map((stat, index) => /* @__PURE__ */ jsxRuntime.jsx(
-    framerMotion.motion.div,
-    {
-      initial: { opacity: 0, y: 20 },
-      animate: { opacity: 1, y: 0 },
-      transition: { delay: index * 0.1 },
-      children: /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: "border-2 hover:shadow-lg transition-shadow", children: [
-        /* @__PURE__ */ jsxRuntime.jsxs(CardHeader, { className: "flex flex-row items-center justify-between pb-2", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(CardTitle, { className: "text-sm font-medium text-muted-foreground", children: stat.label }),
-          /* @__PURE__ */ jsxRuntime.jsx(
-            "div",
-            {
-              className: cn(
-                "flex h-8 w-8 items-center justify-center rounded-lg bg-linear-to-br text-white",
-                stat.color
-              ),
-              children: stat.icon
-            }
-          )
-        ] }),
-        /* @__PURE__ */ jsxRuntime.jsxs(CardContent, { children: [
-          /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-end justify-between", children: [
-            /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-2xl font-bold", children: stat.value.toLocaleString() }),
-            stat.change !== void 0 && /* @__PURE__ */ jsxRuntime.jsxs(
-              "div",
-              {
-                className: cn(
-                  "flex items-center gap-1 text-xs font-medium",
-                  stat.change > 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
-                ),
-                children: [
-                  stat.change > 0 ? /* @__PURE__ */ jsxRuntime.jsx(TrendingUp__default.default, { className: "h-3 w-3" }) : /* @__PURE__ */ jsxRuntime.jsx(TrendingDown__default.default, { className: "h-3 w-3" }),
-                  Math.abs(stat.change),
-                  "%"
-                ]
-              }
-            )
-          ] }),
-          stat.change !== void 0 && /* @__PURE__ */ jsxRuntime.jsxs("p", { className: "text-xs text-muted-foreground mt-1", children: [
-            stat.change > 0 ? "+" : "",
-            stat.change,
-            "% em rela\xE7\xE3o ao m\xEAs anterior"
-          ] })
-        ] })
-      ] })
-    },
-    stat.label
-  )) });
-}
-var DEFAULT_STAGGER_DELAY = 0.1;
-var CARD_ANIMATION = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: {
-    type: "spring",
-    stiffness: 300,
-    damping: 30
-  }
-};
-var DEFAULT_STATS = [
-  {
-    label: "Total de Posts",
-    value: 42,
-    change: 12.5,
-    icon: /* @__PURE__ */ jsxRuntime.jsx(FileText__default.default, { className: "w-5 h-5", "aria-hidden": "true" }),
-    color: "from-cyan-500 to-blue-500",
-    description: "Artigos publicados no blog"
-  },
-  {
-    label: "Visualiza\xE7\xF5es",
-    value: "2.4K",
-    change: 8.3,
-    icon: /* @__PURE__ */ jsxRuntime.jsx(Eye__default.default, { className: "w-5 h-5", "aria-hidden": "true" }),
-    color: "from-purple-500 to-pink-500",
-    description: "Visualiza\xE7\xF5es totais"
-  },
-  {
-    label: "Curtidas",
-    value: 1.2,
-    change: -3.2,
-    icon: /* @__PURE__ */ jsxRuntime.jsx(Heart__default.default, { className: "w-5 h-5", "aria-hidden": "true" }),
-    color: "from-orange-500 to-red-500",
-    description: "Curtidas recebidas"
-  },
-  {
-    label: "Coment\xE1rios",
-    value: 89,
-    change: 15.7,
-    icon: /* @__PURE__ */ jsxRuntime.jsx(MessageSquare__default.default, { className: "w-5 h-5", "aria-hidden": "true" }),
-    color: "from-green-500 to-emerald-500",
-    description: "Coment\xE1rios ativos"
-  }
-];
-function QuickStatsComponent({
-  stats = [...DEFAULT_STATS],
-  animationDelay = DEFAULT_STAGGER_DELAY,
-  // animateOnView = true, // TODO: implementar animação ao entrar na viewport
-  className,
-  theme = "auto"
-}) {
-  const formatValue2 = (value) => {
-    if (typeof value === "number") {
-      if (value >= 1e3) {
-        return `${(value / 1e3).toFixed(1)}K`;
-      }
-      return value.toString();
-    }
-    return value;
-  };
-  const renderChangeIndicator = (change) => {
-    if (change === void 0 || change === 0) return null;
-    const isPositive = change > 0;
-    const Icon = isPositive ? TrendingUp__default.default : TrendingDown__default.default;
-    const formattedChange = Math.abs(change).toFixed(1);
-    return /* @__PURE__ */ jsxRuntime.jsxs(
-      "div",
-      {
-        className: `flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold transition-colors bg-opacity-20 ${isPositive ? "text-green-700 bg-green-100 dark:text-green-300 dark:bg-green-900/30" : "text-red-700 bg-red-100 dark:text-red-300 dark:bg-red-900/30"}`,
-        role: "status",
-        "aria-label": `Varia\xE7\xE3o de ${formattedChange}% ${isPositive ? "positiva" : "negativa"}`,
-        children: [
-          /* @__PURE__ */ jsxRuntime.jsx(
-            Icon,
-            {
-              className: "w-3 h-3",
-              "aria-hidden": "true"
-            }
-          ),
-          /* @__PURE__ */ jsxRuntime.jsxs("span", { children: [
-            formattedChange,
-            "%"
-          ] })
-        ]
-      }
-    );
-  };
-  const renderStatCard = (stat, index) => {
-    const formattedValue = formatValue2(stat.value);
-    const cardId = `stat-card-${index}`;
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      framerMotion.motion.article,
-      {
-        initial: CARD_ANIMATION.initial,
-        animate: CARD_ANIMATION.animate,
-        transition: {
-          ...CARD_ANIMATION.transition,
-          delay: index * animationDelay
-        },
-        whileHover: {
-          scale: 1.02,
-          transition: { duration: 0.2 }
-        },
-        whileTap: { scale: 0.98 },
-        role: "article",
-        "aria-labelledby": `${cardId}-title`,
-        "aria-describedby": stat.description ? `${cardId}-desc` : void 0,
-        className: "h-full",
-        children: /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: "relative h-full overflow-hidden border shadow-sm transition-all duration-300 hover:shadow-lg dark:border-gray-800 dark:hover:border-gray-700", children: [
-          /* @__PURE__ */ jsxRuntime.jsx(
-            "div",
-            {
-              className: `absolute -top-12 -right-12 w-32 h-32 opacity-10 bg-gradient-to-br rounded-full blur-3xl transition-opacity duration-500 hover:opacity-15 ${stat.color}`,
-              "aria-hidden": "true"
-            }
-          ),
-          /* @__PURE__ */ jsxRuntime.jsxs(CardContent, { className: "relative p-6", children: [
-            /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start justify-between mb-4", children: [
-              /* @__PURE__ */ jsxRuntime.jsx(
-                "div",
-                {
-                  className: `p-3 rounded-xl shadow-sm bg-gradient-to-br ${stat.color} text-white transition-transform duration-300 hover:scale-110`,
-                  "aria-hidden": "true",
-                  children: stat.icon
-                }
-              ),
-              renderChangeIndicator(stat.change)
-            ] }),
-            /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "space-y-1", children: [
-              /* @__PURE__ */ jsxRuntime.jsx(
-                "h3",
-                {
-                  id: `${cardId}-title`,
-                  className: "text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100",
-                  children: stat.isLoading ? /* @__PURE__ */ jsxRuntime.jsx("span", { className: "inline-block h-8 w-16 animate-pulse bg-gray-300 dark:bg-gray-700 rounded" }) : formattedValue
-                }
-              ),
-              /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm font-medium text-gray-600 dark:text-gray-400", children: stat.label }),
-              stat.description && /* @__PURE__ */ jsxRuntime.jsx(
-                "p",
-                {
-                  id: `${cardId}-desc`,
-                  className: "text-xs text-gray-500 dark:text-gray-500 mt-2",
-                  children: stat.description
-                }
-              )
-            ] }),
-            stat.change !== void 0 && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mt-4 pt-3 border-t border-gray-100 dark:border-gray-800", children: /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-xs text-gray-500 dark:text-gray-500", children: [
-              stat.change > 0 ? "Em alta" : "Em baixa",
-              " este m\xEAs"
-            ] }) })
-          ] })
-        ] })
-      },
-      stat.label
-    );
-  };
-  return /* @__PURE__ */ jsxRuntime.jsxs(
-    "section",
-    {
-      className: `w-full ${className || ""}`,
-      "aria-labelledby": "quick-stats-heading",
-      "data-theme": theme,
-      children: [
-        /* @__PURE__ */ jsxRuntime.jsx("h2", { id: "quick-stats-heading", className: "sr-only", children: "Estat\xEDsticas R\xE1pidas do Dashboard" }),
-        /* @__PURE__ */ jsxRuntime.jsx("div", { className: "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6", children: stats.map((stat, index) => /* @__PURE__ */ jsxRuntime.jsx(React4__namespace.default.Fragment, { children: renderStatCard(stat, index) }, `${stat.label}-${index}`)) }),
-        /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mt-4 text-right", children: /* @__PURE__ */ jsxRuntime.jsxs("p", { className: "text-xs text-gray-500 dark:text-gray-500", children: [
-          "Atualizado em ",
-          (/* @__PURE__ */ new Date()).toLocaleDateString("pt-BR")
-        ] }) })
-      ]
-    }
-  );
-}
-var QuickStats = React4__namespace.default.memo(QuickStatsComponent);
-QuickStats.displayName = "QuickStats";
 var sizeClasses = {
   xs: "h-6 w-6 text-xs",
   sm: "h-8 w-8 text-sm",
@@ -1713,7 +190,7 @@ function getColorFromName(name) {
   }
   return colors[Math.abs(hash) % colors.length];
 }
-var Avatar = React4__namespace.forwardRef(
+var Avatar = React19__namespace.forwardRef(
   ({
     className,
     src,
@@ -1729,9 +206,9 @@ var Avatar = React4__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [imageStatus, setImageStatus] = React4__namespace.useState("loading");
-    const [showFallback, setShowFallback] = React4__namespace.useState(!src);
-    React4__namespace.useEffect(() => {
+    const [imageStatus, setImageStatus] = React19__namespace.useState("loading");
+    const [showFallback, setShowFallback] = React19__namespace.useState(!src);
+    React19__namespace.useEffect(() => {
       if (!src) {
         setShowFallback(true);
         setImageStatus("error");
@@ -1796,7 +273,7 @@ var Avatar = React4__namespace.forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var AvatarImage = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarImage = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "img",
   {
     ref,
@@ -1805,7 +282,7 @@ var AvatarImage = React4__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 AvatarImage.displayName = "AvatarImage";
-var AvatarFallback = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarFallback = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1817,6 +294,172 @@ var AvatarFallback = React4__namespace.forwardRef(({ className, ...props }, ref)
   }
 ));
 AvatarFallback.displayName = "AvatarFallback";
+var Input = React19__namespace.forwardRef(
+  ({ className, type, error, helperText, label, required, id, ...props }, ref) => {
+    const inputId = id || `input-${React19__namespace.useId()}`;
+    return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "space-y-2", children: [
+      label && /* @__PURE__ */ jsxRuntime.jsxs(
+        "label",
+        {
+          htmlFor: inputId,
+          className: cn(
+            "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+            error ? "text-destructive" : "text-foreground",
+            "dark:text-cyan-200 dark:font-mono"
+          ),
+          children: [
+            label,
+            required && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-destructive ml-1", children: "*" })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntime.jsx(
+        "input",
+        {
+          type,
+          id: inputId,
+          className: cn(
+            // Base styles
+            "flex h-10 w-full rounded-md border border-input bg-background px-3 py-2",
+            "text-sm ring-offset-background file:border-0 file:bg-transparent",
+            "file:text-sm file:font-medium placeholder:text-muted-foreground",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            "focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+            // Dark mode
+            "dark:bg-black/50 dark:border-cyan-400/30 dark:text-cyan-100",
+            "dark:placeholder:text-cyan-400/50 dark:ring-offset-black",
+            "dark:focus-visible:ring-cyan-400 dark:focus-visible:ring-offset-black",
+            // Error state
+            error && "border-destructive focus-visible:ring-destructive",
+            "dark:border-red-400/50 dark:focus-visible:ring-red-400",
+            // Transitions
+            "transition-all duration-200",
+            className
+          ),
+          ref,
+          ...props
+        }
+      ),
+      helperText && /* @__PURE__ */ jsxRuntime.jsx(
+        "p",
+        {
+          className: cn(
+            "text-xs",
+            error ? "text-destructive" : "text-muted-foreground",
+            "dark:text-cyan-400/70 dark:text-red-400/70"
+          ),
+          children: helperText
+        }
+      )
+    ] });
+  }
+);
+Input.displayName = "Input";
+var Textarea = React19__namespace.forwardRef(
+  ({
+    className,
+    error,
+    helperText,
+    label,
+    required,
+    id,
+    maxLength,
+    showCount,
+    value,
+    ...props
+  }, ref) => {
+    const inputId = id || `textarea-${React19__namespace.useId()}`;
+    const [characterCount, setCharacterCount] = React19__namespace.useState(0);
+    React19__namespace.useEffect(() => {
+      if (typeof value === "string") {
+        setCharacterCount(value.length);
+      }
+    }, [value]);
+    const handleInputChange = (e) => {
+      if (maxLength) {
+        const newValue = e.target.value.slice(0, maxLength);
+        e.target.value = newValue;
+        setCharacterCount(newValue.length);
+      }
+      props.onChange?.(e);
+    };
+    return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "space-y-2", children: [
+      label && /* @__PURE__ */ jsxRuntime.jsxs(
+        "label",
+        {
+          htmlFor: inputId,
+          className: cn(
+            "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+            error ? "text-destructive" : "text-foreground",
+            "dark:text-cyan-200 dark:font-mono"
+          ),
+          children: [
+            label,
+            required && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-destructive ml-1", children: "*" })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntime.jsx(
+        "textarea",
+        {
+          id: inputId,
+          className: cn(
+            // Base styles
+            "flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2",
+            "text-sm ring-offset-background placeholder:text-muted-foreground",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            "focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+            "resize-none",
+            // Dark mode
+            "dark:bg-black/50 dark:border-cyan-400/30 dark:text-cyan-100",
+            "dark:placeholder:text-cyan-400/50 dark:ring-offset-black",
+            "dark:focus-visible:ring-cyan-400 dark:focus-visible:ring-offset-black",
+            // Error state
+            error && "border-destructive focus-visible:ring-destructive",
+            "dark:border-red-400/50 dark:focus-visible:ring-red-400",
+            // Transitions
+            "transition-all duration-200",
+            className
+          ),
+          ref,
+          maxLength,
+          value,
+          onChange: handleInputChange,
+          ...props
+        }
+      ),
+      (helperText || showCount && maxLength) && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex justify-between items-center", children: [
+        helperText && /* @__PURE__ */ jsxRuntime.jsx(
+          "p",
+          {
+            className: cn(
+              "text-xs",
+              error ? "text-destructive" : "text-muted-foreground",
+              "dark:text-cyan-400/70 dark:text-red-400/70"
+            ),
+            children: helperText
+          }
+        ),
+        showCount && maxLength && /* @__PURE__ */ jsxRuntime.jsxs(
+          "p",
+          {
+            className: cn(
+              "text-xs",
+              characterCount >= maxLength ? "text-destructive" : "text-muted-foreground",
+              "dark:text-cyan-400/70"
+            ),
+            children: [
+              characterCount,
+              "/",
+              maxLength
+            ]
+          }
+        )
+      ] })
+    ] });
+  }
+);
+Textarea.displayName = "Textarea";
 var buttonVariants = classVarianceAuthority.cva(
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {
@@ -1858,7 +501,7 @@ var buttonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var ButtonComponent = React4__namespace.forwardRef(
+var ButtonComponent = React19__namespace.forwardRef(
   ({
     className,
     variant,
@@ -1871,10 +514,36 @@ var ButtonComponent = React4__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const Comp = asChild ? reactSlot.Slot : "button";
     const isDisabled = disabled || loading;
+    if (asChild) {
+      const child = React19__namespace.Children.only(children);
+      return /* @__PURE__ */ jsxRuntime.jsx(
+        reactSlot.Slot,
+        {
+          className: cn(
+            buttonVariants({ variant, size, animation }),
+            // Efeito neon especial
+            variant === "neon" && [
+              "before:absolute before:inset-0 before:rounded-lg before:bg-primary before:opacity-20",
+              "after:absolute after:inset-0 after:rounded-lg after:bg-primary after:opacity-0",
+              "hover:after:opacity-20 hover:shadow-primary/25 hover:shadow-xl",
+              "before:transition-opacity after:transition-opacity",
+              "before:duration-300 after:duration-300"
+            ],
+            className
+          ),
+          ref,
+          "aria-busy": loading || void 0,
+          ...props,
+          children: loading ? /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "inline-flex items-center gap-2", children: [
+            loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }),
+            child
+          ] }) : child
+        }
+      );
+    }
     return /* @__PURE__ */ jsxRuntime.jsxs(
-      Comp,
+      "button",
       {
         className: cn(
           buttonVariants({ variant, size, animation }),
@@ -1890,9 +559,10 @@ var ButtonComponent = React4__namespace.forwardRef(
         ),
         ref,
         disabled: isDisabled,
+        "aria-busy": loading || void 0,
         ...props,
         children: [
-          loading && /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" }) }),
+          loading && (loadingIcon || /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" })),
           children
         ]
       }
@@ -1901,7 +571,7 @@ var ButtonComponent = React4__namespace.forwardRef(
 );
 ButtonComponent.displayName = "Button";
 var Button = ButtonComponent;
-var Slider = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var Slider = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SliderPrimitive__namespace.Root,
   {
     ref,
@@ -1935,7 +605,7 @@ var Slider = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 Slider.displayName = SliderPrimitive__namespace.Root.displayName;
-var Switch = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Switch = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SwitchPrimitives__namespace.Root,
   {
     className: cn(
@@ -1979,7 +649,7 @@ var toggleVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Toggle = React4__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Toggle = React19__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TogglePrimitive__namespace.Root,
   {
     ref,
@@ -2030,7 +700,7 @@ var iconButtonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var IconButton = React4__namespace.forwardRef(
+var IconButton = React19__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -2045,8 +715,8 @@ var IconButton = React4__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [showTooltip, setShowTooltip] = React4__namespace.useState(false);
-    const [tooltipVisible, setTooltipVisible] = React4__namespace.useState(false);
+    const [showTooltip, setShowTooltip] = React19__namespace.useState(false);
+    const [tooltipVisible, setTooltipVisible] = React19__namespace.useState(false);
     const tooltipClasses = {
       top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
       bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
@@ -2059,7 +729,7 @@ var IconButton = React4__namespace.forwardRef(
       left: "left-full top-1/2 -translate-y-1/2 -ml-1 border-t-transparent border-b-transparent border-r-transparent border-l-current",
       right: "right-full top-1/2 -translate-y-1/2 -mr-1 border-t-transparent border-b-transparent border-l-transparent border-r-current"
     };
-    React4__namespace.useEffect(() => {
+    React19__namespace.useEffect(() => {
       if (showTooltip) {
         const timer = setTimeout(() => setTooltipVisible(true), 100);
         return () => clearTimeout(timer);
@@ -2172,7 +842,7 @@ var linkButtonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var LinkButton = React4__namespace.forwardRef(
+var LinkButton = React19__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -2272,7 +942,7 @@ var fabVariants = classVarianceAuthority.cva(
     }
   }
 );
-var FAB = React4__namespace.forwardRef(
+var FAB = React19__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -2287,18 +957,18 @@ var FAB = React4__namespace.forwardRef(
     actions = [],
     ...props
   }, ref) => {
-    const [showActions, setShowActions] = React4__namespace.useState(active);
+    const [showActions, setShowActions] = React19__namespace.useState(active);
     const isExtended = extended && text;
-    React4__namespace.useEffect(() => {
+    React19__namespace.useEffect(() => {
       setShowActions(active);
     }, [active]);
-    const handleClick = React4__namespace.useCallback(() => {
+    const handleClick = React19__namespace.useCallback(() => {
       if (actions.length > 0) {
         setShowActions(!showActions);
       }
       onClick?.();
     }, [actions.length, showActions, onClick]);
-    const defaultIcon = actions.length > 0 ? showActions ? /* @__PURE__ */ jsxRuntime.jsx(X2__default.default, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(Plus__default.default, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(Plus__default.default, { className: "h-5 w-5" });
+    const defaultIcon = actions.length > 0 ? showActions ? /* @__PURE__ */ jsxRuntime.jsx(X__default.default, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(Plus__default.default, { className: "h-5 w-5" }) : /* @__PURE__ */ jsxRuntime.jsx(Plus__default.default, { className: "h-5 w-5" });
     return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", children: [
       showActions && actions.length > 0 && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute bottom-0 flex flex-col-reverse gap-3 mb-4", children: actions.map((action, index) => /* @__PURE__ */ jsxRuntime.jsxs(
         "div",
@@ -2350,7 +1020,7 @@ var FAB = React4__namespace.forwardRef(
   }
 );
 FAB.displayName = "FAB";
-var FABGroup = React4__namespace.forwardRef(
+var FABGroup = React19__namespace.forwardRef(
   ({
     className,
     main,
@@ -2358,7 +1028,7 @@ var FABGroup = React4__namespace.forwardRef(
     position = "bottom-right",
     ...props
   }, ref) => {
-    const positionClasses2 = {
+    const positionClasses = {
       "bottom-right": "bottom-6 right-6 flex-col-reverse",
       "bottom-left": "bottom-6 left-6 flex-col-reverse",
       "top-right": "top-6 right-6 flex-col",
@@ -2372,7 +1042,7 @@ var FABGroup = React4__namespace.forwardRef(
         ref,
         className: cn(
           "fixed z-40 flex gap-3",
-          positionClasses2[position],
+          positionClasses[position],
           className
         ),
         ...props,
@@ -2422,7 +1092,7 @@ var segmentedControlVariants = classVarianceAuthority.cva(
     }
   }
 );
-var SegmentedControl = React4__namespace.forwardRef(
+var SegmentedControl = React19__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -2435,9 +1105,9 @@ var SegmentedControl = React4__namespace.forwardRef(
     disabled = false,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React4__namespace.useState(defaultValue || options[0]?.value);
+    const [internalValue, setInternalValue] = React19__namespace.useState(defaultValue || options[0]?.value);
     const currentValue = value !== void 0 ? value : internalValue;
-    const handleOptionClick = React4__namespace.useCallback((optionValue, isDisabled) => {
+    const handleOptionClick = React19__namespace.useCallback((optionValue, isDisabled) => {
       if (isDisabled || disabled) return;
       if (value === void 0) {
         setInternalValue(optionValue);
@@ -2492,7 +1162,7 @@ var SegmentedControl = React4__namespace.forwardRef(
   }
 );
 SegmentedControl.displayName = "SegmentedControl";
-var SegmentedControlItem = React4__namespace.forwardRef(
+var SegmentedControlItem = React19__namespace.forwardRef(
   ({
     className,
     active = false,
@@ -2528,6 +1198,424 @@ var SegmentedControlItem = React4__namespace.forwardRef(
   }
 );
 SegmentedControlItem.displayName = "SegmentedControlItem";
+var Card = React19__namespace.forwardRef(({ className, variant = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "div",
+  {
+    ref,
+    className: cn(
+      // Base styles
+      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      // Variant styles
+      variant === "default" && "border-border bg-background dark:bg-black/40 dark:border-cyan-400/20",
+      variant === "outline" && "border-2 border-border bg-transparent dark:border-cyan-400/30",
+      variant === "elevated" && "border-border/50 shadow-lg dark:bg-black/60 dark:border-cyan-400/20 dark:shadow-cyan-500/10",
+      variant === "glass" && "border-border/20 bg-background/80 backdrop-blur-md dark:bg-black/40 dark:border-cyan-400/30 dark:backdrop-blur-xl",
+      // Transitions
+      "transition-all duration-200",
+      className
+    ),
+    ...props
+  }
+));
+Card.displayName = "Card";
+var CardHeader = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "div",
+  {
+    ref,
+    className: cn(
+      "flex flex-col space-y-1.5 p-6",
+      "dark:border-cyan-400/10",
+      className
+    ),
+    ...props
+  }
+));
+CardHeader.displayName = "CardHeader";
+var CardTitle = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "h3",
+  {
+    ref,
+    className: cn(
+      "text-2xl font-semibold leading-none tracking-tight",
+      "dark:text-cyan-200 dark:font-mono",
+      className
+    ),
+    ...props
+  }
+));
+CardTitle.displayName = "CardTitle";
+var CardDescription = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "p",
+  {
+    ref,
+    className: cn(
+      "text-sm text-muted-foreground",
+      "dark:text-cyan-400/80",
+      className
+    ),
+    ...props
+  }
+));
+CardDescription.displayName = "CardDescription";
+var CardContent = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+CardContent.displayName = "CardContent";
+var CardFooter = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "div",
+  {
+    ref,
+    className: cn(
+      "flex items-center p-6 pt-0",
+      "dark:border-t dark:border-cyan-400/10",
+      className
+    ),
+    ...props
+  }
+));
+CardFooter.displayName = "CardFooter";
+var badgeVariants = classVarianceAuthority.cva(
+  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 dark:ring-offset-black",
+  {
+    variants: {
+      variant: {
+        default: "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+        secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+        destructive: "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
+        outline: "text-foreground border-border dark:border-cyan-400/30 dark:text-cyan-300",
+        count: "border-transparent bg-muted text-foreground shadow-sm px-2.5 py-1 text-[11px] tracking-wide",
+        success: "border-transparent bg-green-500 text-white hover:bg-green-600 dark:bg-green-400/20 dark:text-green-300 dark:hover:bg-green-400/30",
+        warning: "border-transparent bg-yellow-500 text-white hover:bg-yellow-600 dark:bg-yellow-400/20 dark:text-yellow-300 dark:hover:bg-yellow-400/30",
+        info: "border-transparent bg-blue-500 text-white hover:bg-blue-600 dark:bg-cyan-400/20 dark:text-cyan-300 dark:hover:bg-cyan-400/30",
+        cyberpunk: "border-transparent bg-gradient-to-r from-cyan-500 to-purple-500 text-white hover:from-cyan-600 hover:to-purple-600 dark:from-cyan-400 dark:to-purple-400 dark:hover:from-cyan-300 dark:hover:to-purple-300",
+        neon: "border-cyan-400/30 bg-cyan-400/10 text-cyan-300 shadow-lg shadow-cyan-400/20 dark:border-cyan-300/50 dark:bg-cyan-300/10 dark:text-cyan-200 dark:shadow-cyan-300/30"
+      },
+      size: {
+        sm: "px-2 py-0.5 text-xs",
+        md: "px-2.5 py-0.5 text-xs",
+        lg: "px-3 py-1 text-sm"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "md"
+    }
+  }
+);
+function Badge({ className, variant, size, ...props }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(badgeVariants({ variant, size }), className), ...props });
+}
+var Progress = React19__namespace.forwardRef(({ className, value, color = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  ProgressPrimitive__namespace.Root,
+  {
+    ref,
+    className: cn(
+      // Base styles
+      "relative h-2 w-full overflow-hidden rounded-full bg-secondary",
+      // Dark mode
+      "dark:bg-black/40 dark:border dark:border-cyan-400/20",
+      className
+    ),
+    ...props,
+    children: /* @__PURE__ */ jsxRuntime.jsx(
+      ProgressPrimitive__namespace.Indicator,
+      {
+        className: cn(
+          // Base indicator
+          "h-full w-full flex-1 bg-primary transition-all duration-300",
+          // Color variants
+          color === "default" && "bg-primary dark:bg-cyan-400",
+          color === "success" && "bg-green-500 dark:bg-green-400",
+          color === "warning" && "bg-yellow-500 dark:bg-yellow-400",
+          color === "destructive" && "bg-red-500 dark:bg-red-400",
+          color === "cyberpunk" && "bg-gradient-to-r from-cyan-500 to-purple-500 dark:from-cyan-400 dark:to-purple-400"
+        ),
+        style: { transform: `translateX(-${100 - (value || 0)}%)` }
+      }
+    )
+  }
+));
+Progress.displayName = ProgressPrimitive__namespace.Root.displayName;
+var AccordionItem = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  AccordionPrimitive__namespace.Item,
+  {
+    ref,
+    className: cn(
+      "border-b border-border dark:border-cyan-400/20",
+      className
+    ),
+    ...props
+  }
+));
+AccordionItem.displayName = "AccordionItem";
+var AccordionTrigger = React19__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
+  AccordionPrimitive__namespace.Trigger,
+  {
+    ref,
+    className: cn(
+      // Base styles
+      "flex flex-1 items-center justify-between py-4 text-sm font-medium",
+      "transition-all hover:underline",
+      // Focus styles
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+      "focus-visible:ring-offset-2 dark:ring-offset-black dark:focus-visible:ring-cyan-400",
+      // Dark mode
+      "dark:text-cyan-200 dark:hover:text-cyan-100",
+      // Disabled state
+      "[&[data-state=open]>svg]:rotate-180",
+      className
+    ),
+    ...props,
+    children: [
+      children,
+      /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronDown, { className: "h-4 w-4 shrink-0 transition-transform duration-200 dark:text-cyan-400" })
+    ]
+  }
+) }));
+AccordionTrigger.displayName = AccordionPrimitive__namespace.Trigger.displayName;
+var AccordionContent = React19__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  AccordionPrimitive__namespace.Content,
+  {
+    ref,
+    className: cn(
+      // Base styles
+      "overflow-hidden text-sm data-[state=closed]:animate-accordion-up",
+      "data-[state=open]:animate-accordion-down",
+      // Spacing
+      "pb-4 pt-0",
+      // Text color
+      "dark:text-cyan-400/80",
+      className
+    ),
+    ...props,
+    children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn("pb-4 pt-0", className), children })
+  }
+));
+AccordionContent.displayName = AccordionPrimitive__namespace.Content.displayName;
+var TokensContext = React19__namespace.createContext(null);
+function useTokens() {
+  const context = React19__namespace.useContext(TokensContext);
+  if (!context) {
+    throw new Error(
+      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
+    );
+  }
+  return context;
+}
+var parseMsToSeconds = (value, fallback = 0.1) => {
+  if (!value) return fallback;
+  if (value.endsWith("ms")) return parseFloat(value) / 1e3;
+  if (value.endsWith("s")) return parseFloat(value);
+  const n = Number(value);
+  return Number.isFinite(n) ? n : fallback;
+};
+function StatsCards({
+  items = [],
+  isLoading = false,
+  className,
+  columns = { base: 1, md: 2, lg: 4 },
+  showFooterDate,
+  updatedAt,
+  animationDelay,
+  emptyMessage = "Nenhum dado dispon\xEDvel"
+}) {
+  const { getColor, getRadius, getShadow, getMotion } = useTokens();
+  const resolvedAnimationDelay = animationDelay ?? parseMsToSeconds(getMotion("delay", "short", "0.1s"), 0.1);
+  const cardRadius = getRadius("lg", "0.5rem");
+  const cardShadow = getShadow("md", "0 4px 6px -1px rgb(0 0 0 / 0.1)");
+  const gridClass = cn(
+    "grid gap-4",
+    columns.base && `grid-cols-${columns.base}`,
+    columns.md && `md:grid-cols-${columns.md}`,
+    columns.lg && `lg:grid-cols-${columns.lg}`,
+    className
+  );
+  const fallbackPrimary = getColor("cyan.500", "#0ea5e9");
+  const fallbackSecondary = getColor("status.info.background", "rgba(14,165,233,0.12)");
+  const resolvedItems = items.map((item) => {
+    const primary = item.accentColor ?? (item.accentKey ? getColor(item.accentKey, fallbackPrimary) : fallbackPrimary);
+    const secondary = item.secondaryColor ? getColor(item.secondaryColor, fallbackSecondary) : fallbackSecondary;
+    return {
+      ...item,
+      primary,
+      secondary
+    };
+  });
+  if (isLoading) {
+    return /* @__PURE__ */ jsxRuntime.jsx("div", { className: gridClass, children: [...Array(Math.max(resolvedItems.length, 4))].map((_, i) => /* @__PURE__ */ jsxRuntime.jsxs(
+      Card,
+      {
+        className: "animate-pulse border",
+        style: { borderRadius: cardRadius, boxShadow: cardShadow },
+        children: [
+          /* @__PURE__ */ jsxRuntime.jsxs(CardHeader, { className: "flex flex-row items-center justify-between pb-2", children: [
+            /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-24 bg-muted rounded" }),
+            /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-8 w-8 bg-muted rounded" })
+          ] }),
+          /* @__PURE__ */ jsxRuntime.jsxs(CardContent, { children: [
+            /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-8 w-20 bg-muted rounded" }),
+            /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-3 w-28 bg-muted rounded mt-2" })
+          ] })
+        ]
+      },
+      i
+    )) });
+  }
+  if (!resolvedItems.length) {
+    return /* @__PURE__ */ jsxRuntime.jsx(Card, { className: cn("w-full", className), style: { borderRadius: cardRadius, boxShadow: cardShadow }, children: /* @__PURE__ */ jsxRuntime.jsx(CardContent, { className: "p-6 text-center text-muted-foreground text-sm", children: emptyMessage }) });
+  }
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: gridClass, children: [
+    resolvedItems.map((stat, index) => {
+      const isPositive = stat.trend ? stat.trend === "up" : (stat.change ?? 0) >= 0;
+      const changeValue = stat.change ?? 0;
+      const valueText = stat.formatValue ? stat.formatValue(stat.value) : typeof stat.value === "number" ? stat.value.toLocaleString("pt-BR") : stat.value;
+      const indicatorColor = isPositive ? getColor("status.success.base", "#16a34a") : getColor("status.error.base", "#ef4444");
+      return /* @__PURE__ */ jsxRuntime.jsx(
+        framerMotion.motion.div,
+        {
+          initial: { opacity: 0, y: 12 },
+          animate: { opacity: 1, y: 0 },
+          transition: { delay: index * resolvedAnimationDelay },
+          children: /* @__PURE__ */ jsxRuntime.jsxs(
+            Card,
+            {
+              className: "relative overflow-hidden border backdrop-blur-sm",
+              style: { borderRadius: cardRadius, boxShadow: cardShadow },
+              children: [
+                /* @__PURE__ */ jsxRuntime.jsx(
+                  "div",
+                  {
+                    className: "absolute inset-0 opacity-10 pointer-events-none",
+                    style: {
+                      background: `radial-gradient(140% 140% at 80% 0%, ${stat.primary} 0%, transparent 55%)`
+                    },
+                    "aria-hidden": "true"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntime.jsxs(CardHeader, { className: "flex flex-row items-center justify-between pb-2 relative z-10", children: [
+                  /* @__PURE__ */ jsxRuntime.jsx(CardTitle, { className: "text-sm font-medium text-muted-foreground", children: stat.label }),
+                  /* @__PURE__ */ jsxRuntime.jsx(
+                    "div",
+                    {
+                      className: "flex h-10 w-10 items-center justify-center rounded-xl text-white",
+                      style: {
+                        background: `linear-gradient(135deg, ${stat.primary}, ${stat.secondary})`
+                      },
+                      "aria-hidden": "true",
+                      children: stat.icon
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsxRuntime.jsxs(CardContent, { className: "relative z-10 space-y-2", children: [
+                  /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-end justify-between", children: [
+                    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-2xl font-bold", children: [
+                      stat.valuePrefix,
+                      valueText,
+                      stat.valueSuffix
+                    ] }),
+                    stat.change !== void 0 && /* @__PURE__ */ jsxRuntime.jsxs(
+                      "div",
+                      {
+                        className: cn(
+                          "flex items-center gap-1 text-xs font-medium px-2 py-1 rounded-full",
+                          isPositive ? "bg-[color:var(--token-status-success-bg,transparent)]" : "bg-[color:var(--token-status-error-bg,transparent)]"
+                        ),
+                        style: {
+                          color: indicatorColor,
+                          backgroundColor: `${indicatorColor}1a`
+                        },
+                        children: [
+                          isPositive ? /* @__PURE__ */ jsxRuntime.jsx(TrendingUp__default.default, { className: "h-3 w-3", "aria-hidden": "true" }) : /* @__PURE__ */ jsxRuntime.jsx(TrendingDown__default.default, { className: "h-3 w-3", "aria-hidden": "true" }),
+                          Math.abs(changeValue).toFixed(1),
+                          "%"
+                        ]
+                      }
+                    )
+                  ] }),
+                  stat.description && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-xs text-muted-foreground", children: stat.description }),
+                  stat.change !== void 0 && /* @__PURE__ */ jsxRuntime.jsxs("p", { className: "text-xs text-muted-foreground flex items-center gap-1", children: [
+                    /* @__PURE__ */ jsxRuntime.jsx(
+                      "span",
+                      {
+                        className: "inline-block h-2 w-2 rounded-full",
+                        style: { backgroundColor: indicatorColor },
+                        "aria-hidden": "true"
+                      }
+                    ),
+                    isPositive ? "Em alta" : "Em baixa",
+                    " em rela\xE7\xE3o ao per\xEDodo anterior"
+                  ] })
+                ] })
+              ]
+            }
+          )
+        },
+        `${stat.label}-${index}`
+      );
+    }),
+    showFooterDate && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "col-span-full text-right text-xs text-muted-foreground mt-1", children: [
+      "Atualizado em ",
+      new Date(updatedAt ?? Date.now()).toLocaleString("pt-BR")
+    ] })
+  ] });
+}
+function StatsOverview({
+  variant = "quick",
+  items,
+  className,
+  isLoading,
+  updatedAt,
+  columns,
+  animationDelay,
+  theme = "auto",
+  showFooterDate = true
+}) {
+  return /* @__PURE__ */ jsxRuntime.jsxs(
+    "section",
+    {
+      className: `w-full ${className || ""}`,
+      "aria-labelledby": `${variant}-stats-heading`,
+      "data-theme": theme,
+      children: [
+        /* @__PURE__ */ jsxRuntime.jsxs("h2", { id: `${variant}-stats-heading`, className: "sr-only", children: [
+          "Estat\xEDsticas do Dashboard (",
+          variant,
+          ")"
+        ] }),
+        /* @__PURE__ */ jsxRuntime.jsx(
+          StatsCards,
+          {
+            items: items ?? [],
+            isLoading,
+            updatedAt,
+            columns: columns ?? { base: 1, md: 2, lg: 4 },
+            animationDelay,
+            showFooterDate
+          }
+        )
+      ]
+    }
+  );
+}
+var DEFAULT_STAGGER_DELAY = 0.1;
+function QuickStatsComponent({
+  stats = [],
+  animationDelay = DEFAULT_STAGGER_DELAY,
+  className,
+  theme = "auto"
+}) {
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    StatsOverview,
+    {
+      variant: "quick",
+      items: stats,
+      animationDelay,
+      className,
+      theme,
+      showFooterDate: true
+    }
+  );
+}
+var QuickStats = React19__namespace.default.memo(QuickStatsComponent);
+QuickStats.displayName = "QuickStats";
 var STAGGER_DELAY_SECONDS = 0.1;
 function QuickActions({
   onNewPost,
@@ -2573,27 +1661,27 @@ function QuickActions({
         initial: { opacity: 0, scale: 0.9 },
         animate: { opacity: 1, scale: 1 },
         transition: { delay: index * STAGGER_DELAY_SECONDS },
-        children: /* @__PURE__ */ jsxRuntime.jsxs(
+        children: /* @__PURE__ */ jsxRuntime.jsx(
           Button,
           {
             onClick: action.onClick,
             variant: "outline",
             className: "w-full h-auto p-4 flex flex-col items-start gap-2 hover:border-cyan-400/50 dark:hover:bg-cyan-400/5",
             "aria-label": `${action.label}: ${action.description}`,
-            children: [
+            children: /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex flex-col gap-2 w-full", children: [
               /* @__PURE__ */ jsxRuntime.jsx(
-                "div",
+                "span",
                 {
-                  className: `p-2 rounded-lg bg-linear-to-br ${action.color} text-white`,
+                  className: `p-2 rounded-lg bg-linear-to-br ${action.color} text-white inline-flex w-fit`,
                   "aria-hidden": "true",
                   children: action.icon
                 }
               ),
-              /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-left", children: [
-                /* @__PURE__ */ jsxRuntime.jsx("p", { className: "font-semibold text-sm", children: action.label }),
-                /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-xs text-muted-foreground", children: action.description })
+              /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-left", children: [
+                /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-semibold text-sm block", children: action.label }),
+                /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted-foreground block", children: action.description })
               ] })
-            ]
+            ] })
           }
         )
       },
@@ -2601,1002 +1689,21 @@ function QuickActions({
     )) }) })
   ] });
 }
-function AnalyticsOverview({ className }) {
-  const [metrics, setMetrics] = React4.useState([]);
-  const [isLoading, setIsLoading] = React4.useState(true);
-  React4.useEffect(() => {
-    const loadStats = async () => {
-      try {
-        setIsLoading(true);
-        const stats = {
-          totalPosts: 42,
-          totalViews: 1250,
-          totalLikes: 89,
-          totalComments: 23
-        };
-        const newMetrics = [
-          {
-            title: "Posts Totais",
-            value: stats.totalPosts.toString(),
-            change: "+0.0%",
-            trend: "up",
-            icon: TrendingUp__default.default,
-            color: "text-blue-500"
-          },
-          {
-            title: "Visualiza\xE7\xF5es Totais",
-            value: stats.totalViews.toLocaleString("pt-BR"),
-            change: "+0.0%",
-            trend: "up",
-            icon: Eye__default.default,
-            color: "text-cyan-500"
-          },
-          {
-            title: "Curtidas",
-            value: stats.totalLikes.toLocaleString("pt-BR"),
-            change: "+0.0%",
-            trend: "up",
-            icon: Heart__default.default,
-            color: "text-pink-500"
-          },
-          {
-            title: "Coment\xE1rios",
-            value: stats.totalComments.toLocaleString("pt-BR"),
-            change: "+0.0%",
-            trend: "up",
-            icon: MessageSquare__default.default,
-            color: "text-orange-500"
-          }
-        ];
-        setMetrics(newMetrics);
-      } catch (error) {
-        console.error("Erro ao carregar estat\xEDsticas:", error);
-        setMetrics([]);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    loadStats();
-  }, []);
-  if (isLoading) {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        className: cn(
-          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
-          className
-        ),
-        children: [1, 2, 3, 4].map((i) => /* @__PURE__ */ jsxRuntime.jsxs(
-          Card,
-          {
-            className: "dark:bg-black/30 dark:border-cyan-400/20 animate-pulse",
-            children: [
-              /* @__PURE__ */ jsxRuntime.jsxs(CardHeader, { className: "flex flex-row items-center justify-between pb-2", children: [
-                /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 bg-muted rounded w-24" }),
-                /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-4 w-4 bg-muted rounded" })
-              ] }),
-              /* @__PURE__ */ jsxRuntime.jsxs(CardContent, { children: [
-                /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-8 bg-muted rounded w-16 mb-2" }),
-                /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-3 bg-muted rounded w-20" })
-              ] })
-            ]
-          },
-          i
-        ))
-      }
-    );
-  }
-  if (metrics.length === 0) {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        className: cn(
-          "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
-          className
-        ),
-        children: /* @__PURE__ */ jsxRuntime.jsx(Card, { className: "dark:bg-black/30 dark:border-cyan-400/20", children: /* @__PURE__ */ jsxRuntime.jsx(CardContent, { className: "p-6 text-center text-muted-foreground", children: "Nenhum dado dispon\xEDvel" }) })
-      }
-    );
-  }
+function AnalyticsOverview({ className, metrics = [], isLoading, updatedAt }) {
+  const items = metrics;
   return /* @__PURE__ */ jsxRuntime.jsx(
-    "div",
+    StatsOverview,
     {
-      className: cn(
-        "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
-        className
-      ),
-      children: metrics.map((metric, index) => {
-        const Icon = metric.icon;
-        return /* @__PURE__ */ jsxRuntime.jsxs(
-          Card,
-          {
-            className: "dark:bg-black/30 dark:border-cyan-400/20 hover:shadow-lg transition-shadow",
-            children: [
-              /* @__PURE__ */ jsxRuntime.jsxs(CardHeader, { className: "flex flex-row items-center justify-between pb-2", children: [
-                /* @__PURE__ */ jsxRuntime.jsx(CardTitle, { className: "text-sm font-medium text-muted-foreground", children: metric.title }),
-                /* @__PURE__ */ jsxRuntime.jsx(Icon, { className: cn("h-4 w-4", metric.color) })
-              ] }),
-              /* @__PURE__ */ jsxRuntime.jsxs(CardContent, { children: [
-                /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-2xl font-bold dark:text-gray-100", children: metric.value }),
-                /* @__PURE__ */ jsxRuntime.jsxs("p", { className: "text-xs text-muted-foreground mt-1", children: [
-                  /* @__PURE__ */ jsxRuntime.jsx(
-                    "span",
-                    {
-                      className: cn(
-                        "font-medium",
-                        metric.trend === "up" ? "text-green-500" : "text-red-500"
-                      ),
-                      children: metric.change
-                    }
-                  ),
-                  " ",
-                  "vs per\xEDodo anterior"
-                ] })
-              ] })
-            ]
-          },
-          index
-        );
-      })
+      variant: "analytics",
+      className,
+      items,
+      isLoading,
+      updatedAt,
+      columns: { base: 1, md: 2, lg: 4 },
+      showFooterDate: true
     }
   );
 }
-var alertVariants = classVarianceAuthority.cva(
-  "relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
-  {
-    variants: {
-      variant: {
-        default: "bg-background text-foreground",
-        destructive: "border-destructive/50 text-destructive dark:border-destructive [&>svg]:text-destructive",
-        success: "border-status-success-base/50 bg-status-success-background text-status-success-text-on-background dark:border-status-success-base dark:text-status-success-text-on-background [&>svg]:text-status-success-text-on-background",
-        warning: "border-status-warning-base/50 bg-status-warning-background text-status-warning-text-on-background dark:border-status-warning-base dark:text-status-warning-text-on-background [&>svg]:text-status-warning-text-on-background",
-        info: "border-status-info-base/50 bg-status-info-background text-status-info-text-on-background dark:border-status-info-base dark:text-status-info-text-on-background [&>svg]:text-status-info-text-on-background"
-      }
-    },
-    defaultVariants: {
-      variant: "default"
-    }
-  }
-);
-var Alert = React4__namespace.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "div",
-  {
-    ref,
-    role: "alert",
-    className: cn(alertVariants({ variant }), className),
-    ...props
-  }
-));
-Alert.displayName = "Alert";
-var AlertTitle = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "h5",
-  {
-    ref,
-    className: cn("mb-1 font-medium leading-none tracking-tight", className),
-    ...props
-  }
-));
-AlertTitle.displayName = "AlertTitle";
-var AlertDescription = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "div",
-  {
-    ref,
-    className: cn("text-sm [&_p]:leading-relaxed", className),
-    ...props
-  }
-));
-AlertDescription.displayName = "AlertDescription";
-var AlertDialogPortal = AlertDialogPrimitive__namespace.Portal;
-var AlertDialogOverlay = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  AlertDialogPrimitive__namespace.Overlay,
-  {
-    className: cn(
-      "fixed inset-0 z-50 bg-black/80 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-      className
-    ),
-    ...props,
-    ref
-  }
-));
-AlertDialogOverlay.displayName = AlertDialogPrimitive__namespace.Overlay.displayName;
-var AlertDialogContent = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(AlertDialogPortal, { children: [
-  /* @__PURE__ */ jsxRuntime.jsx(AlertDialogOverlay, {}),
-  /* @__PURE__ */ jsxRuntime.jsx(
-    AlertDialogPrimitive__namespace.Content,
-    {
-      ref,
-      className: cn(
-        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%] sm:rounded-lg",
-        className
-      ),
-      ...props
-    }
-  )
-] }));
-AlertDialogContent.displayName = AlertDialogPrimitive__namespace.Content.displayName;
-var AlertDialogTitle = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  AlertDialogPrimitive__namespace.Title,
-  {
-    ref,
-    className: cn("text-lg font-semibold", className),
-    ...props
-  }
-));
-AlertDialogTitle.displayName = AlertDialogPrimitive__namespace.Title.displayName;
-var AlertDialogDescription = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  AlertDialogPrimitive__namespace.Description,
-  {
-    ref,
-    className: cn("text-sm text-muted-foreground", className),
-    ...props
-  }
-));
-AlertDialogDescription.displayName = AlertDialogPrimitive__namespace.Description.displayName;
-var AlertDialogAction = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  AlertDialogPrimitive__namespace.Action,
-  {
-    ref,
-    className: cn(buttonVariants(), className),
-    ...props
-  }
-));
-AlertDialogAction.displayName = AlertDialogPrimitive__namespace.Action.displayName;
-var AlertDialogCancel = React4__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  AlertDialogPrimitive__namespace.Cancel,
-  {
-    ref,
-    className: cn(
-      buttonVariants({ variant: "outline" }),
-      "mt-2 sm:mt-0",
-      className
-    ),
-    ...props
-  }
-));
-AlertDialogCancel.displayName = AlertDialogPrimitive__namespace.Cancel.displayName;
-var badgeVariants = classVarianceAuthority.cva(
-  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-  {
-    /**
-     * Variantes de estilo
-     * Cada variante define aparência diferente do badge
-     */
-    variants: {
-      variant: {
-        /** Badge primário - cor primária com borda transparente */
-        default: "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
-        /** Badge secundário - cor secundária */
-        secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        /** Badge destrutivo - para status negativos/erros */
-        destructive: "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        /** Badge outline - apenas borda, fundo transparente */
-        outline: "text-foreground"
-      }
-    },
-    /**
-     * Variante padrão aplicada quando prop não é fornecida
-     */
-    defaultVariants: {
-      variant: "default"
-    }
-  }
-);
-function Badge({ className, variant, ...props }) {
-  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(badgeVariants({ variant }), className), ...props });
-}
-var Progress = React4__namespace.forwardRef(({ className, value, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  ProgressPrimitive__namespace.Root,
-  {
-    ref,
-    className: cn(
-      "relative h-4 w-full overflow-hidden rounded-full bg-secondary",
-      className
-    ),
-    ...props,
-    children: /* @__PURE__ */ jsxRuntime.jsx(
-      ProgressPrimitive__namespace.Indicator,
-      {
-        className: cn("h-full w-full flex-1 transition-all", "bg-primary"),
-        style: { transform: `translateX(-${100 - (value || 0)}%)` }
-      }
-    )
-  }
-));
-Progress.displayName = "Progress";
-var Toaster = React4__namespace.forwardRef((props, ref) => {
-  const { theme = "system" } = nextThemes.useTheme();
-  return React4__namespace.createElement(
-    sonner.Toaster,
-    {
-      ref,
-      theme,
-      className: "toaster group",
-      icons: {
-        success: React4__namespace.createElement(lucideReact.Check, { className: "h-4 w-4" }),
-        info: React4__namespace.createElement(lucideReact.Info, { className: "h-4 w-4" }),
-        warning: React4__namespace.createElement(lucideReact.AlertTriangle, { className: "h-4 w-4" }),
-        error: React4__namespace.createElement(lucideReact.Octagon, { className: "h-4 w-4" }),
-        loading: React4__namespace.createElement(lucideReact.Loader2, { className: "h-4 w-4 animate-spin" })
-      },
-      toastOptions: {
-        classNames: {
-          toast: cn(
-            "group toast group-[.toaster]:bg-background group-[.toaster]:text-foreground group-[.toaster]:border-border shadow-lg",
-            "dark:group-[.toaster]:bg-background dark:group-[.toaster]:border-border"
-          ),
-          title: "dark:text-foreground",
-          description: "group-[.toast]:text-muted-foreground dark:text-muted-foreground",
-          actionButton: "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
-          cancelButton: "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
-          error: "dark:bg-status-error-background dark:border-status-error-border",
-          success: "dark:bg-status-success-background dark:border-status-success-border"
-        }
-      },
-      ...props
-    }
-  );
-});
-Toaster.displayName = "Toaster";
-var spinnerVariants = classVarianceAuthority.cva(
-  "animate-spin text-muted-foreground",
-  {
-    variants: {
-      variant: {
-        default: "",
-        primary: "text-primary",
-        secondary: "text-secondary",
-        destructive: "text-destructive",
-        success: "text-emerald-600 dark:text-emerald-500",
-        warning: "text-amber-600 dark:text-amber-500",
-        glow: "text-primary dark:text-cyan-400",
-        pulse: "animate-pulse",
-        dots: "animate-bounce"
-      },
-      size: {
-        xs: "h-3 w-3",
-        sm: "h-4 w-4",
-        md: "h-5 w-5",
-        lg: "h-6 w-6",
-        xl: "h-8 w-8",
-        "2xl": "h-12 w-12",
-        "3xl": "h-16 w-16"
-      }
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "md"
-    }
-  }
-);
-var speedClasses = {
-  slow: "animate-spin-slow",
-  normal: "animate-spin",
-  fast: "animate-spin-fast"
-};
-var Spinner = React4__namespace.forwardRef(
-  ({
-    className,
-    variant = "default",
-    size = "md",
-    label = "Carregando...",
-    showLabel = false,
-    labelPosition = "bottom",
-    icon,
-    speed = "normal",
-    ...props
-  }, ref) => {
-    const IconComponent = icon || /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Loader2, { className: spinnerVariants({ variant, size }) });
-    const animationClass = variant === "pulse" ? "animate-pulse" : variant === "dots" ? "animate-bounce" : speedClasses[speed];
-    const layoutClasses = {
-      top: "flex-col-reverse",
-      bottom: "flex-col",
-      left: "flex-row-reverse",
-      right: "flex-row"
-    }[labelPosition];
-    const spacingClasses5 = {
-      top: "gap-1",
-      bottom: "gap-1",
-      left: "gap-2",
-      right: "gap-2"
-    }[labelPosition];
-    return /* @__PURE__ */ jsxRuntime.jsxs(
-      "div",
-      {
-        ref,
-        className: cn(
-          "inline-flex items-center justify-center",
-          layoutClasses,
-          spacingClasses5,
-          className
-        ),
-        role: "status",
-        "aria-label": label,
-        ...props,
-        children: [
-          /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(animationClass), children: IconComponent }),
-          showLabel && /* @__PURE__ */ jsxRuntime.jsx("span", { className: cn(
-            "text-sm text-muted-foreground",
-            (labelPosition === "top" || labelPosition === "bottom") && "text-center",
-            variant === "glow" && "text-primary dark:text-cyan-400"
-          ), children: label }),
-          /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: label })
-        ]
-      }
-    );
-  }
-);
-Spinner.displayName = "Spinner";
-var SpinnerOverlay = React4__namespace.forwardRef(
-  ({
-    className,
-    fullscreen = false,
-    overlayColor = "rgba(0, 0, 0, 0.5)",
-    opacity = 0.5,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "flex items-center justify-center",
-          fullscreen ? "fixed inset-0 z-50" : "absolute inset-0 z-10",
-          className
-        ),
-        style: {
-          backgroundColor: overlayColor.replace(/[\d.]+\)$/, `${opacity})`)
-        },
-        children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "bg-background rounded-lg p-4 shadow-lg", children: /* @__PURE__ */ jsxRuntime.jsx(Spinner, { ...props, showLabel: true }) })
-      }
-    );
-  }
-);
-SpinnerOverlay.displayName = "SpinnerOverlay";
-var dotSizeClasses = {
-  sm: "h-1 w-1",
-  md: "h-2 w-2",
-  lg: "h-3 w-3"
-};
-var DotsSpinner = React4__namespace.forwardRef(
-  ({
-    className,
-    count = 3,
-    size = "md",
-    color,
-    label,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsxs(
-      "div",
-      {
-        ref,
-        className: cn("flex items-center gap-1", className),
-        role: "status",
-        "aria-label": label || "Carregando...",
-        ...props,
-        children: [
-          Array.from({ length: count }, (_, index) => /* @__PURE__ */ jsxRuntime.jsx(
-            "div",
-            {
-              className: cn(
-                "rounded-full bg-current",
-                dotSizeClasses[size],
-                "animate-bounce"
-              ),
-              style: {
-                color: color || "hsl(var(--muted-foreground))",
-                animationDelay: `${index * 0.1}s`,
-                animationDuration: "0.6s"
-              }
-            },
-            index
-          )),
-          label && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "ml-2 text-sm text-muted-foreground", children: label })
-        ]
-      }
-    );
-  }
-);
-DotsSpinner.displayName = "DotsSpinner";
-var pulseSizeClasses = {
-  sm: "h-8 w-8",
-  md: "h-12 w-12",
-  lg: "h-16 w-16",
-  xl: "h-20 w-20"
-};
-var PulseSpinner = React4__namespace.forwardRef(
-  ({
-    className,
-    rings = 3,
-    size = "md",
-    color,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn("relative flex items-center justify-center", className),
-        ...props,
-        children: Array.from({ length: rings }, (_, index) => /* @__PURE__ */ jsxRuntime.jsx(
-          "div",
-          {
-            className: cn(
-              "absolute rounded-full border-2 border-current opacity-0",
-              pulseSizeClasses[size]
-            ),
-            style: {
-              color: color || "hsl(var(--primary))",
-              animation: `ping ${1.5 + index * 0.3}s cubic-bezier(0, 0, 0.2, 1) infinite`,
-              animationDelay: `${index * 0.2}s`
-            }
-          },
-          index
-        ))
-      }
-    );
-  }
-);
-PulseSpinner.displayName = "PulseSpinner";
-var kpiVariants = classVarianceAuthority.cva(
-  "rounded-lg border bg-card p-6 shadow-sm transition-all duration-[var(--motion-duration-normal)]",
-  {
-    variants: {
-      variant: {
-        default: "border-border hover:shadow-md",
-        elevated: "border-border shadow-md hover:shadow-lg",
-        outlined: "border-2 border-border hover:border-primary",
-        glass: "glass border-border hover:glass-hover"
-      },
-      size: {
-        sm: "p-4",
-        md: "p-6",
-        lg: "p-8"
-      }
-    },
-    defaultVariants: {
-      variant: "default",
-      size: "md"
-    }
-  }
-);
-var trendVariants = classVarianceAuthority.cva(
-  "inline-flex items-center gap-1 rounded-full px-2 py-1 text-xs font-medium",
-  {
-    variants: {
-      trend: {
-        up: "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-300",
-        down: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300",
-        neutral: "bg-gray-100 text-gray-800 dark:bg-gray-900/30 dark:text-gray-300"
-      }
-    }
-  }
-);
-function formatValue(value, format, currency, decimals = 0) {
-  if (format === "custom") return value.toString();
-  const numValue = typeof value === "number" ? value : parseFloat(value.toString());
-  if (isNaN(numValue)) return value.toString();
-  const formatted = numValue.toLocaleString("pt-BR", {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
-  });
-  switch (format) {
-    case "currency":
-      return `${currency || "R$"} ${formatted}`;
-    case "percentage":
-      return `${formatted}%`;
-    default:
-      return formatted;
-  }
-}
-var KPI = React4__namespace.forwardRef(
-  ({
-    className,
-    variant = "default",
-    size = "md",
-    title,
-    value,
-    description,
-    trend,
-    trendValue,
-    icon,
-    iconColor,
-    loading = false,
-    format = "number",
-    currency,
-    decimals = 0,
-    ...props
-  }, ref) => {
-    const TrendIcon = trend === "up" ? TrendingUp__default.default : trend === "down" ? TrendingDown__default.default : Minus__default.default;
-    const ArrowIcon = trend === "up" ? ArrowUp__default.default : trend === "down" ? ArrowDown__default.default : null;
-    return /* @__PURE__ */ jsxRuntime.jsxs(
-      "div",
-      {
-        ref,
-        className: cn(kpiVariants({ variant, size }), className),
-        ...props,
-        children: [
-          /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start justify-between", children: [
-            /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "space-y-1", children: [
-              /* @__PURE__ */ jsxRuntime.jsx("h3", { className: "text-sm font-medium text-muted-foreground", children: title }),
-              description && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-xs text-muted-foreground/70", children: description })
-            ] }),
-            icon && /* @__PURE__ */ jsxRuntime.jsx(
-              "div",
-              {
-                className: cn(
-                  "rounded-lg p-2",
-                  iconColor === "primary" && "bg-primary/10 text-primary",
-                  iconColor === "success" && "bg-emerald-100 text-emerald-600 dark:bg-emerald-900/30 dark:text-emerald-400",
-                  iconColor === "warning" && "bg-amber-100 text-amber-600 dark:bg-amber-900/30 dark:text-amber-400",
-                  iconColor === "error" && "bg-red-100 text-red-600 dark:bg-red-900/30 dark:text-red-400",
-                  !iconColor && "text-muted-foreground"
-                ),
-                children: icon
-              }
-            )
-          ] }),
-          /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mt-4", children: loading ? /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-8 w-24 bg-muted rounded animate-pulse" }) : /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-baseline gap-2", children: [
-            /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-2xl font-semibold text-foreground", children: formatValue(value, format, currency, decimals) }),
-            trend && trendValue && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: cn(trendVariants({ trend })), children: [
-              ArrowIcon && /* @__PURE__ */ jsxRuntime.jsx(ArrowIcon, { className: "h-3 w-3" }),
-              trendValue
-            ] })
-          ] }) }),
-          trend && !trendValue && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: cn(
-            "mt-3 flex items-center gap-1 text-xs",
-            trend === "up" && "text-emerald-600 dark:text-emerald-400",
-            trend === "down" && "text-red-600 dark:text-red-400",
-            trend === "neutral" && "text-muted-foreground"
-          ), children: [
-            /* @__PURE__ */ jsxRuntime.jsx(TrendIcon, { className: "h-3 w-3" }),
-            /* @__PURE__ */ jsxRuntime.jsx("span", { children: trend === "up" ? "Aumentando" : trend === "down" ? "Diminuindo" : "Est\xE1vel" })
-          ] })
-        ]
-      }
-    );
-  }
-);
-KPI.displayName = "KPI";
-var gridColsClasses = {
-  1: "grid-cols-1",
-  2: "grid-cols-1 md:grid-cols-2",
-  3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
-  4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-};
-var KPIGrid = React4__namespace.forwardRef(
-  ({
-    className,
-    cols = 4,
-    children,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "grid gap-4",
-          gridColsClasses[cols],
-          className
-        ),
-        ...props,
-        children
-      }
-    );
-  }
-);
-KPIGrid.displayName = "KPIGrid";
-var KPIChart = React4__namespace.forwardRef(
-  ({
-    className,
-    chart,
-    chartPosition = "bottom",
-    // children, // TODO: implementar children content
-    ...props
-  }, ref) => {
-    const isRight = chartPosition === "right";
-    return /* @__PURE__ */ jsxRuntime.jsxs(
-      "div",
-      {
-        ref,
-        className: cn(
-          kpiVariants({ variant: props.variant, size: props.size }),
-          isRight && "flex flex-row items-center justify-between",
-          className
-        ),
-        ...props,
-        children: [
-          /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(isRight && "flex-1"), children: /* @__PURE__ */ jsxRuntime.jsx(KPI, { ...props }) }),
-          chart && /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(
-            "mt-4",
-            isRight && "mt-0 ml-4 flex-1 max-w-[200px]"
-          ), children: chart })
-        ]
-      }
-    );
-  }
-);
-KPIChart.displayName = "KPIChart";
-var defaultIcons = {
-  search: Search__default.default,
-  empty: Package__default.default,
-  error: XCircle__default.default,
-  filtered: ChevronDown__default.default,
-  offline: Wifi__default.default,
-  loading: RefreshCw__default.default
-};
-var emptyStateVariants = classVarianceAuthority.cva(
-  "flex flex-col items-center justify-center text-center p-8",
-  {
-    variants: {
-      size: {
-        sm: "p-6",
-        md: "p-8",
-        lg: "p-12",
-        xl: "p-16"
-      },
-      variant: {
-        default: "",
-        card: "rounded-lg border border-border bg-card",
-        glass: "glass rounded-lg",
-        minimal: "p-4"
-      }
-    },
-    defaultVariants: {
-      size: "md",
-      variant: "default"
-    }
-  }
-);
-var iconSizeClasses = {
-  sm: "h-8 w-8",
-  md: "h-12 w-12",
-  lg: "h-16 w-16",
-  xl: "h-20 w-20"
-};
-var EmptyState = React4__namespace.forwardRef(
-  ({
-    className,
-    variant = "default",
-    size = "md",
-    type,
-    icon,
-    title,
-    description,
-    actions,
-    secondaryActions,
-    animated = false,
-    iconColor,
-    iconSize = "md",
-    ...props
-  }, ref) => {
-    let IconComponent = icon;
-    if (!IconComponent && type) {
-      const DefaultIcon = defaultIcons[type];
-      IconComponent = /* @__PURE__ */ jsxRuntime.jsx(DefaultIcon, { className: iconSizeClasses[iconSize] });
-    }
-    return /* @__PURE__ */ jsxRuntime.jsxs(
-      "div",
-      {
-        ref,
-        className: cn(emptyStateVariants({ size, variant }), className),
-        ...props,
-        children: [
-          IconComponent && /* @__PURE__ */ jsxRuntime.jsx(
-            "div",
-            {
-              className: cn(
-                "mb-4 text-muted-foreground",
-                animated && "animate-pulse",
-                iconColor === "primary" && "text-primary",
-                iconColor === "success" && "text-emerald-600 dark:text-emerald-500",
-                iconColor === "warning" && "text-amber-600 dark:text-amber-500",
-                iconColor === "error" && "text-red-600 dark:text-red-500",
-                !iconColor && "text-muted-foreground"
-              ),
-              children: IconComponent
-            }
-          ),
-          /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "max-w-md space-y-2", children: [
-            /* @__PURE__ */ jsxRuntime.jsx("h3", { className: "text-lg font-semibold text-foreground", children: title }),
-            description && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted-foreground leading-relaxed", children: description })
-          ] }),
-          (actions || secondaryActions) && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "mt-6 flex flex-col items-center gap-3 sm:flex-row", children: [
-            actions,
-            secondaryActions
-          ] })
-        ]
-      }
-    );
-  }
-);
-EmptyState.displayName = "EmptyState";
-var EmptyStateIllustrated = React4__namespace.forwardRef(
-  ({
-    className,
-    illustration,
-    illustrationAlt = "Ilustra\xE7\xE3o",
-    illustrationWidth = 200,
-    illustrationHeight = 200,
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      EmptyState,
-      {
-        ref,
-        className: cn(className),
-        ...props,
-        icon: illustration && /* @__PURE__ */ jsxRuntime.jsx(
-          "img",
-          {
-            src: illustration,
-            alt: illustrationAlt,
-            width: illustrationWidth,
-            height: illustrationHeight,
-            className: "object-contain"
-          }
-        )
-      }
-    );
-  }
-);
-EmptyStateIllustrated.displayName = "EmptyStateIllustrated";
-var variantIcons = {
-  success: Check2__default.default,
-  error: AlertCircle__default.default,
-  warning: AlertTriangle2__default.default,
-  info: Info2__default.default,
-  default: Bell__default.default
-};
-var notificationVariants = classVarianceAuthority.cva(
-  "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-4 pr-8 shadow-lg transition-all duration-[var(--motion-duration-normal)]",
-  {
-    variants: {
-      variant: {
-        default: "border-border bg-background text-foreground",
-        success: "border-emerald-200 bg-emerald-50 text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950 dark:text-emerald-200",
-        error: "border-red-200 bg-red-50 text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-200",
-        warning: "border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-800 dark:bg-amber-950 dark:text-amber-200",
-        info: "border-blue-200 bg-blue-50 text-blue-800 dark:border-blue-800 dark:bg-blue-950 dark:text-blue-200"
-      }
-    },
-    defaultVariants: {
-      variant: "default"
-    }
-  }
-);
-var Notification = React4__namespace.forwardRef(
-  ({
-    className,
-    variant = "default",
-    title,
-    description,
-    dismissible = true,
-    onDismiss,
-    actions,
-    icon,
-    timestamp,
-    autoClose = false,
-    autoCloseDelay = 5e3,
-    toast = false,
-    ...props
-  }, ref) => {
-    const [visible, setVisible] = React4__namespace.useState(true);
-    React4__namespace.useEffect(() => {
-      if (autoClose && onDismiss) {
-        const timer = setTimeout(() => {
-          handleClose();
-        }, autoCloseDelay);
-        return () => clearTimeout(timer);
-      }
-    }, [autoClose, autoCloseDelay, onDismiss]);
-    const handleClose = () => {
-      setVisible(false);
-      onDismiss?.();
-    };
-    let IconComponent = icon;
-    if (!IconComponent) {
-      const VariantIcon = variantIcons[variant];
-      IconComponent = /* @__PURE__ */ jsxRuntime.jsx(VariantIcon, { className: "h-5 w-5" });
-    }
-    if (!visible) return null;
-    return /* @__PURE__ */ jsxRuntime.jsxs(
-      "div",
-      {
-        ref,
-        className: cn(
-          notificationVariants({ variant }),
-          toast && "animate-in slide-in-from-bottom-full",
-          className
-        ),
-        ...props,
-        children: [
-          /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(
-            "flex-shrink-0",
-            variant === "success" && "text-emerald-600 dark:text-emerald-400",
-            variant === "error" && "text-red-600 dark:text-red-400",
-            variant === "warning" && "text-amber-600 dark:text-amber-400",
-            variant === "info" && "text-blue-600 dark:text-blue-400",
-            variant === "default" && "text-muted-foreground"
-          ), children: IconComponent }),
-          /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex-1 space-y-1", children: [
-            title && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm font-medium", children: title }),
-            description && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm opacity-90", children: description }),
-            timestamp && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-xs opacity-70", children: timestamp })
-          ] }),
-          actions && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex flex-shrink-0 gap-2", children: actions }),
-          dismissible && /* @__PURE__ */ jsxRuntime.jsx(
-            "button",
-            {
-              onClick: handleClose,
-              className: cn(
-                "absolute right-2 top-2 rounded-md p-1",
-                "transition-colors duration-[var(--motion-duration-fast)]",
-                "hover:bg-black/10 dark:hover:bg-white/10",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-              ),
-              children: /* @__PURE__ */ jsxRuntime.jsx(X2__default.default, { className: "h-4 w-4 opacity-60 hover:opacity-100" })
-            }
-          )
-        ]
-      }
-    );
-  }
-);
-Notification.displayName = "Notification";
-var positionClasses = {
-  "top-right": "top-0 right-0",
-  "top-left": "top-0 left-0",
-  "bottom-right": "bottom-0 right-0",
-  "bottom-left": "bottom-0 left-0",
-  "top-center": "top-0 left-1/2 -translate-x-1/2",
-  "bottom-center": "bottom-0 left-1/2 -translate-x-1/2"
-};
-var spacingClasses4 = {
-  sm: "gap-2",
-  md: "gap-3",
-  lg: "gap-4"
-};
-var NotificationGroup = React4__namespace.forwardRef(
-  ({
-    className,
-    children,
-    position = "top-right",
-    spacing = "md",
-    ...props
-  }, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        ref,
-        className: cn(
-          "fixed z-50 flex max-h-screen w-full flex-col-reverse p-4",
-          "md:max-w-[420px]",
-          positionClasses[position],
-          spacingClasses4[spacing],
-          className
-        ),
-        ...props,
-        children
-      }
-    );
-  }
-);
-NotificationGroup.displayName = "NotificationGroup";
-var NotificationToast = React4__namespace.forwardRef(
-  (props, ref) => {
-    return /* @__PURE__ */ jsxRuntime.jsx(
-      Notification,
-      {
-        ref,
-        toast: true,
-        ...props
-      }
-    );
-  }
-);
-NotificationToast.displayName = "NotificationToast";
 function RecentPostsList({
   posts = [],
   onEditPost,
@@ -3685,6 +1792,93 @@ function RecentPostsList({
     )) }) })
   ] });
 }
+
+// src/lib/constants.ts
+var MOTION = {
+  TRANSITION: {
+    DEFAULT: "transition-all duration-200 ease-in-out"}};
+var GRADIENT_DIRECTIONS = {
+  TO_BOTTOM_RIGHT: "to-br"};
+var Card2 = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "div",
+  {
+    ref,
+    className: cn(
+      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      className
+    ),
+    ...props
+  }
+));
+Card2.displayName = "Card";
+var CardHeader2 = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "div",
+  {
+    ref,
+    className: cn("flex flex-col space-y-1.5 p-6", className),
+    ...props
+  }
+));
+CardHeader2.displayName = "CardHeader";
+var CardTitle2 = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "h3",
+  {
+    ref,
+    className: cn(
+      "text-2xl font-semibold leading-none tracking-tight",
+      className
+    ),
+    ...props
+  }
+));
+CardTitle2.displayName = "CardTitle";
+var CardDescription2 = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "p",
+  {
+    ref,
+    className: cn("text-sm text-muted-foreground", className),
+    ...props
+  }
+));
+CardDescription2.displayName = "CardDescription";
+var CardContent2 = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+CardContent2.displayName = "CardContent";
+var CardFooter2 = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "div",
+  {
+    ref,
+    className: cn("flex items-center p-6 pt-0", className),
+    ...props
+  }
+));
+CardFooter2.displayName = "CardFooter";
+var HighlightCard = React19__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "div",
+  {
+    ref,
+    className: cn(
+      "text-left bg-card/60 dark:bg-black/50",
+      "backdrop-blur-xl",
+      "rounded-2xl",
+      "p-4 xs:p-5 sm:p-6 md:p-8",
+      "border border-border/50 dark:border-cyan-400/20",
+      "hover:border-primary/40 dark:hover:border-cyan-400/50",
+      "hover:bg-card/80 dark:hover:bg-black/70",
+      "hover:shadow-2xl hover:shadow-primary/10 dark:hover:shadow-cyan-500/20",
+      "h-full flex flex-col group",
+      "relative overflow-hidden",
+      `before:absolute before:inset-0 before:${GRADIENT_DIRECTIONS.TO_BOTTOM_RIGHT}`,
+      "before:from-primary/0 before:via-primary/0 before:to-primary/0",
+      "hover:before:from-primary/5 hover:before:via-transparent hover:before:to-primary/5",
+      "dark:hover:before:from-cyan-400/5 dark:hover:before:via-transparent dark:hover:before:to-purple-400/5",
+      "before:transition-all before:duration-500 before:ease-in-out before:pointer-events-none",
+      MOTION.TRANSITION.DEFAULT,
+      className
+    ),
+    ...props
+  }
+));
+HighlightCard.displayName = "HighlightCard";
 function HelpCenter() {
   const resources = [
     {
@@ -3706,30 +1900,30 @@ function HelpCenter() {
       link: "/contato"
     }
   ];
-  return /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: "dark:bg-black/30 dark:border-purple-400/20", children: [
-    /* @__PURE__ */ jsxRuntime.jsxs(CardHeader, { children: [
-      /* @__PURE__ */ jsxRuntime.jsxs(CardTitle, { className: "flex items-center gap-2 dark:text-purple-200", children: [
+  return /* @__PURE__ */ jsxRuntime.jsxs(Card2, { className: "dark:bg-black/30 dark:border-purple-400/20", children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(CardHeader2, { children: [
+      /* @__PURE__ */ jsxRuntime.jsxs(CardTitle2, { className: "flex items-center gap-2 dark:text-purple-200", children: [
         /* @__PURE__ */ jsxRuntime.jsx(HelpCircle__default.default, { className: "h-5 w-5" }),
         "Central de Ajuda"
       ] }),
-      /* @__PURE__ */ jsxRuntime.jsx(CardDescription, { children: "Precisa de ajuda? Acesse nossos recursos" })
+      /* @__PURE__ */ jsxRuntime.jsx(CardDescription2, { children: "Precisa de ajuda? Acesse nossos recursos" })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(CardContent, { className: "space-y-3", children: resources.map((resource, index) => {
+    /* @__PURE__ */ jsxRuntime.jsx(CardContent2, { className: "space-y-3", children: resources.map((resource, index) => {
       const Icon = resource.icon;
-      return /* @__PURE__ */ jsxRuntime.jsx(
-        Button,
+      return /* @__PURE__ */ jsxRuntime.jsxs(
+        "button",
         {
-          asChild: true,
-          variant: "outline",
-          className: "w-full justify-between dark:border-purple-400/20 dark:hover:bg-purple-400/10",
-          children: /* @__PURE__ */ jsxRuntime.jsxs("a", { href: resource.link, className: "flex items-center gap-3 flex-1", children: [
+          type: "button",
+          className: "w-full justify-between dark:border-purple-400/20 inline-flex items-center gap-3 rounded-md border px-3 py-2 text-sm font-medium shadow-sm bg-white hover:bg-gray-50 dark:bg-black/30 dark:hover:bg-purple-400/10",
+          onClick: () => window.location.href = resource.link,
+          children: [
             /* @__PURE__ */ jsxRuntime.jsx(Icon, { className: "h-4 w-4" }),
-            /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-left", children: [
-              /* @__PURE__ */ jsxRuntime.jsx("div", { className: "font-medium text-sm", children: resource.title }),
-              /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs text-muted-foreground", children: resource.description })
+            /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "text-left flex-1", children: [
+              /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-medium text-sm block", children: resource.title }),
+              /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs text-muted-foreground block", children: resource.description })
             ] }),
             /* @__PURE__ */ jsxRuntime.jsx(ExternalLink__default.default, { className: "h-4 w-4 ml-auto" })
-          ] })
+          ]
         },
         index
       );
@@ -3783,5 +1977,6 @@ exports.QuickActions = QuickActions;
 exports.QuickStats = QuickStats;
 exports.RecentPostsList = RecentPostsList;
 exports.StatsCards = StatsCards;
+exports.StatsOverview = StatsOverview;
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

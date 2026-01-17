@@ -33,7 +33,8 @@ function usePWA() {
   }, []);
   react.useEffect(() => {
     if (typeof window === "undefined") return;
-    const isStandaloneiOS = window.navigator.standalone === true;
+    const nav = window.navigator;
+    const isStandaloneiOS = nav.standalone === true;
     const isStandaloneAndroid = window.matchMedia(
       "(display-mode: standalone)"
     ).matches;

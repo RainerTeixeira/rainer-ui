@@ -205,18 +205,28 @@ global.IntersectionObserver = jest.fn().mockImplementation(() => ({
 }));
 
 // Mock para matchMedia
-Object.defineProperty((global as any).window, 'matchMedia', {
+type MediaQueryListMock = Pick<MediaQueryList,
+  'matches' | 'media' | 'addEventListener' | 'removeEventListener' | 'dispatchEvent'
+> & {
+  onchange: MediaQueryList['onchange'];
+  addListener: jest.Mock;
+  removeListener: jest.Mock;
+};
+
+const createMatchMediaMock = (query: string): MediaQueryListMock => ({
+  matches: false,
+  media: query,
+  onchange: null,
+  addListener: jest.fn(), // deprecated
+  removeListener: jest.fn(), // deprecated
+  addEventListener: jest.fn(),
+  removeEventListener: jest.fn(),
+  dispatchEvent: jest.fn(),
+});
+
+Object.defineProperty(global.window, 'matchMedia', {
   writable: true,
-  value: jest.fn().mockImplementation(query => ({
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(), // deprecated
-    removeListener: jest.fn(), // deprecated
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  })),
+  value: jest.fn().mockImplementation((query: string) => createMatchMediaMock(query)),
 });
 
 // Mock para crypto.randomUUID

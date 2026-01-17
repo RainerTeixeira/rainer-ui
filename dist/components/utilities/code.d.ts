@@ -61,9 +61,9 @@ declare const Code: React.ForwardRefExoticComponent<CodeProps & React.RefAttribu
 /**
  * CodeInline - Atalho para código inline
  */
-interface CodeInlineProps extends Omit<CodeProps, 'variant'> {
-    /** Variante de cor */
-    color?: 'default' | 'ghost' | 'neon' | 'success' | 'warning' | 'error';
+interface CodeInlineProps extends React.HTMLAttributes<HTMLElement> {
+    className?: string;
+    color?: 'default' | Exclude<VariantProps<typeof codeVariants>['variant'], 'block'>;
 }
 declare const CodeInline: React.ForwardRefExoticComponent<CodeInlineProps & React.RefAttributes<HTMLElement>>;
 /**

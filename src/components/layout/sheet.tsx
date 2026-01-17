@@ -106,12 +106,13 @@ function SheetPortal({
  * @param {string} [props.className] - Classes CSS adicionais
  * @returns {JSX.Element} Overlay escurecido
  */
-function SheetOverlay({
-  className,
-  ...props
-}: React.ComponentProps<typeof SheetOverlayPrimitive>) {
+const SheetOverlay = React.forwardRef<
+  React.ElementRef<typeof SheetOverlayPrimitive>,
+  React.ComponentPropsWithoutRef<typeof SheetOverlayPrimitive>
+>(({ className, ...props }, ref) => {
   return (
     <SheetOverlayPrimitive
+      ref={ref}
       data-slot="sheet-overlay"
       className={cn(
         'data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50',
@@ -120,7 +121,8 @@ function SheetOverlay({
       {...props}
     />
   );
-}
+});
+SheetOverlay.displayName = 'SheetOverlay'
 
 /**
  * Componente SheetContent (Conteúdo)
@@ -158,6 +160,8 @@ function SheetContent({
 }: React.ComponentProps<typeof SheetContentPrimitive> & {
   side?: 'top' | 'right' | 'bottom' | 'left';
 }) {
+  const ariaDescribedBy = (props as { 'aria-describedby'?: string })['aria-describedby']
+
   return (
     <SheetPortal>
       <SheetOverlay />
@@ -179,6 +183,7 @@ function SheetContent({
             'data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t',
           className
         )}
+        aria-describedby={ariaDescribedBy ?? undefined}
         {...props}
       >
         {children}
