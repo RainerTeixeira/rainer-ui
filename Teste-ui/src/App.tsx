@@ -2,8 +2,9 @@
 
 import React, { useState } from 'react'
 import { VisuallyHidden } from './components/accessibility'
+import { CookieBannerDemo } from './components/compliance/CookieBannerDemo'
 import * as tokens from '@rainersoft/design-tokens'
-import { ThemeToggle } from '@rainersoft/ui'
+import { PageHeader, ThemeToggle } from '@rainersoft/ui'
 
 // Componentes UI usando design tokens
 const Button = ({ children, variant = 'primary', size = 'md', ...props }: {
@@ -69,6 +70,33 @@ const Badge = ({ children, variant = 'default' }: {
     </span>
   )
 }
+
+// Secções dinâmicas para navegação superior: derivadas das pastas de componentes
+const componentSections = [
+  'accessibility',
+  'compliance',
+  'content',
+  'dashboard',
+  'data-display',
+  'development',
+  'effects',
+  'feedback',
+  'forms',
+  'infrastructure',
+  'layout',
+  'navigation',
+  'overlays',
+  'providers',
+  'pwa',
+  'social',
+  'ui',
+  'utilities'
+].map((folder) => ({
+  id: folder,
+  label: folder
+    .replace(/-/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+}))
 
 // Dados de exemplo usando design tokens
 const accessibilityExamples = [
@@ -196,6 +224,61 @@ function App() {
 
   return (
     <div className="min-h-screen bg-[var(--color-background-primary)]">
+      {/* Head com PageHeader e navegação por âncoras para cada categoria */}
+      <div className="relative overflow-hidden border-b border-[var(--color-gray-700)] bg-[var(--color-background-secondary)]">
+        {/* Glow de fundo usando tokens de cor */}
+        <div
+          className="pointer-events-none absolute inset-0 opacity-60 blur-3xl"
+          style={{
+            background: 'radial-gradient(circle at 20% 20%, rgba(56,189,248,0.12), transparent 35%), radial-gradient(circle at 80% 30%, rgba(168,85,247,0.12), transparent 35%), radial-gradient(circle at 50% 80%, rgba(59,130,246,0.10), transparent 40%)'
+          }}
+        />
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <PageHeader
+              title="@rainersoft/ui — Catálogo"
+              description="Selecione uma categoria para navegar até os exemplos."
+            />
+            <div className="flex items-center gap-3 justify-center sm:justify-end">
+              <span className="text-sm text-[var(--color-text-secondary)]">Tema</span>
+              <ThemeToggle />
+            </div>
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-2 text-xs font-medium">
+            <span className="rounded-full border border-[var(--color-gray-700)] bg-[var(--color-background-primary)]/70 px-3 py-1 text-[var(--color-text-primary)]">
+              @rainersoft/design-tokens
+            </span>
+            <span className="rounded-full border border-[var(--color-gray-700)] bg-[var(--color-background-primary)]/70 px-3 py-1 text-[var(--color-text-primary)]">
+              @rainersoft/ui
+            </span>
+            <span className="rounded-full border border-[var(--color-gray-700)] bg-[var(--color-background-primary)]/70 px-3 py-1 text-[var(--color-text-primary)]">
+              @rainersoft/utils
+            </span>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {componentSections.map((section) => (
+              <a
+                key={section.id}
+                href={`#section-${section.id}`}
+                className="group rounded-xl border border-[var(--color-gray-700)] bg-[var(--color-background-primary)]/70 backdrop-blur px-4 py-3 transition-all hover:border-[var(--color-blue-500)] hover:-translate-y-[2px] hover:shadow-[0_10px_30px_-12px_rgba(59,130,246,0.45)]"
+                style={{
+                  fontFamily: tokens?.typographyPrimitive?.fontFamily?.sans || 'ui-sans-serif, system-ui, sans-serif'
+                }}
+              >
+                <div className="flex items-center justify-between">
+                  <h3 className="text-base font-semibold text-[var(--color-text-primary)]">{section.label}</h3>
+                  <span className="text-xs text-[var(--color-text-secondary)] group-hover:text-[var(--color-blue-200)] transition-colors">ver</span>
+                </div>
+                <div className="mt-2 h-1 w-12 rounded-full bg-linear-to-r from-primary/70 to-primary/30 group-hover:from-[var(--color-blue-400)] group-hover:to-[var(--color-cyan-400)] transition-colors" />
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
       {/* Header */}
       <header className="bg-[var(--color-background-secondary)] border-b border-[var(--color-gray-600)]">
         <div className="max-w-7xl mx-auto px-4 py-6">
@@ -228,7 +311,7 @@ function App() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8" style={{ gap: tokens?.spacingPrimitive?.['8'] || '2rem' }}>
           
           {/* Sidebar - Navigation */}
-          <aside className="lg:col-span-1">
+          <aside className="lg:col-span-1" id="section-accessibility">
             <Card className="sticky top-8">
               <h2 className="text-xl font-semibold text-[var(--color-text-primary)] mb-4">
                 Exemplos
@@ -373,6 +456,17 @@ function App() {
 
           </div>
         </div>
+
+        {/* Compliance */}
+        <section id="section-compliance" className="mt-12 space-y-4">
+          <div>
+            <p className="text-xs uppercase tracking-wide text-[var(--color-text-secondary)]">compliance</p>
+            <h2 className="text-2xl font-bold text-[var(--color-text-primary)]">Compliance</h2>
+            <p className="text-[var(--color-text-secondary)]">Exemplo de banner de cookies com aceitar/rejeitar.</p>
+          </div>
+          <CookieBannerDemo />
+        </section>
+
       </main>
 
       {/* Footer */}
