@@ -1,5 +1,4 @@
 import { ClassValue } from 'clsx';
-export { hexToRGB, hexToRGBA } from './color-utils.mjs';
 
 /**
  * Biblioteca de Utilitários de Componentes UI

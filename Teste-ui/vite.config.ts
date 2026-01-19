@@ -10,8 +10,10 @@ export default defineConfig({
   resolve: {
     alias: {
       '@ui': resolve(__dirname, '../src'),
-      '@rainersoft/ui': resolve(__dirname, '../src'),
-      '@rainersoft/ui/*': resolve(__dirname, '../src/*'),
+      '@rainersoft/ui': resolve(__dirname, 'node_modules/@rainersoft/ui'),
+      '@rainersoft/ui/*': resolve(__dirname, 'node_modules/@rainersoft/ui/*'),
+      '@rainersoft/utils': resolve(__dirname, 'node_modules/@rainersoft/utils'),
+      '@rainersoft/utils/*': resolve(__dirname, 'node_modules/@rainersoft/utils/*'),
       '@rainersoft/design-tokens/formats/css-vars.css': resolve(
         __dirname,
         'node_modules/.pnpm/@rainersoft+design-tokens@file+..+..+rainer-design-tokens/node_modules/@rainersoft/design-tokens/formats/css-vars.css'

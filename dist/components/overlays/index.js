@@ -66,7 +66,6 @@ var AlertTriangle__default = /*#__PURE__*/_interopDefault(AlertTriangle);
 var CheckCircle__default = /*#__PURE__*/_interopDefault(CheckCircle);
 var Info__default = /*#__PURE__*/_interopDefault(Info);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -773,8 +772,16 @@ var Modal = React9__namespace.forwardRef(
     loading = false,
     children,
     ...props
-  }) => {
+  }, ref) => {
     const modalRef = React9__namespace.useRef(null);
+    const setModalRef = React9__namespace.useCallback((node) => {
+      modalRef.current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    }, [ref]);
     React9__namespace.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
@@ -815,7 +822,7 @@ var Modal = React9__namespace.forwardRef(
       /* @__PURE__ */ jsxRuntime.jsxs(
         "div",
         {
-          ref: modalRef,
+          ref: setModalRef,
           className: cn(
             modalVariants({ size, variant }),
             "relative z-10 max-h-[90vh] overflow-hidden",
@@ -993,8 +1000,16 @@ var Drawer = React9__namespace.forwardRef(
     loading = false,
     children,
     ...props
-  }) => {
+  }, ref) => {
     const drawerRef = React9__namespace.useRef(null);
+    const setDrawerRef = React9__namespace.useCallback((node) => {
+      drawerRef.current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    }, [ref]);
     React9__namespace.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
@@ -1045,15 +1060,14 @@ var Drawer = React9__namespace.forwardRef(
       /* @__PURE__ */ jsxRuntime.jsxs(
         "div",
         {
-          ref: drawerRef,
+          ref: setDrawerRef,
           className: cn(
-            drawerVariants({ position, variant }),
+            drawerVariants({ position, size, variant, className }),
             position === "left" && size && sizeClasses[size],
             position === "right" && size && sizeClasses[size],
             animationClasses[position],
             loading && "opacity-70",
-            !open && "pointer-events-none",
-            className
+            !open && "pointer-events-none"
           ),
           role: "dialog",
           "aria-modal": "true",

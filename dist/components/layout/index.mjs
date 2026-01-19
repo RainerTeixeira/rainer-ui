@@ -1,18 +1,35 @@
+import { jsx, jsxs } from 'react/jsx-runtime';
 import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio';
-import * as React3 from 'react';
-import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
+import * as React5 from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
-import { jsxs, jsx } from 'react/jsx-runtime';
+import { ChevronRight, X } from 'lucide-react';
+import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
-import { X } from 'lucide-react';
-import { Root, Trigger, Close, Content, Title, Description, Portal, Overlay } from '@radix-ui/react-dialog';
+import { Overlay, Root, Trigger, Close, Content, Title, Description, Portal } from '@radix-ui/react-dialog';
 import { cva } from 'class-variance-authority';
 
+var SECTION_CLASSES = {
+  container: "container mx-auto px-4 sm:px-6 lg:px-8"
+};
+function PageHeader({ title, description, children }) {
+  return (
+    /**
+     * Container principal do header
+     *
+     * Utiliza SECTION_CLASSES.container para padding e layout responsivos
+     * - relative z-10: fica acima de backgrounds e partículas
+     */
+    /* @__PURE__ */ jsx("div", { className: `${SECTION_CLASSES.container} relative z-10`, children: /* @__PURE__ */ jsxs("div", { className: "text-center mb-12", children: [
+      children && /* @__PURE__ */ jsx("div", { className: "relative mb-8", children }),
+      /* @__PURE__ */ jsx("h1", { className: "text-3xl md:text-4xl font-bold mb-4 text-foreground dark:text-cyan-200 dark:font-mono dark:tracking-wider", children: title }),
+      /* @__PURE__ */ jsx("div", { className: "w-24 h-1 bg-linear-to-r from-primary to-primary dark:from-cyan-400 dark:to-purple-400 mx-auto mb-6" }),
+      description && /* @__PURE__ */ jsx("p", { className: "text-muted-foreground dark:text-gray-300 text-lg max-w-2xl mx-auto dark:font-mono px-2", children: description })
+    ] }) })
+  );
+}
 var AspectRatio = AspectRatioPrimitive.Root;
-
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -84,7 +101,78 @@ motion.easing;
     navigation: motionSemantic.navigation.page
   }
 });
-var ScrollArea = React3.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var Breadcrumb = React5.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "ol",
+  {
+    ref,
+    className: cn(
+      "flex flex-wrap items-center gap-2 break-words text-sm text-muted-foreground",
+      className
+    ),
+    ...props
+  }
+));
+Breadcrumb.displayName = "Breadcrumb";
+var BreadcrumbList = React5.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "ol",
+  {
+    ref,
+    className: cn("flex flex-wrap items-center gap-2", className),
+    ...props
+  }
+));
+BreadcrumbList.displayName = "BreadcrumbList";
+var BreadcrumbItem = React5.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "li",
+  {
+    ref,
+    className: cn("inline-flex items-center gap-1.5", className),
+    ...props
+  }
+));
+BreadcrumbItem.displayName = "BreadcrumbItem";
+var BreadcrumbLink = React5.forwardRef(({ className, isCurrentPage, ...props }, ref) => /* @__PURE__ */ jsx(
+  "a",
+  {
+    ref,
+    className: cn(
+      "transition-colors hover:text-foreground",
+      isCurrentPage ? "text-foreground font-medium pointer-events-none cursor-default" : "cursor-pointer",
+      className
+    ),
+    ...isCurrentPage && { "aria-current": "page" },
+    ...props
+  }
+));
+BreadcrumbLink.displayName = "BreadcrumbLink";
+var BreadcrumbSeparator = ({
+  children,
+  className,
+  ...props
+}) => /* @__PURE__ */ jsx(
+  "div",
+  {
+    role: "presentation",
+    "aria-hidden": "true",
+    className: cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className),
+    ...props,
+    children: children ?? /* @__PURE__ */ jsx(ChevronRight, {})
+  }
+);
+BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
+var BreadcrumbPage = React5.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  "span",
+  {
+    ref,
+    role: "doc-pagebreak",
+    "aria-current": "page",
+    "aria-label": "current page",
+    className: cn("font-medium text-foreground", className),
+    ...props
+  }
+));
+BreadcrumbPage.displayName = "BreadcrumbPage";
+var ScrollArea = React5.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   ScrollAreaPrimitive.Root,
   {
     ref,
@@ -98,7 +186,7 @@ var ScrollArea = React3.forwardRef(({ className, children, ...props }, ref) => /
   }
 ));
 ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
-var ScrollBar = React3.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsx(
+var ScrollBar = React5.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsx(
   ScrollAreaPrimitive.ScrollAreaScrollbar,
   {
     ref,
@@ -114,7 +202,7 @@ var ScrollBar = React3.forwardRef(({ className, orientation = "vertical", ...pro
   }
 ));
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
-var Separator = React3.forwardRef(
+var Separator = React5.forwardRef(
   ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsx(
     SeparatorPrimitive.Root,
     {
@@ -150,13 +238,11 @@ function SheetPortal({
 }) {
   return /* @__PURE__ */ jsx(Portal, { "data-slot": "sheet-portal", ...props });
 }
-function SheetOverlay({
-  className,
-  ...props
-}) {
+var SheetOverlay = React5.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsx(
     Overlay,
     {
+      ref,
       "data-slot": "sheet-overlay",
       className: cn(
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
@@ -165,13 +251,15 @@ function SheetOverlay({
       ...props
     }
   );
-}
+});
+SheetOverlay.displayName = "SheetOverlay";
 function SheetContent({
   className,
   children,
   side = "right",
   ...props
 }) {
+  const ariaDescribedBy = props["aria-describedby"];
   return /* @__PURE__ */ jsxs(SheetPortal, { children: [
     /* @__PURE__ */ jsx(SheetOverlay, {}),
     /* @__PURE__ */ jsxs(
@@ -190,6 +278,7 @@ function SheetContent({
           side === "bottom" && "data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t",
           className
         ),
+        "aria-describedby": ariaDescribedBy ?? void 0,
         ...props,
         children: [
           children,
@@ -248,7 +337,7 @@ function SheetDescription({
     }
   );
 }
-var Table = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsx(
+var Table = React5.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsx(
   "table",
   {
     ref,
@@ -257,9 +346,9 @@ var Table = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ 
   }
 ) }));
 Table.displayName = "Table";
-var TableHeader = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
+var TableHeader = React5.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
 TableHeader.displayName = "TableHeader";
-var TableBody = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableBody = React5.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "tbody",
   {
     ref,
@@ -268,7 +357,7 @@ var TableBody = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__
   }
 ));
 TableBody.displayName = "TableBody";
-var TableFooter = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableFooter = React5.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "tfoot",
   {
     ref,
@@ -280,7 +369,7 @@ var TableFooter = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 TableFooter.displayName = "TableFooter";
-var TableRow = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableRow = React5.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "tr",
   {
     ref,
@@ -292,7 +381,7 @@ var TableRow = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ 
   }
 ));
 TableRow.displayName = "TableRow";
-var TableHead = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableHead = React5.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "th",
   {
     ref,
@@ -304,7 +393,7 @@ var TableHead = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__
   }
 ));
 TableHead.displayName = "TableHead";
-var TableCell = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableCell = React5.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "td",
   {
     ref,
@@ -313,7 +402,7 @@ var TableCell = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__
   }
 ));
 TableCell.displayName = "TableCell";
-var TableCaption = React3.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableCaption = React5.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "caption",
   {
     ref,
@@ -361,7 +450,7 @@ var containerVariants = cva(
     }
   }
 );
-var Container = React3.forwardRef(
+var Container = React5.forwardRef(
   ({
     className,
     size = "7xl",
@@ -387,7 +476,7 @@ var Container = React3.forwardRef(
   }
 );
 Container.displayName = "Container";
-var ContainerFluid = React3.forwardRef(
+var ContainerFluid = React5.forwardRef(
   ({
     className,
     padding = "md",
@@ -421,7 +510,7 @@ var spacingClasses = {
   xl: "py-20",
   "2xl": "py-24"
 };
-var ContainerSection = React3.forwardRef(
+var ContainerSection = React5.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -587,7 +676,7 @@ var gridVariants = cva(
     }
   }
 );
-var Grid = React3.forwardRef(
+var Grid = React5.forwardRef(
   ({
     className,
     cols,
@@ -607,7 +696,7 @@ var Grid = React3.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React3.useMemo(() => {
+    const gridStyle = React5.useMemo(() => {
       const customStyle = { ...style };
       if (templateCols) {
         customStyle.gridTemplateColumns = templateCols;
@@ -649,7 +738,7 @@ var Grid = React3.forwardRef(
   }
 );
 Grid.displayName = "Grid";
-var GridItem = React3.forwardRef(
+var GridItem = React5.forwardRef(
   ({
     className,
     colStart,
@@ -660,7 +749,7 @@ var GridItem = React3.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React3.useMemo(() => {
+    const gridStyle = React5.useMemo(() => {
       const customStyle = { ...style };
       if (colStart !== void 0) {
         customStyle.gridColumnStart = colStart;
@@ -763,7 +852,7 @@ var flexVariants = cva(
     }
   }
 );
-var Flex = React3.forwardRef(
+var Flex = React5.forwardRef(
   ({
     className,
     direction = "row",
@@ -801,7 +890,7 @@ var Flex = React3.forwardRef(
   }
 );
 Flex.displayName = "Flex";
-var FlexCenter = React3.forwardRef(
+var FlexCenter = React5.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -815,7 +904,7 @@ var FlexCenter = React3.forwardRef(
   }
 );
 FlexCenter.displayName = "FlexCenter";
-var FlexBetween = React3.forwardRef(
+var FlexBetween = React5.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -828,7 +917,7 @@ var FlexBetween = React3.forwardRef(
   }
 );
 FlexBetween.displayName = "FlexBetween";
-var FlexStart = React3.forwardRef(
+var FlexStart = React5.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -842,7 +931,7 @@ var FlexStart = React3.forwardRef(
   }
 );
 FlexStart.displayName = "FlexStart";
-var FlexEnd = React3.forwardRef(
+var FlexEnd = React5.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -856,7 +945,7 @@ var FlexEnd = React3.forwardRef(
   }
 );
 FlexEnd.displayName = "FlexEnd";
-var FlexColumn = React3.forwardRef(
+var FlexColumn = React5.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -869,7 +958,7 @@ var FlexColumn = React3.forwardRef(
   }
 );
 FlexColumn.displayName = "FlexColumn";
-var FlexRow = React3.forwardRef(
+var FlexRow = React5.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -915,7 +1004,7 @@ var spacerVariants = cva(
     }
   }
 );
-var Spacer = React3.forwardRef(
+var Spacer = React5.forwardRef(
   ({
     className,
     size = "md",
@@ -928,7 +1017,7 @@ var Spacer = React3.forwardRef(
     style,
     ...props
   }, ref) => {
-    const spacerStyle = React3.useMemo(() => {
+    const spacerStyle = React5.useMemo(() => {
       const customStyle = { ...style };
       if (width !== void 0) {
         customStyle.width = typeof width === "number" ? `${width}px` : width;
@@ -962,7 +1051,7 @@ var Spacer = React3.forwardRef(
   }
 );
 Spacer.displayName = "Spacer";
-var VerticalSpacer = React3.forwardRef(
+var VerticalSpacer = React5.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Spacer,
@@ -975,7 +1064,7 @@ var VerticalSpacer = React3.forwardRef(
   }
 );
 VerticalSpacer.displayName = "VerticalSpacer";
-var HorizontalSpacer = React3.forwardRef(
+var HorizontalSpacer = React5.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Spacer,
@@ -1019,7 +1108,7 @@ var dividerVariants = cva(
     }
   }
 );
-var Divider = React3.forwardRef(
+var Divider = React5.forwardRef(
   ({
     className,
     variant = "default",
@@ -1093,7 +1182,7 @@ var spacingClasses2 = {
   lg: "my-8",
   xl: "my-12"
 };
-var SectionDivider = React3.forwardRef(
+var SectionDivider = React5.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -1109,7 +1198,7 @@ var textColorClasses = {
   primary: "text-primary",
   secondary: "text-secondary-foreground"
 };
-var TextDivider = React3.forwardRef(
+var TextDivider = React5.forwardRef(
   ({
     className,
     children,
@@ -1176,7 +1265,7 @@ var panelVariants = cva(
     }
   }
 );
-var Panel = React3.forwardRef(
+var Panel = React5.forwardRef(
   ({
     className,
     variant = "default",
@@ -1207,7 +1296,7 @@ var Panel = React3.forwardRef(
   }
 );
 Panel.displayName = "Panel";
-var PanelHeader = React3.forwardRef(
+var PanelHeader = React5.forwardRef(
   ({
     className,
     divider = false,
@@ -1230,7 +1319,7 @@ var PanelHeader = React3.forwardRef(
   }
 );
 PanelHeader.displayName = "PanelHeader";
-var PanelTitle = React3.forwardRef(
+var PanelTitle = React5.forwardRef(
   ({
     className,
     children,
@@ -1248,7 +1337,7 @@ var PanelTitle = React3.forwardRef(
   }
 );
 PanelTitle.displayName = "PanelTitle";
-var PanelDescription = React3.forwardRef(
+var PanelDescription = React5.forwardRef(
   ({
     className,
     children,
@@ -1266,7 +1355,7 @@ var PanelDescription = React3.forwardRef(
   }
 );
 PanelDescription.displayName = "PanelDescription";
-var PanelContent = React3.forwardRef(
+var PanelContent = React5.forwardRef(
   ({
     className,
     children,
@@ -1284,7 +1373,7 @@ var PanelContent = React3.forwardRef(
   }
 );
 PanelContent.displayName = "PanelContent";
-var PanelFooter = React3.forwardRef(
+var PanelFooter = React5.forwardRef(
   ({
     className,
     divider = false,
@@ -1313,7 +1402,7 @@ var spacingClasses3 = {
   lg: "gap-8",
   xl: "gap-10"
 };
-var PanelGroup = React3.forwardRef(
+var PanelGroup = React5.forwardRef(
   ({
     className,
     spacing = "md",
@@ -1333,6 +1422,6 @@ var PanelGroup = React3.forwardRef(
 );
 PanelGroup.displayName = "PanelGroup";
 
-export { AspectRatio, Container, ContainerFluid, ContainerSection, Divider, Flex, FlexBetween, FlexCenter, FlexColumn, FlexEnd, FlexRow, FlexStart, Grid, GridItem, HorizontalSpacer, Panel, PanelContent, PanelDescription, PanelFooter, PanelGroup, PanelHeader, PanelTitle, ScrollArea, ScrollBar, SectionDivider, Separator, Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Spacer, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow, TextDivider, VerticalSpacer };
+export { AspectRatio, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator, Container, ContainerFluid, ContainerSection, Divider, Flex, FlexBetween, FlexCenter, FlexColumn, FlexEnd, FlexRow, FlexStart, Grid, GridItem, HorizontalSpacer, PageHeader, Panel, PanelContent, PanelDescription, PanelFooter, PanelGroup, PanelHeader, PanelTitle, ScrollArea, ScrollBar, SectionDivider, Separator, Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Spacer, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow, TextDivider, VerticalSpacer };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

@@ -6,7 +6,7 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes da Notification
  */
 declare const notificationVariants: (props?: {
-    variant?: "default" | "success" | "warning" | "error" | "info";
+    variant?: "success" | "warning" | "error" | "info" | "default";
 } & class_variance_authority_types.ClassProp) => string;
 /**
  * Props da Notification

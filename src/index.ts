@@ -32,20 +32,6 @@ export { tokens } from '@rainersoft/design-tokens';
 export { lightTheme, darkTheme } from '@rainersoft/design-tokens';
 
 // ============================================================================
-// IMAGE UTILITIES
-// ============================================================================
-export {
-  isAcceptedFormat,
-  isWebP,
-  supportsWebP,
-  getImageInfo,
-  resizeImage,
-  convertToWebP,
-  prepareImageForUpload,
-  generatePlaceholder,
-} from './lib/image-utils';
-
-// ============================================================================
 // UTILITIES
 // ============================================================================
 export { cn, motion, motionSemantic, motionPresets, ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS } from './lib/utils';
@@ -54,8 +40,6 @@ export type { ClassValue } from 'clsx';
 // Color Utilities
 export {
   getTokenColor,
-  hexToRGB,
-  hexToRGBA,
   overlayFromToken,
   isValidHex,
   getContrastColor,
@@ -84,6 +68,9 @@ export * from './components';
 
 // Export direto para garantir compatibilidade
 export { InlineLoader } from './components/ui/InlineLoader';
+
+// Exportar funções de cor para compatibilidade
+// hexToRgb movido para @rainersoft/utils/color
 
 // Exportar componentes UI diretamente para compatibilidade
 export { Badge, badgeVariants } from './components/ui/badge';
@@ -127,7 +114,6 @@ export {
 // ============================================================================
 // HOOKS
 // ============================================================================
-export * from './hooks/use-mobile';
 export * from './hooks/use-pwa';
 export * from './hooks/use-theme';
 export * from './hooks/use-carousel-keyboard';
@@ -136,4 +122,4 @@ export * from './hooks/use-table-of-contents';
 // ============================================================================
 // PROVIDERS
 // ============================================================================
-export { ThemeProvider, TokensProvider, useTokens, DEFAULT_TOKENS, TokensContext } from './components/providers';
+export { ThemeProvider } from './components/providers/theme-provider';

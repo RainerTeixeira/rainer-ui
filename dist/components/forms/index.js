@@ -68,7 +68,6 @@ var Search__default = /*#__PURE__*/_interopDefault(Search);
 var Globe__default = /*#__PURE__*/_interopDefault(Globe);
 var Phone__default = /*#__PURE__*/_interopDefault(Phone);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -1389,7 +1388,7 @@ var SearchInput = React10__namespace.forwardRef(
     const [filteredSuggestions, setFilteredSuggestions] = React10__namespace.useState([]);
     const inputRef = React10__namespace.useRef(null);
     const containerRef = React10__namespace.useRef(null);
-    const debounceRef = React10__namespace.useRef();
+    const debounceRef = React10__namespace.useRef(null);
     const currentValue = value !== void 0 ? value : internalValue;
     const setValue = React10__namespace.useCallback((newValue) => {
       setInternalValue(newValue);
@@ -1401,6 +1400,7 @@ var SearchInput = React10__namespace.forwardRef(
       }, debounceTime);
     }, [onChange, debounceTime]);
     React10__namespace.useEffect(() => {
+      let next;
       if (!currentValue.trim()) {
         const historySuggestions = history.slice(0, 5).map((item, index) => ({
           id: `history-${index}`,
@@ -1409,14 +1409,16 @@ var SearchInput = React10__namespace.forwardRef(
           icon: /* @__PURE__ */ jsxRuntime.jsx(Clock__default.default, { className: "h-4 w-4" })
         }));
         const trendingSuggestions = suggestions.filter((s) => s.type === "trending").slice(0, 5);
-        setFilteredSuggestions([...historySuggestions, ...trendingSuggestions]);
+        next = [...historySuggestions, ...trendingSuggestions];
       } else {
-        const filtered = suggestions.filter(
-          (s) => s.text.toLowerCase().includes(currentValue.toLowerCase())
-        ).slice(0, maxSuggestions);
-        setFilteredSuggestions(filtered);
+        next = suggestions.filter((s) => s.text.toLowerCase().includes(currentValue.toLowerCase())).slice(0, maxSuggestions);
       }
-    }, [currentValue, suggestions, history, maxSuggestions]);
+      const sameLength = next.length === filteredSuggestions.length;
+      const sameItems = sameLength && next.every((item, idx) => item.id === filteredSuggestions[idx]?.id && item.text === filteredSuggestions[idx]?.text);
+      if (!sameItems) {
+        setFilteredSuggestions(next);
+      }
+    }, [currentValue, suggestions, history, maxSuggestions, filteredSuggestions]);
     const handleKeyDown = React10__namespace.useCallback((event) => {
       switch (event.key) {
         case "Enter":

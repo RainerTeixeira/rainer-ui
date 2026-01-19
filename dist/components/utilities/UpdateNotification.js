@@ -122,8 +122,6 @@ function usePWA() {
     updateServiceWorker
   };
 }
-
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }

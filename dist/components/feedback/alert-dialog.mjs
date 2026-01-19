@@ -7,7 +7,6 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 import { jsx, jsxs } from 'react/jsx-runtime';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }

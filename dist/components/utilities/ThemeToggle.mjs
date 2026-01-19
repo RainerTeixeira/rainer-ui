@@ -38,8 +38,6 @@ function useTheme() {
     isSystem: theme === "system"
   };
 }
-
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }

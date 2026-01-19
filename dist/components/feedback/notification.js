@@ -41,7 +41,6 @@ var Check__default = /*#__PURE__*/_interopDefault(Check);
 var Info__default = /*#__PURE__*/_interopDefault(Info);
 var X__default = /*#__PURE__*/_interopDefault(X);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }

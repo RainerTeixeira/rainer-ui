@@ -2,7 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var React = require('react');
+var React2 = require('react');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
@@ -44,7 +44,7 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React__namespace = /*#__PURE__*/_interopNamespace(React);
+var React2__namespace = /*#__PURE__*/_interopNamespace(React2);
 var SliderPrimitive__namespace = /*#__PURE__*/_interopNamespace(SliderPrimitive);
 var SwitchPrimitives__namespace = /*#__PURE__*/_interopNamespace(SwitchPrimitives);
 var TogglePrimitive__namespace = /*#__PURE__*/_interopNamespace(TogglePrimitive);
@@ -55,7 +55,6 @@ var AccordionPrimitive__namespace = /*#__PURE__*/_interopNamespace(AccordionPrim
 var TrendingDown__default = /*#__PURE__*/_interopDefault(TrendingDown);
 var TrendingUp__default = /*#__PURE__*/_interopDefault(TrendingUp);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -127,6 +126,701 @@ motion.easing;
     navigation: motionSemantic.navigation.page
   }
 });
+var __defProp = Object.defineProperty;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+var DEFAULT_LOCALE = "pt-BR";
+var CURRENCY_MAP = {
+  "pt-BR": "BRL",
+  "en-US": "USD",
+  "es-ES": "EUR"
+};
+var date_exports = {};
+__export(date_exports, {
+  formatDate: () => formatDate,
+  formatDateTime: () => formatDateTime,
+  formatRelativeDate: () => formatRelativeDate,
+  isValidDate: () => isValidDate,
+  toISOString: () => toISOString
+});
+var RELATIVE_TEXTS = {
+  "pt-BR": {
+    now: "agora",
+    minute: (n) => `h\xE1 ${n} ${n === 1 ? "minuto" : "minutos"}`,
+    hour: (n) => `h\xE1 ${n} ${n === 1 ? "hora" : "horas"}`,
+    day: (n) => `h\xE1 ${n} ${n === 1 ? "dia" : "dias"}`,
+    month: (n) => `h\xE1 ${n} ${n === 1 ? "m\xEAs" : "meses"}`,
+    year: (n) => `h\xE1 ${n} ${n === 1 ? "ano" : "anos"}`
+  },
+  "en-US": {
+    now: "now",
+    minute: (n) => `${n} ${n === 1 ? "minute" : "minutes"} ago`,
+    hour: (n) => `${n} ${n === 1 ? "hour" : "hours"} ago`,
+    day: (n) => `${n} ${n === 1 ? "day" : "days"} ago`,
+    month: (n) => `${n} ${n === 1 ? "month" : "months"} ago`,
+    year: (n) => `${n} ${n === 1 ? "year" : "years"} ago`
+  },
+  "es-ES": {
+    now: "ahora",
+    minute: (n) => `hace ${n} ${n === 1 ? "minuto" : "minutos"}`,
+    hour: (n) => `hace ${n} ${n === 1 ? "hora" : "horas"}`,
+    day: (n) => `hace ${n} ${n === 1 ? "d\xEDa" : "d\xEDas"}`,
+    month: (n) => `hace ${n} ${n === 1 ? "mes" : "meses"}`,
+    year: (n) => `hace ${n} ${n === 1 ? "a\xF1o" : "a\xF1os"}`
+  }
+};
+function formatDate(date, format = "long", locale = DEFAULT_LOCALE) {
+  const d = typeof date === "string" ? new Date(date) : date;
+  const options = {
+    day: "numeric",
+    month: format === "short" ? "2-digit" : "long",
+    year: "numeric",
+    ...format === "full" && { weekday: "long" }
+  };
+  if (format === "short") {
+    return d.toLocaleDateString(locale, { day: "2-digit", month: "2-digit", year: "numeric" });
+  }
+  return d.toLocaleDateString(locale, options);
+}
+function formatDateTime(date, locale = DEFAULT_LOCALE) {
+  const d = typeof date === "string" ? new Date(date) : date;
+  return d.toLocaleString(locale, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
+function formatRelativeDate(date, locale = DEFAULT_LOCALE) {
+  const d = typeof date === "string" ? new Date(date) : date;
+  if (!(d instanceof Date) || Number.isNaN(d.getTime())) {
+    return "";
+  }
+  const now = /* @__PURE__ */ new Date();
+  const diffMs = now.getTime() - d.getTime();
+  const diffSec = Math.floor(diffMs / 1e3);
+  const diffMin = Math.floor(diffSec / 60);
+  const diffHour = Math.floor(diffMin / 60);
+  const diffDay = Math.floor(diffHour / 24);
+  const diffMonth = Math.floor(diffDay / 30.4375);
+  const diffYear = Math.floor(diffDay / 365);
+  const texts = RELATIVE_TEXTS[locale];
+  if (diffSec < 10) {
+    if (locale === "pt-BR") return "agora mesmo";
+    if (locale === "en-US") return "just now";
+    if (locale === "es-ES") return "ahora mismo";
+  }
+  if (diffSec < 60) return texts.now;
+  if (diffMin < 60) return texts.minute(diffMin);
+  if (diffHour < 24) return texts.hour(diffHour);
+  if (diffDay === 1) {
+    if (locale === "pt-BR") return "ontem";
+    if (locale === "en-US") return "yesterday";
+    if (locale === "es-ES") return "ayer";
+  }
+  if (diffDay === 2) {
+    if (locale === "pt-BR") return "anteontem";
+    if (locale === "en-US") return "the day before yesterday";
+    if (locale === "es-ES") return "anteayer";
+  }
+  if (diffDay < 30) return texts.day(diffDay);
+  if (diffMonth < 12) return texts.month(diffMonth);
+  return texts.year(diffYear);
+}
+function toISOString(date) {
+  return date.toISOString();
+}
+function isValidDate(date) {
+  return date instanceof Date && !isNaN(date.getTime());
+}
+var status_exports = {};
+__export(status_exports, {
+  getStatusColor: () => getStatusColor,
+  getStatusVariant: () => getStatusVariant,
+  translatePostStatus: () => translatePostStatus,
+  translateStatus: () => translateStatus
+});
+var STATUS_TRANSLATIONS = {
+  "pt-BR": {
+    // Estados de conteúdo
+    DRAFT: "Rascunho",
+    PUBLISHED: "Publicado",
+    ARCHIVED: "Arquivado",
+    SCHEDULED: "Agendado",
+    DELETED: "Exclu\xEDdo",
+    // Estados de processo
+    PENDING: "Pendente",
+    ACTIVE: "Ativo",
+    INACTIVE: "Inativo",
+    COMPLETED: "Conclu\xEDdo",
+    CANCELLED: "Cancelado",
+    // Estados de aprovação
+    APPROVED: "Aprovado",
+    REJECTED: "Rejeitado",
+    // Estados de pedido/pagamento
+    PROCESSING: "Processando",
+    PAID: "Pago",
+    UNPAID: "N\xE3o Pago",
+    REFUNDED: "Reembolsado",
+    FAILED: "Falhou",
+    // Estados de usuário
+    VERIFIED: "Verificado",
+    UNVERIFIED: "N\xE3o Verificado",
+    BANNED: "Banido",
+    SUSPENDED: "Suspenso"
+  },
+  "en-US": {
+    DRAFT: "Draft",
+    PUBLISHED: "Published",
+    ARCHIVED: "Archived",
+    SCHEDULED: "Scheduled",
+    DELETED: "Deleted",
+    PENDING: "Pending",
+    ACTIVE: "Active",
+    INACTIVE: "Inactive",
+    COMPLETED: "Completed",
+    CANCELLED: "Cancelled",
+    APPROVED: "Approved",
+    REJECTED: "Rejected",
+    PROCESSING: "Processing",
+    PAID: "Paid",
+    UNPAID: "Unpaid",
+    REFUNDED: "Refunded",
+    FAILED: "Failed",
+    VERIFIED: "Verified",
+    UNVERIFIED: "Unverified",
+    BANNED: "Banned",
+    SUSPENDED: "Suspended"
+  },
+  "es-ES": {
+    DRAFT: "Borrador",
+    PUBLISHED: "Publicado",
+    ARCHIVED: "Archivado",
+    SCHEDULED: "Programado",
+    DELETED: "Eliminado",
+    PENDING: "Pendiente",
+    ACTIVE: "Activo",
+    INACTIVE: "Inactivo",
+    COMPLETED: "Completado",
+    CANCELLED: "Cancelado",
+    APPROVED: "Aprobado",
+    REJECTED: "Rechazado",
+    PROCESSING: "Procesando",
+    PAID: "Pagado",
+    UNPAID: "No Pagado",
+    REFUNDED: "Reembolsado",
+    FAILED: "Fallido",
+    VERIFIED: "Verificado",
+    UNVERIFIED: "No Verificado",
+    BANNED: "Bloqueado",
+    SUSPENDED: "Suspendido"
+  }
+};
+function translateStatus(status, locale = DEFAULT_LOCALE) {
+  const normalized = status.toUpperCase();
+  return STATUS_TRANSLATIONS[locale][normalized] || status;
+}
+function getStatusColor(status) {
+  const normalized = status.toUpperCase();
+  const colorMap = {
+    DRAFT: "text-gray-600",
+    PENDING: "text-yellow-600",
+    PUBLISHED: "text-green-600",
+    ACTIVE: "text-green-600",
+    INACTIVE: "text-gray-600",
+    ARCHIVED: "text-orange-600",
+    DELETED: "text-red-600",
+    SCHEDULED: "text-blue-600",
+    COMPLETED: "text-green-600",
+    CANCELLED: "text-red-600",
+    APPROVED: "text-green-600",
+    REJECTED: "text-red-600",
+    FAILED: "text-red-600",
+    VERIFIED: "text-green-600",
+    BANNED: "text-red-600"
+  };
+  return colorMap[normalized] || "text-gray-600";
+}
+function getStatusVariant(status) {
+  const normalized = status.toUpperCase();
+  if (["PUBLISHED", "ACTIVE", "COMPLETED", "APPROVED", "VERIFIED"].includes(normalized)) {
+    return "default";
+  }
+  if (["DELETED", "CANCELLED", "REJECTED", "FAILED", "BANNED"].includes(normalized)) {
+    return "destructive";
+  }
+  if (["DRAFT", "INACTIVE", "ARCHIVED"].includes(normalized)) {
+    return "secondary";
+  }
+  return "outline";
+}
+function translatePostStatus(status, locale = DEFAULT_LOCALE) {
+  const postStatusMap = {
+    "draft": "DRAFT",
+    "published": "PUBLISHED",
+    "archived": "ARCHIVED",
+    "scheduled": "SCHEDULED",
+    "pending_review": "PENDING"
+  };
+  const normalized = postStatusMap[status.toLowerCase()] || status.toUpperCase();
+  if (status.toLowerCase() === "pending_review") {
+    const translations = {
+      "pt-BR": "Aguardando Revis\xE3o",
+      "en-US": "Pending Review",
+      "es-ES": "Pendiente de Revisi\xF3n"
+    };
+    return translations[locale] || translations["pt-BR"];
+  }
+  return translateStatus(normalized, locale);
+}
+var authentication_exports = {};
+__export(authentication_exports, {
+  getRefreshToken: () => getRefreshToken,
+  getToken: () => getToken,
+  getTokens: () => getTokens,
+  hasToken: () => hasToken,
+  removeToken: () => removeToken,
+  setRefreshToken: () => setRefreshToken,
+  setToken: () => setToken,
+  setTokens: () => setTokens
+});
+var TOKEN_KEY = "auth_token";
+var REFRESH_TOKEN_KEY = "refresh_token";
+var getToken = () => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+  return localStorage.getItem(TOKEN_KEY);
+};
+var setToken = (token) => {
+  if (typeof window === "undefined") {
+    return;
+  }
+  localStorage.setItem(TOKEN_KEY, token);
+};
+var getRefreshToken = () => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+  return localStorage.getItem(REFRESH_TOKEN_KEY);
+};
+var setRefreshToken = (refreshToken) => {
+  if (typeof window === "undefined") {
+    return;
+  }
+  localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+};
+var removeToken = () => {
+  if (typeof window === "undefined") {
+    return;
+  }
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(REFRESH_TOKEN_KEY);
+};
+var hasToken = () => {
+  return !!getToken();
+};
+var getTokens = () => {
+  return {
+    accessToken: getToken(),
+    refreshToken: getRefreshToken()
+  };
+};
+var setTokens = ({
+  accessToken,
+  refreshToken
+}) => {
+  setToken(accessToken);
+  setRefreshToken(refreshToken);
+};
+var COOKIE_CONSENT_KEY = "cookie-consent";
+var COOKIE_PREFERENCES_KEY = "cookie-preferences";
+var COOKIE_VERSION = "1.0.0";
+var _CookieManager = class _CookieManager2 {
+  constructor() {
+  }
+  static getInstance() {
+    if (!_CookieManager2.instance) {
+      _CookieManager2.instance = new _CookieManager2();
+    }
+    return _CookieManager2.instance;
+  }
+  hasConsent() {
+    if (typeof window === "undefined") return false;
+    try {
+      const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+      if (!consent) return false;
+      const consentData = JSON.parse(consent);
+      return consentData.consented === true;
+    } catch {
+      return false;
+    }
+  }
+  getPreferences() {
+    if (typeof window === "undefined") return null;
+    try {
+      const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+      if (!consent) return null;
+      const consentData = JSON.parse(consent);
+      return consentData.preferences || null;
+    } catch {
+      return null;
+    }
+  }
+  saveConsent(preferences) {
+    if (typeof window === "undefined") return;
+    try {
+      const consent = {
+        version: COOKIE_VERSION,
+        consented: true,
+        timestamp: Date.now(),
+        preferences
+      };
+      localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(consent));
+      localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(preferences));
+      window.dispatchEvent(
+        new CustomEvent("cookie-consent-updated", { detail: preferences })
+      );
+      this.loadScripts(preferences);
+    } catch {
+    }
+  }
+  updatePreferences(preferences) {
+    this.saveConsent(preferences);
+  }
+  revokeConsent() {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.removeItem(COOKIE_CONSENT_KEY);
+      localStorage.removeItem(COOKIE_PREFERENCES_KEY);
+      this.clearAnalyticsCookies();
+      window.dispatchEvent(
+        new CustomEvent("cookie-consent-revoked", { detail: null })
+      );
+    } catch {
+    }
+  }
+  isAllowed(type) {
+    const preferences = this.getPreferences();
+    if (!preferences) return false;
+    if (type === "essential") {
+      return preferences.essential === true;
+    }
+    return preferences[type] === true;
+  }
+  loadScripts(preferences) {
+    if (preferences.analytics) {
+      this.loadGoogleAnalytics();
+    } else {
+      this.unloadGoogleAnalytics();
+    }
+  }
+  loadGoogleAnalytics() {
+  }
+  unloadGoogleAnalytics() {
+    const scripts = document.querySelectorAll(
+      'script[src*="googletagmanager.com"], script[src*="google-analytics.com"]'
+    );
+    scripts.forEach((script) => script.remove());
+    this.clearAnalyticsCookies();
+    const win = window;
+    if (win.dataLayer) {
+      win.dataLayer = [];
+    }
+    if (win.gtag) {
+      delete win.gtag;
+    }
+  }
+  clearAnalyticsCookies() {
+    if (typeof document === "undefined") return;
+    const analyticsCookies = [
+      "_ga",
+      "_ga_*",
+      "_gid",
+      "_gat",
+      "_gat_gtag_*",
+      "__utma",
+      "__utmt",
+      "__utmb",
+      "__utmc",
+      "__utmz",
+      "__utmv"
+    ];
+    analyticsCookies.forEach((cookieName) => {
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      if (cookieName.includes("*")) {
+        const baseName = cookieName.replace("*", "");
+        const cookies = document.cookie.split(";");
+        cookies.forEach((cookie) => {
+          const parts = cookie.split("=");
+          if (parts.length === 0) return;
+          const name = parts[0]?.trim();
+          if (!name || !name.startsWith(baseName)) return;
+          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname};`;
+        });
+      }
+    });
+  }
+};
+__publicField(_CookieManager, "instance");
+var AuthStorage = class {
+  static setItem(key, value) {
+    if (!this.isClient) return;
+    try {
+      localStorage.setItem(key, value);
+    } catch (error) {
+      console.warn("Failed to save to localStorage:", error);
+    }
+  }
+  static getItem(key) {
+    if (!this.isClient) return null;
+    try {
+      return localStorage.getItem(key);
+    } catch (error) {
+      console.warn("Failed to read from localStorage:", error);
+      return null;
+    }
+  }
+  static removeItem(key) {
+    if (!this.isClient) return;
+    try {
+      localStorage.removeItem(key);
+    } catch (error) {
+      console.warn("Failed to remove from localStorage:", error);
+    }
+  }
+  static setUser(user, key) {
+    this.setItem(key, JSON.stringify(user));
+  }
+  static getUser(key) {
+    const data = this.getItem(key);
+    if (!data) return null;
+    try {
+      return JSON.parse(data);
+    } catch {
+      this.removeItem(key);
+      return null;
+    }
+  }
+  static removeUser(key) {
+    this.removeItem(key);
+  }
+};
+__publicField(AuthStorage, "isClient", typeof window !== "undefined");
+function getInitials(name, maxInitials = 2) {
+  return name.split(" ").filter((word) => word.length > 0).map((word) => word[0]).join("").toUpperCase().slice(0, maxInitials);
+}
+function formatCurrency(value, locale = DEFAULT_LOCALE, options) {
+  const currency = CURRENCY_MAP[locale];
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+    ...options
+  }).format(value);
+}
+function formatNumber2(value, decimals = 0, locale = DEFAULT_LOCALE) {
+  return new Intl.NumberFormat(locale, {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  }).format(value);
+}
+function formatCompact(value, decimals = 1, locale = DEFAULT_LOCALE) {
+  return new Intl.NumberFormat(locale, {
+    notation: "compact",
+    compactDisplay: "short",
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  }).format(value);
+}
+var pt_br_exports = {};
+__export(pt_br_exports, {
+  default: () => pt_br_default,
+  formatCompact: () => formatCompact2,
+  formatCurrency: () => formatCurrency2,
+  formatDate: () => formatDate2,
+  formatDateTime: () => formatDateTime2,
+  formatNumber: () => formatNumber3,
+  formatRelativeDate: () => formatRelativeDate2,
+  translateStatus: () => translateStatus2
+});
+function formatDate2(date, format = "long") {
+  return formatDate(date, format, "pt-BR");
+}
+function formatDateTime2(date) {
+  return formatDateTime(date, "pt-BR");
+}
+function formatRelativeDate2(date) {
+  return formatRelativeDate(date, "pt-BR");
+}
+function formatCurrency2(value, options) {
+  return formatCurrency(value, "pt-BR", options);
+}
+function formatNumber3(value, decimals = 0) {
+  return formatNumber2(value, decimals, "pt-BR");
+}
+function formatCompact2(value, decimals = 1) {
+  return formatCompact(value, decimals, "pt-BR");
+}
+function translateStatus2(status) {
+  return translateStatus(status, "pt-BR");
+}
+var pt_br_default = {
+  formatDate: formatDate2,
+  formatDateTime: formatDateTime2,
+  formatRelativeDate: formatRelativeDate2,
+  formatCurrency: formatCurrency2,
+  formatNumber: formatNumber3,
+  formatCompact: formatCompact2,
+  translateStatus: translateStatus2
+};
+var text_exports = {};
+__export(text_exports, {
+  calculateReadingTime: () => calculateReadingTime,
+  capitalize: () => capitalize,
+  cleanText: () => cleanText,
+  countWords: () => countWords,
+  extractInitials: () => extractInitials,
+  generateAvatarUrl: () => generateAvatarUrl,
+  generateDynamicAvatarUrl: () => generateDynamicAvatarUrl,
+  generateUniqueId: () => generateUniqueId,
+  getAvatarColorFromName: () => getAvatarColorFromName,
+  isEmpty: () => isEmpty,
+  isValidAvatarUrl: () => isValidAvatarUrl,
+  normalizeSpaces: () => normalizeSpaces,
+  truncateText: () => truncateText
+});
+function extractInitials(name, maxChars = 2) {
+  if (!name || !name.trim()) {
+    return "";
+  }
+  const words = name.trim().split(/\s+/);
+  const initials = words.slice(0, maxChars).map((word) => word.charAt(0).toUpperCase()).join("");
+  return initials;
+}
+function generateAvatarUrl(name, size = 200, backgroundColor = "0891b2", textColor = "fff") {
+  const encodedName = encodeURIComponent(name);
+  return `https://ui-avatars.com/api/?name=${encodedName}&size=${size}&background=${backgroundColor}&color=${textColor}&font-size=0.5`;
+}
+function isValidAvatarUrl(url) {
+  if (!url || typeof url !== "string") {
+    return false;
+  }
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
+}
+function getAvatarColorFromName(name) {
+  if (!name || typeof name !== "string") {
+    return "#0891b2";
+  }
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const colors = [
+    "#0891b2",
+    // cyan-600
+    "#9333ea",
+    // purple-600
+    "#db2777",
+    // pink-600
+    "#059669",
+    // emerald-600
+    "#2563eb",
+    // blue-600
+    "#f97316",
+    // orange-500
+    "#dc2626",
+    // red-600
+    "#7c3aed"
+    // violet-600
+  ];
+  const index = Math.abs(hash) % colors.length;
+  return colors[index];
+}
+function generateDynamicAvatarUrl(name, size = 200) {
+  const color = getAvatarColorFromName(name);
+  const colorHex = color.replace("#", "");
+  return generateAvatarUrl(name, size, colorHex, "fff");
+}
+function generateUniqueId(text, prefix = "", suffix = "") {
+  const slug = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim().substring(0, 50);
+  const parts = [prefix, slug, suffix].filter(Boolean);
+  return parts.join("-");
+}
+function truncateText(text, maxLength, suffix = "...") {
+  if (!text || text.length <= maxLength) {
+    return text || "";
+  }
+  return text.substring(0, maxLength - suffix.length) + suffix;
+}
+function capitalize(text, options = {}) {
+  if (!text) return "";
+  const { firstWordOnly = false, lowerRest = false } = options;
+  if (firstWordOnly) {
+    return text.charAt(0).toUpperCase() + (lowerRest ? text.slice(1).toLowerCase() : text.slice(1));
+  }
+  if (lowerRest) {
+    return text.replace(/\b\w/g, (char) => char.toUpperCase()).toLowerCase();
+  }
+  return text.replace(/\b\w/g, (char) => char.toUpperCase());
+}
+function cleanText(text, allowSpaces = true) {
+  if (!text) return "";
+  const pattern = allowSpaces ? /[^\w\s]/g : /[^\w]/g;
+  return text.replace(pattern, "");
+}
+function countWords(text) {
+  if (!text || !text.trim()) {
+    return 0;
+  }
+  return text.trim().split(/\s+/).length;
+}
+function isEmpty(text) {
+  return !text || !text.trim();
+}
+function normalizeSpaces(text, options = {}) {
+  if (!text) return "";
+  const { newlines = false } = options;
+  let cleaned = text;
+  if (newlines) {
+    cleaned = cleaned.replace(/\s+/g, " ");
+  } else {
+    cleaned = cleaned.replace(/\s+/g, " ");
+  }
+  return cleaned.trim();
+}
+function calculateReadingTime(content, wordsPerMinute = 200) {
+  let text = "";
+  if (typeof content === "object" && content !== null) {
+    const extractText = (node) => {
+      if (!node) return "";
+      let result = "";
+      if (node.text) {
+        result += node.text + " ";
+      }
+      if (Array.isArray(node.content)) {
+        result += node.content.map(extractText).join(" ");
+      }
+      return result;
+    };
+    text = extractText(content);
+  } else if (typeof content === "string") {
+    text = content.replace(/<[^>]*>/g, "");
+  }
+  const words = text.trim().split(/\s+/).filter((word) => word.length > 0).length;
+  const time = Math.ceil(words / wordsPerMinute);
+  return time > 0 ? time : 1;
+}
 var sizeClasses = {
   xs: "h-6 w-6 text-xs",
   sm: "h-8 w-8 text-sm",
@@ -141,14 +835,6 @@ var variantClasses = {
   rounded: "rounded-xl",
   square: "rounded-lg"
 };
-function getInitials(name, max = 2) {
-  if (!name) return "";
-  const words = name.trim().split(/\s+/);
-  if (words.length === 1) {
-    return words[0].slice(0, Math.min(max, 2)).toUpperCase();
-  }
-  return words.slice(0, max).map((word) => word[0]).join("").toUpperCase();
-}
 function getColorFromName(name) {
   const colors = [
     "from-blue-400 to-blue-600",
@@ -168,7 +854,7 @@ function getColorFromName(name) {
   }
   return colors[Math.abs(hash) % colors.length];
 }
-var Avatar = React__namespace.forwardRef(
+var Avatar = React2__namespace.forwardRef(
   ({
     className,
     src,
@@ -184,9 +870,9 @@ var Avatar = React__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [imageStatus, setImageStatus] = React__namespace.useState("loading");
-    const [showFallback, setShowFallback] = React__namespace.useState(!src);
-    React__namespace.useEffect(() => {
+    const [imageStatus, setImageStatus] = React2__namespace.useState("loading");
+    const [showFallback, setShowFallback] = React2__namespace.useState(!src);
+    React2__namespace.useEffect(() => {
       if (!src) {
         setShowFallback(true);
         setImageStatus("error");
@@ -251,7 +937,7 @@ var Avatar = React__namespace.forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var AvatarImage = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarImage = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "img",
   {
     ref,
@@ -260,7 +946,7 @@ var AvatarImage = React__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 AvatarImage.displayName = "AvatarImage";
-var AvatarFallback = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarFallback = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -272,9 +958,9 @@ var AvatarFallback = React__namespace.forwardRef(({ className, ...props }, ref) 
   }
 ));
 AvatarFallback.displayName = "AvatarFallback";
-var Input = React__namespace.forwardRef(
+var Input = React2__namespace.forwardRef(
   ({ className, type, error, helperText, label, required, id, ...props }, ref) => {
-    const inputId = id || `input-${React__namespace.useId()}`;
+    const inputId = id || `input-${React2__namespace.useId()}`;
     return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "space-y-2", children: [
       label && /* @__PURE__ */ jsxRuntime.jsxs(
         "label",
@@ -324,7 +1010,7 @@ var Input = React__namespace.forwardRef(
           className: cn(
             "text-xs",
             error ? "text-destructive" : "text-muted-foreground",
-            "dark:text-cyan-400/70 dark:text-red-400/70"
+            "dark:text-cyan-400/70"
           ),
           children: helperText
         }
@@ -333,7 +1019,7 @@ var Input = React__namespace.forwardRef(
   }
 );
 Input.displayName = "Input";
-var Textarea = React__namespace.forwardRef(
+var Textarea = React2__namespace.forwardRef(
   ({
     className,
     error,
@@ -346,9 +1032,9 @@ var Textarea = React__namespace.forwardRef(
     value,
     ...props
   }, ref) => {
-    const inputId = id || `textarea-${React__namespace.useId()}`;
-    const [characterCount, setCharacterCount] = React__namespace.useState(0);
-    React__namespace.useEffect(() => {
+    const inputId = id || `textarea-${React2__namespace.useId()}`;
+    const [characterCount, setCharacterCount] = React2__namespace.useState(0);
+    React2__namespace.useEffect(() => {
       if (typeof value === "string") {
         setCharacterCount(value.length);
       }
@@ -479,7 +1165,7 @@ var buttonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var ButtonComponent = React__namespace.forwardRef(
+var ButtonComponent = React2__namespace.forwardRef(
   ({
     className,
     variant,
@@ -494,7 +1180,7 @@ var ButtonComponent = React__namespace.forwardRef(
   }, ref) => {
     const isDisabled = disabled || loading;
     if (asChild) {
-      const child = React__namespace.Children.only(children);
+      const child = React2__namespace.Children.only(children);
       return /* @__PURE__ */ jsxRuntime.jsx(
         reactSlot.Slot,
         {
@@ -549,7 +1235,7 @@ var ButtonComponent = React__namespace.forwardRef(
 );
 ButtonComponent.displayName = "Button";
 var Button = ButtonComponent;
-var Slider = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var Slider = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SliderPrimitive__namespace.Root,
   {
     ref,
@@ -583,7 +1269,7 @@ var Slider = React__namespace.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 Slider.displayName = SliderPrimitive__namespace.Root.displayName;
-var Switch = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Switch = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SwitchPrimitives__namespace.Root,
   {
     className: cn(
@@ -627,7 +1313,7 @@ var toggleVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Toggle = React__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Toggle = React2__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TogglePrimitive__namespace.Root,
   {
     ref,
@@ -678,7 +1364,7 @@ var iconButtonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var IconButton = React__namespace.forwardRef(
+var IconButton = React2__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -693,8 +1379,8 @@ var IconButton = React__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [showTooltip, setShowTooltip] = React__namespace.useState(false);
-    const [tooltipVisible, setTooltipVisible] = React__namespace.useState(false);
+    const [showTooltip, setShowTooltip] = React2__namespace.useState(false);
+    const [tooltipVisible, setTooltipVisible] = React2__namespace.useState(false);
     const tooltipClasses = {
       top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
       bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
@@ -707,7 +1393,7 @@ var IconButton = React__namespace.forwardRef(
       left: "left-full top-1/2 -translate-y-1/2 -ml-1 border-t-transparent border-b-transparent border-r-transparent border-l-current",
       right: "right-full top-1/2 -translate-y-1/2 -mr-1 border-t-transparent border-b-transparent border-l-transparent border-r-current"
     };
-    React__namespace.useEffect(() => {
+    React2__namespace.useEffect(() => {
       if (showTooltip) {
         const timer = setTimeout(() => setTooltipVisible(true), 100);
         return () => clearTimeout(timer);
@@ -820,7 +1506,7 @@ var linkButtonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var LinkButton = React__namespace.forwardRef(
+var LinkButton = React2__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -920,7 +1606,7 @@ var fabVariants = classVarianceAuthority.cva(
     }
   }
 );
-var FAB = React__namespace.forwardRef(
+var FAB = React2__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -935,12 +1621,12 @@ var FAB = React__namespace.forwardRef(
     actions = [],
     ...props
   }, ref) => {
-    const [showActions, setShowActions] = React__namespace.useState(active);
+    const [showActions, setShowActions] = React2__namespace.useState(active);
     const isExtended = extended && text;
-    React__namespace.useEffect(() => {
+    React2__namespace.useEffect(() => {
       setShowActions(active);
     }, [active]);
-    const handleClick = React__namespace.useCallback(() => {
+    const handleClick = React2__namespace.useCallback(() => {
       if (actions.length > 0) {
         setShowActions(!showActions);
       }
@@ -998,7 +1684,7 @@ var FAB = React__namespace.forwardRef(
   }
 );
 FAB.displayName = "FAB";
-var FABGroup = React__namespace.forwardRef(
+var FABGroup = React2__namespace.forwardRef(
   ({
     className,
     main,
@@ -1070,7 +1756,7 @@ var segmentedControlVariants = classVarianceAuthority.cva(
     }
   }
 );
-var SegmentedControl = React__namespace.forwardRef(
+var SegmentedControl = React2__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -1083,9 +1769,9 @@ var SegmentedControl = React__namespace.forwardRef(
     disabled = false,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React__namespace.useState(defaultValue || options[0]?.value);
+    const [internalValue, setInternalValue] = React2__namespace.useState(defaultValue || options[0]?.value);
     const currentValue = value !== void 0 ? value : internalValue;
-    const handleOptionClick = React__namespace.useCallback((optionValue, isDisabled) => {
+    const handleOptionClick = React2__namespace.useCallback((optionValue, isDisabled) => {
       if (isDisabled || disabled) return;
       if (value === void 0) {
         setInternalValue(optionValue);
@@ -1140,7 +1826,7 @@ var SegmentedControl = React__namespace.forwardRef(
   }
 );
 SegmentedControl.displayName = "SegmentedControl";
-var SegmentedControlItem = React__namespace.forwardRef(
+var SegmentedControlItem = React2__namespace.forwardRef(
   ({
     className,
     active = false,
@@ -1176,7 +1862,7 @@ var SegmentedControlItem = React__namespace.forwardRef(
   }
 );
 SegmentedControlItem.displayName = "SegmentedControlItem";
-var Card = React__namespace.forwardRef(({ className, variant = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Card = React2__namespace.forwardRef(({ className, variant = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1196,7 +1882,7 @@ var Card = React__namespace.forwardRef(({ className, variant = "default", ...pro
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardHeader = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1209,7 +1895,7 @@ var CardHeader = React__namespace.forwardRef(({ className, ...props }, ref) => /
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardTitle = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h3",
   {
     ref,
@@ -1222,7 +1908,7 @@ var CardTitle = React__namespace.forwardRef(({ className, ...props }, ref) => /*
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardDescription = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "p",
   {
     ref,
@@ -1235,9 +1921,9 @@ var CardDescription = React__namespace.forwardRef(({ className, ...props }, ref)
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardFooter = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1278,7 +1964,7 @@ classVarianceAuthority.cva(
     }
   }
 );
-var Progress = React__namespace.forwardRef(({ className, value, color = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Progress = React2__namespace.forwardRef(({ className, value, color = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   ProgressPrimitive__namespace.Root,
   {
     ref,
@@ -1309,7 +1995,7 @@ var Progress = React__namespace.forwardRef(({ className, value, color = "default
   }
 ));
 Progress.displayName = ProgressPrimitive__namespace.Root.displayName;
-var AccordionItem = React__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AccordionItem = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AccordionPrimitive__namespace.Item,
   {
     ref,
@@ -1321,7 +2007,7 @@ var AccordionItem = React__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 AccordionItem.displayName = "AccordionItem";
-var AccordionTrigger = React__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
+var AccordionTrigger = React2__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
   AccordionPrimitive__namespace.Trigger,
   {
     ref,
@@ -1346,7 +2032,7 @@ var AccordionTrigger = React__namespace.forwardRef(({ className, children, ...pr
   }
 ) }));
 AccordionTrigger.displayName = AccordionPrimitive__namespace.Trigger.displayName;
-var AccordionContent = React__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AccordionContent = React2__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AccordionPrimitive__namespace.Content,
   {
     ref,
@@ -1365,23 +2051,6 @@ var AccordionContent = React__namespace.forwardRef(({ className, children, ...pr
   }
 ));
 AccordionContent.displayName = AccordionPrimitive__namespace.Content.displayName;
-var TokensContext = React__namespace.createContext(null);
-function useTokens() {
-  const context = React__namespace.useContext(TokensContext);
-  if (!context) {
-    throw new Error(
-      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
-    );
-  }
-  return context;
-}
-var parseMsToSeconds = (value, fallback = 0.1) => {
-  if (!value) return fallback;
-  if (value.endsWith("ms")) return parseFloat(value) / 1e3;
-  if (value.endsWith("s")) return parseFloat(value);
-  const n = Number(value);
-  return Number.isFinite(n) ? n : fallback;
-};
 function StatsCards({
   items = [],
   isLoading = false,
@@ -1392,9 +2061,10 @@ function StatsCards({
   animationDelay,
   emptyMessage = "Nenhum dado dispon\xEDvel"
 }) {
-  const { getColor, getRadius, getShadow, getMotion } = useTokens();
-  const resolvedAnimationDelay = animationDelay ?? parseMsToSeconds(getMotion("delay", "short", "0.1s"), 0.1);
-  const cardRadius = getRadius("lg", "0.5rem");
+  const getColor = (path, fallback) => fallback;
+  const getShadow = (path, fallback) => fallback;
+  const resolvedAnimationDelay = animationDelay ?? 0.1;
+  const cardRadius = "0.5rem";
   const cardShadow = getShadow("md", "0 4px 6px -1px rgb(0 0 0 / 0.1)");
   const gridClass = cn(
     "grid gap-4",
@@ -1403,8 +2073,8 @@ function StatsCards({
     columns.lg && `lg:grid-cols-${columns.lg}`,
     className
   );
-  const fallbackPrimary = getColor("cyan.500", "#0ea5e9");
-  const fallbackSecondary = getColor("status.info.background", "rgba(14,165,233,0.12)");
+  const fallbackPrimary = "var(--color-cyan-500)";
+  const fallbackSecondary = "var(--color-info-background)";
   const resolvedItems = items.map((item) => {
     const primary = item.accentColor ?? (item.accentKey ? getColor(item.accentKey, fallbackPrimary) : fallbackPrimary);
     const secondary = item.secondaryColor ? getColor(item.secondaryColor, fallbackSecondary) : fallbackSecondary;
@@ -1442,7 +2112,7 @@ function StatsCards({
       const isPositive = stat.trend ? stat.trend === "up" : (stat.change ?? 0) >= 0;
       const changeValue = stat.change ?? 0;
       const valueText = stat.formatValue ? stat.formatValue(stat.value) : typeof stat.value === "number" ? stat.value.toLocaleString("pt-BR") : stat.value;
-      const indicatorColor = isPositive ? getColor("status.success.base", "#16a34a") : getColor("status.error.base", "#ef4444");
+      const indicatorColor = isPositive ? "var(--color-success-default)" : "var(--color-error-default)";
       return /* @__PURE__ */ jsxRuntime.jsx(
         framerMotion.motion.div,
         {
@@ -1589,7 +2259,7 @@ function QuickStatsComponent({
     }
   );
 }
-var QuickStats = React__namespace.default.memo(QuickStatsComponent);
+var QuickStats = React2__namespace.default.memo(QuickStatsComponent);
 QuickStats.displayName = "QuickStats";
 var quick_stats_default = QuickStats;
 /**

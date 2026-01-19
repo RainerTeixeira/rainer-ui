@@ -6,7 +6,6 @@ import { cn } from '../../lib/utils';
 import { motion } from 'framer-motion';
 import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
 import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
-import { useTokens } from '../providers/tokens-provider';
 
 /**
  * Item de métrica para o dashboard unificado
@@ -45,14 +44,6 @@ export interface StatsCardsProps {
   emptyMessage?: string;
 }
 
-const parseMsToSeconds = (value: string | undefined, fallback = 0.1) => {
-  if (!value) return fallback;
-  if (value.endsWith('ms')) return parseFloat(value) / 1000;
-  if (value.endsWith('s')) return parseFloat(value);
-  const n = Number(value);
-  return Number.isFinite(n) ? n : fallback;
-};
-
 export function StatsCards({
   items = [],
   isLoading = false,
@@ -63,10 +54,12 @@ export function StatsCards({
   animationDelay,
   emptyMessage = 'Nenhum dado disponível',
 }: StatsCardsProps) {
-  const { getColor, getRadius, getShadow, getMotion } = useTokens();
+  // Valores diretos dos tokens (sem provider)
+  const getColor = (path: string, fallback: string) => fallback;
+  const getShadow = (path: string, fallback: string) => fallback;
 
-  const resolvedAnimationDelay = animationDelay ?? parseMsToSeconds(getMotion('delay', 'short', '0.1s'), 0.1);
-  const cardRadius = getRadius('lg', '0.5rem');
+  const resolvedAnimationDelay = animationDelay ?? 0.1;
+  const cardRadius = '0.5rem';
   const cardShadow = getShadow('md', '0 4px 6px -1px rgb(0 0 0 / 0.1)');
 
   const gridClass = cn(
@@ -77,8 +70,8 @@ export function StatsCards({
     className
   );
 
-  const fallbackPrimary = getColor('cyan.500', '#0ea5e9');
-  const fallbackSecondary = getColor('status.info.background', 'rgba(14,165,233,0.12)');
+  const fallbackPrimary = 'var(--color-cyan-500)';
+  const fallbackSecondary = 'var(--color-info-background)';
 
   const resolvedItems = items.map((item) => {
     const primary = item.accentColor ?? (item.accentKey ? getColor(item.accentKey, fallbackPrimary) : fallbackPrimary);
@@ -137,8 +130,8 @@ export function StatsCards({
             ? stat.value.toLocaleString('pt-BR')
             : stat.value;
         const indicatorColor = isPositive
-          ? getColor('status.success.base', '#16a34a')
-          : getColor('status.error.base', '#ef4444');
+          ? 'var(--color-success-default)'
+          : 'var(--color-error-default)';
 
         return (
           <motion.div

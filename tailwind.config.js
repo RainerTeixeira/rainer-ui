@@ -79,7 +79,6 @@ module.exports = {
         'neon-bg': 'var(--color-background-neon)',
       },
       boxShadow: {
-        ...tailwindConfig.theme.extend.boxShadow,
         // Sombras neon cyberpunk
         'neon-cyan': 'var(--shadow-neon-cyan)',
         'neon-rose': 'var(--shadow-neon-rose)',
@@ -91,7 +90,6 @@ module.exports = {
         'glow-strong': 'var(--shadow-glow-strong)',
       },
       backgroundImage: {
-        ...tailwindConfig.theme.extend.backgroundImage,
         // Gradientes cyberpunk
         'cyberpunk-primary': 'var(--color-gradient-cyberpunk-primary)',
         'cyberpunk-secondary': 'var(--color-gradient-cyberpunk-secondary)',
@@ -101,14 +99,12 @@ module.exports = {
         'neon-emerald': 'var(--color-gradient-neon-emerald)',
       },
       animation: {
-        ...tailwindConfig.theme.extend.animation,
         // Animações cyberpunk
         'neon-pulse': 'neon-pulse 2s ease-in-out infinite',
         'glow-pulse': 'glow-pulse 3s ease-in-out infinite',
         'cyberpunk-flicker': 'cyberpunk-flicker 4s ease-in-out infinite',
       },
       keyframes: {
-        ...tailwindConfig.theme.extend.keyframes,
         'neon-pulse': {
           '0%, 100%': { opacity: 1 },
           '50%': { opacity: 0.8 },

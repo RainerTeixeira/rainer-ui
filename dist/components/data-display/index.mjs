@@ -10,7 +10,6 @@ import useEmblaCarousel from 'embla-carousel-react';
 import Star from 'lucide-react/dist/esm/icons/star';
 import StarHalf from 'lucide-react/dist/esm/icons/star-half';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }

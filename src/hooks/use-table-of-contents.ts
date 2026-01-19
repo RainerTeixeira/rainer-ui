@@ -15,6 +15,7 @@
 
 // Importar React
 import React from 'react';
+import { scrollToElement } from '@rainersoft/utils';
 
 export function useTableOfContents({
   containerRef,
@@ -88,17 +89,11 @@ export function useTableOfContents({
     const element = document.getElementById(itemId);
     if (!element) return;
 
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-    if (smoothScroll) {
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-    } else {
-      window.scrollTo(0, offsetPosition);
-    }
+    // Usar scrollToElement da rainer-utils com offset
+    scrollToElement(element, { 
+      smooth: smoothScroll,
+      offset: offset 
+    });
 
     setActiveId(itemId);
   }, [offset, smoothScroll]);

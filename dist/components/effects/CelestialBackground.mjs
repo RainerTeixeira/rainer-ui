@@ -1,36 +1,9 @@
-import * as React from 'react';
 import { useState, useEffect } from 'react';
-import '@rainersoft/design-tokens';
 import { jsxs, jsx } from 'react/jsx-runtime';
-
-function hexToRGBA(hex, alpha = 1) {
-  const cleanHex = hex.replace("#", "");
-  alpha = Math.max(0, Math.min(1, alpha));
-  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
-    return "rgb(0, 0, 0)";
-  }
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  if (alpha === 1) {
-    return `rgb(${r}, ${g}, ${b})`;
-  }
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
 
 // src/lib/constants.ts
 var GRADIENT_DIRECTIONS = {
   TO_BOTTOM: "to-b"};
-var TokensContext = React.createContext(null);
-function useTokens() {
-  const context = React.useContext(TokensContext);
-  if (!context) {
-    throw new Error(
-      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
-    );
-  }
-  return context;
-}
 var STAR_CONFIGS = {
   default: {
     count: 150,
@@ -79,16 +52,11 @@ function Star({ star }) {
   );
 }
 function CelestialBackground({
-  variant = "default",
-  colors
-} = {}) {
+  variant = "default"
+}) {
   const config = STAR_CONFIGS[variant];
   const [stars, setStars] = useState([]);
   const [isMounted, setIsMounted] = useState(false);
-  const { getColor } = useTokens();
-  const cyan400 = colors?.cyan ?? getColor("primitives.colors.cyan.400", "#22d3ee");
-  const purple400 = colors?.purple ?? getColor("primitives.colors.purple.400", "#a855f7");
-  const pink500 = colors?.pink ?? getColor("primitives.colors.pink.500", "#ec4899");
   useEffect(() => {
     setStars(generateStars(config.count, [...config.sizes], [...config.opacity]));
     setIsMounted(true);
@@ -99,9 +67,9 @@ function CelestialBackground({
       className: "fixed inset-0 pointer-events-none opacity-0 dark:opacity-100 transition-opacity duration-1000",
       style: {
         background: `
-          radial-gradient(ellipse at top, ${hexToRGBA(cyan400, 0.1)} 0%, transparent 50%),
-          radial-gradient(ellipse at bottom right, ${hexToRGBA(purple400, 0.1)} 0%, transparent 50%),
-          radial-gradient(ellipse at bottom left, ${hexToRGBA(pink500, 0.05)} 0%, transparent 50%)
+          radial-gradient(ellipse at top, var(--color-cyan-400) 0%, transparent 50%),
+          radial-gradient(ellipse at bottom right, var(--color-purple-500) 0%, transparent 50%),
+          radial-gradient(ellipse at bottom left, rgba(236, 72, 153, 0.05) 0%, transparent 50%)
         `
       },
       children: [
@@ -112,7 +80,7 @@ function CelestialBackground({
             {
               className: "absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20",
               style: {
-                background: `radial-gradient(circle, ${hexToRGBA(cyan400, 0.3)} 0%, transparent 70%)`
+                background: `radial-gradient(circle, var(--color-cyan-400) 0%, transparent 70%)`
               }
             }
           ),
@@ -121,7 +89,7 @@ function CelestialBackground({
             {
               className: "absolute bottom-0 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-20",
               style: {
-                background: `radial-gradient(circle, ${hexToRGBA(purple400, 0.3)} 0%, transparent 70%)`
+                background: `radial-gradient(circle, var(--color-purple-500) 0%, transparent 70%)`
               }
             }
           ),
@@ -130,7 +98,7 @@ function CelestialBackground({
             {
               className: "absolute bottom-0 left-1/4 w-72 h-72 rounded-full blur-3xl opacity-15",
               style: {
-                background: `radial-gradient(circle, ${hexToRGBA(pink500, 0.2)} 0%, transparent 70%)`
+                background: `radial-gradient(circle, rgba(236, 72, 153, 0.2) 0%, transparent 70%)`
               }
             }
           )

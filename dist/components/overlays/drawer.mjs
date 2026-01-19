@@ -7,7 +7,6 @@ import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsx, jsxs } from 'react/jsx-runtime';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -238,8 +237,16 @@ var Drawer = React2.forwardRef(
     loading = false,
     children,
     ...props
-  }) => {
+  }, ref) => {
     const drawerRef = React2.useRef(null);
+    const setDrawerRef = React2.useCallback((node) => {
+      drawerRef.current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    }, [ref]);
     React2.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
@@ -290,15 +297,14 @@ var Drawer = React2.forwardRef(
       /* @__PURE__ */ jsxs(
         "div",
         {
-          ref: drawerRef,
+          ref: setDrawerRef,
           className: cn(
-            drawerVariants({ position, variant }),
+            drawerVariants({ position, size, variant, className }),
             position === "left" && size && sizeClasses[size],
             position === "right" && size && sizeClasses[size],
             animationClasses[position],
             loading && "opacity-70",
-            !open && "pointer-events-none",
-            className
+            !open && "pointer-events-none"
           ),
           role: "dialog",
           "aria-modal": "true",

@@ -3,7 +3,7 @@
 var designTokens = require('@rainersoft/design-tokens');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
-var React62 = require('react');
+var React65 = require('react');
 var jsxRuntime = require('react/jsx-runtime');
 var reactSlot = require('@radix-ui/react-slot');
 var classVarianceAuthority = require('class-variance-authority');
@@ -60,7 +60,7 @@ var cmdk = require('cmdk');
 var NavigationMenuPrimitive = require('@radix-ui/react-navigation-menu');
 var TabsPrimitive = require('@radix-ui/react-tabs');
 var ChevronLeft = require('lucide-react/dist/esm/icons/chevron-left');
-var ChevronRight2 = require('lucide-react/dist/esm/icons/chevron-right');
+var ChevronRight3 = require('lucide-react/dist/esm/icons/chevron-right');
 var MoreHorizontal = require('lucide-react/dist/esm/icons/more-horizontal');
 var LogOut = require('lucide-react/dist/esm/icons/log-out');
 var Menu2 = require('lucide-react/dist/esm/icons/menu');
@@ -99,20 +99,6 @@ var Link2 = require('next/link');
 var reactLoadingIndicators = require('react-loading-indicators');
 var Copy = require('lucide-react/dist/esm/icons/copy');
 var QuoteIcon = require('lucide-react/dist/esm/icons/quote');
-var Heart = require('lucide-react/dist/esm/icons/heart');
-var qrcode_react = require('qrcode.react');
-var Facebook = require('lucide-react/dist/esm/icons/facebook');
-var Link3 = require('lucide-react/dist/esm/icons/link');
-var Linkedin = require('lucide-react/dist/esm/icons/linkedin');
-var QrCode = require('lucide-react/dist/esm/icons/qr-code');
-var Send = require('lucide-react/dist/esm/icons/send');
-var Share2 = require('lucide-react/dist/esm/icons/share-2');
-var Twitter = require('lucide-react/dist/esm/icons/twitter');
-var Bookmark = require('lucide-react/dist/esm/icons/bookmark');
-var Link22 = require('lucide-react/dist/esm/icons/link-2');
-var Smartphone = require('lucide-react/dist/esm/icons/smartphone');
-var dateFns = require('date-fns');
-var locale = require('date-fns/locale');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
@@ -134,7 +120,7 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React62__namespace = /*#__PURE__*/_interopNamespace(React62);
+var React65__namespace = /*#__PURE__*/_interopNamespace(React65);
 var SliderPrimitive__namespace = /*#__PURE__*/_interopNamespace(SliderPrimitive);
 var SwitchPrimitives__namespace = /*#__PURE__*/_interopNamespace(SwitchPrimitives);
 var TogglePrimitive__namespace = /*#__PURE__*/_interopNamespace(TogglePrimitive);
@@ -182,7 +168,7 @@ var CollapsiblePrimitive__namespace = /*#__PURE__*/_interopNamespace(Collapsible
 var NavigationMenuPrimitive__namespace = /*#__PURE__*/_interopNamespace(NavigationMenuPrimitive);
 var TabsPrimitive__namespace = /*#__PURE__*/_interopNamespace(TabsPrimitive);
 var ChevronLeft__default = /*#__PURE__*/_interopDefault(ChevronLeft);
-var ChevronRight2__default = /*#__PURE__*/_interopDefault(ChevronRight2);
+var ChevronRight3__default = /*#__PURE__*/_interopDefault(ChevronRight3);
 var MoreHorizontal__default = /*#__PURE__*/_interopDefault(MoreHorizontal);
 var LogOut__default = /*#__PURE__*/_interopDefault(LogOut);
 var Menu2__default = /*#__PURE__*/_interopDefault(Menu2);
@@ -215,251 +201,13 @@ var StarHalf__default = /*#__PURE__*/_interopDefault(StarHalf);
 var Link2__default = /*#__PURE__*/_interopDefault(Link2);
 var Copy__default = /*#__PURE__*/_interopDefault(Copy);
 var QuoteIcon__default = /*#__PURE__*/_interopDefault(QuoteIcon);
-var Heart__default = /*#__PURE__*/_interopDefault(Heart);
-var Facebook__default = /*#__PURE__*/_interopDefault(Facebook);
-var Link3__default = /*#__PURE__*/_interopDefault(Link3);
-var Linkedin__default = /*#__PURE__*/_interopDefault(Linkedin);
-var QrCode__default = /*#__PURE__*/_interopDefault(QrCode);
-var Send__default = /*#__PURE__*/_interopDefault(Send);
-var Share2__default = /*#__PURE__*/_interopDefault(Share2);
-var Twitter__default = /*#__PURE__*/_interopDefault(Twitter);
-var Bookmark__default = /*#__PURE__*/_interopDefault(Bookmark);
-var Link22__default = /*#__PURE__*/_interopDefault(Link22);
-var Smartphone__default = /*#__PURE__*/_interopDefault(Smartphone);
 
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __publicField = (obj, key, value) => __defNormalProp(obj, key + "" , value);
-
-// src/lib/image-utils.ts
-function isAcceptedFormat(mimeType) {
-  const acceptedTypes = [
-    "image/jpeg",
-    "image/jpg",
-    "image/png",
-    "image/gif",
-    "image/webp",
-    "image/avif"
-  ];
-  return acceptedTypes.includes(mimeType);
-}
-function isWebP(mimeType) {
-  return mimeType === "image/webp";
-}
-function supportsWebP() {
-  return new Promise((resolve) => {
-    const webP = new Image();
-    webP.onload = webP.onerror = () => {
-      resolve(webP.height === 2);
-    };
-    webP.src = "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA";
-  });
-}
-async function getImageInfo(file) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    const url = URL.createObjectURL(file);
-    img.onload = () => {
-      URL.revokeObjectURL(url);
-      resolve({
-        width: img.naturalWidth,
-        height: img.naturalHeight,
-        size: file.size,
-        type: file.type
-      });
-    };
-    img.onerror = () => {
-      URL.revokeObjectURL(url);
-      reject(new Error("Failed to load image"));
-    };
-    img.src = url;
-  });
-}
-async function resizeImage(file, maxWidth, maxHeight, quality = 0.9, format = "image/jpeg") {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    const url = URL.createObjectURL(file);
-    img.onload = () => {
-      URL.revokeObjectURL(url);
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-      if (!ctx) {
-        reject(new Error("Failed to get canvas context"));
-        return;
-      }
-      let { width, height } = img;
-      if (width > maxWidth) {
-        height = maxWidth / width * height;
-        width = maxWidth;
-      }
-      if (height > maxHeight) {
-        width = maxHeight / height * width;
-        height = maxHeight;
-      }
-      canvas.width = width;
-      canvas.height = height;
-      ctx.drawImage(img, 0, 0, width, height);
-      canvas.toBlob(
-        (blob) => {
-          if (blob) {
-            const resizedFile = new File([blob], file.name, {
-              type: format,
-              lastModified: Date.now()
-            });
-            resolve(resizedFile);
-          } else {
-            reject(new Error("Failed to create blob"));
-          }
-        },
-        format,
-        quality
-      );
-    };
-    img.onerror = () => {
-      URL.revokeObjectURL(url);
-      reject(new Error("Failed to load image"));
-    };
-    img.src = url;
-  });
-}
-async function convertToWebP(file, quality = 0.9) {
-  if (isWebP(file.type)) {
-    return file;
-  }
-  return resizeImage(file, file.size, file.size, quality, "image/webp");
-}
-async function prepareImageForUpload(file, options = {}) {
-  const {
-    maxWidth = 1920,
-    maxHeight = 1080,
-    quality = 0.9,
-    shouldConvertToWebP = true,
-    maxSizeBytes = 5 * 1024 * 1024
-    // 5MB
-  } = options;
-  if (!isAcceptedFormat(file.type)) {
-    throw new Error("Formato de imagem n\xE3o suportado");
-  }
-  if (file.size > maxSizeBytes) {
-    throw new Error(`Arquivo muito grande. M\xE1ximo: ${maxSizeBytes / 1024 / 1024}MB`);
-  }
-  const info = await getImageInfo(file);
-  let processedFile = file;
-  if (info.width > maxWidth || info.height > maxHeight) {
-    processedFile = await resizeImage(file, maxWidth, maxHeight, quality);
-  }
-  if (shouldConvertToWebP && !isWebP(processedFile.type)) {
-    try {
-      const isWebPSupported = await supportsWebP();
-      if (isWebPSupported === true) {
-        processedFile = await convertToWebP(processedFile, quality);
-      }
-    } catch {
-    }
-  }
-  return processedFile;
-}
-function generatePlaceholder(width, height, text = "") {
-  const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return "";
-  ctx.fillStyle = "rgb(229, 231, 235)";
-  ctx.fillRect(0, 0, width, height);
-  if (text) {
-    ctx.fillStyle = "rgb(107, 114, 128)";
-    ctx.font = `${Math.min(width, height) / 10}px sans-serif`;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(text, width / 2, height / 2);
-  }
-  return canvas.toDataURL();
-}
-function getThemeColors(theme) {
-  const tokenObj = designTokens.tokens;
-  return tokenObj.themes?.[theme] || {};
-}
-function getTokenColor(tokenName, theme) {
-  if (theme) {
-    const themeColors = getThemeColors(theme);
-    const searchPaths = [
-      themeColors.button?.primary,
-      themeColors.text?.primary,
-      themeColors.background?.primary,
-      themeColors.border?.default
-    ];
-    for (const value of searchPaths) {
-      if (typeof value === "string" && value.startsWith("#")) {
-        return value;
-      }
-      if (value && typeof value === "object" && "default" in value) {
-        const defaultValue = value.default;
-        if (typeof defaultValue === "string" && defaultValue.startsWith("#")) {
-          return defaultValue;
-        }
-      }
-    }
-  }
-  const varName = tokenName.startsWith("color-") ? tokenName : `color-${tokenName}`;
-  return `var(--${varName})`;
-}
-function hexToRGB(hex) {
-  const cleanHex = hex.replace("#", "");
-  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
-    return "0, 0, 0";
-  }
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  return `${r}, ${g}, ${b}`;
-}
-function hexToRGBA(hex, alpha = 1) {
-  const cleanHex = hex.replace("#", "");
-  alpha = Math.max(0, Math.min(1, alpha));
-  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
-    return "rgb(0, 0, 0)";
-  }
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  if (alpha === 1) {
-    return `rgb(${r}, ${g}, ${b})`;
-  }
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
-function overlayFromToken(tokenName, alpha = 0.08, theme) {
-  const cleanName = tokenName.replace(/^color-/, "");
-  if (theme) {
-    const hexColor = getTokenColor(cleanName, theme);
-    if (hexColor.startsWith("#")) {
-      return hexToRGBA(hexColor, alpha);
-    }
-  }
-  const varName = tokenName.startsWith("color-") ? tokenName : `color-${tokenName}`;
-  return `rgba(var(--${varName}-rgb, 0 0 0), ${alpha})`;
-}
-function isValidHex(hex) {
-  const cleanHex = hex.replace("#", "");
-  return /^[0-9A-Fa-f]{6}$/.test(cleanHex);
-}
-function getContrastColor(hex) {
-  const cleanHex = hex.replace("#", "");
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  return luminance > 0.5 ? "#000000" : "#ffffff";
-}
-
-// src/lib/utils.ts
+var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var SECTION_CLASSES = {
-  /** Container padrão de página com largura máxima e padding responsivo */
-  container: "w-full max-w-6xl mx-auto px-6 py-12"
-};
 var motion = designTokens.tokens.MOTION || {
   duration: {
     instant: "0ms",
@@ -537,6 +285,56 @@ var motionPresets = {
     navigation: motionSemantic.navigation.page
   }
 };
+function getThemeColors(theme) {
+  const tokenObj = designTokens.tokens;
+  return tokenObj.themes?.[theme] || {};
+}
+function getTokenColor(tokenName, theme) {
+  if (theme) {
+    const themeColors = getThemeColors(theme);
+    const colorValue = themeColors[tokenName];
+    if (colorValue) {
+      return colorValue;
+    }
+  }
+  const tokenObj = designTokens.tokens;
+  const semanticTokens = tokenObj.semantics;
+  const colorTokens = semanticTokens.color;
+  const colorRoles = colorTokens["color-roles"];
+  if (colorRoles?.[tokenName]) {
+    return `var(--${tokenName})`;
+  }
+  const primitiveTokens = tokenObj.primitives;
+  const colorPrimitives = primitiveTokens.color;
+  if (colorPrimitives?.[tokenName]) {
+    return `var(--${tokenName})`;
+  }
+  return `var(--${tokenName})`;
+}
+function overlayFromToken(tokenName, alpha = 0.08, theme) {
+  const cleanName = tokenName.replace(/^color-/, "");
+  if (theme) {
+    const hexColor = getTokenColor(cleanName, theme);
+    if (hexColor.startsWith("#")) {
+      const varName2 = tokenName.startsWith("color-") ? tokenName : `color-${tokenName}`;
+      return `rgba(var(--${varName2}-rgb, 0 0 0), ${alpha})`;
+    }
+  }
+  const varName = tokenName.startsWith("color-") ? tokenName : `color-${tokenName}`;
+  return `rgba(var(--${varName}-rgb, 0 0 0), ${alpha})`;
+}
+function isValidHex(hex) {
+  const cleanHex = hex.replace("#", "");
+  return /^[0-9A-Fa-f]{6}$/.test(cleanHex);
+}
+function getContrastColor(hex) {
+  const cleanHex = hex.replace("#", "");
+  const r = parseInt(cleanHex.substring(0, 2), 16);
+  const g = parseInt(cleanHex.substring(2, 4), 16);
+  const b = parseInt(cleanHex.substring(4, 6), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.5 ? "var(--color-black)" : "var(--color-white)";
+}
 function getThemeColors2(theme) {
   return designTokens.themes[theme];
 }
@@ -551,11 +349,11 @@ function getSemanticColorsSimplified(theme) {
 }
 function getStatusColor(status, theme = "light") {
   const themeData = designTokens.themes[theme];
-  return themeData?.colors?.[status]?.base || "#000000";
+  return themeData?.colors?.[status]?.base || "var(--color-black)";
 }
 function getButtonPrimaryColor(theme = "light") {
   const themeData = designTokens.themes[theme];
-  return themeData?.colors?.primary?.base || "#0891b2";
+  return themeData?.colors?.primary?.base || "var(--color-cyan-600)";
 }
 function getButtonSecondaryColor(theme = "light") {
   const themeData = designTokens.themes[theme];
@@ -566,7 +364,7 @@ function getButtonTertiaryColor(theme = "light") {
 }
 function getButtonPrimaryTextColor(theme = "light") {
   const themeData = designTokens.themes[theme];
-  return themeData?.colors?.primary?.text || "#ffffff";
+  return themeData?.colors?.primary?.text || "var(--color-white)";
 }
 function getColorFromTheme(theme, category, shade) {
   const themeData = designTokens.themes[theme];
@@ -598,6 +396,719 @@ function generateTailwindClasses(options) {
   });
   return classes.join(" ");
 }
+var __defProp2 = Object.defineProperty;
+var __defNormalProp2 = (obj, key, value) => key in obj ? __defProp2(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp2(target, name, { get: all[name], enumerable: true });
+};
+var __publicField2 = (obj, key, value) => __defNormalProp2(obj, typeof key !== "symbol" ? key + "" : key, value);
+var DEFAULT_LOCALE = "pt-BR";
+var CURRENCY_MAP = {
+  "pt-BR": "BRL",
+  "en-US": "USD",
+  "es-ES": "EUR"
+};
+var date_exports = {};
+__export(date_exports, {
+  formatDate: () => formatDate,
+  formatDateTime: () => formatDateTime,
+  formatRelativeDate: () => formatRelativeDate,
+  isValidDate: () => isValidDate,
+  toISOString: () => toISOString
+});
+var RELATIVE_TEXTS = {
+  "pt-BR": {
+    now: "agora",
+    minute: (n) => `h\xE1 ${n} ${n === 1 ? "minuto" : "minutos"}`,
+    hour: (n) => `h\xE1 ${n} ${n === 1 ? "hora" : "horas"}`,
+    day: (n) => `h\xE1 ${n} ${n === 1 ? "dia" : "dias"}`,
+    month: (n) => `h\xE1 ${n} ${n === 1 ? "m\xEAs" : "meses"}`,
+    year: (n) => `h\xE1 ${n} ${n === 1 ? "ano" : "anos"}`
+  },
+  "en-US": {
+    now: "now",
+    minute: (n) => `${n} ${n === 1 ? "minute" : "minutes"} ago`,
+    hour: (n) => `${n} ${n === 1 ? "hour" : "hours"} ago`,
+    day: (n) => `${n} ${n === 1 ? "day" : "days"} ago`,
+    month: (n) => `${n} ${n === 1 ? "month" : "months"} ago`,
+    year: (n) => `${n} ${n === 1 ? "year" : "years"} ago`
+  },
+  "es-ES": {
+    now: "ahora",
+    minute: (n) => `hace ${n} ${n === 1 ? "minuto" : "minutos"}`,
+    hour: (n) => `hace ${n} ${n === 1 ? "hora" : "horas"}`,
+    day: (n) => `hace ${n} ${n === 1 ? "d\xEDa" : "d\xEDas"}`,
+    month: (n) => `hace ${n} ${n === 1 ? "mes" : "meses"}`,
+    year: (n) => `hace ${n} ${n === 1 ? "a\xF1o" : "a\xF1os"}`
+  }
+};
+function formatDate(date, format = "long", locale = DEFAULT_LOCALE) {
+  const d = typeof date === "string" ? new Date(date) : date;
+  const options = {
+    day: "numeric",
+    month: format === "short" ? "2-digit" : "long",
+    year: "numeric",
+    ...format === "full" && { weekday: "long" }
+  };
+  if (format === "short") {
+    return d.toLocaleDateString(locale, { day: "2-digit", month: "2-digit", year: "numeric" });
+  }
+  return d.toLocaleDateString(locale, options);
+}
+function formatDateTime(date, locale = DEFAULT_LOCALE) {
+  const d = typeof date === "string" ? new Date(date) : date;
+  return d.toLocaleString(locale, {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+}
+function formatRelativeDate(date, locale = DEFAULT_LOCALE) {
+  const d = typeof date === "string" ? new Date(date) : date;
+  if (!(d instanceof Date) || Number.isNaN(d.getTime())) {
+    return "";
+  }
+  const now = /* @__PURE__ */ new Date();
+  const diffMs = now.getTime() - d.getTime();
+  const diffSec = Math.floor(diffMs / 1e3);
+  const diffMin = Math.floor(diffSec / 60);
+  const diffHour = Math.floor(diffMin / 60);
+  const diffDay = Math.floor(diffHour / 24);
+  const diffMonth = Math.floor(diffDay / 30.4375);
+  const diffYear = Math.floor(diffDay / 365);
+  const texts = RELATIVE_TEXTS[locale];
+  if (diffSec < 10) {
+    if (locale === "pt-BR") return "agora mesmo";
+    if (locale === "en-US") return "just now";
+    if (locale === "es-ES") return "ahora mismo";
+  }
+  if (diffSec < 60) return texts.now;
+  if (diffMin < 60) return texts.minute(diffMin);
+  if (diffHour < 24) return texts.hour(diffHour);
+  if (diffDay === 1) {
+    if (locale === "pt-BR") return "ontem";
+    if (locale === "en-US") return "yesterday";
+    if (locale === "es-ES") return "ayer";
+  }
+  if (diffDay === 2) {
+    if (locale === "pt-BR") return "anteontem";
+    if (locale === "en-US") return "the day before yesterday";
+    if (locale === "es-ES") return "anteayer";
+  }
+  if (diffDay < 30) return texts.day(diffDay);
+  if (diffMonth < 12) return texts.month(diffMonth);
+  return texts.year(diffYear);
+}
+function toISOString(date) {
+  return date.toISOString();
+}
+function isValidDate(date) {
+  return date instanceof Date && !isNaN(date.getTime());
+}
+var status_exports = {};
+__export(status_exports, {
+  getStatusColor: () => getStatusColor2,
+  getStatusVariant: () => getStatusVariant,
+  translatePostStatus: () => translatePostStatus,
+  translateStatus: () => translateStatus
+});
+var STATUS_TRANSLATIONS = {
+  "pt-BR": {
+    // Estados de conteúdo
+    DRAFT: "Rascunho",
+    PUBLISHED: "Publicado",
+    ARCHIVED: "Arquivado",
+    SCHEDULED: "Agendado",
+    DELETED: "Exclu\xEDdo",
+    // Estados de processo
+    PENDING: "Pendente",
+    ACTIVE: "Ativo",
+    INACTIVE: "Inativo",
+    COMPLETED: "Conclu\xEDdo",
+    CANCELLED: "Cancelado",
+    // Estados de aprovação
+    APPROVED: "Aprovado",
+    REJECTED: "Rejeitado",
+    // Estados de pedido/pagamento
+    PROCESSING: "Processando",
+    PAID: "Pago",
+    UNPAID: "N\xE3o Pago",
+    REFUNDED: "Reembolsado",
+    FAILED: "Falhou",
+    // Estados de usuário
+    VERIFIED: "Verificado",
+    UNVERIFIED: "N\xE3o Verificado",
+    BANNED: "Banido",
+    SUSPENDED: "Suspenso"
+  },
+  "en-US": {
+    DRAFT: "Draft",
+    PUBLISHED: "Published",
+    ARCHIVED: "Archived",
+    SCHEDULED: "Scheduled",
+    DELETED: "Deleted",
+    PENDING: "Pending",
+    ACTIVE: "Active",
+    INACTIVE: "Inactive",
+    COMPLETED: "Completed",
+    CANCELLED: "Cancelled",
+    APPROVED: "Approved",
+    REJECTED: "Rejected",
+    PROCESSING: "Processing",
+    PAID: "Paid",
+    UNPAID: "Unpaid",
+    REFUNDED: "Refunded",
+    FAILED: "Failed",
+    VERIFIED: "Verified",
+    UNVERIFIED: "Unverified",
+    BANNED: "Banned",
+    SUSPENDED: "Suspended"
+  },
+  "es-ES": {
+    DRAFT: "Borrador",
+    PUBLISHED: "Publicado",
+    ARCHIVED: "Archivado",
+    SCHEDULED: "Programado",
+    DELETED: "Eliminado",
+    PENDING: "Pendiente",
+    ACTIVE: "Activo",
+    INACTIVE: "Inactivo",
+    COMPLETED: "Completado",
+    CANCELLED: "Cancelado",
+    APPROVED: "Aprobado",
+    REJECTED: "Rechazado",
+    PROCESSING: "Procesando",
+    PAID: "Pagado",
+    UNPAID: "No Pagado",
+    REFUNDED: "Reembolsado",
+    FAILED: "Fallido",
+    VERIFIED: "Verificado",
+    UNVERIFIED: "No Verificado",
+    BANNED: "Bloqueado",
+    SUSPENDED: "Suspendido"
+  }
+};
+function translateStatus(status, locale = DEFAULT_LOCALE) {
+  const normalized = status.toUpperCase();
+  return STATUS_TRANSLATIONS[locale][normalized] || status;
+}
+function getStatusColor2(status) {
+  const normalized = status.toUpperCase();
+  const colorMap = {
+    DRAFT: "text-gray-600",
+    PENDING: "text-yellow-600",
+    PUBLISHED: "text-green-600",
+    ACTIVE: "text-green-600",
+    INACTIVE: "text-gray-600",
+    ARCHIVED: "text-orange-600",
+    DELETED: "text-red-600",
+    SCHEDULED: "text-blue-600",
+    COMPLETED: "text-green-600",
+    CANCELLED: "text-red-600",
+    APPROVED: "text-green-600",
+    REJECTED: "text-red-600",
+    FAILED: "text-red-600",
+    VERIFIED: "text-green-600",
+    BANNED: "text-red-600"
+  };
+  return colorMap[normalized] || "text-gray-600";
+}
+function getStatusVariant(status) {
+  const normalized = status.toUpperCase();
+  if (["PUBLISHED", "ACTIVE", "COMPLETED", "APPROVED", "VERIFIED"].includes(normalized)) {
+    return "default";
+  }
+  if (["DELETED", "CANCELLED", "REJECTED", "FAILED", "BANNED"].includes(normalized)) {
+    return "destructive";
+  }
+  if (["DRAFT", "INACTIVE", "ARCHIVED"].includes(normalized)) {
+    return "secondary";
+  }
+  return "outline";
+}
+function translatePostStatus(status, locale = DEFAULT_LOCALE) {
+  const postStatusMap = {
+    "draft": "DRAFT",
+    "published": "PUBLISHED",
+    "archived": "ARCHIVED",
+    "scheduled": "SCHEDULED",
+    "pending_review": "PENDING"
+  };
+  const normalized = postStatusMap[status.toLowerCase()] || status.toUpperCase();
+  if (status.toLowerCase() === "pending_review") {
+    const translations = {
+      "pt-BR": "Aguardando Revis\xE3o",
+      "en-US": "Pending Review",
+      "es-ES": "Pendiente de Revisi\xF3n"
+    };
+    return translations[locale] || translations["pt-BR"];
+  }
+  return translateStatus(normalized, locale);
+}
+function scrollToElement(element, options = {}) {
+  if (typeof window === "undefined") return;
+  const { smooth = false, offset = 0, behavior } = options;
+  let targetElement;
+  if (typeof element === "string") {
+    targetElement = document.querySelector(element);
+  } else {
+    targetElement = element;
+  }
+  if (!targetElement) return;
+  const rect = targetElement.getBoundingClientRect();
+  const absoluteY = rect.top + window.scrollY - offset;
+  window.scrollTo({
+    left: 0,
+    top: absoluteY,
+    behavior: behavior || (smooth ? "smooth" : "auto")
+  });
+}
+var authentication_exports = {};
+__export(authentication_exports, {
+  getRefreshToken: () => getRefreshToken,
+  getToken: () => getToken,
+  getTokens: () => getTokens,
+  hasToken: () => hasToken,
+  removeToken: () => removeToken,
+  setRefreshToken: () => setRefreshToken,
+  setToken: () => setToken,
+  setTokens: () => setTokens
+});
+var TOKEN_KEY = "auth_token";
+var REFRESH_TOKEN_KEY = "refresh_token";
+var getToken = () => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+  return localStorage.getItem(TOKEN_KEY);
+};
+var setToken = (token) => {
+  if (typeof window === "undefined") {
+    return;
+  }
+  localStorage.setItem(TOKEN_KEY, token);
+};
+var getRefreshToken = () => {
+  if (typeof window === "undefined") {
+    return null;
+  }
+  return localStorage.getItem(REFRESH_TOKEN_KEY);
+};
+var setRefreshToken = (refreshToken) => {
+  if (typeof window === "undefined") {
+    return;
+  }
+  localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
+};
+var removeToken = () => {
+  if (typeof window === "undefined") {
+    return;
+  }
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(REFRESH_TOKEN_KEY);
+};
+var hasToken = () => {
+  return !!getToken();
+};
+var getTokens = () => {
+  return {
+    accessToken: getToken(),
+    refreshToken: getRefreshToken()
+  };
+};
+var setTokens = ({
+  accessToken,
+  refreshToken
+}) => {
+  setToken(accessToken);
+  setRefreshToken(refreshToken);
+};
+var COOKIE_CONSENT_KEY = "cookie-consent";
+var COOKIE_PREFERENCES_KEY = "cookie-preferences";
+var COOKIE_VERSION = "1.0.0";
+var _CookieManager = class _CookieManager2 {
+  constructor() {
+  }
+  static getInstance() {
+    if (!_CookieManager2.instance) {
+      _CookieManager2.instance = new _CookieManager2();
+    }
+    return _CookieManager2.instance;
+  }
+  hasConsent() {
+    if (typeof window === "undefined") return false;
+    try {
+      const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+      if (!consent) return false;
+      const consentData = JSON.parse(consent);
+      return consentData.consented === true;
+    } catch {
+      return false;
+    }
+  }
+  getPreferences() {
+    if (typeof window === "undefined") return null;
+    try {
+      const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+      if (!consent) return null;
+      const consentData = JSON.parse(consent);
+      return consentData.preferences || null;
+    } catch {
+      return null;
+    }
+  }
+  saveConsent(preferences) {
+    if (typeof window === "undefined") return;
+    try {
+      const consent = {
+        version: COOKIE_VERSION,
+        consented: true,
+        timestamp: Date.now(),
+        preferences
+      };
+      localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(consent));
+      localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(preferences));
+      window.dispatchEvent(
+        new CustomEvent("cookie-consent-updated", { detail: preferences })
+      );
+      this.loadScripts(preferences);
+    } catch {
+    }
+  }
+  updatePreferences(preferences) {
+    this.saveConsent(preferences);
+  }
+  revokeConsent() {
+    if (typeof window === "undefined") return;
+    try {
+      localStorage.removeItem(COOKIE_CONSENT_KEY);
+      localStorage.removeItem(COOKIE_PREFERENCES_KEY);
+      this.clearAnalyticsCookies();
+      window.dispatchEvent(
+        new CustomEvent("cookie-consent-revoked", { detail: null })
+      );
+    } catch {
+    }
+  }
+  isAllowed(type) {
+    const preferences = this.getPreferences();
+    if (!preferences) return false;
+    if (type === "essential") {
+      return preferences.essential === true;
+    }
+    return preferences[type] === true;
+  }
+  loadScripts(preferences) {
+    if (preferences.analytics) {
+      this.loadGoogleAnalytics();
+    } else {
+      this.unloadGoogleAnalytics();
+    }
+  }
+  loadGoogleAnalytics() {
+  }
+  unloadGoogleAnalytics() {
+    const scripts = document.querySelectorAll(
+      'script[src*="googletagmanager.com"], script[src*="google-analytics.com"]'
+    );
+    scripts.forEach((script) => script.remove());
+    this.clearAnalyticsCookies();
+    const win = window;
+    if (win.dataLayer) {
+      win.dataLayer = [];
+    }
+    if (win.gtag) {
+      delete win.gtag;
+    }
+  }
+  clearAnalyticsCookies() {
+    if (typeof document === "undefined") return;
+    const analyticsCookies = [
+      "_ga",
+      "_ga_*",
+      "_gid",
+      "_gat",
+      "_gat_gtag_*",
+      "__utma",
+      "__utmt",
+      "__utmb",
+      "__utmc",
+      "__utmz",
+      "__utmv"
+    ];
+    analyticsCookies.forEach((cookieName) => {
+      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      if (cookieName.includes("*")) {
+        const baseName = cookieName.replace("*", "");
+        const cookies = document.cookie.split(";");
+        cookies.forEach((cookie) => {
+          const parts = cookie.split("=");
+          if (parts.length === 0) return;
+          const name = parts[0]?.trim();
+          if (!name || !name.startsWith(baseName)) return;
+          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname};`;
+        });
+      }
+    });
+  }
+};
+__publicField2(_CookieManager, "instance");
+var AuthStorage = class {
+  static setItem(key, value) {
+    if (!this.isClient) return;
+    try {
+      localStorage.setItem(key, value);
+    } catch (error) {
+      console.warn("Failed to save to localStorage:", error);
+    }
+  }
+  static getItem(key) {
+    if (!this.isClient) return null;
+    try {
+      return localStorage.getItem(key);
+    } catch (error) {
+      console.warn("Failed to read from localStorage:", error);
+      return null;
+    }
+  }
+  static removeItem(key) {
+    if (!this.isClient) return;
+    try {
+      localStorage.removeItem(key);
+    } catch (error) {
+      console.warn("Failed to remove from localStorage:", error);
+    }
+  }
+  static setUser(user, key) {
+    this.setItem(key, JSON.stringify(user));
+  }
+  static getUser(key) {
+    const data = this.getItem(key);
+    if (!data) return null;
+    try {
+      return JSON.parse(data);
+    } catch {
+      this.removeItem(key);
+      return null;
+    }
+  }
+  static removeUser(key) {
+    this.removeItem(key);
+  }
+};
+__publicField2(AuthStorage, "isClient", typeof window !== "undefined");
+function getInitials(name, maxInitials = 2) {
+  return name.split(" ").filter((word) => word.length > 0).map((word) => word[0]).join("").toUpperCase().slice(0, maxInitials);
+}
+function formatCurrency(value, locale = DEFAULT_LOCALE, options) {
+  const currency = CURRENCY_MAP[locale];
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+    ...options
+  }).format(value);
+}
+function formatNumber2(value, decimals = 0, locale = DEFAULT_LOCALE) {
+  return new Intl.NumberFormat(locale, {
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  }).format(value);
+}
+function formatCompact(value, decimals = 1, locale = DEFAULT_LOCALE) {
+  return new Intl.NumberFormat(locale, {
+    notation: "compact",
+    compactDisplay: "short",
+    minimumFractionDigits: decimals,
+    maximumFractionDigits: decimals
+  }).format(value);
+}
+var pt_br_exports = {};
+__export(pt_br_exports, {
+  default: () => pt_br_default,
+  formatCompact: () => formatCompact2,
+  formatCurrency: () => formatCurrency2,
+  formatDate: () => formatDate2,
+  formatDateTime: () => formatDateTime2,
+  formatNumber: () => formatNumber3,
+  formatRelativeDate: () => formatRelativeDate2,
+  translateStatus: () => translateStatus2
+});
+function formatDate2(date, format = "long") {
+  return formatDate(date, format, "pt-BR");
+}
+function formatDateTime2(date) {
+  return formatDateTime(date, "pt-BR");
+}
+function formatRelativeDate2(date) {
+  return formatRelativeDate(date, "pt-BR");
+}
+function formatCurrency2(value, options) {
+  return formatCurrency(value, "pt-BR", options);
+}
+function formatNumber3(value, decimals = 0) {
+  return formatNumber2(value, decimals, "pt-BR");
+}
+function formatCompact2(value, decimals = 1) {
+  return formatCompact(value, decimals, "pt-BR");
+}
+function translateStatus2(status) {
+  return translateStatus(status, "pt-BR");
+}
+var pt_br_default = {
+  formatDate: formatDate2,
+  formatDateTime: formatDateTime2,
+  formatRelativeDate: formatRelativeDate2,
+  formatCurrency: formatCurrency2,
+  formatNumber: formatNumber3,
+  formatCompact: formatCompact2,
+  translateStatus: translateStatus2
+};
+var text_exports = {};
+__export(text_exports, {
+  calculateReadingTime: () => calculateReadingTime,
+  capitalize: () => capitalize,
+  cleanText: () => cleanText,
+  countWords: () => countWords,
+  extractInitials: () => extractInitials,
+  generateAvatarUrl: () => generateAvatarUrl,
+  generateDynamicAvatarUrl: () => generateDynamicAvatarUrl,
+  generateUniqueId: () => generateUniqueId,
+  getAvatarColorFromName: () => getAvatarColorFromName,
+  isEmpty: () => isEmpty,
+  isValidAvatarUrl: () => isValidAvatarUrl,
+  normalizeSpaces: () => normalizeSpaces,
+  truncateText: () => truncateText
+});
+function extractInitials(name, maxChars = 2) {
+  if (!name || !name.trim()) {
+    return "";
+  }
+  const words = name.trim().split(/\s+/);
+  const initials = words.slice(0, maxChars).map((word) => word.charAt(0).toUpperCase()).join("");
+  return initials;
+}
+function generateAvatarUrl(name, size = 200, backgroundColor = "0891b2", textColor = "fff") {
+  const encodedName = encodeURIComponent(name);
+  return `https://ui-avatars.com/api/?name=${encodedName}&size=${size}&background=${backgroundColor}&color=${textColor}&font-size=0.5`;
+}
+function isValidAvatarUrl(url) {
+  if (!url || typeof url !== "string") {
+    return false;
+  }
+  try {
+    new URL(url);
+    return true;
+  } catch {
+    return false;
+  }
+}
+function getAvatarColorFromName(name) {
+  if (!name || typeof name !== "string") {
+    return "#0891b2";
+  }
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) {
+    hash = name.charCodeAt(i) + ((hash << 5) - hash);
+  }
+  const colors = [
+    "#0891b2",
+    // cyan-600
+    "#9333ea",
+    // purple-600
+    "#db2777",
+    // pink-600
+    "#059669",
+    // emerald-600
+    "#2563eb",
+    // blue-600
+    "#f97316",
+    // orange-500
+    "#dc2626",
+    // red-600
+    "#7c3aed"
+    // violet-600
+  ];
+  const index = Math.abs(hash) % colors.length;
+  return colors[index];
+}
+function generateDynamicAvatarUrl(name, size = 200) {
+  const color = getAvatarColorFromName(name);
+  const colorHex = color.replace("#", "");
+  return generateAvatarUrl(name, size, colorHex, "fff");
+}
+function generateUniqueId(text, prefix = "", suffix = "") {
+  const slug = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim().substring(0, 50);
+  const parts = [prefix, slug, suffix].filter(Boolean);
+  return parts.join("-");
+}
+function truncateText(text, maxLength, suffix = "...") {
+  if (!text || text.length <= maxLength) {
+    return text || "";
+  }
+  return text.substring(0, maxLength - suffix.length) + suffix;
+}
+function capitalize(text, options = {}) {
+  if (!text) return "";
+  const { firstWordOnly = false, lowerRest = false } = options;
+  if (firstWordOnly) {
+    return text.charAt(0).toUpperCase() + (lowerRest ? text.slice(1).toLowerCase() : text.slice(1));
+  }
+  if (lowerRest) {
+    return text.replace(/\b\w/g, (char) => char.toUpperCase()).toLowerCase();
+  }
+  return text.replace(/\b\w/g, (char) => char.toUpperCase());
+}
+function cleanText(text, allowSpaces = true) {
+  if (!text) return "";
+  const pattern = allowSpaces ? /[^\w\s]/g : /[^\w]/g;
+  return text.replace(pattern, "");
+}
+function countWords(text) {
+  if (!text || !text.trim()) {
+    return 0;
+  }
+  return text.trim().split(/\s+/).length;
+}
+function isEmpty(text) {
+  return !text || !text.trim();
+}
+function normalizeSpaces(text, options = {}) {
+  if (!text) return "";
+  const { newlines = false } = options;
+  let cleaned = text;
+  if (newlines) {
+    cleaned = cleaned.replace(/\s+/g, " ");
+  } else {
+    cleaned = cleaned.replace(/\s+/g, " ");
+  }
+  return cleaned.trim();
+}
+function calculateReadingTime(content, wordsPerMinute = 200) {
+  let text = "";
+  if (typeof content === "object" && content !== null) {
+    const extractText = (node) => {
+      if (!node) return "";
+      let result = "";
+      if (node.text) {
+        result += node.text + " ";
+      }
+      if (Array.isArray(node.content)) {
+        result += node.content.map(extractText).join(" ");
+      }
+      return result;
+    };
+    text = extractText(content);
+  } else if (typeof content === "string") {
+    text = content.replace(/<[^>]*>/g, "");
+  }
+  const words = text.trim().split(/\s+/).filter((word) => word.length > 0).length;
+  const time = Math.ceil(words / wordsPerMinute);
+  return time > 0 ? time : 1;
+}
 var sizeClasses = {
   xs: "h-6 w-6 text-xs",
   sm: "h-8 w-8 text-sm",
@@ -612,14 +1123,6 @@ var variantClasses = {
   rounded: "rounded-xl",
   square: "rounded-lg"
 };
-function getInitials(name, max = 2) {
-  if (!name) return "";
-  const words = name.trim().split(/\s+/);
-  if (words.length === 1) {
-    return words[0].slice(0, Math.min(max, 2)).toUpperCase();
-  }
-  return words.slice(0, max).map((word) => word[0]).join("").toUpperCase();
-}
 function getColorFromName(name) {
   const colors = [
     "from-blue-400 to-blue-600",
@@ -639,7 +1142,7 @@ function getColorFromName(name) {
   }
   return colors[Math.abs(hash) % colors.length];
 }
-var Avatar = React62__namespace.forwardRef(
+var Avatar = React65__namespace.forwardRef(
   ({
     className,
     src,
@@ -655,9 +1158,9 @@ var Avatar = React62__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [imageStatus, setImageStatus] = React62__namespace.useState("loading");
-    const [showFallback, setShowFallback] = React62__namespace.useState(!src);
-    React62__namespace.useEffect(() => {
+    const [imageStatus, setImageStatus] = React65__namespace.useState("loading");
+    const [showFallback, setShowFallback] = React65__namespace.useState(!src);
+    React65__namespace.useEffect(() => {
       if (!src) {
         setShowFallback(true);
         setImageStatus("error");
@@ -722,7 +1225,7 @@ var Avatar = React62__namespace.forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var AvatarImage = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarImage = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "img",
   {
     ref,
@@ -731,7 +1234,7 @@ var AvatarImage = React62__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 AvatarImage.displayName = "AvatarImage";
-var AvatarFallback = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarFallback = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -743,9 +1246,9 @@ var AvatarFallback = React62__namespace.forwardRef(({ className, ...props }, ref
   }
 ));
 AvatarFallback.displayName = "AvatarFallback";
-var Input = React62__namespace.forwardRef(
+var Input = React65__namespace.forwardRef(
   ({ className, type, error, helperText, label, required, id, ...props }, ref) => {
-    const inputId = id || `input-${React62__namespace.useId()}`;
+    const inputId = id || `input-${React65__namespace.useId()}`;
     return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "space-y-2", children: [
       label && /* @__PURE__ */ jsxRuntime.jsxs(
         "label",
@@ -795,7 +1298,7 @@ var Input = React62__namespace.forwardRef(
           className: cn(
             "text-xs",
             error ? "text-destructive" : "text-muted-foreground",
-            "dark:text-cyan-400/70 dark:text-red-400/70"
+            "dark:text-cyan-400/70"
           ),
           children: helperText
         }
@@ -804,7 +1307,7 @@ var Input = React62__namespace.forwardRef(
   }
 );
 Input.displayName = "Input";
-var Textarea = React62__namespace.forwardRef(
+var Textarea = React65__namespace.forwardRef(
   ({
     className,
     error,
@@ -817,9 +1320,9 @@ var Textarea = React62__namespace.forwardRef(
     value,
     ...props
   }, ref) => {
-    const inputId = id || `textarea-${React62__namespace.useId()}`;
-    const [characterCount, setCharacterCount] = React62__namespace.useState(0);
-    React62__namespace.useEffect(() => {
+    const inputId = id || `textarea-${React65__namespace.useId()}`;
+    const [characterCount, setCharacterCount] = React65__namespace.useState(0);
+    React65__namespace.useEffect(() => {
       if (typeof value === "string") {
         setCharacterCount(value.length);
       }
@@ -950,7 +1453,7 @@ var buttonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var ButtonComponent = React62__namespace.forwardRef(
+var ButtonComponent = React65__namespace.forwardRef(
   ({
     className,
     variant,
@@ -965,7 +1468,7 @@ var ButtonComponent = React62__namespace.forwardRef(
   }, ref) => {
     const isDisabled = disabled || loading;
     if (asChild) {
-      const child = React62__namespace.Children.only(children);
+      const child = React65__namespace.Children.only(children);
       return /* @__PURE__ */ jsxRuntime.jsx(
         reactSlot.Slot,
         {
@@ -1020,7 +1523,7 @@ var ButtonComponent = React62__namespace.forwardRef(
 );
 ButtonComponent.displayName = "Button";
 var Button = ButtonComponent;
-var Slider = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var Slider = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SliderPrimitive__namespace.Root,
   {
     ref,
@@ -1054,7 +1557,7 @@ var Slider = React62__namespace.forwardRef(({ className, ...props }, ref) => /* 
   }
 ));
 Slider.displayName = SliderPrimitive__namespace.Root.displayName;
-var Switch = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Switch = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SwitchPrimitives__namespace.Root,
   {
     className: cn(
@@ -1098,7 +1601,7 @@ var toggleVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Toggle = React62__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Toggle = React65__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TogglePrimitive__namespace.Root,
   {
     ref,
@@ -1149,7 +1652,7 @@ var iconButtonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var IconButton = React62__namespace.forwardRef(
+var IconButton = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1164,8 +1667,8 @@ var IconButton = React62__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [showTooltip, setShowTooltip] = React62__namespace.useState(false);
-    const [tooltipVisible, setTooltipVisible] = React62__namespace.useState(false);
+    const [showTooltip, setShowTooltip] = React65__namespace.useState(false);
+    const [tooltipVisible, setTooltipVisible] = React65__namespace.useState(false);
     const tooltipClasses = {
       top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
       bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
@@ -1178,7 +1681,7 @@ var IconButton = React62__namespace.forwardRef(
       left: "left-full top-1/2 -translate-y-1/2 -ml-1 border-t-transparent border-b-transparent border-r-transparent border-l-current",
       right: "right-full top-1/2 -translate-y-1/2 -mr-1 border-t-transparent border-b-transparent border-l-transparent border-r-current"
     };
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       if (showTooltip) {
         const timer = setTimeout(() => setTooltipVisible(true), 100);
         return () => clearTimeout(timer);
@@ -1291,7 +1794,7 @@ var linkButtonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var LinkButton = React62__namespace.forwardRef(
+var LinkButton = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1391,7 +1894,7 @@ var fabVariants = classVarianceAuthority.cva(
     }
   }
 );
-var FAB = React62__namespace.forwardRef(
+var FAB = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1406,12 +1909,12 @@ var FAB = React62__namespace.forwardRef(
     actions = [],
     ...props
   }, ref) => {
-    const [showActions, setShowActions] = React62__namespace.useState(active);
+    const [showActions, setShowActions] = React65__namespace.useState(active);
     const isExtended = extended && text;
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       setShowActions(active);
     }, [active]);
-    const handleClick = React62__namespace.useCallback(() => {
+    const handleClick = React65__namespace.useCallback(() => {
       if (actions.length > 0) {
         setShowActions(!showActions);
       }
@@ -1469,7 +1972,7 @@ var FAB = React62__namespace.forwardRef(
   }
 );
 FAB.displayName = "FAB";
-var FABGroup = React62__namespace.forwardRef(
+var FABGroup = React65__namespace.forwardRef(
   ({
     className,
     main,
@@ -1541,7 +2044,7 @@ var segmentedControlVariants = classVarianceAuthority.cva(
     }
   }
 );
-var SegmentedControl = React62__namespace.forwardRef(
+var SegmentedControl = React65__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -1554,9 +2057,9 @@ var SegmentedControl = React62__namespace.forwardRef(
     disabled = false,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React62__namespace.useState(defaultValue || options[0]?.value);
+    const [internalValue, setInternalValue] = React65__namespace.useState(defaultValue || options[0]?.value);
     const currentValue = value !== void 0 ? value : internalValue;
-    const handleOptionClick = React62__namespace.useCallback((optionValue, isDisabled) => {
+    const handleOptionClick = React65__namespace.useCallback((optionValue, isDisabled) => {
       if (isDisabled || disabled) return;
       if (value === void 0) {
         setInternalValue(optionValue);
@@ -1611,7 +2114,7 @@ var SegmentedControl = React62__namespace.forwardRef(
   }
 );
 SegmentedControl.displayName = "SegmentedControl";
-var SegmentedControlItem = React62__namespace.forwardRef(
+var SegmentedControlItem = React65__namespace.forwardRef(
   ({
     className,
     active = false,
@@ -1647,7 +2150,7 @@ var SegmentedControlItem = React62__namespace.forwardRef(
   }
 );
 SegmentedControlItem.displayName = "SegmentedControlItem";
-var Card = React62__namespace.forwardRef(({ className, variant = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Card = React65__namespace.forwardRef(({ className, variant = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1667,7 +2170,7 @@ var Card = React62__namespace.forwardRef(({ className, variant = "default", ...p
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardHeader = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1680,7 +2183,7 @@ var CardHeader = React62__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardTitle = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h3",
   {
     ref,
@@ -1693,7 +2196,7 @@ var CardTitle = React62__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardDescription = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "p",
   {
     ref,
@@ -1706,9 +2209,9 @@ var CardDescription = React62__namespace.forwardRef(({ className, ...props }, re
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardFooter = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1752,7 +2255,7 @@ var badgeVariants = classVarianceAuthority.cva(
 function Badge({ className, variant, size, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(badgeVariants({ variant, size }), className), ...props });
 }
-var Progress = React62__namespace.forwardRef(({ className, value, color = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Progress = React65__namespace.forwardRef(({ className, value, color = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   ProgressPrimitive__namespace.Root,
   {
     ref,
@@ -1783,7 +2286,7 @@ var Progress = React62__namespace.forwardRef(({ className, value, color = "defau
   }
 ));
 Progress.displayName = ProgressPrimitive__namespace.Root.displayName;
-var AccordionItem = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AccordionItem = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AccordionPrimitive2__namespace.Item,
   {
     ref,
@@ -1795,7 +2298,7 @@ var AccordionItem = React62__namespace.forwardRef(({ className, ...props }, ref)
   }
 ));
 AccordionItem.displayName = "AccordionItem";
-var AccordionTrigger = React62__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive2__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
+var AccordionTrigger = React65__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive2__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
   AccordionPrimitive2__namespace.Trigger,
   {
     ref,
@@ -1820,7 +2323,7 @@ var AccordionTrigger = React62__namespace.forwardRef(({ className, children, ...
   }
 ) }));
 AccordionTrigger.displayName = AccordionPrimitive2__namespace.Trigger.displayName;
-var AccordionContent = React62__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AccordionContent = React65__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AccordionPrimitive2__namespace.Content,
   {
     ref,
@@ -1866,20 +2369,20 @@ function InlineLoader({
 }
 function useTheme() {
   const { theme, resolvedTheme, setTheme } = nextThemes.useTheme();
-  const toggle = React62__namespace.useCallback(() => {
+  const toggle = React65__namespace.useCallback(() => {
     if (theme === "system") {
       setTheme(resolvedTheme === "dark" ? "light" : "dark");
     } else {
       setTheme(theme === "dark" ? "light" : "dark");
     }
   }, [theme, resolvedTheme, setTheme]);
-  const setLight = React62__namespace.useCallback(() => {
+  const setLight = React65__namespace.useCallback(() => {
     setTheme("light");
   }, [setTheme]);
-  const setDark = React62__namespace.useCallback(() => {
+  const setDark = React65__namespace.useCallback(() => {
     setTheme("dark");
   }, [setTheme]);
-  const setSystem = React62__namespace.useCallback(() => {
+  const setSystem = React65__namespace.useCallback(() => {
     setTheme("system");
   }, [setTheme]);
   return {
@@ -1897,8 +2400,8 @@ function useTheme() {
 }
 function ThemeToggle({ className }) {
   const { toggle, isDark } = useTheme();
-  const [mounted, setMounted] = React62__namespace.useState(false);
-  React62__namespace.useEffect(() => {
+  const [mounted, setMounted] = React65__namespace.useState(false);
+  React65__namespace.useEffect(() => {
     setMounted(true);
   }, []);
   const handleToggle = () => {
@@ -1975,23 +2478,7 @@ function ThemeToggle({ className }) {
     }
   );
 }
-function PageHeader({ title, description, children }) {
-  return (
-    /**
-     * Container principal do header
-     *
-     * Utiliza SECTION_CLASSES.container para padding e layout responsivos
-     * - relative z-10: fica acima de backgrounds e partículas
-     */
-    /* @__PURE__ */ jsxRuntime.jsx("div", { className: `${SECTION_CLASSES.container} relative z-10`, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-center mb-12", children: [
-      children && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative mb-8", children }),
-      /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "text-3xl md:text-4xl font-bold mb-4 text-foreground dark:text-cyan-200 dark:font-mono dark:tracking-wider", children: title }),
-      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-24 h-1 bg-linear-to-r from-primary to-primary dark:from-cyan-400 dark:to-purple-400 mx-auto mb-6" }),
-      description && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-muted-foreground dark:text-gray-300 text-lg max-w-2xl mx-auto dark:font-mono px-2", children: description })
-    ] }) })
-  );
-}
-var Checkbox = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Checkbox = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   CheckboxPrimitive__namespace.Root,
   {
     ref,
@@ -2016,7 +2503,7 @@ Checkbox.displayName = CheckboxPrimitive__namespace.Root.displayName;
 var labelVariants = classVarianceAuthority.cva(
   "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-cyan-200 dark:font-mono"
 );
-var Label = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Label = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   LabelPrimitive__namespace.Root,
   {
     ref,
@@ -2025,7 +2512,7 @@ var Label = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 Label.displayName = LabelPrimitive__namespace.Root.displayName;
-var RadioGroup = React62__namespace.forwardRef(({ className, ...props }, ref) => {
+var RadioGroup = React65__namespace.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsxRuntime.jsx(
     RadioGroupPrimitive__namespace.Root,
     {
@@ -2036,7 +2523,7 @@ var RadioGroup = React62__namespace.forwardRef(({ className, ...props }, ref) =>
   );
 });
 RadioGroup.displayName = RadioGroupPrimitive__namespace.Root.displayName;
-var RadioGroupItem = React62__namespace.forwardRef(({ className, ...props }, ref) => {
+var RadioGroupItem = React65__namespace.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsxRuntime.jsx(
     RadioGroupPrimitive__namespace.Item,
     {
@@ -2054,7 +2541,7 @@ RadioGroupItem.displayName = RadioGroupPrimitive__namespace.Item.displayName;
 var Select = SelectPrimitive__namespace.Root;
 var SelectGroup = SelectPrimitive__namespace.Group;
 var SelectValue = SelectPrimitive__namespace.Value;
-var SelectTrigger = React62__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var SelectTrigger = React65__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SelectPrimitive__namespace.Trigger,
   {
     ref,
@@ -2075,7 +2562,7 @@ var SelectTrigger = React62__namespace.forwardRef(({ className, children, ...pro
   }
 ));
 SelectTrigger.displayName = SelectPrimitive__namespace.Trigger.displayName;
-var SelectScrollUpButton = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectScrollUpButton = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.ScrollUpButton,
   {
     ref,
@@ -2085,7 +2572,7 @@ var SelectScrollUpButton = React62__namespace.forwardRef(({ className, ...props 
   }
 ));
 SelectScrollUpButton.displayName = SelectPrimitive__namespace.ScrollUpButton.displayName;
-var SelectScrollDownButton = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectScrollDownButton = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.ScrollDownButton,
   {
     ref,
@@ -2095,7 +2582,7 @@ var SelectScrollDownButton = React62__namespace.forwardRef(({ className, ...prop
   }
 ));
 SelectScrollDownButton.displayName = SelectPrimitive__namespace.ScrollDownButton.displayName;
-var SelectContent = React62__namespace.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.Portal, { children: /* @__PURE__ */ jsxRuntime.jsxs(
+var SelectContent = React65__namespace.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.Portal, { children: /* @__PURE__ */ jsxRuntime.jsxs(
   SelectPrimitive__namespace.Content,
   {
     ref,
@@ -2128,7 +2615,7 @@ var SelectContent = React62__namespace.forwardRef(({ className, children, positi
   }
 ) }));
 SelectContent.displayName = SelectPrimitive__namespace.Content.displayName;
-var SelectLabel = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectLabel = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.Label,
   {
     ref,
@@ -2137,7 +2624,7 @@ var SelectLabel = React62__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 SelectLabel.displayName = SelectPrimitive__namespace.Label.displayName;
-var SelectItem = React62__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var SelectItem = React65__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SelectPrimitive__namespace.Item,
   {
     ref,
@@ -2155,7 +2642,7 @@ var SelectItem = React62__namespace.forwardRef(({ className, children, ...props 
   }
 ));
 SelectItem.displayName = SelectPrimitive__namespace.Item.displayName;
-var SelectSeparator = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectSeparator = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.Separator,
   {
     ref,
@@ -2204,7 +2691,7 @@ function getFileIcon(file) {
     return /* @__PURE__ */ jsxRuntime.jsx(File2__default.default, { className: "h-4 w-4" });
   }
 }
-var FileUpload = React62__namespace.forwardRef(
+var FileUpload = React65__namespace.forwardRef(
   ({
     className,
     files = [],
@@ -2223,9 +2710,9 @@ var FileUpload = React62__namespace.forwardRef(
     size = "md",
     ...props
   }, ref) => {
-    const [isDragging, setIsDragging] = React62__namespace.useState(false);
-    const inputRef = React62__namespace.useRef(null);
-    const processFiles = React62__namespace.useCallback((fileList) => {
+    const [isDragging, setIsDragging] = React65__namespace.useState(false);
+    const inputRef = React65__namespace.useRef(null);
+    const processFiles = React65__namespace.useCallback((fileList) => {
       const filesArray = Array.from(fileList);
       if (!multiple && filesArray.length > 1) {
         console.warn("Apenas um arquivo \xE9 permitido");
@@ -2257,7 +2744,7 @@ var FileUpload = React62__namespace.forwardRef(
         onFilesAdd?.(newFiles);
       }
     }, [multiple, maxFiles, files.length, maxSize, onFilesAdd]);
-    const handleDrop = React62__namespace.useCallback((e) => {
+    const handleDrop = React65__namespace.useCallback((e) => {
       e.preventDefault();
       setIsDragging(false);
       if (disabled || loading) return;
@@ -2266,32 +2753,32 @@ var FileUpload = React62__namespace.forwardRef(
         processFiles(files2);
       }
     }, [disabled, loading, processFiles]);
-    const handleDragOver = React62__namespace.useCallback((e) => {
+    const handleDragOver = React65__namespace.useCallback((e) => {
       e.preventDefault();
       if (!disabled && !loading) {
         setIsDragging(true);
       }
     }, [disabled, loading]);
-    const handleDragLeave = React62__namespace.useCallback((e) => {
+    const handleDragLeave = React65__namespace.useCallback((e) => {
       e.preventDefault();
       setIsDragging(false);
     }, []);
-    const handleFileSelect = React62__namespace.useCallback((e) => {
+    const handleFileSelect = React65__namespace.useCallback((e) => {
       const files2 = e.target.files;
       if (files2 && files2.length > 0) {
         processFiles(files2);
       }
       e.target.value = "";
     }, [processFiles]);
-    const handleClick = React62__namespace.useCallback(() => {
+    const handleClick = React65__namespace.useCallback(() => {
       if (!disabled && !loading) {
         inputRef.current?.click();
       }
     }, [disabled, loading]);
-    const handleRemoveFile = React62__namespace.useCallback((id) => {
+    const handleRemoveFile = React65__namespace.useCallback((id) => {
       onFileRemove?.(id);
     }, [onFileRemove]);
-    const handleClear = React62__namespace.useCallback(() => {
+    const handleClear = React65__namespace.useCallback(() => {
       onClear?.();
     }, [onClear]);
     return /* @__PURE__ */ jsxRuntime.jsxs("div", { ref, className: cn("space-y-4", className), ...props, children: [
@@ -2420,7 +2907,7 @@ var datePickerVariants = classVarianceAuthority.cva(
     }
   }
 );
-function formatDate(date, format) {
+function formatDate3(date, format) {
   if (!date) return "";
   const day = date.getDate().toString().padStart(2, "0");
   const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -2434,16 +2921,16 @@ function formatDate(date, format) {
 }
 function formatDateRange(range) {
   if (!range.from) return "";
-  if (!range.to) return formatDate(range.from);
-  return `${formatDate(range.from)} - ${formatDate(range.to)}`;
+  if (!range.to) return formatDate3(range.from);
+  return `${formatDate3(range.from)} - ${formatDate3(range.to)}`;
 }
 function formatMultipleDates(dates) {
   if (dates.length === 0) return "";
-  if (dates.length === 1) return formatDate(dates[0]);
-  if (dates.length === 2) return `${formatDate(dates[0])} e ${formatDate(dates[1])}`;
-  return `${formatDate(dates[0])} (+${dates.length - 1})`;
+  if (dates.length === 1) return formatDate3(dates[0]);
+  if (dates.length === 2) return `${formatDate3(dates[0])} e ${formatDate3(dates[1])}`;
+  return `${formatDate3(dates[0])} (+${dates.length - 1})`;
 }
-var DatePicker = React62__namespace.forwardRef(
+var DatePicker = React65__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -2463,12 +2950,12 @@ var DatePicker = React62__namespace.forwardRef(
     disabled = false,
     ...props
   }, _ref) => {
-    const [isOpen, setIsOpen] = React62__namespace.useState(false);
-    const [selectedDates, setSelectedDates] = React62__namespace.useState([]);
-    const [inputValue, setInputValue] = React62__namespace.useState("");
-    const containerRef = React62__namespace.useRef(null);
-    const buttonRef = React62__namespace.useRef(null);
-    React62__namespace.useEffect(() => {
+    const [isOpen, setIsOpen] = React65__namespace.useState(false);
+    const [selectedDates, setSelectedDates] = React65__namespace.useState([]);
+    const [inputValue, setInputValue] = React65__namespace.useState("");
+    const containerRef = React65__namespace.useRef(null);
+    const buttonRef = React65__namespace.useRef(null);
+    React65__namespace.useEffect(() => {
       if (!value) {
         setInputValue("");
         setSelectedDates([]);
@@ -2485,19 +2972,19 @@ var DatePicker = React62__namespace.forwardRef(
         setInputValue(formatMultipleDates(value));
       } else if (value instanceof Date) {
         setSelectedDates([value]);
-        setInputValue(formatDate(value, format));
+        setInputValue(formatDate3(value, format));
       }
     }, [value, range, multiple, format]);
-    const handleSingleSelect = React62__namespace.useCallback((day) => {
+    const handleSingleSelect = React65__namespace.useCallback((day) => {
       onChange?.(day);
     }, [onChange]);
-    const handleMultipleSelect = React62__namespace.useCallback((dates) => {
+    const handleMultipleSelect = React65__namespace.useCallback((dates) => {
       onChange?.(dates);
     }, [onChange]);
-    const handleRangeSelect = React62__namespace.useCallback((range2) => {
+    const handleRangeSelect = React65__namespace.useCallback((range2) => {
       onChange?.(range2);
     }, [onChange]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -2652,7 +3139,7 @@ function timeToString(time, use12Hours = false, showSeconds = false) {
   const secondsStr = showSeconds ? `:${padNumber(seconds)}` : "";
   return `${timeStr}${secondsStr}${use12Hours ? ` ${period}` : ""}`;
 }
-var TimePicker = React62__namespace.forwardRef(
+var TimePicker = React65__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -2669,13 +3156,13 @@ var TimePicker = React62__namespace.forwardRef(
     // maxTime, // TODO: implementar validação de tempo máximo
     ...props
   }, ref) => {
-    const [isOpen, setIsOpen] = React62__namespace.useState(false);
-    const [hours, setHours] = React62__namespace.useState(value?.hours || 0);
-    const [minutes, setMinutes] = React62__namespace.useState(value?.minutes || 0);
-    const [seconds, setSeconds] = React62__namespace.useState(value?.seconds || 0);
-    const [period, setPeriod] = React62__namespace.useState(value?.period || "AM");
-    const containerRef = React62__namespace.useRef(null);
-    React62__namespace.useEffect(() => {
+    const [isOpen, setIsOpen] = React65__namespace.useState(false);
+    const [hours, setHours] = React65__namespace.useState(value?.hours || 0);
+    const [minutes, setMinutes] = React65__namespace.useState(value?.minutes || 0);
+    const [seconds, setSeconds] = React65__namespace.useState(value?.seconds || 0);
+    const [period, setPeriod] = React65__namespace.useState(value?.period || "AM");
+    const containerRef = React65__namespace.useRef(null);
+    React65__namespace.useEffect(() => {
       if (value) {
         setHours(value.hours);
         setMinutes(value.minutes);
@@ -2685,7 +3172,7 @@ var TimePicker = React62__namespace.forwardRef(
         }
       }
     }, [value, use12Hours]);
-    const handleHoursChange = React62__namespace.useCallback((newHours) => {
+    const handleHoursChange = React65__namespace.useCallback((newHours) => {
       if (newHours < 0) newHours = 0;
       if (newHours > 23) newHours = 23;
       setHours(newHours);
@@ -2697,7 +3184,7 @@ var TimePicker = React62__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [minutes, seconds, period, use12Hours, showSeconds, onChange]);
-    const handleMinutesChange = React62__namespace.useCallback((newMinutes) => {
+    const handleMinutesChange = React65__namespace.useCallback((newMinutes) => {
       if (newMinutes < 0) newMinutes = 0;
       if (newMinutes > 59) newMinutes = 59;
       newMinutes = Math.round(newMinutes / minuteStep) * minuteStep;
@@ -2710,7 +3197,7 @@ var TimePicker = React62__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, seconds, period, use12Hours, showSeconds, minuteStep, onChange]);
-    const handleSecondsChange = React62__namespace.useCallback((newSeconds) => {
+    const handleSecondsChange = React65__namespace.useCallback((newSeconds) => {
       if (!showSeconds) return;
       if (newSeconds < 0) newSeconds = 0;
       if (newSeconds > 59) newSeconds = 59;
@@ -2724,7 +3211,7 @@ var TimePicker = React62__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, minutes, period, use12Hours, secondStep, onChange]);
-    const handlePeriodChange = React62__namespace.useCallback((newPeriod) => {
+    const handlePeriodChange = React65__namespace.useCallback((newPeriod) => {
       setPeriod(newPeriod);
       let newHours = hours;
       if (newPeriod === "AM" && hours === 12) {
@@ -2741,7 +3228,7 @@ var TimePicker = React62__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, minutes, seconds, showSeconds, onChange]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -2896,7 +3383,7 @@ var rangeSliderVariants = classVarianceAuthority.cva(
     }
   }
 );
-var RangeSlider = React62__namespace.forwardRef(
+var RangeSlider = React65__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -2916,11 +3403,11 @@ var RangeSlider = React62__namespace.forwardRef(
     color = "primary",
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React62__namespace.useState(defaultValue);
-    const [isDragging, setIsDragging] = React62__namespace.useState(null);
-    const sliderRef = React62__namespace.useRef(null);
-    const minThumbRef = React62__namespace.useRef(null);
-    const maxThumbRef = React62__namespace.useRef(null);
+    const [internalValue, setInternalValue] = React65__namespace.useState(defaultValue);
+    const [isDragging, setIsDragging] = React65__namespace.useState(null);
+    const sliderRef = React65__namespace.useRef(null);
+    const minThumbRef = React65__namespace.useRef(null);
+    const maxThumbRef = React65__namespace.useRef(null);
     const currentValue = value || internalValue;
     const valueToPercent = (val) => {
       return (val - min) / (max - min) * 100;
@@ -2937,7 +3424,7 @@ var RangeSlider = React62__namespace.forwardRef(
       const percent = position / rect.width * 100;
       return Math.max(0, Math.min(100, percent));
     };
-    const updateValue = React62__namespace.useCallback((type, percent) => {
+    const updateValue = React65__namespace.useCallback((type, percent) => {
       const newValue = percentToValue(percent);
       const updated = { ...currentValue };
       if (type === "min") {
@@ -2947,26 +3434,26 @@ var RangeSlider = React62__namespace.forwardRef(
       }
       setValue(updated);
     }, [step]);
-    const setValue = React62__namespace.useCallback((newValue) => {
+    const setValue = React65__namespace.useCallback((newValue) => {
       setInternalValue(newValue);
       onChange?.(newValue);
     }, [onChange]);
-    const handleMouseDown = React62__namespace.useCallback((type) => {
+    const handleMouseDown = React65__namespace.useCallback((type) => {
       if (disabled) return;
       setIsDragging(type);
     }, [disabled]);
-    const handleMouseMove = React62__namespace.useCallback((event) => {
+    const handleMouseMove = React65__namespace.useCallback((event) => {
       if (!isDragging || disabled) return;
       const percent = getPosition(event);
       updateValue(isDragging, percent);
     }, [isDragging, disabled, updateValue]);
-    const handleMouseUp = React62__namespace.useCallback(() => {
+    const handleMouseUp = React65__namespace.useCallback(() => {
       if (isDragging) {
         onChangeEnd?.(currentValue);
         setIsDragging(null);
       }
     }, [isDragging, currentValue, onChangeEnd]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       if (isDragging) {
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseup", handleMouseUp);
@@ -3102,7 +3589,7 @@ var searchInputVariants = classVarianceAuthority.cva(
     }
   }
 );
-var SearchInput = React62__namespace.forwardRef(
+var SearchInput = React65__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -3123,15 +3610,15 @@ var SearchInput = React62__namespace.forwardRef(
     disabled
     // props, // Props adicionais não utilizados
   }, ref) => {
-    const [internalValue, setInternalValue] = React62__namespace.useState(value);
-    const [isOpen, setIsOpen] = React62__namespace.useState(false);
-    const [selectedIndex, setSelectedIndex] = React62__namespace.useState(-1);
-    const [filteredSuggestions, setFilteredSuggestions] = React62__namespace.useState([]);
-    const inputRef = React62__namespace.useRef(null);
-    const containerRef = React62__namespace.useRef(null);
-    const debounceRef = React62__namespace.useRef();
+    const [internalValue, setInternalValue] = React65__namespace.useState(value);
+    const [isOpen, setIsOpen] = React65__namespace.useState(false);
+    const [selectedIndex, setSelectedIndex] = React65__namespace.useState(-1);
+    const [filteredSuggestions, setFilteredSuggestions] = React65__namespace.useState([]);
+    const inputRef = React65__namespace.useRef(null);
+    const containerRef = React65__namespace.useRef(null);
+    const debounceRef = React65__namespace.useRef(null);
     const currentValue = value !== void 0 ? value : internalValue;
-    const setValue = React62__namespace.useCallback((newValue) => {
+    const setValue = React65__namespace.useCallback((newValue) => {
       setInternalValue(newValue);
       if (debounceRef.current) {
         clearTimeout(debounceRef.current);
@@ -3140,7 +3627,8 @@ var SearchInput = React62__namespace.forwardRef(
         onChange?.(newValue);
       }, debounceTime);
     }, [onChange, debounceTime]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
+      let next;
       if (!currentValue.trim()) {
         const historySuggestions = history.slice(0, 5).map((item, index) => ({
           id: `history-${index}`,
@@ -3149,15 +3637,17 @@ var SearchInput = React62__namespace.forwardRef(
           icon: /* @__PURE__ */ jsxRuntime.jsx(Clock__default.default, { className: "h-4 w-4" })
         }));
         const trendingSuggestions = suggestions.filter((s) => s.type === "trending").slice(0, 5);
-        setFilteredSuggestions([...historySuggestions, ...trendingSuggestions]);
+        next = [...historySuggestions, ...trendingSuggestions];
       } else {
-        const filtered = suggestions.filter(
-          (s) => s.text.toLowerCase().includes(currentValue.toLowerCase())
-        ).slice(0, maxSuggestions);
-        setFilteredSuggestions(filtered);
+        next = suggestions.filter((s) => s.text.toLowerCase().includes(currentValue.toLowerCase())).slice(0, maxSuggestions);
       }
-    }, [currentValue, suggestions, history, maxSuggestions]);
-    const handleKeyDown = React62__namespace.useCallback((event) => {
+      const sameLength = next.length === filteredSuggestions.length;
+      const sameItems = sameLength && next.every((item, idx) => item.id === filteredSuggestions[idx]?.id && item.text === filteredSuggestions[idx]?.text);
+      if (!sameItems) {
+        setFilteredSuggestions(next);
+      }
+    }, [currentValue, suggestions, history, maxSuggestions, filteredSuggestions]);
+    const handleKeyDown = React65__namespace.useCallback((event) => {
       switch (event.key) {
         case "Enter":
           event.preventDefault();
@@ -3191,19 +3681,19 @@ var SearchInput = React62__namespace.forwardRef(
           break;
       }
     }, [selectedIndex, filteredSuggestions, currentValue, setValue, onSubmit]);
-    const handleFocus = React62__namespace.useCallback(() => {
+    const handleFocus = React65__namespace.useCallback(() => {
       setIsOpen(true);
     }, []);
-    const handleBlur = React62__namespace.useCallback((event) => {
+    const handleBlur = React65__namespace.useCallback((event) => {
       if (!event.relatedTarget?.closest(".search-suggestion")) {
         setTimeout(() => setIsOpen(false), 150);
       }
     }, []);
-    const handleClear = React62__namespace.useCallback(() => {
+    const handleClear = React65__namespace.useCallback(() => {
       setValue("");
       inputRef.current?.focus();
     }, [setValue]);
-    const handleSuggestionClick = React62__namespace.useCallback((suggestion) => {
+    const handleSuggestionClick = React65__namespace.useCallback((suggestion) => {
       if (suggestion.action) {
         suggestion.action();
       } else {
@@ -3212,7 +3702,7 @@ var SearchInput = React62__namespace.forwardRef(
       }
       setIsOpen(false);
     }, [setValue, onSubmit]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -3371,7 +3861,7 @@ function applyMask(value, mask) {
 function removeMask(value) {
   return value.replace(/\D/g, "");
 }
-var PhoneInput = React62__namespace.forwardRef(
+var PhoneInput = React65__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -3388,19 +3878,19 @@ var PhoneInput = React62__namespace.forwardRef(
     numbersOnly = true,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React62__namespace.useState(value);
-    const [selectedCountry, setSelectedCountry] = React62__namespace.useState(
+    const [internalValue, setInternalValue] = React65__namespace.useState(value);
+    const [selectedCountry, setSelectedCountry] = React65__namespace.useState(
       countries.find((c) => c.code === country) || countries[0]
     );
-    const [isDropdownOpen, setIsDropdownOpen] = React62__namespace.useState(false);
-    const inputRef = React62__namespace.useRef(null);
-    const dropdownRef = React62__namespace.useRef(null);
+    const [isDropdownOpen, setIsDropdownOpen] = React65__namespace.useState(false);
+    const inputRef = React65__namespace.useRef(null);
+    const dropdownRef = React65__namespace.useRef(null);
     const currentValue = value !== void 0 ? value : internalValue;
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       const newCountry = countries.find((c) => c.code === country) || countries[0];
       setSelectedCountry(newCountry);
     }, [country, countries]);
-    const handleInputChange = React62__namespace.useCallback((event) => {
+    const handleInputChange = React65__namespace.useCallback((event) => {
       let inputValue = event.target.value;
       if (numbersOnly) {
         inputValue = removeMask(inputValue);
@@ -3410,7 +3900,7 @@ var PhoneInput = React62__namespace.forwardRef(
       const finalValue = includeDDI ? `${selectedCountry.ddi} ${removeMask(maskedValue)}` : removeMask(maskedValue);
       onChange?.(finalValue, selectedCountry);
     }, [selectedCountry, numbersOnly, includeDDI, onChange]);
-    const handleCountrySelect = React62__namespace.useCallback((country2) => {
+    const handleCountrySelect = React65__namespace.useCallback((country2) => {
       setSelectedCountry(country2);
       setIsDropdownOpen(false);
       onCountryChange?.(country2);
@@ -3419,7 +3909,7 @@ var PhoneInput = React62__namespace.forwardRef(
         onChange?.("", country2);
       }
     }, [selectedCountry, onCountryChange, onChange]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target) && !inputRef.current?.contains(event.target)) {
           setIsDropdownOpen(false);
@@ -3507,8 +3997,98 @@ var PhoneInput = React62__namespace.forwardRef(
   }
 );
 PhoneInput.displayName = "PhoneInput";
+var SECTION_CLASSES = {
+  container: "container mx-auto px-4 sm:px-6 lg:px-8"
+};
+function PageHeader({ title, description, children }) {
+  return (
+    /**
+     * Container principal do header
+     *
+     * Utiliza SECTION_CLASSES.container para padding e layout responsivos
+     * - relative z-10: fica acima de backgrounds e partículas
+     */
+    /* @__PURE__ */ jsxRuntime.jsx("div", { className: `${SECTION_CLASSES.container} relative z-10`, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-center mb-12", children: [
+      children && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative mb-8", children }),
+      /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "text-3xl md:text-4xl font-bold mb-4 text-foreground dark:text-cyan-200 dark:font-mono dark:tracking-wider", children: title }),
+      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-24 h-1 bg-linear-to-r from-primary to-primary dark:from-cyan-400 dark:to-purple-400 mx-auto mb-6" }),
+      description && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-muted-foreground dark:text-gray-300 text-lg max-w-2xl mx-auto dark:font-mono px-2", children: description })
+    ] }) })
+  );
+}
 var AspectRatio = AspectRatioPrimitive__namespace.Root;
-var ScrollArea = React62__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var Breadcrumb = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "ol",
+  {
+    ref,
+    className: cn(
+      "flex flex-wrap items-center gap-2 break-words text-sm text-muted-foreground",
+      className
+    ),
+    ...props
+  }
+));
+Breadcrumb.displayName = "Breadcrumb";
+var BreadcrumbList = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "ol",
+  {
+    ref,
+    className: cn("flex flex-wrap items-center gap-2", className),
+    ...props
+  }
+));
+BreadcrumbList.displayName = "BreadcrumbList";
+var BreadcrumbItem = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "li",
+  {
+    ref,
+    className: cn("inline-flex items-center gap-1.5", className),
+    ...props
+  }
+));
+BreadcrumbItem.displayName = "BreadcrumbItem";
+var BreadcrumbLink = React65__namespace.forwardRef(({ className, isCurrentPage, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "a",
+  {
+    ref,
+    className: cn(
+      "transition-colors hover:text-foreground",
+      isCurrentPage ? "text-foreground font-medium pointer-events-none cursor-default" : "cursor-pointer",
+      className
+    ),
+    ...isCurrentPage && { "aria-current": "page" },
+    ...props
+  }
+));
+BreadcrumbLink.displayName = "BreadcrumbLink";
+var BreadcrumbSeparator = ({
+  children,
+  className,
+  ...props
+}) => /* @__PURE__ */ jsxRuntime.jsx(
+  "div",
+  {
+    role: "presentation",
+    "aria-hidden": "true",
+    className: cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className),
+    ...props,
+    children: children ?? /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ChevronRight, {})
+  }
+);
+BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
+var BreadcrumbPage = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "span",
+  {
+    ref,
+    role: "doc-pagebreak",
+    "aria-current": "page",
+    "aria-label": "current page",
+    className: cn("font-medium text-foreground", className),
+    ...props
+  }
+));
+BreadcrumbPage.displayName = "BreadcrumbPage";
+var ScrollArea = React65__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   ScrollAreaPrimitive__namespace.Root,
   {
     ref,
@@ -3522,7 +4102,7 @@ var ScrollArea = React62__namespace.forwardRef(({ className, children, ...props 
   }
 ));
 ScrollArea.displayName = ScrollAreaPrimitive__namespace.Root.displayName;
-var ScrollBar = React62__namespace.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ScrollBar = React65__namespace.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   ScrollAreaPrimitive__namespace.ScrollAreaScrollbar,
   {
     ref,
@@ -3538,7 +4118,7 @@ var ScrollBar = React62__namespace.forwardRef(({ className, orientation = "verti
   }
 ));
 ScrollBar.displayName = ScrollAreaPrimitive__namespace.ScrollAreaScrollbar.displayName;
-var Separator2 = React62__namespace.forwardRef(
+var Separator2 = React65__namespace.forwardRef(
   ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     SeparatorPrimitive__namespace.Root,
     {
@@ -3574,13 +4154,11 @@ function SheetPortal({
 }) {
   return /* @__PURE__ */ jsxRuntime.jsx(reactDialog.Portal, { "data-slot": "sheet-portal", ...props });
 }
-function SheetOverlay({
-  className,
-  ...props
-}) {
+var SheetOverlay = React65__namespace.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsxRuntime.jsx(
     reactDialog.Overlay,
     {
+      ref,
       "data-slot": "sheet-overlay",
       className: cn(
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
@@ -3589,13 +4167,15 @@ function SheetOverlay({
       ...props
     }
   );
-}
+});
+SheetOverlay.displayName = "SheetOverlay";
 function SheetContent({
   className,
   children,
   side = "right",
   ...props
 }) {
+  const ariaDescribedBy = props["aria-describedby"];
   return /* @__PURE__ */ jsxRuntime.jsxs(SheetPortal, { children: [
     /* @__PURE__ */ jsxRuntime.jsx(SheetOverlay, {}),
     /* @__PURE__ */ jsxRuntime.jsxs(
@@ -3614,6 +4194,7 @@ function SheetContent({
           side === "bottom" && "data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t",
           className
         ),
+        "aria-describedby": ariaDescribedBy ?? void 0,
         ...props,
         children: [
           children,
@@ -3672,7 +4253,7 @@ function SheetDescription({
     }
   );
 }
-var Table = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsxRuntime.jsx(
+var Table = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsxRuntime.jsx(
   "table",
   {
     ref,
@@ -3681,9 +4262,9 @@ var Table = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @
   }
 ) }));
 Table.displayName = "Table";
-var TableHeader = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
+var TableHeader = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
 TableHeader.displayName = "TableHeader";
-var TableBody = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableBody = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tbody",
   {
     ref,
@@ -3692,7 +4273,7 @@ var TableBody = React62__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableBody.displayName = "TableBody";
-var TableFooter = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableFooter = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tfoot",
   {
     ref,
@@ -3704,7 +4285,7 @@ var TableFooter = React62__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 TableFooter.displayName = "TableFooter";
-var TableRow = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableRow = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tr",
   {
     ref,
@@ -3716,7 +4297,7 @@ var TableRow = React62__namespace.forwardRef(({ className, ...props }, ref) => /
   }
 ));
 TableRow.displayName = "TableRow";
-var TableHead = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableHead = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "th",
   {
     ref,
@@ -3728,7 +4309,7 @@ var TableHead = React62__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableHead.displayName = "TableHead";
-var TableCell = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableCell = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "td",
   {
     ref,
@@ -3737,7 +4318,7 @@ var TableCell = React62__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableCell.displayName = "TableCell";
-var TableCaption = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableCaption = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "caption",
   {
     ref,
@@ -3785,7 +4366,7 @@ var containerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Container = React62__namespace.forwardRef(
+var Container = React65__namespace.forwardRef(
   ({
     className,
     size = "7xl",
@@ -3811,7 +4392,7 @@ var Container = React62__namespace.forwardRef(
   }
 );
 Container.displayName = "Container";
-var ContainerFluid = React62__namespace.forwardRef(
+var ContainerFluid = React65__namespace.forwardRef(
   ({
     className,
     padding = "md",
@@ -3845,7 +4426,7 @@ var spacingClasses = {
   xl: "py-20",
   "2xl": "py-24"
 };
-var ContainerSection = React62__namespace.forwardRef(
+var ContainerSection = React65__namespace.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -4011,7 +4592,7 @@ var gridVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Grid = React62__namespace.forwardRef(
+var Grid = React65__namespace.forwardRef(
   ({
     className,
     cols,
@@ -4031,7 +4612,7 @@ var Grid = React62__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React62__namespace.useMemo(() => {
+    const gridStyle = React65__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (templateCols) {
         customStyle.gridTemplateColumns = templateCols;
@@ -4073,7 +4654,7 @@ var Grid = React62__namespace.forwardRef(
   }
 );
 Grid.displayName = "Grid";
-var GridItem = React62__namespace.forwardRef(
+var GridItem = React65__namespace.forwardRef(
   ({
     className,
     colStart,
@@ -4084,7 +4665,7 @@ var GridItem = React62__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React62__namespace.useMemo(() => {
+    const gridStyle = React65__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (colStart !== void 0) {
         customStyle.gridColumnStart = colStart;
@@ -4187,7 +4768,7 @@ var flexVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Flex = React62__namespace.forwardRef(
+var Flex = React65__namespace.forwardRef(
   ({
     className,
     direction = "row",
@@ -4225,7 +4806,7 @@ var Flex = React62__namespace.forwardRef(
   }
 );
 Flex.displayName = "Flex";
-var FlexCenter = React62__namespace.forwardRef(
+var FlexCenter = React65__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -4239,7 +4820,7 @@ var FlexCenter = React62__namespace.forwardRef(
   }
 );
 FlexCenter.displayName = "FlexCenter";
-var FlexBetween = React62__namespace.forwardRef(
+var FlexBetween = React65__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -4252,7 +4833,7 @@ var FlexBetween = React62__namespace.forwardRef(
   }
 );
 FlexBetween.displayName = "FlexBetween";
-var FlexStart = React62__namespace.forwardRef(
+var FlexStart = React65__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -4266,7 +4847,7 @@ var FlexStart = React62__namespace.forwardRef(
   }
 );
 FlexStart.displayName = "FlexStart";
-var FlexEnd = React62__namespace.forwardRef(
+var FlexEnd = React65__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -4280,7 +4861,7 @@ var FlexEnd = React62__namespace.forwardRef(
   }
 );
 FlexEnd.displayName = "FlexEnd";
-var FlexColumn = React62__namespace.forwardRef(
+var FlexColumn = React65__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -4293,7 +4874,7 @@ var FlexColumn = React62__namespace.forwardRef(
   }
 );
 FlexColumn.displayName = "FlexColumn";
-var FlexRow = React62__namespace.forwardRef(
+var FlexRow = React65__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -4339,7 +4920,7 @@ var spacerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Spacer = React62__namespace.forwardRef(
+var Spacer = React65__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -4352,7 +4933,7 @@ var Spacer = React62__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const spacerStyle = React62__namespace.useMemo(() => {
+    const spacerStyle = React65__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (width !== void 0) {
         customStyle.width = typeof width === "number" ? `${width}px` : width;
@@ -4386,7 +4967,7 @@ var Spacer = React62__namespace.forwardRef(
   }
 );
 Spacer.displayName = "Spacer";
-var VerticalSpacer = React62__namespace.forwardRef(
+var VerticalSpacer = React65__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Spacer,
@@ -4399,7 +4980,7 @@ var VerticalSpacer = React62__namespace.forwardRef(
   }
 );
 VerticalSpacer.displayName = "VerticalSpacer";
-var HorizontalSpacer = React62__namespace.forwardRef(
+var HorizontalSpacer = React65__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Spacer,
@@ -4443,7 +5024,7 @@ var dividerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Divider = React62__namespace.forwardRef(
+var Divider = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -4517,7 +5098,7 @@ var spacingClasses2 = {
   lg: "my-8",
   xl: "my-12"
 };
-var SectionDivider = React62__namespace.forwardRef(
+var SectionDivider = React65__namespace.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -4533,7 +5114,7 @@ var textColorClasses = {
   primary: "text-primary",
   secondary: "text-secondary-foreground"
 };
-var TextDivider = React62__namespace.forwardRef(
+var TextDivider = React65__namespace.forwardRef(
   ({
     className,
     children,
@@ -4600,7 +5181,7 @@ var panelVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Panel = React62__namespace.forwardRef(
+var Panel = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -4631,7 +5212,7 @@ var Panel = React62__namespace.forwardRef(
   }
 );
 Panel.displayName = "Panel";
-var PanelHeader = React62__namespace.forwardRef(
+var PanelHeader = React65__namespace.forwardRef(
   ({
     className,
     divider = false,
@@ -4654,7 +5235,7 @@ var PanelHeader = React62__namespace.forwardRef(
   }
 );
 PanelHeader.displayName = "PanelHeader";
-var PanelTitle = React62__namespace.forwardRef(
+var PanelTitle = React65__namespace.forwardRef(
   ({
     className,
     children,
@@ -4672,7 +5253,7 @@ var PanelTitle = React62__namespace.forwardRef(
   }
 );
 PanelTitle.displayName = "PanelTitle";
-var PanelDescription = React62__namespace.forwardRef(
+var PanelDescription = React65__namespace.forwardRef(
   ({
     className,
     children,
@@ -4690,7 +5271,7 @@ var PanelDescription = React62__namespace.forwardRef(
   }
 );
 PanelDescription.displayName = "PanelDescription";
-var PanelContent = React62__namespace.forwardRef(
+var PanelContent = React65__namespace.forwardRef(
   ({
     className,
     children,
@@ -4708,7 +5289,7 @@ var PanelContent = React62__namespace.forwardRef(
   }
 );
 PanelContent.displayName = "PanelContent";
-var PanelFooter = React62__namespace.forwardRef(
+var PanelFooter = React65__namespace.forwardRef(
   ({
     className,
     divider = false,
@@ -4737,7 +5318,7 @@ var spacingClasses3 = {
   lg: "gap-8",
   xl: "gap-10"
 };
-var PanelGroup = React62__namespace.forwardRef(
+var PanelGroup = React65__namespace.forwardRef(
   ({
     className,
     spacing = "md",
@@ -4773,7 +5354,7 @@ var alertVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Alert = React62__namespace.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Alert = React65__namespace.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -4783,7 +5364,7 @@ var Alert = React62__namespace.forwardRef(({ className, variant, ...props }, ref
   }
 ));
 Alert.displayName = "Alert";
-var AlertTitle = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertTitle = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h5",
   {
     ref,
@@ -4792,7 +5373,7 @@ var AlertTitle = React62__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 AlertTitle.displayName = "AlertTitle";
-var AlertDescription = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDescription = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -4804,7 +5385,7 @@ AlertDescription.displayName = "AlertDescription";
 var AlertDialog = AlertDialogPrimitive__namespace.Root;
 var AlertDialogTrigger = AlertDialogPrimitive__namespace.Trigger;
 var AlertDialogPortal = AlertDialogPrimitive__namespace.Portal;
-var AlertDialogOverlay = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogOverlay = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Overlay,
   {
     className: cn(
@@ -4816,7 +5397,7 @@ var AlertDialogOverlay = React62__namespace.forwardRef(({ className, ...props },
   }
 ));
 AlertDialogOverlay.displayName = AlertDialogPrimitive__namespace.Overlay.displayName;
-var AlertDialogContent = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(AlertDialogPortal, { children: [
+var AlertDialogContent = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(AlertDialogPortal, { children: [
   /* @__PURE__ */ jsxRuntime.jsx(AlertDialogOverlay, {}),
   /* @__PURE__ */ jsxRuntime.jsx(
     AlertDialogPrimitive__namespace.Content,
@@ -4859,7 +5440,7 @@ var AlertDialogFooter = ({
   }
 );
 AlertDialogFooter.displayName = "AlertDialogFooter";
-var AlertDialogTitle = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogTitle = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Title,
   {
     ref,
@@ -4868,7 +5449,7 @@ var AlertDialogTitle = React62__namespace.forwardRef(({ className, ...props }, r
   }
 ));
 AlertDialogTitle.displayName = AlertDialogPrimitive__namespace.Title.displayName;
-var AlertDialogDescription = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogDescription = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Description,
   {
     ref,
@@ -4877,7 +5458,7 @@ var AlertDialogDescription = React62__namespace.forwardRef(({ className, ...prop
   }
 ));
 AlertDialogDescription.displayName = AlertDialogPrimitive__namespace.Description.displayName;
-var AlertDialogAction = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogAction = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Action,
   {
     ref,
@@ -4886,7 +5467,7 @@ var AlertDialogAction = React62__namespace.forwardRef(({ className, ...props }, 
   }
 ));
 AlertDialogAction.displayName = AlertDialogPrimitive__namespace.Action.displayName;
-var AlertDialogCancel = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogCancel = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Cancel,
   {
     ref,
@@ -4909,20 +5490,20 @@ function Skeleton({ className, ...props }) {
     }
   );
 }
-var Toaster = React62__namespace.forwardRef((props, ref) => {
+var Toaster = React65__namespace.forwardRef((props, ref) => {
   const { theme = "system" } = nextThemes.useTheme();
-  return React62__namespace.createElement(
+  return React65__namespace.createElement(
     sonner.Toaster,
     {
       ref,
       theme,
       className: "toaster group",
       icons: {
-        success: React62__namespace.createElement(lucideReact.Check, { className: "h-4 w-4" }),
-        info: React62__namespace.createElement(lucideReact.Info, { className: "h-4 w-4" }),
-        warning: React62__namespace.createElement(lucideReact.AlertTriangle, { className: "h-4 w-4" }),
-        error: React62__namespace.createElement(lucideReact.Octagon, { className: "h-4 w-4" }),
-        loading: React62__namespace.createElement(lucideReact.Loader2, { className: "h-4 w-4 animate-spin" })
+        success: React65__namespace.createElement(lucideReact.Check, { className: "h-4 w-4" }),
+        info: React65__namespace.createElement(lucideReact.Info, { className: "h-4 w-4" }),
+        warning: React65__namespace.createElement(lucideReact.AlertTriangle, { className: "h-4 w-4" }),
+        error: React65__namespace.createElement(lucideReact.Octagon, { className: "h-4 w-4" }),
+        loading: React65__namespace.createElement(lucideReact.Loader2, { className: "h-4 w-4 animate-spin" })
       },
       toastOptions: {
         classNames: {
@@ -4979,7 +5560,7 @@ var speedClasses = {
   normal: "animate-spin",
   fast: "animate-spin-fast"
 };
-var Spinner = React62__namespace.forwardRef(
+var Spinner = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -5032,11 +5613,11 @@ var Spinner = React62__namespace.forwardRef(
   }
 );
 Spinner.displayName = "Spinner";
-var SpinnerOverlay = React62__namespace.forwardRef(
+var SpinnerOverlay = React65__namespace.forwardRef(
   ({
     className,
     fullscreen = false,
-    overlayColor = "rgba(0, 0, 0, 0.5)",
+    overlayColor = "var(--color-black)",
     opacity = 0.5,
     ...props
   }, ref) => {
@@ -5063,7 +5644,7 @@ var dotSizeClasses = {
   md: "h-2 w-2",
   lg: "h-3 w-3"
 };
-var DotsSpinner = React62__namespace.forwardRef(
+var DotsSpinner = React65__namespace.forwardRef(
   ({
     className,
     count = 3,
@@ -5110,7 +5691,7 @@ var pulseSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var PulseSpinner = React62__namespace.forwardRef(
+var PulseSpinner = React65__namespace.forwardRef(
   ({
     className,
     rings = 3,
@@ -5195,7 +5776,7 @@ function formatValue(value, format, currency, decimals = 0) {
       return formatted;
   }
 }
-var KPI = React62__namespace.forwardRef(
+var KPI = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -5270,7 +5851,7 @@ var gridColsClasses = {
   3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
   4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
 };
-var KPIGrid = React62__namespace.forwardRef(
+var KPIGrid = React65__namespace.forwardRef(
   ({
     className,
     cols = 4,
@@ -5293,7 +5874,7 @@ var KPIGrid = React62__namespace.forwardRef(
   }
 );
 KPIGrid.displayName = "KPIGrid";
-var KPIChart = React62__namespace.forwardRef(
+var KPIChart = React65__namespace.forwardRef(
   ({
     className,
     chart,
@@ -5361,7 +5942,7 @@ var iconSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var EmptyState = React62__namespace.forwardRef(
+var EmptyState = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -5418,7 +5999,7 @@ var EmptyState = React62__namespace.forwardRef(
   }
 );
 EmptyState.displayName = "EmptyState";
-var EmptyStateIllustrated = React62__namespace.forwardRef(
+var EmptyStateIllustrated = React65__namespace.forwardRef(
   ({
     className,
     illustration,
@@ -5536,7 +6117,7 @@ var notificationVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Notification = React62__namespace.forwardRef(
+var Notification = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -5552,8 +6133,8 @@ var Notification = React62__namespace.forwardRef(
     toast = false,
     ...props
   }, ref) => {
-    const [visible, setVisible] = React62__namespace.useState(true);
-    React62__namespace.useEffect(() => {
+    const [visible, setVisible] = React65__namespace.useState(true);
+    React65__namespace.useEffect(() => {
       if (autoClose && onDismiss) {
         const timer = setTimeout(() => {
           handleClose();
@@ -5628,7 +6209,7 @@ var spacingClasses4 = {
   md: "gap-3",
   lg: "gap-4"
 };
-var NotificationGroup = React62__namespace.forwardRef(
+var NotificationGroup = React65__namespace.forwardRef(
   ({
     className,
     children,
@@ -5654,7 +6235,7 @@ var NotificationGroup = React62__namespace.forwardRef(
   }
 );
 NotificationGroup.displayName = "NotificationGroup";
-var NotificationToast = React62__namespace.forwardRef(
+var NotificationToast = React65__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Notification,
@@ -5668,8 +6249,8 @@ var NotificationToast = React62__namespace.forwardRef(
 );
 NotificationToast.displayName = "NotificationToast";
 function useNotification() {
-  const [notifications, setNotifications] = React62__namespace.useState(/* @__PURE__ */ new Map());
-  const notify = React62__namespace.useCallback((options) => {
+  const [notifications, setNotifications] = React65__namespace.useState(/* @__PURE__ */ new Map());
+  const notify = React65__namespace.useCallback((options) => {
     const id = options.id || Math.random().toString(36).substr(2, 9);
     setNotifications((prev) => new Map(prev).set(id, options));
     if (options.autoClose !== false) {
@@ -5680,14 +6261,14 @@ function useNotification() {
     }
     return id;
   }, []);
-  const dismiss = React62__namespace.useCallback((id) => {
+  const dismiss = React65__namespace.useCallback((id) => {
     setNotifications((prev) => {
       const next = new Map(prev);
       next.delete(id);
       return next;
     });
   }, []);
-  const clear = React62__namespace.useCallback(() => {
+  const clear = React65__namespace.useCallback(() => {
     setNotifications(/* @__PURE__ */ new Map());
   }, []);
   return {
@@ -5712,8 +6293,203 @@ var NotificationProvider = ({ children }) => {
     )) })
   ] });
 };
+var __defProp3 = Object.defineProperty;
+var __defNormalProp3 = (obj, key, value) => key in obj ? __defProp3(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __publicField3 = (obj, key, value) => __defNormalProp3(obj, key + "", value);
+var AuthStorage2 = class {
+  static setItem(key, value) {
+    if (!this.isClient) return;
+    try {
+      localStorage.setItem(key, value);
+    } catch (error) {
+      console.warn("Failed to save to localStorage:", error);
+    }
+  }
+  static getItem(key) {
+    if (!this.isClient) return null;
+    try {
+      return localStorage.getItem(key);
+    } catch (error) {
+      console.warn("Failed to read from localStorage:", error);
+      return null;
+    }
+  }
+  static removeItem(key) {
+    if (!this.isClient) return;
+    try {
+      localStorage.removeItem(key);
+    } catch (error) {
+      console.warn("Failed to remove from localStorage:", error);
+    }
+  }
+  static setUser(user, key) {
+    this.setItem(key, JSON.stringify(user));
+  }
+  static getUser(key) {
+    const data = this.getItem(key);
+    if (!data) return null;
+    try {
+      return JSON.parse(data);
+    } catch {
+      this.removeItem(key);
+      return null;
+    }
+  }
+  static removeUser(key) {
+    this.removeItem(key);
+  }
+};
+__publicField3(AuthStorage2, "isClient", typeof window !== "undefined");
+function prefersReducedMotion() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+function smoothScrollTo(target, options) {
+  const element = typeof target === "string" ? document.querySelector(target) : target;
+  if (!element) {
+    console.warn(`Elemento n\xE3o encontrado: ${target}`);
+    return;
+  }
+  const shouldAnimate = !prefersReducedMotion();
+  element.scrollIntoView({
+    behavior: shouldAnimate ? "smooth" : "auto",
+    block: "start",
+    inline: "nearest",
+    ...options
+  });
+}
+function scrollToTop() {
+  const shouldAnimate = !prefersReducedMotion();
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: shouldAnimate ? "smooth" : "auto"
+  });
+}
+function scrollToPosition(x, y, smooth = true) {
+  const shouldAnimate = smooth && !prefersReducedMotion();
+  window.scrollTo({
+    top: y,
+    left: x,
+    behavior: shouldAnimate ? "smooth" : "auto"
+  });
+}
+function onReducedMotionChange(callback) {
+  if (typeof window === "undefined") {
+    return () => {
+    };
+  }
+  const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const handler = (event) => {
+    callback(event.matches);
+  };
+  handler(mediaQuery);
+  if (mediaQuery.addEventListener) {
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }
+  if (mediaQuery.addListener) {
+    mediaQuery.addListener(handler);
+    return () => mediaQuery.removeListener(handler);
+  }
+  return () => {
+  };
+}
+function useSmoothScroll() {
+  const [reducedMotion, setReducedMotion] = React65.useState(false);
+  React65.useEffect(() => {
+    setReducedMotion(prefersReducedMotion());
+    const cleanup = onReducedMotionChange((matches) => {
+      setReducedMotion(matches);
+    });
+    return cleanup;
+  }, []);
+  const scrollTo = React65.useCallback(
+    (target, options) => {
+      smoothScrollTo(target, options);
+    },
+    []
+  );
+  const toTop = React65.useCallback(() => {
+    scrollToTop();
+  }, []);
+  const toPosition = React65.useCallback((x, y) => {
+    scrollToPosition(x, y);
+  }, []);
+  return {
+    scrollTo,
+    scrollToTop: toTop,
+    scrollToPosition: toPosition,
+    reducedMotion,
+    shouldAnimate: !reducedMotion
+  };
+}
+function useScrollPosition() {
+  const [scrollPosition, setScrollPosition] = React65.useState({ x: 0, y: 0 });
+  const [isScrolling, setIsScrolling] = React65.useState(false);
+  const [scrollDirection, setScrollDirection] = React65.useState(null);
+  React65.useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let scrollTimeout;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const currentScrollX = window.scrollX;
+      setScrollPosition({ x: currentScrollX, y: currentScrollY });
+      if (currentScrollY > lastScrollY) {
+        setScrollDirection("down");
+      } else if (currentScrollY < lastScrollY) {
+        setScrollDirection("up");
+      }
+      setIsScrolling(true);
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150);
+      lastScrollY = currentScrollY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+  return {
+    scrollPosition,
+    isScrolling,
+    scrollDirection,
+    isScrolledDown: scrollPosition.y > 0,
+    scrollPercentage: Math.round(
+      scrollPosition.y / (document.documentElement.scrollHeight - window.innerHeight) * 100
+    )
+  };
+}
+var SCROLL_THRESHOLD_PX = 300;
+function BackToTopButton() {
+  const { scrollToTop: scrollToTop2, reducedMotion } = useSmoothScroll();
+  const { scrollPosition } = useScrollPosition();
+  const isButtonVisible = scrollPosition.y > SCROLL_THRESHOLD_PX;
+  const handleClick = () => {
+    scrollToTop2();
+  };
+  if (!isButtonVisible) {
+    return null;
+  }
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    Button,
+    {
+      onClick: handleClick,
+      className: "fixed bottom-8 right-8 z-50 rounded-full w-12 h-12 p-0 shadow-lg",
+      "aria-label": reducedMotion ? "Ir para o topo da p\xE1gina" : "Rolar suavemente para o topo da p\xE1gina",
+      title: "Voltar ao topo",
+      children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ArrowUp, { className: "h-5 w-5", "aria-hidden": "true" })
+    }
+  );
+}
+function BackToTop() {
+  return /* @__PURE__ */ jsxRuntime.jsx(BackToTopButton, {});
+}
 var Accordion2 = AccordionPrimitive2__namespace.Root;
-var AccordionItem2 = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AccordionItem2 = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AccordionPrimitive2__namespace.Item,
   {
     ref,
@@ -5722,7 +6498,7 @@ var AccordionItem2 = React62__namespace.forwardRef(({ className, ...props }, ref
   }
 ));
 AccordionItem2.displayName = "AccordionItem";
-var AccordionTrigger2 = React62__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive2__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
+var AccordionTrigger2 = React65__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive2__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
   AccordionPrimitive2__namespace.Trigger,
   {
     ref,
@@ -5743,7 +6519,7 @@ var AccordionTrigger2 = React62__namespace.forwardRef(({ className, children, ..
   }
 ) }));
 AccordionTrigger2.displayName = AccordionPrimitive2__namespace.Trigger.displayName;
-var AccordionContent2 = React62__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AccordionContent2 = React65__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AccordionPrimitive2__namespace.Content,
   {
     ref,
@@ -5774,7 +6550,7 @@ var Dialog = reactDialog.Root;
 var DialogTrigger = reactDialog.Trigger;
 var DialogPortal = reactDialog.Portal;
 var DialogClose = reactDialog.Close;
-var DialogOverlay = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogOverlay = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Overlay,
   {
     ref,
@@ -5787,7 +6563,7 @@ var DialogOverlay = React62__namespace.forwardRef(({ className, ...props }, ref)
   }
 ));
 DialogOverlay.displayName = reactDialog.Overlay.displayName;
-var DialogContent = React62__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(DialogPortal, { children: [
+var DialogContent = React65__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(DialogPortal, { children: [
   /* @__PURE__ */ jsxRuntime.jsx(DialogOverlay, {}),
   /* @__PURE__ */ jsxRuntime.jsxs(
     reactDialog.Content,
@@ -5841,7 +6617,7 @@ var DialogFooter = ({
   }
 );
 DialogFooter.displayName = "DialogFooter";
-var DialogTitle = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogTitle = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Title,
   {
     ref,
@@ -5853,7 +6629,7 @@ var DialogTitle = React62__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 DialogTitle.displayName = reactDialog.Title.displayName;
-var DialogDescription = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogDescription = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Description,
   {
     ref,
@@ -5865,7 +6641,7 @@ var DialogDescription = React62__namespace.forwardRef(({ className, ...props }, 
   }
 ));
 DialogDescription.displayName = reactDialog.Description.displayName;
-var Command = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Command = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command,
   {
     ref,
@@ -5886,7 +6662,7 @@ var CommandDialog = ({
     /* @__PURE__ */ jsxRuntime.jsx(Command, { className: "[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[data-cmdk-input-wrapper]_svg]:h-5 [&_[data-cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5", children })
   ] }) });
 };
-var CommandInput = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center border-b px-3", "data-cmdk-input-wrapper": "", children: [
+var CommandInput = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center border-b px-3", "data-cmdk-input-wrapper": "", children: [
   /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { className: "mr-2 h-4 w-4 shrink-0 opacity-50" }),
   /* @__PURE__ */ jsxRuntime.jsx(
     cmdk.Command.Input,
@@ -5901,7 +6677,7 @@ var CommandInput = React62__namespace.forwardRef(({ className, ...props }, ref) 
   )
 ] }));
 CommandInput.displayName = cmdk.Command.Input.displayName;
-var CommandList = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandList = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.List,
   {
     ref,
@@ -5910,7 +6686,7 @@ var CommandList = React62__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 CommandList.displayName = cmdk.Command.List.displayName;
-var CommandEmpty = React62__namespace.forwardRef((props, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandEmpty = React65__namespace.forwardRef((props, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Empty,
   {
     ref,
@@ -5919,7 +6695,7 @@ var CommandEmpty = React62__namespace.forwardRef((props, ref) => /* @__PURE__ */
   }
 ));
 CommandEmpty.displayName = cmdk.Command.Empty.displayName;
-var CommandGroup = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandGroup = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Group,
   {
     ref,
@@ -5931,7 +6707,7 @@ var CommandGroup = React62__namespace.forwardRef(({ className, ...props }, ref) 
   }
 ));
 CommandGroup.displayName = cmdk.Command.Group.displayName;
-var CommandSeparator = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandSeparator = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Separator,
   {
     ref,
@@ -5940,7 +6716,7 @@ var CommandSeparator = React62__namespace.forwardRef(({ className, ...props }, r
   }
 ));
 CommandSeparator.displayName = cmdk.Command.Separator.displayName;
-var CommandItem = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandItem = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Item,
   {
     ref,
@@ -5968,7 +6744,7 @@ var CommandShortcut = ({
   );
 };
 CommandShortcut.displayName = "CommandShortcut";
-var NavigationMenu = React62__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var NavigationMenu = React65__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   NavigationMenuPrimitive__namespace.Root,
   {
     ref,
@@ -5985,7 +6761,7 @@ var NavigationMenu = React62__namespace.forwardRef(({ className, children, ...pr
   }
 ));
 NavigationMenu.displayName = NavigationMenuPrimitive__namespace.Root.displayName;
-var NavigationMenuList = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuList = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.List,
   {
     ref,
@@ -6005,7 +6781,7 @@ var navigationMenuTriggerStyle = classVarianceAuthority.cva(
     "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-accent-foreground data-[state=open]:bg-accent/50 data-[state=open]:hover:bg-accent data-[state=open]:focus:bg-accent"
   )
 );
-var NavigationMenuTrigger = React62__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var NavigationMenuTrigger = React65__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   NavigationMenuPrimitive__namespace.Trigger,
   {
     ref,
@@ -6028,7 +6804,7 @@ var NavigationMenuTrigger = React62__namespace.forwardRef(({ className, children
   }
 ));
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive__namespace.Trigger.displayName;
-var NavigationMenuContent = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuContent = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.Content,
   {
     ref,
@@ -6041,7 +6817,7 @@ var NavigationMenuContent = React62__namespace.forwardRef(({ className, ...props
 ));
 NavigationMenuContent.displayName = NavigationMenuPrimitive__namespace.Content.displayName;
 var NavigationMenuLink = NavigationMenuPrimitive__namespace.Link;
-var NavigationMenuViewport = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn("absolute left-0 top-full flex justify-center"), children: /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuViewport = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn("absolute left-0 top-full flex justify-center"), children: /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.Viewport,
   {
     className: cn(
@@ -6053,7 +6829,7 @@ var NavigationMenuViewport = React62__namespace.forwardRef(({ className, ...prop
   }
 ) }));
 NavigationMenuViewport.displayName = NavigationMenuPrimitive__namespace.Viewport.displayName;
-var NavigationMenuIndicator = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuIndicator = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.Indicator,
   {
     ref,
@@ -6068,7 +6844,7 @@ var NavigationMenuIndicator = React62__namespace.forwardRef(({ className, ...pro
 ));
 NavigationMenuIndicator.displayName = NavigationMenuPrimitive__namespace.Indicator.displayName;
 var Tabs = TabsPrimitive__namespace.Root;
-var TabsList = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TabsList = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TabsPrimitive__namespace.List,
   {
     ref,
@@ -6080,7 +6856,7 @@ var TabsList = React62__namespace.forwardRef(({ className, ...props }, ref) => /
   }
 ));
 TabsList.displayName = TabsPrimitive__namespace.List.displayName;
-var TabsTrigger = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TabsTrigger = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TabsPrimitive__namespace.Trigger,
   {
     ref,
@@ -6096,7 +6872,7 @@ var TabsTrigger = React62__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 TabsTrigger.displayName = TabsPrimitive__namespace.Trigger.displayName;
-var TabsContent = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TabsContent = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TabsPrimitive__namespace.Content,
   {
     ref,
@@ -6130,7 +6906,7 @@ var menuVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Menu = React62__namespace.forwardRef(
+var Menu = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -6143,17 +6919,17 @@ var Menu = React62__namespace.forwardRef(
     closeOnClick = true,
     ...props
   }, ref) => {
-    const [internalOpen, setInternalOpen] = React62__namespace.useState(false);
-    const [openSubmenus, setOpenSubmenus] = React62__namespace.useState(/* @__PURE__ */ new Set());
+    const [internalOpen, setInternalOpen] = React65__namespace.useState(false);
+    const [openSubmenus, setOpenSubmenus] = React65__namespace.useState(/* @__PURE__ */ new Set());
     const isOpen = controlledOpen !== void 0 ? controlledOpen : internalOpen;
-    const containerRef = React62__namespace.useRef(null);
-    const handleOpenChange = React62__namespace.useCallback((newOpen) => {
+    const containerRef = React65__namespace.useRef(null);
+    const handleOpenChange = React65__namespace.useCallback((newOpen) => {
       if (controlledOpen === void 0) {
         setInternalOpen(newOpen);
       }
       onOpenChange?.(newOpen);
     }, [controlledOpen, onOpenChange]);
-    const toggleSubmenu = React62__namespace.useCallback((itemId) => {
+    const toggleSubmenu = React65__namespace.useCallback((itemId) => {
       setOpenSubmenus((prev) => {
         const next = new Set(prev);
         if (next.has(itemId)) {
@@ -6164,7 +6940,7 @@ var Menu = React62__namespace.forwardRef(
         return next;
       });
     }, []);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           handleOpenChange(false);
@@ -6304,7 +7080,7 @@ var Menu = React62__namespace.forwardRef(
   }
 );
 Menu.displayName = "Menu";
-var MenuBar = React62__namespace.forwardRef(
+var MenuBar = React65__namespace.forwardRef(
   ({
     className,
     menus,
@@ -6335,17 +7111,17 @@ var MenuBar = React62__namespace.forwardRef(
   }
 );
 MenuBar.displayName = "MenuBar";
-var NavigationContextMenu = React62__namespace.forwardRef(
+var NavigationContextMenu = React65__namespace.forwardRef(
   ({
     className,
     children,
     items,
     ...props
   }, ref) => {
-    const [open, setOpen] = React62__namespace.useState(false);
-    const [position, setPosition] = React62__namespace.useState({ x: 0, y: 0 });
-    const containerRef = React62__namespace.useRef(null);
-    const handleContextMenu = React62__namespace.useCallback((event) => {
+    const [open, setOpen] = React65__namespace.useState(false);
+    const [position, setPosition] = React65__namespace.useState({ x: 0, y: 0 });
+    const containerRef = React65__namespace.useRef(null);
+    const handleContextMenu = React65__namespace.useCallback((event) => {
       event.preventDefault();
       setPosition({ x: event.clientX, y: event.clientY });
       setOpen(true);
@@ -6456,7 +7232,7 @@ function generateRange(page, totalPages, siblingCount) {
   }
   return range;
 }
-var Pagination = React62__namespace.forwardRef(
+var Pagination = React65__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -6473,31 +7249,31 @@ var Pagination = React62__namespace.forwardRef(
     siblingCount = 1,
     ...props
   }, ref) => {
-    const pages = React62__namespace.useMemo(() => {
+    const pages = React65__namespace.useMemo(() => {
       if (totalPages <= 7) {
         return Array.from({ length: totalPages }, (_, i) => i + 1);
       }
       return generateRange(page, totalPages, siblingCount);
     }, [page, totalPages, siblingCount]);
-    const handlePrevious = React62__namespace.useCallback(() => {
+    const handlePrevious = React65__namespace.useCallback(() => {
       if (page > 1) {
         onPrevious?.();
         onChange?.(page - 1);
       }
     }, [page, onChange, onPrevious]);
-    const handleNext = React62__namespace.useCallback(() => {
+    const handleNext = React65__namespace.useCallback(() => {
       if (page < totalPages) {
         onNext?.();
         onChange?.(page + 1);
       }
     }, [page, totalPages, onChange, onNext]);
-    const handlePageClick = React62__namespace.useCallback((page2) => {
+    const handlePageClick = React65__namespace.useCallback((page2) => {
       onChange?.(page2);
     }, [onChange]);
-    const handleFirst = React62__namespace.useCallback(() => {
+    const handleFirst = React65__namespace.useCallback(() => {
       onChange?.(1);
     }, [onChange]);
-    const handleLast = React62__namespace.useCallback(() => {
+    const handleLast = React65__namespace.useCallback(() => {
       onChange?.(totalPages);
     }, [onChange, totalPages]);
     const sizeClasses2 = {
@@ -6578,7 +7354,7 @@ var Pagination = React62__namespace.forwardRef(
               disabled: disabled || page === totalPages,
               children: [
                 /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: "Pr\xF3xima p\xE1gina" }),
-                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight2__default.default, { className: "h-4 w-4" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight3__default.default, { className: "h-4 w-4" })
               ]
             }
           ),
@@ -6592,8 +7368,8 @@ var Pagination = React62__namespace.forwardRef(
               disabled: disabled || page === totalPages,
               children: [
                 /* @__PURE__ */ jsxRuntime.jsx("span", { className: "sr-only", children: "\xDAltima p\xE1gina" }),
-                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight2__default.default, { className: "h-4 w-4" }),
-                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight2__default.default, { className: "h-4 w-4 -ml-3" })
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight3__default.default, { className: "h-4 w-4" }),
+                /* @__PURE__ */ jsxRuntime.jsx(ChevronRight3__default.default, { className: "h-4 w-4 -ml-3" })
               ]
             }
           ),
@@ -6609,7 +7385,7 @@ var Pagination = React62__namespace.forwardRef(
   }
 );
 Pagination.displayName = "Pagination";
-var PaginationInfo = React62__namespace.forwardRef(
+var PaginationInfo = React65__namespace.forwardRef(
   ({
     className,
     page,
@@ -6645,7 +7421,7 @@ var PaginationInfo = React62__namespace.forwardRef(
   }
 );
 PaginationInfo.displayName = "PaginationInfo";
-var PaginationCompact = React62__namespace.forwardRef(
+var PaginationCompact = React65__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Pagination,
@@ -6701,7 +7477,7 @@ var stepVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Steps = React62__namespace.forwardRef(
+var Steps = React65__namespace.forwardRef(
   ({
     className,
     orientation = "horizontal",
@@ -6713,7 +7489,7 @@ var Steps = React62__namespace.forwardRef(
     showConnector = true,
     ...props
   }, ref) => {
-    const stepsWithStatus = React62__namespace.useMemo(() => {
+    const stepsWithStatus = React65__namespace.useMemo(() => {
       return steps.map((step, index) => {
         let status = "pending";
         if (index < current) {
@@ -6861,7 +7637,7 @@ var Steps = React62__namespace.forwardRef(
   }
 );
 Steps.displayName = "Steps";
-var StepItem = React62__namespace.forwardRef(
+var StepItem = React65__namespace.forwardRef(
   ({
     className,
     number,
@@ -6946,7 +7722,7 @@ var sidebarVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Sidebar = React62__namespace.forwardRef(
+var Sidebar = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -6964,25 +7740,25 @@ var Sidebar = React62__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [internalCollapsed, setInternalCollapsed] = React62__namespace.useState(collapsed);
-    const [internalOpen, setInternalOpen] = React62__namespace.useState(open);
+    const [internalCollapsed, setInternalCollapsed] = React65__namespace.useState(collapsed);
+    const [internalOpen, setInternalOpen] = React65__namespace.useState(open);
     const isCollapsed = onCollapse ? collapsed : internalCollapsed;
     const isOpen = overlay ? onOpenChange ? open : internalOpen : true;
-    const handleCollapse = React62__namespace.useCallback(() => {
+    const handleCollapse = React65__namespace.useCallback(() => {
       if (onCollapse) {
         onCollapse(!isCollapsed);
       } else {
         setInternalCollapsed(!isCollapsed);
       }
     }, [isCollapsed, onCollapse]);
-    const handleOpenChange = React62__namespace.useCallback((newOpen) => {
+    const handleOpenChange = React65__namespace.useCallback((newOpen) => {
       if (onOpenChange) {
         onOpenChange(newOpen);
       } else {
         setInternalOpen(newOpen);
       }
     }, [onOpenChange]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       if (overlay && isOpen) {
         const handleClickOutside = (event) => {
           const target = event.target;
@@ -7061,7 +7837,7 @@ var Sidebar = React62__namespace.forwardRef(
                   size: "sm",
                   onClick: handleCollapse,
                   className: "h-8 w-8 p-0",
-                  children: isCollapsed ? /* @__PURE__ */ jsxRuntime.jsx(ChevronRight2__default.default, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-4 w-4" })
+                  children: isCollapsed ? /* @__PURE__ */ jsxRuntime.jsx(ChevronRight3__default.default, { className: "h-4 w-4" }) : /* @__PURE__ */ jsxRuntime.jsx(ChevronLeft__default.default, { className: "h-4 w-4" })
                 }
               ),
               overlay && /* @__PURE__ */ jsxRuntime.jsx(
@@ -7133,14 +7909,14 @@ var Sidebar = React62__namespace.forwardRef(
   }
 );
 Sidebar.displayName = "Sidebar";
-var SidebarTrigger = React62__namespace.forwardRef(
+var SidebarTrigger = React65__namespace.forwardRef(
   ({
     className,
     children,
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React62__namespace.useCallback((event) => {
+    const handleClick = React65__namespace.useCallback((event) => {
       onClick?.(event);
       window.dispatchEvent(new CustomEvent("sidebar:toggle"));
     }, [onClick]);
@@ -7187,7 +7963,7 @@ var topBarVariants = classVarianceAuthority.cva(
     }
   }
 );
-var TopBar = React62__namespace.forwardRef(
+var TopBar = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -7322,7 +8098,7 @@ var TopBar = React62__namespace.forwardRef(
   }
 );
 TopBar.displayName = "TopBar";
-var TopBarTitle = React62__namespace.forwardRef(
+var TopBarTitle = React65__namespace.forwardRef(
   ({
     className,
     title,
@@ -7344,7 +8120,7 @@ var TopBarTitle = React62__namespace.forwardRef(
   }
 );
 TopBarTitle.displayName = "TopBarTitle";
-var TopBarActions = React62__namespace.forwardRef(
+var TopBarActions = React65__namespace.forwardRef(
   ({
     className,
     children,
@@ -7362,214 +8138,6 @@ var TopBarActions = React62__namespace.forwardRef(
   }
 );
 TopBarActions.displayName = "TopBarActions";
-var DEFAULT_TOKENS = {
-  primitives: {
-    colors: {
-      cyan: {
-        50: "#ecfeff",
-        100: "#cffafe",
-        200: "#a5f3fc",
-        300: "#67e8f9",
-        400: "#22d3ee",
-        500: "#06b6d4",
-        600: "#0891b2",
-        700: "#0e7490",
-        800: "#155e75",
-        900: "#164e63",
-        950: "#083344"
-      },
-      gray: {
-        50: "#fafafa",
-        100: "#f5f5f5",
-        200: "#e5e5e5",
-        300: "#d4d4d4",
-        400: "#a3a3a3",
-        500: "#737373",
-        600: "#525252",
-        700: "#404040",
-        800: "#262626",
-        900: "#171717",
-        950: "#0a0a0a"
-      }
-    },
-    spacing: {
-      0: "0",
-      px: "1px",
-      0.5: "0.125rem",
-      1: "0.25rem",
-      2: "0.5rem",
-      3: "0.75rem",
-      4: "1rem",
-      5: "1.25rem",
-      6: "1.5rem",
-      8: "2rem",
-      10: "2.5rem",
-      12: "3rem",
-      16: "4rem",
-      20: "5rem",
-      24: "6rem"
-    },
-    radius: {
-      none: "0",
-      sm: "0.125rem",
-      md: "0.375rem",
-      lg: "0.5rem",
-      xl: "0.75rem",
-      "2xl": "1rem",
-      "3xl": "1.5rem",
-      full: "9999px"
-    },
-    shadows: {
-      none: "none",
-      xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-      sm: "0 1px 3px 0 rgb(0 0 0 / 0.1)",
-      md: "0 4px 6px -1px rgb(0 0 0 / 0.1)",
-      lg: "0 10px 15px -3px rgb(0 0 0 / 0.1)",
-      xl: "0 20px 25px -5px rgb(0 0 0 / 0.1)",
-      "2xl": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
-      inner: "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)"
-    },
-    motion: {
-      duration: {
-        instant: "0ms",
-        fast: "150ms",
-        normal: "300ms",
-        slow: "500ms",
-        slower: "700ms"
-      },
-      easing: {
-        linear: "linear",
-        easeIn: "cubic-bezier(0.4, 0, 1, 1)",
-        easeOut: "cubic-bezier(0, 0, 0.2, 1)",
-        easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
-        bounce: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
-      },
-      delay: {
-        none: "0ms",
-        short: "75ms",
-        medium: "150ms",
-        long: "300ms"
-      }
-    }
-  },
-  semantics: {
-    text: {
-      primary: "#0a0a0a",
-      secondary: "#525252",
-      tertiary: "#737373",
-      disabled: "#a3a3a3",
-      inverse: "#fafafa",
-      link: "#0891b2",
-      linkHover: "#0e7490"
-    },
-    background: {
-      primary: "#ffffff",
-      secondary: "#f5f5f5",
-      tertiary: "#e5e5e5",
-      disabled: "#f5f5f5",
-      overlay: "rgba(0, 0, 0, 0.5)",
-      inverse: "#0a0a0a",
-      muted: "#f5f5f5"
-    },
-    border: {
-      default: "#e5e5e5",
-      light: "#f5f5f5",
-      medium: "#d4d4d4",
-      dark: "#a3a3a3",
-      focus: "#0891b2",
-      error: "#ef4444",
-      success: "#22c55e",
-      warning: "#f59e0b"
-    },
-    status: {
-      success: { base: "#22c55e", text: "#ffffff", background: "#dcfce7" },
-      error: { base: "#ef4444", text: "#ffffff", background: "#fee2e2" },
-      warning: { base: "#f59e0b", text: "#000000", background: "#fef3c7" },
-      info: { base: "#3b82f6", text: "#ffffff", background: "#dbeafe" }
-    },
-    surface: {
-      primary: "#ffffff",
-      elevated: "#ffffff",
-      raised: "#fafafa",
-      sunken: "#f5f5f5"
-    }
-  }
-};
-function getNestedValue(obj, path, fallback) {
-  const keys = path.split(".");
-  let current = obj;
-  for (const key of keys) {
-    if (current && typeof current === "object" && key in current) {
-      current = current[key];
-    } else {
-      return fallback;
-    }
-  }
-  return typeof current === "string" ? current : fallback;
-}
-var TokensContext = React62__namespace.createContext(null);
-function TokensProvider({ tokens: customTokens, children }) {
-  const tokens4 = React62__namespace.useMemo(() => {
-    if (!customTokens) return DEFAULT_TOKENS;
-    return {
-      ...DEFAULT_TOKENS,
-      ...customTokens,
-      primitives: {
-        ...DEFAULT_TOKENS.primitives,
-        ...customTokens.primitives
-      },
-      semantics: {
-        ...DEFAULT_TOKENS.semantics,
-        ...customTokens.semantics
-      }
-    };
-  }, [customTokens]);
-  const getColor = React62__namespace.useCallback((path, fallback = "#000000") => {
-    return getNestedValue(tokens4.primitives?.colors, path, fallback) || getNestedValue(tokens4.semantics, path, fallback);
-  }, [tokens4]);
-  const getSpacing = React62__namespace.useCallback((key, fallback = "0") => {
-    return tokens4.primitives?.spacing?.[key] ?? fallback;
-  }, [tokens4]);
-  const getRadius = React62__namespace.useCallback((key, fallback = "0") => {
-    return tokens4.primitives?.radius?.[key] ?? fallback;
-  }, [tokens4]);
-  const getShadow = React62__namespace.useCallback((key, fallback = "none") => {
-    return tokens4.primitives?.shadows?.[key] ?? fallback;
-  }, [tokens4]);
-  const getMotion = React62__namespace.useCallback((type, key, fallback = "") => {
-    return tokens4.primitives?.motion?.[type]?.[key] ?? fallback;
-  }, [tokens4]);
-  const getGradient = React62__namespace.useCallback((key, fallback = "") => {
-    const value2 = tokens4.primitives?.gradients?.[key];
-    return typeof value2 === "string" ? value2 : fallback;
-  }, [tokens4]);
-  const value = React62__namespace.useMemo(() => ({
-    tokens: tokens4,
-    getColor,
-    getSpacing,
-    getRadius,
-    getShadow,
-    getMotion,
-    getGradient
-  }), [tokens4, getColor, getSpacing, getRadius, getShadow, getMotion, getGradient]);
-  return /* @__PURE__ */ jsxRuntime.jsx(TokensContext.Provider, { value, children });
-}
-function useTokens() {
-  const context = React62__namespace.useContext(TokensContext);
-  if (!context) {
-    throw new Error(
-      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
-    );
-  }
-  return context;
-}
-var parseMsToSeconds = (value, fallback = 0.1) => {
-  if (!value) return fallback;
-  if (value.endsWith("ms")) return parseFloat(value) / 1e3;
-  if (value.endsWith("s")) return parseFloat(value);
-  const n = Number(value);
-  return Number.isFinite(n) ? n : fallback;
-};
 function StatsCards({
   items = [],
   isLoading = false,
@@ -7580,9 +8148,10 @@ function StatsCards({
   animationDelay,
   emptyMessage = "Nenhum dado dispon\xEDvel"
 }) {
-  const { getColor, getRadius, getShadow, getMotion } = useTokens();
-  const resolvedAnimationDelay = animationDelay ?? parseMsToSeconds(getMotion("delay", "short", "0.1s"), 0.1);
-  const cardRadius = getRadius("lg", "0.5rem");
+  const getColor = (path, fallback) => fallback;
+  const getShadow = (path, fallback) => fallback;
+  const resolvedAnimationDelay = animationDelay ?? 0.1;
+  const cardRadius = "0.5rem";
   const cardShadow = getShadow("md", "0 4px 6px -1px rgb(0 0 0 / 0.1)");
   const gridClass = cn(
     "grid gap-4",
@@ -7591,8 +8160,8 @@ function StatsCards({
     columns.lg && `lg:grid-cols-${columns.lg}`,
     className
   );
-  const fallbackPrimary = getColor("cyan.500", "#0ea5e9");
-  const fallbackSecondary = getColor("status.info.background", "rgba(14,165,233,0.12)");
+  const fallbackPrimary = "var(--color-cyan-500)";
+  const fallbackSecondary = "var(--color-info-background)";
   const resolvedItems = items.map((item) => {
     const primary = item.accentColor ?? (item.accentKey ? getColor(item.accentKey, fallbackPrimary) : fallbackPrimary);
     const secondary = item.secondaryColor ? getColor(item.secondaryColor, fallbackSecondary) : fallbackSecondary;
@@ -7630,7 +8199,7 @@ function StatsCards({
       const isPositive = stat.trend ? stat.trend === "up" : (stat.change ?? 0) >= 0;
       const changeValue = stat.change ?? 0;
       const valueText = stat.formatValue ? stat.formatValue(stat.value) : typeof stat.value === "number" ? stat.value.toLocaleString("pt-BR") : stat.value;
-      const indicatorColor = isPositive ? getColor("status.success.base", "#16a34a") : getColor("status.error.base", "#ef4444");
+      const indicatorColor = isPositive ? "var(--color-success-default)" : "var(--color-error-default)";
       return /* @__PURE__ */ jsxRuntime.jsx(
         framerMotion.motion.div,
         {
@@ -7777,7 +8346,7 @@ function QuickStatsComponent({
     }
   );
 }
-var QuickStats = React62__namespace.default.memo(QuickStatsComponent);
+var QuickStats = React65__namespace.default.memo(QuickStatsComponent);
 QuickStats.displayName = "QuickStats";
 var STAGGER_DELAY_SECONDS = 0.1;
 function QuickActions({
@@ -7955,7 +8524,7 @@ function RecentPostsList({
     )) }) })
   ] });
 }
-var Card2 = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Card2 = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -7967,7 +8536,7 @@ var Card2 = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 Card2.displayName = "Card";
-var CardHeader2 = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardHeader2 = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -7976,7 +8545,7 @@ var CardHeader2 = React62__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 CardHeader2.displayName = "CardHeader";
-var CardTitle2 = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardTitle2 = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h3",
   {
     ref,
@@ -7988,7 +8557,7 @@ var CardTitle2 = React62__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 CardTitle2.displayName = "CardTitle";
-var CardDescription2 = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardDescription2 = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "p",
   {
     ref,
@@ -7997,9 +8566,9 @@ var CardDescription2 = React62__namespace.forwardRef(({ className, ...props }, r
   }
 ));
 CardDescription2.displayName = "CardDescription";
-var CardContent2 = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent2 = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent2.displayName = "CardContent";
-var CardFooter2 = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardFooter2 = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -8008,7 +8577,7 @@ var CardFooter2 = React62__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 CardFooter2.displayName = "CardFooter";
-var HighlightCard = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var HighlightCard = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -8092,7 +8661,7 @@ var ContextMenuGroup = reactContextMenu.Group;
 var ContextMenuPortal = reactContextMenu.Portal;
 var ContextMenuSub = reactContextMenu.Sub;
 var ContextMenuRadioGroup = reactContextMenu.RadioGroup;
-var ContextMenuSubTrigger = React62__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ContextMenuSubTrigger = React65__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactContextMenu.SubTrigger,
   {
     ref,
@@ -8111,7 +8680,7 @@ var ContextMenuSubTrigger = React62__namespace.forwardRef(({ className, inset, c
   }
 ));
 ContextMenuSubTrigger.displayName = reactContextMenu.SubTrigger.displayName;
-var ContextMenuSubContent = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuSubContent = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.SubContent,
   {
     ref,
@@ -8124,7 +8693,7 @@ var ContextMenuSubContent = React62__namespace.forwardRef(({ className, ...props
   }
 ));
 ContextMenuSubContent.displayName = reactContextMenu.SubContent.displayName;
-var ContextMenuContent = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactContextMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuContent = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactContextMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Content,
   {
     ref,
@@ -8140,7 +8709,7 @@ var ContextMenuContent = React62__namespace.forwardRef(({ className, ...props },
   }
 ) }));
 ContextMenuContent.displayName = reactContextMenu.Content.displayName;
-var ContextMenuItem = React62__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuItem = React65__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Item,
   {
     ref,
@@ -8158,7 +8727,7 @@ var ContextMenuItem = React62__namespace.forwardRef(({ className, inset, ...prop
   }
 ));
 ContextMenuItem.displayName = reactContextMenu.Item.displayName;
-var ContextMenuCheckboxItem = React62__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ContextMenuCheckboxItem = React65__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactContextMenu.CheckboxItem,
   {
     ref,
@@ -8175,7 +8744,7 @@ var ContextMenuCheckboxItem = React62__namespace.forwardRef(({ className, childr
   }
 ));
 ContextMenuCheckboxItem.displayName = reactContextMenu.CheckboxItem.displayName;
-var ContextMenuRadioItem = React62__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ContextMenuRadioItem = React65__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactContextMenu.RadioItem,
   {
     ref,
@@ -8191,7 +8760,7 @@ var ContextMenuRadioItem = React62__namespace.forwardRef(({ className, children,
   }
 ));
 ContextMenuRadioItem.displayName = reactContextMenu.RadioItem.displayName;
-var ContextMenuLabel = React62__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuLabel = React65__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Label,
   {
     ref,
@@ -8204,7 +8773,7 @@ var ContextMenuLabel = React62__namespace.forwardRef(({ className, inset, ...pro
   }
 ));
 ContextMenuLabel.displayName = reactContextMenu.Label.displayName;
-var ContextMenuSeparator = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuSeparator = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Separator,
   {
     ref,
@@ -8235,7 +8804,7 @@ var DropdownMenuGroup = reactDropdownMenu.Group;
 var DropdownMenuPortal = reactDropdownMenu.Portal;
 var DropdownMenuSub = reactDropdownMenu.Sub;
 var DropdownMenuRadioGroup = reactDropdownMenu.RadioGroup;
-var DropdownMenuSubTrigger = React62__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuSubTrigger = React65__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.SubTrigger,
   {
     ref,
@@ -8253,7 +8822,7 @@ var DropdownMenuSubTrigger = React62__namespace.forwardRef(({ className, inset, 
   }
 ));
 DropdownMenuSubTrigger.displayName = reactDropdownMenu.SubTrigger.displayName;
-var DropdownMenuSubContent = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuSubContent = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.SubContent,
   {
     ref,
@@ -8270,7 +8839,7 @@ var DropdownMenuSubContent = React62__namespace.forwardRef(({ className, ...prop
   }
 ));
 DropdownMenuSubContent.displayName = reactDropdownMenu.SubContent.displayName;
-var DropdownMenuContent = React62__namespace.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactDropdownMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuContent = React65__namespace.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactDropdownMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Content,
   {
     ref,
@@ -8288,7 +8857,7 @@ var DropdownMenuContent = React62__namespace.forwardRef(({ className, sideOffset
   }
 ) }));
 DropdownMenuContent.displayName = reactDropdownMenu.Content.displayName;
-var DropdownMenuItem = React62__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuItem = React65__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Item,
   {
     ref,
@@ -8303,7 +8872,7 @@ var DropdownMenuItem = React62__namespace.forwardRef(({ className, inset, ...pro
   }
 ));
 DropdownMenuItem.displayName = reactDropdownMenu.Item.displayName;
-var DropdownMenuCheckboxItem = React62__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuCheckboxItem = React65__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.CheckboxItem,
   {
     ref,
@@ -8322,7 +8891,7 @@ var DropdownMenuCheckboxItem = React62__namespace.forwardRef(({ className, child
   }
 ));
 DropdownMenuCheckboxItem.displayName = reactDropdownMenu.CheckboxItem.displayName;
-var DropdownMenuRadioItem = React62__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuRadioItem = React65__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.RadioItem,
   {
     ref,
@@ -8340,7 +8909,7 @@ var DropdownMenuRadioItem = React62__namespace.forwardRef(({ className, children
   }
 ));
 DropdownMenuRadioItem.displayName = reactDropdownMenu.RadioItem.displayName;
-var DropdownMenuLabel = React62__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuLabel = React65__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Label,
   {
     ref,
@@ -8353,7 +8922,7 @@ var DropdownMenuLabel = React62__namespace.forwardRef(({ className, inset, ...pr
   }
 ));
 DropdownMenuLabel.displayName = reactDropdownMenu.Label.displayName;
-var DropdownMenuSeparator = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuSeparator = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Separator,
   {
     ref,
@@ -8377,7 +8946,7 @@ var DropdownMenuShortcut = ({
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
 var HoverCard = reactHoverCard.Root;
 var HoverCardTrigger = reactHoverCard.Trigger;
-var HoverCardContent = React62__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var HoverCardContent = React65__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactHoverCard.Content,
   {
     ref,
@@ -8393,7 +8962,7 @@ var HoverCardContent = React62__namespace.forwardRef(({ className, align = "cent
 HoverCardContent.displayName = reactHoverCard.Content.displayName;
 var Popover = reactPopover.Root;
 var PopoverTrigger = reactPopover.Trigger;
-var PopoverContent = React62__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactPopover.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
+var PopoverContent = React65__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactPopover.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
   reactPopover.Content,
   {
     ref,
@@ -8490,7 +9059,7 @@ var modalVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Modal = React62__namespace.forwardRef(
+var Modal = React65__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -8507,9 +9076,17 @@ var Modal = React62__namespace.forwardRef(
     loading = false,
     children,
     ...props
-  }) => {
-    const modalRef = React62__namespace.useRef(null);
-    React62__namespace.useEffect(() => {
+  }, ref) => {
+    const modalRef = React65__namespace.useRef(null);
+    const setModalRef = React65__namespace.useCallback((node) => {
+      modalRef.current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    }, [ref]);
+    React65__namespace.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -8517,7 +9094,7 @@ var Modal = React62__namespace.forwardRef(
         };
       }
     }, [open, preventBodyScroll]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -8527,12 +9104,12 @@ var Modal = React62__namespace.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       if (open && modalRef.current) {
         modalRef.current.focus();
       }
     }, [open]);
-    const handleBackdropClick = React62__namespace.useCallback((event) => {
+    const handleBackdropClick = React65__namespace.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop) {
         onOpenChange(false);
       }
@@ -8549,7 +9126,7 @@ var Modal = React62__namespace.forwardRef(
       /* @__PURE__ */ jsxRuntime.jsxs(
         "div",
         {
-          ref: modalRef,
+          ref: setModalRef,
           className: cn(
             modalVariants({ size, variant }),
             "relative z-10 max-h-[90vh] overflow-hidden",
@@ -8589,7 +9166,7 @@ var Modal = React62__namespace.forwardRef(
   }
 );
 Modal.displayName = "Modal";
-var ModalHeader = React62__namespace.forwardRef(
+var ModalHeader = React65__namespace.forwardRef(
   ({
     className,
     title,
@@ -8615,7 +9192,7 @@ var ModalHeader = React62__namespace.forwardRef(
   }
 );
 ModalHeader.displayName = "ModalHeader";
-var ModalContent = React62__namespace.forwardRef(
+var ModalContent = React65__namespace.forwardRef(
   ({
     className,
     children,
@@ -8633,7 +9210,7 @@ var ModalContent = React62__namespace.forwardRef(
   }
 );
 ModalContent.displayName = "ModalContent";
-var ModalFooter = React62__namespace.forwardRef(
+var ModalFooter = React65__namespace.forwardRef(
   ({
     className,
     children,
@@ -8654,7 +9231,7 @@ var ModalFooter = React62__namespace.forwardRef(
   }
 );
 ModalFooter.displayName = "ModalFooter";
-var ModalTrigger = React62__namespace.forwardRef(
+var ModalTrigger = React65__namespace.forwardRef(
   ({
     className,
     children,
@@ -8662,7 +9239,7 @@ var ModalTrigger = React62__namespace.forwardRef(
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React62__namespace.useCallback((event) => {
+    const handleClick = React65__namespace.useCallback((event) => {
       onClick?.(event);
       onOpen?.();
     }, [onClick, onOpen]);
@@ -8709,7 +9286,7 @@ var drawerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Drawer = React62__namespace.forwardRef(
+var Drawer = React65__namespace.forwardRef(
   ({
     className,
     position = "right",
@@ -8727,9 +9304,17 @@ var Drawer = React62__namespace.forwardRef(
     loading = false,
     children,
     ...props
-  }) => {
-    const drawerRef = React62__namespace.useRef(null);
-    React62__namespace.useEffect(() => {
+  }, ref) => {
+    const drawerRef = React65__namespace.useRef(null);
+    const setDrawerRef = React65__namespace.useCallback((node) => {
+      drawerRef.current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    }, [ref]);
+    React65__namespace.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -8737,7 +9322,7 @@ var Drawer = React62__namespace.forwardRef(
         };
       }
     }, [open, preventBodyScroll]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -8747,12 +9332,12 @@ var Drawer = React62__namespace.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       if (open && drawerRef.current) {
         drawerRef.current.focus();
       }
     }, [open]);
-    const handleBackdropClick = React62__namespace.useCallback((event) => {
+    const handleBackdropClick = React65__namespace.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop) {
         onOpenChange(false);
       }
@@ -8779,15 +9364,14 @@ var Drawer = React62__namespace.forwardRef(
       /* @__PURE__ */ jsxRuntime.jsxs(
         "div",
         {
-          ref: drawerRef,
+          ref: setDrawerRef,
           className: cn(
-            drawerVariants({ position, variant }),
+            drawerVariants({ position, size, variant, className }),
             position === "left" && size && sizeClasses2[size],
             position === "right" && size && sizeClasses2[size],
             animationClasses[position],
             loading && "opacity-70",
-            !open && "pointer-events-none",
-            className
+            !open && "pointer-events-none"
           ),
           role: "dialog",
           "aria-modal": "true",
@@ -8824,7 +9408,7 @@ var Drawer = React62__namespace.forwardRef(
   }
 );
 Drawer.displayName = "Drawer";
-var DrawerHeader = React62__namespace.forwardRef(
+var DrawerHeader = React65__namespace.forwardRef(
   ({
     className,
     title,
@@ -8850,7 +9434,7 @@ var DrawerHeader = React62__namespace.forwardRef(
   }
 );
 DrawerHeader.displayName = "DrawerHeader";
-var DrawerContent = React62__namespace.forwardRef(
+var DrawerContent = React65__namespace.forwardRef(
   ({
     className,
     children,
@@ -8868,7 +9452,7 @@ var DrawerContent = React62__namespace.forwardRef(
   }
 );
 DrawerContent.displayName = "DrawerContent";
-var DrawerFooter = React62__namespace.forwardRef(
+var DrawerFooter = React65__namespace.forwardRef(
   ({
     className,
     children,
@@ -8889,7 +9473,7 @@ var DrawerFooter = React62__namespace.forwardRef(
   }
 );
 DrawerFooter.displayName = "DrawerFooter";
-var DrawerTrigger = React62__namespace.forwardRef(
+var DrawerTrigger = React65__namespace.forwardRef(
   ({
     className,
     children,
@@ -8897,7 +9481,7 @@ var DrawerTrigger = React62__namespace.forwardRef(
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React62__namespace.useCallback((event) => {
+    const handleClick = React65__namespace.useCallback((event) => {
       onClick?.(event);
       onOpen?.();
     }, [onClick, onOpen]);
@@ -8942,7 +9526,7 @@ var lightboxVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Lightbox = React62__namespace.forwardRef(
+var Lightbox = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -8968,21 +9552,21 @@ var Lightbox = React62__namespace.forwardRef(
     mediaContainerClassName,
     ...props
   }, ref) => {
-    const [zoom, setZoom] = React62__namespace.useState(ZOOM_CONFIG.DEFAULT);
-    const [rotation, setRotation] = React62__namespace.useState(0);
-    const [isPlaying, setIsPlaying] = React62__namespace.useState(autoPlayVideos);
-    const [isFullscreen, setIsFullscreen] = React62__namespace.useState(false);
-    const [touchStart, setTouchStart] = React62__namespace.useState(null);
-    const [isDragging, setIsDragging] = React62__namespace.useState(false);
-    const [dragOffset, setDragOffset] = React62__namespace.useState({ x: 0, y: 0 });
-    const videoRef = React62__namespace.useRef(null);
-    const containerRef = React62__namespace.useRef(null);
-    const mediaRef = React62__namespace.useRef(null);
+    const [zoom, setZoom] = React65__namespace.useState(ZOOM_CONFIG.DEFAULT);
+    const [rotation, setRotation] = React65__namespace.useState(0);
+    const [isPlaying, setIsPlaying] = React65__namespace.useState(autoPlayVideos);
+    const [isFullscreen, setIsFullscreen] = React65__namespace.useState(false);
+    const [touchStart, setTouchStart] = React65__namespace.useState(null);
+    const [isDragging, setIsDragging] = React65__namespace.useState(false);
+    const [dragOffset, setDragOffset] = React65__namespace.useState({ x: 0, y: 0 });
+    const videoRef = React65__namespace.useRef(null);
+    const containerRef = React65__namespace.useRef(null);
+    const mediaRef = React65__namespace.useRef(null);
     const currentItem = items[index];
     const hasMultipleItems = items.length > 1;
     const isImage = currentItem?.type === "image";
     const isVideo = currentItem?.type === "video";
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       if (open) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -8990,7 +9574,7 @@ var Lightbox = React62__namespace.forwardRef(
         };
       }
     }, [open]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       if (!open) return;
       const handleKeyDown = (event) => {
         switch (event.key) {
@@ -9046,20 +9630,20 @@ var Lightbox = React62__namespace.forwardRef(
       document.addEventListener("keydown", handleKeyDown);
       return () => document.removeEventListener("keydown", handleKeyDown);
     }, [open, index, zoom, isVideo, allowZoom, allowRotation]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       if (isVideo && autoPlayVideos && videoRef.current && open) {
         videoRef.current.play().catch(console.error);
         setIsPlaying(true);
       }
     }, [index, isVideo, autoPlayVideos, open]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       if (!autoPlayInterval || !hasMultipleItems || !open) return;
       const interval = setInterval(() => {
         handleNext();
       }, autoPlayInterval);
       return () => clearInterval(interval);
     }, [autoPlayInterval, hasMultipleItems, open, index]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       setZoom(ZOOM_CONFIG.DEFAULT);
       setRotation(0);
       setDragOffset({ x: 0, y: 0 });
@@ -9068,35 +9652,35 @@ var Lightbox = React62__namespace.forwardRef(
         setIsPlaying(autoPlayVideos);
       }
     }, [index, isVideo, autoPlayVideos]);
-    const handlePrevious = React62__namespace.useCallback(() => {
+    const handlePrevious = React65__namespace.useCallback(() => {
       if (index > 0) {
         onIndexChange(index - 1);
       } else if (hasMultipleItems) {
         onIndexChange(items.length - 1);
       }
     }, [index, items.length, onIndexChange, hasMultipleItems]);
-    const handleNext = React62__namespace.useCallback(() => {
+    const handleNext = React65__namespace.useCallback(() => {
       if (index < items.length - 1) {
         onIndexChange(index + 1);
       } else if (hasMultipleItems) {
         onIndexChange(0);
       }
     }, [index, items.length, onIndexChange, hasMultipleItems]);
-    const handleZoomIn = React62__namespace.useCallback(() => {
+    const handleZoomIn = React65__namespace.useCallback(() => {
       setZoom((prev) => Math.min(prev + ZOOM_CONFIG.STEP, ZOOM_CONFIG.MAX));
     }, []);
-    const handleZoomOut = React62__namespace.useCallback(() => {
+    const handleZoomOut = React65__namespace.useCallback(() => {
       setZoom((prev) => Math.max(prev - ZOOM_CONFIG.STEP, ZOOM_CONFIG.MIN));
     }, []);
-    const handleResetZoom = React62__namespace.useCallback(() => {
+    const handleResetZoom = React65__namespace.useCallback(() => {
       setZoom(ZOOM_CONFIG.DEFAULT);
       setRotation(0);
       setDragOffset({ x: 0, y: 0 });
     }, []);
-    const handleRotate = React62__namespace.useCallback(() => {
+    const handleRotate = React65__namespace.useCallback(() => {
       setRotation((prev) => (prev + 90) % 360);
     }, []);
-    const handlePlayPause = React62__namespace.useCallback(() => {
+    const handlePlayPause = React65__namespace.useCallback(() => {
       if (videoRef.current) {
         if (isPlaying) {
           videoRef.current.pause();
@@ -9106,7 +9690,7 @@ var Lightbox = React62__namespace.forwardRef(
         setIsPlaying(!isPlaying);
       }
     }, [isPlaying]);
-    const handleToggleFullscreen = React62__namespace.useCallback(() => {
+    const handleToggleFullscreen = React65__namespace.useCallback(() => {
       if (!containerRef.current) return;
       if (!document.fullscreenElement) {
         containerRef.current.requestFullscreen().then(() => {
@@ -9118,14 +9702,14 @@ var Lightbox = React62__namespace.forwardRef(
         });
       }
     }, []);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       const handleFullscreenChange = () => {
         setIsFullscreen(!!document.fullscreenElement);
       };
       document.addEventListener("fullscreenchange", handleFullscreenChange);
       return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
     }, []);
-    const handleDownload = React62__namespace.useCallback(() => {
+    const handleDownload = React65__namespace.useCallback(() => {
       if (currentItem?.downloadUrl || currentItem?.url) {
         const link = document.createElement("a");
         link.href = currentItem.downloadUrl || currentItem.url;
@@ -9136,7 +9720,7 @@ var Lightbox = React62__namespace.forwardRef(
         document.body.removeChild(link);
       }
     }, [currentItem]);
-    const handleTouchStart = React62__namespace.useCallback((e) => {
+    const handleTouchStart = React65__namespace.useCallback((e) => {
       if (!enableGestures || !isImage || zoom <= ZOOM_CONFIG.DEFAULT) return;
       setTouchStart({
         x: e.touches[0].clientX,
@@ -9144,7 +9728,7 @@ var Lightbox = React62__namespace.forwardRef(
       });
       setIsDragging(true);
     }, [enableGestures, isImage, zoom]);
-    const handleTouchMove = React62__namespace.useCallback((e) => {
+    const handleTouchMove = React65__namespace.useCallback((e) => {
       if (!touchStart || !isDragging || !isImage || zoom <= ZOOM_CONFIG.DEFAULT) return;
       const deltaX = e.touches[0].clientX - touchStart.x;
       const deltaY = e.touches[0].clientY - touchStart.y;
@@ -9153,7 +9737,7 @@ var Lightbox = React62__namespace.forwardRef(
         y: deltaY
       });
     }, [touchStart, isDragging, isImage, zoom]);
-    const handleTouchEnd = React62__namespace.useCallback(() => {
+    const handleTouchEnd = React65__namespace.useCallback(() => {
       if (!enableGestures || !isImage) return;
       if (!isDragging && touchStart && zoom <= ZOOM_CONFIG.DEFAULT) {
         const swipeThreshold = 50;
@@ -9169,7 +9753,7 @@ var Lightbox = React62__namespace.forwardRef(
       setTouchStart(null);
       setIsDragging(false);
     }, [enableGestures, isImage, zoom, dragOffset, handlePrevious, handleNext, isDragging, touchStart]);
-    const handleDoubleClick = React62__namespace.useCallback(() => {
+    const handleDoubleClick = React65__namespace.useCallback(() => {
       if (allowZoom && isImage) {
         if (zoom > ZOOM_CONFIG.DEFAULT) {
           handleResetZoom();
@@ -9276,7 +9860,7 @@ var Lightbox = React62__namespace.forwardRef(
                     className: "absolute right-4 top-1/2 -translate-y-1/2 z-10 h-12 w-12 text-white hover:bg-white/20 rounded-full backdrop-blur-sm",
                     onClick: handleNext,
                     "aria-label": "Pr\xF3ximo item",
-                    children: /* @__PURE__ */ jsxRuntime.jsx(ChevronRight2__default.default, { className: "h-6 w-6" })
+                    children: /* @__PURE__ */ jsxRuntime.jsx(ChevronRight3__default.default, { className: "h-6 w-6" })
                   }
                 )
               ] }),
@@ -9466,7 +10050,7 @@ var confirmDialogVariants = classVarianceAuthority.cva(
     }
   }
 );
-var ConfirmDialog = React62__namespace.forwardRef(
+var ConfirmDialog = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -9487,9 +10071,9 @@ var ConfirmDialog = React62__namespace.forwardRef(
     confirmVariant = "default"
     // props, // Props adicionais não utilizados
   }, ref) => {
-    const [internalLoading, setInternalLoading] = React62__namespace.useState(false);
+    const [internalLoading, setInternalLoading] = React65__namespace.useState(false);
     const isLoading = loading || internalLoading;
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -9499,7 +10083,7 @@ var ConfirmDialog = React62__namespace.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    const handleConfirm = React62__namespace.useCallback(async () => {
+    const handleConfirm = React65__namespace.useCallback(async () => {
       if (isLoading) return;
       try {
         if (onConfirm) {
@@ -9513,14 +10097,14 @@ var ConfirmDialog = React62__namespace.forwardRef(
         setInternalLoading(false);
       }
     }, [isLoading, onConfirm, closeOnConfirm, onOpenChange]);
-    const handleCancel = React62__namespace.useCallback(() => {
+    const handleCancel = React65__namespace.useCallback(() => {
       if (isLoading) return;
       onCancel?.();
       if (closeOnCancel) {
         onOpenChange(false);
       }
     }, [isLoading, onCancel, closeOnCancel, onOpenChange]);
-    const handleBackdropClick = React62__namespace.useCallback((event) => {
+    const handleBackdropClick = React65__namespace.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop && !isLoading) {
         onOpenChange(false);
       }
@@ -9623,22 +10207,22 @@ var ConfirmDialog = React62__namespace.forwardRef(
 );
 ConfirmDialog.displayName = "ConfirmDialog";
 function useConfirm() {
-  const [isOpen, setIsOpen] = React62__namespace.useState(false);
-  const [options, setOptions] = React62__namespace.useState(null);
-  const confirm = React62__namespace.useCallback((options2) => {
+  const [isOpen, setIsOpen] = React65__namespace.useState(false);
+  const [options, setOptions] = React65__namespace.useState(null);
+  const confirm = React65__namespace.useCallback((options2) => {
     setOptions(options2);
     setIsOpen(true);
   }, []);
-  const handleConfirm = React62__namespace.useCallback(async () => {
+  const handleConfirm = React65__namespace.useCallback(async () => {
     if (options.onConfirm) {
       await options.onConfirm();
     }
     setIsOpen(false);
   }, [options]);
-  const handleCancel = React62__namespace.useCallback(() => {
+  const handleCancel = React65__namespace.useCallback(() => {
     setIsOpen(false);
   }, []);
-  const ConfirmDialogComponent = React62__namespace.useCallback(() => /* @__PURE__ */ jsxRuntime.jsx(
+  const ConfirmDialogComponent = React65__namespace.useCallback(() => /* @__PURE__ */ jsxRuntime.jsx(
     ConfirmDialog,
     {
       open: isOpen,
@@ -9695,22 +10279,22 @@ function getWeekdayLabels(locale) {
 }
 function Calendar3({ className, selected, onSelect, disabled }) {
   const initialMonth = selected ?? /* @__PURE__ */ new Date();
-  const [currentMonth, setCurrentMonth] = React62__namespace.useState(
+  const [currentMonth, setCurrentMonth] = React65__namespace.useState(
     startOfDay(initialMonth)
   );
-  const today = React62__namespace.useMemo(() => startOfDay(/* @__PURE__ */ new Date()), []);
-  const days = React62__namespace.useMemo(() => getMonthGrid(currentMonth), [currentMonth]);
-  const weekdayLabels = React62__namespace.useMemo(
+  const today = React65__namespace.useMemo(() => startOfDay(/* @__PURE__ */ new Date()), []);
+  const days = React65__namespace.useMemo(() => getMonthGrid(currentMonth), [currentMonth]);
+  const weekdayLabels = React65__namespace.useMemo(
     () => getWeekdayLabels("pt-BR"),
     []
   );
-  const handlePrevMonth = React62__namespace.useCallback(() => {
+  const handlePrevMonth = React65__namespace.useCallback(() => {
     setCurrentMonth((prev) => addMonths(prev, -1));
   }, []);
-  const handleNextMonth = React62__namespace.useCallback(() => {
+  const handleNextMonth = React65__namespace.useCallback(() => {
     setCurrentMonth((prev) => addMonths(prev, 1));
   }, []);
-  const handleSelect = React62__namespace.useCallback(
+  const handleSelect = React65__namespace.useCallback(
     (date) => {
       if (disabled?.(date)) return;
       if (onSelect) {
@@ -9723,7 +10307,7 @@ function Calendar3({ className, selected, onSelect, disabled }) {
     },
     [disabled, onSelect, selected]
   );
-  const monthLabel = React62__namespace.useMemo(
+  const monthLabel = React65__namespace.useMemo(
     () => currentMonth.toLocaleDateString("pt-BR", {
       month: "long",
       year: "numeric"
@@ -9807,7 +10391,7 @@ function CalendarDayButton({
   onSelect,
   className
 }) {
-  const handleClick = React62__namespace.useCallback(() => {
+  const handleClick = React65__namespace.useCallback(() => {
     if (disabled) return;
     onSelect?.(date);
   }, [date, disabled, onSelect]);
@@ -9834,15 +10418,15 @@ function CalendarDayButton({
     }
   );
 }
-var CarouselContext = React62__namespace.createContext(null);
+var CarouselContext = React65__namespace.createContext(null);
 function useCarousel() {
-  const context = React62__namespace.useContext(CarouselContext);
+  const context = React65__namespace.useContext(CarouselContext);
   if (!context) {
     throw new Error("useCarousel must be used within a <Carousel />");
   }
   return context;
 }
-var Carousel = React62__namespace.forwardRef(
+var Carousel = React65__namespace.forwardRef(
   ({
     orientation = "horizontal",
     opts,
@@ -9859,22 +10443,22 @@ var Carousel = React62__namespace.forwardRef(
       },
       plugins
     );
-    const [canScrollPrev, setCanScrollPrev] = React62__namespace.useState(false);
-    const [canScrollNext, setCanScrollNext] = React62__namespace.useState(false);
-    const onSelect = React62__namespace.useCallback((api2) => {
+    const [canScrollPrev, setCanScrollPrev] = React65__namespace.useState(false);
+    const [canScrollNext, setCanScrollNext] = React65__namespace.useState(false);
+    const onSelect = React65__namespace.useCallback((api2) => {
       if (!api2) {
         return;
       }
       setCanScrollPrev(api2.canScrollPrev());
       setCanScrollNext(api2.canScrollNext());
     }, []);
-    const scrollPrev = React62__namespace.useCallback(() => {
+    const scrollPrev = React65__namespace.useCallback(() => {
       api?.scrollPrev();
     }, [api]);
-    const scrollNext = React62__namespace.useCallback(() => {
+    const scrollNext = React65__namespace.useCallback(() => {
       api?.scrollNext();
     }, [api]);
-    const handleKeyDown = React62__namespace.useCallback(
+    const handleKeyDown = React65__namespace.useCallback(
       (event) => {
         if (event.key === "ArrowLeft") {
           event.preventDefault();
@@ -9886,13 +10470,13 @@ var Carousel = React62__namespace.forwardRef(
       },
       [scrollPrev, scrollNext]
     );
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       if (!api || !setApi) {
         return;
       }
       setApi(api);
     }, [api, setApi]);
-    React62__namespace.useEffect(() => {
+    React65__namespace.useEffect(() => {
       if (!api) {
         return;
       }
@@ -9903,7 +10487,7 @@ var Carousel = React62__namespace.forwardRef(
         api?.off("select", onSelect);
       };
     }, [api, onSelect]);
-    const contextValue = React62__namespace.useMemo(() => ({
+    const contextValue = React65__namespace.useMemo(() => ({
       carouselRef,
       api,
       opts,
@@ -9928,7 +10512,7 @@ var Carousel = React62__namespace.forwardRef(
   }
 );
 Carousel.displayName = "Carousel";
-var CarouselContent = React62__namespace.forwardRef(({ className, ...props }, ref) => {
+var CarouselContent = React65__namespace.forwardRef(({ className, ...props }, ref) => {
   const { carouselRef, orientation } = useCarousel();
   return /* @__PURE__ */ jsxRuntime.jsx("div", { ref: carouselRef, className: "overflow-hidden", children: /* @__PURE__ */ jsxRuntime.jsx(
     "div",
@@ -9944,7 +10528,7 @@ var CarouselContent = React62__namespace.forwardRef(({ className, ...props }, re
   ) });
 });
 CarouselContent.displayName = "CarouselContent";
-var CarouselItem = React62__namespace.forwardRef(({ className, ...props }, ref) => {
+var CarouselItem = React65__namespace.forwardRef(({ className, ...props }, ref) => {
   const { orientation } = useCarousel();
   return /* @__PURE__ */ jsxRuntime.jsx(
     "fieldset",
@@ -9961,7 +10545,7 @@ var CarouselItem = React62__namespace.forwardRef(({ className, ...props }, ref) 
   );
 });
 CarouselItem.displayName = "CarouselItem";
-var CarouselPrevious = React62__namespace.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+var CarouselPrevious = React65__namespace.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
   return /* @__PURE__ */ jsxRuntime.jsxs(
     Button,
@@ -9985,7 +10569,7 @@ var CarouselPrevious = React62__namespace.forwardRef(({ className, variant = "ou
   );
 });
 CarouselPrevious.displayName = "CarouselPrevious";
-var CarouselNext = React62__namespace.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+var CarouselNext = React65__namespace.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
   return /* @__PURE__ */ jsxRuntime.jsxs(
     Button,
@@ -10036,7 +10620,7 @@ var chipVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Chip = React62__namespace.forwardRef(
+var Chip = React65__namespace.forwardRef(
   ({
     className,
     variant,
@@ -10099,7 +10683,7 @@ var spacingClasses5 = {
   md: "gap-2",
   lg: "gap-3"
 };
-var ChipGroup = React62__namespace.forwardRef(
+var ChipGroup = React65__namespace.forwardRef(
   ({
     className,
     spacing = "md",
@@ -10125,8 +10709,8 @@ var ChipGroup = React62__namespace.forwardRef(
 );
 ChipGroup.displayName = "ChipGroup";
 function useMasonryLayout(containerRef, columns, gap) {
-  const [positions, setPositions] = React62__namespace.useState([]);
-  React62__namespace.useEffect(() => {
+  const [positions, setPositions] = React65__namespace.useState([]);
+  React65__namespace.useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;
     const containerWidth = container.offsetWidth;
@@ -10147,7 +10731,7 @@ function useMasonryLayout(containerRef, columns, gap) {
   }, [columns, gap]);
   return positions;
 }
-var Masonry = React62__namespace.forwardRef(
+var Masonry = React65__namespace.forwardRef(
   ({
     className,
     columns = { sm: 1, md: 2, lg: 3, xl: 4 },
@@ -10155,9 +10739,9 @@ var Masonry = React62__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const innerRef = React62__namespace.useRef(null);
-    const [resolvedColumns, setResolvedColumns] = React62__namespace.useState(4);
-    React62__namespace.useEffect(() => {
+    const innerRef = React65__namespace.useRef(null);
+    const [resolvedColumns, setResolvedColumns] = React65__namespace.useState(4);
+    React65__namespace.useEffect(() => {
       const handleResize = () => {
         if (typeof columns === "number") {
           setResolvedColumns(columns);
@@ -10176,13 +10760,13 @@ var Masonry = React62__namespace.forwardRef(
     }, [columns]);
     const gapValue = typeof gap === "number" ? gap : parseInt(gap) || 16;
     const positions = useMasonryLayout(innerRef, resolvedColumns, gapValue);
-    const childrenWithPositions = React62__namespace.Children.toArray(children).map((child, index) => {
-      if (!React62__namespace.isValidElement(child)) return child;
+    const childrenWithPositions = React65__namespace.Children.toArray(children).map((child, index) => {
+      if (!React65__namespace.isValidElement(child)) return child;
       const position = positions[index];
       if (!position) return child;
       const containerWidth = innerRef.current?.offsetWidth || 0;
       const columnWidth = (containerWidth - gapValue * (resolvedColumns - 1)) / resolvedColumns;
-      return React62__namespace.cloneElement(child, {
+      return React65__namespace.cloneElement(child, {
         style: {
           ...child.props.style,
           position: "absolute",
@@ -10218,7 +10802,7 @@ var Masonry = React62__namespace.forwardRef(
   }
 );
 Masonry.displayName = "Masonry";
-var MasonryItem = React62__namespace.forwardRef(
+var MasonryItem = React65__namespace.forwardRef(
   ({ className, children, ...props }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       "div",
@@ -10263,7 +10847,7 @@ var timelineDotVariants = classVarianceAuthority.cva(
     }
   }
 );
-var TimelineItem = React62__namespace.forwardRef(
+var TimelineItem = React65__namespace.forwardRef(
   ({
     className,
     status = "default",
@@ -10278,7 +10862,7 @@ var TimelineItem = React62__namespace.forwardRef(
   }, ref) => {
     let IconComponent = icon;
     if (!IconComponent && iconType) {
-      IconComponent = React62__namespace.createElement(defaultIcons2[iconType], {
+      IconComponent = React65__namespace.createElement(defaultIcons2[iconType], {
         className: "h-2.5 w-2.5 text-primary-foreground"
       });
     }
@@ -10311,7 +10895,7 @@ var TimelineItem = React62__namespace.forwardRef(
   }
 );
 TimelineItem.displayName = "TimelineItem";
-var Timeline = React62__namespace.forwardRef(
+var Timeline = React65__namespace.forwardRef(
   ({
     className,
     children,
@@ -10323,9 +10907,9 @@ var Timeline = React62__namespace.forwardRef(
         ref,
         className: cn("space-y-0", className),
         ...props,
-        children: React62__namespace.Children.map(children, (child) => {
-          if (!React62__namespace.isValidElement(child)) return child;
-          return React62__namespace.cloneElement(child, {
+        children: React65__namespace.Children.map(children, (child) => {
+          if (!React65__namespace.isValidElement(child)) return child;
+          return React65__namespace.cloneElement(child, {
             ...child.props,
             className: cn(child.props.className)
           });
@@ -10335,7 +10919,7 @@ var Timeline = React62__namespace.forwardRef(
   }
 );
 Timeline.displayName = "Timeline";
-var TimelineSeparator = React62__namespace.forwardRef(
+var TimelineSeparator = React65__namespace.forwardRef(
   ({ className, children, ...props }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       "div",
@@ -10382,7 +10966,7 @@ var starSizeClasses = {
   md: "h-5 w-5",
   lg: "h-6 w-6"
 };
-var Rating = React62__namespace.forwardRef(
+var Rating = React65__namespace.forwardRef(
   ({
     className,
     value = 0,
@@ -10400,8 +10984,8 @@ var Rating = React62__namespace.forwardRef(
     color,
     ...props
   }, ref) => {
-    const [hoverValue, setHoverValue] = React62__namespace.useState(0);
-    const [isHovering, setIsHovering] = React62__namespace.useState(false);
+    const [hoverValue, setHoverValue] = React65__namespace.useState(0);
+    const [isHovering, setIsHovering] = React65__namespace.useState(false);
     const displayValue = isHovering ? hoverValue : value;
     const formattedValue = allowHalf ? displayValue.toFixed(1) : Math.round(displayValue).toString();
     const handleStarClick = (starValue) => {
@@ -10491,7 +11075,7 @@ var progressHeightClasses = {
   md: "h-2",
   lg: "h-3"
 };
-var RatingProgress = React62__namespace.forwardRef(
+var RatingProgress = React65__namespace.forwardRef(
   ({
     className,
     value,
@@ -10533,7 +11117,7 @@ var RatingProgress = React62__namespace.forwardRef(
   }
 );
 RatingProgress.displayName = "RatingProgress";
-var RatingSummary = React62__namespace.forwardRef(
+var RatingSummary = React65__namespace.forwardRef(
   ({
     className,
     average,
@@ -10625,17 +11209,12 @@ function Star2({ star }) {
   );
 }
 function CelestialBackground({
-  variant = "default",
-  colors
-} = {}) {
+  variant = "default"
+}) {
   const config = STAR_CONFIGS[variant];
-  const [stars, setStars] = React62.useState([]);
-  const [isMounted, setIsMounted] = React62.useState(false);
-  const { getColor } = useTokens();
-  const cyan400 = colors?.cyan ?? getColor("primitives.colors.cyan.400", "#22d3ee");
-  const purple400 = colors?.purple ?? getColor("primitives.colors.purple.400", "#a855f7");
-  const pink500 = colors?.pink ?? getColor("primitives.colors.pink.500", "#ec4899");
-  React62.useEffect(() => {
+  const [stars, setStars] = React65.useState([]);
+  const [isMounted, setIsMounted] = React65.useState(false);
+  React65.useEffect(() => {
     setStars(generateStars(config.count, [...config.sizes], [...config.opacity]));
     setIsMounted(true);
   }, [config.count, config.sizes, config.opacity]);
@@ -10645,9 +11224,9 @@ function CelestialBackground({
       className: "fixed inset-0 pointer-events-none opacity-0 dark:opacity-100 transition-opacity duration-1000",
       style: {
         background: `
-          radial-gradient(ellipse at top, ${hexToRGBA(cyan400, 0.1)} 0%, transparent 50%),
-          radial-gradient(ellipse at bottom right, ${hexToRGBA(purple400, 0.1)} 0%, transparent 50%),
-          radial-gradient(ellipse at bottom left, ${hexToRGBA(pink500, 0.05)} 0%, transparent 50%)
+          radial-gradient(ellipse at top, var(--color-cyan-400) 0%, transparent 50%),
+          radial-gradient(ellipse at bottom right, var(--color-purple-500) 0%, transparent 50%),
+          radial-gradient(ellipse at bottom left, rgba(236, 72, 153, 0.05) 0%, transparent 50%)
         `
       },
       children: [
@@ -10658,7 +11237,7 @@ function CelestialBackground({
             {
               className: "absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20",
               style: {
-                background: `radial-gradient(circle, ${hexToRGBA(cyan400, 0.3)} 0%, transparent 70%)`
+                background: `radial-gradient(circle, var(--color-cyan-400) 0%, transparent 70%)`
               }
             }
           ),
@@ -10667,7 +11246,7 @@ function CelestialBackground({
             {
               className: "absolute bottom-0 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-20",
               style: {
-                background: `radial-gradient(circle, ${hexToRGBA(purple400, 0.3)} 0%, transparent 70%)`
+                background: `radial-gradient(circle, var(--color-purple-500) 0%, transparent 70%)`
               }
             }
           ),
@@ -10676,7 +11255,7 @@ function CelestialBackground({
             {
               className: "absolute bottom-0 left-1/4 w-72 h-72 rounded-full blur-3xl opacity-15",
               style: {
-                background: `radial-gradient(circle, ${hexToRGBA(pink500, 0.2)} 0%, transparent 70%)`
+                background: `radial-gradient(circle, rgba(236, 72, 153, 0.2) 0%, transparent 70%)`
               }
             }
           )
@@ -10690,14 +11269,13 @@ function FloatingGrid({
   variant = "default",
   intensity = 0.5
 } = {}) {
-  const canvasRef = React62.useRef(null);
+  const canvasRef = React65.useRef(null);
   const { theme } = nextThemes.useTheme();
-  const { getColor } = useTokens();
-  const [mounted, setMounted] = React62.useState(false);
-  React62.useEffect(() => {
+  const [mounted, setMounted] = React65.useState(false);
+  React65.useEffect(() => {
     setMounted(true);
   }, []);
-  React62.useEffect(() => {
+  React65.useEffect(() => {
     if (!mounted || theme !== "dark") return;
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -10721,9 +11299,8 @@ function FloatingGrid({
       time += 0.01;
       const pulseIntensity = intensity * (0.8 + Math.sin(time) * 0.2);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const cyan400 = getColor("primitives.colors.cyan.400", "#22d3ee");
-      const strokeColor = hexToRGBA(cyan400, pulseIntensity * 1.2);
-      const fillColor = hexToRGBA(cyan400, pulseIntensity * 0.6);
+      const strokeColor = `rgba(34, 211, 238, ${pulseIntensity * 1.2})`;
+      const fillColor = `rgba(34, 211, 238, ${pulseIntensity * 0.6})`;
       ctx.strokeStyle = strokeColor;
       ctx.lineWidth = config.lineWidth;
       for (let x = 0; x < canvas.width; x += config.spacing) {
@@ -10832,9 +11409,9 @@ function generateColumn(i, columnCount, isMobile, isTablet) {
   };
 }
 function MatrixBackgroundInner({ variant = "global" }) {
-  const [matrixColumns, setMatrixColumns] = React62.useState([]);
-  const [isInitialized, setIsInitialized] = React62.useState(false);
-  const initializeMatrix = React62.useCallback(() => {
+  const [matrixColumns, setMatrixColumns] = React65.useState([]);
+  const [isInitialized, setIsInitialized] = React65.useState(false);
+  const initializeMatrix = React65.useCallback(() => {
     if (isInitialized || typeof window === "undefined") return;
     const width = window.innerWidth;
     const isMobile = width < MOBILE_BREAKPOINT;
@@ -10846,7 +11423,7 @@ function MatrixBackgroundInner({ variant = "global" }) {
     setMatrixColumns(initialColumns);
     setIsInitialized(true);
   }, [isInitialized]);
-  React62.useEffect(() => {
+  React65.useEffect(() => {
     if (typeof window !== "undefined" && !isInitialized) {
       initializeMatrix();
     }
@@ -10943,15 +11520,15 @@ function MatrixBackgroundInner({ variant = "global" }) {
     )
   ] });
 }
-var MatrixBackground = React62.memo(MatrixBackgroundInner);
+var MatrixBackground = React65.memo(MatrixBackgroundInner);
 function StarsBackground() {
   const { resolvedTheme } = nextThemes.useTheme();
-  const [mounted, setMounted] = React62.useState(false);
-  const [stars, setStars] = React62.useState([]);
-  React62.useEffect(() => {
+  const [mounted, setMounted] = React65.useState(false);
+  const [stars, setStars] = React65.useState([]);
+  React65.useEffect(() => {
     setMounted(true);
   }, []);
-  React62.useEffect(() => {
+  React65.useEffect(() => {
     if (!mounted) return;
     const starsCount = 150;
     const newStars = Array.from({ length: starsCount }, (_, i) => {
@@ -11076,271 +11653,70 @@ function ParticlesEffect({
     }
   );
 }
-
-// src/lib/scroll-utils.ts
-function prefersReducedMotion() {
-  if (typeof window === "undefined") return false;
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-function smoothScrollTo(target, options) {
-  const element = typeof target === "string" ? document.querySelector(target) : target;
-  if (!element) {
-    console.warn(`Elemento n\xE3o encontrado: ${target}`);
-    return;
-  }
-  const shouldAnimate = !prefersReducedMotion();
-  element.scrollIntoView({
-    behavior: shouldAnimate ? "smooth" : "auto",
-    block: "start",
-    inline: "nearest",
-    ...options
-  });
-}
-function scrollToTop() {
-  const shouldAnimate = !prefersReducedMotion();
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: shouldAnimate ? "smooth" : "auto"
-  });
-}
-function scrollToPosition(x, y, smooth = true) {
-  const shouldAnimate = smooth && !prefersReducedMotion();
-  window.scrollTo({
-    top: y,
-    left: x,
-    behavior: shouldAnimate ? "smooth" : "auto"
-  });
-}
-function onReducedMotionChange(callback) {
-  if (typeof window === "undefined") {
-    return () => {
-    };
-  }
-  const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const handler = (event) => {
-    callback(event.matches);
-  };
-  handler(mediaQuery);
-  if (mediaQuery.addEventListener) {
-    mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
-  }
-  if (mediaQuery.addListener) {
-    mediaQuery.addListener(handler);
-    return () => mediaQuery.removeListener(handler);
-  }
-  return () => {
-  };
-}
-function useSmoothScroll() {
-  const [reducedMotion, setReducedMotion] = React62.useState(false);
-  React62.useEffect(() => {
-    setReducedMotion(prefersReducedMotion());
-    const cleanup = onReducedMotionChange((matches) => {
-      setReducedMotion(matches);
-    });
-    return cleanup;
-  }, []);
-  const scrollTo = React62.useCallback(
-    (target, options) => {
-      smoothScrollTo(target, options);
-    },
-    []
-  );
-  const toTop = React62.useCallback(() => {
-    scrollToTop();
-  }, []);
-  const toPosition = React62.useCallback((top, left = 0) => {
-    scrollToPosition(left, top);
-  }, []);
-  return {
-    scrollTo,
-    scrollToTop: toTop,
-    scrollToPosition: toPosition,
-    reducedMotion,
-    shouldAnimate: !reducedMotion
-  };
-}
-var SCROLL_THRESHOLD_PX = 300;
-function BackToTopButton() {
-  const [isButtonVisible, setIsButtonVisible] = React62.useState(false);
-  const { scrollToTop: scrollToTop2, reducedMotion } = useSmoothScroll();
-  React62.useEffect(() => {
-    const handleScrollEvent = () => {
-      setIsButtonVisible(window.scrollY > SCROLL_THRESHOLD_PX);
-    };
-    window.addEventListener("scroll", handleScrollEvent, { passive: true });
-    return () => window.removeEventListener("scroll", handleScrollEvent);
-  }, []);
-  if (!isButtonVisible) {
-    return null;
-  }
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    Button,
+var Label3 = React65__namespace.default.forwardRef(
+  ({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+    "label",
     {
-      onClick: scrollToTop2,
-      className: "fixed bottom-8 right-8 z-50 rounded-full w-12 h-12 p-0 shadow-lg",
-      "aria-label": reducedMotion ? "Ir para o topo da p\xE1gina" : "Rolar suavemente para o topo da p\xE1gina",
-      title: "Voltar ao topo",
-      children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.ArrowUp, { className: "h-5 w-5", "aria-hidden": "true" })
+      ref,
+      className: cn(
+        "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+        className
+      ),
+      ...props
     }
-  );
-}
-function BackToTop() {
-  return /* @__PURE__ */ jsxRuntime.jsx(BackToTopButton, {});
-}
-
-// src/lib/cookie-utils.ts
-var COOKIE_CONSENT_KEY = "cookie-consent";
-var COOKIE_PREFERENCES_KEY = "cookie-preferences";
-var COOKIE_VERSION = "1.0.0";
-var _CookieManager = class _CookieManager {
-  constructor() {
-  }
+  )
+);
+Label3.displayName = "Label";
+var Separator3 = React65__namespace.default.forwardRef(
+  ({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+    "div",
+    {
+      ref,
+      className: cn("shrink-0 bg-border h-[1px] w-full", className),
+      ...props
+    }
+  )
+);
+Separator3.displayName = "Separator";
+var NextLink = Link2__default.default;
+var _SimpleCookieManager = class _SimpleCookieManager {
   static getInstance() {
-    if (!_CookieManager.instance) {
-      _CookieManager.instance = new _CookieManager();
+    if (!_SimpleCookieManager.instance) {
+      _SimpleCookieManager.instance = new _SimpleCookieManager();
     }
-    return _CookieManager.instance;
+    return _SimpleCookieManager.instance;
   }
   hasConsent() {
     if (typeof window === "undefined") return false;
-    try {
-      const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
-      if (!consent) return false;
-      const consentData = JSON.parse(consent);
-      return consentData.consented === true;
-    } catch {
-      return false;
-    }
+    const consent = localStorage.getItem("cookie-consent");
+    return consent === "true";
   }
   getPreferences() {
     if (typeof window === "undefined") return null;
-    try {
-      const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
-      if (!consent) return null;
-      const consentData = JSON.parse(consent);
-      return consentData.preferences || null;
-    } catch {
-      return null;
-    }
+    const prefs = localStorage.getItem("cookie-preferences");
+    return prefs ? JSON.parse(prefs) : null;
   }
   saveConsent(preferences) {
     if (typeof window === "undefined") return;
-    try {
-      const consent = {
-        version: COOKIE_VERSION,
-        consented: true,
-        timestamp: Date.now(),
-        preferences
-      };
-      localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(consent));
-      localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(preferences));
-      window.dispatchEvent(
-        new CustomEvent("cookie-consent-updated", { detail: preferences })
-      );
-      this.loadScripts(preferences);
-    } catch {
-    }
-  }
-  updatePreferences(preferences) {
-    this.saveConsent(preferences);
-  }
-  revokeConsent() {
-    if (typeof window === "undefined") return;
-    try {
-      localStorage.removeItem(COOKIE_CONSENT_KEY);
-      localStorage.removeItem(COOKIE_PREFERENCES_KEY);
-      this.clearAnalyticsCookies();
-      window.dispatchEvent(
-        new CustomEvent("cookie-consent-revoked", { detail: null })
-      );
-    } catch {
-    }
-  }
-  isAllowed(type) {
-    const preferences = this.getPreferences();
-    if (!preferences) return false;
-    if (type === "essential") {
-      return preferences.essential === true;
-    }
-    return preferences[type] === true;
-  }
-  loadScripts(preferences) {
-    if (preferences.analytics) {
-      this.loadGoogleAnalytics();
-    } else {
-      this.unloadGoogleAnalytics();
-    }
-  }
-  loadGoogleAnalytics() {
-  }
-  unloadGoogleAnalytics() {
-    const scripts = document.querySelectorAll(
-      'script[src*="googletagmanager.com"], script[src*="google-analytics.com"]'
-    );
-    scripts.forEach((script) => script.remove());
-    this.clearAnalyticsCookies();
-    const win = window;
-    if (win.dataLayer) {
-      win.dataLayer = [];
-    }
-    if (win.gtag) {
-      delete win.gtag;
-    }
-  }
-  clearAnalyticsCookies() {
-    if (typeof document === "undefined") return;
-    const analyticsCookies = [
-      "_ga",
-      "_ga_*",
-      "_gid",
-      "_gat",
-      "_gat_gtag_*",
-      "__utma",
-      "__utmt",
-      "__utmb",
-      "__utmc",
-      "__utmz",
-      "__utmv"
-    ];
-    analyticsCookies.forEach((cookieName) => {
-      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-      if (cookieName.includes("*")) {
-        const baseName = cookieName.replace("*", "");
-        const cookies = document.cookie.split(";");
-        cookies.forEach((cookie) => {
-          const parts = cookie.split("=");
-          if (parts.length === 0) return;
-          const name = parts[0]?.trim();
-          if (!name || !name.startsWith(baseName)) return;
-          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname};`;
-        });
-      }
-    });
+    localStorage.setItem("cookie-consent", "true");
+    localStorage.setItem("cookie-preferences", JSON.stringify(preferences));
   }
 };
-__publicField(_CookieManager, "instance");
-var CookieManager = _CookieManager;
-function getCookieManager() {
-  return CookieManager.getInstance();
-}
-var NextLink = Link2__default.default;
+__publicField(_SimpleCookieManager, "instance");
+var SimpleCookieManager = _SimpleCookieManager;
 function CookieBanner() {
-  const [showBanner, setShowBanner] = React62.useState(false);
-  const [canShowBanner, setCanShowBanner] = React62.useState(false);
-  const [showCustomize, setShowCustomize] = React62.useState(false);
-  const [preferences, setPreferences] = React62.useState({
+  const [showBanner, setShowBanner] = React65.useState(false);
+  const [canShowBanner, setCanShowBanner] = React65.useState(false);
+  const [showCustomize, setShowCustomize] = React65.useState(false);
+  const [preferences, setPreferences] = React65.useState({
     essential: true,
     // Sempre verdadeiro, não pode ser desabilitado
     performance: true,
     functionality: true,
     analytics: true
   });
-  const cookieManager = getCookieManager();
-  React62.useEffect(() => {
+  const cookieManager = SimpleCookieManager.getInstance();
+  React65.useEffect(() => {
     if (typeof globalThis.window === "undefined") return;
     if (cookieManager.hasConsent()) {
       const savedPreferences = cookieManager.getPreferences();
@@ -11355,11 +11731,11 @@ function CookieBanner() {
       }
     }
   }, [cookieManager]);
-  const hasShownBannerRef = React62.useRef(false);
-  const scrollThresholdRef = React62.useRef(0);
-  const scrollTimeoutRef = React62.useRef(null);
-  const mouseTimeoutRef = React62.useRef(null);
-  React62.useEffect(() => {
+  const hasShownBannerRef = React65.useRef(false);
+  const scrollThresholdRef = React65.useRef(0);
+  const scrollTimeoutRef = React65.useRef(null);
+  const mouseTimeoutRef = React65.useRef(null);
+  React65.useEffect(() => {
     if (typeof globalThis.window === "undefined" || !canShowBanner || hasShownBannerRef.current)
       return;
     const heroHeight = globalThis.window.innerHeight;
@@ -11440,7 +11816,7 @@ function CookieBanner() {
     });
   };
   const handleSavePreferences = () => {
-    saveConsent(preferences);
+    cookieManager.saveConsent(preferences);
   };
   const togglePreference = (key) => {
     if (key === "essential") return;
@@ -11462,7 +11838,7 @@ function CookieBanner() {
       "aria-labelledby": "cookie-banner-title",
       "aria-describedby": "cookie-banner-description",
       children: /* @__PURE__ */ jsxRuntime.jsx(
-        Card2,
+        Card,
         {
           className: cn(
             "mx-auto max-w-4xl shadow-2xl",
@@ -11473,7 +11849,7 @@ function CookieBanner() {
           children: showCustomize ? (
             // Visualização principal do banner
             /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-              /* @__PURE__ */ jsxRuntime.jsx(CardHeader2, { className: "pb-4", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start justify-between gap-4", children: [
+              /* @__PURE__ */ jsxRuntime.jsx(CardHeader, { className: "pb-4", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start justify-between gap-4", children: [
                 /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start gap-4 flex-1", children: [
                   /* @__PURE__ */ jsxRuntime.jsx(
                     "div",
@@ -11488,7 +11864,7 @@ function CookieBanner() {
                   ),
                   /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex-1 space-y-2", children: [
                     /* @__PURE__ */ jsxRuntime.jsx(
-                      CardTitle2,
+                      CardTitle,
                       {
                         id: "cookie-banner-title",
                         className: cn(
@@ -11500,7 +11876,7 @@ function CookieBanner() {
                       }
                     ),
                     /* @__PURE__ */ jsxRuntime.jsxs(
-                      CardDescription2,
+                      CardDescription,
                       {
                         id: "cookie-banner-description",
                         className: cn("text-sm", "text-muted-foreground"),
@@ -11523,23 +11899,20 @@ function CookieBanner() {
                 /* @__PURE__ */ jsxRuntime.jsx(
                   Button,
                   {
-                    variant: "ghost",
-                    size: "icon",
-                    className: "h-8 w-8 shrink-0",
+                    className: "h-8 w-8 shrink-0 p-0",
                     onClick: () => setShowBanner(false),
                     "aria-label": "Fechar banner de cookies",
                     children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-4 w-4" })
                   }
                 )
               ] }) }),
-              /* @__PURE__ */ jsxRuntime.jsx(Separator2, {}),
-              /* @__PURE__ */ jsxRuntime.jsx(CardContent2, { className: "pt-6", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col sm:flex-row gap-3 sm:justify-end", children: [
+              /* @__PURE__ */ jsxRuntime.jsx(Separator3, {}),
+              /* @__PURE__ */ jsxRuntime.jsx(CardContent, { className: "pt-6", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col sm:flex-row gap-3 sm:justify-end", children: [
                 /* @__PURE__ */ jsxRuntime.jsxs(
                   Button,
                   {
-                    variant: "outline",
                     onClick: () => setShowCustomize(true),
-                    className: "w-full sm:w-auto",
+                    className: "w-full sm:w-auto border border-border bg-background hover:bg-accent hover:text-accent-foreground",
                     children: [
                       /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Settings, { className: "h-4 w-4 mr-2" }),
                       "Personalizar"
@@ -11549,9 +11922,8 @@ function CookieBanner() {
                 /* @__PURE__ */ jsxRuntime.jsxs(
                   Button,
                   {
-                    variant: "outline",
                     onClick: handleRejectOptional,
-                    className: "w-full sm:w-auto",
+                    className: "w-full sm:w-auto border border-border bg-background hover:bg-accent hover:text-accent-foreground",
                     children: [
                       /* @__PURE__ */ jsxRuntime.jsx(lucideReact.XCircle, { className: "h-4 w-4 mr-2" }),
                       "Rejeitar Opcionais"
@@ -11578,7 +11950,7 @@ function CookieBanner() {
           ) : (
             // Visualização de personalização de cookies
             /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-              /* @__PURE__ */ jsxRuntime.jsx(CardHeader2, { className: "pb-4", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start justify-between gap-4", children: [
+              /* @__PURE__ */ jsxRuntime.jsx(CardHeader, { className: "pb-4", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start justify-between gap-4", children: [
                 /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start gap-4 flex-1", children: [
                   /* @__PURE__ */ jsxRuntime.jsx(
                     "div",
@@ -11593,7 +11965,7 @@ function CookieBanner() {
                   ),
                   /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex-1 space-y-2", children: [
                     /* @__PURE__ */ jsxRuntime.jsx(
-                      CardTitle2,
+                      CardTitle,
                       {
                         className: cn(
                           "text-lg",
@@ -11603,28 +11975,26 @@ function CookieBanner() {
                         children: "Personalizar Cookies"
                       }
                     ),
-                    /* @__PURE__ */ jsxRuntime.jsx(CardDescription2, { className: cn("text-sm"), children: "Escolha quais tipos de cookies voc\xEA deseja permitir. Os cookies essenciais s\xE3o necess\xE1rios para o funcionamento do site." })
+                    /* @__PURE__ */ jsxRuntime.jsx(CardDescription, { className: cn("text-sm"), children: "Escolha quais tipos de cookies voc\xEA deseja permitir. Os cookies essenciais s\xE3o necess\xE1rios para o funcionamento do site." })
                   ] })
                 ] }),
                 /* @__PURE__ */ jsxRuntime.jsx(
                   Button,
                   {
-                    variant: "ghost",
-                    size: "icon",
-                    className: "h-8 w-8 shrink-0",
+                    className: "h-8 w-8 shrink-0 p-0",
                     onClick: () => setShowCustomize(false),
                     "aria-label": "Voltar",
                     children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-4 w-4" })
                   }
                 )
               ] }) }),
-              /* @__PURE__ */ jsxRuntime.jsx(Separator2, {}),
-              /* @__PURE__ */ jsxRuntime.jsxs(CardContent2, { className: "pt-6 space-y-6", children: [
+              /* @__PURE__ */ jsxRuntime.jsx(Separator3, {}),
+              /* @__PURE__ */ jsxRuntime.jsxs(CardContent, { className: "pt-6 space-y-6", children: [
                 /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center justify-between gap-4 p-4 rounded-lg bg-muted/50", children: [
                   /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex-1 space-y-1", children: [
                     /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2", children: [
                       /* @__PURE__ */ jsxRuntime.jsx(
-                        Label,
+                        Label3,
                         {
                           htmlFor: "essential",
                           className: cn(
@@ -11662,7 +12032,7 @@ function CookieBanner() {
                 /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center justify-between gap-4 p-4 rounded-lg border border-border hover:bg-muted/50 transition-colors", children: [
                   /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex-1 space-y-1", children: [
                     /* @__PURE__ */ jsxRuntime.jsx(
-                      Label,
+                      Label3,
                       {
                         htmlFor: "performance",
                         className: cn(
@@ -11688,7 +12058,7 @@ function CookieBanner() {
                 /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center justify-between gap-4 p-4 rounded-lg border border-border hover:bg-muted/50 transition-colors", children: [
                   /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex-1 space-y-1", children: [
                     /* @__PURE__ */ jsxRuntime.jsx(
-                      Label,
+                      Label3,
                       {
                         htmlFor: "functionality",
                         className: cn(
@@ -11714,7 +12084,7 @@ function CookieBanner() {
                 /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center justify-between gap-4 p-4 rounded-lg border border-border hover:bg-muted/50 transition-colors", children: [
                   /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex-1 space-y-1", children: [
                     /* @__PURE__ */ jsxRuntime.jsx(
-                      Label,
+                      Label3,
                       {
                         htmlFor: "analytics",
                         className: cn(
@@ -11765,9 +12135,8 @@ function CookieBanner() {
                   /* @__PURE__ */ jsxRuntime.jsx(
                     Button,
                     {
-                      variant: "outline",
                       onClick: () => setShowCustomize(false),
-                      className: "w-full sm:w-auto",
+                      className: "w-full sm:w-auto border border-border bg-background hover:bg-accent hover:text-accent-foreground",
                       children: "Cancelar"
                     }
                   ),
@@ -11795,347 +12164,123 @@ function CookieBanner() {
     }
   );
 }
-function usePWA() {
-  const [deferredPrompt, setDeferredPrompt] = React62.useState(null);
-  const [isInstallable, setIsInstallable] = React62.useState(false);
-  const [isInstalled, setIsInstalled] = React62.useState(false);
-  const [isStandalone, setIsStandalone] = React62.useState(false);
-  const [updateAvailable, setUpdateAvailable] = React62.useState(false);
-  const [swRegistration, setSwRegistration] = React62.useState(null);
-  React62.useEffect(() => {
-    if (typeof window === "undefined" || !("serviceWorker" in navigator)) {
-      return;
-    }
-    navigator.serviceWorker.register("/sw.js").then((registration) => {
-      setSwRegistration(registration);
-      setInterval(() => {
-        registration.update();
-      }, 60 * 60 * 1e3);
-      registration.addEventListener("updatefound", () => {
-        const newWorker = registration.installing;
-        if (newWorker) {
-          newWorker.addEventListener("statechange", () => {
-            if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
-              setUpdateAvailable(true);
-            }
-          });
-        }
-      });
-    }).catch(() => {
-    });
-  }, []);
-  React62.useEffect(() => {
-    if (typeof window === "undefined") return;
-    const nav = window.navigator;
-    const isStandaloneiOS = nav.standalone === true;
-    const isStandaloneAndroid = window.matchMedia(
-      "(display-mode: standalone)"
-    ).matches;
-    const isStandaloneBrowser = window.matchMedia(
-      "(display-mode: minimal-ui)"
-    ).matches;
-    const standalone = isStandaloneiOS || isStandaloneAndroid || isStandaloneBrowser;
-    setIsStandalone(standalone);
-    setIsInstalled(standalone);
-  }, []);
-  React62.useEffect(() => {
-    if (typeof window === "undefined") return;
-    const handleBeforeInstallPrompt = (e) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
-      setIsInstallable(true);
+function useCookieConsent() {
+  const cookieManager = SimpleCookieManager.getInstance();
+  const [preferences, setPreferences] = React65.useState(
+    cookieManager.getPreferences()
+  );
+  React65.useEffect(() => {
+    if (typeof globalThis.window === "undefined") return;
+    setPreferences(cookieManager.getPreferences());
+    const handleConsentUpdate = (event) => {
+      setPreferences(event.detail);
     };
-    const handleAppInstalled = () => {
-      setIsInstalled(true);
-      setIsInstallable(false);
-      setDeferredPrompt(null);
-    };
-    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-    window.addEventListener("appinstalled", handleAppInstalled);
+    globalThis.window.addEventListener(
+      "cookie-consent-updated",
+      handleConsentUpdate
+    );
     return () => {
-      window.removeEventListener(
-        "beforeinstallprompt",
-        handleBeforeInstallPrompt
+      globalThis.window.removeEventListener(
+        "cookie-consent-updated",
+        handleConsentUpdate
       );
-      window.removeEventListener("appinstalled", handleAppInstalled);
     };
-  }, []);
-  const promptInstall = React62.useCallback(async () => {
-    if (!deferredPrompt) {
-      return;
-    }
-    await deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    setDeferredPrompt(null);
-    setIsInstallable(false);
-  }, [deferredPrompt]);
-  const updateServiceWorker = React62.useCallback(() => {
-    if (!swRegistration || !swRegistration.waiting) {
-      return;
-    }
-    swRegistration.waiting.postMessage({ type: "SKIP_WAITING" });
-    navigator.serviceWorker.addEventListener("controllerchange", () => {
-      window.location.reload();
+  }, [cookieManager]);
+  return preferences;
+}
+var ErrorBoundary = class extends React65.Component {
+  constructor(props) {
+    super(props);
+    __publicField(this, "handleReset", () => {
+      this.setState({
+        hasError: false,
+        error: null,
+        errorInfo: null
+      });
     });
-  }, [swRegistration]);
-  return {
-    isInstallable,
-    isInstalled,
-    isStandalone,
-    updateAvailable,
-    promptInstall,
-    updateServiceWorker
-  };
-}
-function InstallPrompt() {
-  const { resolvedTheme } = nextThemes.useTheme();
-  const [mounted, setMounted] = React62.useState(false);
-  const { isInstallable, isStandalone, promptInstall } = usePWA();
-  const [showPrompt, setShowPrompt] = React62.useState(false);
-  React62.useEffect(() => {
-    setMounted(true);
-  }, []);
-  React62.useEffect(() => {
-    if (typeof window === "undefined") return;
-    const dismissed = localStorage.getItem("pwa-install-dismissed");
-    if (isInstallable && !isStandalone && !dismissed) {
-      const timer = setTimeout(() => {
-        setShowPrompt(true);
-      }, 3e3);
-      return () => clearTimeout(timer);
+    __publicField(this, "handleGoHome", () => {
+      window.location.href = "/";
+    });
+    this.state = {
+      hasError: false,
+      error: null,
+      errorInfo: null
+    };
+  }
+  static getDerivedStateFromError(error) {
+    return {
+      hasError: true,
+      error
+    };
+  }
+  componentDidCatch(error, errorInfo) {
+    console.error("ErrorBoundary caught:", error, errorInfo);
+    this.setState({
+      error,
+      errorInfo
+    });
+    if (this.props.onError) {
+      this.props.onError(error, errorInfo);
     }
-    return void 0;
-  }, [isInstallable, isStandalone]);
-  const handleDismiss = () => {
-    setShowPrompt(false);
-    localStorage.setItem("pwa-install-dismissed", "true");
-  };
-  const handleInstall = async () => {
-    await promptInstall();
-    setShowPrompt(false);
-  };
-  const isDark = mounted ? resolvedTheme === "dark" : false;
-  if (!showPrompt) return null;
-  return (
-    /**
-     * Container fixo no rodapé
-     *
-     * - fixed bottom-0: fixado na parte inferior
-     * - left-0 right-0: largura total
-     * - z-50: acima de outros elementos
-     * - Animação de slide up
-     */
-    /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        className: cn(
-          "fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6 pointer-events-none",
-          "animate-in slide-in-from-bottom-5 fade-in duration-300"
-        ),
-        children: /* @__PURE__ */ jsxRuntime.jsx(
-          Card2,
-          {
-            className: cn(
-              "max-w-2xl mx-auto pointer-events-auto backdrop-blur-xl border-2 shadow-2xl",
-              isDark ? cn("bg-background/90", "border-primary-base/50", "shadow-glow-cyan") : cn("bg-background/90", "border-primary-base/50", "shadow-lg")
-            ),
-            children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "p-4 sm:p-6", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start gap-4", children: [
-              /* @__PURE__ */ jsxRuntime.jsx(
-                "div",
-                {
-                  className: cn(
-                    "shrink-0 p-3 rounded-full border",
-                    "bg-primary-background",
-                    "border-primary-base/30"
-                  ),
-                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Download, { className: cn("h-6 w-6", "text-primary-base") })
-                }
-              ),
-              /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex-1 space-y-3", children: [
-                /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start justify-between gap-2", children: [
-                  /* @__PURE__ */ jsxRuntime.jsx(
-                    "h3",
-                    {
-                      className: cn(
-                        "text-lg font-bold font-mono",
-                        "text-foreground"
-                      ),
-                      children: "\u{1F4F1} Instalar no seu Dispositivo"
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntime.jsx(
-                    "button",
-                    {
-                      onClick: handleDismiss,
-                      className: cn(
-                        "transition-colors p-1 rounded",
-                        "text-muted-foreground hover:text-foreground hover:bg-muted"
-                      ),
-                      "aria-label": "Fechar",
-                      children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-5 w-5" })
-                    }
-                  )
-                ] }),
-                /* @__PURE__ */ jsxRuntime.jsx(
-                  "p",
-                  {
-                    className: cn(
-                      "text-sm",
-                      "text-muted-foreground"
-                    ),
-                    children: "Instale como app nativo para acesso r\xE1pido sem navegador e funcionalidade offline completa."
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-3", children: [
-                  /* @__PURE__ */ jsxRuntime.jsxs(
-                    Button,
-                    {
-                      onClick: handleInstall,
-                      size: "sm",
-                      className: cn(
-                        "font-mono font-bold",
-                        "bg-primary text-primary-foreground hover:bg-primary-hover"
-                      ),
-                      children: [
-                        /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Download, { className: "h-4 w-4 mr-2" }),
-                        "Instalar Agora"
-                      ]
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntime.jsx(
-                    Button,
-                    {
-                      onClick: handleDismiss,
-                      variant: "ghost",
-                      size: "sm",
-                      className: cn(
-                        "text-muted-foreground hover:text-foreground hover:bg-muted"
-                      ),
-                      children: "Talvez Depois"
-                    }
-                  )
-                ] })
-              ] })
-            ] }) })
-          }
-        )
+  }
+  render() {
+    if (this.state.hasError) {
+      if (this.props.fallback) {
+        return /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: this.props.fallback });
       }
-    )
-  );
-}
-function UpdateNotification() {
-  const { resolvedTheme } = nextThemes.useTheme();
-  const [mounted, setMounted] = React62.useState(false);
-  const { updateAvailable, updateServiceWorker } = usePWA();
-  React62.useEffect(() => {
-    setMounted(true);
-  }, []);
-  const isDark = mounted ? resolvedTheme === "dark" : false;
-  if (!updateAvailable) return null;
-  return (
-    /**
-     * Container fixo no topo
-     *
-     * - fixed top-20: abaixo da navbar
-     * - right-4: margem da direita
-     * - z-50: acima de outros elementos
-     * - Animação de slide down
-     */
-    /* @__PURE__ */ jsxRuntime.jsx(
-      "div",
-      {
-        className: cn(
-          "fixed top-20 right-4 z-50 max-w-sm",
-          "animate-in slide-in-from-top-5 fade-in duration-300"
-        ),
-        children: /* @__PURE__ */ jsxRuntime.jsx(
-          Card2,
-          {
-            className: cn(
-              "backdrop-blur-xl border-2 shadow-2xl",
-              isDark ? cn("bg-background/90", "border-secondary-base/50", "shadow-glow-purple") : cn("bg-background/90", "border-secondary-base/50", "shadow-lg")
-            ),
-            children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "p-4", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start gap-3", children: [
-              /* @__PURE__ */ jsxRuntime.jsx(
-                "div",
-                {
-                  className: cn(
-                    "shrink-0 p-2 rounded-full border",
-                    "bg-secondary-background",
-                    "border-secondary-base/30"
-                  ),
-                  children: /* @__PURE__ */ jsxRuntime.jsx(
-                    lucideReact.RefreshCw,
-                    {
-                      className: cn(
-                        "h-5 w-5 animate-spin text-secondary-base",
-                        "[animation-duration:3s]"
-                      )
-                    }
-                  )
-                }
-              ),
-              /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex-1 space-y-2", children: [
-                /* @__PURE__ */ jsxRuntime.jsx(
-                  "h4",
-                  {
-                    className: cn(
-                      "text-sm font-bold font-mono",
-                      "text-foreground"
-                    ),
-                    children: "Nova Vers\xE3o Dispon\xEDvel"
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntime.jsx(
-                  "p",
-                  {
-                    className: cn(
-                      "text-xs",
-                      "text-muted-foreground"
-                    ),
-                    children: "Atualize para obter as \xFAltimas melhorias e corre\xE7\xF5es."
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntime.jsxs(
-                  Button,
-                  {
-                    onClick: updateServiceWorker,
-                    size: "sm",
-                    className: cn(
-                      "w-full font-mono font-bold",
-                      "bg-secondary text-secondary-foreground hover:bg-secondary-hover"
-                    ),
-                    children: [
-                      /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { className: "h-3 w-3 mr-2" }),
-                      "Atualizar Agora"
-                    ]
-                  }
-                )
-              ] })
-            ] }) })
-          }
-        )
-      }
-    )
-  );
-}
+      return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "min-h-screen flex items-center justify-center p-4", children: /* @__PURE__ */ jsxRuntime.jsxs(Card, { className: "max-w-lg w-full", children: [
+        /* @__PURE__ */ jsxRuntime.jsxs(CardHeader, { className: "text-center", children: [
+          /* @__PURE__ */ jsxRuntime.jsx("div", { className: "mx-auto w-16 h-16 bg-destructive/10 rounded-full flex items-center justify-center mb-4", children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.AlertTriangle, { className: "h-8 w-8 text-destructive" }) }),
+          /* @__PURE__ */ jsxRuntime.jsx(CardTitle, { className: "text-2xl", children: "Ops! Algo deu errado" }),
+          /* @__PURE__ */ jsxRuntime.jsx(CardDescription, { children: "Encontramos um erro inesperado. Por favor, tente novamente." })
+        ] }),
+        /* @__PURE__ */ jsxRuntime.jsxs(CardContent, { className: "space-y-4", children: [
+          process.env.NODE_ENV === "development" && this.state.error && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "p-4 bg-muted rounded-lg", children: [
+            /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm font-mono text-muted-foreground", children: this.state.error.toString() }),
+            this.state.errorInfo && /* @__PURE__ */ jsxRuntime.jsxs("details", { className: "mt-2", children: [
+              /* @__PURE__ */ jsxRuntime.jsx("summary", { className: "cursor-pointer text-sm text-muted-foreground hover:text-foreground", children: "Stack trace" }),
+              /* @__PURE__ */ jsxRuntime.jsx("pre", { className: "mt-2 text-xs overflow-auto", children: this.state.errorInfo.componentStack })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-3", children: [
+            /* @__PURE__ */ jsxRuntime.jsxs(Button, { onClick: this.handleReset, variant: "outline", className: "flex-1", children: [
+              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { className: "h-4 w-4 mr-2" }),
+              "Tentar Novamente"
+            ] }),
+            /* @__PURE__ */ jsxRuntime.jsxs(Button, { onClick: this.handleGoHome, className: "flex-1", children: [
+              /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Home, { className: "h-4 w-4 mr-2" }),
+              "Ir para Home"
+            ] })
+          ] })
+        ] })
+      ] }) });
+    }
+    return this.props.children;
+  }
+};
+var Skeleton2 = React65__namespace.default.forwardRef(
+  ({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+    "div",
+    {
+      ref,
+      className: cn(
+        "animate-pulse rounded-md bg-muted",
+        className
+      ),
+      ...props
+    }
+  )
+);
+Skeleton2.displayName = "Skeleton";
 function LoadingScreen({ progress = 0, currentStep = "Inicializando..." }) {
-  const [displayedProgress, setDisplayedProgress] = React62.useState(0);
-  const [stars, setStars] = React62.useState([]);
-  const [mounted, setMounted] = React62.useState(false);
-  const { theme, systemTheme } = nextThemes.useTheme();
-  const { getColor } = useTokens();
-  React62.useEffect(() => {
-    setMounted(true);
-  }, []);
-  const currentTheme = mounted ? theme === "system" ? systemTheme : theme : "light";
-  const isDark = currentTheme === "dark";
-  const primaryColor = isDark ? getColor("primitives.colors.blue.400", "#60a5fa") : getColor("primitives.colors.blue.600", "#2563eb");
-  const secondaryColor = isDark ? getColor("primitives.colors.purple.400", "#c084fc") : getColor("primitives.colors.purple.600", "#7c3aed");
-  const accentColor = isDark ? getColor("primitives.colors.red.400", "#f87171") : getColor("primitives.colors.red.600", "#dc2626");
-  const primaryRGB = hexToRGB(primaryColor);
-  const secondaryRGB = hexToRGB(secondaryColor);
-  React62.useEffect(() => {
+  const [displayedProgress, setDisplayedProgress] = React65.useState(0);
+  const [stars, setStars] = React65.useState([]);
+  const primaryColor = "var(--color-blue-600)";
+  const secondaryColor = "var(--color-purple-600)";
+  const accentColor = "var(--color-red-600)";
+  const primaryRGB = primaryColor;
+  const secondaryRGB = secondaryColor;
+  React65.useEffect(() => {
     const starsCount = 100;
     const newStars = Array.from({ length: starsCount }, (_, i) => ({
       id: i,
@@ -12147,7 +12292,7 @@ function LoadingScreen({ progress = 0, currentStep = "Inicializando..." }) {
     }));
     setStars(newStars);
   }, []);
-  React62.useEffect(() => {
+  React65.useEffect(() => {
     if (progress === void 0) {
       setDisplayedProgress(0);
       return;
@@ -12190,7 +12335,7 @@ function LoadingScreen({ progress = 0, currentStep = "Inicializando..." }) {
                 width: `${star.size}px`,
                 height: `${star.size}px`,
                 opacity: star.opacity,
-                boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, 0.8)`,
+                boxShadow: `0 0 ${star.size * 2}px var(--color-white)`,
                 animation: "starTwinkle 3s ease-in-out infinite",
                 animationDelay: `${star.delay}s`
               }
@@ -12346,19 +12491,180 @@ function LoadingScreen({ progress = 0, currentStep = "Inicializando..." }) {
     }
   );
 }
+var Button2 = React65__namespace.default.forwardRef(
+  ({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+    "button",
+    {
+      ref,
+      className: cn(
+        "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+        className
+      ),
+      ...props,
+      children
+    }
+  )
+);
+Button2.displayName = "Button";
+var Card3 = React65__namespace.default.forwardRef(
+  ({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+    "div",
+    {
+      ref,
+      className: cn(
+        "rounded-lg border bg-card text-card-foreground shadow-sm",
+        className
+      ),
+      ...props,
+      children
+    }
+  )
+);
+Card3.displayName = "Card";
+function InstallPrompt() {
+  const { resolvedTheme } = nextThemes.useTheme();
+  const [mounted, setMounted] = React65.useState(false);
+  const [showPrompt, setShowPrompt] = React65.useState(false);
+  React65.useEffect(() => {
+    setMounted(true);
+  }, []);
+  React65.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const dismissed = localStorage.getItem("pwa-install-dismissed");
+    if (!dismissed) {
+      const timer = setTimeout(() => {
+        setShowPrompt(true);
+      }, 3e3);
+      return () => clearTimeout(timer);
+    }
+    return void 0;
+  }, []);
+  const handleDismiss = () => {
+    setShowPrompt(false);
+    localStorage.setItem("pwa-install-dismissed", "true");
+  };
+  const handleInstall = async () => {
+    setShowPrompt(false);
+  };
+  const isDark = mounted ? resolvedTheme === "dark" : false;
+  if (!showPrompt) return null;
+  return (
+    /**
+     * Container fixo no rodapé
+     *
+     * - fixed bottom-0: fixado na parte inferior
+     * - left-0 right-0: largura total
+     * - z-50: acima de outros elementos
+     * - Animação de slide up
+     */
+    /* @__PURE__ */ jsxRuntime.jsx(
+      "div",
+      {
+        className: cn(
+          "fixed bottom-0 left-0 right-0 z-50 p-4 sm:p-6 pointer-events-none",
+          "animate-in slide-in-from-bottom-5 fade-in duration-300"
+        ),
+        children: /* @__PURE__ */ jsxRuntime.jsx(
+          Card3,
+          {
+            className: cn(
+              "max-w-2xl mx-auto pointer-events-auto backdrop-blur-xl border-2 shadow-2xl",
+              isDark ? cn("bg-background/90", "border-primary-base/50", "shadow-glow-cyan") : cn("bg-background/90", "border-primary-base/50", "shadow-lg")
+            ),
+            children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "p-4 sm:p-6", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start gap-4", children: [
+              /* @__PURE__ */ jsxRuntime.jsx(
+                "div",
+                {
+                  className: cn(
+                    "shrink-0 p-3 rounded-full border",
+                    "bg-primary-background",
+                    "border-primary-base/30"
+                  ),
+                  children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Download, { className: cn("h-6 w-6", "text-primary-base") })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex-1 space-y-3", children: [
+                /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start justify-between gap-2", children: [
+                  /* @__PURE__ */ jsxRuntime.jsx(
+                    "h3",
+                    {
+                      className: cn(
+                        "text-lg font-bold font-mono",
+                        "text-foreground"
+                      ),
+                      children: "\u{1F4F1} Instalar no seu Dispositivo"
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntime.jsx(
+                    "button",
+                    {
+                      onClick: handleDismiss,
+                      className: cn(
+                        "transition-colors p-1 rounded",
+                        "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      ),
+                      "aria-label": "Fechar",
+                      children: /* @__PURE__ */ jsxRuntime.jsx(lucideReact.X, { className: "h-5 w-5" })
+                    }
+                  )
+                ] }),
+                /* @__PURE__ */ jsxRuntime.jsx(
+                  "p",
+                  {
+                    className: cn(
+                      "text-sm",
+                      "text-muted-foreground"
+                    ),
+                    children: "Instale como app nativo para acesso r\xE1pido sem navegador e funcionalidade offline completa."
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-3", children: [
+                  /* @__PURE__ */ jsxRuntime.jsxs(
+                    Button2,
+                    {
+                      onClick: handleInstall,
+                      className: cn(
+                        "font-mono font-bold text-sm px-3 py-1.5",
+                        "bg-primary text-primary-foreground hover:bg-primary-hover"
+                      ),
+                      children: [
+                        /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Download, { className: "h-4 w-4 mr-2" }),
+                        "Instalar App"
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntime.jsx(
+                    Button2,
+                    {
+                      onClick: handleDismiss,
+                      className: cn(
+                        "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      ),
+                      children: "Talvez Depois"
+                    }
+                  )
+                ] })
+              ] })
+            ] }) })
+          }
+        )
+      }
+    )
+  );
+}
 function TokensDemo() {
-  const [mounted, setMounted] = React62.useState(false);
-  React62.useEffect(() => {
+  const [mounted, setMounted] = React65.useState(false);
+  React65.useEffect(() => {
     setMounted(true);
   }, []);
   if (!mounted) return null;
   const neonCyan = "#60a5fa";
-  const neonPurple = "#c084fc";
-  const neonPink = "#ef4444";
+  const neonPurple = "var(--color-purple-400)";
+  const neonPink = "var(--color-red-500)";
   return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "space-y-6 p-6", children: [
-    /* @__PURE__ */ jsxRuntime.jsxs(Card2, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(CardHeader2, { children: /* @__PURE__ */ jsxRuntime.jsx(CardTitle2, { children: "Design Tokens - Cores" }) }),
-      /* @__PURE__ */ jsxRuntime.jsxs(CardContent2, { className: "space-y-4", children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(Card, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntime.jsx(CardTitle, { children: "Design Tokens - Cores" }) }),
+      /* @__PURE__ */ jsxRuntime.jsxs(CardContent, { className: "space-y-4", children: [
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-4", children: [
           /* @__PURE__ */ jsxRuntime.jsx(
             "div",
@@ -12385,9 +12691,9 @@ function TokensDemo() {
         /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-sm text-muted-foreground", children: "Cores neon: Cyan, Purple, Pink" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsxs(Card2, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(CardHeader2, { children: /* @__PURE__ */ jsxRuntime.jsx(CardTitle2, { children: "Design Tokens - Espa\xE7amentos" }) }),
-      /* @__PURE__ */ jsxRuntime.jsxs(CardContent2, { className: "space-y-4", children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(Card, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntime.jsx(CardTitle, { children: "Design Tokens - Espa\xE7amentos" }) }),
+      /* @__PURE__ */ jsxRuntime.jsxs(CardContent, { className: "space-y-4", children: [
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "space-y-2", children: [
           /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-2 bg-primary rounded", style: { width: "16px" } }),
           /* @__PURE__ */ jsxRuntime.jsx("div", { className: "h-2 bg-primary rounded", style: { width: "24px" } }),
@@ -12397,9 +12703,9 @@ function TokensDemo() {
         /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-sm text-muted-foreground", children: "Espa\xE7amentos: xs, sm, md, lg" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsxs(Card2, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(CardHeader2, { children: /* @__PURE__ */ jsxRuntime.jsx(CardTitle2, { children: "Design Tokens - Tipografia" }) }),
-      /* @__PURE__ */ jsxRuntime.jsxs(CardContent2, { className: "space-y-4", children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(Card, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntime.jsx(CardTitle, { children: "Design Tokens - Tipografia" }) }),
+      /* @__PURE__ */ jsxRuntime.jsxs(CardContent, { className: "space-y-4", children: [
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "space-y-2", children: [
           /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-xs", children: "Texto xs (12px)" }),
           /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-sm", children: "Texto sm (14px)" }),
@@ -12410,9 +12716,9 @@ function TokensDemo() {
         /* @__PURE__ */ jsxRuntime.jsx("div", { className: "text-sm text-muted-foreground", children: "Tamanhos de fonte dispon\xEDveis" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxRuntime.jsxs(Card2, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(CardHeader2, { children: /* @__PURE__ */ jsxRuntime.jsx(CardTitle2, { children: "Design Tokens - Raios" }) }),
-      /* @__PURE__ */ jsxRuntime.jsxs(CardContent2, { className: "space-y-4", children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(Card, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx(CardHeader, { children: /* @__PURE__ */ jsxRuntime.jsx(CardTitle, { children: "Design Tokens - Raios" }) }),
+      /* @__PURE__ */ jsxRuntime.jsxs(CardContent, { className: "space-y-4", children: [
         /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-4 items-end", children: [
           /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-8 h-8 bg-primary rounded-sm" }),
           /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-8 h-8 bg-primary rounded" }),
@@ -12425,19 +12731,6 @@ function TokensDemo() {
     ] })
   ] });
 }
-var VisuallyHidden = React62__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
-  "span",
-  {
-    ref,
-    className: cn(
-      "absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0",
-      "[clip:rect(0,0,0,0)]",
-      className
-    ),
-    ...props
-  }
-));
-VisuallyHidden.displayName = "VisuallyHidden";
 var kbdVariants = classVarianceAuthority.cva(
   "inline-flex items-center justify-center rounded border font-mono text-xs font-semibold",
   {
@@ -12462,7 +12755,7 @@ var kbdVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Kbd = React62__namespace.forwardRef(
+var Kbd = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -12482,7 +12775,7 @@ var Kbd = React62__namespace.forwardRef(
   }
 );
 Kbd.displayName = "Kbd";
-var KbdCombo = React62__namespace.forwardRef(
+var KbdCombo = React65__namespace.forwardRef(
   ({
     className,
     keys,
@@ -12497,7 +12790,7 @@ var KbdCombo = React62__namespace.forwardRef(
         ref,
         className: cn("flex items-center gap-1", className),
         ...props,
-        children: keys.map((key, index) => /* @__PURE__ */ jsxRuntime.jsxs(React62__namespace.Fragment, { children: [
+        children: keys.map((key, index) => /* @__PURE__ */ jsxRuntime.jsxs(React65__namespace.Fragment, { children: [
           index > 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-muted-foreground text-xs font-normal", children: separator }),
           /* @__PURE__ */ jsxRuntime.jsx(Kbd, { size, variant, children: key })
         ] }, index))
@@ -12506,55 +12799,6 @@ var KbdCombo = React62__namespace.forwardRef(
   }
 );
 KbdCombo.displayName = "KbdCombo";
-var KeyboardShortcuts = {
-  // Windows/Linux
-  CtrlC: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["Ctrl", "C"] }),
-  CtrlV: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["Ctrl", "V"] }),
-  CtrlX: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["Ctrl", "X"] }),
-  CtrlZ: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["Ctrl", "Z"] }),
-  CtrlY: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["Ctrl", "Y"] }),
-  CtrlA: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["Ctrl", "A"] }),
-  CtrlS: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["Ctrl", "S"] }),
-  CtrlF: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["Ctrl", "F"] }),
-  CtrlP: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["Ctrl", "P"] }),
-  Delete: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "Delete" }),
-  Enter: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "Enter" }),
-  Esc: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "Esc" }),
-  Space: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "Space" }),
-  Tab: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "Tab" }),
-  ShiftTab: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["Shift", "Tab"] }),
-  AltTab: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["Alt", "Tab"] }),
-  // macOS
-  CmdC: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["\u2318", "C"] }),
-  CmdV: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["\u2318", "V"] }),
-  CmdX: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["\u2318", "X"] }),
-  CmdZ: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["\u2318", "Z"] }),
-  CmdShiftZ: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["\u2318", "Shift", "Z"] }),
-  CmdA: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["\u2318", "A"] }),
-  CmdS: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["\u2318", "S"] }),
-  CmdF: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["\u2318", "F"] }),
-  CmdP: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["\u2318", "P"] }),
-  CmdSpace: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["\u2318", "Space"] }),
-  OptionTab: () => /* @__PURE__ */ jsxRuntime.jsx(KbdCombo, { keys: ["\u2325", "Tab"] }),
-  // Setas
-  ArrowUp: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "\u2191" }),
-  ArrowDown: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "\u2193" }),
-  ArrowLeft: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "\u2190" }),
-  ArrowRight: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "\u2192" }),
-  // Função
-  F1: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "F1" }),
-  F2: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "F2" }),
-  F3: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "F3" }),
-  F4: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "F4" }),
-  F5: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "F5" }),
-  F6: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "F6" }),
-  F7: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "F7" }),
-  F8: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "F8" }),
-  F9: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "F9" }),
-  F10: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "F10" }),
-  F11: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "F11" }),
-  F12: () => /* @__PURE__ */ jsxRuntime.jsx(Kbd, { children: "F12" })
-};
 var codeVariants = classVarianceAuthority.cva(
   "rounded-md font-mono text-sm",
   {
@@ -12581,7 +12825,7 @@ var codeVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Code = React62__namespace.forwardRef(
+var Code = React65__namespace.forwardRef(
   ({
     className,
     variant = "inline",
@@ -12594,9 +12838,9 @@ var Code = React62__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [copied, setCopied] = React62__namespace.useState(false);
-    const codeRef = React62__namespace.useRef(null);
-    const handleCopy = React62__namespace.useCallback(async () => {
+    const [copied, setCopied] = React65__namespace.useState(false);
+    const codeRef = React65__namespace.useRef(null);
+    const handleCopy = React65__namespace.useCallback(async () => {
       if (codeRef.current) {
         const text = codeRef.current.textContent || "";
         await navigator.clipboard.writeText(text);
@@ -12657,7 +12901,7 @@ var Code = React62__namespace.forwardRef(
   }
 );
 Code.displayName = "Code";
-var CodeInline = React62__namespace.forwardRef(
+var CodeInline = React65__namespace.forwardRef(
   ({
     className,
     color = "default",
@@ -12676,7 +12920,7 @@ var CodeInline = React62__namespace.forwardRef(
   }
 );
 CodeInline.displayName = "CodeInline";
-var CodeBlock = React62__namespace.forwardRef(
+var CodeBlock = React65__namespace.forwardRef(
   ({
     className,
     ...props
@@ -12723,7 +12967,7 @@ var quoteVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Quote = React62__namespace.forwardRef(
+var Quote = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -12774,7 +13018,7 @@ var Quote = React62__namespace.forwardRef(
   }
 );
 Quote.displayName = "Quote";
-var QuoteTestimonial = React62__namespace.forwardRef(
+var QuoteTestimonial = React65__namespace.forwardRef(
   ({
     className,
     author,
@@ -12828,7 +13072,7 @@ var QuoteTestimonial = React62__namespace.forwardRef(
   }
 );
 QuoteTestimonial.displayName = "QuoteTestimonial";
-var QuoteBlock = React62__namespace.forwardRef(
+var QuoteBlock = React65__namespace.forwardRef(
   ({
     className,
     children,
@@ -12851,6 +13095,207 @@ var QuoteBlock = React62__namespace.forwardRef(
   }
 );
 QuoteBlock.displayName = "QuoteBlock";
+var VisuallyHidden = React65__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+  "span",
+  {
+    ref,
+    className: cn(
+      "absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap border-0",
+      "[clip:rect(0,0,0,0)]",
+      className
+    ),
+    ...props
+  }
+));
+VisuallyHidden.displayName = "VisuallyHidden";
+function usePWA() {
+  const [deferredPrompt, setDeferredPrompt] = React65.useState(null);
+  const [isInstallable, setIsInstallable] = React65.useState(false);
+  const [isInstalled, setIsInstalled] = React65.useState(false);
+  const [isStandalone, setIsStandalone] = React65.useState(false);
+  const [updateAvailable, setUpdateAvailable] = React65.useState(false);
+  const [swRegistration, setSwRegistration] = React65.useState(null);
+  React65.useEffect(() => {
+    if (typeof window === "undefined" || !("serviceWorker" in navigator)) {
+      return;
+    }
+    navigator.serviceWorker.register("/sw.js").then((registration) => {
+      setSwRegistration(registration);
+      setInterval(() => {
+        registration.update();
+      }, 60 * 60 * 1e3);
+      registration.addEventListener("updatefound", () => {
+        const newWorker = registration.installing;
+        if (newWorker) {
+          newWorker.addEventListener("statechange", () => {
+            if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+              setUpdateAvailable(true);
+            }
+          });
+        }
+      });
+    }).catch(() => {
+    });
+  }, []);
+  React65.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const nav = window.navigator;
+    const isStandaloneiOS = nav.standalone === true;
+    const isStandaloneAndroid = window.matchMedia(
+      "(display-mode: standalone)"
+    ).matches;
+    const isStandaloneBrowser = window.matchMedia(
+      "(display-mode: minimal-ui)"
+    ).matches;
+    const standalone = isStandaloneiOS || isStandaloneAndroid || isStandaloneBrowser;
+    setIsStandalone(standalone);
+    setIsInstalled(standalone);
+  }, []);
+  React65.useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handleBeforeInstallPrompt = (e) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+      setIsInstallable(true);
+    };
+    const handleAppInstalled = () => {
+      setIsInstalled(true);
+      setIsInstallable(false);
+      setDeferredPrompt(null);
+    };
+    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
+    window.addEventListener("appinstalled", handleAppInstalled);
+    return () => {
+      window.removeEventListener(
+        "beforeinstallprompt",
+        handleBeforeInstallPrompt
+      );
+      window.removeEventListener("appinstalled", handleAppInstalled);
+    };
+  }, []);
+  const promptInstall = React65.useCallback(async () => {
+    if (!deferredPrompt) {
+      return;
+    }
+    await deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    setDeferredPrompt(null);
+    setIsInstallable(false);
+  }, [deferredPrompt]);
+  const updateServiceWorker = React65.useCallback(() => {
+    if (!swRegistration || !swRegistration.waiting) {
+      return;
+    }
+    swRegistration.waiting.postMessage({ type: "SKIP_WAITING" });
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      window.location.reload();
+    });
+  }, [swRegistration]);
+  return {
+    isInstallable,
+    isInstalled,
+    isStandalone,
+    updateAvailable,
+    promptInstall,
+    updateServiceWorker
+  };
+}
+function UpdateNotification() {
+  const { resolvedTheme } = nextThemes.useTheme();
+  const [mounted, setMounted] = React65.useState(false);
+  const { updateAvailable, updateServiceWorker } = usePWA();
+  React65.useEffect(() => {
+    setMounted(true);
+  }, []);
+  const isDark = mounted ? resolvedTheme === "dark" : false;
+  if (!updateAvailable) return null;
+  return (
+    /**
+     * Container fixo no topo
+     *
+     * - fixed top-20: abaixo da navbar
+     * - right-4: margem da direita
+     * - z-50: acima de outros elementos
+     * - Animação de slide down
+     */
+    /* @__PURE__ */ jsxRuntime.jsx(
+      "div",
+      {
+        className: cn(
+          "fixed top-20 right-4 z-50 max-w-sm",
+          "animate-in slide-in-from-top-5 fade-in duration-300"
+        ),
+        children: /* @__PURE__ */ jsxRuntime.jsx(
+          Card2,
+          {
+            className: cn(
+              "backdrop-blur-xl border-2 shadow-2xl",
+              isDark ? cn("bg-background/90", "border-secondary-base/50", "shadow-glow-purple") : cn("bg-background/90", "border-secondary-base/50", "shadow-lg")
+            ),
+            children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "p-4", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-start gap-3", children: [
+              /* @__PURE__ */ jsxRuntime.jsx(
+                "div",
+                {
+                  className: cn(
+                    "shrink-0 p-2 rounded-full border",
+                    "bg-secondary-background",
+                    "border-secondary-base/30"
+                  ),
+                  children: /* @__PURE__ */ jsxRuntime.jsx(
+                    lucideReact.RefreshCw,
+                    {
+                      className: cn(
+                        "h-5 w-5 animate-spin text-secondary-base",
+                        "[animation-duration:3s]"
+                      )
+                    }
+                  )
+                }
+              ),
+              /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex-1 space-y-2", children: [
+                /* @__PURE__ */ jsxRuntime.jsx(
+                  "h4",
+                  {
+                    className: cn(
+                      "text-sm font-bold font-mono",
+                      "text-foreground"
+                    ),
+                    children: "Nova Vers\xE3o Dispon\xEDvel"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntime.jsx(
+                  "p",
+                  {
+                    className: cn(
+                      "text-xs",
+                      "text-muted-foreground"
+                    ),
+                    children: "Atualize para obter as \xFAltimas melhorias e corre\xE7\xF5es."
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntime.jsxs(
+                  Button,
+                  {
+                    onClick: updateServiceWorker,
+                    size: "sm",
+                    className: cn(
+                      "w-full font-mono font-bold",
+                      "bg-secondary text-secondary-foreground hover:bg-secondary-hover"
+                    ),
+                    children: [
+                      /* @__PURE__ */ jsxRuntime.jsx(lucideReact.RefreshCw, { className: "h-3 w-3 mr-2" }),
+                      "Atualizar Agora"
+                    ]
+                  }
+                )
+              ] })
+            ] }) })
+          }
+        )
+      }
+    )
+  );
+}
 var ASPECT_RATIOS = {
   square: "1/1",
   video: "16/9",
@@ -12879,7 +13324,7 @@ var aspectRatioBoxVariants = classVarianceAuthority.cva(
     }
   }
 );
-var AspectRatioBox = React62__namespace.forwardRef(
+var AspectRatioBox = React65__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -12888,13 +13333,13 @@ var AspectRatioBox = React62__namespace.forwardRef(
     objectFit = "cover",
     ...props
   }, ref) => {
-    const resolvedRatio = React62__namespace.useMemo(() => {
+    const resolvedRatio = React65__namespace.useMemo(() => {
       if (typeof ratio === "string" && ratio in ASPECT_RATIOS) {
         return ASPECT_RATIOS[ratio];
       }
       return ratio;
     }, [ratio]);
-    const paddingBottom = React62__namespace.useMemo(() => {
+    const paddingBottom = React65__namespace.useMemo(() => {
       const [width, height] = resolvedRatio.split("/").map(Number);
       return `${height / width * 100}%`;
     }, [resolvedRatio]);
@@ -12910,7 +13355,7 @@ var AspectRatioBox = React62__namespace.forwardRef(
         className: cn(aspectRatioBoxVariants({ variant }), className),
         style: { paddingBottom },
         ...props,
-        children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute inset-0", children: React62__namespace.isValidElement(children) ? React62__namespace.cloneElement(children, {
+        children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute inset-0", children: React65__namespace.isValidElement(children) ? React65__namespace.cloneElement(children, {
           className: cn(
             objectFitClasses[objectFit],
             children.props.className
@@ -12921,7 +13366,7 @@ var AspectRatioBox = React62__namespace.forwardRef(
   }
 );
 AspectRatioBox.displayName = "AspectRatioBox";
-var AspectRatioImage = React62__namespace.forwardRef(
+var AspectRatioImage = React65__namespace.forwardRef(
   ({
     className,
     ratio = "square",
@@ -12943,7 +13388,7 @@ var AspectRatioImage = React62__namespace.forwardRef(
   }
 );
 AspectRatioImage.displayName = "AspectRatioImage";
-var AspectRatioVideo = React62__namespace.forwardRef(
+var AspectRatioVideo = React65__namespace.forwardRef(
   ({
     className,
     ratio = "video",
@@ -12961,7 +13406,7 @@ var AspectRatioVideo = React62__namespace.forwardRef(
   }
 );
 AspectRatioVideo.displayName = "AspectRatioVideo";
-var AspectRatioIframe = React62__namespace.forwardRef(
+var AspectRatioIframe = React65__namespace.forwardRef(
   ({
     className,
     ratio = "video",
@@ -12999,7 +13444,7 @@ var centerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Center = React62__namespace.forwardRef(
+var Center = React65__namespace.forwardRef(
   ({
     className,
     direction = "both",
@@ -13012,7 +13457,7 @@ var Center = React62__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const centerStyle = React62__namespace.useMemo(() => {
+    const centerStyle = React65__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (padding !== void 0) {
         customStyle.padding = typeof padding === "number" ? `${padding}px` : padding;
@@ -13041,7 +13486,7 @@ var Center = React62__namespace.forwardRef(
   }
 );
 Center.displayName = "Center";
-var CenterInline = React62__namespace.forwardRef(
+var CenterInline = React65__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Center,
@@ -13054,7 +13499,7 @@ var CenterInline = React62__namespace.forwardRef(
   }
 );
 CenterInline.displayName = "CenterInline";
-var CenterScreen = React62__namespace.forwardRef(
+var CenterScreen = React65__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Center,
@@ -13069,7 +13514,7 @@ var CenterScreen = React62__namespace.forwardRef(
   }
 );
 CenterScreen.displayName = "CenterScreen";
-var CenterText = React62__namespace.forwardRef(
+var CenterText = React65__namespace.forwardRef(
   ({
     className,
     align = "center",
@@ -13089,1051 +13534,201 @@ var CenterText = React62__namespace.forwardRef(
   }
 );
 CenterText.displayName = "CenterText";
-function LikeButton({
-  itemId,
-  initialLikes,
-  initialIsLiked = false,
-  variant = "default",
-  activeColor = "error",
-  size = "sm",
-  showLabel = true,
-  showCount = true,
-  activeLabel = "Curtido",
-  inactiveLabel = "Curtir",
-  onLike,
-  onUnlike,
-  className
-}) {
-  const [isLiked, setIsLiked] = React62.useState(initialIsLiked);
-  const [likes, setLikes] = React62.useState(initialLikes);
-  const [isAnimating, setIsAnimating] = React62.useState(false);
-  const handleLike = () => {
-    setIsAnimating(true);
-    console.debug(`A\xE7\xE3o de curtir para o item: ${itemId}`);
-    if (isLiked) {
-      const newLikes = Math.max(0, likes - 1);
-      setLikes(newLikes);
-      setIsLiked(false);
-      onUnlike?.(newLikes, itemId);
-    } else {
-      const newLikes = likes + 1;
-      setLikes(newLikes);
-      setIsLiked(true);
-      onLike?.(newLikes, itemId);
-    }
-    setTimeout(() => setIsAnimating(false), 600);
-  };
-  const getColorClasses2 = () => {
-    const colorMap = {
-      primary: "text-primary hover:text-primary/80",
-      success: "text-emerald-500 hover:text-emerald-600",
-      warning: "text-amber-500 hover:text-amber-600",
-      error: "text-red-500 hover:text-red-600",
-      info: "text-blue-500 hover:text-blue-600"
-    };
-    return colorMap[activeColor];
-  };
-  const getActiveBgClasses = () => {
-    const bgMap = {
-      primary: "bg-primary hover:bg-primary/90 text-primary-foreground border-primary",
-      success: "bg-emerald-500 hover:bg-emerald-600 text-white border-emerald-500",
-      warning: "bg-amber-500 hover:bg-amber-600 text-white border-amber-500",
-      error: "bg-red-500 hover:bg-red-600 text-white border-red-500",
-      info: "bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
-    };
-    return bgMap[activeColor];
-  };
-  if (variant === "compact") {
-    return /* @__PURE__ */ jsxRuntime.jsxs(
-      "button",
-      {
-        onClick: handleLike,
-        className: cn(
-          "inline-flex items-center gap-1.5 text-sm transition-colors",
-          isLiked ? getColorClasses2() : "text-muted-foreground hover:text-foreground",
-          className
-        ),
-        "aria-label": `${isLiked ? activeLabel : inactiveLabel} - ${likes} curtidas`,
-        children: [
-          /* @__PURE__ */ jsxRuntime.jsx(
-            framerMotion.motion.div,
-            {
-              animate: isAnimating ? {
-                scale: [1, 1.3, 1]
-              } : {},
-              transition: { duration: 0.3 },
-              children: /* @__PURE__ */ jsxRuntime.jsx(
-                Heart__default.default,
-                {
-                  className: cn("h-4 w-4 transition-all", isLiked && "fill-current")
-                }
-              )
-            }
-          ),
-          showCount && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-medium", children: likes.toLocaleString() })
-        ]
-      }
-    );
-  }
-  return /* @__PURE__ */ jsxRuntime.jsxs(
-    Button,
-    {
-      variant: isLiked ? "default" : "outline",
-      size,
-      onClick: handleLike,
-      className: cn(
-        "gap-2 transition-all",
-        isLiked && getActiveBgClasses(),
-        className
-      ),
-      "aria-label": `${isLiked ? activeLabel : inactiveLabel} - ${likes} curtidas`,
-      children: [
-        /* @__PURE__ */ jsxRuntime.jsx(
-          framerMotion.motion.div,
-          {
-            animate: isAnimating ? {
-              scale: [1, 1.3, 1],
-              rotate: [0, -10, 10, 0]
-            } : {},
-            transition: { duration: 0.6, ease: "easeInOut" },
-            children: /* @__PURE__ */ jsxRuntime.jsx(
-              Heart__default.default,
-              {
-                className: cn("h-4 w-4 transition-all", isLiked && "fill-current")
-              }
-            )
-          }
-        ),
-        showLabel && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-medium", children: isLiked ? activeLabel : inactiveLabel }),
-        showCount && likes > 0 && /* @__PURE__ */ jsxRuntime.jsx(
-          "span",
-          {
-            className: cn(
-              "text-xs px-1.5 py-0.5 rounded-full",
-              isLiked ? "bg-current/20 text-current" : "bg-muted text-muted-foreground"
-            ),
-            children: likes.toLocaleString()
-          }
-        )
-      ]
-    }
-  );
-}
-var SHARE_URLS = {
-  facebook: `https://www.facebook.com/sharer/sharer.php?u={url}`,
-  twitter: `https://twitter.com/intent/tweet?url={url}&text={title}`,
-  linkedin: `https://www.linkedin.com/sharing/share-offsite/?url={url}`,
-  whatsapp: `https://api.whatsapp.com/send?text={title}%20{url}`,
-  telegram: `https://t.me/share/url?url={url}&text={title}`
+var COLORS = {
+  primary: "var(--color-blue-500)",
+  success: "var(--color-green-500)",
+  warning: "#f59e0b",
+  error: "var(--color-red-500)",
+  info: "var(--color-cyan-500)",
+  gray: "var(--color-gray-500)"
 };
-function ShareButton({
-  url,
-  title,
-  description = "",
-  variant = "outline",
-  size = "sm",
-  showLabel = true,
-  onShare,
-  onCopy
-}) {
-  const [copied, setCopied] = React62.useState(false);
-  const [showQR, setShowQR] = React62.useState(false);
-  const shareUrl = typeof window !== "undefined" ? `${window.location.origin}${url}` : url;
-  async function copyToClipboard() {
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      setCopied(true);
-      onCopy?.();
-      setTimeout(() => setCopied(false), 2e3);
-    } catch (error) {
-      console.error("Erro ao copiar link:", error);
-    }
-  }
-  async function shareNative() {
-    if (navigator.share) {
+var SocialButton = ({ action, size, variant, showCount, animated, onClick }) => {
+  const [isActive, setIsActive] = React65.useState(action.active || false);
+  const [count, setCount] = React65.useState(action.count || 0);
+  React65.useEffect(() => {
+    const key = `social-${action.id}`;
+    const saved = localStorage.getItem(key);
+    if (saved) {
       try {
-        await navigator.share({
-          title,
-          text: description,
-          url: shareUrl
-        });
-        onShare?.("native");
+        const data = JSON.parse(saved);
+        setIsActive(data.active);
+        setCount(data.count);
       } catch (error) {
-        if (error instanceof Error && error.name !== "AbortError") {
-          console.error("Erro ao compartilhar:", error);
-        }
+        console.warn("Error loading state:", error);
       }
     }
-  }
-  function shareOnPlatform(platform) {
-    const encodedUrl = encodeURIComponent(shareUrl);
-    const encodedTitle = encodeURIComponent(title);
-    const platformUrl = SHARE_URLS[platform].replace("{url}", encodedUrl).replace("{title}", encodedTitle);
-    window.open(
-      platformUrl,
-      "_blank",
-      "noopener,noreferrer,width=600,height=600"
-    );
-    onShare?.(platform);
-  }
-  return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenu, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsxs(Button, { variant, size, className: "gap-2", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(Share2__default.default, { className: "h-4 w-4" }),
-        showLabel && /* @__PURE__ */ jsxRuntime.jsx("span", { children: "Compartilhar" })
-      ] }) }),
-      /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuContent, { align: "end", className: "w-56", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuLabel, { children: "Compartilhar em" }),
-        /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {}),
-        typeof navigator !== "undefined" && "share" in navigator && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: shareNative, children: [
-            /* @__PURE__ */ jsxRuntime.jsx(Share2__default.default, { className: "mr-2 h-4 w-4" }),
-            "Compartilhar..."
-          ] }),
-          /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {})
-        ] }),
-        /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("facebook"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Facebook__default.default, { className: "mr-2 h-4 w-4 text-blue-600" }),
-          "Facebook"
-        ] }),
-        /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("twitter"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Twitter__default.default, { className: "mr-2 h-4 w-4 text-sky-500" }),
-          "Twitter / X"
-        ] }),
-        /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("linkedin"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Linkedin__default.default, { className: "mr-2 h-4 w-4 text-blue-700" }),
-          "LinkedIn"
-        ] }),
-        /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("whatsapp"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(MessageCircle__default.default, { className: "mr-2 h-4 w-4 text-green-600" }),
-          "WhatsApp"
-        ] }),
-        /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => shareOnPlatform("telegram"), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Send__default.default, { className: "mr-2 h-4 w-4 text-blue-500" }),
-          "Telegram"
-        ] }),
-        /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {}),
-        /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuItem, { onClick: copyToClipboard, children: copied ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Check4__default.default, { className: "mr-2 h-4 w-4 text-green-500" }),
-          /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-green-500", children: "Link copiado!" })
-        ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Link3__default.default, { className: "mr-2 h-4 w-4" }),
-          "Copiar link"
-        ] }) }),
-        /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => setShowQR(true), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(QrCode__default.default, { className: "mr-2 h-4 w-4" }),
-          "QR Code"
-        ] })
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxRuntime.jsx(Dialog, { open: showQR, onOpenChange: setShowQR, children: /* @__PURE__ */ jsxRuntime.jsxs(DialogContent, { className: "sm:max-w-md", children: [
-      /* @__PURE__ */ jsxRuntime.jsxs(DialogHeader, { className: "space-y-2", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(DialogTitle, { children: "Compartilhar via QR Code" }),
-        /* @__PURE__ */ jsxRuntime.jsx(DialogDescription, { children: "Escaneie o QR Code abaixo para acessar este conte\xFAdo" })
-      ] }),
-      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex justify-center p-6 bg-white rounded-lg", children: /* @__PURE__ */ jsxRuntime.jsx(
-        qrcode_react.QRCodeSVG,
-        {
-          value: shareUrl,
-          size: 256,
-          level: "H",
-          includeMargin: true
-        }
-      ) }),
-      /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-2", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(
-          Button,
-          {
-            variant: "outline",
-            size: "lg",
-            className: "flex-1",
-            onClick: () => setShowQR(false),
-            children: "Fechar"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntime.jsxs(
-          Button,
-          {
-            variant: "default",
-            size: "lg",
-            className: "flex-1",
-            onClick: copyToClipboard,
-            children: [
-              /* @__PURE__ */ jsxRuntime.jsx(Link3__default.default, { className: "mr-2 h-4 w-4" }),
-              "Copiar Link"
-            ]
-          }
-        )
-      ] })
-    ] }) })
-  ] });
-}
-function BookmarkButton({
-  itemId,
-  initialIsBookmarked = false,
-  variant = "ghost",
-  activeColor = "warning",
-  size = "sm",
-  showLabel = true,
-  activeLabel = "Salvo",
-  inactiveLabel = "Salvar",
-  onBookmark,
-  onUnbookmark,
-  className
-}) {
-  const [isBookmarked, setIsBookmarked] = React62.useState(initialIsBookmarked);
-  const [isAnimating, setIsAnimating] = React62.useState(false);
-  const handleBookmark = () => {
-    setIsAnimating(true);
-    console.debug(`A\xE7\xE3o de bookmark para o item: ${itemId}`);
-    if (isBookmarked) {
-      setIsBookmarked(false);
-      onUnbookmark?.(itemId);
-    } else {
-      setIsBookmarked(true);
-      onBookmark?.(itemId);
-    }
-    setTimeout(() => setIsAnimating(false), 600);
+  }, [action.id]);
+  const saveState = React65.useCallback((newActive, newCount) => {
+    const key = `social-${action.id}`;
+    localStorage.setItem(key, JSON.stringify({
+      active: newActive,
+      count: newCount,
+      timestamp: Date.now()
+    }));
+  }, [action.id]);
+  const handleClick = React65.useCallback(() => {
+    if (action.disabled) return;
+    const newActive = !isActive;
+    const newCount = action.type === "like" || action.type === "bookmark" ? newActive ? count + 1 : Math.max(0, count - 1) : count;
+    setIsActive(newActive);
+    setCount(newCount);
+    saveState(newActive, newCount);
+    onClick();
+  }, [isActive, count, action.type, action.disabled, onClick, saveState]);
+  const sizeClasses2 = {
+    sm: "px-2 py-1 text-xs gap-1",
+    md: "px-3 py-1.5 text-sm gap-2",
+    lg: "px-4 py-2 text-base gap-2"
   };
-  const getColorClasses2 = () => {
-    const colorMap = {
-      primary: "text-primary hover:text-primary/80",
-      success: "text-emerald-500 hover:text-emerald-600",
-      warning: "text-amber-500 hover:text-amber-600",
-      error: "text-red-500 hover:text-red-600",
-      info: "text-blue-500 hover:text-blue-600"
-    };
-    return colorMap[activeColor];
+  const iconSizes = {
+    sm: "h-3 w-3",
+    md: "h-4 w-4",
+    lg: "h-5 w-5"
   };
-  const getActiveBgClasses = () => {
-    const bgMap = {
-      primary: "bg-primary hover:bg-primary/90 text-primary-foreground border-primary",
-      success: "bg-emerald-500 hover:bg-emerald-600 text-white border-emerald-500",
-      warning: "bg-amber-500 hover:bg-amber-600 text-white border-amber-500",
-      error: "bg-red-500 hover:bg-red-600 text-white border-red-500",
-      info: "bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
-    };
-    return bgMap[activeColor];
-  };
-  return /* @__PURE__ */ jsxRuntime.jsxs(
-    Button,
-    {
-      variant: isBookmarked && variant === "default" ? "default" : variant,
-      size,
-      onClick: handleBookmark,
-      className: cn(
-        "gap-2 transition-all",
-        isBookmarked && variant === "ghost" && getColorClasses2(),
-        isBookmarked && variant === "default" && getActiveBgClasses(),
-        className
-      ),
-      "aria-label": isBookmarked ? "Remover dos salvos" : "Salvar para ler depois",
-      children: [
-        /* @__PURE__ */ jsxRuntime.jsx(
-          framerMotion.motion.div,
-          {
-            animate: isAnimating ? {
-              scale: [1, 1.3, 1],
-              rotate: [0, -15, 15, 0]
-            } : {},
-            transition: { duration: 0.6, ease: "easeInOut" },
-            children: /* @__PURE__ */ jsxRuntime.jsx(
-              Bookmark__default.default,
-              {
-                className: cn(
-                  "h-4 w-4 transition-all",
-                  isBookmarked && "fill-current"
-                )
-              }
-            )
-          }
-        ),
-        showLabel && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-medium", children: isBookmarked ? activeLabel : inactiveLabel })
-      ]
-    }
-  );
-}
-var formatTime = (time, unit) => {
-  switch (unit) {
-    case "hours":
-      return (time / 60).toFixed(1);
-    case "seconds":
-      return (time * 60).toString();
-    default:
-      return time.toString();
-  }
-};
-var getUnitText = (unit, time) => {
-  const timeValue = unit === "hours" ? time / 60 : time;
-  if (unit === "hours") {
-    return timeValue <= 1 ? "hora" : "horas";
-  }
-  if (unit === "minutes") {
-    return timeValue <= 1 ? "minuto" : "minutos";
-  }
-  if (unit === "seconds") {
-    return timeValue <= 1 ? "segundo" : "segundos";
-  }
-  return timeValue <= 1 ? "min" : "min";
-};
-var getColorClasses = (color) => {
-  const colorMap = {
-    muted: "text-muted-foreground",
-    primary: "text-primary",
-    secondary: "text-secondary-foreground",
-    accent: "text-accent-foreground"
-  };
-  return colorMap[color] || "text-muted-foreground";
-};
-var getSizeClasses = (size) => {
-  const sizeMap = {
-    sm: "text-xs",
-    default: "text-sm",
-    lg: "text-base"
-  };
-  return sizeMap[size] || "text-sm";
-};
-function ReadingTime({
-  readTime,
-  unit = "min",
-  text,
-  className,
-  showIcon = true,
-  icon,
-  size = "default",
-  color = "muted"
-}) {
-  if (!readTime) {
-    return null;
-  }
-  const formattedTime = formatTime(readTime, unit);
-  const unitText = getUnitText(unit, readTime);
-  const defaultText = text || `${formattedTime} ${unitText}`;
-  const colorClasses = getColorClasses(color);
-  const sizeClasses2 = getSizeClasses(size);
-  return /* @__PURE__ */ jsxRuntime.jsxs(
-    "div",
-    {
-      className: cn(
-        "inline-flex items-center gap-1.5 transition-colors",
-        colorClasses,
-        sizeClasses2,
-        className
-      ),
-      role: "timer",
-      "aria-label": `Tempo estimado: ${formattedTime} ${unitText}`,
-      children: [
-        showIcon && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "flex-shrink-0", "aria-hidden": "true", children: icon || /* @__PURE__ */ jsxRuntime.jsx(Clock__default.default, { className: "h-4 w-4" }) }),
-        /* @__PURE__ */ jsxRuntime.jsx("span", { className: "whitespace-nowrap", children: defaultText })
-      ]
-    }
-  );
-}
-var activeColorClasses = {
-  primary: "bg-primary hover:bg-primary/90 text-primary-foreground border-primary",
-  success: "bg-emerald-500 hover:bg-emerald-600 text-white border-emerald-500",
-  warning: "bg-amber-500 hover:bg-amber-600 text-white border-amber-500",
-  error: "bg-red-500 hover:bg-red-600 text-white border-red-500",
-  info: "bg-blue-500 hover:bg-blue-600 text-white border-blue-500"
-};
-var animationPresets = {
-  scale: { scale: [1, 1.2, 1] },
-  bounce: { y: [0, -8, 0] },
-  rotate: { rotate: [0, -15, 15, 0] },
-  pulse: { scale: [1, 1.05, 1] }
-};
-function ActionButton({
-  icon,
-  activeIcon,
-  isActive = false,
-  onToggle,
-  count,
-  inactiveLabel,
-  activeLabel,
-  variant = "default",
-  size = "default",
-  showCount = true,
-  showLabel = true,
-  animation = { type: "scale", duration: 0.3, intensity: "normal" },
-  className,
-  disabled = false,
-  ariaLabel,
-  activeColor = "primary"
-}) {
-  const [isAnimating, setIsAnimating] = React62.useState(false);
-  const [currentActive, setCurrentActive] = React62.useState(isActive);
-  React62.useEffect(() => {
-    setCurrentActive(isActive);
-  }, [isActive]);
-  const handleClick = () => {
-    if (disabled || isAnimating) return;
-    setIsAnimating(true);
-    const newActive = !currentActive;
-    setCurrentActive(newActive);
-    onToggle?.(newActive);
-    setTimeout(() => setIsAnimating(false), (animation.duration || 0.3) * 1e3);
-  };
-  const animationConfig = animation.type ? animationPresets[animation.type] : animationPresets.scale;
-  const dynamicClasses = cn(
-    currentActive && activeColorClasses[activeColor],
-    currentActive && variant === "ghost" && "text-opacity-80",
-    "transition-all duration-200"
-  );
-  const dynamicLabel = currentActive ? activeLabel : inactiveLabel;
-  const dynamicIcon = currentActive && activeIcon ? activeIcon : icon;
-  const dynamicAriaLabel = ariaLabel || (dynamicLabel ? `${dynamicLabel}${count ? ` (${count})` : ""}` : `${currentActive ? "Desativar" : "Ativar"} a\xE7\xE3o${count ? ` (${count})` : ""}`);
-  return /* @__PURE__ */ jsxRuntime.jsxs(
-    Button,
-    {
-      variant: currentActive && activeColor === "primary" ? "default" : variant,
-      size,
-      onClick: handleClick,
-      disabled,
-      className: cn("gap-2", dynamicClasses, className),
-      "aria-label": dynamicAriaLabel,
-      "aria-pressed": currentActive,
-      children: [
-        /* @__PURE__ */ jsxRuntime.jsx(
-          framerMotion.motion.div,
-          {
-            animate: isAnimating ? animationConfig : {},
-            transition: {
-              duration: animation.duration || 0.3,
-              ease: "easeInOut"
-            },
-            className: "flex-shrink-0",
-            children: dynamicIcon
-          }
-        ),
-        showLabel && dynamicLabel && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-medium whitespace-nowrap", children: dynamicLabel }),
-        showCount && count !== void 0 && count > 0 && /* @__PURE__ */ jsxRuntime.jsx(
-          "span",
-          {
-            className: cn(
-              "text-xs px-1.5 py-0.5 rounded-full min-w-[20px] text-center",
-              currentActive ? "bg-current/20 text-current" : "bg-muted text-muted-foreground"
-            ),
-            children: count.toLocaleString()
-          }
-        )
-      ]
-    }
-  );
-}
-var ActionButtonVariants = {
-  /**
-   * Botão de curtir (coração)
-   */
-  Like: (props) => /* @__PURE__ */ jsxRuntime.jsx(ActionButton, { ...props, activeColor: "error" }),
-  /**
-   * Botão de favorito (estrela)
-   */
-  Favorite: (props) => /* @__PURE__ */ jsxRuntime.jsx(ActionButton, { ...props, activeColor: "warning" }),
-  /**
-   * Botão de follow/seguir
-   */
-  Follow: (props) => /* @__PURE__ */ jsxRuntime.jsx(ActionButton, { ...props, activeColor: "success" }),
-  /**
-   * Botão de save/salvar
-   */
-  Save: (props) => /* @__PURE__ */ jsxRuntime.jsx(ActionButton, { ...props, activeColor: "info" })
-};
-var DEFAULT_PLATFORMS = [
-  {
-    id: "facebook",
-    name: "Facebook",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(Facebook__default.default, { className: "h-4 w-4" }),
-    color: "text-blue-600",
-    url: "https://www.facebook.com/sharer/sharer.php?u={url}&t={title}",
-    order: 1
-  },
-  {
-    id: "twitter",
-    name: "Twitter / X",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(Twitter__default.default, { className: "h-4 w-4" }),
-    color: "text-sky-500",
-    url: "https://twitter.com/intent/tweet?url={url}&text={title}",
-    order: 2
-  },
-  {
-    id: "linkedin",
-    name: "LinkedIn",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(Linkedin__default.default, { className: "h-4 w-4" }),
-    color: "text-blue-700",
-    url: "https://www.linkedin.com/sharing/share-offsite/?url={url}",
-    order: 3
-  },
-  {
-    id: "whatsapp",
-    name: "WhatsApp",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(MessageCircle__default.default, { className: "h-4 w-4" }),
-    color: "text-green-600",
-    url: "https://api.whatsapp.com/send?text={title}%20{url}",
-    order: 4
-  },
-  {
-    id: "telegram",
-    name: "Telegram",
-    icon: /* @__PURE__ */ jsxRuntime.jsx(Send__default.default, { className: "h-4 w-4" }),
-    color: "text-blue-500",
-    url: "https://t.me/share/url?url={url}&text={title}",
-    order: 5
-  }
-];
-function ShareMenu({
-  url,
-  title,
-  description = "",
-  platforms = ["facebook", "twitter", "linkedin", "whatsapp", "copy", "qr"],
-  showCopyLink = true,
-  showQRCode = true,
-  showNativeShare = true,
-  variant = "outline",
-  size = "sm",
-  label = "Compartilhar",
-  showLabel = true,
-  onShare,
-  className,
-  side = "bottom",
-  align = "end"
-}) {
-  const [copied, setCopied] = React62.useState(false);
-  const [showQR, setShowQR] = React62.useState(false);
-  const shareUrl = typeof window !== "undefined" ? url.startsWith("http") ? url : `${window.location.origin}${url}` : url;
-  const copyToClipboard = async () => {
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      setCopied(true);
-      onShare?.("copy", { url: shareUrl });
-      setTimeout(() => setCopied(false), 2e3);
-    } catch (error) {
-      console.error("Erro ao copiar link:", error);
-      onShare?.("copy-error", { error });
-    }
-  };
-  const shareNative = async () => {
-    if (!navigator.share) return;
-    try {
-      await navigator.share({
-        title,
-        text: description,
-        url: shareUrl
-      });
-      onShare?.("native", { title, description, url: shareUrl });
-    } catch (error) {
-      if (error instanceof Error && error.name !== "AbortError") {
-        console.error("Erro no compartilhamento nativo:", error);
-        onShare?.("native-error", { error });
-      }
-    }
-  };
-  const shareOnPlatform = (platform) => {
-    const encodedUrl = encodeURIComponent(shareUrl);
-    const encodedTitle = encodeURIComponent(title);
-    const platformUrl = platform.url.replace("{url}", encodedUrl).replace("{title}", encodedTitle);
-    window.open(
-      platformUrl,
-      "_blank",
-      "noopener,noreferrer,width=600,height=600"
-    );
-    onShare?.(platform.id, {
-      platform: platform.name,
-      url: shareUrl,
-      title
-    });
-  };
-  const enabledPlatforms = DEFAULT_PLATFORMS.filter(
-    (p) => platforms.includes(p.id)
-  ).sort((a, b) => (a.order || 0) - (b.order || 0));
-  const TriggerButton = () => /* @__PURE__ */ jsxRuntime.jsxs(Button, { variant, size, className: cn("gap-2", className), children: [
-    /* @__PURE__ */ jsxRuntime.jsx(Share2__default.default, { className: "h-4 w-4" }),
-    showLabel && /* @__PURE__ */ jsxRuntime.jsx("span", { children: label })
-  ] });
-  return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenu, { children: [
-      /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuTrigger, { asChild: true, children: /* @__PURE__ */ jsxRuntime.jsx(TriggerButton, {}) }),
-      /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuContent, { align, side, className: "w-56", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuLabel, { children: "Compartilhar em" }),
-        /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {}),
-        showNativeShare && typeof navigator !== "undefined" && "share" in navigator && /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: shareNative, children: [
-            /* @__PURE__ */ jsxRuntime.jsx(Smartphone__default.default, { className: "mr-2 h-4 w-4" }),
-            "Compartilhar..."
-          ] }),
-          /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {})
-        ] }),
-        enabledPlatforms.map((platform) => /* @__PURE__ */ jsxRuntime.jsxs(
-          DropdownMenuItem,
-          {
-            onClick: () => shareOnPlatform(platform),
-            children: [
-              /* @__PURE__ */ jsxRuntime.jsx("span", { className: cn("mr-2 h-4 w-4", platform.color), children: platform.icon }),
-              platform.name
-            ]
-          },
-          platform.id
-        )),
-        (showCopyLink || showQRCode) && /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuSeparator, {}),
-        showCopyLink && /* @__PURE__ */ jsxRuntime.jsx(DropdownMenuItem, { onClick: copyToClipboard, children: copied ? /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Check4__default.default, { className: "mr-2 h-4 w-4 text-green-500" }),
-          /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-green-500", children: "Link copiado!" })
-        ] }) : /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-          /* @__PURE__ */ jsxRuntime.jsx(Copy__default.default, { className: "mr-2 h-4 w-4" }),
-          "Copiar link"
-        ] }) }),
-        showQRCode && /* @__PURE__ */ jsxRuntime.jsxs(DropdownMenuItem, { onClick: () => setShowQR(true), children: [
-          /* @__PURE__ */ jsxRuntime.jsx(QrCode__default.default, { className: "mr-2 h-4 w-4" }),
-          "QR Code"
-        ] })
-      ] })
-    ] }),
-    showQRCode && /* @__PURE__ */ jsxRuntime.jsx(Dialog, { open: showQR, onOpenChange: setShowQR, children: /* @__PURE__ */ jsxRuntime.jsxs(DialogContent, { className: "sm:max-w-md", children: [
-      /* @__PURE__ */ jsxRuntime.jsxs(DialogHeader, { className: "space-y-2", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(DialogTitle, { children: "Compartilhar via QR Code" }),
-        /* @__PURE__ */ jsxRuntime.jsx(DialogDescription, { children: "Escaneie o QR Code para acessar este conte\xFAdo" })
-      ] }),
-      /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex justify-center p-6 bg-white rounded-lg", children: /* @__PURE__ */ jsxRuntime.jsx(
-        qrcode_react.QRCodeSVG,
-        {
-          value: shareUrl,
-          size: 256,
-          level: "H",
-          includeMargin: true,
-          bgColor: "white",
-          fgColor: "black"
-        }
-      ) }),
-      /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex gap-2", children: [
-        /* @__PURE__ */ jsxRuntime.jsx(
-          Button,
-          {
-            variant: "outline",
-            size: "lg",
-            className: "flex-1",
-            onClick: () => setShowQR(false),
-            children: "Fechar"
-          }
-        ),
-        /* @__PURE__ */ jsxRuntime.jsxs(
-          Button,
-          {
-            variant: "default",
-            size: "lg",
-            className: "flex-1",
-            onClick: copyToClipboard,
-            children: [
-              /* @__PURE__ */ jsxRuntime.jsx(Link22__default.default, { className: "mr-2 h-4 w-4" }),
-              "Copiar Link"
-            ]
-          }
-        )
-      ] })
-    ] }) })
-  ] });
-}
-var ShareMenuVariants = {
-  /**
-   * Variante para blogs com foco em redes sociais
-   */
-  Blog: (props) => /* @__PURE__ */ jsxRuntime.jsx(
-    ShareMenu,
-    {
-      ...props,
-      platforms: ["twitter", "facebook", "linkedin", "whatsapp", "copy", "qr"]
-    }
-  ),
-  /**
-   * Variante para e-commerce com foco em WhatsApp
-   */
-  Ecommerce: (props) => /* @__PURE__ */ jsxRuntime.jsx(
-    ShareMenu,
-    {
-      ...props,
-      platforms: ["whatsapp", "facebook", "telegram", "copy"],
-      showQRCode: false
-    }
-  ),
-  /**
-   * Variante minimalista para dashboards
-   */
-  Dashboard: (props) => /* @__PURE__ */ jsxRuntime.jsx(
-    ShareMenu,
-    {
-      ...props,
-      platforms: ["copy"],
-      variant: "ghost",
-      size: "sm",
-      showQRCode: false
-    }
-  ),
-  /**
-   * Variante otimizada para dispositivos móveis
-   */
-  Mobile: (props) => /* @__PURE__ */ jsxRuntime.jsx(
-    ShareMenu,
-    {
-      ...props,
-      platforms: ["native", "whatsapp", "telegram", "copy"],
-      showNativeShare: true
-    }
-  )
-};
-var badgeVariants2 = classVarianceAuthority.cva(
-  "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-  {
-    /**
-     * Variantes de estilo
-     * Cada variante define aparência diferente do badge
-     */
-    variants: {
-      variant: {
-        /** Badge primário - cor primária com borda transparente */
-        default: "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
-        /** Badge secundário - cor secundária */
-        secondary: "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        /** Badge destrutivo - para status negativos/erros */
-        destructive: "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        /** Badge outline - apenas borda, fundo transparente */
-        outline: "text-foreground"
-      }
-    },
-    /**
-     * Variante padrão aplicada quando prop não é fornecida
-     */
-    defaultVariants: {
-      variant: "default"
-    }
-  }
-);
-function Badge2({ className, variant, ...props }) {
-  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(badgeVariants2({ variant }), className), ...props });
-}
-var formatRelativeDate = (date) => {
-  try {
-    return dateFns.formatDistanceToNow(new Date(date), {
-      addSuffix: true,
-      locale: locale.ptBR
-    });
-  } catch {
-    return "";
-  }
-};
-function ContentCard({
-  title,
-  description,
-  image,
-  link,
-  metadata,
-  actions,
-  variant = "default",
-  orientation = "vertical",
-  showImage = true,
-  showMetadata = true,
-  showActions = true,
-  imageAlt,
-  imagePriority = false,
-  className,
-  onClick,
-  external = false
-}) {
-  const renderImage = () => {
-    if (!showImage || !image) return null;
-    return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative overflow-hidden", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "aspect-video relative", children: [
-      React62__namespace.default.createElement("img", {
-        src: image,
-        alt: imageAlt || title,
-        className: cn(
-          "w-full h-full object-cover transition-transform duration-300",
-          "group-hover:scale-105"
-        ),
-        loading: imagePriority ? "eager" : "lazy"
-      }),
-      metadata?.badge && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute top-2 right-2", children: /* @__PURE__ */ jsxRuntime.jsx(Badge2, { variant: "default", className: "bg-red-500 text-white", children: metadata.badge }) })
-    ] }) });
-  };
-  const renderMetadata = () => {
-    if (!showMetadata || !metadata) return null;
-    return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-wrap items-center gap-2 text-sm text-muted-foreground", children: [
-      metadata.category && /* @__PURE__ */ jsxRuntime.jsx(Badge2, { variant: "secondary", className: "text-xs", children: metadata.category }),
-      metadata.date && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "flex items-center gap-1", children: formatRelativeDate(metadata.date) }),
-      metadata.readTime && /* @__PURE__ */ jsxRuntime.jsxs("span", { className: "flex items-center gap-1", children: [
-        "\u{1F4D6} ",
-        metadata.readTime,
-        " min"
-      ] }),
-      metadata.author && /* @__PURE__ */ jsxRuntime.jsxs("span", { children: [
-        "por ",
-        metadata.author
-      ] }),
-      metadata.source && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-medium", children: metadata.source }),
-      metadata.price && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "font-bold text-primary text-base", children: metadata.price })
-    ] });
-  };
-  const renderActions = () => {
-    if (!showActions || !actions) return null;
-    return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center justify-between", children: [
-      /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2", children: [
-        actions.like && /* @__PURE__ */ jsxRuntime.jsxs(
-          Button,
-          {
-            variant: "ghost",
-            size: "sm",
-            className: cn(
-              "gap-1.5",
-              actions.like.active && "text-red-500"
-            ),
-            onClick: () => actions.like?.onAction?.("like", actions.like),
-            children: [
-              /* @__PURE__ */ jsxRuntime.jsx("span", { className: cn(actions.like.active && "fill-current"), children: "\u2764\uFE0F" }),
-              actions.like.count && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs", children: actions.like.count })
-            ]
-          }
-        ),
-        actions.favorite && /* @__PURE__ */ jsxRuntime.jsxs(
-          Button,
-          {
-            variant: "ghost",
-            size: "sm",
-            className: cn(
-              "gap-1.5",
-              actions.favorite.active && "text-yellow-500"
-            ),
-            onClick: () => actions.favorite?.onAction?.("favorite", actions.favorite),
-            children: [
-              /* @__PURE__ */ jsxRuntime.jsx("span", { className: cn(actions.favorite.active && "fill-current"), children: "\u2B50" }),
-              actions.favorite.count && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-xs", children: actions.favorite.count })
-            ]
-          }
-        ),
-        actions.bookmark && /* @__PURE__ */ jsxRuntime.jsx(
-          Button,
-          {
-            variant: "ghost",
-            size: "sm",
-            className: cn(
-              "gap-1.5",
-              actions.bookmark.active && "text-blue-500"
-            ),
-            onClick: () => actions.bookmark?.onAction?.("bookmark", actions.bookmark),
-            children: /* @__PURE__ */ jsxRuntime.jsx("span", { className: cn(actions.bookmark.active && "fill-current"), children: "\u{1F516}" })
-          }
-        )
-      ] }),
-      actions.share && /* @__PURE__ */ jsxRuntime.jsx(
-        Button,
-        {
-          variant: "ghost",
-          size: "sm",
-          className: "gap-1.5",
-          onClick: () => actions.share?.onAction?.("share", actions.share),
-          children: "\u{1F4E4}"
-        }
-      )
-    ] });
-  };
+  const color = action.color || "primary";
+  const colorValue = COLORS[color];
   const variantClasses2 = {
-    default: "hover:shadow-lg transition-shadow duration-300",
-    product: "hover:shadow-xl transition-all duration-300 hover:-translate-y-1",
-    news: "border-l-4 border-l-primary hover:shadow-lg transition-shadow duration-300",
-    minimal: "border-0 shadow-none hover:bg-accent/50 transition-colors duration-300",
-    featured: "ring-2 ring-primary/20 hover:ring-primary/40 transition-all duration-300"
+    default: cn(
+      "border transition-all",
+      isActive ? `bg-[${colorValue}] text-white border-[${colorValue}]` : "bg-background hover:bg-muted text-foreground border-border"
+    ),
+    minimal: cn(
+      "transition-colors",
+      isActive ? `text-[${colorValue}]` : "text-muted-foreground hover:text-foreground"
+    ),
+    elevated: cn(
+      "border shadow-md hover:shadow-lg transition-all",
+      isActive ? `bg-[${colorValue}] text-white border-[${colorValue}]` : "bg-background hover:bg-muted text-foreground border-border"
+    ),
+    neon: cn(
+      "relative border transition-all",
+      isActive ? `border-[${colorValue}] text-[${colorValue}] shadow-[0_0_20px_var(--color-cyan-500)]` : "border-border/40 text-muted-foreground hover:border-[${colorValue}] hover:text-[${colorValue}]"
+    )
   };
-  const Wrapper = link ? "a" : "div";
-  const wrapperProps = link ? {
-    href: link,
-    target: external ? "_blank" : void 0,
-    rel: external ? "noopener noreferrer" : void 0
-  } : {};
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    framerMotion.motion.div,
+  return /* @__PURE__ */ jsxRuntime.jsxs(
+    framerMotion.motion.button,
     {
-      whileHover: { y: orientation === "vertical" ? -4 : 0 },
-      transition: { duration: 0.2 },
       className: cn(
-        "group",
-        orientation === "horizontal" && "flex gap-4",
-        className
+        "inline-flex items-center justify-center rounded-md font-medium",
+        "focus:outline-none focus:ring-2 focus:ring-offset-2",
+        "disabled:opacity-50 disabled:cursor-not-allowed",
+        sizeClasses2[size],
+        variantClasses2[variant]
       ),
-      children: /* @__PURE__ */ jsxRuntime.jsx(
-        Wrapper,
-        {
-          ...wrapperProps,
-          onClick,
-          className: cn("block", link && "hover:underline-none"),
-          children: /* @__PURE__ */ jsxRuntime.jsxs(
-            Card2,
-            {
-              className: cn(
-                "h-full overflow-hidden",
-                variantClasses2[variant],
-                orientation === "horizontal" && "flex-row",
-                "transition-all duration-300"
-              ),
-              children: [
-                orientation === "vertical" && renderImage(),
-                /* @__PURE__ */ jsxRuntime.jsxs("div", { className: cn(
-                  "flex flex-col",
-                  orientation === "horizontal" && "flex-1"
-                ), children: [
-                  /* @__PURE__ */ jsxRuntime.jsxs(CardHeader2, { className: "pb-2", children: [
-                    renderMetadata(),
-                    /* @__PURE__ */ jsxRuntime.jsx("h3", { className: cn(
-                      "font-semibold line-clamp-2",
-                      variant === "featured" ? "text-xl" : "text-lg",
-                      "group-hover:text-primary transition-colors duration-200"
-                    ), children: title })
-                  ] }),
-                  description && /* @__PURE__ */ jsxRuntime.jsx(CardContent2, { className: "pt-0", children: /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted-foreground line-clamp-3", children: description }) }),
-                  (link || showActions) && /* @__PURE__ */ jsxRuntime.jsxs(CardFooter2, { className: cn(
-                    "pt-4",
-                    "flex items-center justify-between",
-                    !showActions && "justify-end"
-                  ), children: [
-                    renderActions(),
-                    link && /* @__PURE__ */ jsxRuntime.jsxs(
-                      Button,
-                      {
-                        variant: "ghost",
-                        size: "sm",
-                        className: "gap-1 text-primary",
-                        children: [
-                          "Ler mais",
-                          /* @__PURE__ */ jsxRuntime.jsx(Link3__default.default, { className: "h-3 w-3" })
-                        ]
-                      }
-                    )
-                  ] })
-                ] }),
-                orientation === "horizontal" && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-1/3", children: renderImage() })
-              ]
-            }
-          )
-        }
-      )
+      onClick: handleClick,
+      disabled: action.disabled,
+      animate: animated && isActive ? { scale: [1, 1.2, 1] } : {},
+      transition: { duration: 0.2 },
+      whileHover: animated ? { scale: 1.05 } : {},
+      whileTap: animated ? { scale: 0.95 } : {},
+      children: [
+        /* @__PURE__ */ jsxRuntime.jsx("span", { className: cn("flex-shrink-0", iconSizes[size]), children: isActive && action.activeIcon ? action.activeIcon : action.icon }),
+        showCount && count > 0 && /* @__PURE__ */ jsxRuntime.jsx(
+          framerMotion.motion.span,
+          {
+            className: "min-w-[1.2rem] text-center font-mono",
+            initial: { scale: 0.8, opacity: 0 },
+            animate: { scale: 1, opacity: 1 },
+            children: count.toLocaleString()
+          },
+          count
+        ),
+        action.label && variant !== "minimal" && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "truncate", children: action.label })
+      ]
     }
   );
-}
-var ContentCardVariants = {
-  /**
-   * Card para blog posts
-   */
-  BlogPost: (props) => /* @__PURE__ */ jsxRuntime.jsx(ContentCard, { ...props, variant: "default" }),
-  /**
-   * Card para produtos
-   */
-  Product: (props) => /* @__PURE__ */ jsxRuntime.jsx(ContentCard, { ...props, variant: "product" }),
-  /**
-   * Card para notícias
-   */
-  News: (props) => /* @__PURE__ */ jsxRuntime.jsx(ContentCard, { ...props, variant: "news" }),
-  /**
-   * Card em destaque
-   */
-  Featured: (props) => /* @__PURE__ */ jsxRuntime.jsx(ContentCard, { ...props, variant: "featured" }),
-  /**
-   * Card minimalista
-   */
-  Minimal: (props) => /* @__PURE__ */ jsxRuntime.jsx(ContentCard, { ...props, variant: "minimal" })
+};
+var SocialBar = ({
+  actions,
+  layout = "horizontal",
+  size = "md",
+  variant = "default",
+  spacing = "md",
+  showCount = true,
+  animated = true,
+  className
+}) => {
+  const layoutClasses = {
+    horizontal: cn("flex flex-row items-center", `gap-${spacing === "none" ? "0" : spacing === "sm" ? "1" : spacing === "md" ? "2" : "4"}`),
+    vertical: cn("flex flex-col items-start", `gap-${spacing === "none" ? "0" : spacing === "sm" ? "1" : spacing === "md" ? "2" : "4"}`),
+    grid: cn("grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4", `gap-${spacing === "none" ? "0" : spacing === "sm" ? "1" : spacing === "md" ? "2" : "4"}`),
+    stack: cn("flex flex-wrap", `gap-${spacing === "none" ? "0" : spacing === "sm" ? "1" : spacing === "md" ? "2" : "4"}`)
+  };
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn("inline-flex", layoutClasses[layout], className), children: actions.map((action) => /* @__PURE__ */ jsxRuntime.jsx(
+    SocialButton,
+    {
+      action,
+      size,
+      variant,
+      showCount,
+      animated,
+      onClick: action.onClick || (() => {
+      })
+    },
+    action.id
+  )) });
+};
+var LikeButton = (props) => {
+  const HeartIcon = () => /* @__PURE__ */ jsxRuntime.jsx("svg", { className: "w-full h-full", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" }) });
+  const HeartFilledIcon = () => /* @__PURE__ */ jsxRuntime.jsx("svg", { className: "w-full h-full", fill: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" }) });
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    SocialBar,
+    {
+      actions: [{
+        id: "like",
+        type: "like",
+        label: "Curtir",
+        icon: /* @__PURE__ */ jsxRuntime.jsx(HeartIcon, {}),
+        activeIcon: /* @__PURE__ */ jsxRuntime.jsx(HeartFilledIcon, {}),
+        color: "error",
+        count: props.count,
+        active: props.active,
+        onClick: props.onClick
+      }],
+      size: props.size,
+      variant: props.variant
+    }
+  );
+};
+var ShareButton = (props) => {
+  const ShareIcon = () => /* @__PURE__ */ jsxRuntime.jsx("svg", { className: "w-full h-full", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m9.032 4.026a3 3 0 10-4.732 2.684m4.732-2.684a3 3 0 00-4.732-2.684M3 12a3 3 0 106 0 3 3 0 00-6 0z" }) });
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    SocialBar,
+    {
+      actions: [{
+        id: "share",
+        type: "share",
+        label: "Compartilhar",
+        icon: /* @__PURE__ */ jsxRuntime.jsx(ShareIcon, {}),
+        color: "info",
+        onClick: props.onClick
+      }],
+      size: props.size,
+      variant: props.variant
+    }
+  );
+};
+var BookmarkButton = (props) => {
+  const BookmarkIcon = () => /* @__PURE__ */ jsxRuntime.jsx("svg", { className: "w-full h-full", fill: "none", viewBox: "0 0 24 24", stroke: "currentColor", children: /* @__PURE__ */ jsxRuntime.jsx("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: 2, d: "M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" }) });
+  const BookmarkFilledIcon = () => /* @__PURE__ */ jsxRuntime.jsx("svg", { className: "w-full h-full", fill: "currentColor", viewBox: "0 0 24 24", children: /* @__PURE__ */ jsxRuntime.jsx("path", { d: "M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" }) });
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    SocialBar,
+    {
+      actions: [{
+        id: "bookmark",
+        type: "bookmark",
+        label: "Salvar",
+        icon: /* @__PURE__ */ jsxRuntime.jsx(BookmarkIcon, {}),
+        activeIcon: /* @__PURE__ */ jsxRuntime.jsx(BookmarkFilledIcon, {}),
+        color: "warning",
+        count: props.count,
+        active: props.active,
+        onClick: props.onClick
+      }],
+      size: props.size,
+      variant: props.variant
+    }
+  );
 };
 function ThemeProvider({ children, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx(
@@ -14148,19 +13743,47 @@ function ThemeProvider({ children, ...props }) {
     }
   );
 }
-var MOBILE_BREAKPOINT2 = 768;
-function useIsMobile() {
-  const [isMobile, setIsMobile] = React62__namespace.useState(void 0);
-  React62__namespace.useEffect(() => {
-    const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT2 - 1}px)`);
-    const onChange = () => {
-      setIsMobile(window.innerWidth < MOBILE_BREAKPOINT2);
-    };
-    mql.addEventListener("change", onChange);
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT2);
-    return () => mql.removeEventListener("change", onChange);
-  }, []);
-  return !!isMobile;
+var TokensContext = React65.createContext(void 0);
+function TokensProvider({ tokens: initialTokens, children }) {
+  const [tokens4, setTokens2] = React65.useState(initialTokens);
+  const [theme, setTheme] = React65.useState("light");
+  React65.useEffect(() => {
+    if (tokens4) {
+      const root = document.documentElement;
+      if (tokens4.color) {
+        Object.entries(tokens4.color).forEach(([key, value2]) => {
+          if (typeof value2 === "object") {
+            Object.entries(value2).forEach(([subKey, subValue]) => {
+              root.style.setProperty(`--color-${key}-${subKey}`, subValue);
+            });
+          } else {
+            root.style.setProperty(`--color-${key}`, value2);
+          }
+        });
+      }
+      Object.entries(tokens4).forEach(([category, categoryTokens]) => {
+        if (category !== "color" && typeof categoryTokens === "object") {
+          Object.entries(categoryTokens).forEach(([key, value2]) => {
+            if (typeof value2 === "string") {
+              root.style.setProperty(`--${category}-${key}`, value2);
+            }
+          });
+        }
+      });
+    }
+  }, [tokens4]);
+  React65.useEffect(() => {
+    const root = document.documentElement;
+    root.classList.remove("light", "dark");
+    root.classList.add(theme);
+  }, [theme]);
+  const value = {
+    tokens: tokens4,
+    setTokens: setTokens2,
+    theme,
+    setTheme
+  };
+  return /* @__PURE__ */ jsxRuntime.jsx(TokensContext.Provider, { value, children });
 }
 function useCarouselKeyboard({
   totalItems,
@@ -14175,10 +13798,10 @@ function useCarouselKeyboard({
     pauseOnHover = true,
     keyMap = ["ArrowLeft", "ArrowRight"]
   } = options;
-  const [isPaused, setIsPaused] = React62__namespace.default.useState(false);
-  const intervalRef = React62__namespace.default.useRef(null);
-  const containerRef = React62__namespace.default.useRef(null);
-  const next = React62__namespace.default.useCallback(() => {
+  const [isPaused, setIsPaused] = React65__namespace.default.useState(false);
+  const intervalRef = React65__namespace.default.useRef(null);
+  const containerRef = React65__namespace.default.useRef(null);
+  const next = React65__namespace.default.useCallback(() => {
     const nextIndex = currentIndex + 1;
     if (nextIndex >= totalItems) {
       if (loop) {
@@ -14188,7 +13811,7 @@ function useCarouselKeyboard({
       onIndexChange?.(nextIndex);
     }
   }, [currentIndex, totalItems, loop, onIndexChange]);
-  const prev = React62__namespace.default.useCallback(() => {
+  const prev = React65__namespace.default.useCallback(() => {
     const prevIndex = currentIndex - 1;
     if (prevIndex < 0) {
       if (loop) {
@@ -14198,12 +13821,12 @@ function useCarouselKeyboard({
       onIndexChange?.(prevIndex);
     }
   }, [currentIndex, totalItems, loop, onIndexChange]);
-  const goTo = React62__namespace.default.useCallback((index) => {
+  const goTo = React65__namespace.default.useCallback((index) => {
     if (index >= 0 && index < totalItems) {
       onIndexChange?.(index);
     }
   }, [totalItems, onIndexChange]);
-  React62__namespace.default.useEffect(() => {
+  React65__namespace.default.useEffect(() => {
     if (autoPlay && !isPaused) {
       intervalRef.current = setInterval(next, autoPlayInterval);
     } else {
@@ -14218,7 +13841,7 @@ function useCarouselKeyboard({
       }
     };
   }, [autoPlay, isPaused, next, autoPlayInterval]);
-  React62__namespace.default.useEffect(() => {
+  React65__namespace.default.useEffect(() => {
     const handleKeyDown = (event) => {
       if (!keyMap.includes(event.key)) return;
       event.preventDefault();
@@ -14242,7 +13865,7 @@ function useCarouselKeyboard({
       }
     };
   }, [keyMap, next, prev]);
-  React62__namespace.default.useEffect(() => {
+  React65__namespace.default.useEffect(() => {
     if (!pauseOnHover || !autoPlay) return;
     const container = containerRef.current;
     if (!container) return;
@@ -14255,13 +13878,13 @@ function useCarouselKeyboard({
       container.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [pauseOnHover, autoPlay]);
-  const pause = React62__namespace.default.useCallback(() => {
+  const pause = React65__namespace.default.useCallback(() => {
     setIsPaused(true);
   }, []);
-  const resume = React62__namespace.default.useCallback(() => {
+  const resume = React65__namespace.default.useCallback(() => {
     setIsPaused(false);
   }, []);
-  const stop = React62__namespace.default.useCallback(() => {
+  const stop = React65__namespace.default.useCallback(() => {
     setIsPaused(true);
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -14300,9 +13923,9 @@ function useTableOfContents({
     activeOnScroll = true,
     nested = true
   } = options;
-  const [items, setItems] = React62__namespace.default.useState([]);
-  const [activeId, setActiveId] = React62__namespace.default.useState(null);
-  const generateTOC = React62__namespace.default.useCallback(() => {
+  const [items, setItems] = React65__namespace.default.useState([]);
+  const [activeId, setActiveId] = React65__namespace.default.useState(null);
+  const generateTOC = React65__namespace.default.useCallback(() => {
     const container = containerRef?.current;
     if (!container) return [];
     const headingElements = container.querySelectorAll(headings.join(", "));
@@ -14323,26 +13946,20 @@ function useTableOfContents({
     });
     return tocItems;
   }, [containerRef, headings]);
-  React62__namespace.default.useEffect(() => {
+  React65__namespace.default.useEffect(() => {
     const tocItems = generateTOC();
     setItems(tocItems);
   }, [generateTOC]);
-  const scrollToItem = React62__namespace.default.useCallback((itemId) => {
+  const scrollToItem = React65__namespace.default.useCallback((itemId) => {
     const element = document.getElementById(itemId);
     if (!element) return;
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.pageYOffset - offset;
-    if (smoothScroll) {
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
-    } else {
-      window.scrollTo(0, offsetPosition);
-    }
+    scrollToElement(element, {
+      smooth: smoothScroll,
+      offset
+    });
     setActiveId(itemId);
   }, [offset, smoothScroll]);
-  React62__namespace.default.useEffect(() => {
+  React65__namespace.default.useEffect(() => {
     if (!activeOnScroll || items.length === 0) return;
     const observer = new IntersectionObserver(
       (entries) => {
@@ -14370,7 +13987,7 @@ function useTableOfContents({
       });
     };
   }, [activeOnScroll, items, offset]);
-  const nestedItems = React62__namespace.default.useMemo(() => {
+  const nestedItems = React65__namespace.default.useMemo(() => {
     if (!nested) return items;
     const result = [];
     const stack = [];
@@ -14388,7 +14005,7 @@ function useTableOfContents({
     });
     return result;
   }, [items, nested]);
-  const renderItem = React62__namespace.default.useCallback((item, depth = 0) => {
+  const renderItem = React65__namespace.default.useCallback((item, depth = 0) => {
     const isActive = item.id === activeId;
     const hasChildren = "children" in item && item.children && item.children.length > 0;
     return {
@@ -14399,7 +14016,7 @@ function useTableOfContents({
       scrollTo: () => scrollToItem(item.id)
     };
   }, [activeId, scrollToItem]);
-  const renderItems = React62__namespace.default.useCallback(() => {
+  const renderItems = React65__namespace.default.useCallback(() => {
     const flatItems = [];
     const flatten = (items2, depth = 0) => {
       items2.forEach((item) => {
@@ -14412,7 +14029,7 @@ function useTableOfContents({
     flatten(nestedItems);
     return flatItems;
   }, [nestedItems, renderItem]);
-  const stats = React62__namespace.default.useMemo(() => {
+  const stats = React65__namespace.default.useMemo(() => {
     const levelCounts = {};
     items.forEach((item) => {
       levelCounts[item.level] = (levelCounts[item.level] || 0) + 1;
@@ -14425,11 +14042,11 @@ function useTableOfContents({
       activeIndex: items.findIndex((item) => item.id === activeId)
     };
   }, [items, activeId]);
-  const refresh = React62__namespace.default.useCallback(() => {
+  const refresh = React65__namespace.default.useCallback(() => {
     const tocItems = generateTOC();
     setItems(tocItems);
   }, [generateTOC]);
-  const reset = React62__namespace.default.useCallback(() => {
+  const reset = React65__namespace.default.useCallback(() => {
     setItems([]);
     setActiveId(null);
   }, []);
@@ -14517,8 +14134,6 @@ exports.Accordion = Accordion2;
 exports.AccordionContent = AccordionContent2;
 exports.AccordionItem = AccordionItem2;
 exports.AccordionTrigger = AccordionTrigger2;
-exports.ActionButton = ActionButton;
-exports.ActionButtonVariants = ActionButtonVariants;
 exports.Alert = Alert;
 exports.AlertDescription = AlertDescription;
 exports.AlertDialog = AlertDialog;
@@ -14543,8 +14158,15 @@ exports.Avatar = Avatar;
 exports.AvatarFallback = AvatarFallback;
 exports.AvatarImage = AvatarImage;
 exports.BackToTop = BackToTop;
+exports.BackToTopButton = BackToTopButton;
 exports.Badge = Badge;
 exports.BookmarkButton = BookmarkButton;
+exports.Breadcrumb = Breadcrumb;
+exports.BreadcrumbItem = BreadcrumbItem;
+exports.BreadcrumbLink = BreadcrumbLink;
+exports.BreadcrumbList = BreadcrumbList;
+exports.BreadcrumbPage = BreadcrumbPage;
+exports.BreadcrumbSeparator = BreadcrumbSeparator;
 exports.Button = Button;
 exports.Calendar = Calendar3;
 exports.CalendarDayButton = CalendarDayButton;
@@ -14586,8 +14208,6 @@ exports.ConfirmDialog = ConfirmDialog;
 exports.Container = Container;
 exports.ContainerFluid = ContainerFluid;
 exports.ContainerSection = ContainerSection;
-exports.ContentCard = ContentCard;
-exports.ContentCardVariants = ContentCardVariants;
 exports.ContextMenu = ContextMenu;
 exports.ContextMenuCheckboxItem = ContextMenuCheckboxItem;
 exports.ContextMenuContent = ContextMenuContent;
@@ -14604,7 +14224,6 @@ exports.ContextMenuSubContent = ContextMenuSubContent;
 exports.ContextMenuSubTrigger = ContextMenuSubTrigger;
 exports.ContextMenuTrigger = ContextMenuTrigger;
 exports.CookieBanner = CookieBanner;
-exports.DEFAULT_TOKENS = DEFAULT_TOKENS;
 exports.DatePicker = DatePicker;
 exports.Dialog = Dialog;
 exports.DialogClose = DialogClose;
@@ -14641,6 +14260,7 @@ exports.DropdownMenuTrigger = DropdownMenuTrigger;
 exports.EmptyState = EmptyState;
 exports.EmptyStateIllustrated = EmptyStateIllustrated;
 exports.EmptyStatePatterns = EmptyStatePatterns;
+exports.ErrorBoundary = ErrorBoundary;
 exports.FAB = FAB;
 exports.FABGroup = FABGroup;
 exports.FileUpload = FileUpload;
@@ -14668,7 +14288,6 @@ exports.KPIChart = KPIChart;
 exports.KPIGrid = KPIGrid;
 exports.Kbd = Kbd;
 exports.KbdCombo = KbdCombo;
-exports.KeyboardShortcuts = KeyboardShortcuts;
 exports.Label = Label;
 exports.Lightbox = Lightbox;
 exports.LikeButton = LikeButton;
@@ -14726,7 +14345,6 @@ exports.RangeSlider = RangeSlider;
 exports.Rating = Rating;
 exports.RatingProgress = RatingProgress;
 exports.RatingSummary = RatingSummary;
-exports.ReadingTime = ReadingTime;
 exports.RecentPostsList = RecentPostsList;
 exports.ScrollArea = ScrollArea;
 exports.ScrollBar = ScrollBar;
@@ -14746,8 +14364,6 @@ exports.SelectTrigger = SelectTrigger;
 exports.SelectValue = SelectValue;
 exports.Separator = Separator2;
 exports.ShareButton = ShareButton;
-exports.ShareMenu = ShareMenu;
-exports.ShareMenuVariants = ShareMenuVariants;
 exports.Sheet = Sheet;
 exports.SheetClose = SheetClose;
 exports.SheetContent = SheetContent;
@@ -14760,6 +14376,7 @@ exports.Sidebar = Sidebar;
 exports.SidebarTrigger = SidebarTrigger;
 exports.Skeleton = Skeleton;
 exports.Slider = Slider;
+exports.SocialBar = SocialBar;
 exports.Spacer = Spacer;
 exports.Spinner = Spinner;
 exports.SpinnerOverlay = SpinnerOverlay;
@@ -14791,7 +14408,6 @@ exports.TimelineItem = TimelineItem;
 exports.TimelineSeparator = TimelineSeparator;
 exports.Toaster = Toaster;
 exports.Toggle = Toggle;
-exports.TokensContext = TokensContext;
 exports.TokensDemo = TokensDemo;
 exports.TokensProvider = TokensProvider;
 exports.Tooltip = Tooltip;
@@ -14807,8 +14423,6 @@ exports.VisuallyHidden = VisuallyHidden;
 exports.badgeVariants = badgeVariants;
 exports.buttonVariants = buttonVariants;
 exports.cn = cn;
-exports.convertToWebP = convertToWebP;
-exports.generatePlaceholder = generatePlaceholder;
 exports.generateTailwindClasses = generateTailwindClasses;
 exports.getBrandColor = getBrandColor;
 exports.getButtonPrimaryColor = getButtonPrimaryColor;
@@ -14817,34 +14431,25 @@ exports.getButtonSecondaryColor = getButtonSecondaryColor;
 exports.getButtonTertiaryColor = getButtonTertiaryColor;
 exports.getColorFromTheme = getColorFromTheme;
 exports.getContrastColor = getContrastColor;
-exports.getImageInfo = getImageInfo;
 exports.getSemanticColorConstants = getSemanticColorConstants;
 exports.getSemanticColors = getSemanticColors;
 exports.getSemanticColorsSimplified = getSemanticColorsSimplified;
 exports.getStatusColor = getStatusColor;
 exports.getThemeColors = getThemeColors2;
 exports.getTokenColor = getTokenColor;
-exports.hexToRGB = hexToRGB;
-exports.hexToRGBA = hexToRGBA;
-exports.isAcceptedFormat = isAcceptedFormat;
 exports.isValidHex = isValidHex;
-exports.isWebP = isWebP;
 exports.motion = motion;
 exports.motionPresets = motionPresets;
 exports.motionSemantic = motionSemantic;
 exports.navigationMenuTriggerStyle = navigationMenuTriggerStyle;
 exports.overlayFromToken = overlayFromToken;
-exports.prepareImageForUpload = prepareImageForUpload;
-exports.resizeImage = resizeImage;
-exports.supportsWebP = supportsWebP;
 exports.toggleVariants = toggleVariants;
 exports.useCarouselKeyboard = useCarouselKeyboard;
 exports.useConfirm = useConfirm;
-exports.useIsMobile = useIsMobile;
+exports.useCookieConsent = useCookieConsent;
 exports.useNotification = useNotification;
 exports.usePWA = usePWA;
 exports.useTableOfContents = useTableOfContents;
 exports.useTheme = useTheme;
-exports.useTokens = useTokens;
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

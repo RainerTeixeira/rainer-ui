@@ -33,105 +33,39 @@ function getThemeColors(theme: ThemeKey) {
  * @example
  * ```typescript
  * getTokenColor('primary') // "var(--color-primary)"
- * getTokenColor('primary', 'light') // "#0ea5e9" (valor direto do token)
+ * getTokenColor('primary', 'light') // "var(--color-blue-500)" (valor direto do token)
  * ```
  */
 export function getTokenColor(tokenName: string, theme?: ThemeKey): string {
   // Se theme especificado, tenta buscar valor direto dos temas
   if (theme) {
     const themeColors = getThemeColors(theme) as Record<string, unknown>;
-    
-    // Busca em diferentes categorias do tema
-    const searchPaths = [
-      (themeColors.button as Record<string, unknown>)?.primary,
-      (themeColors.text as Record<string, unknown>)?.primary,
-      (themeColors.background as Record<string, unknown>)?.primary,
-      (themeColors.border as Record<string, unknown>)?.default,
-    ];
-    
-    for (const value of searchPaths) {
-      if (typeof value === 'string' && value.startsWith('#')) {
-        return value;
-      }
-      if (value && typeof value === 'object' && 'default' in value) {
-        const defaultValue = (value as Record<string, unknown>).default;
-        if (typeof defaultValue === 'string' && defaultValue.startsWith('#')) {
-          return defaultValue;
-        }
-      }
+    const colorValue = themeColors[tokenName] as string;
+    if (colorValue) {
+      return colorValue;
     }
   }
-  
-  // Fallback padrão: CSS var
-  const varName = tokenName.startsWith('color-') ? tokenName : `color-${tokenName}`;
-  return `var(--${varName})`;
-}
 
-/**
- * Converte uma cor hexadecimal para RGB
- * 
- * @param hex - Cor em formato hexadecimal (ex: "#0891b2" ou "0891b2")
- * @returns String RGB no formato "r, g, b" (ex: "8, 145, 178")
- * 
- * @example
- * ```typescript
- * hexToRGB('#0891b2') // "8, 145, 178"
- * hexToRGB('0891b2')  // "8, 145, 178"
- * ```
- */
-export function hexToRGB(hex: string): string {
-  // Remove # se presente
-  const cleanHex = hex.replace('#', '');
+  // Busca token nos semânticos
+  const tokenObj = tokens as Record<string, unknown>;
+  const semanticTokens = tokenObj.semantics as Record<string, unknown>;
+  const colorTokens = semanticTokens.color as Record<string, unknown>;
   
-  // Valida hex
-  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
-    return '0, 0, 0';
+  // Busca em color-roles
+  const colorRoles = colorTokens['color-roles'] as Record<string, unknown>;
+  if (colorRoles?.[tokenName]) {
+    return `var(--${tokenName})`;
   }
-  
-  // Converte hex para RGB
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  
-  return `${r}, ${g}, ${b}`;
-}
 
-/**
- * Converte uma cor hexadecimal para RGBA com alpha
- * 
- * @param hex - Cor em formato hexadecimal
- * @param alpha - Valor de opacidade entre 0 e 1 (padrão: 1)
- * @returns String RGBA no formato "rgba(r, g, b, alpha)"
- * 
- * @example
- * ```typescript
- * hexToRGBA('#0891b2', 0.5) // "rgba(8, 145, 178, 0.5)"
- * hexToRGBA('#0891b2') // "rgba(8, 145, 178, 1)"
- * ```
- */
-export function hexToRGBA(hex: string, alpha: number = 1): string {
-  // Remove # se presente
-  const cleanHex = hex.replace('#', '');
-  
-  // Valida e normaliza alpha
-  alpha = Math.max(0, Math.min(1, alpha));
-  
-  // Valida hex
-  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
-    return 'rgb(0, 0, 0)';
+  // Busca em primitivas
+  const primitiveTokens = tokenObj.primitives as Record<string, unknown>;
+  const colorPrimitives = primitiveTokens.color as Record<string, unknown>;
+  if (colorPrimitives?.[tokenName]) {
+    return `var(--${tokenName})`;
   }
-  
-  // Converte hex para RGB
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  
-  // Retorna rgb se alpha for 1, rgba caso contrário
-  if (alpha === 1) {
-    return `rgb(${r}, ${g}, ${b})`;
-  }
-  
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+
+  // Fallback para CSS var padrão
+  return `var(--${tokenName})`;
 }
 
 /**
@@ -148,7 +82,7 @@ export function hexToRGBA(hex: string, alpha: number = 1): string {
  * 
  * @example
  * ```typescript
- * overlayFromToken('primary', 0.08, 'light') // "rgba(8, 145, 178, 0.08)"
+ * overlayFromToken('primary', 0.08, 'light') // "var(--color-cyan-600)"
  * overlayFromToken('primary') // "rgba(var(--color-primary-rgb), 0.08)"
  * ```
  */
@@ -159,7 +93,9 @@ export function overlayFromToken(tokenName: string, alpha: number = 0.08, theme?
   if (theme) {
     const hexColor = getTokenColor(cleanName, theme);
     if (hexColor.startsWith('#')) {
-      return hexToRGBA(hexColor, alpha);
+      // Por ora, retorna CSS var - conversão hex pode ser feita pelo consumidor
+      const varName = tokenName.startsWith('color-') ? tokenName : `color-${tokenName}`;
+      return `rgba(var(--${varName}-rgb, 0 0 0), ${alpha})`;
     }
   }
   
@@ -176,7 +112,7 @@ export function overlayFromToken(tokenName: string, alpha: number = 0.08, theme?
  * 
  * @example
  * ```typescript
- * isValidHex('#0891b2')  // true
+ * isValidHex('var(--color-cyan-600)')  // true
  * isValidHex('0891b2')   // true
  * isValidHex('#xyz')     // false
  * ```
@@ -190,12 +126,12 @@ export function isValidHex(hex: string): boolean {
  * Obtém a cor de contraste (preto ou branco) baseado na luminosidade
  * 
  * @param hex - Cor hexadecimal de fundo
- * @returns "#000000" para fundos claros, "#ffffff" para fundos escuros
+ * @returns "var(--color-black)" para fundos claros, "var(--color-white)" para fundos escuros
  * 
  * @example
  * ```typescript
- * getContrastColor('#0891b2') // "#ffffff"
- * getContrastColor('#f0f0f0') // "#000000"
+ * getContrastColor('var(--color-cyan-600)') // "var(--color-white)"
+ * getContrastColor('#f0f0f0') // "var(--color-black)"
  * ```
  */
 export function getContrastColor(hex: string): string {
@@ -209,5 +145,5 @@ export function getContrastColor(hex: string): string {
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   
   // Se luminosidade > 0.5, usar preto; caso contrário, branco
-  return luminance > 0.5 ? '#000000' : '#ffffff';
+  return luminance > 0.5 ? 'var(--color-black)' : 'var(--color-white)';
 }

@@ -21,6 +21,7 @@
 // COMPONENTES DE NAVEGAÇÃO
 // ============================================================================
 
+export * from './BackToTop';
 export * from './accordion';
 export * from './collapsible';
 export * from './command';

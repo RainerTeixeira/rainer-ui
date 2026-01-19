@@ -69,7 +69,6 @@ var Check2__default = /*#__PURE__*/_interopDefault(Check2);
 var Info2__default = /*#__PURE__*/_interopDefault(Info2);
 var X__default = /*#__PURE__*/_interopDefault(X);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -532,7 +531,7 @@ var SpinnerOverlay = React8__namespace.forwardRef(
   ({
     className,
     fullscreen = false,
-    overlayColor = "rgba(0, 0, 0, 0.5)",
+    overlayColor = "var(--color-black)",
     opacity = 0.5,
     ...props
   }, ref) => {

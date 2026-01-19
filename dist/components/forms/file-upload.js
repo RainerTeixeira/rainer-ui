@@ -40,7 +40,6 @@ var React2__namespace = /*#__PURE__*/_interopNamespace(React2);
 var Upload__default = /*#__PURE__*/_interopDefault(Upload);
 var X__default = /*#__PURE__*/_interopDefault(X);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }

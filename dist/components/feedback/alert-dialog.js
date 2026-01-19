@@ -30,7 +30,6 @@ function _interopNamespace(e) {
 var React2__namespace = /*#__PURE__*/_interopNamespace(React2);
 var AlertDialogPrimitive__namespace = /*#__PURE__*/_interopNamespace(AlertDialogPrimitive);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }

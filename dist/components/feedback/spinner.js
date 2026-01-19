@@ -28,7 +28,6 @@ function _interopNamespace(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -193,7 +192,7 @@ var SpinnerOverlay = React__namespace.forwardRef(
   ({
     className,
     fullscreen = false,
-    overlayColor = "rgba(0, 0, 0, 0.5)",
+    overlayColor = "var(--color-black)",
     opacity = 0.5,
     ...props
   }, ref) => {

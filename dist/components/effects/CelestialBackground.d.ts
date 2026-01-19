@@ -34,6 +34,6 @@ interface CelestialBackgroundProps {
  * @param variant - Variante de densidade (default, dense, sparse)
  * @returns Container fixo com efeito celestial
  */
-declare function CelestialBackground({ variant, colors, }?: CelestialBackgroundProps): react_jsx_runtime.JSX.Element;
+declare function CelestialBackground({ variant, }: CelestialBackgroundProps): react_jsx_runtime.JSX.Element;
 
 export { CelestialBackground, CelestialBackground as default };

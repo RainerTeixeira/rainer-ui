@@ -6,7 +6,7 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes do Spinner
  */
 declare const spinnerVariants: (props?: {
-    variant?: "primary" | "default" | "success" | "warning" | "secondary" | "destructive" | "glow" | "pulse" | "dots";
+    variant?: "success" | "warning" | "primary" | "secondary" | "default" | "destructive" | "glow" | "pulse" | "dots";
     size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl";
 } & class_variance_authority_types.ClassProp) => string;
 /**

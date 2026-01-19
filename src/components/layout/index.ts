@@ -23,6 +23,7 @@
 // COMPONENTES DE LAYOUT
 // ============================================================================
 
+export * from './PageHeader';
 export * from './aspect-ratio';
 export * from './breadcrumb';
 // Card já exportado via '@rainersoft/ui/ui'

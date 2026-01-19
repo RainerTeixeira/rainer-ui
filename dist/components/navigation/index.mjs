@@ -1,17 +1,18 @@
-import * as AccordionPrimitive from '@radix-ui/react-accordion';
-import * as React7 from 'react';
-import { ChevronDown, X, Search, Check, Loader2, ChevronRight } from 'lucide-react';
+import { ChevronDown, X, Search, Check, Loader2, ChevronRight, ArrowUp } from 'lucide-react';
+import { Slot } from '@radix-ui/react-slot';
+import { cva } from 'class-variance-authority';
+import * as React8 from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
+import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
 import { Overlay, Portal, Content, Close, Title, Description, Root } from '@radix-ui/react-dialog';
 import { Command as Command$1 } from 'cmdk';
 import * as NavigationMenuPrimitive from '@radix-ui/react-navigation-menu';
-import { cva } from 'class-variance-authority';
 import * as TabsPrimitive from '@radix-ui/react-tabs';
-import { Slot } from '@radix-ui/react-slot';
 import ChevronLeft from 'lucide-react/dist/esm/icons/chevron-left';
 import ChevronRight2 from 'lucide-react/dist/esm/icons/chevron-right';
 import MoreHorizontal from 'lucide-react/dist/esm/icons/more-horizontal';
@@ -25,7 +26,6 @@ import ArrowLeft from 'lucide-react/dist/esm/icons/arrow-left';
 import Bell from 'lucide-react/dist/esm/icons/bell';
 import Search2 from 'lucide-react/dist/esm/icons/search';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -97,370 +97,6 @@ motion.easing;
     navigation: motionSemantic.navigation.page
   }
 });
-var Accordion = AccordionPrimitive.Root;
-var AccordionItem = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  AccordionPrimitive.Item,
-  {
-    ref,
-    className: cn("border-b", className),
-    ...props
-  }
-));
-AccordionItem.displayName = "AccordionItem";
-var AccordionTrigger = React7.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(AccordionPrimitive.Header, { className: "flex", children: /* @__PURE__ */ jsxs(
-  AccordionPrimitive.Trigger,
-  {
-    ref,
-    className: cn(
-      "flex flex-1 items-center justify-between py-4 font-medium transition-all duration-200 ease-in-out hover:underline [&[data-state=open]>svg]:rotate-180",
-      className
-    ),
-    ...props,
-    children: [
-      children,
-      /* @__PURE__ */ jsx(
-        ChevronDown,
-        {
-          className: "h-4 w-4 shrink-0 transition-transform duration-150"
-        }
-      )
-    ]
-  }
-) }));
-AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
-var AccordionContent = React7.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(
-  AccordionPrimitive.Content,
-  {
-    ref,
-    className: "overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
-    ...props,
-    children: /* @__PURE__ */ jsx("div", { className: cn("pb-4 pt-0", className), children })
-  }
-));
-AccordionContent.displayName = AccordionPrimitive.Content.displayName;
-var Collapsible = CollapsiblePrimitive.Root;
-var CollapsibleTrigger2 = CollapsiblePrimitive.CollapsibleTrigger;
-var CollapsibleContent2 = CollapsiblePrimitive.CollapsibleContent;
-
-// src/lib/constants.ts
-var Z_INDEX = {
-  BACKDROP: "999",
-  MODAL: "1000",
-  DROPDOWN: "1050"};
-var MOTION = {
-  TRANSITION: {
-    DEFAULT: "transition-all duration-200 ease-in-out",
-    COLOR: "transition-colors duration-200 ease-in-out",
-    TRANSFORM: "transition-transform duration-200 ease-in-out"}};
-var Dialog = Root;
-var DialogPortal = Portal;
-var DialogOverlay = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  Overlay,
-  {
-    ref,
-    className: cn(
-      "fixed inset-0 bg-black/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-      Z_INDEX.BACKDROP,
-      className
-    ),
-    ...props
-  }
-));
-DialogOverlay.displayName = Overlay.displayName;
-var DialogContent = React7.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(DialogPortal, { children: [
-  /* @__PURE__ */ jsx(DialogOverlay, {}),
-  /* @__PURE__ */ jsxs(
-    Content,
-    {
-      ref,
-      className: cn(
-        "fixed left-[50%] top-[50%] grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-border bg-background p-6 shadow-lg rounded-lg sm:rounded-lg",
-        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
-        MOTION.TRANSITION.DEFAULT,
-        Z_INDEX.MODAL,
-        "dark:bg-black/95 dark:border-cyan-400/30 dark:shadow-cyan-500/20",
-        className
-      ),
-      ...props,
-      children: [
-        children,
-        /* @__PURE__ */ jsxs(Close, { className: "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground dark:focus:ring-cyan-400", children: [
-          /* @__PURE__ */ jsx(X, { className: "h-4 w-4" }),
-          /* @__PURE__ */ jsx("span", { className: "sr-only", children: "Fechar" })
-        ] })
-      ]
-    }
-  )
-] }));
-DialogContent.displayName = Content.displayName;
-var DialogTitle = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  Title,
-  {
-    ref,
-    className: cn(
-      "text-lg font-semibold leading-none tracking-tight dark:text-cyan-200 dark:font-mono",
-      className
-    ),
-    ...props
-  }
-));
-DialogTitle.displayName = Title.displayName;
-var DialogDescription = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  Description,
-  {
-    ref,
-    className: cn(
-      "text-sm text-muted-foreground dark:text-gray-400",
-      className
-    ),
-    ...props
-  }
-));
-DialogDescription.displayName = Description.displayName;
-var Command = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  Command$1,
-  {
-    ref,
-    className: cn(
-      "flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground",
-      className
-    ),
-    ...props
-  }
-));
-Command.displayName = Command$1.displayName;
-var CommandDialog = ({
-  children,
-  ...props
-}) => {
-  return /* @__PURE__ */ jsx(Dialog, { ...props, children: /* @__PURE__ */ jsxs(DialogContent, { className: "overflow-hidden p-0", children: [
-    /* @__PURE__ */ jsx(DialogTitle, { className: "sr-only", children: "Buscar artigos" }),
-    /* @__PURE__ */ jsx(Command, { className: "[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[data-cmdk-input-wrapper]_svg]:h-5 [&_[data-cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5", children })
-  ] }) });
-};
-var CommandInput = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs("div", { className: "flex items-center border-b px-3", "data-cmdk-input-wrapper": "", children: [
-  /* @__PURE__ */ jsx(Search, { className: "mr-2 h-4 w-4 shrink-0 opacity-50" }),
-  /* @__PURE__ */ jsx(
-    Command$1.Input,
-    {
-      ref,
-      className: cn(
-        "flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
-        className
-      ),
-      ...props
-    }
-  )
-] }));
-CommandInput.displayName = Command$1.Input.displayName;
-var CommandList = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  Command$1.List,
-  {
-    ref,
-    className: cn("max-h-[300px] overflow-y-auto overflow-x-hidden", className),
-    ...props
-  }
-));
-CommandList.displayName = Command$1.List.displayName;
-var CommandEmpty = React7.forwardRef((props, ref) => /* @__PURE__ */ jsx(
-  Command$1.Empty,
-  {
-    ref,
-    className: "py-6 text-center text-sm",
-    ...props
-  }
-));
-CommandEmpty.displayName = Command$1.Empty.displayName;
-var CommandGroup = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  Command$1.Group,
-  {
-    ref,
-    className: cn(
-      "overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground",
-      className
-    ),
-    ...props
-  }
-));
-CommandGroup.displayName = Command$1.Group.displayName;
-var CommandSeparator = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  Command$1.Separator,
-  {
-    ref,
-    className: cn("-mx-1 h-px bg-border", className),
-    ...props
-  }
-));
-CommandSeparator.displayName = Command$1.Separator.displayName;
-var CommandItem = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  Command$1.Item,
-  {
-    ref,
-    className: cn(
-      "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-      className
-    ),
-    ...props
-  }
-));
-CommandItem.displayName = Command$1.Item.displayName;
-var CommandShortcut = ({
-  className,
-  ...props
-}) => {
-  return /* @__PURE__ */ jsx(
-    "span",
-    {
-      className: cn(
-        "ml-auto text-xs tracking-widest text-muted-foreground",
-        className
-      ),
-      ...props
-    }
-  );
-};
-CommandShortcut.displayName = "CommandShortcut";
-var NavigationMenu = React7.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
-  NavigationMenuPrimitive.Root,
-  {
-    ref,
-    className: cn(
-      "relative flex max-w-max flex-1 items-center justify-center",
-      Z_INDEX.DROPDOWN,
-      className
-    ),
-    ...props,
-    children: [
-      children,
-      /* @__PURE__ */ jsx(NavigationMenuViewport, {})
-    ]
-  }
-));
-NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName;
-var NavigationMenuList = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  NavigationMenuPrimitive.List,
-  {
-    ref,
-    className: cn(
-      "group flex flex-1 list-none items-center justify-center space-x-1",
-      className
-    ),
-    ...props
-  }
-));
-NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
-var NavigationMenuItem = NavigationMenuPrimitive.Item;
-var navigationMenuTriggerStyle = cva(
-  cn(
-    "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium",
-    MOTION.TRANSITION.COLOR,
-    "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-accent-foreground data-[state=open]:bg-accent/50 data-[state=open]:hover:bg-accent data-[state=open]:focus:bg-accent"
-  )
-);
-var NavigationMenuTrigger = React7.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
-  NavigationMenuPrimitive.Trigger,
-  {
-    ref,
-    className: cn(navigationMenuTriggerStyle(), "group", className),
-    ...props,
-    children: [
-      children,
-      " ",
-      /* @__PURE__ */ jsx(
-        ChevronDown,
-        {
-          className: cn(
-            "relative top-px ml-1 h-3 w-3 group-data-[state=open]:rotate-180",
-            MOTION.TRANSITION.TRANSFORM
-          ),
-          "aria-hidden": "true"
-        }
-      )
-    ]
-  }
-));
-NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName;
-var NavigationMenuContent = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  NavigationMenuPrimitive.Content,
-  {
-    ref,
-    className: cn(
-      "left-0 top-0 w-full data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto ",
-      className
-    ),
-    ...props
-  }
-));
-NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName;
-var NavigationMenuLink = NavigationMenuPrimitive.Link;
-var NavigationMenuViewport = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: cn("absolute left-0 top-full flex justify-center"), children: /* @__PURE__ */ jsx(
-  NavigationMenuPrimitive.Viewport,
-  {
-    className: cn(
-      "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
-      className
-    ),
-    ref,
-    ...props
-  }
-) }));
-NavigationMenuViewport.displayName = NavigationMenuPrimitive.Viewport.displayName;
-var NavigationMenuIndicator = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  NavigationMenuPrimitive.Indicator,
-  {
-    ref,
-    className: cn(
-      "top-full flex h-1.5 items-end justify-center overflow-hidden data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in",
-      "z-[1]",
-      className
-    ),
-    ...props,
-    children: /* @__PURE__ */ jsx("div", { className: "relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-border shadow-md" })
-  }
-));
-NavigationMenuIndicator.displayName = NavigationMenuPrimitive.Indicator.displayName;
-var Tabs = TabsPrimitive.Root;
-var TabsList = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  TabsPrimitive.List,
-  {
-    ref,
-    className: cn(
-      "inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground",
-      className
-    ),
-    ...props
-  }
-));
-TabsList.displayName = TabsPrimitive.List.displayName;
-var TabsTrigger = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  TabsPrimitive.Trigger,
-  {
-    ref,
-    className: cn(
-      "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5",
-      "text-sm font-medium ring-offset-background transition-all",
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-      "disabled:pointer-events-none disabled:opacity-50",
-      "data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
-      className
-    ),
-    ...props
-  }
-));
-TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
-var TabsContent = React7.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
-  TabsPrimitive.Content,
-  {
-    ref,
-    className: cn(
-      "mt-2 ring-offset-background",
-      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-      className
-    ),
-    ...props
-  }
-));
-TabsContent.displayName = TabsPrimitive.Content.displayName;
 var buttonVariants = cva(
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {
@@ -502,7 +138,7 @@ var buttonVariants = cva(
     }
   }
 );
-var ButtonComponent = React7.forwardRef(
+var ButtonComponent = React8.forwardRef(
   ({
     className,
     variant,
@@ -517,7 +153,7 @@ var ButtonComponent = React7.forwardRef(
   }, ref) => {
     const isDisabled = disabled || loading;
     if (asChild) {
-      const child = React7.Children.only(children);
+      const child = React8.Children.only(children);
       return /* @__PURE__ */ jsx(
         Slot,
         {
@@ -572,6 +208,565 @@ var ButtonComponent = React7.forwardRef(
 );
 ButtonComponent.displayName = "Button";
 var Button = ButtonComponent;
+var __defProp = Object.defineProperty;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __publicField = (obj, key, value) => __defNormalProp(obj, key + "", value);
+var AuthStorage = class {
+  static setItem(key, value) {
+    if (!this.isClient) return;
+    try {
+      localStorage.setItem(key, value);
+    } catch (error) {
+      console.warn("Failed to save to localStorage:", error);
+    }
+  }
+  static getItem(key) {
+    if (!this.isClient) return null;
+    try {
+      return localStorage.getItem(key);
+    } catch (error) {
+      console.warn("Failed to read from localStorage:", error);
+      return null;
+    }
+  }
+  static removeItem(key) {
+    if (!this.isClient) return;
+    try {
+      localStorage.removeItem(key);
+    } catch (error) {
+      console.warn("Failed to remove from localStorage:", error);
+    }
+  }
+  static setUser(user, key) {
+    this.setItem(key, JSON.stringify(user));
+  }
+  static getUser(key) {
+    const data = this.getItem(key);
+    if (!data) return null;
+    try {
+      return JSON.parse(data);
+    } catch {
+      this.removeItem(key);
+      return null;
+    }
+  }
+  static removeUser(key) {
+    this.removeItem(key);
+  }
+};
+__publicField(AuthStorage, "isClient", typeof window !== "undefined");
+function prefersReducedMotion() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+function smoothScrollTo(target, options) {
+  const element = typeof target === "string" ? document.querySelector(target) : target;
+  if (!element) {
+    console.warn(`Elemento n\xE3o encontrado: ${target}`);
+    return;
+  }
+  const shouldAnimate = !prefersReducedMotion();
+  element.scrollIntoView({
+    behavior: shouldAnimate ? "smooth" : "auto",
+    block: "start",
+    inline: "nearest",
+    ...options
+  });
+}
+function scrollToTop() {
+  const shouldAnimate = !prefersReducedMotion();
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: shouldAnimate ? "smooth" : "auto"
+  });
+}
+function scrollToPosition(x, y, smooth = true) {
+  const shouldAnimate = smooth && !prefersReducedMotion();
+  window.scrollTo({
+    top: y,
+    left: x,
+    behavior: shouldAnimate ? "smooth" : "auto"
+  });
+}
+function onReducedMotionChange(callback) {
+  if (typeof window === "undefined") {
+    return () => {
+    };
+  }
+  const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const handler = (event) => {
+    callback(event.matches);
+  };
+  handler(mediaQuery);
+  if (mediaQuery.addEventListener) {
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }
+  if (mediaQuery.addListener) {
+    mediaQuery.addListener(handler);
+    return () => mediaQuery.removeListener(handler);
+  }
+  return () => {
+  };
+}
+function useSmoothScroll() {
+  const [reducedMotion, setReducedMotion] = useState(false);
+  useEffect(() => {
+    setReducedMotion(prefersReducedMotion());
+    const cleanup = onReducedMotionChange((matches) => {
+      setReducedMotion(matches);
+    });
+    return cleanup;
+  }, []);
+  const scrollTo = useCallback(
+    (target, options) => {
+      smoothScrollTo(target, options);
+    },
+    []
+  );
+  const toTop = useCallback(() => {
+    scrollToTop();
+  }, []);
+  const toPosition = useCallback((x, y) => {
+    scrollToPosition(x, y);
+  }, []);
+  return {
+    scrollTo,
+    scrollToTop: toTop,
+    scrollToPosition: toPosition,
+    reducedMotion,
+    shouldAnimate: !reducedMotion
+  };
+}
+function useScrollPosition() {
+  const [scrollPosition, setScrollPosition] = useState({ x: 0, y: 0 });
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [scrollDirection, setScrollDirection] = useState(null);
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    let scrollTimeout;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const currentScrollX = window.scrollX;
+      setScrollPosition({ x: currentScrollX, y: currentScrollY });
+      if (currentScrollY > lastScrollY) {
+        setScrollDirection("down");
+      } else if (currentScrollY < lastScrollY) {
+        setScrollDirection("up");
+      }
+      setIsScrolling(true);
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 150);
+      lastScrollY = currentScrollY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, []);
+  return {
+    scrollPosition,
+    isScrolling,
+    scrollDirection,
+    isScrolledDown: scrollPosition.y > 0,
+    scrollPercentage: Math.round(
+      scrollPosition.y / (document.documentElement.scrollHeight - window.innerHeight) * 100
+    )
+  };
+}
+var SCROLL_THRESHOLD_PX = 300;
+function BackToTopButton() {
+  const { scrollToTop: scrollToTop2, reducedMotion } = useSmoothScroll();
+  const { scrollPosition } = useScrollPosition();
+  const isButtonVisible = scrollPosition.y > SCROLL_THRESHOLD_PX;
+  const handleClick = () => {
+    scrollToTop2();
+  };
+  if (!isButtonVisible) {
+    return null;
+  }
+  return /* @__PURE__ */ jsx(
+    Button,
+    {
+      onClick: handleClick,
+      className: "fixed bottom-8 right-8 z-50 rounded-full w-12 h-12 p-0 shadow-lg",
+      "aria-label": reducedMotion ? "Ir para o topo da p\xE1gina" : "Rolar suavemente para o topo da p\xE1gina",
+      title: "Voltar ao topo",
+      children: /* @__PURE__ */ jsx(ArrowUp, { className: "h-5 w-5", "aria-hidden": "true" })
+    }
+  );
+}
+function BackToTop() {
+  return /* @__PURE__ */ jsx(BackToTopButton, {});
+}
+var Accordion = AccordionPrimitive.Root;
+var AccordionItem = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  AccordionPrimitive.Item,
+  {
+    ref,
+    className: cn("border-b", className),
+    ...props
+  }
+));
+AccordionItem.displayName = "AccordionItem";
+var AccordionTrigger = React8.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(AccordionPrimitive.Header, { className: "flex", children: /* @__PURE__ */ jsxs(
+  AccordionPrimitive.Trigger,
+  {
+    ref,
+    className: cn(
+      "flex flex-1 items-center justify-between py-4 font-medium transition-all duration-200 ease-in-out hover:underline [&[data-state=open]>svg]:rotate-180",
+      className
+    ),
+    ...props,
+    children: [
+      children,
+      /* @__PURE__ */ jsx(
+        ChevronDown,
+        {
+          className: "h-4 w-4 shrink-0 transition-transform duration-150"
+        }
+      )
+    ]
+  }
+) }));
+AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
+var AccordionContent = React8.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(
+  AccordionPrimitive.Content,
+  {
+    ref,
+    className: "overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
+    ...props,
+    children: /* @__PURE__ */ jsx("div", { className: cn("pb-4 pt-0", className), children })
+  }
+));
+AccordionContent.displayName = AccordionPrimitive.Content.displayName;
+var Collapsible = CollapsiblePrimitive.Root;
+var CollapsibleTrigger2 = CollapsiblePrimitive.CollapsibleTrigger;
+var CollapsibleContent2 = CollapsiblePrimitive.CollapsibleContent;
+
+// src/lib/constants.ts
+var Z_INDEX = {
+  BACKDROP: "999",
+  MODAL: "1000",
+  DROPDOWN: "1050"};
+var MOTION = {
+  TRANSITION: {
+    DEFAULT: "transition-all duration-200 ease-in-out",
+    COLOR: "transition-colors duration-200 ease-in-out",
+    TRANSFORM: "transition-transform duration-200 ease-in-out"}};
+var Dialog = Root;
+var DialogPortal = Portal;
+var DialogOverlay = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  Overlay,
+  {
+    ref,
+    className: cn(
+      "fixed inset-0 bg-black/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      Z_INDEX.BACKDROP,
+      className
+    ),
+    ...props
+  }
+));
+DialogOverlay.displayName = Overlay.displayName;
+var DialogContent = React8.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(DialogPortal, { children: [
+  /* @__PURE__ */ jsx(DialogOverlay, {}),
+  /* @__PURE__ */ jsxs(
+    Content,
+    {
+      ref,
+      className: cn(
+        "fixed left-[50%] top-[50%] grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 border border-border bg-background p-6 shadow-lg rounded-lg sm:rounded-lg",
+        "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%] data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
+        MOTION.TRANSITION.DEFAULT,
+        Z_INDEX.MODAL,
+        "dark:bg-black/95 dark:border-cyan-400/30 dark:shadow-cyan-500/20",
+        className
+      ),
+      ...props,
+      children: [
+        children,
+        /* @__PURE__ */ jsxs(Close, { className: "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground dark:focus:ring-cyan-400", children: [
+          /* @__PURE__ */ jsx(X, { className: "h-4 w-4" }),
+          /* @__PURE__ */ jsx("span", { className: "sr-only", children: "Fechar" })
+        ] })
+      ]
+    }
+  )
+] }));
+DialogContent.displayName = Content.displayName;
+var DialogTitle = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  Title,
+  {
+    ref,
+    className: cn(
+      "text-lg font-semibold leading-none tracking-tight dark:text-cyan-200 dark:font-mono",
+      className
+    ),
+    ...props
+  }
+));
+DialogTitle.displayName = Title.displayName;
+var DialogDescription = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  Description,
+  {
+    ref,
+    className: cn(
+      "text-sm text-muted-foreground dark:text-gray-400",
+      className
+    ),
+    ...props
+  }
+));
+DialogDescription.displayName = Description.displayName;
+var Command = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  Command$1,
+  {
+    ref,
+    className: cn(
+      "flex h-full w-full flex-col overflow-hidden rounded-md bg-popover text-popover-foreground",
+      className
+    ),
+    ...props
+  }
+));
+Command.displayName = Command$1.displayName;
+var CommandDialog = ({
+  children,
+  ...props
+}) => {
+  return /* @__PURE__ */ jsx(Dialog, { ...props, children: /* @__PURE__ */ jsxs(DialogContent, { className: "overflow-hidden p-0", children: [
+    /* @__PURE__ */ jsx(DialogTitle, { className: "sr-only", children: "Buscar artigos" }),
+    /* @__PURE__ */ jsx(Command, { className: "[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[data-cmdk-input-wrapper]_svg]:h-5 [&_[data-cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5", children })
+  ] }) });
+};
+var CommandInput = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs("div", { className: "flex items-center border-b px-3", "data-cmdk-input-wrapper": "", children: [
+  /* @__PURE__ */ jsx(Search, { className: "mr-2 h-4 w-4 shrink-0 opacity-50" }),
+  /* @__PURE__ */ jsx(
+    Command$1.Input,
+    {
+      ref,
+      className: cn(
+        "flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+        className
+      ),
+      ...props
+    }
+  )
+] }));
+CommandInput.displayName = Command$1.Input.displayName;
+var CommandList = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  Command$1.List,
+  {
+    ref,
+    className: cn("max-h-[300px] overflow-y-auto overflow-x-hidden", className),
+    ...props
+  }
+));
+CommandList.displayName = Command$1.List.displayName;
+var CommandEmpty = React8.forwardRef((props, ref) => /* @__PURE__ */ jsx(
+  Command$1.Empty,
+  {
+    ref,
+    className: "py-6 text-center text-sm",
+    ...props
+  }
+));
+CommandEmpty.displayName = Command$1.Empty.displayName;
+var CommandGroup = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  Command$1.Group,
+  {
+    ref,
+    className: cn(
+      "overflow-hidden p-1 text-foreground [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground",
+      className
+    ),
+    ...props
+  }
+));
+CommandGroup.displayName = Command$1.Group.displayName;
+var CommandSeparator = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  Command$1.Separator,
+  {
+    ref,
+    className: cn("-mx-1 h-px bg-border", className),
+    ...props
+  }
+));
+CommandSeparator.displayName = Command$1.Separator.displayName;
+var CommandItem = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  Command$1.Item,
+  {
+    ref,
+    className: cn(
+      "relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none aria-selected:bg-accent aria-selected:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+      className
+    ),
+    ...props
+  }
+));
+CommandItem.displayName = Command$1.Item.displayName;
+var CommandShortcut = ({
+  className,
+  ...props
+}) => {
+  return /* @__PURE__ */ jsx(
+    "span",
+    {
+      className: cn(
+        "ml-auto text-xs tracking-widest text-muted-foreground",
+        className
+      ),
+      ...props
+    }
+  );
+};
+CommandShortcut.displayName = "CommandShortcut";
+var NavigationMenu = React8.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+  NavigationMenuPrimitive.Root,
+  {
+    ref,
+    className: cn(
+      "relative flex max-w-max flex-1 items-center justify-center",
+      Z_INDEX.DROPDOWN,
+      className
+    ),
+    ...props,
+    children: [
+      children,
+      /* @__PURE__ */ jsx(NavigationMenuViewport, {})
+    ]
+  }
+));
+NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName;
+var NavigationMenuList = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  NavigationMenuPrimitive.List,
+  {
+    ref,
+    className: cn(
+      "group flex flex-1 list-none items-center justify-center space-x-1",
+      className
+    ),
+    ...props
+  }
+));
+NavigationMenuList.displayName = NavigationMenuPrimitive.List.displayName;
+var NavigationMenuItem = NavigationMenuPrimitive.Item;
+var navigationMenuTriggerStyle = cva(
+  cn(
+    "group inline-flex h-10 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium",
+    MOTION.TRANSITION.COLOR,
+    "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-accent-foreground data-[state=open]:bg-accent/50 data-[state=open]:hover:bg-accent data-[state=open]:focus:bg-accent"
+  )
+);
+var NavigationMenuTrigger = React8.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+  NavigationMenuPrimitive.Trigger,
+  {
+    ref,
+    className: cn(navigationMenuTriggerStyle(), "group", className),
+    ...props,
+    children: [
+      children,
+      " ",
+      /* @__PURE__ */ jsx(
+        ChevronDown,
+        {
+          className: cn(
+            "relative top-px ml-1 h-3 w-3 group-data-[state=open]:rotate-180",
+            MOTION.TRANSITION.TRANSFORM
+          ),
+          "aria-hidden": "true"
+        }
+      )
+    ]
+  }
+));
+NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName;
+var NavigationMenuContent = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  NavigationMenuPrimitive.Content,
+  {
+    ref,
+    className: cn(
+      "left-0 top-0 w-full data-[motion^=from-]:animate-in data-[motion^=to-]:animate-out data-[motion^=from-]:fade-in data-[motion^=to-]:fade-out data-[motion=from-end]:slide-in-from-right-52 data-[motion=from-start]:slide-in-from-left-52 data-[motion=to-end]:slide-out-to-right-52 data-[motion=to-start]:slide-out-to-left-52 md:absolute md:w-auto ",
+      className
+    ),
+    ...props
+  }
+));
+NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName;
+var NavigationMenuLink = NavigationMenuPrimitive.Link;
+var NavigationMenuViewport = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: cn("absolute left-0 top-full flex justify-center"), children: /* @__PURE__ */ jsx(
+  NavigationMenuPrimitive.Viewport,
+  {
+    className: cn(
+      "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
+      className
+    ),
+    ref,
+    ...props
+  }
+) }));
+NavigationMenuViewport.displayName = NavigationMenuPrimitive.Viewport.displayName;
+var NavigationMenuIndicator = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  NavigationMenuPrimitive.Indicator,
+  {
+    ref,
+    className: cn(
+      "top-full flex h-1.5 items-end justify-center overflow-hidden data-[state=visible]:animate-in data-[state=hidden]:animate-out data-[state=hidden]:fade-out data-[state=visible]:fade-in",
+      "z-[1]",
+      className
+    ),
+    ...props,
+    children: /* @__PURE__ */ jsx("div", { className: "relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-border shadow-md" })
+  }
+));
+NavigationMenuIndicator.displayName = NavigationMenuPrimitive.Indicator.displayName;
+var Tabs = TabsPrimitive.Root;
+var TabsList = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  TabsPrimitive.List,
+  {
+    ref,
+    className: cn(
+      "inline-flex h-10 items-center justify-center rounded-md bg-muted p-1 text-muted-foreground",
+      className
+    ),
+    ...props
+  }
+));
+TabsList.displayName = TabsPrimitive.List.displayName;
+var TabsTrigger = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  TabsPrimitive.Trigger,
+  {
+    ref,
+    className: cn(
+      "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5",
+      "text-sm font-medium ring-offset-background transition-all",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+      "disabled:pointer-events-none disabled:opacity-50",
+      "data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
+      className
+    ),
+    ...props
+  }
+));
+TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
+var TabsContent = React8.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+  TabsPrimitive.Content,
+  {
+    ref,
+    className: cn(
+      "mt-2 ring-offset-background",
+      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+      className
+    ),
+    ...props
+  }
+));
+TabsContent.displayName = TabsPrimitive.Content.displayName;
 var menuVariants = cva(
   "min-w-[200px] rounded-md border bg-popover p-1 text-popover-foreground shadow-lg",
   {
@@ -593,7 +788,7 @@ var menuVariants = cva(
     }
   }
 );
-var Menu = React7.forwardRef(
+var Menu = React8.forwardRef(
   ({
     className,
     variant = "default",
@@ -606,17 +801,17 @@ var Menu = React7.forwardRef(
     closeOnClick = true,
     ...props
   }, ref) => {
-    const [internalOpen, setInternalOpen] = React7.useState(false);
-    const [openSubmenus, setOpenSubmenus] = React7.useState(/* @__PURE__ */ new Set());
+    const [internalOpen, setInternalOpen] = React8.useState(false);
+    const [openSubmenus, setOpenSubmenus] = React8.useState(/* @__PURE__ */ new Set());
     const isOpen = controlledOpen !== void 0 ? controlledOpen : internalOpen;
-    const containerRef = React7.useRef(null);
-    const handleOpenChange = React7.useCallback((newOpen) => {
+    const containerRef = React8.useRef(null);
+    const handleOpenChange = React8.useCallback((newOpen) => {
       if (controlledOpen === void 0) {
         setInternalOpen(newOpen);
       }
       onOpenChange?.(newOpen);
     }, [controlledOpen, onOpenChange]);
-    const toggleSubmenu = React7.useCallback((itemId) => {
+    const toggleSubmenu = React8.useCallback((itemId) => {
       setOpenSubmenus((prev) => {
         const next = new Set(prev);
         if (next.has(itemId)) {
@@ -627,7 +822,7 @@ var Menu = React7.forwardRef(
         return next;
       });
     }, []);
-    React7.useEffect(() => {
+    React8.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           handleOpenChange(false);
@@ -767,7 +962,7 @@ var Menu = React7.forwardRef(
   }
 );
 Menu.displayName = "Menu";
-var MenuBar = React7.forwardRef(
+var MenuBar = React8.forwardRef(
   ({
     className,
     menus,
@@ -798,17 +993,17 @@ var MenuBar = React7.forwardRef(
   }
 );
 MenuBar.displayName = "MenuBar";
-var NavigationContextMenu = React7.forwardRef(
+var NavigationContextMenu = React8.forwardRef(
   ({
     className,
     children,
     items,
     ...props
   }, ref) => {
-    const [open, setOpen] = React7.useState(false);
-    const [position, setPosition] = React7.useState({ x: 0, y: 0 });
-    const containerRef = React7.useRef(null);
-    const handleContextMenu = React7.useCallback((event) => {
+    const [open, setOpen] = React8.useState(false);
+    const [position, setPosition] = React8.useState({ x: 0, y: 0 });
+    const containerRef = React8.useRef(null);
+    const handleContextMenu = React8.useCallback((event) => {
       event.preventDefault();
       setPosition({ x: event.clientX, y: event.clientY });
       setOpen(true);
@@ -919,7 +1114,7 @@ function generateRange(page, totalPages, siblingCount) {
   }
   return range;
 }
-var Pagination = React7.forwardRef(
+var Pagination = React8.forwardRef(
   ({
     className,
     size = "md",
@@ -936,31 +1131,31 @@ var Pagination = React7.forwardRef(
     siblingCount = 1,
     ...props
   }, ref) => {
-    const pages = React7.useMemo(() => {
+    const pages = React8.useMemo(() => {
       if (totalPages <= 7) {
         return Array.from({ length: totalPages }, (_, i) => i + 1);
       }
       return generateRange(page, totalPages, siblingCount);
     }, [page, totalPages, siblingCount]);
-    const handlePrevious = React7.useCallback(() => {
+    const handlePrevious = React8.useCallback(() => {
       if (page > 1) {
         onPrevious?.();
         onChange?.(page - 1);
       }
     }, [page, onChange, onPrevious]);
-    const handleNext = React7.useCallback(() => {
+    const handleNext = React8.useCallback(() => {
       if (page < totalPages) {
         onNext?.();
         onChange?.(page + 1);
       }
     }, [page, totalPages, onChange, onNext]);
-    const handlePageClick = React7.useCallback((page2) => {
+    const handlePageClick = React8.useCallback((page2) => {
       onChange?.(page2);
     }, [onChange]);
-    const handleFirst = React7.useCallback(() => {
+    const handleFirst = React8.useCallback(() => {
       onChange?.(1);
     }, [onChange]);
-    const handleLast = React7.useCallback(() => {
+    const handleLast = React8.useCallback(() => {
       onChange?.(totalPages);
     }, [onChange, totalPages]);
     const sizeClasses = {
@@ -1072,7 +1267,7 @@ var Pagination = React7.forwardRef(
   }
 );
 Pagination.displayName = "Pagination";
-var PaginationInfo = React7.forwardRef(
+var PaginationInfo = React8.forwardRef(
   ({
     className,
     page,
@@ -1108,7 +1303,7 @@ var PaginationInfo = React7.forwardRef(
   }
 );
 PaginationInfo.displayName = "PaginationInfo";
-var PaginationCompact = React7.forwardRef(
+var PaginationCompact = React8.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Pagination,
@@ -1164,7 +1359,7 @@ var stepVariants = cva(
     }
   }
 );
-var Steps = React7.forwardRef(
+var Steps = React8.forwardRef(
   ({
     className,
     orientation = "horizontal",
@@ -1176,7 +1371,7 @@ var Steps = React7.forwardRef(
     showConnector = true,
     ...props
   }, ref) => {
-    const stepsWithStatus = React7.useMemo(() => {
+    const stepsWithStatus = React8.useMemo(() => {
       return steps.map((step, index) => {
         let status = "pending";
         if (index < current) {
@@ -1324,7 +1519,7 @@ var Steps = React7.forwardRef(
   }
 );
 Steps.displayName = "Steps";
-var StepItem = React7.forwardRef(
+var StepItem = React8.forwardRef(
   ({
     className,
     number,
@@ -1409,7 +1604,7 @@ var sidebarVariants = cva(
     }
   }
 );
-var Sidebar = React7.forwardRef(
+var Sidebar = React8.forwardRef(
   ({
     className,
     variant = "default",
@@ -1427,25 +1622,25 @@ var Sidebar = React7.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [internalCollapsed, setInternalCollapsed] = React7.useState(collapsed);
-    const [internalOpen, setInternalOpen] = React7.useState(open);
+    const [internalCollapsed, setInternalCollapsed] = React8.useState(collapsed);
+    const [internalOpen, setInternalOpen] = React8.useState(open);
     const isCollapsed = onCollapse ? collapsed : internalCollapsed;
     const isOpen = overlay ? onOpenChange ? open : internalOpen : true;
-    const handleCollapse = React7.useCallback(() => {
+    const handleCollapse = React8.useCallback(() => {
       if (onCollapse) {
         onCollapse(!isCollapsed);
       } else {
         setInternalCollapsed(!isCollapsed);
       }
     }, [isCollapsed, onCollapse]);
-    const handleOpenChange = React7.useCallback((newOpen) => {
+    const handleOpenChange = React8.useCallback((newOpen) => {
       if (onOpenChange) {
         onOpenChange(newOpen);
       } else {
         setInternalOpen(newOpen);
       }
     }, [onOpenChange]);
-    React7.useEffect(() => {
+    React8.useEffect(() => {
       if (overlay && isOpen) {
         const handleClickOutside = (event) => {
           const target = event.target;
@@ -1596,14 +1791,14 @@ var Sidebar = React7.forwardRef(
   }
 );
 Sidebar.displayName = "Sidebar";
-var SidebarTrigger = React7.forwardRef(
+var SidebarTrigger = React8.forwardRef(
   ({
     className,
     children,
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React7.useCallback((event) => {
+    const handleClick = React8.useCallback((event) => {
       onClick?.(event);
       window.dispatchEvent(new CustomEvent("sidebar:toggle"));
     }, [onClick]);
@@ -1650,7 +1845,7 @@ var topBarVariants = cva(
     }
   }
 );
-var TopBar = React7.forwardRef(
+var TopBar = React8.forwardRef(
   ({
     className,
     variant = "default",
@@ -1785,7 +1980,7 @@ var TopBar = React7.forwardRef(
   }
 );
 TopBar.displayName = "TopBar";
-var TopBarTitle = React7.forwardRef(
+var TopBarTitle = React8.forwardRef(
   ({
     className,
     title,
@@ -1807,7 +2002,7 @@ var TopBarTitle = React7.forwardRef(
   }
 );
 TopBarTitle.displayName = "TopBarTitle";
-var TopBarActions = React7.forwardRef(
+var TopBarActions = React8.forwardRef(
   ({
     className,
     children,
@@ -1826,6 +2021,6 @@ var TopBarActions = React7.forwardRef(
 );
 TopBarActions.displayName = "TopBarActions";
 
-export { Accordion, AccordionContent, AccordionItem, AccordionTrigger, Collapsible, CollapsibleContent2 as CollapsibleContent, CollapsibleTrigger2 as CollapsibleTrigger, Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, Menu, MenuBar, NavigationContextMenu, NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport, Pagination, PaginationCompact, PaginationInfo, Sidebar, SidebarTrigger, StepItem, Steps, Tabs, TabsContent, TabsList, TabsTrigger, TopBar, TopBarActions, TopBarTitle, navigationMenuTriggerStyle };
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger, BackToTop, BackToTopButton, Collapsible, CollapsibleContent2 as CollapsibleContent, CollapsibleTrigger2 as CollapsibleTrigger, Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, Menu, MenuBar, NavigationContextMenu, NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport, Pagination, PaginationCompact, PaginationInfo, Sidebar, SidebarTrigger, StepItem, Steps, Tabs, TabsContent, TabsList, TabsTrigger, TopBar, TopBarActions, TopBarTitle, navigationMenuTriggerStyle };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

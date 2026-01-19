@@ -7,7 +7,6 @@ import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsx, jsxs } from 'react/jsx-runtime';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -239,8 +238,16 @@ var Modal = React2.forwardRef(
     loading = false,
     children,
     ...props
-  }) => {
+  }, ref) => {
     const modalRef = React2.useRef(null);
+    const setModalRef = React2.useCallback((node) => {
+      modalRef.current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    }, [ref]);
     React2.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
@@ -281,7 +288,7 @@ var Modal = React2.forwardRef(
       /* @__PURE__ */ jsxs(
         "div",
         {
-          ref: modalRef,
+          ref: setModalRef,
           className: cn(
             modalVariants({ size, variant }),
             "relative z-10 max-h-[90vh] overflow-hidden",

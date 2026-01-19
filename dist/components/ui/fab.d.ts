@@ -6,7 +6,7 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes do FAB
  */
 declare const fabVariants: (props?: {
-    variant?: "default" | "secondary" | "destructive" | "outline" | "ghost" | "neon" | "glass";
+    variant?: "secondary" | "default" | "destructive" | "outline" | "ghost" | "neon" | "glass";
     size?: "sm" | "md" | "lg" | "xl";
     position?: "bottom-right" | "bottom-left" | "top-right" | "top-left" | "bottom-center" | "top-center";
     extended?: boolean;

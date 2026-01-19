@@ -9,7 +9,6 @@ import HelpCircle from 'lucide-react/dist/esm/icons/help-circle';
 import MessageCircle from 'lucide-react/dist/esm/icons/message-circle';
 import Video from 'lucide-react/dist/esm/icons/video';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }

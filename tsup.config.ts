@@ -1,6 +1,18 @@
 import { defineConfig } from 'tsup';
 import { readdirSync, statSync } from 'fs';
 import { join } from 'path';
+import { execSync } from 'child_process';
+
+// Executar validação de design tokens antes do build
+try {
+  execSync('node scripts/validate-design-tokens.js', { 
+    stdio: 'inherit',
+    cwd: __dirname 
+  });
+} catch (error) {
+  console.error('❌ Validação de design tokens falhou');
+  process.exit(1);
+}
 
 // Função para obter todos os arquivos de um diretório recursivamente
 function getEntryPoints(dir: string, base = ''): Record<string, string> {

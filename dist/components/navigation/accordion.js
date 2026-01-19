@@ -29,7 +29,6 @@ function _interopNamespace(e) {
 var AccordionPrimitive__namespace = /*#__PURE__*/_interopNamespace(AccordionPrimitive);
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }

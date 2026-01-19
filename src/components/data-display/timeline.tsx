@@ -211,9 +211,9 @@ export const Timeline = React.forwardRef<HTMLDivElement, TimelineProps>(
         {React.Children.map(children, (child) => {
           if (!React.isValidElement(child)) return child;
           
-          return React.cloneElement(child, {
-            ...child.props,
-            className: cn(child.props.className),
+          return React.cloneElement(child as React.ReactElement<React.HTMLAttributes<HTMLElement>>, {
+            ...(child.props as React.HTMLAttributes<HTMLElement>),
+            className: cn((child.props as React.HTMLAttributes<HTMLElement>).className),
           });
         })}
       </div>

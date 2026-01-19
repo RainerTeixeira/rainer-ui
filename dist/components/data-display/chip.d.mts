@@ -6,7 +6,7 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes do Chip usando CVA e design tokens
  */
 declare const chipVariants: (props?: {
-    variant?: "default" | "success" | "warning" | "error" | "secondary" | "outline";
+    variant?: "success" | "warning" | "error" | "secondary" | "default" | "outline";
     size?: "sm" | "md" | "lg";
     removable?: boolean;
 } & class_variance_authority_types.ClassProp) => string;

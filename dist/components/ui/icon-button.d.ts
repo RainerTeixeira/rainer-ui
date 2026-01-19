@@ -6,7 +6,7 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes do IconButton
  */
 declare const iconButtonVariants: (props?: {
-    variant?: "link" | "default" | "secondary" | "destructive" | "outline" | "ghost" | "neon" | "glass" | "minimal";
+    variant?: "secondary" | "link" | "default" | "destructive" | "outline" | "ghost" | "neon" | "glass" | "minimal";
     size?: "xs" | "sm" | "md" | "lg" | "xl" | "icon" | "icon-sm" | "icon-lg" | "icon-xl";
     animation?: "none" | "scale" | "glow" | "bounce" | "pulse" | "rotate";
 } & class_variance_authority_types.ClassProp) => string;

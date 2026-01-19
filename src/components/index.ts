@@ -22,17 +22,15 @@
  */
 
 // ============================================================================
-// 🎨 UI - COMPONENTES BÁSICOS
+// UI - COMPONENTES BÁSICOS
 // ============================================================================
 export * from './ui';
 
 // ============================================================================
 // UTILITIES - EXPORTAR DIRETAMENTE PARA COMPATIBILIDADE
 // ============================================================================
-export { PageHeader } from './utilities/PageHeader';
-
 // Exportar funções de cor para compatibilidade
-export { hexToRGB, hexToRGBA } from '../lib/utils';
+// Funções de cor movidas para @rainersoft/utils
 
 
 // ============================================================================
@@ -81,6 +79,16 @@ export * from './effects';
 // ============================================================================
 // 🛠️ UTILITIES - UTILITÁRIOS
 // ============================================================================
+
+// Novas categorias de utilities organizadas - exports específicos para evitar conflitos
+export { CookieBanner, useCookieConsent } from './compliance';
+export { ErrorBoundary, LoadingScreen } from './infrastructure';
+export { InstallPrompt } from './pwa';
+export { TokensDemo } from './development';
+export { Kbd, KbdCombo, Code, CodeInline, CodeBlock, Quote, QuoteTestimonial, QuoteBlock } from './content';
+export { VisuallyHidden } from './accessibility';
+
+// Manter utilities existentes para compatibilidade
 export * from './utilities';
 
 // ============================================================================
@@ -89,11 +97,17 @@ export * from './utilities';
 export * from './social';
 
 // ============================================================================
-// 📤 UPLOAD - COMPONENTES DE UPLOAD
+// UPLOAD - COMPONENTES DE UPLOAD
 // ============================================================================
 // Futuro: export * from './upload';
 
 // ============================================================================
-// 🔌 PROVIDERS
+// PROVIDERS
 // ============================================================================
-export * from './providers/theme-provider';
+export { ThemeProvider } from './providers/theme-provider';
+export { TokensProvider } from './providers/tokens-provider';
+
+// ============================================================================
+// HOOKS
+// ============================================================================
+export * from '../hooks';

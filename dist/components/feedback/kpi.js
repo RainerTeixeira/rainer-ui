@@ -39,7 +39,6 @@ var Minus__default = /*#__PURE__*/_interopDefault(Minus);
 var TrendingDown__default = /*#__PURE__*/_interopDefault(TrendingDown);
 var TrendingUp__default = /*#__PURE__*/_interopDefault(TrendingUp);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }

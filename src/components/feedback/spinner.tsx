@@ -195,7 +195,7 @@ export const SpinnerOverlay = React.forwardRef<HTMLDivElement, SpinnerOverlayPro
     {
       className,
       fullscreen = false,
-      overlayColor = 'rgba(0, 0, 0, 0.5)',
+      overlayColor = 'var(--color-black)',
       opacity = 0.5,
       ...props
     },

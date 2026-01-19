@@ -1,5 +1,6 @@
 'use strict';
 
+var React = require('react');
 var lucideReact = require('lucide-react');
 var reactDialog = require('@radix-ui/react-dialog');
 var clsx = require('clsx');
@@ -7,7 +8,26 @@ var tailwindMerge = require('tailwind-merge');
 var designTokens = require('@rainersoft/design-tokens');
 var jsxRuntime = require('react/jsx-runtime');
 
-// src/lib/utils.ts
+function _interopNamespace(e) {
+  if (e && e.__esModule) return e;
+  var n = Object.create(null);
+  if (e) {
+    Object.keys(e).forEach(function (k) {
+      if (k !== 'default') {
+        var d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: function () { return e[k]; }
+        });
+      }
+    });
+  }
+  n.default = e;
+  return Object.freeze(n);
+}
+
+var React__namespace = /*#__PURE__*/_interopNamespace(React);
+
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -97,13 +117,11 @@ function SheetPortal({
 }) {
   return /* @__PURE__ */ jsxRuntime.jsx(reactDialog.Portal, { "data-slot": "sheet-portal", ...props });
 }
-function SheetOverlay({
-  className,
-  ...props
-}) {
+var SheetOverlay = React__namespace.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsxRuntime.jsx(
     reactDialog.Overlay,
     {
+      ref,
       "data-slot": "sheet-overlay",
       className: cn(
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
@@ -112,13 +130,15 @@ function SheetOverlay({
       ...props
     }
   );
-}
+});
+SheetOverlay.displayName = "SheetOverlay";
 function SheetContent({
   className,
   children,
   side = "right",
   ...props
 }) {
+  const ariaDescribedBy = props["aria-describedby"];
   return /* @__PURE__ */ jsxRuntime.jsxs(SheetPortal, { children: [
     /* @__PURE__ */ jsxRuntime.jsx(SheetOverlay, {}),
     /* @__PURE__ */ jsxRuntime.jsxs(
@@ -137,6 +157,7 @@ function SheetContent({
           side === "bottom" && "data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t",
           className
         ),
+        "aria-describedby": ariaDescribedBy ?? void 0,
         ...props,
         children: [
           children,

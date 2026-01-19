@@ -11,7 +11,6 @@ import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsx, jsxs } from 'react/jsx-runtime';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -243,7 +242,7 @@ var SearchInput = React2.forwardRef(
     const [filteredSuggestions, setFilteredSuggestions] = React2.useState([]);
     const inputRef = React2.useRef(null);
     const containerRef = React2.useRef(null);
-    const debounceRef = React2.useRef();
+    const debounceRef = React2.useRef(null);
     const currentValue = value !== void 0 ? value : internalValue;
     const setValue = React2.useCallback((newValue) => {
       setInternalValue(newValue);
@@ -255,6 +254,7 @@ var SearchInput = React2.forwardRef(
       }, debounceTime);
     }, [onChange, debounceTime]);
     React2.useEffect(() => {
+      let next;
       if (!currentValue.trim()) {
         const historySuggestions = history.slice(0, 5).map((item, index) => ({
           id: `history-${index}`,
@@ -263,14 +263,16 @@ var SearchInput = React2.forwardRef(
           icon: /* @__PURE__ */ jsx(Clock, { className: "h-4 w-4" })
         }));
         const trendingSuggestions = suggestions.filter((s) => s.type === "trending").slice(0, 5);
-        setFilteredSuggestions([...historySuggestions, ...trendingSuggestions]);
+        next = [...historySuggestions, ...trendingSuggestions];
       } else {
-        const filtered = suggestions.filter(
-          (s) => s.text.toLowerCase().includes(currentValue.toLowerCase())
-        ).slice(0, maxSuggestions);
-        setFilteredSuggestions(filtered);
+        next = suggestions.filter((s) => s.text.toLowerCase().includes(currentValue.toLowerCase())).slice(0, maxSuggestions);
       }
-    }, [currentValue, suggestions, history, maxSuggestions]);
+      const sameLength = next.length === filteredSuggestions.length;
+      const sameItems = sameLength && next.every((item, idx) => item.id === filteredSuggestions[idx]?.id && item.text === filteredSuggestions[idx]?.text);
+      if (!sameItems) {
+        setFilteredSuggestions(next);
+      }
+    }, [currentValue, suggestions, history, maxSuggestions, filteredSuggestions]);
     const handleKeyDown = React2.useCallback((event) => {
       switch (event.key) {
         case "Enter":

@@ -6,16 +6,16 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes do Grid
  */
 declare const gridVariants: (props?: {
-    cols?: 5 | 1 | 10 | 2 | 4 | 6 | 3 | 7 | "auto" | 8 | 9 | 11 | 12 | "auto-fit" | "auto-fill";
-    sm?: 5 | 1 | 10 | 2 | 4 | 6 | 3 | 7 | "auto" | 8 | 9 | 11 | 12 | "auto-fit" | "auto-fill";
-    md?: 5 | 1 | 10 | 2 | 4 | 6 | 3 | 7 | "auto" | 8 | 9 | 11 | 12 | "auto-fit" | "auto-fill";
-    lg?: 5 | 1 | 10 | 2 | 4 | 6 | 3 | 7 | "auto" | 8 | 9 | 11 | 12 | "auto-fit" | "auto-fill";
-    xl?: 5 | 1 | 10 | 2 | 4 | 6 | 3 | 7 | "auto" | 8 | 9 | 11 | 12 | "auto-fit" | "auto-fill";
-    gap?: 0 | 5 | 1 | 10 | 2 | 4 | 6 | 3 | 8 | 12 | "px";
-    gapX?: 0 | 5 | 1 | 10 | 2 | 4 | 6 | 3 | 8 | 12 | "px";
-    gapY?: 0 | 5 | 1 | 10 | 2 | 4 | 6 | 3 | 8 | 12 | "px";
-    align?: "center" | "end" | "start" | "stretch";
-    justify?: "center" | "end" | "start" | "between" | "around" | "evenly";
+    cols?: 2 | 4 | 6 | 1 | 5 | 3 | 7 | "auto" | 8 | 9 | 10 | 11 | 12 | "auto-fit" | "auto-fill";
+    sm?: 2 | 4 | 6 | 1 | 5 | 3 | 7 | "auto" | 8 | 9 | 10 | 11 | 12 | "auto-fit" | "auto-fill";
+    md?: 2 | 4 | 6 | 1 | 5 | 3 | 7 | "auto" | 8 | 9 | 10 | 11 | 12 | "auto-fit" | "auto-fill";
+    lg?: 2 | 4 | 6 | 1 | 5 | 3 | 7 | "auto" | 8 | 9 | 10 | 11 | 12 | "auto-fit" | "auto-fill";
+    xl?: 2 | 4 | 6 | 1 | 5 | 3 | 7 | "auto" | 8 | 9 | 10 | 11 | 12 | "auto-fit" | "auto-fill";
+    gap?: 0 | 2 | 4 | 6 | 1 | 5 | 3 | 8 | 10 | 12 | "px";
+    gapX?: 0 | 2 | 4 | 6 | 1 | 5 | 3 | 8 | 10 | 12 | "px";
+    gapY?: 0 | 2 | 4 | 6 | 1 | 5 | 3 | 8 | 10 | 12 | "px";
+    align?: "center" | "start" | "end" | "stretch";
+    justify?: "center" | "start" | "end" | "between" | "around" | "evenly";
 } & class_variance_authority_types.ClassProp) => string;
 /**
  * Props do Grid

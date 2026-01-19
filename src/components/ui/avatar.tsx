@@ -11,6 +11,7 @@
 
 import * as React from 'react';
 import { cn } from '../../lib/utils';
+import { getInitials } from '@rainersoft/utils';
 
 /**
  * Avatar component props
@@ -59,25 +60,6 @@ const variantClasses = {
   rounded: 'rounded-xl',
   square: 'rounded-lg',
 } as const;
-
-/**
- * Função para extrair iniciais de forma inteligente
- */
-function getInitials(name: string, max: number = 2): string {
-  if (!name) return '';
-  
-  const words = name.trim().split(/\s+/);
-  
-  if (words.length === 1) {
-    return words[0].slice(0, Math.min(max, 2)).toUpperCase();
-  }
-  
-  return words
-    .slice(0, max)
-    .map(word => word[0])
-    .join('')
-    .toUpperCase();
-}
 
 /**
  * Função para gerar cor baseada no nome (hash consistente)

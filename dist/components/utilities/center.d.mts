@@ -6,7 +6,7 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes do Center
  */
 declare const centerVariants: (props?: {
-    direction?: "both" | "horizontal" | "vertical";
+    direction?: "horizontal" | "vertical" | "both";
     inline?: boolean;
 } & class_variance_authority_types.ClassProp) => string;
 /**

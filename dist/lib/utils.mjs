@@ -2,32 +2,6 @@ import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 
-function hexToRGB(hex) {
-  const cleanHex = hex.replace("#", "");
-  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
-    return "0, 0, 0";
-  }
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  return `${r}, ${g}, ${b}`;
-}
-function hexToRGBA(hex, alpha = 1) {
-  const cleanHex = hex.replace("#", "");
-  alpha = Math.max(0, Math.min(1, alpha));
-  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
-    return "rgb(0, 0, 0)";
-  }
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  if (alpha === 1) {
-    return `rgb(${r}, ${g}, ${b})`;
-  }
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
-
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -132,6 +106,6 @@ var motionPresets = {
   }
 };
 
-export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, COMPONENT_CLASSES, SECTION_CLASSES, cn, hexToRGB, hexToRGBA, motion, motionPresets, motionSemantic };
+export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, COMPONENT_CLASSES, SECTION_CLASSES, cn, motion, motionPresets, motionSemantic };
 //# sourceMappingURL=utils.mjs.map
 //# sourceMappingURL=utils.mjs.map

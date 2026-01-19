@@ -1,0 +1,426 @@
+'use strict';
+
+var React = require('react');
+var reactLoadingIndicators = require('react-loading-indicators');
+var lucideReact = require('lucide-react');
+var clsx = require('clsx');
+var tailwindMerge = require('tailwind-merge');
+var designTokens = require('@rainersoft/design-tokens');
+var jsxRuntime = require('react/jsx-runtime');
+
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
+
+var React__default = /*#__PURE__*/_interopDefault(React);
+
+function cn(...inputs) {
+  return tailwindMerge.twMerge(clsx.clsx(inputs));
+}
+var motion = designTokens.tokens.MOTION || {
+  duration: {
+    fast: "100ms",
+    normal: "200ms",
+    slow: "300ms",
+    slower: "500ms"},
+  easing: {
+    easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+    easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+    spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+  },
+  delay: {
+    }
+};
+var motionSemantic = designTokens.tokens.MOTION || {
+  transition: {
+    default: {
+      duration: motion.duration.normal,
+      easing: motion.easing.easeInOut
+    }
+  },
+  interaction: {
+    hover: {
+      duration: motion.duration.fast,
+      easing: motion.easing.easeOut
+    }
+  },
+  feedback: {
+    success: {
+      duration: motion.duration.slower,
+      easing: motion.easing.spring
+    }
+  },
+  navigation: {
+    page: {
+      duration: motion.duration.slow,
+      easing: motion.easing.easeInOut
+    }
+  }
+};
+motion.delay;
+motion.duration;
+motion.easing;
+({
+  default: {
+    duration: motion.duration.normal,
+    easing: motion.easing.easeInOut
+  },
+  fast: {
+    duration: motion.duration.fast,
+    easing: motion.easing.easeOut
+  },
+  slow: {
+    duration: motion.duration.slow,
+    easing: motion.easing.easeInOut
+  },
+  spring: {
+    duration: motion.duration.normal,
+    easing: motion.easing.spring
+  },
+  // Presets semânticos
+  semantic: {
+    transition: motionSemantic.transition.default,
+    interaction: motionSemantic.interaction.hover,
+    feedback: motionSemantic.feedback.success,
+    navigation: motionSemantic.navigation.page
+  }
+});
+var Skeleton = React__default.default.forwardRef(
+  ({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+    "div",
+    {
+      ref,
+      className: cn(
+        "animate-pulse rounded-md bg-muted",
+        className
+      ),
+      ...props
+    }
+  )
+);
+Skeleton.displayName = "Skeleton";
+var SPINNER_SIZES = {
+  sm: "h-4 w-4",
+  md: "h-6 w-6",
+  lg: "h-8 w-8",
+  xl: "h-12 w-12"
+};
+function LoadingSpinner({
+  size = "md",
+  className = "",
+  label = "Carregando..."
+}) {
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    lucideReact.Loader2,
+    {
+      className: `${SPINNER_SIZES[size]} animate-spin text-primary ${className}`,
+      "aria-label": label,
+      role: "status"
+    }
+  );
+}
+function FullPageLoader({
+  message = "Carregando..."
+}) {
+  return /* @__PURE__ */ jsxRuntime.jsx(
+    "div",
+    {
+      className: "min-h-screen w-full flex flex-col items-center justify-center bg-background",
+      role: "status",
+      "aria-label": message,
+      children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-center space-y-6", children: [
+        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", "aria-hidden": "true", children: [
+          /* @__PURE__ */ jsxRuntime.jsx("div", { className: "w-20 h-20 border-4 border-cyan-400 border-t-transparent rounded-full animate-spin mx-auto" }),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            "div",
+            {
+              className: "absolute inset-0 w-20 h-20 border-4 border-pink-400 border-b-transparent rounded-full animate-spin mx-auto",
+              style: { animationDirection: "reverse" }
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-cyan-600 dark:text-cyan-300 font-mono text-sm tracking-wider animate-pulse", children: message.toUpperCase() })
+      ] })
+    }
+  );
+}
+function InlineLoader({
+  message = "Carregando...",
+  size = "md"
+}) {
+  return /* @__PURE__ */ jsxRuntime.jsxs(
+    "div",
+    {
+      className: "flex flex-col items-center justify-center py-12 space-y-4",
+      role: "status",
+      "aria-label": message,
+      children: [
+        /* @__PURE__ */ jsxRuntime.jsx(LoadingSpinner, { size }),
+        /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted-foreground dark:text-gray-400", children: message })
+      ]
+    }
+  );
+}
+function SkeletonGrid({
+  count = 4,
+  columns = 2,
+  className = ""
+}) {
+  const gridCols = {
+    1: "grid-cols-1",
+    2: "grid-cols-1 md:grid-cols-2",
+    3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
+    4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
+  };
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: `grid ${gridCols[columns]} gap-6 ${className}`, children: Array.from({ length: count }).map((_, index) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "space-y-4", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(Skeleton, { className: "h-48 w-full rounded-lg" }),
+    /* @__PURE__ */ jsxRuntime.jsx(Skeleton, { className: "h-6 w-3/4" }),
+    /* @__PURE__ */ jsxRuntime.jsx(Skeleton, { className: "h-4 w-full" }),
+    /* @__PURE__ */ jsxRuntime.jsx(Skeleton, { className: "h-4 w-2/3" })
+  ] }, index)) });
+}
+function EmptyState({
+  icon: Icon = lucideReact.Loader2,
+  title = "Nenhum item encontrado",
+  description = "N\xE3o h\xE1 itens para exibir no momento.",
+  action
+}) {
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-center py-12 px-4", children: [
+    /* @__PURE__ */ jsxRuntime.jsx("div", { className: "inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-linear-to-br from-cyan-500/10 to-purple-500/10 dark:from-cyan-400/10 dark:to-purple-400/10 border border-cyan-400/30 mb-6", children: /* @__PURE__ */ jsxRuntime.jsx(
+      Icon,
+      {
+        className: "w-8 h-8 sm:w-10 sm:h-10 text-cyan-600 dark:text-cyan-400",
+        "aria-hidden": "true"
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntime.jsx("h3", { className: "text-xl sm:text-2xl font-bold mb-2 text-foreground dark:text-cyan-200", children: title }),
+    /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm sm:text-base text-muted-foreground dark:text-gray-400 mb-6 max-w-md mx-auto", children: description }),
+    action && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex justify-center", children: action })
+  ] });
+}
+function LoadingScreen({ progress = 0, currentStep = "Inicializando..." }) {
+  const [displayedProgress, setDisplayedProgress] = React.useState(0);
+  const [stars, setStars] = React.useState([]);
+  const primaryColor = "var(--color-blue-600)";
+  const secondaryColor = "var(--color-purple-600)";
+  const accentColor = "var(--color-red-600)";
+  const primaryRGB = primaryColor;
+  const secondaryRGB = secondaryColor;
+  React.useEffect(() => {
+    const starsCount = 100;
+    const newStars = Array.from({ length: starsCount }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      top: Math.random() * 100,
+      size: Math.random() * 2 + 0.5,
+      delay: Math.random() * 3,
+      opacity: 0.6 + Math.random() * 0.4
+    }));
+    setStars(newStars);
+  }, []);
+  React.useEffect(() => {
+    if (progress === void 0) {
+      setDisplayedProgress(0);
+      return;
+    }
+    const targetProgress = Math.min(100, Math.max(0, progress));
+    const step = (targetProgress - displayedProgress) / 10;
+    const interval = setInterval(() => {
+      setDisplayedProgress((prev) => {
+        const next = prev + step;
+        if (Math.abs(next - targetProgress) < 0.5) {
+          return targetProgress;
+        }
+        return next;
+      });
+    }, 16);
+    return () => clearInterval(interval);
+  }, [progress, displayedProgress]);
+  const currentMessage = currentStep || "Inicializando sistemas...";
+  const progressValue = progress !== void 0 ? displayedProgress : void 0;
+  return /* @__PURE__ */ jsxRuntime.jsxs(
+    "div",
+    {
+      className: cn(
+        "fixed inset-0 z-[9999] flex flex-col items-center justify-center",
+        "bg-background backdrop-blur-sm",
+        "transition-opacity duration-500"
+      ),
+      role: "status",
+      "aria-label": "Carregando aplica\xE7\xE3o",
+      "aria-live": "polite",
+      children: [
+        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "absolute inset-0 overflow-hidden", "aria-hidden": "true", children: [
+          /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute inset-0", children: stars.map((star) => /* @__PURE__ */ jsxRuntime.jsx(
+            "div",
+            {
+              className: "absolute rounded-full bg-white",
+              style: {
+                left: `${star.left}%`,
+                top: `${star.top}%`,
+                width: `${star.size}px`,
+                height: `${star.size}px`,
+                opacity: star.opacity,
+                boxShadow: `0 0 ${star.size * 2}px var(--color-white)`,
+                animation: "starTwinkle 3s ease-in-out infinite",
+                animationDelay: `${star.delay}s`
+              }
+            },
+            star.id
+          )) }),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            "div",
+            {
+              className: "absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-3xl animate-pulse opacity-20",
+              style: {
+                background: `radial-gradient(circle, rgba(${primaryRGB}, 0.3), transparent)`
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            "div",
+            {
+              className: "absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full blur-3xl animate-pulse opacity-20",
+              style: {
+                background: `radial-gradient(circle, rgba(${secondaryRGB}, 0.3), transparent)`,
+                animationDelay: "1s"
+              }
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative z-10 flex flex-col items-center justify-center space-y-8 px-4", children: [
+          /* @__PURE__ */ jsxRuntime.jsx(
+            "div",
+            {
+              className: "relative flex items-center justify-center",
+              "aria-hidden": "true",
+              suppressHydrationWarning: true,
+              children: /* @__PURE__ */ jsxRuntime.jsx(
+                reactLoadingIndicators.Atom,
+                {
+                  color: [primaryColor, secondaryColor, accentColor, primaryColor],
+                  size: "large",
+                  text: "",
+                  textColor: "",
+                  speedPlus: 1
+                }
+              )
+            }
+          ),
+          /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "text-center space-y-4", children: [
+            /* @__PURE__ */ jsxRuntime.jsx(
+              "p",
+              {
+                className: cn(
+                  "text-lg sm:text-xl font-mono font-semibold",
+                  "tracking-wider animate-pulse"
+                ),
+                style: { color: primaryColor },
+                "aria-live": "polite",
+                children: currentMessage
+              }
+            ),
+            progressValue !== void 0 && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "w-64 sm:w-80 space-y-2", children: [
+              /* @__PURE__ */ jsxRuntime.jsx(
+                "div",
+                {
+                  className: "h-1 bg-muted rounded-full overflow-hidden border",
+                  style: {
+                    borderColor: `${primaryColor}33`
+                  },
+                  children: /* @__PURE__ */ jsxRuntime.jsx(
+                    "div",
+                    {
+                      className: "h-full transition-all duration-300 ease-out",
+                      style: {
+                        width: `${progressValue}%`,
+                        background: `linear-gradient(90deg, ${primaryColor}, ${secondaryColor})`,
+                        boxShadow: `0 0 10px ${primaryColor}`
+                      },
+                      "aria-valuenow": progressValue,
+                      "aria-valuemin": 0,
+                      "aria-valuemax": 100,
+                      role: "progressbar"
+                    }
+                  )
+                }
+              ),
+              /* @__PURE__ */ jsxRuntime.jsxs(
+                "p",
+                {
+                  className: "text-xs font-mono text-right",
+                  style: { color: `${primaryColor}B3` },
+                  "aria-hidden": "true",
+                  children: [
+                    Math.round(progressValue),
+                    "%"
+                  ]
+                }
+              )
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntime.jsxs(
+            "div",
+            {
+              className: "absolute inset-0 overflow-hidden pointer-events-none opacity-20",
+              "aria-hidden": "true",
+              children: [
+                /* @__PURE__ */ jsxRuntime.jsx(
+                  "div",
+                  {
+                    className: "absolute top-0 left-1/4 font-mono text-xs animate-pulse",
+                    style: { color: `${primaryColor}4D` },
+                    children: "01001001"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntime.jsx(
+                  "div",
+                  {
+                    className: "absolute top-1/4 left-3/4 font-mono text-xs animate-pulse",
+                    style: {
+                      color: `${secondaryColor}4D`,
+                      animationDelay: "0.5s"
+                    },
+                    children: "11001100"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntime.jsx(
+                  "div",
+                  {
+                    className: "absolute bottom-1/4 left-1/2 font-mono text-xs animate-pulse",
+                    style: {
+                      color: `${primaryColor}4D`,
+                      animationDelay: "1s"
+                    },
+                    children: "10101010"
+                  }
+                )
+              ]
+            }
+          )
+        ] }),
+        /* @__PURE__ */ jsxRuntime.jsx("style", { children: `
+        @keyframes starTwinkle {
+          0%,
+          100% {
+            opacity: 0.6;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.2);
+          }
+        }
+
+      ` })
+      ]
+    }
+  );
+}
+
+exports.EmptyState = EmptyState;
+exports.FullPageLoader = FullPageLoader;
+exports.InlineLoader = InlineLoader;
+exports.LoadingScreen = LoadingScreen;
+exports.LoadingSpinner = LoadingSpinner;
+exports.SkeletonGrid = SkeletonGrid;
+//# sourceMappingURL=LoadingScreen.js.map
+//# sourceMappingURL=LoadingScreen.js.map

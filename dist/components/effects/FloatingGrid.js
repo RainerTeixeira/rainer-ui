@@ -2,67 +2,21 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-require('@rainersoft/design-tokens');
 var nextThemes = require('next-themes');
-var React = require('react');
+var react = require('react');
 var jsxRuntime = require('react/jsx-runtime');
 
-function _interopNamespace(e) {
-  if (e && e.__esModule) return e;
-  var n = Object.create(null);
-  if (e) {
-    Object.keys(e).forEach(function (k) {
-      if (k !== 'default') {
-        var d = Object.getOwnPropertyDescriptor(e, k);
-        Object.defineProperty(n, k, d.get ? d : {
-          enumerable: true,
-          get: function () { return e[k]; }
-        });
-      }
-    });
-  }
-  n.default = e;
-  return Object.freeze(n);
-}
-
-var React__namespace = /*#__PURE__*/_interopNamespace(React);
-
-function hexToRGBA(hex, alpha = 1) {
-  const cleanHex = hex.replace("#", "");
-  alpha = Math.max(0, Math.min(1, alpha));
-  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
-    return "rgb(0, 0, 0)";
-  }
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  if (alpha === 1) {
-    return `rgb(${r}, ${g}, ${b})`;
-  }
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
-var TokensContext = React__namespace.createContext(null);
-function useTokens() {
-  const context = React__namespace.useContext(TokensContext);
-  if (!context) {
-    throw new Error(
-      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
-    );
-  }
-  return context;
-}
 function FloatingGrid({
   variant = "default",
   intensity = 0.5
 } = {}) {
-  const canvasRef = React.useRef(null);
+  const canvasRef = react.useRef(null);
   const { theme } = nextThemes.useTheme();
-  const { getColor } = useTokens();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
+  const [mounted, setMounted] = react.useState(false);
+  react.useEffect(() => {
     setMounted(true);
   }, []);
-  React.useEffect(() => {
+  react.useEffect(() => {
     if (!mounted || theme !== "dark") return;
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -86,9 +40,8 @@ function FloatingGrid({
       time += 0.01;
       const pulseIntensity = intensity * (0.8 + Math.sin(time) * 0.2);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const cyan400 = getColor("primitives.colors.cyan.400", "#22d3ee");
-      const strokeColor = hexToRGBA(cyan400, pulseIntensity * 1.2);
-      const fillColor = hexToRGBA(cyan400, pulseIntensity * 0.6);
+      const strokeColor = `rgba(34, 211, 238, ${pulseIntensity * 1.2})`;
+      const fillColor = `rgba(34, 211, 238, ${pulseIntensity * 0.6})`;
       ctx.strokeStyle = strokeColor;
       ctx.lineWidth = config.lineWidth;
       for (let x = 0; x < canvas.width; x += config.spacing) {

@@ -19,7 +19,7 @@ declare const ASPECT_RATIOS: {
  * Variantes do AspectRatioBox
  */
 declare const aspectRatioBoxVariants: (props?: {
-    variant?: "default" | "rounded" | "neon" | "glass" | "card" | "bordered";
+    variant?: "rounded" | "default" | "neon" | "glass" | "card" | "bordered";
 } & class_variance_authority_types.ClassProp) => string;
 /**
  * Props do AspectRatioBox

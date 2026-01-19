@@ -29,7 +29,6 @@ function _interopNamespace(e) {
 
 var React2__namespace = /*#__PURE__*/_interopNamespace(React2);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -260,8 +259,16 @@ var Drawer = React2__namespace.forwardRef(
     loading = false,
     children,
     ...props
-  }) => {
+  }, ref) => {
     const drawerRef = React2__namespace.useRef(null);
+    const setDrawerRef = React2__namespace.useCallback((node) => {
+      drawerRef.current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    }, [ref]);
     React2__namespace.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
@@ -312,15 +319,14 @@ var Drawer = React2__namespace.forwardRef(
       /* @__PURE__ */ jsxRuntime.jsxs(
         "div",
         {
-          ref: drawerRef,
+          ref: setDrawerRef,
           className: cn(
-            drawerVariants({ position, variant }),
+            drawerVariants({ position, size, variant, className }),
             position === "left" && size && sizeClasses[size],
             position === "right" && size && sizeClasses[size],
             animationClasses[position],
             loading && "opacity-70",
-            !open && "pointer-events-none",
-            className
+            !open && "pointer-events-none"
           ),
           role: "dialog",
           "aria-modal": "true",

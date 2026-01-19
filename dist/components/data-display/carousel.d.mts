@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { ButtonProps } from '../ui/button.mjs';
-import '../../lib/cookie-utils.mjs';
 import useEmblaCarousel, { UseEmblaCarouselType } from 'embla-carousel-react';
 import 'class-variance-authority/types';
 import 'class-variance-authority';

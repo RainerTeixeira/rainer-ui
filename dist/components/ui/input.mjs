@@ -4,7 +4,6 @@ import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsxs, jsx } from 'react/jsx-runtime';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -128,7 +127,7 @@ var Input = React.forwardRef(
           className: cn(
             "text-xs",
             error ? "text-destructive" : "text-muted-foreground",
-            "dark:text-cyan-400/70 dark:text-red-400/70"
+            "dark:text-cyan-400/70"
           ),
           children: helperText
         }

@@ -1,60 +1,15 @@
 'use strict';
 
-var React = require('react');
-var designTokens = require('@rainersoft/design-tokens');
+var react = require('react');
 var jsxRuntime = require('react/jsx-runtime');
 var nextThemes = require('next-themes');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
-
-function _interopNamespace(e) {
-  if (e && e.__esModule) return e;
-  var n = Object.create(null);
-  if (e) {
-    Object.keys(e).forEach(function (k) {
-      if (k !== 'default') {
-        var d = Object.getOwnPropertyDescriptor(e, k);
-        Object.defineProperty(n, k, d.get ? d : {
-          enumerable: true,
-          get: function () { return e[k]; }
-        });
-      }
-    });
-  }
-  n.default = e;
-  return Object.freeze(n);
-}
-
-var React__namespace = /*#__PURE__*/_interopNamespace(React);
-
-function hexToRGBA(hex, alpha = 1) {
-  const cleanHex = hex.replace("#", "");
-  alpha = Math.max(0, Math.min(1, alpha));
-  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
-    return "rgb(0, 0, 0)";
-  }
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  if (alpha === 1) {
-    return `rgb(${r}, ${g}, ${b})`;
-  }
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
+var designTokens = require('@rainersoft/design-tokens');
 
 // src/lib/constants.ts
 var GRADIENT_DIRECTIONS = {
   TO_BOTTOM: "to-b"};
-var TokensContext = React__namespace.createContext(null);
-function useTokens() {
-  const context = React__namespace.useContext(TokensContext);
-  if (!context) {
-    throw new Error(
-      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
-    );
-  }
-  return context;
-}
 var STAR_CONFIGS = {
   default: {
     count: 150,
@@ -103,17 +58,12 @@ function Star({ star }) {
   );
 }
 function CelestialBackground({
-  variant = "default",
-  colors
-} = {}) {
+  variant = "default"
+}) {
   const config = STAR_CONFIGS[variant];
-  const [stars, setStars] = React.useState([]);
-  const [isMounted, setIsMounted] = React.useState(false);
-  const { getColor } = useTokens();
-  const cyan400 = colors?.cyan ?? getColor("primitives.colors.cyan.400", "#22d3ee");
-  const purple400 = colors?.purple ?? getColor("primitives.colors.purple.400", "#a855f7");
-  const pink500 = colors?.pink ?? getColor("primitives.colors.pink.500", "#ec4899");
-  React.useEffect(() => {
+  const [stars, setStars] = react.useState([]);
+  const [isMounted, setIsMounted] = react.useState(false);
+  react.useEffect(() => {
     setStars(generateStars(config.count, [...config.sizes], [...config.opacity]));
     setIsMounted(true);
   }, [config.count, config.sizes, config.opacity]);
@@ -123,9 +73,9 @@ function CelestialBackground({
       className: "fixed inset-0 pointer-events-none opacity-0 dark:opacity-100 transition-opacity duration-1000",
       style: {
         background: `
-          radial-gradient(ellipse at top, ${hexToRGBA(cyan400, 0.1)} 0%, transparent 50%),
-          radial-gradient(ellipse at bottom right, ${hexToRGBA(purple400, 0.1)} 0%, transparent 50%),
-          radial-gradient(ellipse at bottom left, ${hexToRGBA(pink500, 0.05)} 0%, transparent 50%)
+          radial-gradient(ellipse at top, var(--color-cyan-400) 0%, transparent 50%),
+          radial-gradient(ellipse at bottom right, var(--color-purple-500) 0%, transparent 50%),
+          radial-gradient(ellipse at bottom left, rgba(236, 72, 153, 0.05) 0%, transparent 50%)
         `
       },
       children: [
@@ -136,7 +86,7 @@ function CelestialBackground({
             {
               className: "absolute top-0 left-1/4 w-96 h-96 rounded-full blur-3xl opacity-20",
               style: {
-                background: `radial-gradient(circle, ${hexToRGBA(cyan400, 0.3)} 0%, transparent 70%)`
+                background: `radial-gradient(circle, var(--color-cyan-400) 0%, transparent 70%)`
               }
             }
           ),
@@ -145,7 +95,7 @@ function CelestialBackground({
             {
               className: "absolute bottom-0 right-1/4 w-80 h-80 rounded-full blur-3xl opacity-20",
               style: {
-                background: `radial-gradient(circle, ${hexToRGBA(purple400, 0.3)} 0%, transparent 70%)`
+                background: `radial-gradient(circle, var(--color-purple-500) 0%, transparent 70%)`
               }
             }
           ),
@@ -154,7 +104,7 @@ function CelestialBackground({
             {
               className: "absolute bottom-0 left-1/4 w-72 h-72 rounded-full blur-3xl opacity-15",
               style: {
-                background: `radial-gradient(circle, ${hexToRGBA(pink500, 0.2)} 0%, transparent 70%)`
+                background: `radial-gradient(circle, rgba(236, 72, 153, 0.2) 0%, transparent 70%)`
               }
             }
           )
@@ -168,14 +118,13 @@ function FloatingGrid({
   variant = "default",
   intensity = 0.5
 } = {}) {
-  const canvasRef = React.useRef(null);
+  const canvasRef = react.useRef(null);
   const { theme } = nextThemes.useTheme();
-  const { getColor } = useTokens();
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
+  const [mounted, setMounted] = react.useState(false);
+  react.useEffect(() => {
     setMounted(true);
   }, []);
-  React.useEffect(() => {
+  react.useEffect(() => {
     if (!mounted || theme !== "dark") return;
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -199,9 +148,8 @@ function FloatingGrid({
       time += 0.01;
       const pulseIntensity = intensity * (0.8 + Math.sin(time) * 0.2);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const cyan400 = getColor("primitives.colors.cyan.400", "#22d3ee");
-      const strokeColor = hexToRGBA(cyan400, pulseIntensity * 1.2);
-      const fillColor = hexToRGBA(cyan400, pulseIntensity * 0.6);
+      const strokeColor = `rgba(34, 211, 238, ${pulseIntensity * 1.2})`;
+      const fillColor = `rgba(34, 211, 238, ${pulseIntensity * 0.6})`;
       ctx.strokeStyle = strokeColor;
       ctx.lineWidth = config.lineWidth;
       for (let x = 0; x < canvas.width; x += config.spacing) {
@@ -383,9 +331,9 @@ function generateColumn(i, columnCount, isMobile, isTablet) {
   };
 }
 function MatrixBackgroundInner({ variant = "global" }) {
-  const [matrixColumns, setMatrixColumns] = React.useState([]);
-  const [isInitialized, setIsInitialized] = React.useState(false);
-  const initializeMatrix = React.useCallback(() => {
+  const [matrixColumns, setMatrixColumns] = react.useState([]);
+  const [isInitialized, setIsInitialized] = react.useState(false);
+  const initializeMatrix = react.useCallback(() => {
     if (isInitialized || typeof window === "undefined") return;
     const width = window.innerWidth;
     const isMobile = width < MOBILE_BREAKPOINT;
@@ -397,7 +345,7 @@ function MatrixBackgroundInner({ variant = "global" }) {
     setMatrixColumns(initialColumns);
     setIsInitialized(true);
   }, [isInitialized]);
-  React.useEffect(() => {
+  react.useEffect(() => {
     if (typeof window !== "undefined" && !isInitialized) {
       initializeMatrix();
     }
@@ -494,15 +442,15 @@ function MatrixBackgroundInner({ variant = "global" }) {
     )
   ] });
 }
-var MatrixBackground = React.memo(MatrixBackgroundInner);
+var MatrixBackground = react.memo(MatrixBackgroundInner);
 function StarsBackground() {
   const { resolvedTheme } = nextThemes.useTheme();
-  const [mounted, setMounted] = React.useState(false);
-  const [stars, setStars] = React.useState([]);
-  React.useEffect(() => {
+  const [mounted, setMounted] = react.useState(false);
+  const [stars, setStars] = react.useState([]);
+  react.useEffect(() => {
     setMounted(true);
   }, []);
-  React.useEffect(() => {
+  react.useEffect(() => {
     if (!mounted) return;
     const starsCount = 150;
     const newStars = Array.from({ length: starsCount }, (_, i) => {

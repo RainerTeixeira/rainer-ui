@@ -44,7 +44,7 @@ export function getStatusColor(
   theme: ThemeKey = 'light'
 ): string {
   const themeData = themes[theme] as { colors?: Record<string, { base?: string }> };
-  return themeData?.colors?.[status]?.base || '#000000';
+  return themeData?.colors?.[status]?.base || 'var(--color-black)';
 }
 
 /**
@@ -52,7 +52,7 @@ export function getStatusColor(
  */
 export function getButtonPrimaryColor(theme: ThemeKey = 'light'): string {
   const themeData = themes[theme] as { colors?: Record<string, { base?: string }> };
-  return themeData?.colors?.primary?.base || '#0891b2';
+  return themeData?.colors?.primary?.base || 'var(--color-cyan-600)';
 }
 
 /**
@@ -76,7 +76,7 @@ export function getButtonTertiaryColor(theme: ThemeKey = 'light'): string {
  */
 export function getButtonPrimaryTextColor(theme: ThemeKey = 'light'): string {
   const themeData = themes[theme] as { colors?: Record<string, { text?: string }> };
-  return themeData?.colors?.primary?.text || '#ffffff';
+  return themeData?.colors?.primary?.text || 'var(--color-white)';
 }
 
 /**

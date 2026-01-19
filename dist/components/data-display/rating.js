@@ -33,7 +33,6 @@ var React__namespace = /*#__PURE__*/_interopNamespace(React);
 var Star__default = /*#__PURE__*/_interopDefault(Star);
 var StarHalf__default = /*#__PURE__*/_interopDefault(StarHalf);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }

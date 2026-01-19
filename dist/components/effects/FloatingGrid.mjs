@@ -1,40 +1,13 @@
-import '@rainersoft/design-tokens';
 import { useTheme } from 'next-themes';
-import * as React from 'react';
 import { useRef, useState, useEffect } from 'react';
 import { jsx } from 'react/jsx-runtime';
 
-function hexToRGBA(hex, alpha = 1) {
-  const cleanHex = hex.replace("#", "");
-  alpha = Math.max(0, Math.min(1, alpha));
-  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
-    return "rgb(0, 0, 0)";
-  }
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  if (alpha === 1) {
-    return `rgb(${r}, ${g}, ${b})`;
-  }
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
-var TokensContext = React.createContext(null);
-function useTokens() {
-  const context = React.useContext(TokensContext);
-  if (!context) {
-    throw new Error(
-      "useTokens deve ser usado dentro de <TokensProvider tokens={...}>. Adicione o provedor na raiz do app ou Storybook para compartilhar os design tokens oficiais."
-    );
-  }
-  return context;
-}
 function FloatingGrid({
   variant = "default",
   intensity = 0.5
 } = {}) {
   const canvasRef = useRef(null);
   const { theme } = useTheme();
-  const { getColor } = useTokens();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -63,9 +36,8 @@ function FloatingGrid({
       time += 0.01;
       const pulseIntensity = intensity * (0.8 + Math.sin(time) * 0.2);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      const cyan400 = getColor("primitives.colors.cyan.400", "#22d3ee");
-      const strokeColor = hexToRGBA(cyan400, pulseIntensity * 1.2);
-      const fillColor = hexToRGBA(cyan400, pulseIntensity * 0.6);
+      const strokeColor = `rgba(34, 211, 238, ${pulseIntensity * 1.2})`;
+      const fillColor = `rgba(34, 211, 238, ${pulseIntensity * 0.6})`;
       ctx.strokeStyle = strokeColor;
       ctx.lineWidth = config.lineWidth;
       for (let x = 0; x < canvas.width; x += config.spacing) {

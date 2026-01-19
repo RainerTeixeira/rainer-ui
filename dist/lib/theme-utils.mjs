@@ -14,11 +14,11 @@ function getSemanticColorsSimplified(theme) {
 }
 function getStatusColor(status, theme = "light") {
   const themeData = themes[theme];
-  return themeData?.colors?.[status]?.base || "#000000";
+  return themeData?.colors?.[status]?.base || "var(--color-black)";
 }
 function getButtonPrimaryColor(theme = "light") {
   const themeData = themes[theme];
-  return themeData?.colors?.primary?.base || "#0891b2";
+  return themeData?.colors?.primary?.base || "var(--color-cyan-600)";
 }
 function getButtonSecondaryColor(theme = "light") {
   const themeData = themes[theme];
@@ -29,7 +29,7 @@ function getButtonTertiaryColor(theme = "light") {
 }
 function getButtonPrimaryTextColor(theme = "light") {
   const themeData = themes[theme];
-  return themeData?.colors?.primary?.text || "#ffffff";
+  return themeData?.colors?.primary?.text || "var(--color-white)";
 }
 function getColorFromTheme(theme, category, shade) {
   const themeData = themes[theme];

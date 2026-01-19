@@ -1,5 +1,4 @@
 @import '@rainersoft/design-tokens/formats/css-vars.css';
-@import '@ui/styles/global.css';
 
 @tailwind base;
 @tailwind components;

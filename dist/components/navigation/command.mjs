@@ -7,7 +7,6 @@ import { X, Search } from 'lucide-react';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { Command as Command$1 } from 'cmdk';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }

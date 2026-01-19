@@ -7,7 +7,6 @@ import { Toaster as Toaster$1 } from 'sonner';
 export { Toaster as Sonner } from 'sonner';
 import { Loader2, Octagon, AlertTriangle, Info, Check } from 'lucide-react';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }

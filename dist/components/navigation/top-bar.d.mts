@@ -6,7 +6,7 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes do TopBar
  */
 declare const topBarVariants: (props?: {
-    variant?: "default" | "transparent" | "neon" | "glass" | "floating";
+    variant?: "transparent" | "default" | "neon" | "glass" | "floating";
     size?: "sm" | "md" | "lg";
     sticky?: boolean;
 } & class_variance_authority_types.ClassProp) => string;

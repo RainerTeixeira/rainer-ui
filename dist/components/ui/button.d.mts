@@ -6,8 +6,8 @@ import * as React from 'react';
  * Sistema de variantes do Button
  */
 declare const buttonVariants: (props?: {
-    variant?: "link" | "default" | "secondary" | "destructive" | "outline" | "ghost" | "neon" | "glass" | "minimal";
-    size?: "default" | "xs" | "sm" | "lg" | "xl" | "icon" | "icon-sm" | "icon-lg" | "icon-xl";
+    variant?: "secondary" | "link" | "default" | "destructive" | "outline" | "ghost" | "neon" | "glass" | "minimal";
+    size?: "xs" | "sm" | "lg" | "xl" | "default" | "icon" | "icon-sm" | "icon-lg" | "icon-xl";
     animation?: "none" | "scale" | "glow" | "bounce" | "pulse";
 } & class_variance_authority_types.ClassProp) => string;
 /**

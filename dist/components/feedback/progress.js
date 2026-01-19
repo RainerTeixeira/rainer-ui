@@ -28,7 +28,6 @@ function _interopNamespace(e) {
 var ProgressPrimitive__namespace = /*#__PURE__*/_interopNamespace(ProgressPrimitive);
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }

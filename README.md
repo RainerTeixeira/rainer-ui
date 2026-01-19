@@ -517,7 +517,319 @@ Contribuições são bem-vindas! Consulte o [Guia de Contribuição](./docs/CONT
 - [Índice da Documentação](./docs/00-INDICE.md)
 - [Guia de Contribuição](./docs/CONTRIBUINDO.md)
 
+## 🪝 Hooks React
+
+A biblioteca fornece hooks especializados para componentes UI. Todos os hooks são projetados para trabalhar com design tokens e seguir as melhores práticas de acessibilidade.
+
+### 📋 Hooks Disponíveis
+
+#### **Hooks Essenciais (Usados Internamente)**
+
+##### `useTheme`
+Hook para gerenciar tema claro/escuro com integração com design tokens.
+
+```tsx
+import { useTheme } from '@rainersoft/ui';
+
+function ThemeComponent() {
+  const { theme, toggle, setTheme, isDark } = useTheme();
+  
+  return (
+    <div>
+      <p>Tema atual: {theme}</p>
+      <button onClick={toggle}>Alternar Tema</button>
+      <button onClick={() => setTheme('light')}>Tema Claro</button>
+    </div>
+  );
+}
+```
+
+**Retorno:**
+- `theme: 'light' | 'dark' | 'system'` - Tema atual
+- `toggle: () => void` - Alterna entre light/dark
+- `setTheme: (theme) => void` - Define tema específico
+- `isDark: boolean` - Se tema escuro está ativo
+
+---
+
+##### `usePWA`
+Hook para detectar e gerenciar instalação de Progressive Web App.
+
+```tsx
+import { usePWA } from '@rainersoft/ui';
+
+function PWAInstallPrompt() {
+  const { isInstallable, isInstalled, install, dismiss } = usePWA();
+  
+  if (isInstalled) return null;
+  if (!isInstallable) return null;
+  
+  return (
+    <div>
+      <p>Instale nosso aplicativo!</p>
+      <button onClick={install}>Instalar</button>
+      <button onClick={dismiss}>Agora não</button>
+    </div>
+  );
+}
+```
+
+**Retorno:**
+- `isInstallable: boolean` - Se app pode ser instalado
+- `isInstalled: boolean` - Se app já está instalado
+- `install: () => Promise<void>` - Instala o PWA
+- `dismiss: () => void` - Fecha o prompt
+
+---
+
+#### **Hooks para Uso Externo**
+
+##### `useCarouselKeyboard`
+Hook para gerenciar navegação por teclado em carousels e sliders.
+
+```tsx
+import { useCarouselKeyboard } from '@rainersoft/ui';
+
+function Carousel({ items }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const keyboard = useCarouselKeyboard({
+    totalItems: items.length,
+    currentIndex,
+    onIndexChange: setCurrentIndex,
+    autoPlay: true,
+    autoPlayInterval: 3000,
+    options: {
+      loop: true,
+      pauseOnHover: true,
+      keyMap: ['ArrowLeft', 'ArrowRight']
+    }
+  });
+  
+  return (
+    <div {...keyboard.containerProps}>
+      {items.map((item, index) => (
+        <div key={index} {...keyboard.getItemProps(index)}>
+          {item}
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+**Parâmetros:**
+- `totalItems: number` - Total de itens
+- `currentIndex: number` - Índice atual
+- `onIndexChange: (index) => void` - Callback de mudança
+- `autoPlay?: boolean` - Auto-play (default: false)
+- `autoPlayInterval?: number` - Intervalo em ms (default: 3000)
+- `options?: { loop?, pauseOnHover?, keyMap? }` - Opções adicionais
+
+---
+
+##### `useTableOfContents`
+Hook para gerar e gerenciar índice de conteúdo (Table of Contents).
+
+```tsx
+import { useTableOfContents } from '@rainersoft/ui';
+
+function DocumentWithTOC() {
+  const containerRef = useRef(null);
+  
+  const toc = useTableOfContents({
+    containerRef,
+    headings: ['h2', 'h3'],
+    options: {
+      offset: 100,
+      smoothScroll: true,
+      activeOnScroll: true,
+      nested: true
+    }
+  });
+  
+  return (
+    <div>
+      <nav>
+        {toc.items.map(item => (
+          <a
+            key={item.id}
+            href={`#${item.id}`}
+            className={toc.activeId === item.id ? 'active' : ''}
+            onClick={() => toc.scrollToItem(item.id)}
+            style={{ paddingLeft: `${item.level * 16}px` }}
+          >
+            {item.text}
+          </a>
+        ))}
+      </nav>
+      
+      <article ref={containerRef}>
+        <h2>Seção 1</h2>
+        <h3>Subseção 1.1</h3>
+        <h2>Seção 2</h2>
+      </article>
+    </div>
+  );
+}
+```
+
+**Parâmetros:**
+- `containerRef: React.RefObject<HTMLElement>` - Ref do container
+- `headings?: string[]` - Seletores de títulos (default: ['h2', 'h3'])
+- `options?: { offset?, smoothScroll?, activeOnScroll?, nested? }` - Configurações
+
+**Retorno:**
+- `items: TocItem[]` - Array de itens do TOC
+- `activeId: string | null` - ID do item ativo
+- `scrollToItem: (itemId: string) => void` - Scroll para item
+
+---
+
+### 🔄 Hooks Migrados para @rainersoft/utils
+
+Alguns hooks foram movidos para `@rainersoft/utils` para melhor organização:
+
+| Hook | Novo Local | Motivo |
+|------|------------|--------|
+| `useAuth` | `@rainersoft/utils/hooks` | Autenticação genérica |
+| `usePasswordStrength` | `@rainersoft/utils/hooks` | Validação de formulários |
+| `useIntersectionObserver` | `@rainersoft/utils/hooks` | Utilidade DOM |
+| `useToggleState` | `@rainersoft/utils/hooks` | State management |
+| `useCounter` | `@rainersoft/utils/hooks` | State management |
+| `useSmoothScroll` | `@rainersoft/utils/hooks` | Utilidade de scroll |
+| `useScrollPosition` | `@rainersoft/utils/hooks` | Utilidade DOM |
+| `useMobile` | `@rainersoft/utils/hooks` | Detecção de dispositivo |
+
+**Exemplo de importação após migração:**
+```tsx
+// Antes (removido)
+import { useAuth } from '@rainersoft/ui';
+
+// Agora (correto)
+import { useAuth } from '@rainersoft/utils/hooks';
+```
+
+---
+
+### 🎯 Melhores Práticas
+
+#### **Imports Otimizados**
+```tsx
+// ✅ Import individual (recomendado)
+import { useTheme } from '@rainersoft/ui/hooks/use-theme';
+
+// ✅ Import por categoria
+import { useTheme, usePWA } from '@rainersoft/ui';
+
+// ✅ Import de hooks de utils
+import { useAuth, useMobile } from '@rainersoft/utils/hooks';
+```
+
+#### **Combinação com Componentes**
+```tsx
+import { Button, Card } from '@rainersoft/ui';
+import { useTheme, usePWA } from '@rainersoft/ui';
+import { useAuth, useMobile } from '@rainersoft/utils/hooks';
+
+function AppHeader() {
+  const { theme, toggle } = useTheme();
+  const { isInstallable, install } = usePWA();
+  const { user, logout } = useAuth();
+  const isMobile = useMobile();
+  
+  return (
+    <Card>
+      <Button onClick={toggle}>
+        Tema: {theme}
+      </Button>
+      {isInstallable && (
+        <Button onClick={install}>Instalar App</Button>
+      )}
+      {user && (
+        <Button onClick={logout}>Sair</Button>
+      )}
+    </Card>
+  );
+}
+```
+
+---
+
+### 📚 Referência Completa
+
+Para mais exemplos e casos de uso avançados, consulte:
+
+- [Documentação de Componentes](./docs/01-COMPONENTES.md)
+- [Guia de Design Tokens](./docs/02-DESIGN-TOKENS.md)
+- [Exemplos de Integração](./docs/03-EXEMPLOS.md)
+
 ## 📝 Changelog
+
+### v3.0.0 (2025-01-18)
+
+**🚀 Migração de Hooks e Arquitetura Otimizada**
+
+- ✅ **Migração de 8 Hooks**: Movidos hooks utilitários para `@rainersoft/utils`
+- ✅ **Separação de Responsabilidades**: UI focado apenas em componentes específicos
+- ✅ **Performance Otimizada**: -32KB de código removido do bundle UI
+- ✅ **Documentação Completa**: Nova seção de hooks com exemplos detalhados
+- ✅ **Imports Claros**: Guias de migração e melhores práticas
+
+**Hooks Migrados para @rainersoft/utils:**
+```diff
+- useAuth (14KB)
+- usePasswordStrength (8.7KB) 
+- useIntersectionObserver (1.9KB)
+- useToggleState (2.7KB)
+- useCounter (1.9KB)
+- useSmoothScroll (1KB)
+- useScrollPosition (1.7KB)
+- useMobile (1KB)
+```
+
+**Hooks Mantidos em @rainersoft/ui:**
+```diff
+✅ useTheme (4.5KB) - Essencial para design tokens
+✅ usePWA (3.9KB) - Componente UI específico
+✅ useCarouselKeyboard (5.9KB) - Específico de carousels
+✅ useTableOfContents (7.3KB) - Específico de layout
+```
+
+**Nova Forma de Importar:**
+```tsx
+// Hooks de UI (mantidos)
+import { useTheme, usePWA } from '@rainersoft/ui';
+
+// Hooks de utilidade (migrados)
+import { useAuth, useMobile } from '@rainersoft/utils/hooks';
+```
+
+---
+
+### v2.1.0 (2024-12-15)
+
+**🌟 Tree-Shaking e Imports Individuais**
+
+- ✅ **Imports Otimizados**: Importe apenas componentes necessários
+- ✅ **Bundle Size Reduzido**: Até 40% menor com imports seletivos
+- ✅ **Componentes Sociais**: ActionButton, ShareMenu, ContentCard genéricos
+- ✅ **Casos de Uso Documentados**: Exemplos para Blog, E-commerce, Dashboard
+- ✅ **Performance**: Melhorias no build e carregamento
+
+---
+
+### v2.0.0 (2024-12-01)
+
+**🎨 Refatoração Completa e Design Tokens**
+
+- ✅ **Integração Total**: 100% integrado com `@rainersoft/design-tokens`
+- ✅ **Zero Hardcoded Colors**: Todas as cores usam CSS variables
+- ✅ **Componentes Reestruturados**: 5 categorias principais (UI, Forms, Layout, Feedback, Navigation)
+- ✅ **Acessibilidade**: Padrão WCAG 2.1 AA em todos componentes
+- ✅ **TypeScript**: Tipagem completa e strict mode
+
+---
 
 ### v1.2.0 (2024-11-24)
 

@@ -42,7 +42,6 @@ var Menu__default = /*#__PURE__*/_interopDefault(Menu);
 var Search__default = /*#__PURE__*/_interopDefault(Search);
 var Settings__default = /*#__PURE__*/_interopDefault(Settings);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }

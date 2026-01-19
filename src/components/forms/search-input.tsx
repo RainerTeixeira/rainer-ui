@@ -149,7 +149,7 @@ export const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
     
     const inputRef = React.useRef<HTMLInputElement>(null);
     const containerRef = React.useRef<HTMLDivElement>(null);
-    const debounceRef = React.useRef<NodeJS.Timeout>();
+    const debounceRef = React.useRef<NodeJS.Timeout | null>(null);
 
     // Usa valor controlado ou interno
     const currentValue = value !== undefined ? value : internalValue;

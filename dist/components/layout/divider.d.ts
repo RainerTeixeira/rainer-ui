@@ -6,7 +6,7 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes do Divider
  */
 declare const dividerVariants: (props?: {
-    variant?: "primary" | "default" | "secondary" | "muted" | "dashed" | "dotted" | "gradient";
+    variant?: "primary" | "secondary" | "default" | "muted" | "dashed" | "dotted" | "gradient";
     size?: "xs" | "sm" | "md" | "lg";
     orientation?: "horizontal" | "vertical";
 } & class_variance_authority_types.ClassProp) => string;

@@ -1,6 +1,6 @@
 {
   "name": "@rainersoft/ui",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "Componentes UI reutilizáveis com Radix UI e Tailwind CSS",
   "packageManager": "pnpm@10.28.0",
   "author": {
@@ -24,7 +24,8 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./styles/global.css": "./src/styles/global.css"
+    "./styles/*": "./src/styles/*",
+    "./components.json": "./components.json"
   },
   "files": [
     "dist",
@@ -37,12 +38,15 @@
     "rainer-ui": "cli/index.js"
   },
   "scripts": {
-    "build": "tsup",
+    "build": "npm run validate:tokens && tsup",
     "dev": "tsup --watch",
     "lint": "eslint . --ext ts,tsx",
     "test:coverage": "jest --coverage",
     "clean": "rimraf dist node_modules pnpm-lock.yaml .turbo",
     "validate": "node scripts/validate-no-hardcode.js",
+    "validate:tokens": "node scripts/validate-design-tokens.js",
+    "remove:hardcoded-colors": "tsx scripts/remove-hardcoded-colors.ts",
+    "sync:tokens": "npm run remove:hardcoded-colors && npm run validate:tokens",
     "type-check": "tsc --noEmit",
     "changelog": "tsx scripts/generate-changelog.ts",
     "release": "tsx scripts/release-package.ts",
@@ -81,8 +85,6 @@
     "@radix-ui/react-tabs": "^1.1.13",
     "@radix-ui/react-toggle": "^1.1.10",
     "@radix-ui/react-tooltip": "^1.2.8",
-    "@rainersoft/design-tokens": "file:../rainer-design-tokens",
-    "@rainersoft/utils": "file:../rainer-utils",
     "date-fns": "^3.6.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

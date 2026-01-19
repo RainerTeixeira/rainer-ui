@@ -1,14 +1,17 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
-import * as React from 'react';
-import { D as DesignTokens, T as TokensContextValue } from '../../tokens-B1TMkK7f.js';
+import React__default from 'react';
 
-declare const DEFAULT_TOKENS: DesignTokens;
-declare const TokensContext: React.Context<TokensContextValue>;
-interface TokensProviderProps {
-    tokens?: DesignTokens;
-    children: React.ReactNode;
+interface TokensContextType {
+    tokens: any;
+    setTokens: (tokens: any) => void;
+    theme: 'light' | 'dark';
+    setTheme: (theme: 'light' | 'dark') => void;
 }
-declare function TokensProvider({ tokens: customTokens, children }: TokensProviderProps): react_jsx_runtime.JSX.Element;
-declare function useTokens(): TokensContextValue;
+interface TokensProviderProps {
+    tokens: any;
+    children: React__default.ReactNode;
+}
+declare function TokensProvider({ tokens: initialTokens, children }: TokensProviderProps): react_jsx_runtime.JSX.Element;
+declare function useTokens(): TokensContextType;
 
-export { DEFAULT_TOKENS, TokensContext, TokensProvider, type TokensProviderProps, useTokens };
+export { TokensProvider, useTokens };

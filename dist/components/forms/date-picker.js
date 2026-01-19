@@ -35,7 +35,6 @@ var React2__namespace = /*#__PURE__*/_interopNamespace(React2);
 var Calendar__default = /*#__PURE__*/_interopDefault(Calendar);
 var ChevronDown__default = /*#__PURE__*/_interopDefault(ChevronDown);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }

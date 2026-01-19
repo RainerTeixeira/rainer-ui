@@ -29,7 +29,6 @@ function _interopNamespace(e) {
 
 var React2__namespace = /*#__PURE__*/_interopNamespace(React2);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -261,8 +260,16 @@ var Modal = React2__namespace.forwardRef(
     loading = false,
     children,
     ...props
-  }) => {
+  }, ref) => {
     const modalRef = React2__namespace.useRef(null);
+    const setModalRef = React2__namespace.useCallback((node) => {
+      modalRef.current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    }, [ref]);
     React2__namespace.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
@@ -303,7 +310,7 @@ var Modal = React2__namespace.forwardRef(
       /* @__PURE__ */ jsxRuntime.jsxs(
         "div",
         {
-          ref: modalRef,
+          ref: setModalRef,
           className: cn(
             modalVariants({ size, variant }),
             "relative z-10 max-h-[90vh] overflow-hidden",

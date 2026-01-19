@@ -6,7 +6,7 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes do Drawer
  */
 declare const drawerVariants: (props?: {
-    position?: "left" | "right" | "bottom" | "top";
+    position?: "top" | "bottom" | "left" | "right";
     size?: "sm" | "md" | "lg" | "xl" | "full";
     variant?: "default" | "neon" | "glass";
 } & class_variance_authority_types.ClassProp) => string;

@@ -142,7 +142,7 @@ export const Masonry = React.forwardRef<HTMLDivElement, MasonryProps>(
 
       return React.cloneElement(child as React.ReactElement<React.HTMLAttributes<HTMLElement>>, {
         style: {
-          ...child.props.style,
+          ...(child.props as React.HTMLAttributes<HTMLElement>).style,
           position: 'absolute' as const,
           top: position.top,
           left: position.left,

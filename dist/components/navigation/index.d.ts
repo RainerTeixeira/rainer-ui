@@ -1,3 +1,4 @@
+export { BackToTop, BackToTopButton } from './BackToTop.js';
 export { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './accordion.js';
 export { Collapsible, CollapsibleContent, CollapsibleTrigger } from './collapsible.js';
 export { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from './command.js';
@@ -8,10 +9,10 @@ export { Pagination, PaginationCompact, PaginationCompactProps, PaginationInfo, 
 export { Step, StepItem, StepItemProps, StepStatus, Steps, StepsProps } from './steps.js';
 export { Sidebar, SidebarProps, SidebarTrigger, SidebarTriggerProps } from './sidebar.js';
 export { TopBar, TopBarActions, TopBarActionsProps, TopBarProps, TopBarTitle, TopBarTitleProps } from './top-bar.js';
+import 'react/jsx-runtime';
 import '@radix-ui/react-accordion';
 import 'react';
 import '@radix-ui/react-collapsible';
-import 'react/jsx-runtime';
 import '../overlays/dialog.js';
 import 'class-variance-authority/types';
 import '@radix-ui/react-navigation-menu';

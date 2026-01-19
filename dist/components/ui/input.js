@@ -26,7 +26,6 @@ function _interopNamespace(e) {
 
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -150,7 +149,7 @@ var Input = React__namespace.forwardRef(
           className: cn(
             "text-xs",
             error ? "text-destructive" : "text-muted-foreground",
-            "dark:text-cyan-400/70 dark:text-red-400/70"
+            "dark:text-cyan-400/70"
           ),
           children: helperText
         }

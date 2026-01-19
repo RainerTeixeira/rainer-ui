@@ -9,7 +9,7 @@ import { MenuItem } from './menu.js';
 declare const sidebarVariants: (props?: {
     variant?: "dark" | "default" | "neon" | "glass";
     size?: "sm" | "md" | "lg" | "xl";
-    position?: "left" | "right" | "bottom" | "top";
+    position?: "top" | "bottom" | "left" | "right";
 } & class_variance_authority_types.ClassProp) => string;
 /**
  * Props do Sidebar

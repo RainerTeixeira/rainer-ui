@@ -28,7 +28,6 @@ import Check2 from 'lucide-react/dist/esm/icons/check';
 import Info2 from 'lucide-react/dist/esm/icons/info';
 import X from 'lucide-react/dist/esm/icons/x';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -491,7 +490,7 @@ var SpinnerOverlay = React8.forwardRef(
   ({
     className,
     fullscreen = false,
-    overlayColor = "rgba(0, 0, 0, 0.5)",
+    overlayColor = "var(--color-black)",
     opacity = 0.5,
     ...props
   }, ref) => {

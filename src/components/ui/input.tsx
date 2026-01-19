@@ -72,7 +72,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className={cn(
               'text-xs',
               error ? 'text-destructive' : 'text-muted-foreground',
-              'dark:text-cyan-400/70 dark:text-red-400/70'
+              'dark:text-cyan-400/70'
             )}
           >
             {helperText}

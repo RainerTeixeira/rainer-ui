@@ -27,7 +27,6 @@ import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle';
 import CheckCircle from 'lucide-react/dist/esm/icons/check-circle';
 import Info from 'lucide-react/dist/esm/icons/info';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -734,8 +733,16 @@ var Modal = React9.forwardRef(
     loading = false,
     children,
     ...props
-  }) => {
+  }, ref) => {
     const modalRef = React9.useRef(null);
+    const setModalRef = React9.useCallback((node) => {
+      modalRef.current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    }, [ref]);
     React9.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
@@ -776,7 +783,7 @@ var Modal = React9.forwardRef(
       /* @__PURE__ */ jsxs(
         "div",
         {
-          ref: modalRef,
+          ref: setModalRef,
           className: cn(
             modalVariants({ size, variant }),
             "relative z-10 max-h-[90vh] overflow-hidden",
@@ -954,8 +961,16 @@ var Drawer = React9.forwardRef(
     loading = false,
     children,
     ...props
-  }) => {
+  }, ref) => {
     const drawerRef = React9.useRef(null);
+    const setDrawerRef = React9.useCallback((node) => {
+      drawerRef.current = node;
+      if (typeof ref === "function") {
+        ref(node);
+      } else if (ref) {
+        ref.current = node;
+      }
+    }, [ref]);
     React9.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
@@ -1006,15 +1021,14 @@ var Drawer = React9.forwardRef(
       /* @__PURE__ */ jsxs(
         "div",
         {
-          ref: drawerRef,
+          ref: setDrawerRef,
           className: cn(
-            drawerVariants({ position, variant }),
+            drawerVariants({ position, size, variant, className }),
             position === "left" && size && sizeClasses[size],
             position === "right" && size && sizeClasses[size],
             animationClasses[position],
             loading && "opacity-70",
-            !open && "pointer-events-none",
-            className
+            !open && "pointer-events-none"
           ),
           role: "dialog",
           "aria-modal": "true",

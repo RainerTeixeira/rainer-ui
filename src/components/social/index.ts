@@ -1,30 +1,18 @@
 /**
- * Social Components
+ * Social Components - Componentes Sociais
  * 
- * Componentes para interação social em aplicações web.
- * Inclui botões de curtir, compartilhar, salvar, tempo de leitura e cards genéricos.
+ * Componentes para interações sociais:
+ * - SocialBar: Barra de ações sociais configurável
+ * - LikeButton: Botão de curtir com contador
+ * - ShareButton: Botão de compartilhamento
+ * - BookmarkButton: Botão de salvar/favoritar
  * 
- * @module components/social
- * @author Rainer Teixeira
- * @version 2.0.0
+ * @module @rainersoft/ui/components/social
+ * @category Social
  */
 
-// Componentes Específicos (Legacy)
-export { LikeButton } from './like-button';
-export { ShareButton } from './share-button';
-export { BookmarkButton } from './bookmark-button';
-export { ReadingTime } from './reading-time';
+// ============================================================================
+// COMPONENTES SOCIAIS
+// ============================================================================
 
-// Componentes Genéricos (Novos)
-export { ActionButton, ActionButtonVariants } from './action-button';
-export { ShareMenu, ShareMenuVariants } from './share-menu';
-export { ContentCard, ContentCardVariants } from './content-card';
-
-// Types
-export type { LikeButtonProps } from './like-button';
-export type { ShareButtonProps } from './share-button';
-export type { BookmarkButtonProps } from './bookmark-button';
-export type { ReadingTimeProps } from './reading-time';
-export type { ActionButtonProps } from './action-button';
-export type { ShareMenuProps } from './share-menu';
-export type { ContentCardProps, SocialAction, CardActions, ContentMetadata } from './content-card';
+export * from './social-bar';

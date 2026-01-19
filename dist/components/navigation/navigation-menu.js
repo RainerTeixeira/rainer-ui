@@ -30,7 +30,6 @@ function _interopNamespace(e) {
 var NavigationMenuPrimitive__namespace = /*#__PURE__*/_interopNamespace(NavigationMenuPrimitive);
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }

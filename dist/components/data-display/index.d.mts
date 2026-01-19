@@ -9,5 +9,4 @@ import 'react';
 import '../ui/button.mjs';
 import 'class-variance-authority/types';
 import 'class-variance-authority';
-import '../../lib/cookie-utils.mjs';
 import 'embla-carousel-react';

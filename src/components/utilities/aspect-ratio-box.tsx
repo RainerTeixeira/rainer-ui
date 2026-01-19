@@ -141,7 +141,7 @@ export const AspectRatioBox = React.forwardRef<HTMLDivElement, AspectRatioBoxPro
             React.cloneElement(children as React.ReactElement<{ className?: string }>, {
               className: cn(
                 objectFitClasses[objectFit],
-                children.props.className
+                (children.props as { className?: string }).className
               ),
             })
           ) : (

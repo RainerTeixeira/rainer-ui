@@ -6,7 +6,6 @@ import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsx, jsxs } from 'react/jsx-runtime';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -171,7 +170,7 @@ var SpinnerOverlay = React.forwardRef(
   ({
     className,
     fullscreen = false,
-    overlayColor = "rgba(0, 0, 0, 0.5)",
+    overlayColor = "var(--color-black)",
     opacity = 0.5,
     ...props
   }, ref) => {

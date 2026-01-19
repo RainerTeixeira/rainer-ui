@@ -1,0 +1,2 @@
+import{r as t,j as r,R as n,c as s,I as f}from"./index-BMkPSnki.js";const i=t.forwardRef(({className:a,value:e,...l},o)=>r.jsx(n,{ref:o,className:s("relative h-4 w-full overflow-hidden rounded-full bg-secondary",a),...l,children:r.jsx(f,{className:s("h-full w-full flex-1 transition-all","bg-primary"),style:{transform:`translateX(-${100-(e||0)}%)`}})}));i.displayName="Progress";export{i as Progress};
+//# sourceMappingURL=progress-ftoVlklj.js.map

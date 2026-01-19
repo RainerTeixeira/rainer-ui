@@ -1,11 +1,11 @@
+import * as React from 'react';
 import { X } from 'lucide-react';
-import { Root, Trigger, Close, Content, Title, Description, Portal, Overlay } from '@radix-ui/react-dialog';
+import { Overlay, Root, Trigger, Close, Content, Title, Description, Portal } from '@radix-ui/react-dialog';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens } from '@rainersoft/design-tokens';
 import { jsx, jsxs } from 'react/jsx-runtime';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -95,13 +95,11 @@ function SheetPortal({
 }) {
   return /* @__PURE__ */ jsx(Portal, { "data-slot": "sheet-portal", ...props });
 }
-function SheetOverlay({
-  className,
-  ...props
-}) {
+var SheetOverlay = React.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsx(
     Overlay,
     {
+      ref,
       "data-slot": "sheet-overlay",
       className: cn(
         "data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/50",
@@ -110,13 +108,15 @@ function SheetOverlay({
       ...props
     }
   );
-}
+});
+SheetOverlay.displayName = "SheetOverlay";
 function SheetContent({
   className,
   children,
   side = "right",
   ...props
 }) {
+  const ariaDescribedBy = props["aria-describedby"];
   return /* @__PURE__ */ jsxs(SheetPortal, { children: [
     /* @__PURE__ */ jsx(SheetOverlay, {}),
     /* @__PURE__ */ jsxs(
@@ -135,6 +135,7 @@ function SheetContent({
           side === "bottom" && "data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t",
           className
         ),
+        "aria-describedby": ariaDescribedBy ?? void 0,
         ...props,
         children: [
           children,

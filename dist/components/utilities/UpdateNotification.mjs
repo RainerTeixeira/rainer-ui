@@ -101,8 +101,6 @@ function usePWA() {
     updateServiceWorker
   };
 }
-
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }

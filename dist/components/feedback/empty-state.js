@@ -42,7 +42,6 @@ var Search__default = /*#__PURE__*/_interopDefault(Search);
 var Wifi__default = /*#__PURE__*/_interopDefault(Wifi);
 var XCircle__default = /*#__PURE__*/_interopDefault(XCircle);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }

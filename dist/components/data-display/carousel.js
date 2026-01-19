@@ -33,7 +33,6 @@ function _interopNamespace(e) {
 var useEmblaCarousel__default = /*#__PURE__*/_interopDefault(useEmblaCarousel);
 var React2__namespace = /*#__PURE__*/_interopNamespace(React2);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }

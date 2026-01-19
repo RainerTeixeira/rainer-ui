@@ -202,5 +202,5 @@ export const motionPresets = {
   }
 };
 
-// Exportar funções de cor para compatibilidade
-export { hexToRGB, hexToRGBA } from './color-utils';
+// Exportações de cor
+// Funções de cor movidas para @rainersoft/utils/color

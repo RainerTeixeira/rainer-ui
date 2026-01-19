@@ -4,7 +4,6 @@ import { tokens } from '@rainersoft/design-tokens';
 import { Loader2 } from 'lucide-react';
 import { jsx, jsxs } from 'react/jsx-runtime';
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }

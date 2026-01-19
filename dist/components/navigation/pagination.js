@@ -36,7 +36,6 @@ var ChevronLeft__default = /*#__PURE__*/_interopDefault(ChevronLeft);
 var ChevronRight__default = /*#__PURE__*/_interopDefault(ChevronRight);
 var MoreHorizontal__default = /*#__PURE__*/_interopDefault(MoreHorizontal);
 
-// src/lib/utils.ts
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }

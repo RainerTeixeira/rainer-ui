@@ -6,12 +6,10 @@
  * Renderizado APENAS no modo dark
  */
 
-import { hexToRGBA } from '../../lib/color-utils';
 import { useTheme } from 'next-themes';
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { useTokens } from '../providers/tokens-provider';
 
 interface FloatingGridProps {
   /** Variante do grid (default, dense, sparse) */
@@ -26,7 +24,6 @@ export function FloatingGrid({
 }: FloatingGridProps = {}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { theme } = useTheme();
-  const { getColor } = useTokens();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -71,9 +68,8 @@ export function FloatingGrid({
       
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      const cyan400 = getColor('primitives.colors.cyan.400', '#22d3ee');
-      const strokeColor = hexToRGBA(cyan400, pulseIntensity * 1.2);
-      const fillColor = hexToRGBA(cyan400, pulseIntensity * 0.6);
+      const strokeColor = `rgba(34, 211, 238, ${pulseIntensity * 1.2})`;
+      const fillColor = `rgba(34, 211, 238, ${pulseIntensity * 0.6})`;
 
       ctx.strokeStyle = strokeColor;
       ctx.lineWidth = config.lineWidth;

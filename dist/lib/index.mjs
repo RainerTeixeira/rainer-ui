@@ -2,86 +2,6 @@ import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { tokens, themes } from '@rainersoft/design-tokens';
 
-var __defProp = Object.defineProperty;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __publicField = (obj, key, value) => __defNormalProp(obj, key + "" , value);
-function getThemeColors(theme) {
-  const tokenObj = tokens;
-  return tokenObj.themes?.[theme] || {};
-}
-function getTokenColor(tokenName, theme) {
-  if (theme) {
-    const themeColors = getThemeColors(theme);
-    const searchPaths = [
-      themeColors.button?.primary,
-      themeColors.text?.primary,
-      themeColors.background?.primary,
-      themeColors.border?.default
-    ];
-    for (const value of searchPaths) {
-      if (typeof value === "string" && value.startsWith("#")) {
-        return value;
-      }
-      if (value && typeof value === "object" && "default" in value) {
-        const defaultValue = value.default;
-        if (typeof defaultValue === "string" && defaultValue.startsWith("#")) {
-          return defaultValue;
-        }
-      }
-    }
-  }
-  const varName = tokenName.startsWith("color-") ? tokenName : `color-${tokenName}`;
-  return `var(--${varName})`;
-}
-function hexToRGB(hex) {
-  const cleanHex = hex.replace("#", "");
-  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
-    return "0, 0, 0";
-  }
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  return `${r}, ${g}, ${b}`;
-}
-function hexToRGBA(hex, alpha = 1) {
-  const cleanHex = hex.replace("#", "");
-  alpha = Math.max(0, Math.min(1, alpha));
-  if (!/^[0-9A-F]{6}$/i.test(cleanHex)) {
-    return "rgb(0, 0, 0)";
-  }
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  if (alpha === 1) {
-    return `rgb(${r}, ${g}, ${b})`;
-  }
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
-function overlayFromToken(tokenName, alpha = 0.08, theme) {
-  const cleanName = tokenName.replace(/^color-/, "");
-  if (theme) {
-    const hexColor = getTokenColor(cleanName, theme);
-    if (hexColor.startsWith("#")) {
-      return hexToRGBA(hexColor, alpha);
-    }
-  }
-  const varName = tokenName.startsWith("color-") ? tokenName : `color-${tokenName}`;
-  return `rgba(var(--${varName}-rgb, 0 0 0), ${alpha})`;
-}
-function isValidHex(hex) {
-  const cleanHex = hex.replace("#", "");
-  return /^[0-9A-Fa-f]{6}$/.test(cleanHex);
-}
-function getContrastColor(hex) {
-  const cleanHex = hex.replace("#", "");
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  return luminance > 0.5 ? "#000000" : "#ffffff";
-}
-
-// src/lib/utils.ts
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -185,151 +105,55 @@ var motionPresets = {
     navigation: motionSemantic.navigation.page
   }
 };
-
-// src/lib/image-utils.ts
-function isAcceptedFormat(mimeType) {
-  const acceptedTypes = [
-    "image/jpeg",
-    "image/jpg",
-    "image/png",
-    "image/gif",
-    "image/webp",
-    "image/avif"
-  ];
-  return acceptedTypes.includes(mimeType);
+function getThemeColors(theme) {
+  const tokenObj = tokens;
+  return tokenObj.themes?.[theme] || {};
 }
-function isWebP(mimeType) {
-  return mimeType === "image/webp";
-}
-function supportsWebP() {
-  return new Promise((resolve) => {
-    const webP = new Image();
-    webP.onload = webP.onerror = () => {
-      resolve(webP.height === 2);
-    };
-    webP.src = "data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA";
-  });
-}
-async function getImageInfo(file) {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    const url = URL.createObjectURL(file);
-    img.onload = () => {
-      URL.revokeObjectURL(url);
-      resolve({
-        width: img.naturalWidth,
-        height: img.naturalHeight,
-        size: file.size,
-        type: file.type
-      });
-    };
-    img.onerror = () => {
-      URL.revokeObjectURL(url);
-      reject(new Error("Failed to load image"));
-    };
-    img.src = url;
-  });
-}
-async function resizeImage(file, maxWidth, maxHeight, quality = 0.9, format = "image/jpeg") {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    const url = URL.createObjectURL(file);
-    img.onload = () => {
-      URL.revokeObjectURL(url);
-      const canvas = document.createElement("canvas");
-      const ctx = canvas.getContext("2d");
-      if (!ctx) {
-        reject(new Error("Failed to get canvas context"));
-        return;
-      }
-      let { width, height } = img;
-      if (width > maxWidth) {
-        height = maxWidth / width * height;
-        width = maxWidth;
-      }
-      if (height > maxHeight) {
-        width = maxHeight / height * width;
-        height = maxHeight;
-      }
-      canvas.width = width;
-      canvas.height = height;
-      ctx.drawImage(img, 0, 0, width, height);
-      canvas.toBlob(
-        (blob) => {
-          if (blob) {
-            const resizedFile = new File([blob], file.name, {
-              type: format,
-              lastModified: Date.now()
-            });
-            resolve(resizedFile);
-          } else {
-            reject(new Error("Failed to create blob"));
-          }
-        },
-        format,
-        quality
-      );
-    };
-    img.onerror = () => {
-      URL.revokeObjectURL(url);
-      reject(new Error("Failed to load image"));
-    };
-    img.src = url;
-  });
-}
-async function convertToWebP(file, quality = 0.9) {
-  if (isWebP(file.type)) {
-    return file;
-  }
-  return resizeImage(file, file.size, file.size, quality, "image/webp");
-}
-async function prepareImageForUpload(file, options = {}) {
-  const {
-    maxWidth = 1920,
-    maxHeight = 1080,
-    quality = 0.9,
-    shouldConvertToWebP = true,
-    maxSizeBytes = 5 * 1024 * 1024
-    // 5MB
-  } = options;
-  if (!isAcceptedFormat(file.type)) {
-    throw new Error("Formato de imagem n\xE3o suportado");
-  }
-  if (file.size > maxSizeBytes) {
-    throw new Error(`Arquivo muito grande. M\xE1ximo: ${maxSizeBytes / 1024 / 1024}MB`);
-  }
-  const info = await getImageInfo(file);
-  let processedFile = file;
-  if (info.width > maxWidth || info.height > maxHeight) {
-    processedFile = await resizeImage(file, maxWidth, maxHeight, quality);
-  }
-  if (shouldConvertToWebP && !isWebP(processedFile.type)) {
-    try {
-      const isWebPSupported = await supportsWebP();
-      if (isWebPSupported === true) {
-        processedFile = await convertToWebP(processedFile, quality);
-      }
-    } catch {
+function getTokenColor(tokenName, theme) {
+  if (theme) {
+    const themeColors = getThemeColors(theme);
+    const colorValue = themeColors[tokenName];
+    if (colorValue) {
+      return colorValue;
     }
   }
-  return processedFile;
-}
-function generatePlaceholder(width, height, text = "") {
-  const canvas = document.createElement("canvas");
-  canvas.width = width;
-  canvas.height = height;
-  const ctx = canvas.getContext("2d");
-  if (!ctx) return "";
-  ctx.fillStyle = "rgb(229, 231, 235)";
-  ctx.fillRect(0, 0, width, height);
-  if (text) {
-    ctx.fillStyle = "rgb(107, 114, 128)";
-    ctx.font = `${Math.min(width, height) / 10}px sans-serif`;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText(text, width / 2, height / 2);
+  const tokenObj = tokens;
+  const semanticTokens = tokenObj.semantics;
+  const colorTokens = semanticTokens.color;
+  const colorRoles = colorTokens["color-roles"];
+  if (colorRoles?.[tokenName]) {
+    return `var(--${tokenName})`;
   }
-  return canvas.toDataURL();
+  const primitiveTokens = tokenObj.primitives;
+  const colorPrimitives = primitiveTokens.color;
+  if (colorPrimitives?.[tokenName]) {
+    return `var(--${tokenName})`;
+  }
+  return `var(--${tokenName})`;
+}
+function overlayFromToken(tokenName, alpha = 0.08, theme) {
+  const cleanName = tokenName.replace(/^color-/, "");
+  if (theme) {
+    const hexColor = getTokenColor(cleanName, theme);
+    if (hexColor.startsWith("#")) {
+      const varName2 = tokenName.startsWith("color-") ? tokenName : `color-${tokenName}`;
+      return `rgba(var(--${varName2}-rgb, 0 0 0), ${alpha})`;
+    }
+  }
+  const varName = tokenName.startsWith("color-") ? tokenName : `color-${tokenName}`;
+  return `rgba(var(--${varName}-rgb, 0 0 0), ${alpha})`;
+}
+function isValidHex(hex) {
+  const cleanHex = hex.replace("#", "");
+  return /^[0-9A-Fa-f]{6}$/.test(cleanHex);
+}
+function getContrastColor(hex) {
+  const cleanHex = hex.replace("#", "");
+  const r = parseInt(cleanHex.substring(0, 2), 16);
+  const g = parseInt(cleanHex.substring(2, 4), 16);
+  const b = parseInt(cleanHex.substring(4, 6), 16);
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.5 ? "var(--color-black)" : "var(--color-white)";
 }
 function getThemeColors2(theme) {
   return themes[theme];
@@ -345,11 +169,11 @@ function getSemanticColorsSimplified(theme) {
 }
 function getStatusColor(status, theme = "light") {
   const themeData = themes[theme];
-  return themeData?.colors?.[status]?.base || "#000000";
+  return themeData?.colors?.[status]?.base || "var(--color-black)";
 }
 function getButtonPrimaryColor(theme = "light") {
   const themeData = themes[theme];
-  return themeData?.colors?.primary?.base || "#0891b2";
+  return themeData?.colors?.primary?.base || "var(--color-cyan-600)";
 }
 function getButtonSecondaryColor(theme = "light") {
   const themeData = themes[theme];
@@ -360,7 +184,7 @@ function getButtonTertiaryColor(theme = "light") {
 }
 function getButtonPrimaryTextColor(theme = "light") {
   const themeData = themes[theme];
-  return themeData?.colors?.primary?.text || "#ffffff";
+  return themeData?.colors?.primary?.text || "var(--color-white)";
 }
 function getColorFromTheme(theme, category, shade) {
   const themeData = themes[theme];
@@ -435,218 +259,6 @@ var GRADIENT_DIRECTIONS = {
   TO_BOTTOM_LEFT: "to-bl"
 };
 
-// src/lib/scroll-utils.ts
-function prefersReducedMotion() {
-  if (typeof window === "undefined") return false;
-  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-}
-function smoothScrollTo(target, options) {
-  const element = typeof target === "string" ? document.querySelector(target) : target;
-  if (!element) {
-    console.warn(`Elemento n\xE3o encontrado: ${target}`);
-    return;
-  }
-  const shouldAnimate = !prefersReducedMotion();
-  element.scrollIntoView({
-    behavior: shouldAnimate ? "smooth" : "auto",
-    block: "start",
-    inline: "nearest",
-    ...options
-  });
-}
-function scrollToTop() {
-  const shouldAnimate = !prefersReducedMotion();
-  window.scrollTo({
-    top: 0,
-    left: 0,
-    behavior: shouldAnimate ? "smooth" : "auto"
-  });
-}
-function scrollToPosition(x, y, smooth = true) {
-  const shouldAnimate = smooth && !prefersReducedMotion();
-  window.scrollTo({
-    top: y,
-    left: x,
-    behavior: shouldAnimate ? "smooth" : "auto"
-  });
-}
-function disableScroll() {
-  document.body.style.overflow = "hidden";
-}
-function enableScroll() {
-  document.body.style.overflow = "";
-}
-function onReducedMotionChange(callback) {
-  if (typeof window === "undefined") {
-    return () => {
-    };
-  }
-  const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const handler = (event) => {
-    callback(event.matches);
-  };
-  handler(mediaQuery);
-  if (mediaQuery.addEventListener) {
-    mediaQuery.addEventListener("change", handler);
-    return () => mediaQuery.removeEventListener("change", handler);
-  }
-  if (mediaQuery.addListener) {
-    mediaQuery.addListener(handler);
-    return () => mediaQuery.removeListener(handler);
-  }
-  return () => {
-  };
-}
-
-// src/lib/cookie-utils.ts
-var COOKIE_CONSENT_KEY = "cookie-consent";
-var COOKIE_PREFERENCES_KEY = "cookie-preferences";
-var COOKIE_VERSION = "1.0.0";
-var _CookieManager = class _CookieManager {
-  constructor() {
-  }
-  static getInstance() {
-    if (!_CookieManager.instance) {
-      _CookieManager.instance = new _CookieManager();
-    }
-    return _CookieManager.instance;
-  }
-  hasConsent() {
-    if (typeof window === "undefined") return false;
-    try {
-      const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
-      if (!consent) return false;
-      const consentData = JSON.parse(consent);
-      return consentData.consented === true;
-    } catch {
-      return false;
-    }
-  }
-  getPreferences() {
-    if (typeof window === "undefined") return null;
-    try {
-      const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
-      if (!consent) return null;
-      const consentData = JSON.parse(consent);
-      return consentData.preferences || null;
-    } catch {
-      return null;
-    }
-  }
-  saveConsent(preferences) {
-    if (typeof window === "undefined") return;
-    try {
-      const consent = {
-        version: COOKIE_VERSION,
-        consented: true,
-        timestamp: Date.now(),
-        preferences
-      };
-      localStorage.setItem(COOKIE_CONSENT_KEY, JSON.stringify(consent));
-      localStorage.setItem(COOKIE_PREFERENCES_KEY, JSON.stringify(preferences));
-      window.dispatchEvent(
-        new CustomEvent("cookie-consent-updated", { detail: preferences })
-      );
-      this.loadScripts(preferences);
-    } catch {
-    }
-  }
-  updatePreferences(preferences) {
-    this.saveConsent(preferences);
-  }
-  revokeConsent() {
-    if (typeof window === "undefined") return;
-    try {
-      localStorage.removeItem(COOKIE_CONSENT_KEY);
-      localStorage.removeItem(COOKIE_PREFERENCES_KEY);
-      this.clearAnalyticsCookies();
-      window.dispatchEvent(
-        new CustomEvent("cookie-consent-revoked", { detail: null })
-      );
-    } catch {
-    }
-  }
-  isAllowed(type) {
-    const preferences = this.getPreferences();
-    if (!preferences) return false;
-    if (type === "essential") {
-      return preferences.essential === true;
-    }
-    return preferences[type] === true;
-  }
-  loadScripts(preferences) {
-    if (preferences.analytics) {
-      this.loadGoogleAnalytics();
-    } else {
-      this.unloadGoogleAnalytics();
-    }
-  }
-  loadGoogleAnalytics() {
-  }
-  unloadGoogleAnalytics() {
-    const scripts = document.querySelectorAll(
-      'script[src*="googletagmanager.com"], script[src*="google-analytics.com"]'
-    );
-    scripts.forEach((script) => script.remove());
-    this.clearAnalyticsCookies();
-    const win = window;
-    if (win.dataLayer) {
-      win.dataLayer = [];
-    }
-    if (win.gtag) {
-      delete win.gtag;
-    }
-  }
-  clearAnalyticsCookies() {
-    if (typeof document === "undefined") return;
-    const analyticsCookies = [
-      "_ga",
-      "_ga_*",
-      "_gid",
-      "_gat",
-      "_gat_gtag_*",
-      "__utma",
-      "__utmt",
-      "__utmb",
-      "__utmc",
-      "__utmz",
-      "__utmv"
-    ];
-    analyticsCookies.forEach((cookieName) => {
-      document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-      if (cookieName.includes("*")) {
-        const baseName = cookieName.replace("*", "");
-        const cookies = document.cookie.split(";");
-        cookies.forEach((cookie) => {
-          const parts = cookie.split("=");
-          if (parts.length === 0) return;
-          const name = parts[0]?.trim();
-          if (!name || !name.startsWith(baseName)) return;
-          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.${window.location.hostname};`;
-        });
-      }
-    });
-  }
-};
-__publicField(_CookieManager, "instance");
-var CookieManager = _CookieManager;
-function getCookieManager() {
-  return CookieManager.getInstance();
-}
-function hasCookieConsent() {
-  return getCookieManager().hasConsent();
-}
-function getCookiePreferences() {
-  return getCookieManager().getPreferences();
-}
-function saveCookieConsent(preferences) {
-  getCookieManager().saveConsent(preferences);
-}
-function isCookieAllowed(type) {
-  return getCookieManager().isAllowed(type);
-}
-
-export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, COMPONENT_CLASSES, COOKIE_CONSENT_KEY, COOKIE_PREFERENCES_KEY, COOKIE_VERSION, CookieManager, GRADIENT_DIRECTIONS, MOTION, SECTION_CLASSES, Z_INDEX, cn, convertToWebP, disableScroll, enableScroll, generatePlaceholder, generateTailwindClasses, getBrandColor, getButtonPrimaryColor, getButtonPrimaryTextColor, getButtonSecondaryColor, getButtonTertiaryColor, getColorFromTheme, getContrastColor, getCookieManager, getCookiePreferences, getImageInfo, getSemanticColorConstants, getSemanticColors, getSemanticColorsSimplified, getStatusColor, getThemeColors2 as getThemeColors, getTokenColor, hasCookieConsent, hexToRGB, hexToRGBA, isAcceptedFormat, isCookieAllowed, isValidHex, isWebP, motion, motionPresets, motionSemantic, onReducedMotionChange, overlayFromToken, prefersReducedMotion, prepareImageForUpload, resizeImage, saveCookieConsent, scrollToPosition, scrollToTop, smoothScrollTo, supportsWebP };
+export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, COMPONENT_CLASSES, GRADIENT_DIRECTIONS, MOTION, SECTION_CLASSES, Z_INDEX, cn, generateTailwindClasses, getBrandColor, getButtonPrimaryColor, getButtonPrimaryTextColor, getButtonSecondaryColor, getButtonTertiaryColor, getColorFromTheme, getContrastColor, getSemanticColorConstants, getSemanticColors, getSemanticColorsSimplified, getStatusColor, getThemeColors2 as getThemeColors, getTokenColor, isValidHex, motion, motionPresets, motionSemantic, overlayFromToken };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map
