@@ -1,0 +1,9 @@
+{
+  "name": "TokensDemo",
+  "description": "Mock de amostra de tokens (cores, espaçamento, tipografia).",
+  "tokens": {
+    "colors": ["primary.500", "neutral.700"],
+    "spacing": [4, 8, 12, 16],
+    "typography": ["heading-lg", "body-md"]
+  }
+}

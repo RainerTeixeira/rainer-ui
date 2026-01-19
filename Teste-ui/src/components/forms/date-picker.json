@@ -1,0 +1,7 @@
+{
+  "name": "date-picker",
+  "description": "Mock de seleção de data.",
+  "value": "2024-02-01",
+  "min": "2024-01-01",
+  "max": "2024-12-31"
+}

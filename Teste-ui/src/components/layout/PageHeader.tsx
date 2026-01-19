@@ -1,0 +1,5 @@
+import data from './PageHeader.json';
+
+export default function PageHeaderMock() {
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+}

@@ -1,0 +1,7 @@
+{
+  "name": "input",
+  "description": "Mock de input de texto.",
+  "placeholder": "Digite aqui",
+  "value": "",
+  "state": "default"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "cookie-banner",
+  "description": "Mock de banner de consentimento de cookies (LGPD/GDPR).",
+  "actions": ["aceitar", "rejeitar", "personalizar"],
+  "message": "Utilizamos cookies para melhorar sua experiência."
+}

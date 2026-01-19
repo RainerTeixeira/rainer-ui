@@ -1,0 +1,5 @@
+{
+  "name": "aspect-ratio-box",
+  "description": "Mock de box com proporção fixa.",
+  "ratio": "4:3"
+}

@@ -1,0 +1,6 @@
+{
+  "name": "avatar",
+  "description": "Mock de avatar.",
+  "src": "/img/avatar.png",
+  "alt": "Usuário"
+}

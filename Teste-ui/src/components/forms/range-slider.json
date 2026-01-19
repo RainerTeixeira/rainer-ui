@@ -1,0 +1,7 @@
+{
+  "name": "range-slider",
+  "description": "Mock de range slider.",
+  "min": 0,
+  "max": 100,
+  "value": [20, 80]
+}

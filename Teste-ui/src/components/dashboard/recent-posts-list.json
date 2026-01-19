@@ -1,0 +1,8 @@
+{
+  "name": "recent-posts-list",
+  "description": "Mock de lista de posts recentes.",
+  "posts": [
+    {"title": "Melhores práticas de tokens", "author": "Equipe", "date": "2024-01-10"},
+    {"title": "Guia de acessibilidade", "author": "Rainer", "date": "2024-01-02"}
+  ]
+}

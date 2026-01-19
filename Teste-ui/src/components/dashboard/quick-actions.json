@@ -1,0 +1,9 @@
+{
+  "name": "quick-actions",
+  "description": "Mock de ações rápidas do dashboard.",
+  "actions": [
+    {"label": "Nova postagem", "icon": "edit"},
+    {"label": "Gerar relatório", "icon": "chart"},
+    {"label": "Convidar membro", "icon": "user-plus"}
+  ]
+}

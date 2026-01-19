@@ -1,0 +1,6 @@
+{
+  "name": "label",
+  "description": "Mock de label associado a campo.",
+  "text": "Nome completo",
+  "for": "name"
+}

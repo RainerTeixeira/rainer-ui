@@ -1,0 +1,9 @@
+{
+  "name": "select",
+  "description": "Mock de select.",
+  "options": [
+    {"label": "Brasil", "value": "br"},
+    {"label": "EUA", "value": "us"}
+  ],
+  "selected": "br"
+}

@@ -1,0 +1,10 @@
+{
+  "name": "alert-dialog",
+  "description": "Mock de alerta de confirmação.",
+  "props": {
+    "title": "Apagar item",
+    "message": "Deseja remover este registro?",
+    "confirmLabel": "Confirmar",
+    "cancelLabel": "Cancelar"
+  }
+}

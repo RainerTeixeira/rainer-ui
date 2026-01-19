@@ -1,0 +1,6 @@
+{
+  "name": "button",
+  "description": "Mock de botão.",
+  "label": "Continuar",
+  "variant": "primary"
+}

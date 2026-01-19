@@ -1,0 +1,6 @@
+{
+  "name": "search-input",
+  "description": "Mock de campo de busca.",
+  "placeholder": "Buscar...",
+  "value": "tokens"
+}

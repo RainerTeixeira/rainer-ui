@@ -7,9 +7,11 @@
     "paths": {
       "@ui/*": ["../src/*"],
       "@rainersoft/ui": ["../src/index.ts"],
-      "@rainersoft/ui/*": ["../src/*"]
+      "@rainersoft/ui/*": ["../src/*"],
+      "@rainersoft/utils": ["../../rainer-utils/src/index.ts"],
+      "@rainersoft/utils/*": ["../../rainer-utils/src/*"]
     }
   },
-  "include": ["src"],
+  "include": ["src", "../src/types/design-tokens.d.ts"],
   "exclude": ["dist", "node_modules"]
 }

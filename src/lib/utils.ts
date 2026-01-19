@@ -76,8 +76,9 @@ export const SECTION_CLASSES = {
  * Única fonte de verdade para tokens de motion (duração, easing, delay).
  * Importados diretamente do pacote design-tokens via ES modules.
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const motion = (tokens as any).MOTION || {
+const motionTokens = tokens.MOTION ?? tokens.motionTokens;
+
+export const motion = motionTokens || {
   duration: {
     instant: "0ms",
     fast: "100ms", 
@@ -108,8 +109,7 @@ export const motion = (tokens as any).MOTION || {
  * Animações organizadas semanticamente para uso em componentes.
  * Usa tokens.MOTION como fonte única de verdade.
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const motionSemantic = (tokens as any).MOTION || {
+export const motionSemantic = motionTokens || {
   transition: {
     default: {
       duration: motion.duration.normal,

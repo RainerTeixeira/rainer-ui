@@ -1,0 +1,6 @@
+{
+  "name": "CelestialBackground",
+  "description": "Mock de pontos celestiais animados.",
+  "stars": 120,
+  "speed": 0.4
+}

@@ -1,0 +1,6 @@
+{
+  "name": "table",
+  "description": "Mock de tabela.",
+  "columns": ["Nome", "Status", "Data"],
+  "rows": 5
+}

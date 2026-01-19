@@ -23,14 +23,14 @@ export function getThemeColors(theme: ThemeKey) {
  * Obtém cores semânticas do tema
  */
 export function getSemanticColors(theme: ThemeKey) {
-  return themes[theme];
+  return getThemeColors(theme);
 }
 
 /**
  * Obtém cores simplificadas do tema
  */
 export function getSemanticColorsSimplified(theme: ThemeKey) {
-  const themeData = themes[theme] as Record<string, unknown>;
+  const themeData = getThemeColors(theme) as Record<string, unknown>;
   return {
     colors: themeData?.colors || {},
   };

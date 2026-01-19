@@ -1,0 +1,6 @@
+{
+  "name": "tabs",
+  "description": "Mock de abas.",
+  "tabs": ["Overview", "Detalhes"],
+  "active": "Overview"
+}

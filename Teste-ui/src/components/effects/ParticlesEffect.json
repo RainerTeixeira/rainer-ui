@@ -1,0 +1,6 @@
+{
+  "name": "ParticlesEffect",
+  "description": "Mock de partículas interativas.",
+  "count": 80,
+  "interactive": true
+}

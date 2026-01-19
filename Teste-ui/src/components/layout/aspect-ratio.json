@@ -1,0 +1,5 @@
+{
+  "name": "aspect-ratio",
+  "description": "Mock de container com proporção fixa.",
+  "ratio": "16:9"
+}

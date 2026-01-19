@@ -1,0 +1,8 @@
+{
+  "name": "calendar",
+  "description": "Mock de eventos para calendário.",
+  "events": [
+    {"title": "Planning", "date": "2024-02-01", "type": "meeting"},
+    {"title": "Release", "date": "2024-02-07", "type": "milestone"}
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "name": "badge",
+  "description": "Mock de badge.",
+  "label": "Novo",
+  "tone": "success"
+}

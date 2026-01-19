@@ -1,0 +1,9 @@
+{
+  "name": "stats-overview",
+  "description": "Mock de visão geral de KPIs.",
+  "summary": {
+    "growth": "+14%",
+    "churn": "-1.2%",
+    "netRevenue": "R$ 210k"
+  }
+}

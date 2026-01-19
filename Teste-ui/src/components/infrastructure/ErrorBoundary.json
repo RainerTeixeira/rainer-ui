@@ -1,0 +1,5 @@
+{
+  "name": "ErrorBoundary",
+  "description": "Mock de boundary de erro.",
+  "fallback": "Algo deu errado."
+}

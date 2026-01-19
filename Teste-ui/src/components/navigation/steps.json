@@ -1,0 +1,6 @@
+{
+  "name": "steps",
+  "description": "Mock de passos.",
+  "steps": ["Cadastro", "Pagamento", "Confirmação"],
+  "current": 2
+}

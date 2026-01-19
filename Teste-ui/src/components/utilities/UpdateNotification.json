@@ -1,0 +1,6 @@
+{
+  "name": "UpdateNotification",
+  "description": "Mock de aviso de atualização.",
+  "message": "Nova versão disponível",
+  "cta": "Atualizar"
+}

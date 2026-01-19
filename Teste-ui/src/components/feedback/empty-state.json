@@ -1,0 +1,9 @@
+{
+  "name": "empty-state",
+  "description": "Mock de estado vazio.",
+  "props": {
+    "title": "Nenhum dado",
+    "description": "Crie um novo item para começar.",
+    "action": "Criar"
+  }
+}

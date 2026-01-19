@@ -1,0 +1,6 @@
+{
+  "name": "theme-provider",
+  "description": "Mock de provider de tema.",
+  "defaultTheme": "light",
+  "attribute": "class"
+}

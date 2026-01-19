@@ -1,0 +1,20 @@
+{
+  "name": "Kbd",
+  "description": "Exemplo de tecla/comando com tokens de cor e radius.",
+  "tokens": {
+    "background": "colors.surface.secondary",
+    "text": "colors.text.high",
+    "border": "borderSemantic.subtle",
+    "radius": "radiusPrimitive.sm",
+    "spacing": "spacingPrimitive.200",
+    "font": "typography.fontFamily.mono"
+  },
+  "example": {
+    "component": "Kbd",
+    "props": {
+      "keys": ["Ctrl", "K"],
+      "size": "md",
+      "title": "Abrir busca"
+    }
+  }
+}

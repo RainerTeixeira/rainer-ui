@@ -1,0 +1,6 @@
+{
+  "name": "flex",
+  "description": "Mock de layout flex.",
+  "gap": "1rem",
+  "align": "center"
+}

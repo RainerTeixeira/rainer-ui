@@ -1,0 +1,6 @@
+{
+  "name": "InstallPrompt",
+  "description": "Mock de prompt de instalação PWA.",
+  "deferred": true,
+  "cta": "Instalar app"
+}
