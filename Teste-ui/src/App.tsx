@@ -132,7 +132,7 @@ function AccessibilityPage() {
             </a>
           </VisuallyHidden>
           <p className="text-xs text-[var(--color-text-secondary)] bg-[var(--color-background-primary)] p-2 rounded border">
-            Pressione Tab para focar nos links de skip navigation
+            💡 Pressione Tab para focar nos links de skip navigation
           </p>
         </div>
       </div>
@@ -205,7 +205,7 @@ function AccessibilityPage() {
 
       {/* Informações Adicionais */}
       <div className="bg-[var(--color-blue-50)] border border-[var(--color-blue-200)] rounded-lg p-4">
-        <h3 className="font-semibold text-[var(--color-blue-900)] mb-2">Boas Práticas</h3>
+        <h3 className="font-semibold text-[var(--color-blue-900)] mb-2">🎯 Boas Práticas</h3>
         <ul className="text-sm text-[var(--color-blue-800)] space-y-1">
           <li>• Use VisuallyHidden para texto que só screen readers precisam</li>
           <li>• Forneça contexto para ícones e elementos visuais</li>
