@@ -11,6 +11,10 @@ export { ConfirmDialog, ConfirmDialogProps, UseConfirmOptions, useConfirm } from
 import 'react/jsx-runtime';
 import '@radix-ui/react-context-menu';
 import 'react';
+import '@radix-ui/react-dialog';
+import '@radix-ui/react-dropdown-menu';
+import '@radix-ui/react-hover-card';
+import '@radix-ui/react-popover';
 import '@radix-ui/react-tooltip';
 import 'class-variance-authority/types';
 import 'class-variance-authority';

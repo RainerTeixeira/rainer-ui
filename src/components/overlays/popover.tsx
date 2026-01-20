@@ -14,7 +14,7 @@ import {
   Content as PopoverContentPrimitive,
   Portal as PopoverPortalPrimitive,
 } from '@radix-ui/react-popover';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 const Popover = PopoverRootPrimitive;
 

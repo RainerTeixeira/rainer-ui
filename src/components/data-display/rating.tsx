@@ -15,7 +15,7 @@ import { cva } from 'class-variance-authority';
 import Star from 'lucide-react/dist/esm/icons/star';
 import StarHalf from 'lucide-react/dist/esm/icons/star-half';
 
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 /**
  * Variantes do Rating

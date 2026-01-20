@@ -1,5 +1,4 @@
-import data from './panel.json';
-
+const data = {}
 export default function PanelMock() {
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
 }

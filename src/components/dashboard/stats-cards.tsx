@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 import { motion } from 'framer-motion';
 import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
 import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';

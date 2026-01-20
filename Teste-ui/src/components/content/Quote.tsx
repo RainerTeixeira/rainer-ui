@@ -13,7 +13,7 @@ import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import QuoteIcon from 'lucide-react/dist/esm/icons/quote';
 
-import { cn } from "@rainersoft/ui/lib/utils";
+import { cn } from "@rainersoft/ui/lib/tokens";
 
 /**
  * Variantes do Quote
@@ -23,15 +23,15 @@ const quoteVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border-border',
-        muted: 'border-muted',
-        primary: 'border-primary',
-        secondary: 'border-secondary',
-        success: 'border-emerald-500',
-        warning: 'border-amber-500',
-        error: 'border-red-500',
-        testimonial: 'border-transparent bg-muted/30 rounded-lg p-6',
-        card: 'border-border bg-card rounded-lg p-6 shadow-sm',
+        default: 'border-[var(--color-border-default)]',
+        muted: 'border-[var(--color-border-default)]',
+        primary: 'border-[var(--color-button-primary-default)]',
+        secondary: 'border-[var(--color-button-secondary-default)]',
+        success: 'border-[var(--color-status-success-default)]',
+        warning: 'border-[var(--color-status-warning-default)]',
+        error: 'border-[var(--color-status-error-default)]',
+        testimonial: 'border-transparent bg-[var(--color-background-secondary)] rounded-lg p-6',
+        card: 'border-[var(--color-border-default)] bg-[var(--color-background-primary)] rounded-lg p-6 shadow-sm',
         glass: 'glass border-transparent rounded-lg p-6',
         neon: 'neon-border rounded-lg p-6',
       },
@@ -124,9 +124,9 @@ export const Quote = React.forwardRef<HTMLQuoteElement, QuoteProps>(
   ) => {
     const IconComponent = icon || (
       variant === 'testimonial' || variant === 'card' ? (
-        <QuoteIcon className="h-8 w-8 text-primary/20" />
+        <QuoteIcon className="h-8 w-8 text-[var(--color-text-link)]" />
       ) : (
-        <QuoteIcon className="h-4 w-4 text-muted-foreground" />
+        <QuoteIcon className="h-4 w-4 text-[var(--color-text-secondary)]" />
       )
     );
 
@@ -157,24 +157,25 @@ export const Quote = React.forwardRef<HTMLQuoteElement, QuoteProps>(
         {(author || source) && (
           <footer className="mt-4 not-italic">
             {author && (
-              <cite className="font-semibold not-italic text-foreground">
+              <cite className="font-semibold not-italic text-[var(--color-text-primary)]">
                 {author}
               </cite>
             )}
             {source && (
               <>
-                {author && <span className="text-muted-foreground mx-2">•</span>}
+                {author && <span className="mx-2" style={{ color: 'var(--color-text-tertiary)' }}>•</span>}
                 {sourceUrl ? (
                   <a
                     href={sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-foreground underline"
+                    className="underline"
+                    style={{ color: 'var(--color-text-secondary)' }}
                   >
                     {source}
                   </a>
                 ) : (
-                  <span className="text-muted-foreground">{source}</span>
+                  <span style={{ color: 'var(--color-text-secondary)' }}>{source}</span>
                 )}
               </>
             )}
@@ -204,7 +205,7 @@ export interface QuoteTestimonialProps extends Omit<QuoteProps, 'variant'> {
   rating?: number;
 }
 
-export const QuoteTestimonial = React.forwardRef<HTMLQuoteElement, QuoteTestimonialProps>(
+export const QuoteTestimonial = React.forwardRef<HTMLDivElement, QuoteTestimonialProps>(
   (
     {
       className,
@@ -218,9 +219,14 @@ export const QuoteTestimonial = React.forwardRef<HTMLQuoteElement, QuoteTestimon
     ref
   ) => {
     return (
-      <div className={cn('bg-card rounded-lg p-6 shadow-sm', className)}>
+      <div
+        ref={ref}
+        className={cn(
+          'bg-[var(--color-background-primary)] rounded-lg p-6 shadow-sm border border-[var(--color-border-default)]',
+          className
+        )}
+      >
         <Quote
-          ref={ref}
           variant="testimonial"
           author={author}
           source={source}
@@ -241,10 +247,10 @@ export const QuoteTestimonial = React.forwardRef<HTMLQuoteElement, QuoteTestimon
               />
               <div>
                 {author && (
-                  <div className="font-semibold text-foreground">{author}</div>
+                  <div className="font-semibold" style={{ color: 'var(--color-text-primary)' }}>{author}</div>
                 )}
                 {source && (
-                  <div className="text-sm text-muted-foreground">{source}</div>
+                  <div className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>{source}</div>
                 )}
               </div>
             </div>
@@ -255,10 +261,10 @@ export const QuoteTestimonial = React.forwardRef<HTMLQuoteElement, QuoteTestimon
               {Array.from({ length: 5 }).map((_, i) => (
                 <span
                   key={i}
-                  className={cn(
-                    'text-lg',
-                    i < rating ? 'text-amber-400' : 'text-muted-foreground/30'
-                  )}
+                  className="text-lg"
+                  style={{
+                    color: i < rating ? 'var(--color-status-warning-default)' : 'var(--color-text-tertiary)',
+                  }}
                 >
                   ★
                 </span>
@@ -294,12 +300,12 @@ export const QuoteBlock = React.forwardRef<HTMLQuoteElement, QuoteBlockProps>(
           variant="default"
           size="xl"
           className={cn(
-            'text-center border-l-0 border-r-0 border-t-2 border-b-2 border-border py-8',
+            'text-center border-l-0 border-r-0 border-t-2 border-b-2 border-[var(--color-border-default)] py-8',
             className
           )}
           {...props}
         >
-          <div className="text-2xl md:text-3xl font-normal text-muted-foreground">
+          <div className="text-2xl md:text-3xl font-normal" style={{ color: 'var(--color-text-secondary)' }}>
             {children}
           </div>
         </Quote>

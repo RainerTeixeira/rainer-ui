@@ -1,5 +1,8 @@
-import data from './top-bar.json';
+const mockData = {
+  title: 'TopBar Mock',
+  links: [],
+};
 
 export default function TopBarMock() {
-  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+  return <pre>{JSON.stringify(mockData, null, 2)}</pre>;
 }

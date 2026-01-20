@@ -1,16 +1,8 @@
+import * as _radix_ui_react_popover from '@radix-ui/react-popover';
 import * as React from 'react';
 
-/**
- * Popover Component (shadcn/ui)
- *
- * Popover para conteúdo contextual
- *
- * @fileoverview Popover component
- * @author Rainer Teixeira
- */
-
-declare const Popover: any;
-declare const PopoverTrigger: any;
-declare const PopoverContent: React.ForwardRefExoticComponent<Omit<Omit<any, "ref">, "ref"> & React.RefAttributes<unknown>>;
+declare const Popover: React.FC<_radix_ui_react_popover.PopoverProps>;
+declare const PopoverTrigger: React.ForwardRefExoticComponent<_radix_ui_react_popover.PopoverTriggerProps & React.RefAttributes<HTMLButtonElement>>;
+declare const PopoverContent: React.ForwardRefExoticComponent<Omit<_radix_ui_react_popover.PopoverContentProps & React.RefAttributes<HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
 
 export { Popover, PopoverContent, PopoverTrigger };

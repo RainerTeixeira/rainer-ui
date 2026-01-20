@@ -7,8 +7,8 @@ import { VariantProps } from 'class-variance-authority';
  */
 declare const spacerVariants: (props?: {
     size?: "xs" | "sm" | "md" | "lg" | "xl" | "2xl" | "3xl" | "4xl";
-    direction?: "horizontal" | "vertical" | "both";
-    variant?: "default" | "line" | "dotted" | "gradient";
+    direction?: "both" | "horizontal" | "vertical";
+    variant?: "default" | "dotted" | "line" | "gradient";
 } & class_variance_authority_types.ClassProp) => string;
 /**
  * Props do Spacer

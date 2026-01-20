@@ -13,7 +13,7 @@
 
 import * as React from 'react';
 import { useTheme } from '../../hooks/use-theme';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 import Moon from 'lucide-react/dist/esm/icons/moon';
 import Sun from 'lucide-react/dist/esm/icons/sun';
 
@@ -53,12 +53,8 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
           'disabled:pointer-events-none disabled:opacity-50',
           
           // Cores do tema - usando design tokens
-          'bg-surface border border-border shadow-sm',
-          'hover:bg-surface-hover',
-          
-          // Dark mode
-          'dark:bg-surface-dark dark:border-border-dark',
-          'dark:hover:bg-surface-hover-dark',
+          'bg-[var(--color-background-primary)] border border-[var(--color-border-default)] shadow-sm',
+          'hover:bg-[var(--color-background-secondary)]',
           
           className
         )}
@@ -86,12 +82,8 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
         'disabled:pointer-events-none disabled:opacity-50',
         
         // Cores do tema - usando design tokens
-        'bg-surface border border-border shadow-sm',
-        'hover:bg-surface-hover',
-        
-        // Dark mode
-        'dark:bg-surface-dark dark:border-border-dark',
-        'dark:hover:bg-surface-hover-dark',
+        'bg-[var(--color-background-primary)] border border-[var(--color-border-default)] shadow-sm',
+        'hover:bg-[var(--color-background-secondary)]',
         
         className
       )}
@@ -99,12 +91,12 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
     >
       {isDark ? (
         <Moon
-          className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-200 text-text-secondary"
+          className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-200 text-[var(--color-text-secondary)]"
           aria-hidden="true"
         />
       ) : (
         <Sun
-          className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-200 text-text-primary"
+          className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all duration-200 text-[var(--color-text-primary)]"
           aria-hidden="true"
         />
       )}

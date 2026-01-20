@@ -8,7 +8,7 @@
 
 import * as React from 'react';
 import * as SelectPrimitive from '@radix-ui/react-select';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 import { Check } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
 import { ChevronUp } from 'lucide-react';

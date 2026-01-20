@@ -9,8 +9,8 @@ import { cva } from 'class-variance-authority';
 import * as React from 'react';
 import { ChevronDown } from 'lucide-react';
 
-import { cn } from '../../lib/utils';
-import { Z_INDEX, MOTION } from '../../lib/constants';
+import { cn } from '../../lib/tokens';
+import { Z_INDEX, MOTION } from '../../lib/tokens';
 
 const NavigationMenu = React.forwardRef<
   React.ElementRef<typeof NavigationMenuPrimitive.Root>,

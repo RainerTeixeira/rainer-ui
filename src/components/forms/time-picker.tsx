@@ -14,7 +14,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import Timer from 'lucide-react/dist/esm/icons/timer';
 
 import { Button } from '../ui/button';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 /**
  * Interface de tempo

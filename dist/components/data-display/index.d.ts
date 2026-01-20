@@ -10,3 +10,4 @@ import '../ui/button.js';
 import 'class-variance-authority/types';
 import 'class-variance-authority';
 import 'embla-carousel-react';
+import 'lucide-react';

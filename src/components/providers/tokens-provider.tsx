@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
 interface TokensContextType {
   tokens: any;
@@ -21,25 +21,53 @@ export function TokensProvider({ tokens: initialTokens, children }: TokensProvid
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
+    const root = document.documentElement;
+
+    const syncTheme = () => {
+      const isDark = root.classList.contains('dark') || root.dataset.theme === 'dark';
+      setTheme(isDark ? 'dark' : 'light');
+    };
+
+    syncTheme();
+
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(root, { attributes: true, attributeFilter: ['class', 'data-theme'] });
+
+    return () => observer.disconnect();
+  }, []);
+
+  const themedTokens = useMemo(() => {
+    if (!tokens) return undefined;
+    return (tokens as any)?.themes?.[theme] ?? (tokens as any)?.[`${theme}Theme`] ?? tokens;
+  }, [tokens, theme]);
+
+  useEffect(() => {
     // Apply tokens to CSS variables
-    if (tokens) {
+    if (themedTokens) {
       const root = document.documentElement;
-      
+
       // Apply color tokens
-      if (tokens.color) {
-        Object.entries(tokens.color).forEach(([key, value]: [string, any]) => {
-          if (typeof value === 'object') {
-            Object.entries(value).forEach(([subKey, subValue]) => {
-              root.style.setProperty(`--color-${key}-${subKey}`, subValue as string);
-            });
-          } else {
-            root.style.setProperty(`--color-${key}`, value as string);
+      if (themedTokens.color) {
+        const applyColorVars = (value: unknown, path: string[]) => {
+          if (typeof value === 'string') {
+            root.style.setProperty(`--color-${path.join('-')}`, value);
+            return;
           }
+
+          if (value && typeof value === 'object') {
+            Object.entries(value as Record<string, unknown>).forEach(([k, v]) => {
+              applyColorVars(v, [...path, k]);
+            });
+          }
+        };
+
+        Object.entries(themedTokens.color as Record<string, unknown>).forEach(([key, value]) => {
+          applyColorVars(value, [key]);
         });
       }
 
       // Apply other token categories
-      Object.entries(tokens).forEach(([category, categoryTokens]) => {
+      Object.entries(themedTokens).forEach(([category, categoryTokens]) => {
         if (category !== 'color' && typeof categoryTokens === 'object') {
           Object.entries(categoryTokens).forEach(([key, value]) => {
             if (typeof value === 'string') {
@@ -48,8 +76,10 @@ export function TokensProvider({ tokens: initialTokens, children }: TokensProvid
           });
         }
       });
+      // Sync color-scheme
+      root.style.setProperty('color-scheme', theme);
     }
-  }, [tokens]);
+  }, [themedTokens, theme]);
 
   useEffect(() => {
     // Apply theme class to root

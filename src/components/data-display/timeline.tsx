@@ -17,7 +17,7 @@ import { AlertTriangle } from 'lucide-react';
 import { Check } from 'lucide-react';
 import { X } from 'lucide-react';
 
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 /**
  * Ícones padrão por tipo de evento

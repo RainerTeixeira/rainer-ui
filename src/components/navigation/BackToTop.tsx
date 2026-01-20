@@ -41,7 +41,8 @@ import { ArrowUp } from 'lucide-react';
 // ============================================================================
 
 import { Button } from '../ui/button';
-import { useSmoothScroll, useScrollPosition } from '@rainersoft/utils/hooks';
+import { useSmoothScroll } from '../../hooks/useSmoothScroll';
+import { useScrollPosition } from '../../hooks/useScrollPosition';
 
 // ============================================================================
 // Constants

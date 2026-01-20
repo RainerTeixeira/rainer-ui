@@ -17,12 +17,27 @@ export default function IconButton({
   disabled = false,
   tooltip
 }: IconButtonProps) {
-  const baseClasses = 'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none'
-  
-  const variantClasses = {
-    default: 'bg-gray-100 text-gray-900 hover:bg-gray-200',
-    outline: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50',
-    ghost: 'hover:bg-gray-100 text-gray-700'
+  const baseClasses = 'inline-flex items-center justify-center rounded-md font-medium transition-opacity focus-visible:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:opacity-50 disabled:pointer-events-none hover:opacity-90'
+
+  const variantStyle: Record<NonNullable<IconButtonProps['variant']>, React.CSSProperties> = {
+    default: {
+      backgroundColor: 'var(--color-background-secondary)',
+      color: 'var(--color-text-primary)',
+      borderColor: 'transparent',
+      outlineColor: 'var(--color-interactive-focus-ring)',
+    },
+    outline: {
+      backgroundColor: 'var(--color-background-primary)',
+      color: 'var(--color-text-primary)',
+      borderColor: 'var(--color-border-default)',
+      outlineColor: 'var(--color-interactive-focus-ring)',
+    },
+    ghost: {
+      backgroundColor: 'transparent',
+      color: 'var(--color-text-primary)',
+      borderColor: 'transparent',
+      outlineColor: 'var(--color-interactive-focus-ring)',
+    },
   }
   
   const sizeClasses = {
@@ -76,7 +91,8 @@ export default function IconButton({
   
   const button = (
     <button
-      className={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]}`}
+      className={`${baseClasses} ${variant === 'outline' ? 'border' : ''} ${sizeClasses[size]}`}
+      style={variantStyle[variant]}
       disabled={disabled}
       onClick={onClick}
     >
@@ -88,7 +104,13 @@ export default function IconButton({
     return (
       <div className="relative inline-flex">
         {button}
-        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-gray-900 rounded opacity-0 hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap">
+        <div
+          className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs rounded opacity-0 hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap"
+          style={{
+            backgroundColor: 'var(--color-background-inverse)',
+            color: 'var(--color-text-inverse)',
+          }}
+        >
           {tooltip}
         </div>
       </div>

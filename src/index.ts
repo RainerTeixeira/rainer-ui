@@ -26,15 +26,36 @@
  */
 
 // ============================================================================
-// DESIGN TOKENS (Re-exportados para conveniência)
+// DESIGN TOKENS (ponto único via ./lib/tokens)
 // ============================================================================
-export { tokens } from '@rainersoft/design-tokens';
-export { lightTheme, darkTheme } from '@rainersoft/design-tokens';
+export { tokens, lightTokens as lightTheme, darkTokens as darkTheme } from './lib/tokens';
+
+// ============================================================================
+// TYPES
+// ============================================================================
+export interface ThemeColors {
+  primary?: string;
+  primaryForeground?: string;
+  secondary?: string;
+  secondaryForeground?: string;
+  background?: string;
+  foreground?: string;
+  muted?: string;
+  mutedForeground?: string;
+  border?: string;
+  input?: string;
+  ring?: string;
+}
+
+export type ThemeMode = 'light' | 'dark' | 'system';
+
+// Design tokens types (apontando para entry único)
+export type { Tokens as DesignTokens } from './lib/tokens';
 
 // ============================================================================
 // UTILITIES
 // ============================================================================
-export { cn, motion, motionSemantic, motionPresets, ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS } from './lib/utils';
+export { cn, motion, motionSemantic, motionPresets, ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, COMPONENT_CLASSES, SECTION_CLASSES, MOTION } from './lib/tokens';
 export type { ClassValue } from 'clsx';
 
 // Color Utilities
@@ -43,7 +64,7 @@ export {
   overlayFromToken,
   isValidHex,
   getContrastColor,
-} from './lib/color-utils';
+} from './lib/tokens';
 
 // Theme Utilities (para uso sem hardcode)
 export {
@@ -59,7 +80,7 @@ export {
   getBrandColor,
   getSemanticColorConstants,
   generateTailwindClasses,
-} from './lib/theme-utils';
+} from './lib/tokens';
 
 // ============================================================================
 // COMPONENTS - Nova Estrutura Profissional v2.0

@@ -81,7 +81,7 @@ const NextLink = Link as React.ComponentType<React.AnchorHTMLAttributes<HTMLAnch
 // Design Tokens
 // ============================================================================
 
-import { cn } from "../../lib/utils";
+import { cn } from "../../lib/tokens";
 
 // ============================================================================
 // Gerenciador de Cookies

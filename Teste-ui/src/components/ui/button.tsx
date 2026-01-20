@@ -15,14 +15,34 @@ export default function Button({
   disabled = false,
   onClick 
 }: ButtonProps) {
-  const baseClasses = 'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none'
+  const baseClasses = 'inline-flex items-center justify-center rounded-md font-medium transition-opacity focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none hover:opacity-90'
   
-  const variantClasses = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700',
-    secondary: 'bg-gray-600 text-white hover:bg-gray-700',
-    outline: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50',
-    destructive: 'bg-red-600 text-white hover:bg-red-700',
-    ghost: 'hover:bg-gray-100 text-gray-700'
+  const variantStyle: Record<NonNullable<ButtonProps['variant']>, React.CSSProperties> = {
+    primary: {
+      backgroundColor: 'var(--color-button-primary-default)',
+      color: 'var(--color-button-primary-text)',
+      borderColor: 'transparent',
+    },
+    secondary: {
+      backgroundColor: 'var(--color-button-secondary-default)',
+      color: 'var(--color-button-secondary-text)',
+      borderColor: 'transparent',
+    },
+    outline: {
+      backgroundColor: 'var(--color-background-primary)',
+      color: 'var(--color-text-primary)',
+      borderColor: 'var(--color-border-default)',
+    },
+    destructive: {
+      backgroundColor: 'var(--color-button-danger-default)',
+      color: 'var(--color-button-danger-text)',
+      borderColor: 'transparent',
+    },
+    ghost: {
+      backgroundColor: 'transparent',
+      color: 'var(--color-text-primary)',
+      borderColor: 'transparent',
+    },
   }
   
   const sizeClasses = {
@@ -31,10 +51,11 @@ export default function Button({
     lg: 'h-12 px-6 text-lg'
   }
   
-  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]}`
+  const needsBorder = variant === 'outline'
+  const classes = `${baseClasses} ${needsBorder ? 'border' : ''} ${sizeClasses[size]}`
   
   return (
-    <button className={classes} disabled={disabled} onClick={onClick}>
+    <button className={classes} style={variantStyle[variant]} disabled={disabled} onClick={onClick}>
       {label}
     </button>
   )

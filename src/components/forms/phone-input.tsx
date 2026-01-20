@@ -15,7 +15,7 @@ import { cva, type VariantProps } from 'class-variance-authority';
 import Phone from 'lucide-react/dist/esm/icons/phone';
 
 import { Button } from '../ui/button';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 /**
  * Interface de país

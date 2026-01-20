@@ -17,7 +17,7 @@ import Check from 'lucide-react/dist/esm/icons/check';
 import Copy from 'lucide-react/dist/esm/icons/copy';
 
 import { Button } from '../ui/button';
-import { cn } from "../../lib/utils";
+import { cn } from "../../lib/tokens";
 
 /**
  * Variantes do Code

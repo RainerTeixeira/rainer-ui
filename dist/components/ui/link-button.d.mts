@@ -6,9 +6,9 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes do LinkButton
  */
 declare const linkButtonVariants: (props?: {
-    variant?: "success" | "warning" | "info" | "default" | "destructive" | "outline" | "ghost" | "neon" | "muted" | "pill";
+    variant?: "default" | "success" | "warning" | "info" | "destructive" | "outline" | "ghost" | "neon" | "muted" | "pill";
     size?: "xs" | "sm" | "md" | "lg" | "xl";
-    weight?: "bold" | "normal" | "medium" | "semibold";
+    weight?: "normal" | "bold" | "medium" | "semibold";
     animation?: "none" | "scale" | "glow" | "bounce" | "slide";
 } & class_variance_authority_types.ClassProp) => string;
 /**

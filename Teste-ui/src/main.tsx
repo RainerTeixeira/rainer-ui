@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import './styles.css';
-import * as tokens from '@rainersoft/design-tokens';
+import { tokens } from '@rainersoft/ui';
 // Usar provider direto do código-fonte para evitar cache de prebundle sem export
 import { TokensProvider, ThemeProvider } from '@rainersoft/ui';
 

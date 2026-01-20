@@ -6,7 +6,7 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes do Quote
  */
 declare const quoteVariants: (props?: {
-    variant?: "success" | "warning" | "error" | "primary" | "secondary" | "default" | "neon" | "glass" | "muted" | "card" | "testimonial";
+    variant?: "default" | "success" | "warning" | "error" | "primary" | "secondary" | "neon" | "glass" | "muted" | "card" | "testimonial";
     size?: "sm" | "md" | "lg" | "xl";
 } & class_variance_authority_types.ClassProp) => string;
 /**

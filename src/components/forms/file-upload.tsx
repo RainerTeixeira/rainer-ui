@@ -18,7 +18,7 @@ import Upload from 'lucide-react/dist/esm/icons/upload';
 import X from 'lucide-react/dist/esm/icons/x';
 
 import { Button } from '../ui/button';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 /**
  * Interface do arquivo

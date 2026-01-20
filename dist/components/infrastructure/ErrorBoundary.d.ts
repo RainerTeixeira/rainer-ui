@@ -1,5 +1,4 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
-import * as React from 'react';
 import { Component, ReactNode, ErrorInfo } from 'react';
 
 interface ErrorBoundaryProps {
@@ -18,7 +17,7 @@ declare class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryS
     componentDidCatch(error: Error, errorInfo: ErrorInfo): void;
     handleReset: () => void;
     handleGoHome: () => void;
-    render(): string | number | bigint | boolean | Iterable<ReactNode> | Promise<string | number | bigint | boolean | React.ReactPortal | React.ReactElement<unknown, string | React.JSXElementConstructor<any>> | Iterable<ReactNode>> | react_jsx_runtime.JSX.Element;
+    render(): string | number | boolean | Iterable<ReactNode> | react_jsx_runtime.JSX.Element;
 }
 
 export { ErrorBoundary, type ErrorBoundaryProps, type ErrorBoundaryState };

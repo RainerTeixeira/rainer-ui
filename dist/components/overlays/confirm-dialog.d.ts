@@ -7,7 +7,7 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes do ConfirmDialog
  */
 declare const confirmDialogVariants: (props?: {
-    variant?: "success" | "warning" | "info" | "default" | "destructive";
+    variant?: "default" | "success" | "warning" | "info" | "destructive";
     size?: "sm" | "md" | "lg";
 } & class_variance_authority_types.ClassProp) => string;
 /**

@@ -20,7 +20,7 @@ import User from 'lucide-react/dist/esm/icons/user';
 import X from 'lucide-react/dist/esm/icons/x';
 
 import { Button } from '../ui/button';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 import { MenuItem } from './menu';
 
 /**

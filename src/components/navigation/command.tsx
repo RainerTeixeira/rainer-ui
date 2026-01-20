@@ -8,7 +8,7 @@
  */
 
 import { Dialog, DialogContent, DialogTitle } from "../overlays/dialog";
-import { cn } from "../../lib/utils";
+import { cn } from "../../lib/tokens";
 import { Command as CommandPrimitive } from "cmdk";
 import * as React from "react";
 import { Search } from 'lucide-react';

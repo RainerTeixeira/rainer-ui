@@ -1,25 +1,14 @@
+import * as lucide_react from 'lucide-react';
 import * as React from 'react';
-
-/**
- * Componente Timeline
- *
- * Linha do tempo para exibir eventos em ordem cronológica.
- * Suporta orientação vertical ou horizontal com customização
- * de cores, ícones e conteúdo.
- *
- * @module @rainersoft/ui/components/data-display/timeline
- * @author Rainer Teixeira
- * @version 1.0.0
- */
 
 /**
  * Ícones padrão por tipo de evento
  */
 declare const defaultIcons: {
-    readonly completed: any;
-    readonly pending: any;
-    readonly error: any;
-    readonly warning: any;
+    readonly completed: React.ForwardRefExoticComponent<Omit<lucide_react.LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>;
+    readonly pending: React.ForwardRefExoticComponent<Omit<lucide_react.LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>;
+    readonly error: React.ForwardRefExoticComponent<Omit<lucide_react.LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>;
+    readonly warning: React.ForwardRefExoticComponent<Omit<lucide_react.LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>;
     readonly default: "div";
 };
 /**

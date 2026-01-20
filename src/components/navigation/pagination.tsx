@@ -16,7 +16,7 @@ import ChevronRight from 'lucide-react/dist/esm/icons/chevron-right';
 import MoreHorizontal from 'lucide-react/dist/esm/icons/more-horizontal';
 
 import { Button } from '../ui/button';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 /**
  * Variantes do Pagination

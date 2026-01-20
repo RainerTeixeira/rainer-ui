@@ -20,8 +20,8 @@ import {
   Description as DialogDescriptionPrimitive,
   Close as DialogClosePrimitive,
 } from '@radix-ui/react-dialog';
-import { cn } from '../../lib/utils';
-import { Z_INDEX, MOTION } from '../../lib/constants';
+import { cn } from '../../lib/tokens';
+import { Z_INDEX, MOTION } from '../../lib/tokens';
 import { X } from 'lucide-react';
 
 const Dialog = DialogRootPrimitive;

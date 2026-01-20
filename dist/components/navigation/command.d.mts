@@ -1,6 +1,7 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
 import { Dialog } from '../overlays/dialog.mjs';
 import * as React from 'react';
+import '@radix-ui/react-dialog';
 
 declare const Command: React.ForwardRefExoticComponent<Omit<{
     children?: React.ReactNode;

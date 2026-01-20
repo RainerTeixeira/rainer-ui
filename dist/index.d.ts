@@ -1,8 +1,5 @@
-export { darkTheme, lightTheme, tokens } from '@rainersoft/design-tokens';
-export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, cn, motion, motionPresets, motionSemantic } from './lib/utils.js';
+export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, COMPONENT_CLASSES, Tokens as DesignTokens, MOTION, SECTION_CLASSES, cn, darkTokens as darkTheme, generateTailwindClasses, getBrandColor, getButtonPrimaryColor, getButtonPrimaryTextColor, getButtonSecondaryColor, getButtonTertiaryColor, getColorFromTheme, getContrastColor, getSemanticColorConstants, getSemanticColors, getSemanticColorsSimplified, getStatusColor, getThemeColors, getTokenColor, isValidHex, lightTokens as lightTheme, motion, motionPresets, motionSemantic, overlayFromToken } from './lib/tokens.js';
 export { ClassValue } from 'clsx';
-export { getContrastColor, getTokenColor, isValidHex, overlayFromToken } from './lib/color-utils.js';
-export { generateTailwindClasses, getBrandColor, getButtonPrimaryColor, getButtonPrimaryTextColor, getButtonSecondaryColor, getButtonTertiaryColor, getColorFromTheme, getSemanticColorConstants, getSemanticColors, getSemanticColorsSimplified, getStatusColor, getThemeColors } from './lib/theme-utils.js';
 export { Avatar, AvatarFallback, AvatarImage, AvatarProps } from './components/ui/avatar.js';
 export { Input, InputProps } from './components/ui/input.js';
 export { Textarea, TextareaProps } from './components/ui/textarea.js';
@@ -108,6 +105,7 @@ export { useTheme } from './hooks/use-theme.js';
 export { useCarouselKeyboard } from './hooks/use-carousel-keyboard.js';
 export { usePWA } from './hooks/use-pwa.js';
 export { useTableOfContents } from './hooks/use-table-of-contents.js';
+export { default as tokens } from '@rainersoft/design-tokens';
 export { Toaster as Sonner, ToasterProps } from 'sonner';
 import 'react';
 import 'class-variance-authority/types';
@@ -132,6 +130,54 @@ import '@radix-ui/react-collapsible';
 import '@radix-ui/react-navigation-menu';
 import '@radix-ui/react-tabs';
 import '@radix-ui/react-context-menu';
+import '@radix-ui/react-dropdown-menu';
+import '@radix-ui/react-hover-card';
+import '@radix-ui/react-popover';
 import '@radix-ui/react-tooltip';
 import 'embla-carousel-react';
+import 'lucide-react';
 import 'next-themes';
+
+/**
+ * @rainersoft/ui - Biblioteca de Componentes UI Agnóstica
+ *
+ * 📦 ESTRUTURA SIMPLIFICADA - 5 CATEGORIAS PRINCIPAIS:
+ *
+ * 🎨 UI - Componentes Básicos
+ *    Avatar, Button, Input, Badge, Slider, Toggle, Progress, Skeleton
+ *
+ * 📝 FORMS - Formulários
+ *    Form, Input, Textarea, Select, Checkbox, Radio, Switch, Label
+ *
+ * 🏗️ LAYOUT - Layout
+ *    Card, Sheet, Table, ScrollArea, Separator, AspectRatio
+ *
+ * 💬 FEEDBACK - Feedback
+ *    Alert, AlertDialog, Toast, Badge, Progress, Skeleton
+ *
+ * 🧭 NAVIGATION - Navegação
+ *    Accordion, Tabs, NavigationMenu, Collapsible, Command
+ *
+ * Extras: Overlays, Data Display, Effects, Utilities, Providers
+ *
+ * @module @rainersoft/ui
+ * @author Rainer Teixeira
+ * @version 2.3.0
+ */
+
+interface ThemeColors {
+    primary?: string;
+    primaryForeground?: string;
+    secondary?: string;
+    secondaryForeground?: string;
+    background?: string;
+    foreground?: string;
+    muted?: string;
+    mutedForeground?: string;
+    border?: string;
+    input?: string;
+    ring?: string;
+}
+type ThemeMode = 'light' | 'dark' | 'system';
+
+export type { ThemeColors, ThemeMode };

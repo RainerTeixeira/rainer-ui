@@ -17,7 +17,7 @@
  * @since 1.0.0
  */
 
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 /**
  * Componente Skeleton

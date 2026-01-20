@@ -40,7 +40,13 @@ export default function Avatar({
   }
   
   return (
-    <div className={`relative inline-flex items-center justify-center rounded-full bg-gray-300 text-gray-600 font-medium ${sizeClasses[size]}`}>
+    <div
+      className={`relative inline-flex items-center justify-center rounded-full font-medium ${sizeClasses[size]}`}
+      style={{
+        backgroundColor: 'var(--color-background-tertiary)',
+        color: 'var(--color-text-secondary)',
+      }}
+    >
       {fallback}
     </div>
   )

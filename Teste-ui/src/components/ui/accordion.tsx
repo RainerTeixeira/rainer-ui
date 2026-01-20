@@ -36,16 +36,28 @@ export default function Accordion({
   return (
     <div className="space-y-2">
       {items.map((item, index) => (
-        <div key={index} className="border border-gray-200 rounded-lg">
+        <div
+          key={index}
+          className="border rounded-lg"
+          style={{ borderColor: 'var(--color-border-default)', backgroundColor: 'var(--color-background-primary)' }}
+        >
           <button
             onClick={() => toggleItem(index)}
-            className="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-inset"
+            className="w-full px-4 py-3 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-inset"
+            style={{
+              backgroundColor: 'transparent',
+              color: 'var(--color-text-primary)',
+              ['--tw-ring-color' as any]: 'var(--color-interactive-focus-ring)',
+            } as React.CSSProperties}
           >
-            <span className="font-medium text-gray-900">{item.title}</span>
+            <span className="font-medium" style={{ color: 'var(--color-text-primary)' }}>
+              {item.title}
+            </span>
             <svg
-              className={`w-4 h-4 text-gray-500 transition-transform ${
+              className={`w-4 h-4 transition-transform ${
                 openItems.includes(index) ? 'rotate-180' : ''
               }`}
+              style={{ color: 'var(--color-text-tertiary)' }}
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -54,8 +66,8 @@ export default function Accordion({
             </svg>
           </button>
           {openItems.includes(index) && (
-            <div className="px-4 py-3 border-t border-gray-200">
-              <p className="text-gray-600">{item.content}</p>
+            <div className="px-4 py-3 border-t" style={{ borderColor: 'var(--color-border-default)' }}>
+              <p style={{ color: 'var(--color-text-secondary)' }}>{item.content}</p>
             </div>
           )}
         </div>

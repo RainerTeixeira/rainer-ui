@@ -19,18 +19,34 @@ export default function SegmentedControl({
   }
   
   return (
-    <div className="inline-flex items-center rounded-lg border border-gray-300 bg-white p-1">
+    <div
+      className="inline-flex items-center rounded-lg border p-1"
+      style={{
+        borderColor: 'var(--color-border-default)',
+        backgroundColor: 'var(--color-background-primary)',
+      }}
+    >
       {segments.map((segment) => (
         <button
           key={segment}
           onClick={() => handleSegmentClick(segment)}
-          className={`
+          className={
+            `
             px-3 py-1.5 text-sm font-medium rounded-md transition-all duration-200
-            ${activeSegment === segment
-              ? 'bg-blue-600 text-white shadow-sm'
-              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-            }
-          `}
+            ${activeSegment === segment ? 'shadow-sm' : ''}
+          `
+          }
+          style={
+            activeSegment === segment
+              ? {
+                  backgroundColor: 'var(--color-button-primary-default)',
+                  color: 'var(--color-button-primary-text)',
+                }
+              : {
+                  backgroundColor: 'transparent',
+                  color: 'var(--color-text-secondary)',
+                }
+          }
         >
           {segment}
         </button>

@@ -1,5 +1,4 @@
-import data from './accordion.json';
-
+const data = {}
 export default function AccordionMock() {
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
 }

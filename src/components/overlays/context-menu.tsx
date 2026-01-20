@@ -24,7 +24,7 @@ import {
 import * as React from 'react';
 import { Check, ChevronRight } from 'lucide-react';
 
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 const ContextMenu: typeof ContextMenuRootPrimitive = ContextMenuRootPrimitive;
 

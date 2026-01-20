@@ -20,7 +20,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { GRADIENT_DIRECTIONS } from '../../lib/constants';
+import { GRADIENT_DIRECTIONS } from '../../lib/tokens';
 
 // ============================================================================
 // Types

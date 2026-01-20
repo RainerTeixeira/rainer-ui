@@ -37,7 +37,7 @@ declare function useCarouselKeyboard({ totalItems, currentIndex, onIndexChange, 
         keyMap?: string[];
     };
 }): {
-    containerRef: React__default.RefObject<HTMLElement>;
+    containerRef: React__default.MutableRefObject<HTMLElement>;
     next: () => void;
     prev: () => void;
     goTo: (index: number) => void;

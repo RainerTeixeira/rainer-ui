@@ -19,9 +19,9 @@
  * @since 1.0.0
  */
 
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 import * as React from 'react';
-import { GRADIENT_DIRECTIONS, MOTION } from '../../lib/constants';
+import { GRADIENT_DIRECTIONS, MOTION } from '../../lib/tokens';
 
 /**
  * Componente Card (Container principal)

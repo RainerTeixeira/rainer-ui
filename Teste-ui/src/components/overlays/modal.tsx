@@ -1,5 +1,4 @@
-import data from './modal.json';
-
+const data = {}
 export default function ModalMock() {
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
 }

@@ -13,7 +13,7 @@
 
 import { Badge, Button } from '../ui';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 import { motion } from 'framer-motion';
 // import Tag from 'lucide-react/dist/esm/icons/tag'; // TODO: implementar tags
 import Trash2 from 'lucide-react/dist/esm/icons/trash-2';

@@ -1,11 +1,21 @@
 /**
- * Biblioteca de Utilitários de Componentes UI
+ * Biblioteca de Utilitários e Tokens da UI
  * 
- * Exporta utilitários essenciais para componentes UI.
+ * Este módulo centraliza todos os utilitários, helpers e tokens necessários
+ * para os componentes da UI. Consome os design tokens do pacote
+ * @rainersoft/design-tokens e fornece uma API unificada para o restante da aplicação.
+ * 
+ * @module @rainersoft/ui/lib
+ * @author Rainer Teixeira
+ * @version 2.3.0
  */
 
-export * from './utils';
-export * from './color-utils';
-export * from './theme-utils';
-export * from './constants';
-export { cn } from './utils';
+// ============================================================================
+// DESIGN TOKENS E UTILITÁRIOS (TUDO EM tokens.ts)
+// ============================================================================
+export * from './tokens';
+
+// ============================================================================
+// EXPORTS CONVENIENTES
+// ============================================================================
+export { cn } from './tokens';

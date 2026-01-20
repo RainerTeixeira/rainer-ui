@@ -16,7 +16,7 @@ import Calendar from 'lucide-react/dist/esm/icons/calendar';
 import ChevronDown from 'lucide-react/dist/esm/icons/chevron-down';
 
 import { Button } from '../ui/button';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 /**
  * Variantes do DatePicker

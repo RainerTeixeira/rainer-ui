@@ -12,7 +12,7 @@
 import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-import { cn } from "@rainersoft/ui/lib/utils";
+import { cn } from "../../../../src/lib/tokens";
 
 /**
  * Variantes do Kbd
@@ -22,11 +22,11 @@ const kbdVariants = cva(
   {
     variants: {
       variant: {
-        default: 'border-border bg-background text-foreground shadow-sm',
-        outline: 'border-border bg-transparent text-foreground',
-        filled: 'border-border bg-muted text-foreground',
-        ghost: 'border-transparent bg-transparent text-muted-foreground',
-        neon: 'neon-border bg-background text-primary dark:shadow-glow-cyan',
+        default: 'border-[var(--color-border-default)] bg-[var(--color-background-primary)] text-[var(--color-text-primary)] shadow-sm',
+        outline: 'border-[var(--color-border-default)] bg-transparent text-[var(--color-text-primary)]',
+        filled: 'border-[var(--color-border-default)] bg-[var(--color-background-secondary)] text-[var(--color-text-primary)]',
+        ghost: 'border-transparent bg-transparent text-[var(--color-text-secondary)]',
+        neon: 'neon-border bg-[var(--color-background-primary)] text-[var(--color-text-link)]',
       },
       size: {
         xs: 'h-5 px-1.5 text-[10px]',
@@ -141,7 +141,7 @@ export const KbdCombo = React.forwardRef<HTMLDivElement, KbdComboProps>(
         {keys.map((key, index) => (
           <React.Fragment key={index}>
             {index > 0 && (
-              <span className="text-muted-foreground text-xs font-normal">
+              <span className="text-xs font-normal" style={{ color: 'var(--color-text-tertiary)' }}>
                 {separator}
               </span>
             )}

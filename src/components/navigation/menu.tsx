@@ -15,7 +15,7 @@ import { ChevronDown } from 'lucide-react';
 import { ChevronRight } from 'lucide-react';
 
 import { Button } from '../ui/button';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 /**
  * Interface de item do menu

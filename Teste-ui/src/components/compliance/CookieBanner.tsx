@@ -1,12 +1,17 @@
 import React from 'react';
-import data from './CookieBanner.json';
+
+const mockData = {
+  title: 'Cookie Banner Mock',
+  description: 'Mock data for CookieBanner',
+  actions: [],
+};
 
 /**
  * Mock de banner de consentimento de cookies.
  * Exibe o JSON usado pelos demais mocks da pasta Teste-ui.
  */
 export function CookieBanner() {
-  return <pre>{JSON.stringify(data, null, 2)}</pre>;
+  return <pre>{JSON.stringify(mockData, null, 2)}</pre>;
 }
 
 /**

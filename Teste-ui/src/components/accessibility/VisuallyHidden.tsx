@@ -9,7 +9,7 @@
  */
 
 import * as React from 'react';
-import { cn } from "@rainersoft/ui";
+import { cn } from "../../../../src/lib/tokens";
 
 export interface VisuallyHiddenProps extends React.HTMLAttributes<HTMLSpanElement> {
   asChild?: boolean

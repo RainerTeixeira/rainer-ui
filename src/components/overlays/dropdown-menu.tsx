@@ -25,7 +25,7 @@ import {
   Label as DropdownMenuLabelPrimitive,
   Separator as DropdownMenuSeparatorPrimitive,
 } from '@radix-ui/react-dropdown-menu';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 import { Check, ChevronRight } from 'lucide-react';
 
 const DropdownMenu = DropdownMenuRootPrimitive;

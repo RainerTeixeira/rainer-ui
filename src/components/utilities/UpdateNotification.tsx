@@ -40,7 +40,7 @@
  */
 
 import { usePWA } from '../../hooks/use-pwa';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 import { RefreshCw } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';

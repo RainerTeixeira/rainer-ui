@@ -19,7 +19,7 @@ import Minus from 'lucide-react/dist/esm/icons/minus';
 import TrendingDown from 'lucide-react/dist/esm/icons/trending-down';
 import TrendingUp from 'lucide-react/dist/esm/icons/trending-up';
 
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 /**
  * Variantes do KPI

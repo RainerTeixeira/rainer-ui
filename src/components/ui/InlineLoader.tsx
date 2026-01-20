@@ -9,7 +9,7 @@
  * @version 1.0.0
  */
 
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 import { Loader2 } from 'lucide-react';
 
 interface InlineLoaderProps {

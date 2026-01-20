@@ -14,12 +14,22 @@ export default function Card({
   className = ''
 }: CardProps) {
   return (
-    <div className={`rounded-lg border border-gray-200 bg-white p-6 shadow-sm ${className}`}>
+    <div
+      className={`rounded-lg border p-6 shadow-sm ${className}`}
+      style={{
+        borderColor: 'var(--color-border-default)',
+        backgroundColor: 'var(--color-background-primary)',
+      }}
+    >
       {title && (
         <div className="mb-4">
-          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+          <h3 className="text-lg font-semibold" style={{ color: 'var(--color-text-primary)' }}>
+            {title}
+          </h3>
           {description && (
-            <p className="text-sm text-gray-600 mt-1">{description}</p>
+            <p className="text-sm mt-1" style={{ color: 'var(--color-text-secondary)' }}>
+              {description}
+            </p>
           )}
         </div>
       )}

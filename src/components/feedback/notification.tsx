@@ -21,7 +21,7 @@ import Info from 'lucide-react/dist/esm/icons/info';
 import X from 'lucide-react/dist/esm/icons/x';
 
 // import { Button } from '../ui/button'; // Usado apenas em exemplos de documentação
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 /**
  * Ícones por variante

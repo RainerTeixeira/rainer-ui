@@ -8,11 +8,11 @@ import { VariantProps } from 'class-variance-authority';
 declare const flexVariants: (props?: {
     direction?: "row" | "col" | "row-reverse" | "col-reverse";
     wrap?: "wrap" | "nowrap" | "wrap-reverse";
-    align?: "center" | "start" | "end" | "baseline" | "stretch";
-    justify?: "center" | "start" | "end" | "between" | "around" | "evenly";
-    gap?: 0 | 2 | 4 | 6 | 1 | 5 | 3 | 8 | 10 | 12 | "px";
-    gapX?: 0 | 2 | 4 | 6 | 1 | 5 | 3 | 8 | 10 | 12 | "px";
-    gapY?: 0 | 2 | 4 | 6 | 1 | 5 | 3 | 8 | 10 | 12 | "px";
+    align?: "center" | "end" | "start" | "baseline" | "stretch";
+    justify?: "center" | "end" | "start" | "between" | "around" | "evenly";
+    gap?: 0 | 2 | 1 | 4 | 6 | 12 | 5 | 3 | 8 | 10 | "px";
+    gapX?: 0 | 2 | 1 | 4 | 6 | 12 | 5 | 3 | 8 | 10 | "px";
+    gapY?: 0 | 2 | 1 | 4 | 6 | 12 | 5 | 3 | 8 | 10 | "px";
 } & class_variance_authority_types.ClassProp) => string;
 /**
  * Props do Flex

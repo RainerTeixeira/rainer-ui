@@ -1,7 +1,7 @@
 "use client";
 
 import { memo, useEffect, useState, useCallback, type CSSProperties } from "react";
-import { cn } from "../../lib/utils";
+import { cn } from "../../lib/tokens";
 
 interface MatrixColumn {
   id: string;

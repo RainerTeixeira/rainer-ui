@@ -15,12 +15,27 @@ export default function LinkButton({
   size = 'md',
   external = false
 }: LinkButtonProps) {
-  const baseClasses = 'inline-flex items-center justify-center rounded-md font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
-  
-  const variantClasses = {
-    primary: 'bg-blue-600 text-white hover:bg-blue-700',
-    secondary: 'bg-gray-600 text-white hover:bg-gray-700',
-    outline: 'border border-gray-300 bg-white text-gray-700 hover:bg-gray-50'
+  const baseClasses = 'inline-flex items-center justify-center rounded-md font-medium transition-opacity focus-visible:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 hover:opacity-90'
+
+  const variantStyle: Record<NonNullable<LinkButtonProps['variant']>, React.CSSProperties> = {
+    primary: {
+      backgroundColor: 'var(--color-button-primary-default)',
+      color: 'var(--color-button-primary-text)',
+      borderColor: 'transparent',
+      outlineColor: 'var(--color-interactive-focus-ring)',
+    },
+    secondary: {
+      backgroundColor: 'var(--color-button-secondary-default)',
+      color: 'var(--color-button-secondary-text)',
+      borderColor: 'transparent',
+      outlineColor: 'var(--color-interactive-focus-ring)',
+    },
+    outline: {
+      backgroundColor: 'var(--color-background-primary)',
+      color: 'var(--color-text-primary)',
+      borderColor: 'var(--color-border-default)',
+      outlineColor: 'var(--color-interactive-focus-ring)',
+    },
   }
   
   const sizeClasses = {
@@ -29,11 +44,12 @@ export default function LinkButton({
     lg: 'h-12 px-6 text-lg'
   }
   
-  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]}`
+  const classes = `${baseClasses} ${variant === 'outline' ? 'border' : ''} ${sizeClasses[size]}`
   
   const props = {
     href,
     className: classes,
+    style: variantStyle[variant],
     ...(external && {
       target: '_blank',
       rel: 'noopener noreferrer'

@@ -14,6 +14,7 @@ import '@radix-ui/react-accordion';
 import 'react';
 import '@radix-ui/react-collapsible';
 import '../overlays/dialog.mjs';
+import '@radix-ui/react-dialog';
 import 'class-variance-authority/types';
 import '@radix-ui/react-navigation-menu';
 import '@radix-ui/react-tabs';

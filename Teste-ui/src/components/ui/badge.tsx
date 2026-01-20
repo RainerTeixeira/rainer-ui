@@ -12,14 +12,38 @@ export default function Badge({
   size = 'md'
 }: BadgeProps) {
   const baseClasses = 'inline-flex items-center rounded-full font-medium'
-  
-  const variantClasses = {
-    default: 'bg-blue-100 text-blue-800',
-    secondary: 'bg-gray-100 text-gray-800',
-    success: 'bg-green-100 text-green-800',
-    warning: 'bg-yellow-100 text-yellow-800',
-    destructive: 'bg-red-100 text-red-800',
-    outline: 'border border-gray-300 text-gray-700'
+
+  const variantStyle: Record<NonNullable<BadgeProps['variant']>, React.CSSProperties> = {
+    default: {
+      backgroundColor: 'var(--color-background-secondary)',
+      color: 'var(--color-text-primary)',
+      borderColor: 'transparent',
+    },
+    secondary: {
+      backgroundColor: 'var(--color-background-tertiary)',
+      color: 'var(--color-text-primary)',
+      borderColor: 'transparent',
+    },
+    success: {
+      backgroundColor: 'var(--color-status-success-light)',
+      color: 'var(--color-status-success-text)',
+      borderColor: 'transparent',
+    },
+    warning: {
+      backgroundColor: 'var(--color-status-warning-light)',
+      color: 'var(--color-status-warning-text)',
+      borderColor: 'transparent',
+    },
+    destructive: {
+      backgroundColor: 'var(--color-status-error-light)',
+      color: 'var(--color-status-error-text)',
+      borderColor: 'transparent',
+    },
+    outline: {
+      backgroundColor: 'transparent',
+      color: 'var(--color-text-secondary)',
+      borderColor: 'var(--color-border-default)',
+    },
   }
   
   const sizeClasses = {
@@ -27,8 +51,13 @@ export default function Badge({
     md: 'px-2.5 py-0.5 text-sm',
     lg: 'px-3 py-1 text-base'
   }
-  
-  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]}`
-  
-  return <span className={classes}>{label}</span>
+
+  const needsBorder = variant === 'outline'
+  const classes = `${baseClasses} ${needsBorder ? 'border' : ''} ${sizeClasses[size]}`
+
+  return (
+    <span className={classes} style={variantStyle[variant]}>
+      {label}
+    </span>
+  )
 }

@@ -17,7 +17,7 @@ export default function Textarea({
   required = false,
   onChange
 }: TextareaProps) {
-  const baseClasses = 'flex min-h-[80px] w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm ring-offset-white placeholder:text-gray-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
+  const baseClasses = 'flex min-h-[80px] w-full rounded-md border px-3 py-2 text-sm focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50'
   
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     onChange?.(e.target.value)
@@ -32,6 +32,13 @@ export default function Textarea({
       disabled={disabled}
       required={required}
       onChange={handleChange}
+      style={{
+        backgroundColor: 'var(--color-background-primary)',
+        color: 'var(--color-text-primary)',
+        borderColor: 'var(--color-border-default)',
+        caretColor: 'var(--color-text-primary)',
+        outlineColor: 'var(--color-interactive-focus-ring)',
+      }}
     />
   )
 }

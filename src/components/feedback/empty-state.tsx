@@ -19,7 +19,7 @@ import Wifi from 'lucide-react/dist/esm/icons/wifi';
 import XCircle from 'lucide-react/dist/esm/icons/x-circle';
 
 import { Button } from '../ui/button';
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 /**
  * Ícones pré-definidos por tipo

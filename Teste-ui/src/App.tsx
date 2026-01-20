@@ -13,6 +13,7 @@ import { Quote, QuoteTestimonial } from '@ui/components/content/Quote'
 import { Kbd, KbdCombo } from '@ui/components/content/Kbd'
 import { ThemeToggle } from '@ui/components/utilities/ThemeToggle'
 import { InlineLoader, Accordion, Avatar, Badge, Button, Card, Fab, IconButton, Input, LinkButton, Progress, SegmentedControl, Slider, Switch, Textarea, Toggle } from './components/ui'
+import { useTheme } from '@rainersoft/ui'
 
 /**
  * Configuração das seções do showcase
@@ -81,26 +82,35 @@ function AccessibilityPage() {
       </div>
 
       {/* Exemplo 1: Botão com ícone e texto oculto */}
-      <div className="bg-[var(--color-background-secondary)] border-[var(--color-gray-600)] rounded-lg p-6 space-y-4">
+      <div className="bg-[var(--color-background-secondary)] border border-[var(--color-border-default)] rounded-lg p-6 space-y-4">
         <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">Botão com Ícone</h2>
         <p className="text-sm text-[var(--color-text-secondary)]">Botões que usam apenas ícones devem ter texto oculto para screen readers.</p>
         
         <div className="flex gap-4">
-          <button className="inline-flex items-center justify-center w-10 h-10 rounded-md bg-[var(--color-blue-600)] text-white hover:bg-[var(--color-blue-700)] transition-colors">
+          <button
+            className="inline-flex items-center justify-center w-10 h-10 rounded-md text-[var(--color-button-primary-text)] transition-opacity hover:opacity-90"
+            style={{ backgroundColor: 'var(--color-button-primary-default)' }}
+          >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
             </svg>
             <VisuallyHidden>Adicionar novo item</VisuallyHidden>
           </button>
           
-          <button className="inline-flex items-center justify-center w-10 h-10 rounded-md bg-[var(--color-red-600)] text-white hover:bg-[var(--color-red-700)] transition-colors">
+          <button
+            className="inline-flex items-center justify-center w-10 h-10 rounded-md text-[var(--color-button-danger-text)] transition-opacity hover:opacity-90"
+            style={{ backgroundColor: 'var(--color-button-danger-default)' }}
+          >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
             </svg>
             <VisuallyHidden>Excluir item</VisuallyHidden>
           </button>
           
-          <button className="inline-flex items-center justify-center w-10 h-10 rounded-md bg-[var(--color-gray-600)] text-white hover:bg-[var(--color-gray-700)] transition-colors">
+          <button
+            className="inline-flex items-center justify-center w-10 h-10 rounded-md text-[var(--color-button-secondary-text)] transition-opacity hover:opacity-90"
+            style={{ backgroundColor: 'var(--color-button-secondary-default)' }}
+          >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
             </svg>
@@ -110,7 +120,7 @@ function AccessibilityPage() {
       </div>
 
       {/* Exemplo 2: Skip Navigation */}
-      <div className="bg-[var(--color-background-secondary)] border-[var(--color-gray-600)] rounded-lg p-6 space-y-4">
+      <div className="bg-[var(--color-background-secondary)] border border-[var(--color-border-default)] rounded-lg p-6 space-y-4">
         <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">Skip Navigation</h2>
         <p className="text-sm text-[var(--color-text-secondary)]">Links para pular diretamente ao conteúdo principal, visíveis apenas quando focados.</p>
         
@@ -118,7 +128,8 @@ function AccessibilityPage() {
           <VisuallyHidden asChild>
             <a
               href="#main-content"
-              className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-[var(--color-blue-600)] text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--color-blue-500)] z-50"
+              className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 px-4 py-2 rounded-md focus:outline-none focus:ring-2 z-50"
+              style={{ backgroundColor: 'var(--color-button-primary-default)', color: 'var(--color-button-primary-text)', outlineColor: 'var(--color-interactive-focus-ring)' }}
             >
               Pular para conteúdo principal
             </a>
@@ -126,7 +137,8 @@ function AccessibilityPage() {
           <VisuallyHidden asChild>
             <a
               href="#navigation"
-              className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-64 bg-[var(--color-green-600)] text-white px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--color-green-500)] z-50"
+              className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-64 px-4 py-2 rounded-md focus:outline-none focus:ring-2 z-50"
+              style={{ backgroundColor: 'var(--color-button-success-default)', color: 'var(--color-button-success-text)', outlineColor: 'var(--color-interactive-focus-ring)' }}
             >
               Pular para navegação
             </a>
@@ -138,12 +150,12 @@ function AccessibilityPage() {
       </div>
 
       {/* Exemplo 3: Status de Loading */}
-      <div className="bg-[var(--color-background-secondary)] border-[var(--color-gray-600)] rounded-lg p-6 space-y-4">
+      <div className="bg-[var(--color-background-secondary)] border border-[var(--color-border-default)] rounded-lg p-6 space-y-4">
         <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">Status de Carregamento</h2>
         <p className="text-sm text-[var(--color-text-secondary)]">Informar screen readers sobre o status de operações assíncronas.</p>
         
         <div className="flex items-center gap-3">
-          <div className="animate-spin w-5 h-5 border-2 border-[var(--color-blue-600)] border-t-transparent rounded-full"></div>
+          <div className="animate-spin w-5 h-5 border-2 border-t-transparent rounded-full" style={{ borderColor: 'var(--color-text-link)', borderTopColor: 'transparent' }}></div>
           <span className="text-[var(--color-text-primary)]">Carregando...</span>
           <VisuallyHidden role="status" aria-live="polite">
             Carregando dados, aguarde um momento
@@ -152,25 +164,25 @@ function AccessibilityPage() {
       </div>
 
       {/* Exemplo 4: Indicadores Visuais */}
-      <div className="bg-[var(--color-background-secondary)] border-[var(--color-gray-600)] rounded-lg p-6 space-y-4">
+      <div className="bg-[var(--color-background-secondary)] border border-[var(--color-border-default)] rounded-lg p-6 space-y-4">
         <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">Indicadores Visuais</h2>
         <p className="text-sm text-[var(--color-text-secondary)]">Cores e ícones devem ter descrições textuais para screen readers.</p>
         
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[var(--color-green-500)]"></div>
+            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--color-status-success-default)' }}></div>
             <span className="text-[var(--color-text-primary)]">Online</span>
             <VisuallyHidden>Status: conectado e disponível</VisuallyHidden>
           </div>
           
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[var(--color-red-500)]"></div>
+            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--color-status-error-default)' }}></div>
             <span className="text-[var(--color-text-primary)]">Offline</span>
             <VisuallyHidden>Status: desconectado</VisuallyHidden>
           </div>
           
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-[var(--color-yellow-500)]"></div>
+            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--color-status-warning-default)' }}></div>
             <span className="text-[var(--color-text-primary)]">Ausente</span>
             <VisuallyHidden>Status: ausente temporariamente</VisuallyHidden>
           </div>
@@ -178,7 +190,7 @@ function AccessibilityPage() {
       </div>
 
       {/* Exemplo 5: Formulários */}
-      <div className="bg-[var(--color-background-secondary)] border-[var(--color-gray-600)] rounded-lg p-6 space-y-4">
+      <div className="bg-[var(--color-background-secondary)] border border-[var(--color-border-default)] rounded-lg p-6 space-y-4">
         <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">Formulários Acessíveis</h2>
         <p className="text-sm text-[var(--color-text-secondary)]">Campos obrigatórios e mensagens de erro devem ser anunciados.</p>
         
@@ -186,12 +198,13 @@ function AccessibilityPage() {
           <div>
             <label className="block text-sm font-medium text-[var(--color-text-primary)] mb-1">
               E-mail
-              <span className="text-[var(--color-red-500)] ml-1">*</span>
+              <span className="ml-1" style={{ color: 'var(--color-status-error-default)' }}>*</span>
               <VisuallyHidden>(campo obrigatório)</VisuallyHidden>
             </label>
             <input 
               type="email" 
-              className="w-full px-3 py-2 border border-[var(--color-gray-600)] rounded-md bg-[var(--color-background-primary)] text-[var(--color-text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--color-blue-500)]"
+              className="w-full px-3 py-2 border rounded-md bg-[var(--color-background-primary)] text-[var(--color-text-primary)] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+              style={{ borderColor: 'var(--color-border-default)', outlineColor: 'var(--color-interactive-focus-ring)' }}
               placeholder="seu@email.com"
               aria-required="true"
               aria-describedby="email-help"
@@ -204,9 +217,9 @@ function AccessibilityPage() {
       </div>
 
       {/* Informações Adicionais */}
-      <div className="bg-[var(--color-blue-50)] border border-[var(--color-blue-200)] rounded-lg p-4">
-        <h3 className="font-semibold text-[var(--color-blue-900)] mb-2">🎯 Boas Práticas</h3>
-        <ul className="text-sm text-[var(--color-blue-800)] space-y-1">
+      <div className="bg-[var(--color-background-secondary)] border border-[var(--color-border-default)] rounded-lg p-4">
+        <h3 className="font-semibold text-[var(--color-text-primary)] mb-2">🎯 Boas Práticas</h3>
+        <ul className="text-sm text-[var(--color-text-secondary)] space-y-1">
           <li>• Use VisuallyHidden para texto que só screen readers precisam</li>
           <li>• Forneça contexto para ícones e elementos visuais</li>
           <li>• Anuncie mudanças de estado e carregamento</li>
@@ -214,6 +227,7 @@ function AccessibilityPage() {
           <li>• Teste com leitores de tela reais</li>
         </ul>
       </div>
+
     </div>
   )
 }
@@ -226,150 +240,173 @@ function AccessibilityPage() {
  * @returns {JSX.Element} Página com showcase de todos os componentes UI
  */
 function UiPage() {
+  const { resolvedTheme } = useTheme()
+  const componentSamples = [
+    { title: 'Button', element: <Button label="Primário" /> },
+    { title: 'Badge', element: <Badge label="Beta" /> },
+    { title: 'Input', element: <Input placeholder="Placeholder" /> },
+    { title: 'Textarea', element: <Textarea rows={3} placeholder="Digite algo" /> },
+    { title: 'Switch', element: <Switch /> },
+    { title: 'Slider', element: <Slider /> },
+    { title: 'Progress', element: <Progress value={55} /> },
+    { title: 'Avatar', element: <Avatar /> },
+    { title: 'Card', element: <Card /> },
+    { title: 'Accordion', element: <Accordion /> },
+    { title: 'Toggle', element: <Toggle>Toggle</Toggle> },
+    { title: 'Fab', element: <Fab icon="plus" /> },
+    { title: 'IconButton', element: <IconButton icon="settings" /> },
+    { title: 'LinkButton', element: <LinkButton>Visitar</LinkButton> },
+    { title: 'SegmentedControl', element: <SegmentedControl /> },
+    { title: 'InlineLoader', element: <InlineLoader text="Carregando" /> },
+    { title: 'Quote', element: <Quote author="UX Lead" role="Design System">A consistência vem dos tokens.</Quote> },
+    { title: 'QuoteTestimonial', element: <QuoteTestimonial author="Engenharia" role="Frontend">Componentes tipados e prontos.</QuoteTestimonial> },
+    { title: 'Kbd', element: <Kbd>⌘K</Kbd> },
+    { title: 'KbdCombo', element: <KbdCombo keys={["Shift", "A"]} /> },
+  ]
+
   return (
-    <div className="space-y-6">
-      <div className="space-y-1">
-        <h1 className="text-2xl font-semibold">UI Components</h1>
-        <p className="text-[var(--color-text-secondary)]">Todos os componentes UI disponíveis na biblioteca.</p>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {/* Button */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">Button</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <Button />
+    <div className="space-y-8">
+      <div className="rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-background-primary)] shadow-sm overflow-hidden">
+        <div className="p-6 bg-[var(--color-background-secondary)] border-b border-[var(--color-border-default)] flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+          <div className="space-y-1">
+            <p className="text-xs uppercase tracking-[0.2em] text-[var(--color-text-tertiary)]">Design Tokens</p>
+            <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">UI Components com tema {resolvedTheme === 'dark' ? 'dark' : 'light'}</h1>
+            <p className="text-[var(--color-text-secondary)]">Exemplo real de tela de produto usando a paleta, semântica e tipografia do design system.</p>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="flex -space-x-2">
+              {['primary','secondary','tertiary','inverse'].map((tone) => (
+                <span key={tone} className="inline-block h-8 w-8 rounded-full ring-2 ring-[var(--color-background-primary)]" style={{ backgroundColor: `var(--color-text-${tone === 'inverse' ? 'inverse' : 'primary'})` }} />
+              ))}
+            </div>
+            <Badge label={`Theme: ${resolvedTheme ?? 'system'}`} />
           </div>
         </div>
 
-        {/* Badge */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">Badge</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <Badge />
-          </div>
-        </div>
+        <div className="grid gap-6 p-6 lg:grid-cols-[1.2fr_1fr]">
+          <div className="space-y-4">
+            <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--color-background-primary)] p-5 shadow-sm">
+              <div className="flex items-center justify-between mb-3">
+                <div>
+                  <p className="text-sm text-[var(--color-text-secondary)]">Ações principais</p>
+                  <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">Botões & Estados</h3>
+                </div>
+                <Badge variant="outline" label="CTA" />
+              </div>
+              <div className="flex flex-wrap gap-3">
+                <Button label="Primário" />
+                <Button label="Secundário" variant="secondary" />
+                <Button label="Fantasma" variant="outline" />
+                <Button label="Perigo" variant="destructive" />
+                <IconButton icon="settings" />
+                <Fab icon="plus" />
+              </div>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <div className="space-y-1">
+                  <p className="text-xs text-[var(--color-text-secondary)]">Progresso</p>
+                  <Progress value={42} />
+                </div>
+                <div className="space-y-1">
+                  <p className="text-xs text-[var(--color-text-secondary)]">Slider</p>
+                  <Slider />
+                </div>
+              </div>
+            </div>
 
-        {/* Input */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">Input</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <Input />
+            <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--color-background-primary)] p-5 shadow-sm space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-[var(--color-text-secondary)]">Formulário</p>
+                  <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">Campos com tokens</h3>
+                </div>
+                <Badge variant="secondary" label="A11y" />
+              </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="space-y-2">
+                  <label className="text-sm text-[var(--color-text-primary)]">Email</label>
+                  <Input placeholder="seu@email.com" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm text-[var(--color-text-primary)]">Descrição</label>
+                  <Textarea rows={3} placeholder="Conte-nos algo" />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm text-[var(--color-text-primary)]">Notificações</label>
+                  <Switch />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm text-[var(--color-text-primary)]">Segmento</label>
+                  <SegmentedControl />
+                </div>
+              </div>
+              <div className="flex items-center gap-3">
+                <Toggle>Ativar modo foco</Toggle>
+                <InlineLoader text="Salvando rascunho" />
+              </div>
+            </div>
           </div>
-        </div>
 
-        {/* Textarea */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">Textarea</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <Textarea />
-          </div>
-        </div>
+          <div className="space-y-4">
+            <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--color-background-primary)] p-5 shadow-sm">
+              <div className="flex items-center justify-between mb-3">
+                <div>
+                  <p className="text-sm text-[var(--color-text-secondary)]">Cards & listas</p>
+                  <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">Estado de usuário</h3>
+                </div>
+                <Badge variant="outline" label="Realtime" />
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-center gap-3">
+                  <Avatar />
+                  <div>
+                    <p className="font-semibold text-[var(--color-text-primary)]">Camila Duarte</p>
+                    <p className="text-sm text-[var(--color-text-secondary)]">Product Designer • Ativa</p>
+                  </div>
+                </div>
+                <Card />
+                <Accordion />
+              </div>
+            </div>
 
-        {/* Switch */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">Switch</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <Switch />
-          </div>
-        </div>
-
-        {/* Slider */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">Slider</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <Slider />
-          </div>
-        </div>
-
-        {/* Progress */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">Progress</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <Progress />
-          </div>
-        </div>
-
-        {/* Avatar */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">Avatar</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <Avatar />
-          </div>
-        </div>
-
-        {/* Card */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">Card</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <Card />
-          </div>
-        </div>
-
-        {/* Accordion */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">Accordion</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <Accordion />
-          </div>
-        </div>
-
-        {/* Toggle */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">Toggle</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <Toggle>Toggle</Toggle>
-          </div>
-        </div>
-
-        {/* Fab */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">Fab</h3>
-          <div className="bg-gray-50 p-3 rounded-md relative h-24">
-            <Fab icon="plus" />
-          </div>
-        </div>
-
-        {/* IconButton */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">IconButton</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <IconButton icon="settings" />
-          </div>
-        </div>
-
-        {/* LinkButton */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">LinkButton</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <LinkButton>Visitar link</LinkButton>
-          </div>
-        </div>
-
-        {/* SegmentedControl */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">SegmentedControl</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <SegmentedControl />
-          </div>
-        </div>
-
-        {/* InlineLoader */}
-        <div className="bg-white border border-gray-200 rounded-lg p-4 space-y-3 shadow-sm">
-          <h3 className="font-semibold text-gray-900">InlineLoader</h3>
-          <div className="bg-gray-50 p-3 rounded-md">
-            <InlineLoader text="Carregando..." />
+            <div className="rounded-xl border border-[var(--color-border-default)] bg-[var(--color-background-primary)] p-5 shadow-sm space-y-3">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-[var(--color-text-secondary)]">Atalhos rápidos</p>
+                  <h3 className="text-lg font-semibold text-[var(--color-text-primary)]">Links e ações</h3>
+                </div>
+                <Badge label="Favoritos" />
+              </div>
+              <div className="grid gap-3">
+                <LinkButton>Documentação</LinkButton>
+                <LinkButton variant="secondary">Guia de tokens</LinkButton>
+                <div className="flex items-center justify-between rounded-lg border border-[var(--color-border-default)] bg-[var(--color-background-secondary)] px-3 py-2">
+                  <span className="text-sm text-[var(--color-text-secondary)]">Progresso de build</span>
+                  <Progress value={72} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="mt-8 p-4 bg-green-50 border border-green-200 rounded-lg">
-        <h3 className="font-semibold text-green-900 mb-2">Componentes Reais Implementados</h3>
-        <p className="text-sm text-green-800">
-          Todos os componentes acima são implementações reais com React e Tailwind CSS.
-          Cada componente é totalmente funcional, acessível e segue as melhores práticas de design.
-          Nenhum mock JSON - apenas código React production-ready!
-        </p>
+      <div className="rounded-2xl border border-[var(--color-border-default)] bg-[var(--color-background-primary)] shadow-sm p-6">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <p className="text-sm text-[var(--color-text-secondary)]">Guia rápido</p>
+            <h2 className="text-xl font-semibold text-[var(--color-text-primary)]">Amostras de todos os componentes UI</h2>
+          </div>
+          <Badge variant="outline" label={`${componentSamples.length} componentes`} />
+        </div>
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {componentSamples.map((sample) => (
+            <div key={sample.title} className="rounded-xl border border-[var(--color-border-default)] bg-[var(--color-background-secondary)] p-4 space-y-2 shadow-sm">
+              <p className="text-sm font-semibold text-[var(--color-text-primary)]">{sample.title}</p>
+              <div className="bg-[var(--color-background-primary)] rounded-lg border border-[var(--color-border-default)] p-3 flex items-center justify-center min-h-[64px]">
+                {sample.element}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -386,33 +423,33 @@ function CompliancePage() {
   return (
     <div className="space-y-6">
       <div className="space-y-1">
-        <h1 className="text-2xl font-semibold text-gray-900">Compliance</h1>
-        <p className="text-gray-600">Componentes de conformidade e boas práticas.</p>
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Compliance</h1>
+        <p className="text-[var(--color-text-secondary)]">Componentes de conformidade e boas práticas.</p>
       </div>
       
       <div className="grid gap-6 md:grid-cols-2">
-        <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+        <div className="bg-[var(--color-background-primary)] border border-[var(--color-border-default)] rounded-lg p-6 shadow-sm">
           <Quote author="Equipe Rainersoft" role="UI Library">
             Criamos componentes com foco em acessibilidade e consistência.
           </Quote>
         </div>
         
-        <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+        <div className="bg-[var(--color-background-primary)] border border-[var(--color-border-default)] rounded-lg p-6 shadow-sm">
           <QuoteTestimonial author="Designer de Produto" role="UI/UX">
             A biblioteca Rainersoft UI facilita criar interfaces consistentes e acessíveis.
           </QuoteTestimonial>
         </div>
       </div>
       
-      <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-        <h2 className="text-lg font-semibold text-gray-900 mb-4">Atalhos de Teclado</h2>
+      <div className="bg-[var(--color-background-primary)] border border-[var(--color-border-default)] rounded-lg p-6 shadow-sm">
+        <h2 className="text-lg font-semibold text-[var(--color-text-primary)] mb-4">Atalhos de Teclado</h2>
         <div className="space-y-3">
           <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-600">Buscar:</span>
+            <span className="text-sm text-[var(--color-text-secondary)]">Buscar:</span>
             <KbdCombo keys={["Ctrl", "K"]} />
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-600">Cancelar:</span>
+            <span className="text-sm text-[var(--color-text-secondary)]">Cancelar:</span>
             <Kbd>Esc</Kbd>
           </div>
         </div>
@@ -437,18 +474,18 @@ function PlaceholderPage({ section }: { section: string }) {
   return (
     <div className="space-y-4">
       <div className="space-y-1">
-        <h1 className="text-2xl font-semibold text-gray-900 capitalize">{friendlyName}</h1>
-        <p className="text-gray-600">Componentes reais detectados na seção.</p>
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)] capitalize">{friendlyName}</h1>
+        <p className="text-[var(--color-text-secondary)]">Componentes reais detectados na seção.</p>
       </div>
 
       {components.length ? (
         <div className="space-y-2">
-          <h2 className="text-lg font-semibold text-gray-900">Componentes ({components.length})</h2>
+          <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">Componentes ({components.length})</h2>
           <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
             {components.map((name) => (
               <li
                 key={name}
-                className="rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-sm capitalize text-gray-700"
+                className="rounded-md border border-[var(--color-border-default)] bg-[var(--color-background-secondary)] px-3 py-2 text-sm capitalize text-[var(--color-text-secondary)]"
               >
                 {name}
               </li>
@@ -456,18 +493,24 @@ function PlaceholderPage({ section }: { section: string }) {
           </ul>
         </div>
       ) : (
-        <p className="text-gray-600">Nenhum componente encontrado para esta seção.</p>
+        <p className="text-[var(--color-text-secondary)]">Nenhum componente encontrado para esta seção.</p>
       )}
 
-      <div className="rounded-lg border border-gray-300 bg-gray-50 px-4 py-3 space-y-2">
-        <p className="text-sm text-gray-600">Exemplo para esta seção:</p>
+      <div className="rounded-lg border border-[var(--color-border-default)] bg-[var(--color-background-secondary)] px-4 py-3 space-y-2">
+        <p className="text-sm text-[var(--color-text-secondary)]">Exemplo para esta seção:</p>
         <div className="flex flex-wrap items-center gap-2 text-sm">
-          <span className="rounded-full bg-blue-100 text-blue-800 px-2 py-1">{friendlyName}</span>
-          <span className="text-gray-900 font-medium">Crie um card usando esses componentes.</span>
+          <span
+            className="rounded-full px-2 py-1"
+            style={{ backgroundColor: 'var(--color-background-primary)', color: 'var(--color-text-secondary)', border: '1px solid var(--color-border-default)' }}
+          >
+            {friendlyName}
+          </span>
+          <span className="text-[var(--color-text-primary)] font-medium">Crie um card usando esses componentes.</span>
         </div>
         <Link
           to="/"
-          className="inline-flex w-fit items-center gap-2 rounded-md bg-blue-600 px-3 py-2 text-xs font-semibold text-white hover:bg-blue-700 transition-colors"
+          className="inline-flex w-fit items-center gap-2 rounded-md px-3 py-2 text-xs font-semibold transition-opacity hover:opacity-90"
+          style={{ backgroundColor: 'var(--color-button-primary-default)', color: 'var(--color-button-primary-text)' }}
         >
           Ver outros exemplos
         </Link>
@@ -487,8 +530,8 @@ function HomePage() {
   return (
     <div className="space-y-6">
       <div className="space-y-2">
-        <h1 className="text-3xl font-bold text-gray-900">Rainersoft UI Showcase</h1>
-        <p className="text-lg text-gray-600">Biblioteca de componentes React com design moderno e acessível.</p>
+        <h1 className="text-3xl font-bold text-[var(--color-text-primary)]">Rainersoft UI Showcase</h1>
+        <p className="text-lg text-[var(--color-text-secondary)]">Biblioteca de componentes React com design moderno e acessível.</p>
       </div>
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -498,40 +541,43 @@ function HomePage() {
             to={`/${section.id}`}
             className="block group"
           >
-            <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-200">
+            <div className="bg-[var(--color-background-primary)] border border-[var(--color-border-default)] rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-200">
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center group-hover:bg-blue-200 transition-colors">
-                    <span className="text-blue-600 font-semibold text-sm">
+                  <div
+                    className="w-10 h-10 rounded-lg flex items-center justify-center transition-colors"
+                    style={{ backgroundColor: 'var(--color-background-secondary)' }}
+                  >
+                    <span className="font-semibold text-sm" style={{ color: 'var(--color-text-primary)' }}>
                       {section.label.charAt(0)}
                     </span>
                   </div>
                   <div>
-                    <h2 className="text-lg font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">
+                    <h2 className="text-lg font-semibold text-[var(--color-text-primary)] transition-colors">
                       {section.label}
                     </h2>
-                    <p className="text-sm text-gray-600">{section.description}</p>
+                    <p className="text-sm text-[var(--color-text-secondary)]">{section.description}</p>
                   </div>
                 </div>
                 
                 {section.id === 'ui' && (
                   <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="px-2 py-1 bg-gray-100 text-gray-700 text-xs rounded-full">15+ componentes</span>
-                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">Fully functional</span>
+                    <span className="px-2 py-1 text-xs rounded-full" style={{ backgroundColor: 'var(--color-background-secondary)', color: 'var(--color-text-secondary)' }}>15+ componentes</span>
+                    <span className="px-2 py-1 text-xs rounded-full" style={{ backgroundColor: 'var(--color-status-success-light)', color: 'var(--color-status-success-text)' }}>Fully functional</span>
                   </div>
                 )}
                 
                 {section.id === 'accessibility' && (
                   <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full">WCAG 2.1</span>
-                    <span className="px-2 py-1 bg-blue-100 text-blue-700 text-xs rounded-full">Screen readers</span>
+                    <span className="px-2 py-1 text-xs rounded-full" style={{ backgroundColor: 'var(--color-background-secondary)', color: 'var(--color-text-secondary)' }}>WCAG 2.1</span>
+                    <span className="px-2 py-1 text-xs rounded-full" style={{ backgroundColor: 'var(--color-background-secondary)', color: 'var(--color-text-secondary)' }}>Screen readers</span>
                   </div>
                 )}
                 
                 {section.id === 'compliance' && (
                   <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="px-2 py-1 bg-orange-100 text-orange-700 text-xs rounded-full">GDPR</span>
-                    <span className="px-2 py-1 bg-green-100 text-green-700 text-xs rounded-full">Privacy</span>
+                    <span className="px-2 py-1 text-xs rounded-full" style={{ backgroundColor: 'var(--color-background-secondary)', color: 'var(--color-text-secondary)' }}>GDPR</span>
+                    <span className="px-2 py-1 text-xs rounded-full" style={{ backgroundColor: 'var(--color-status-success-light)', color: 'var(--color-status-success-text)' }}>Privacy</span>
                   </div>
                 )}
               </div>
@@ -540,29 +586,29 @@ function HomePage() {
         ))}
       </div>
 
-      <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-lg p-6">
+      <div className="border border-[var(--color-border-default)] rounded-lg p-6" style={{ backgroundColor: 'var(--color-background-secondary)' }}>
         <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold">R</span>
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--color-button-primary-default)', color: 'var(--color-button-primary-text)' }}>
+            <span className="font-bold">R</span>
           </div>
-          <h2 className="text-xl font-semibold text-blue-900">Sobre a Rainersoft UI</h2>
+          <h2 className="text-xl font-semibold text-[var(--color-text-primary)]">Sobre a Rainersoft UI</h2>
         </div>
-        <p className="text-blue-800 mb-4">
+        <p className="text-[var(--color-text-secondary)] mb-4">
           Uma biblioteca de componentes React moderna, acessível e totalmente customizável.
           Construída com TypeScript, Tailwind CSS e as melhores práticas de design.
         </p>
         <div className="grid gap-4 md:grid-cols-3">
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-            <span className="text-sm text-blue-700">Acessibilidade WCAG 2.1</span>
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--color-status-success-default)' }}></div>
+            <span className="text-sm text-[var(--color-text-secondary)]">Acessibilidade WCAG 2.1</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-            <span className="text-sm text-blue-700">Design System Completo</span>
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--color-button-primary-default)' }}></div>
+            <span className="text-sm text-[var(--color-text-secondary)]">Design System Completo</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-            <span className="text-sm text-blue-700">TypeScript First</span>
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--color-background-inverse)' }}></div>
+            <span className="text-sm text-[var(--color-text-secondary)]">TypeScript First</span>
           </div>
         </div>
       </div>
@@ -580,9 +626,9 @@ function HomePage() {
 function NotFoundPage() {
   return (
     <div className="space-y-3">
-      <h1 className="text-2xl font-semibold text-gray-900">404</h1>
-      <p className="text-gray-600">Rota não encontrada.</p>
-      <Link className="text-blue-600 underline hover:text-blue-700" to="/">Voltar para o início</Link>
+      <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">404</h1>
+      <p className="text-[var(--color-text-secondary)]">Rota não encontrada.</p>
+      <Link className="underline" style={{ color: 'var(--color-text-link)' }} to="/">Voltar para o início</Link>
     </div>
   )
 }
@@ -597,14 +643,14 @@ function NotFoundPage() {
  */
 function Layout() {
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
-      <header className="border-b border-gray-200 bg-white shadow-sm">
+    <div className="min-h-screen bg-[var(--color-background-secondary)] text-[var(--color-text-primary)]">
+      <header className="border-b border-[var(--color-border-default)] bg-[var(--color-background-primary)] shadow-sm">
         <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between gap-4">
-          <Link to="/" className="text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+          <Link to="/" className="text-lg font-semibold transition-colors" style={{ color: 'var(--color-text-primary)' }}>
             Rainersoft UI Showcase
           </Link>
           <div className="flex items-center gap-3">
-            <span className="text-sm text-gray-600 hidden sm:inline">Rotas separadas por seção</span>
+            <span className="text-sm text-[var(--color-text-secondary)] hidden sm:inline">Rotas separadas por seção</span>
             <ThemeToggle />
           </div>
         </div>
@@ -612,11 +658,12 @@ function Layout() {
 
       <main id="main-content" className="mx-auto max-w-6xl px-4 py-10 grid grid-cols-1 md:grid-cols-[220px_1fr] gap-8">
         <aside className="space-y-2">
-          <h2 className="text-sm font-semibold text-gray-600 uppercase tracking-wide mb-3">Componentes</h2>
+          <h2 className="text-sm font-semibold text-[var(--color-text-secondary)] uppercase tracking-wide mb-3">Componentes</h2>
           <nav className="space-y-1">
             <Link
               to="/"
-              className="block px-3 py-2 rounded-md hover:bg-gray-100 transition-colors text-sm text-gray-700 hover:text-gray-900"
+              className="block px-3 py-2 rounded-md transition-colors text-sm"
+              style={{ color: 'var(--color-text-secondary)' }}
             >
               Home
             </Link>
@@ -624,7 +671,8 @@ function Layout() {
               <Link
                 key={section.id}
                 to={`/${section.id}`}
-                className="block px-3 py-2 rounded-md hover:bg-gray-100 transition-colors text-sm text-gray-700 hover:text-gray-900"
+                className="block px-3 py-2 rounded-md transition-colors text-sm"
+                style={{ color: 'var(--color-text-secondary)' }}
               >
                 {section.label}
               </Link>

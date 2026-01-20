@@ -23,14 +23,17 @@ export default function Progress({
   
   return (
     <div className="w-full">
-      <div className={`w-full bg-gray-200 rounded-full ${sizeClasses[size]}`}>
+      <div
+        className={`w-full rounded-full ${sizeClasses[size]}`}
+        style={{ backgroundColor: 'var(--color-background-tertiary)' }}
+      >
         <div 
-          className="bg-blue-600 h-full rounded-full transition-all duration-300 ease-out"
-          style={{ width: `${percentage}%` }}
+          className="h-full rounded-full transition-all duration-300 ease-out"
+          style={{ backgroundColor: 'var(--color-interactive-link-default)', width: `${percentage}%` }}
         />
       </div>
       {showValue && (
-        <div className="mt-1 text-xs text-gray-600 text-right">
+        <div className="mt-1 text-xs text-right" style={{ color: 'var(--color-text-secondary)' }}>
           {Math.round(percentage)}%
         </div>
       )}

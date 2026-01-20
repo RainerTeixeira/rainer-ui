@@ -5,11 +5,11 @@ import { VariantProps } from 'class-variance-authority';
 
 declare const toggleVariants: (props?: {
     variant?: "default" | "outline";
-    size?: "sm" | "lg" | "default";
+    size?: "default" | "sm" | "lg";
 } & class_variance_authority_types.ClassProp) => string;
 declare const Toggle: React.ForwardRefExoticComponent<Omit<TogglePrimitive.ToggleProps & React.RefAttributes<HTMLButtonElement>, "ref"> & VariantProps<(props?: {
     variant?: "default" | "outline";
-    size?: "sm" | "lg" | "default";
+    size?: "default" | "sm" | "lg";
 } & class_variance_authority_types.ClassProp) => string> & React.RefAttributes<HTMLButtonElement>>;
 
 export { Toggle, toggleVariants };

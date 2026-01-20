@@ -11,7 +11,7 @@ import {
   Content as HoverCardContentPrimitive,
 } from '@radix-ui/react-hover-card';
 
-import { cn } from '../../lib/utils';
+import { cn } from '../../lib/tokens';
 
 const HoverCard = HoverCardRootPrimitive;
 

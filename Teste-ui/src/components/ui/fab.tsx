@@ -20,12 +20,12 @@ export default function Fab({
     'top-left': 'fixed top-6 left-6'
   }
   
-  const colorClasses = {
-    primary: 'bg-blue-600 hover:bg-blue-700 text-white',
-    secondary: 'bg-gray-600 hover:bg-gray-700 text-white',
-    success: 'bg-green-600 hover:bg-green-700 text-white',
-    warning: 'bg-yellow-600 hover:bg-yellow-700 text-white',
-    error: 'bg-red-600 hover:bg-red-700 text-white'
+  const colorStyle: Record<NonNullable<FabProps['color']>, React.CSSProperties> = {
+    primary: { backgroundColor: 'var(--color-button-primary-default)', color: 'var(--color-button-primary-text)' },
+    secondary: { backgroundColor: 'var(--color-button-secondary-default)', color: 'var(--color-button-secondary-text)' },
+    success: { backgroundColor: 'var(--color-button-success-default)', color: 'var(--color-button-success-text)' },
+    warning: { backgroundColor: 'var(--color-status-warning-default)', color: 'var(--color-text-on-primary)' },
+    error: { backgroundColor: 'var(--color-button-danger-default)', color: 'var(--color-button-danger-text)' },
   }
   
   const getIcon = () => {
@@ -60,12 +60,16 @@ export default function Fab({
   return (
     <button
       className={`
-        ${positionClasses[position]} ${colorClasses[color]}
+        ${positionClasses[position]}
         w-14 h-14 rounded-full shadow-lg flex items-center justify-center
         transition-all duration-200 ease-in-out
-        hover:scale-110 focus:outline-none focus:ring-4 focus:ring-blue-300
+        hover:scale-110 focus:outline-none focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-2
       `}
       onClick={onClick}
+      style={{
+        ...colorStyle[color],
+        outlineColor: 'var(--color-interactive-focus-ring)',
+      }}
     >
       {getIcon()}
     </button>

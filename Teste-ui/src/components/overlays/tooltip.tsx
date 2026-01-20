@@ -1,5 +1,4 @@
-import data from './tooltip.json';
-
+const data = {}
 export default function TooltipMock() {
   return <pre>{JSON.stringify(data, null, 2)}</pre>;
 }

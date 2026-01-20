@@ -13,7 +13,7 @@ import * as React from 'react';
 import { cva, type VariantProps } from 'class-variance-authority';
 import QuoteIcon from 'lucide-react/dist/esm/icons/quote';
 
-import { cn } from "../../lib/utils";
+import { cn } from "../../lib/tokens";
 
 /**
  * Variantes do Quote
