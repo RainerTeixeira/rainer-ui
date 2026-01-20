@@ -1,8 +1,0 @@
-{
-  "name": "quick-stats",
-  "description": "Mock de estatísticas rápidas.",
-  "stats": [
-    {"label": "Conversões", "value": 324, "trend": "+12%"},
-    {"label": "Bounce rate", "value": "38%", "trend": "-4%"}
-  ]
-}

@@ -1,6 +1,0 @@
-{
-  "name": "grid",
-  "description": "Mock de grid.",
-  "columns": 12,
-  "gap": "16px"
-}

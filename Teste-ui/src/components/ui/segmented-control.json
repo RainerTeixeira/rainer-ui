@@ -1,6 +1,0 @@
-{
-  "name": "segmented-control",
-  "description": "Mock de segmented control.",
-  "segments": ["Dia", "Semana", "Mês"],
-  "active": "Semana"
-}

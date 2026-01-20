@@ -1,8 +1,0 @@
-{
-  "name": "stats-cards",
-  "description": "Mock de cards de estatísticas.",
-  "cards": [
-    {"label": "Receita", "value": "R$ 128k", "trend": "+6%"},
-    {"label": "Usuários ativos", "value": "12.4k", "trend": "+2%"}
-  ]
-}

@@ -1,9 +1,0 @@
-{
-  "name": "kpi",
-  "description": "Mock de indicador KPI.",
-  "metric": {
-    "label": "Receita",
-    "value": "R$ 128k",
-    "trend": "+6%"
-  }
-}

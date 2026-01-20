@@ -1,9 +1,0 @@
-{
-  "name": "radio-group",
-  "description": "Mock de grupo de radio.",
-  "options": [
-    {"label": "Opção A", "value": "a"},
-    {"label": "Opção B", "value": "b"}
-  ],
-  "selected": "a"
-}

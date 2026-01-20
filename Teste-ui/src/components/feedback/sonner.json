@@ -1,9 +1,0 @@
-{
-  "name": "sonner",
-  "description": "Mock de toast sonner.",
-  "props": {
-    "title": "Conectado",
-    "message": "Sessão sincronizada",
-    "type": "success"
-  }
-}

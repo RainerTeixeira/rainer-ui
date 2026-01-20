@@ -1,6 +1,0 @@
-{
-  "name": "file-upload",
-  "description": "Mock de upload de arquivo.",
-  "accepted": [".pdf", ".png"],
-  "maxSizeMb": 5
-}

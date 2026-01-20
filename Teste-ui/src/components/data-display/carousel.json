@@ -1,8 +1,0 @@
-{
-  "name": "carousel",
-  "description": "Mock de itens para carrossel.",
-  "items": [
-    {"title": "Slide 1", "image": "/img/1.jpg"},
-    {"title": "Slide 2", "image": "/img/2.jpg"}
-  ]
-}

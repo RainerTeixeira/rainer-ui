@@ -1,5 +1,0 @@
-{
-  "name": "menu",
-  "description": "Mock de menu dropdown.",
-  "items": ["Perfil", "Configurações", "Sair"]
-}

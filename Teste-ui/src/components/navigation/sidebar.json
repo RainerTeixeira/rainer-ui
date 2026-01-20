@@ -1,5 +1,0 @@
-{
-  "name": "sidebar",
-  "description": "Mock de sidebar.",
-  "sections": ["Dashboard", "Relatórios", "Config"]
-}

@@ -1,8 +1,0 @@
-{
-  "name": "social-bar",
-  "description": "Mock de barra social.",
-  "links": [
-    {"network": "linkedin", "url": "https://linkedin.com"},
-    {"network": "github", "url": "https://github.com"}
-  ]
-}

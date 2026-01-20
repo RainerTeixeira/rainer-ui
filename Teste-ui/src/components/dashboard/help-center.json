@@ -1,9 +1,0 @@
-{
-  "name": "help-center",
-  "description": "Mock de artigos e FAQs do centro de ajuda.",
-  "items": [
-    {"title": "Como configurar analytics", "category": "Guia"},
-    {"title": "Importar dados CSV", "category": "FAQ"},
-    {"title": "Permissões de equipe", "category": "Admin"}
-  ]
-}

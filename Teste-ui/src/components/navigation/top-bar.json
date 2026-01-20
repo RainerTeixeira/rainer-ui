@@ -1,6 +1,0 @@
-{
-  "name": "top-bar",
-  "description": "Mock de top bar.",
-  "title": "Painel",
-  "actions": ["Notificações", "Perfil"]
-}

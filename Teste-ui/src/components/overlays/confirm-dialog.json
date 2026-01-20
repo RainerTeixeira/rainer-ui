@@ -1,8 +1,0 @@
-{
-  "name": "confirm-dialog",
-  "description": "Mock de diálogo de confirmação.",
-  "title": "Confirmar exclusão",
-  "message": "Deseja remover este item?",
-  "confirmLabel": "Confirmar",
-  "cancelLabel": "Cancelar"
-}

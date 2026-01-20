@@ -1,8 +1,0 @@
-{
-  "name": "badge",
-  "description": "Mock de badges.",
-  "items": [
-    {"label": "Novo", "tone": "info"},
-    {"label": "Beta", "tone": "warning"}
-  ]
-}

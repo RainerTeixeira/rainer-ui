@@ -1,8 +1,0 @@
-{
-  "name": "timeline",
-  "description": "Mock de eventos em linha do tempo.",
-  "events": [
-    {"title": "Kickoff", "date": "2024-01-05"},
-    {"title": "MVP", "date": "2024-02-10"}
-  ]
-}

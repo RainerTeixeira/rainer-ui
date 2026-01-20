@@ -1,5 +1,0 @@
-{
-  "name": "breadcrumb",
-  "description": "Mock de trilha de navegação.",
-  "items": ["Início", "Dashboard", "Detalhes"]
-}

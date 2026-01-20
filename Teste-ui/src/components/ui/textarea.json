@@ -1,6 +1,0 @@
-{
-  "name": "textarea",
-  "description": "Mock de textarea UI.",
-  "rows": 3,
-  "value": ""
-}

@@ -1,6 +1,0 @@
-{
-  "name": "progress",
-  "description": "Mock de progresso.",
-  "value": 42,
-  "label": "Upload"
-}

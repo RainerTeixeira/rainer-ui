@@ -1,8 +1,0 @@
-{
-  "name": "form",
-  "description": "Mock de formulário com campos.",
-  "fields": [
-    {"name": "email", "label": "Email", "type": "email"},
-    {"name": "password", "label": "Senha", "type": "password"}
-  ]
-}

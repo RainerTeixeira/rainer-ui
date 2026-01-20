@@ -1,5 +1,0 @@
-{
-  "name": "context-menu",
-  "description": "Mock de menu de contexto.",
-  "items": ["Copiar", "Colar", "Excluir"]
-}

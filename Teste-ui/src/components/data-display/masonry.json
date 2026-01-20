@@ -1,8 +1,0 @@
-{
-  "name": "masonry",
-  "description": "Mock de cards em layout masonry.",
-  "cards": [
-    {"title": "Card A", "height": 240},
-    {"title": "Card B", "height": 180}
-  ]
-}

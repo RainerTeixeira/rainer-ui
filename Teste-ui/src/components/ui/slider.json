@@ -1,7 +1,0 @@
-{
-  "name": "slider",
-  "description": "Mock de slider.",
-  "min": 0,
-  "max": 100,
-  "value": 30
-}

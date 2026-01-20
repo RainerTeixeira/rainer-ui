@@ -1,6 +1,0 @@
-{
-  "name": "FloatingGrid",
-  "description": "Mock de grid flutuante com paralaxe.",
-  "density": 0.6,
-  "glow": true
-}

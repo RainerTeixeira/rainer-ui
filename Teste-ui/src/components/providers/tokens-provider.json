@@ -1,6 +1,0 @@
-{
-  "name": "tokens-provider",
-  "description": "Mock de provider de design tokens.",
-  "theme": "light",
-  "version": "1.0.0"
-}

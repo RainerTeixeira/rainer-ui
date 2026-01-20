@@ -1,9 +1,0 @@
-{
-  "name": "alert",
-  "description": "Mock de alerta de status.",
-  "props": {
-    "type": "success",
-    "title": "Sucesso",
-    "message": "Operação concluída"
-  }
-}

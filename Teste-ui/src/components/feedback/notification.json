@@ -1,9 +1,0 @@
-{
-  "name": "notification",
-  "description": "Mock de notificação toast.",
-  "props": {
-    "title": "Atualizado",
-    "message": "Seu perfil foi salvo.",
-    "type": "info"
-  }
-}

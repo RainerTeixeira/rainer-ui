@@ -1,6 +1,0 @@
-{
-  "name": "LoadingScreen",
-  "description": "Mock de tela de carregamento.",
-  "message": "Carregando recursos...",
-  "spinner": true
-}

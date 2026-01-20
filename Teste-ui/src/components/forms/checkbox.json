@@ -1,8 +1,0 @@
-{
-  "name": "checkbox",
-  "description": "Mock de checkbox.",
-  "options": [
-    {"label": "Aceito termos", "value": "terms", "checked": true},
-    {"label": "Receber novidades", "value": "news", "checked": false}
-  ]
-}
