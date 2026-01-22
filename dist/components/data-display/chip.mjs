@@ -2,11 +2,11 @@ import * as React from 'react';
 import { cva } from 'class-variance-authority';
 import { X } from 'lucide-react';
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { jsxs, jsx } from 'react/jsx-runtime';
 
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;

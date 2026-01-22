@@ -1,25 +1,21 @@
 'use strict';
 
 require('@rainersoft/design-tokens/formats/css-vars.css');
-var tokens = require('@rainersoft/design-tokens');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 
-function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
-
-var tokens__default = /*#__PURE__*/_interopDefault(tokens);
-
-var tokensWithThemes = tokens__default.default;
-var lightTokens = tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens__default.default;
-var darkTokens = tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens__default.default;
+var tokens = {};
+var tokensWithThemes = tokens;
+var lightTokens = tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
+var darkTokens = tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var layoutClassesSemantic = tokens__default.default.semantics?.layoutClasses ?? {};
+var layoutClassesSemantic = tokens.semantics?.layoutClasses ?? {};
 var COMPONENT_CLASSES = layoutClassesSemantic.components ?? {};
 var SECTION_CLASSES = layoutClassesSemantic.sections ?? {};
-var zIndexSemantic = tokens__default.default.semantics?.layout?.zIndex ?? {};
-var zIndexPrimitive = tokens__default.default.primitives?.zIndex ?? {};
+var zIndexSemantic = tokens.semantics?.layout?.zIndex ?? {};
+var zIndexPrimitive = tokens.primitives?.zIndex ?? {};
 var zIndexTokens = {
   ...zIndexPrimitive,
   ...zIndexSemantic
@@ -34,8 +30,8 @@ var Z_INDEX = {
   STICKY: String(zIndexTokens.sticky ?? zIndexTokens.fixed ?? 200),
   FIXED: String(zIndexTokens.fixed ?? 300)
 };
-var GRADIENT_DIRECTIONS = tokens__default.default.primitives?.gradientDirections ?? {};
-var motionClasses = tokens__default.default.semantics?.motionClasses ?? {};
+var GRADIENT_DIRECTIONS = tokens.primitives?.gradientDirections ?? {};
+var motionClasses = tokens.semantics?.motionClasses ?? {};
 var MOTION = {
   TRANSITION: {
     DEFAULT: motionClasses.transition?.default,
@@ -46,9 +42,9 @@ var MOTION = {
     OPACITY: motionClasses.transition?.opacity
   }
 };
-var motionTokens = tokens__default.default.MOTION ?? tokens__default.default.motionTokens ?? tokens__default.default.primitives?.motion ?? {};
+var motionTokens = tokens.MOTION ?? tokens.motionTokens ?? tokens.primitives?.motion ?? {};
 var motion = motionTokens;
-var motionSemanticTokens = tokens__default.default.semantics?.motion ?? {};
+var motionSemanticTokens = tokens.semantics?.motion ?? {};
 var motionSemantic = motionSemanticTokens;
 var ANIMATION_DELAYS = motion?.delay ?? {};
 var ANIMATION_DURATIONS = motion?.duration ?? {};
@@ -88,7 +84,7 @@ var motionPresets = {
   }
 };
 function getThemeColors(theme) {
-  const tokenObj = tokens__default.default;
+  const tokenObj = tokens;
   return tokenObj.themes?.[theme] || {};
 }
 function getSemanticColors(theme) {
@@ -157,7 +153,7 @@ function getTokenColor(tokenName, theme) {
       return colorValue;
     }
   }
-  const tokenObj = tokens__default.default;
+  const tokenObj = tokens;
   const semanticTokens = tokenObj.semantics;
   const colorTokens = semanticTokens.color;
   const colorRoles = colorTokens["color-roles"];
@@ -196,10 +192,6 @@ function getContrastColor(hex) {
   return luminance > 0.5 ? "var(--color-black)" : "var(--color-white)";
 }
 
-Object.defineProperty(exports, "tokens", {
-  enumerable: true,
-  get: function () { return tokens__default.default; }
-});
 exports.ANIMATION_DELAYS = ANIMATION_DELAYS;
 exports.ANIMATION_DURATIONS = ANIMATION_DURATIONS;
 exports.ANIMATION_EASINGS = ANIMATION_EASINGS;
@@ -230,5 +222,6 @@ exports.motion = motion;
 exports.motionPresets = motionPresets;
 exports.motionSemantic = motionSemantic;
 exports.overlayFromToken = overlayFromToken;
+exports.tokens = tokens;
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Overlay, Portal, Content, Close, Title, Description, Root, Trigger } from '@radix-ui/react-dialog';
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { X } from 'lucide-react';
 import { jsx, jsxs } from 'react/jsx-runtime';
 
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;

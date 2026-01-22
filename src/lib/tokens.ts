@@ -1,290 +1,112 @@
 /**
- * @fileoverview Ponto único de entrada para design tokens (variáveis CSS + objeto JS)
- * 
+ * @fileoverview Ponto único de entrada para design tokens (CSS + TS)
+ *
  * @description
- * Este módulo exporta os design tokens do pacote @rainersoft/design-tokens,
- * incluindo suporte para temas claro e escuro. Importa automaticamente as
- * variáveis CSS necessárias. Também centraliza utilitários gerais e motion.
- * 
+ * Centraliza e tipa o acesso aos design tokens do pacote
+ * @rainersoft/design-tokens, consumindo exclusivamente o diretório `/formats`.
+ *
+ * Este módulo expõe:
+ * - Tokens tipados (primitives, themes, semantics)
+ * - Utilitário cn (clsx + tailwind-merge)
+ * - Presets de motion semânticos
+ * - Helpers de cores (tema, status, marca)
+ * - Geradores utilitários para Tailwind
+ * - Constantes de layout (z-index, classes semânticas)
+ *
  * @module src/lib/tokens
  * @author Rainer Teixeira
  * @version 1.0.0
  */
 
-import '@rainersoft/design-tokens/formats/css-vars.css';
-import { tokens as designTokens } from '@rainersoft/design-tokens';
-import { type ClassValue, clsx } from 'clsx';
+import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
+// @ts-expect-error: o pacote não publica .d.ts para tokens.json; consumo direto do formats
+import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
+import '@rainersoft/design-tokens/formats/css-vars.css';
+
 /**
- * Tipo que representa a estrutura completa dos design tokens
- * @typedef {typeof tokens} Tokens
+ * Tipagem base dos tokens importados
  */
-export type Tokens = typeof designTokens;
-
-export const tokens = designTokens;
+export type Tokens = typeof tokensData;
 
 /**
- * Tipo estendido que inclui suporte para múltiplos temas
- * @typedef {Object} TokensWithThemes
- * @property {Tokens} [lightTheme] - Tokens do tema claro (formato legado)
- * @property {Tokens} [darkTheme] - Tokens do tema escuro (formato legado)
- * @property {Object} [themes] - Objeto contendo os temas disponíveis
- * @property {Tokens} [themes.light] - Tokens do tema claro
- * @property {Tokens} [themes.dark] - Tokens do tema escuro
+ * Temas suportados pelo design system
  */
-type TokensWithThemes = Tokens & {
-  lightTheme?: Tokens;
-  darkTheme?: Tokens;
-  themes?: {
-    light?: Tokens;
-    dark?: Tokens;
-  };
-};
-
-const tokensWithThemes = tokens as TokensWithThemes;
+export type ThemeKey = 'light' | 'dark';
 
 /**
- * Tokens do tema claro
- * @description Retorna os tokens específicos do tema claro, com fallback para tokens padrão
- * @constant {Tokens}
+ * Tokens expostos de forma tipada
  */
-export const lightTokens: Tokens = tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
+export const tokens: Tokens = tokensData;
 
 /**
- * Tokens do tema escuro
- * @description Retorna os tokens específicos do tema escuro, com fallback para tokens padrão
- * @constant {Tokens}
- */
-export const darkTokens: Tokens = tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
-
-// ============================================================================
-// UTILITÁRIOS GERAIS
-// ============================================================================
-
-/**
- * Combina e mescla classes CSS de forma inteligente
- * 
- * Esta função é essencial para trabalhar com Tailwind CSS e componentes
- * dinâmicos. Ela resolve conflitos entre classes Tailwind e permite
- * composição condicional de estilos.
- * 
- * @param inputs - Classes CSS para combinar
- * @returns String final com classes CSS mescladas
- * 
+ * Combina classes CSS utilizando clsx + tailwind-merge
+ *
  * @example
- * ```tsx
- * cn('px-4 py-2', 'bg-blue-500') // "px-4 py-2 bg-blue-500"
- * cn('px-4', 'px-2') // "px-2" (resolve conflitos)
- * cn('btn', { 'btn-active': isActive })
- * ```
+ * cn('p-4', isActive && 'bg-primary')
  */
-export function cn(...inputs: ClassValue[]) {
+export function cn(...inputs: ClassValue[]): string {
   return twMerge(clsx(inputs));
 }
 
 /**
- * Classes CSS para componentes responsivos
+ * Mapa semântico de z-index para layout e sobreposições
  */
-type LayoutClassesTokens = {
-  semantics?: {
-    layoutClasses?: {
-      components?: {
-        container?: string;
-        spacing?: string;
-        card?: { base?: string; hover?: string };
-        button?: { base?: string };
-        input?: { base?: string };
-      };
-      sections?: {
-        container?: string;
-      };
-    };
-  };
-};
-
-const layoutClassesSemantic = (tokens as LayoutClassesTokens).semantics?.layoutClasses ?? {};
-
-export const COMPONENT_CLASSES = layoutClassesSemantic.components ?? {};
-
-/**
- * Classes utilitárias para seções de página
- * Usado por componentes de layout como PageHeader.
- */
-export const SECTION_CLASSES = layoutClassesSemantic.sections ?? {};
-
-// ============================================================================
-// Z-INDEX TOKENS
-// ============================================================================
-
-/**
- * Z-index tokens - Valores baseados nos design tokens
- * @description Hierarquia de z-index para elementos sobrepostos
- */
-type ZIndexTokens = {
-  semantics?: { layout?: { zIndex?: Record<string, unknown> } };
-  primitives?: { zIndex?: Record<string, unknown> };
-};
-
-const zIndexSemantic = (tokens as ZIndexTokens).semantics?.layout?.zIndex ?? {};
-const zIndexPrimitive = (tokens as ZIndexTokens).primitives?.zIndex ?? {};
-const zIndexTokens = {
-  ...zIndexPrimitive,
-  ...zIndexSemantic,
-};
-
 export const Z_INDEX = {
-  BACKDROP: String(zIndexTokens.overlay ?? zIndexTokens.modal ?? 400),
-  MODAL: String(zIndexTokens.modal ?? 400),
-  DROPDOWN: String(zIndexTokens.dropdown ?? 300),
-  TOOLTIP: String(zIndexTokens.tooltip ?? 500),
-  NAVIGATION: String(zIndexTokens.content ?? zIndexTokens.base ?? 100),
-  OVERLAY: String(zIndexTokens.overlay ?? 400),
-  STICKY: String(zIndexTokens.sticky ?? zIndexTokens.fixed ?? 200),
-  FIXED: String(zIndexTokens.fixed ?? 300),
-} as const;
-
-// ============================================================================
-// GRADIENT DIRECTION TOKENS
-// ============================================================================
-
-/**
- * Gradient direction tokens - Direções para gradientes CSS
- * @description Direções padronizadas para gradientes Tailwind
- */
-type GradientDirectionsTokens = { primitives?: { gradientDirections?: Record<string, string> } };
-
-export const GRADIENT_DIRECTIONS = (tokens as GradientDirectionsTokens).primitives?.gradientDirections ?? {};
-
-/**
- * Motion constants - Classes CSS predefinidas baseadas nos tokens
- * @description Combinações prontas de duração e easing para uso direto
- */
-type MotionClassesTokens = {
-  semantics?: {
-    motionClasses?: {
-      transition?: {
-        default?: string;
-        fast?: string;
-        slow?: string;
-        color?: string;
-        transform?: string;
-        opacity?: string;
-      };
-    };
-  };
-};
-
-const motionClasses = (tokens as MotionClassesTokens).semantics?.motionClasses ?? {};
-
-export const MOTION = {
-  TRANSITION: {
-    DEFAULT: motionClasses.transition?.default,
-    FAST: motionClasses.transition?.fast,
-    SLOW: motionClasses.transition?.slow,
-    COLOR: motionClasses.transition?.color,
-    TRANSFORM: motionClasses.transition?.transform,
-    OPACITY: motionClasses.transition?.opacity,
-  },
+  base: String(tokens.primitives?.zIndex?.base ?? 100),
+  navigation: String(tokens.primitives?.zIndex?.content ?? 150),
+  dropdown: String(tokens.primitives?.zIndex?.dropdown ?? 300),
+  modal: String(tokens.primitives?.zIndex?.modal ?? 400),
+  overlay: String(tokens.primitives?.zIndex?.overlay ?? 400),
+  sticky: String(tokens.primitives?.zIndex?.sticky ?? 200),
+  fixed: String(tokens.primitives?.zIndex?.fixed ?? 300),
+  tooltip: String(tokens.primitives?.zIndex?.tooltip ?? 500),
 } as const;
 
 /**
- * Motion tokens - Importados diretamente do @rainersoft/design-tokens
- * 
- * @description
- * Única fonte de verdade para tokens de motion (duração, easing, delay).
- * Importados diretamente do pacote design-tokens via ES modules.
+ * Tokens brutos de motion
  */
-type MotionTokens = {
-  MOTION?: Record<string, unknown>;
-  motionTokens?: Record<string, unknown>;
-  primitives?: { motion?: Record<string, unknown> };
-};
-
-const motionTokens =
-  (tokens as MotionTokens).MOTION ??
-  (tokens as MotionTokens).motionTokens ??
-  (tokens as MotionTokens).primitives?.motion ??
-  {};
-
-export const motion = motionTokens;
+export const motionTokens = tokens.primitives?.motion ?? {};
 
 /**
- * Motion semântico - Importado dos tokens de motion
- * 
- * @description
- * Animações organizadas semanticamente para uso em componentes.
- * Usa tokens.MOTION como fonte única de verdade.
+ * Atalhos de motion
  */
-type MotionSemanticTokens = { semantics?: { motion?: Record<string, unknown> } };
-
-const motionSemanticTokens = (tokens as MotionSemanticTokens).semantics?.motion ?? {};
-
-export const motionSemantic = motionSemanticTokens;
+export const animationDelays = motionTokens.delay ?? {};
+export const animationDurations = motionTokens.duration ?? {};
+export const animationEasings = motionTokens.easing ?? {};
 
 /**
- * Delays de animação importados dos design tokens
- * 
- * @description
- * Usa motion.delay com fallback seguro para garantir
- * consistência em todo o sistema de design.
+ * Fallbacks de motion
  */
-export const ANIMATION_DELAYS = (motion?.delay ?? {}) as Record<string, string>;
+const baseDuration =
+  animationDurations.normal ??
+  animationDurations.default ??
+  '200ms';
+
+const fastDuration =
+  animationDurations.fast ?? baseDuration;
+
+const slowDuration =
+  animationDurations.slow ?? baseDuration;
+
+const easeInOut =
+  animationEasings.easeInOut ??
+  animationEasings.default ??
+  'ease-in-out';
+
+const easeOut =
+  animationEasings.easeOut ?? easeInOut;
+
+const spring =
+  animationEasings.spring ?? easeInOut;
 
 /**
- * Durações de animação importadas dos design tokens
- * 
- * @description
- * Usa motion.duration com fallback seguro para garantir
- * consistência em todo o sistema de design.
+ * Presets semânticos para animações
  */
-export const ANIMATION_DURATIONS = (motion?.duration ?? {}) as Record<string, string>;
-
-/**
- * Easings de animação importados dos design tokens
- * 
- * @description
- * Usa motion.easing com fallback seguro para garantir
- * transições suaves e consistentes.
- */
-export const ANIMATION_EASINGS = (motion?.easing ?? {}) as Record<string, string>;
-
-/**
- * Motion presets prontos para uso
- * 
- * @description
- * Combinações pre-configuradas de duration + easing para casos comuns
- * 
- * @example
- * ```tsx
- * <motion.div
- *   transition={motionPresets.default}
- * />
- * ```
- */
-const safeMotionDuration = ANIMATION_DURATIONS as Record<string, string>;
-const safeMotionEasing = ANIMATION_EASINGS as Record<string, string>;
-
-const defaultDuration = safeMotionDuration?.normal ?? safeMotionDuration?.default;
-const fastDuration = safeMotionDuration?.fast ?? defaultDuration;
-const slowDuration = safeMotionDuration?.slow ?? defaultDuration;
-
-const easeInOut = safeMotionEasing?.easeInOut ?? safeMotionEasing?.default;
-const easeOut = safeMotionEasing?.easeOut ?? easeInOut;
-const spring = safeMotionEasing?.spring ?? easeInOut;
-
-type MotionSemanticShape = {
-  transition?: { default?: unknown };
-  interaction?: { hover?: unknown };
-  feedback?: { success?: unknown };
-  navigation?: { page?: unknown };
-};
-
-const motionSemanticTyped = motionSemantic as MotionSemanticShape;
-
 export const motionPresets = {
   default: {
-    duration: defaultDuration,
+    duration: baseDuration,
     easing: easeInOut,
   },
   fast: {
@@ -296,126 +118,106 @@ export const motionPresets = {
     easing: easeInOut,
   },
   spring: {
-    duration: defaultDuration,
+    duration: baseDuration,
     easing: spring,
   },
-  // Presets semânticos
-  semantic: {
-    transition: motionSemanticTyped.transition?.default,
-    interaction: motionSemanticTyped.interaction?.hover,
-    feedback: motionSemanticTyped.feedback?.success,
-    navigation: motionSemanticTyped.navigation?.page,
-  }
-};
-
-// ============================================================================
-// THEME UTILITIES
-// ============================================================================
-
-type ThemeKey = 'light' | 'dark';
+} as const;
 
 /**
- * Obtém todas as cores de um tema específico
+ * Retorna o objeto completo do tema
+ */
+export function getTheme(theme: ThemeKey) {
+  return tokens.themes?.[theme] ?? {};
+}
+
+/**
+ * Retorna apenas as cores do tema
  */
 export function getThemeColors(theme: ThemeKey) {
-  const tokenObj = tokens as Record<string, unknown>;
-  return (tokenObj.themes as Record<string, unknown>)?.[theme] || {};
+  return getTheme(theme)?.colors ?? {};
 }
 
 /**
- * Obtém cores semânticas do tema
+ * Retorna cores semânticas simplificadas
  */
 export function getSemanticColors(theme: ThemeKey) {
-  return getThemeColors(theme);
-}
-
-/**
- * Obtém cores simplificadas do tema
- */
-export function getSemanticColorsSimplified(theme: ThemeKey) {
-  const themeData = getThemeColors(theme) as Record<string, unknown>;
   return {
-    colors: themeData?.colors || {},
+    colors: getThemeColors(theme),
   };
 }
 
 /**
- * Helper para obter cor de status
+ * Retorna a cor base de um status
  */
 export function getStatusColor(
   status: 'success' | 'warning' | 'error' | 'info',
   theme: ThemeKey = 'light'
 ): string {
-  const themeData = getThemeColors(theme) as { colors?: Record<string, { base?: string }> };
-  return themeData?.colors?.[status]?.base || 'var(--color-black)';
+  return (
+    getThemeColors(theme)?.[status]?.base ??
+    'var(--color-black)'
+  );
 }
 
 /**
- * Helper para obter cor de botão primário
+ * Retorna cor principal de botão
  */
-export function getButtonPrimaryColor(theme: ThemeKey = 'light'): string {
-  const themeData = getThemeColors(theme) as { colors?: Record<string, { base?: string }> };
-  return themeData?.colors?.primary?.base || 'var(--color-cyan-600)';
+export function getButtonPrimaryColor(
+  theme: ThemeKey = 'light'
+): string {
+  return (
+    getThemeColors(theme)?.primary?.base ??
+    'var(--color-cyan-600)'
+  );
 }
 
 /**
- * Helper para obter cor de botão secundário
+ * Retorna cor secundária de botão
  */
-export function getButtonSecondaryColor(theme: ThemeKey = 'light'): string {
-  const themeData = getThemeColors(theme) as { colors?: Record<string, { base?: string }> };
-  return themeData?.colors?.secondary?.base || '#6366f1';
+export function getButtonSecondaryColor(
+  theme: ThemeKey = 'light'
+): string {
+  return (
+    getThemeColors(theme)?.secondary?.base ??
+    'var(--color-indigo-500)'
+  );
 }
 
 /**
- * Helper para obter cor de botão terciário
+ * Retorna cor de texto do botão primário
  */
-export function getButtonTertiaryColor(_theme: ThemeKey = 'light'): string {
-  return 'transparent';
+export function getButtonPrimaryTextColor(
+  theme: ThemeKey = 'light'
+): string {
+  return (
+    getThemeColors(theme)?.primary?.text ??
+    'var(--color-white)'
+  );
 }
 
 /**
- * Helper para obter cor de texto sobre fundo primário
- */
-export function getButtonPrimaryTextColor(theme: ThemeKey = 'light'): string {
-  const themeData = getThemeColors(theme) as { colors?: Record<string, { text?: string }> };
-  return themeData?.colors?.primary?.text || 'var(--color-white)';
-}
-
-/**
- * Obtém uma cor específica de um tema
+ * Retorna uma cor específica do tema
  */
 export function getColorFromTheme(
   theme: ThemeKey,
   category: string,
   shade: string
 ): string | undefined {
-  const themeData = getThemeColors(theme) as { colors?: Record<string, Record<string, string>> };
-  return themeData?.colors?.[category]?.[shade];
+  return getThemeColors(theme)?.[category]?.[shade];
 }
 
 /**
- * Helper para obter cor de marca por variante
+ * Retorna cores de marca por variante
  */
 export function getBrandColor(
   variant: 'primary' | 'secondary' | 'tertiary',
   theme: ThemeKey = 'light'
 ): string | undefined {
-  const themeData = getThemeColors(theme) as { colors?: Record<string, { base?: string }> };
-  return themeData?.colors?.[variant]?.base;
+  return getThemeColors(theme)?.[variant]?.base;
 }
 
 /**
- * Obtém constantes de cores semânticas (lazy-loaded)
- */
-export function getSemanticColorConstants() {
-  return {
-    light: getSemanticColorsSimplified('light'),
-    dark: getSemanticColorsSimplified('dark'),
-  };
-}
-
-/**
- * Gera classes Tailwind CSS
+ * Gera classes Tailwind dinamicamente
  */
 export function generateTailwindClasses(options: {
   bg?: string;
@@ -427,96 +229,77 @@ export function generateTailwindClasses(options: {
   m?: string;
   [key: string]: string | undefined;
 }): string {
-  const classes: string[] = [];
-  
-  if (options.bg) classes.push(`bg-${options.bg}`);
-  if (options.text) classes.push(`text-${options.text}`);
-  if (options.border) classes.push(`border-${options.border}`);
-  if (options.rounded) classes.push(`rounded-${options.rounded}`);
-  if (options.shadow) classes.push(`shadow-${options.shadow}`);
-  if (options.p) classes.push(`p-${options.p}`);
-  if (options.m) classes.push(`m-${options.m}`);
-  
-  Object.entries(options).forEach(([key, value]) => {
-    if (value && !['bg', 'text', 'border', 'rounded', 'shadow', 'p', 'm'].includes(key)) {
-      classes.push(`${key}-${value}`);
-    }
-  });
-  
-  return classes.join(' ');
+  return Object.entries(options)
+    .filter(([, value]) => Boolean(value))
+    .map(([key, value]) => `${key}-${value}`)
+    .join(' ');
 }
 
-// ============================================================================
-// COLOR UTILITIES
-// ============================================================================
-
 /**
- * Retorna o valor CSS do token (usa CSS var por padrão)
+ * Retorna uma variável CSS a partir de um token
  */
-export function getTokenColor(tokenName: string, theme?: ThemeKey): string {
-  if (theme) {
-    const themeColors = getThemeColors(theme) as Record<string, unknown>;
-    const colorValue = themeColors[tokenName] as string;
-    if (colorValue) {
-      return colorValue;
-    }
-  }
-
-  const tokenObj = tokens as Record<string, unknown>;
-  const semanticTokens = tokenObj.semantics as Record<string, unknown>;
-  const colorTokens = semanticTokens.color as Record<string, unknown>;
-  
-  const colorRoles = colorTokens['color-roles'] as Record<string, unknown>;
-  if (colorRoles?.[tokenName]) {
-    return `var(--${tokenName})`;
-  }
-
-  const primitiveTokens = tokenObj.primitives as Record<string, unknown>;
-  const colorPrimitives = primitiveTokens.color as Record<string, unknown>;
-  if (colorPrimitives?.[tokenName]) {
-    return `var(--${tokenName})`;
-  }
-
+export function getTokenColor(
+  tokenName: string
+): string {
   return `var(--${tokenName})`;
 }
 
 /**
- * Gera overlay com base no token
+ * Cria overlay RGBA a partir de token CSS
  */
-export function overlayFromToken(tokenName: string, alpha: number = 0.08, theme?: 'light' | 'dark'): string {
-  const cleanName = tokenName.replace(/^color-/, '');
-  
-  if (theme) {
-    const hexColor = getTokenColor(cleanName, theme);
-    if (hexColor.startsWith('#')) {
-      const varName = tokenName.startsWith('color-') ? tokenName : `color-${tokenName}`;
-      return `rgba(var(--${varName}-rgb, 0 0 0), ${alpha})`;
-    }
-  }
-  
-  const varName = tokenName.startsWith('color-') ? tokenName : `color-${tokenName}`;
-  return `rgba(var(--${varName}-rgb, 0 0 0), ${alpha})`;
+export function overlayFromToken(
+  tokenName: string,
+  alpha = 0.08
+): string {
+  const normalized = tokenName.startsWith('color-')
+    ? tokenName
+    : `color-${tokenName}`;
+
+  return `rgba(var(--${normalized}-rgb, 0 0 0), ${alpha})`;
 }
 
 /**
- * Verifica se uma string é uma cor hexadecimal válida
+ * Valida hexadecimal
  */
 export function isValidHex(hex: string): boolean {
-  const cleanHex = hex.replace('#', '');
-  return /^[0-9A-Fa-f]{6}$/.test(cleanHex);
+  return /^#?[0-9A-Fa-f]{6}$/.test(hex);
 }
 
 /**
- * Obtém a cor de contraste (preto ou branco) baseado na luminosidade
+ * Retorna cor de contraste baseada na luminância
  */
 export function getContrastColor(hex: string): string {
-  const cleanHex = hex.replace('#', '');
-  
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
-  
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  
-  return luminance > 0.5 ? 'var(--color-black)' : 'var(--color-white)';
+  const clean = hex.replace('#', '');
+
+  const r = parseInt(clean.slice(0, 2), 16);
+  const g = parseInt(clean.slice(2, 4), 16);
+  const b = parseInt(clean.slice(4, 6), 16);
+
+  const luminance =
+    (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+
+  return luminance > 0.5
+    ? 'var(--color-black)'
+    : 'var(--color-white)';
 }
+
+/**
+ * Tokens diretos por tema
+ */
+export const lightTokens = tokens.themes?.light ?? {};
+export const darkTokens = tokens.themes?.dark ?? {};
+
+/**
+ * Classes semânticas de layout
+ */
+export const COMPONENT_CLASSES =
+  tokens.semantics?.layoutClasses?.components ?? {};
+
+export const SECTION_CLASSES =
+  tokens.semantics?.layoutClasses?.sections ?? {};
+
+/**
+ * Direções de gradiente
+ */
+export const GRADIENT_DIRECTIONS =
+  tokens.primitives?.gradientDirections ?? {};

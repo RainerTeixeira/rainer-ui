@@ -2,7 +2,6 @@ import { jsx, jsxs } from 'react/jsx-runtime';
 import * as AspectRatioPrimitive from '@radix-ui/react-aspect-ratio';
 import * as React5 from 'react';
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { ChevronRight, X } from 'lucide-react';
@@ -31,6 +30,7 @@ function PageHeader({ title, description, children }) {
   );
 }
 var AspectRatio = AspectRatioPrimitive.Root;
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;

@@ -1,9 +1,8 @@
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
-export { default as tokens } from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
+var tokens = {};
 var tokensWithThemes = tokens;
 var lightTokens = tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 var darkTokens = tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
@@ -191,6 +190,6 @@ function getContrastColor(hex) {
   return luminance > 0.5 ? "var(--color-black)" : "var(--color-white)";
 }
 
-export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, COMPONENT_CLASSES, GRADIENT_DIRECTIONS, MOTION, SECTION_CLASSES, Z_INDEX, cn, darkTokens, generateTailwindClasses, getBrandColor, getButtonPrimaryColor, getButtonPrimaryTextColor, getButtonSecondaryColor, getButtonTertiaryColor, getColorFromTheme, getContrastColor, getSemanticColorConstants, getSemanticColors, getSemanticColorsSimplified, getStatusColor, getThemeColors, getTokenColor, isValidHex, lightTokens, motion, motionPresets, motionSemantic, overlayFromToken };
+export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, COMPONENT_CLASSES, GRADIENT_DIRECTIONS, MOTION, SECTION_CLASSES, Z_INDEX, cn, darkTokens, generateTailwindClasses, getBrandColor, getButtonPrimaryColor, getButtonPrimaryTextColor, getButtonSecondaryColor, getButtonTertiaryColor, getColorFromTheme, getContrastColor, getSemanticColorConstants, getSemanticColors, getSemanticColorsSimplified, getStatusColor, getThemeColors, getTokenColor, isValidHex, lightTokens, motion, motionPresets, motionSemantic, overlayFromToken, tokens };
 //# sourceMappingURL=tokens.mjs.map
 //# sourceMappingURL=tokens.mjs.map

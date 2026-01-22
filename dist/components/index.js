@@ -1,10 +1,10 @@
 'use strict';
 
-var React64 = require('react');
+var React63 = require('react');
 require('@rainersoft/design-tokens/formats/css-vars.css');
-var tokens = require('@rainersoft/design-tokens');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
+var utils = require('@rainersoft/utils');
 var jsxRuntime = require('react/jsx-runtime');
 var reactSlot = require('@radix-ui/react-slot');
 var classVarianceAuthority = require('class-variance-authority');
@@ -121,8 +121,7 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
-var React64__namespace = /*#__PURE__*/_interopNamespace(React64);
-var tokens__default = /*#__PURE__*/_interopDefault(tokens);
+var React63__namespace = /*#__PURE__*/_interopNamespace(React63);
 var SliderPrimitive__namespace = /*#__PURE__*/_interopNamespace(SliderPrimitive);
 var SwitchPrimitives__namespace = /*#__PURE__*/_interopNamespace(SwitchPrimitives);
 var TogglePrimitive__namespace = /*#__PURE__*/_interopNamespace(TogglePrimitive);
@@ -207,17 +206,18 @@ var QuoteIcon__default = /*#__PURE__*/_interopDefault(QuoteIcon);
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-var tokensWithThemes = tokens__default.default;
-tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens__default.default;
-tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens__default.default;
+var tokens = {};
+var tokensWithThemes = tokens;
+tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
+tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var layoutClassesSemantic = tokens__default.default.semantics?.layoutClasses ?? {};
+var layoutClassesSemantic = tokens.semantics?.layoutClasses ?? {};
 layoutClassesSemantic.components ?? {};
 layoutClassesSemantic.sections ?? {};
-var zIndexSemantic = tokens__default.default.semantics?.layout?.zIndex ?? {};
-var zIndexPrimitive = tokens__default.default.primitives?.zIndex ?? {};
+var zIndexSemantic = tokens.semantics?.layout?.zIndex ?? {};
+var zIndexPrimitive = tokens.primitives?.zIndex ?? {};
 var zIndexTokens = {
   ...zIndexPrimitive,
   ...zIndexSemantic
@@ -226,8 +226,8 @@ var Z_INDEX = {
   BACKDROP: String(zIndexTokens.overlay ?? zIndexTokens.modal ?? 400),
   MODAL: String(zIndexTokens.modal ?? 400),
   DROPDOWN: String(zIndexTokens.dropdown ?? 300)};
-var GRADIENT_DIRECTIONS = tokens__default.default.primitives?.gradientDirections ?? {};
-var motionClasses = tokens__default.default.semantics?.motionClasses ?? {};
+var GRADIENT_DIRECTIONS = tokens.primitives?.gradientDirections ?? {};
+var motionClasses = tokens.semantics?.motionClasses ?? {};
 var MOTION = {
   TRANSITION: {
     DEFAULT: motionClasses.transition?.default,
@@ -238,9 +238,9 @@ var MOTION = {
     OPACITY: motionClasses.transition?.opacity
   }
 };
-var motionTokens = tokens__default.default.MOTION ?? tokens__default.default.motionTokens ?? tokens__default.default.primitives?.motion ?? {};
+var motionTokens = tokens.MOTION ?? tokens.motionTokens ?? tokens.primitives?.motion ?? {};
 var motion = motionTokens;
-var motionSemanticTokens = tokens__default.default.semantics?.motion ?? {};
+var motionSemanticTokens = tokens.semantics?.motion ?? {};
 var motionSemantic = motionSemanticTokens;
 var ANIMATION_DELAYS = motion?.delay ?? {};
 var ANIMATION_DURATIONS = motion?.duration ?? {};
@@ -263,588 +263,6 @@ var motionSemanticTyped = motionSemantic;
     navigation: motionSemanticTyped.navigation?.page
   }
 });
-var __defProp2 = Object.defineProperty;
-var __defNormalProp2 = (obj, key, value) => key in obj ? __defProp2(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp2(target, name, { get: all[name], enumerable: true });
-};
-var __publicField2 = (obj, key, value) => __defNormalProp2(obj, key + "", value);
-var DEFAULT_LOCALE = "pt-BR";
-var CURRENCY_MAP = {
-  "pt-BR": "BRL",
-  "en-US": "USD",
-  "es-ES": "EUR"
-};
-var date_exports = {};
-__export(date_exports, {
-  formatDate: () => formatDate,
-  formatDateTime: () => formatDateTime,
-  formatRelativeDate: () => formatRelativeDate,
-  isValidDate: () => isValidDate,
-  toISOString: () => toISOString
-});
-var RELATIVE_TEXTS = {
-  "pt-BR": {
-    now: "agora",
-    minute: (n) => `h\xE1 ${n} ${n === 1 ? "minuto" : "minutos"}`,
-    hour: (n) => `h\xE1 ${n} ${n === 1 ? "hora" : "horas"}`,
-    day: (n) => `h\xE1 ${n} ${n === 1 ? "dia" : "dias"}`,
-    month: (n) => `h\xE1 ${n} ${n === 1 ? "m\xEAs" : "meses"}`,
-    year: (n) => `h\xE1 ${n} ${n === 1 ? "ano" : "anos"}`
-  },
-  "en-US": {
-    now: "now",
-    minute: (n) => `${n} ${n === 1 ? "minute" : "minutes"} ago`,
-    hour: (n) => `${n} ${n === 1 ? "hour" : "hours"} ago`,
-    day: (n) => `${n} ${n === 1 ? "day" : "days"} ago`,
-    month: (n) => `${n} ${n === 1 ? "month" : "months"} ago`,
-    year: (n) => `${n} ${n === 1 ? "year" : "years"} ago`
-  },
-  "es-ES": {
-    now: "ahora",
-    minute: (n) => `hace ${n} ${n === 1 ? "minuto" : "minutos"}`,
-    hour: (n) => `hace ${n} ${n === 1 ? "hora" : "horas"}`,
-    day: (n) => `hace ${n} ${n === 1 ? "d\xEDa" : "d\xEDas"}`,
-    month: (n) => `hace ${n} ${n === 1 ? "mes" : "meses"}`,
-    year: (n) => `hace ${n} ${n === 1 ? "a\xF1o" : "a\xF1os"}`
-  }
-};
-function formatDate(date, format = "long", locale = DEFAULT_LOCALE) {
-  const d = typeof date === "string" ? new Date(date) : date;
-  const options = {
-    day: "numeric",
-    month: format === "short" ? "2-digit" : "long",
-    year: "numeric",
-    ...format === "full" && { weekday: "long" }
-  };
-  if (format === "short") {
-    return d.toLocaleDateString(locale, { day: "2-digit", month: "2-digit", year: "numeric" });
-  }
-  return d.toLocaleDateString(locale, options);
-}
-function formatDateTime(date, locale = DEFAULT_LOCALE) {
-  const d = typeof date === "string" ? new Date(date) : date;
-  return d.toLocaleString(locale, {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit"
-  });
-}
-function formatRelativeDate(date, locale = DEFAULT_LOCALE) {
-  const d = typeof date === "string" ? new Date(date) : date;
-  if (!(d instanceof Date) || Number.isNaN(d.getTime())) {
-    return "";
-  }
-  const now = /* @__PURE__ */ new Date();
-  const diffMs = now.getTime() - d.getTime();
-  const diffSec = Math.floor(diffMs / 1e3);
-  const diffMin = Math.floor(diffSec / 60);
-  const diffHour = Math.floor(diffMin / 60);
-  const diffDay = Math.floor(diffHour / 24);
-  const diffMonth = Math.floor(diffDay / 30.4375);
-  const diffYear = Math.floor(diffDay / 365);
-  const texts = RELATIVE_TEXTS[locale];
-  if (diffSec < 10) {
-    if (locale === "pt-BR") return "agora mesmo";
-    if (locale === "en-US") return "just now";
-    if (locale === "es-ES") return "ahora mismo";
-  }
-  if (diffSec < 60) return texts.now;
-  if (diffMin < 60) return texts.minute(diffMin);
-  if (diffHour < 24) return texts.hour(diffHour);
-  if (diffDay === 1) {
-    if (locale === "pt-BR") return "ontem";
-    if (locale === "en-US") return "yesterday";
-    if (locale === "es-ES") return "ayer";
-  }
-  if (diffDay === 2) {
-    if (locale === "pt-BR") return "anteontem";
-    if (locale === "en-US") return "the day before yesterday";
-    if (locale === "es-ES") return "anteayer";
-  }
-  if (diffDay < 30) return texts.day(diffDay);
-  if (diffMonth < 12) return texts.month(diffMonth);
-  return texts.year(diffYear);
-}
-function toISOString(date) {
-  return date.toISOString();
-}
-function isValidDate(date) {
-  return date instanceof Date && !isNaN(date.getTime());
-}
-var status_exports = {};
-__export(status_exports, {
-  getStatusColor: () => getStatusColor,
-  getStatusVariant: () => getStatusVariant,
-  translatePostStatus: () => translatePostStatus,
-  translateStatus: () => translateStatus
-});
-var STATUS_TRANSLATIONS = {
-  "pt-BR": {
-    // Estados de conteúdo
-    DRAFT: "Rascunho",
-    PUBLISHED: "Publicado",
-    ARCHIVED: "Arquivado",
-    SCHEDULED: "Agendado",
-    DELETED: "Exclu\xEDdo",
-    // Estados de processo
-    PENDING: "Pendente",
-    ACTIVE: "Ativo",
-    INACTIVE: "Inativo",
-    COMPLETED: "Conclu\xEDdo",
-    CANCELLED: "Cancelado",
-    // Estados de aprovação
-    APPROVED: "Aprovado",
-    REJECTED: "Rejeitado",
-    // Estados de pedido/pagamento
-    PROCESSING: "Processando",
-    PAID: "Pago",
-    UNPAID: "N\xE3o Pago",
-    REFUNDED: "Reembolsado",
-    FAILED: "Falhou",
-    // Estados de usuário
-    VERIFIED: "Verificado",
-    UNVERIFIED: "N\xE3o Verificado",
-    BANNED: "Banido",
-    SUSPENDED: "Suspenso"
-  },
-  "en-US": {
-    DRAFT: "Draft",
-    PUBLISHED: "Published",
-    ARCHIVED: "Archived",
-    SCHEDULED: "Scheduled",
-    DELETED: "Deleted",
-    PENDING: "Pending",
-    ACTIVE: "Active",
-    INACTIVE: "Inactive",
-    COMPLETED: "Completed",
-    CANCELLED: "Cancelled",
-    APPROVED: "Approved",
-    REJECTED: "Rejected",
-    PROCESSING: "Processing",
-    PAID: "Paid",
-    UNPAID: "Unpaid",
-    REFUNDED: "Refunded",
-    FAILED: "Failed",
-    VERIFIED: "Verified",
-    UNVERIFIED: "Unverified",
-    BANNED: "Banned",
-    SUSPENDED: "Suspended"
-  },
-  "es-ES": {
-    DRAFT: "Borrador",
-    PUBLISHED: "Publicado",
-    ARCHIVED: "Archivado",
-    SCHEDULED: "Programado",
-    DELETED: "Eliminado",
-    PENDING: "Pendiente",
-    ACTIVE: "Activo",
-    INACTIVE: "Inactivo",
-    COMPLETED: "Completado",
-    CANCELLED: "Cancelado",
-    APPROVED: "Aprobado",
-    REJECTED: "Rechazado",
-    PROCESSING: "Procesando",
-    PAID: "Pagado",
-    UNPAID: "No Pagado",
-    REFUNDED: "Reembolsado",
-    FAILED: "Fallido",
-    VERIFIED: "Verificado",
-    UNVERIFIED: "No Verificado",
-    BANNED: "Bloqueado",
-    SUSPENDED: "Suspendido"
-  }
-};
-function translateStatus(status, locale = DEFAULT_LOCALE) {
-  const normalized = status.toUpperCase();
-  return STATUS_TRANSLATIONS[locale][normalized] || status;
-}
-function getStatusColor(status) {
-  const normalized = status.toUpperCase();
-  const colorMap = {
-    DRAFT: "text-gray-600",
-    PENDING: "text-yellow-600",
-    PUBLISHED: "text-green-600",
-    ACTIVE: "text-green-600",
-    INACTIVE: "text-gray-600",
-    ARCHIVED: "text-orange-600",
-    DELETED: "text-red-600",
-    SCHEDULED: "text-blue-600",
-    COMPLETED: "text-green-600",
-    CANCELLED: "text-red-600",
-    APPROVED: "text-green-600",
-    REJECTED: "text-red-600",
-    FAILED: "text-red-600",
-    VERIFIED: "text-green-600",
-    BANNED: "text-red-600"
-  };
-  return colorMap[normalized] || "text-gray-600";
-}
-function getStatusVariant(status) {
-  const normalized = status.toUpperCase();
-  if (["PUBLISHED", "ACTIVE", "COMPLETED", "APPROVED", "VERIFIED"].includes(normalized)) {
-    return "default";
-  }
-  if (["DELETED", "CANCELLED", "REJECTED", "FAILED", "BANNED"].includes(normalized)) {
-    return "destructive";
-  }
-  if (["DRAFT", "INACTIVE", "ARCHIVED"].includes(normalized)) {
-    return "secondary";
-  }
-  return "outline";
-}
-function translatePostStatus(status, locale = DEFAULT_LOCALE) {
-  const postStatusMap = {
-    "draft": "DRAFT",
-    "published": "PUBLISHED",
-    "archived": "ARCHIVED",
-    "scheduled": "SCHEDULED",
-    "pending_review": "PENDING"
-  };
-  const normalized = postStatusMap[status.toLowerCase()] || status.toUpperCase();
-  if (status.toLowerCase() === "pending_review") {
-    const translations = {
-      "pt-BR": "Aguardando Revis\xE3o",
-      "en-US": "Pending Review",
-      "es-ES": "Pendiente de Revisi\xF3n"
-    };
-    return translations[locale] || translations["pt-BR"];
-  }
-  return translateStatus(normalized, locale);
-}
-function scrollToElement(element, options = {}) {
-  if (typeof window === "undefined") return;
-  const { smooth = false, offset = 0, behavior } = options;
-  let targetElement;
-  if (typeof element === "string") {
-    targetElement = document.querySelector(element);
-  } else {
-    targetElement = element;
-  }
-  if (!targetElement) return;
-  const rect = targetElement.getBoundingClientRect();
-  const absoluteY = rect.top + window.scrollY - offset;
-  window.scrollTo({
-    left: 0,
-    top: absoluteY,
-    behavior: behavior || (smooth ? "smooth" : "auto")
-  });
-}
-var AuthStorage = class {
-  static setItem(key, value) {
-    if (!this.isClient) return;
-    try {
-      localStorage.setItem(key, value);
-    } catch (error) {
-      console.warn("Failed to save to localStorage:", error);
-    }
-  }
-  static getItem(key) {
-    if (!this.isClient) return null;
-    try {
-      return localStorage.getItem(key);
-    } catch (error) {
-      console.warn("Failed to read from localStorage:", error);
-      return null;
-    }
-  }
-  static removeItem(key) {
-    if (!this.isClient) return;
-    try {
-      localStorage.removeItem(key);
-    } catch (error) {
-      console.warn("Failed to remove from localStorage:", error);
-    }
-  }
-  static setUser(user, key) {
-    this.setItem(key, JSON.stringify(user));
-  }
-  static getUser(key) {
-    const data = this.getItem(key);
-    if (!data) return null;
-    try {
-      return JSON.parse(data);
-    } catch {
-      this.removeItem(key);
-      return null;
-    }
-  }
-  static removeUser(key) {
-    this.removeItem(key);
-  }
-};
-__publicField2(AuthStorage, "isClient", typeof window !== "undefined");
-var authentication_exports = {};
-__export(authentication_exports, {
-  getRefreshToken: () => getRefreshToken,
-  getToken: () => getToken,
-  getTokens: () => getTokens,
-  hasToken: () => hasToken,
-  removeToken: () => removeToken,
-  setRefreshToken: () => setRefreshToken,
-  setToken: () => setToken,
-  setTokens: () => setTokens
-});
-var TOKEN_KEY = "auth_token";
-var REFRESH_TOKEN_KEY = "refresh_token";
-var getToken = () => {
-  if (typeof window === "undefined") {
-    return null;
-  }
-  return localStorage.getItem(TOKEN_KEY);
-};
-var setToken = (token) => {
-  if (typeof window === "undefined") {
-    return;
-  }
-  localStorage.setItem(TOKEN_KEY, token);
-};
-var getRefreshToken = () => {
-  if (typeof window === "undefined") {
-    return null;
-  }
-  return localStorage.getItem(REFRESH_TOKEN_KEY);
-};
-var setRefreshToken = (refreshToken) => {
-  if (typeof window === "undefined") {
-    return;
-  }
-  localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
-};
-var removeToken = () => {
-  if (typeof window === "undefined") {
-    return;
-  }
-  localStorage.removeItem(TOKEN_KEY);
-  localStorage.removeItem(REFRESH_TOKEN_KEY);
-};
-var hasToken = () => {
-  return !!getToken();
-};
-var getTokens = () => {
-  return {
-    accessToken: getToken(),
-    refreshToken: getRefreshToken()
-  };
-};
-var setTokens = ({
-  accessToken,
-  refreshToken
-}) => {
-  setToken(accessToken);
-  setRefreshToken(refreshToken);
-};
-function getInitials(name, maxInitials = 2) {
-  return name.split(" ").filter((word) => word.length > 0).map((word) => word[0]).join("").toUpperCase().slice(0, maxInitials);
-}
-function formatCurrency(value, locale = DEFAULT_LOCALE, options) {
-  const currency = CURRENCY_MAP[locale];
-  return new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency,
-    ...options
-  }).format(value);
-}
-function formatNumber2(value, decimals = 0, locale = DEFAULT_LOCALE) {
-  return new Intl.NumberFormat(locale, {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
-  }).format(value);
-}
-function formatCompact(value, decimals = 1, locale = DEFAULT_LOCALE) {
-  return new Intl.NumberFormat(locale, {
-    notation: "compact",
-    compactDisplay: "short",
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
-  }).format(value);
-}
-var pt_br_exports = {};
-__export(pt_br_exports, {
-  default: () => pt_br_default,
-  formatCompact: () => formatCompact2,
-  formatCurrency: () => formatCurrency2,
-  formatDate: () => formatDate2,
-  formatDateTime: () => formatDateTime2,
-  formatNumber: () => formatNumber3,
-  formatRelativeDate: () => formatRelativeDate2,
-  translateStatus: () => translateStatus2
-});
-function formatDate2(date, format = "long") {
-  return formatDate(date, format, "pt-BR");
-}
-function formatDateTime2(date) {
-  return formatDateTime(date, "pt-BR");
-}
-function formatRelativeDate2(date) {
-  return formatRelativeDate(date, "pt-BR");
-}
-function formatCurrency2(value, options) {
-  return formatCurrency(value, "pt-BR", options);
-}
-function formatNumber3(value, decimals = 0) {
-  return formatNumber2(value, decimals, "pt-BR");
-}
-function formatCompact2(value, decimals = 1) {
-  return formatCompact(value, decimals, "pt-BR");
-}
-function translateStatus2(status) {
-  return translateStatus(status, "pt-BR");
-}
-var pt_br_default = {
-  formatDate: formatDate2,
-  formatDateTime: formatDateTime2,
-  formatRelativeDate: formatRelativeDate2,
-  formatCurrency: formatCurrency2,
-  formatNumber: formatNumber3,
-  formatCompact: formatCompact2,
-  translateStatus: translateStatus2
-};
-var text_exports = {};
-__export(text_exports, {
-  calculateReadingTime: () => calculateReadingTime,
-  capitalize: () => capitalize,
-  cleanText: () => cleanText2,
-  countWords: () => countWords2,
-  extractInitials: () => extractInitials,
-  generateAvatarUrl: () => generateAvatarUrl,
-  generateDynamicAvatarUrl: () => generateDynamicAvatarUrl,
-  generateUniqueId: () => generateUniqueId,
-  getAvatarColorFromName: () => getAvatarColorFromName,
-  isEmpty: () => isEmpty,
-  isValidAvatarUrl: () => isValidAvatarUrl,
-  normalizeSpaces: () => normalizeSpaces,
-  truncateText: () => truncateText
-});
-function extractInitials(name, maxChars = 2) {
-  if (!name || !name.trim()) {
-    return "";
-  }
-  const words = name.trim().split(/\s+/);
-  const initials = words.slice(0, maxChars).map((word) => word.charAt(0).toUpperCase()).join("");
-  return initials;
-}
-function generateAvatarUrl(name, size = 200, backgroundColor = "0891b2", textColor = "fff") {
-  const encodedName = encodeURIComponent(name);
-  return `https://ui-avatars.com/api/?name=${encodedName}&size=${size}&background=${backgroundColor}&color=${textColor}&font-size=0.5`;
-}
-function isValidAvatarUrl(url) {
-  if (!url || typeof url !== "string") {
-    return false;
-  }
-  try {
-    new URL(url);
-    return true;
-  } catch {
-    return false;
-  }
-}
-function getAvatarColorFromName(name) {
-  if (!name || typeof name !== "string") {
-    return "#0891b2";
-  }
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) {
-    hash = name.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  const colors = [
-    "#0891b2",
-    // cyan-600
-    "#9333ea",
-    // purple-600
-    "#db2777",
-    // pink-600
-    "#059669",
-    // emerald-600
-    "#2563eb",
-    // blue-600
-    "#f97316",
-    // orange-500
-    "#dc2626",
-    // red-600
-    "#7c3aed"
-    // violet-600
-  ];
-  const index = Math.abs(hash) % colors.length;
-  return colors[index];
-}
-function generateDynamicAvatarUrl(name, size = 200) {
-  const color = getAvatarColorFromName(name);
-  const colorHex = color.replace("#", "");
-  return generateAvatarUrl(name, size, colorHex, "fff");
-}
-function generateUniqueId(text, prefix = "", suffix = "") {
-  const slug = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim().substring(0, 50);
-  const parts = [prefix, slug, suffix].filter(Boolean);
-  return parts.join("-");
-}
-function truncateText(text, maxLength, suffix = "...") {
-  if (!text || text.length <= maxLength) {
-    return text || "";
-  }
-  return text.substring(0, maxLength - suffix.length) + suffix;
-}
-function capitalize(text, options = {}) {
-  if (!text) return "";
-  const { firstWordOnly = false, lowerRest = false } = options;
-  if (firstWordOnly) {
-    return text.charAt(0).toUpperCase() + (lowerRest ? text.slice(1).toLowerCase() : text.slice(1));
-  }
-  if (lowerRest) {
-    return text.replace(/\b\w/g, (char) => char.toUpperCase()).toLowerCase();
-  }
-  return text.replace(/\b\w/g, (char) => char.toUpperCase());
-}
-function cleanText2(text, allowSpaces = true) {
-  if (!text) return "";
-  const pattern = allowSpaces ? /[^\w\s]/g : /[^\w]/g;
-  return text.replace(pattern, "");
-}
-function countWords2(text) {
-  if (!text || !text.trim()) {
-    return 0;
-  }
-  return text.trim().split(/\s+/).length;
-}
-function isEmpty(text) {
-  return !text || !text.trim();
-}
-function normalizeSpaces(text, options = {}) {
-  if (!text) return "";
-  const { newlines = false } = options;
-  let cleaned = text;
-  if (newlines) {
-    cleaned = cleaned.replace(/\s+/g, " ");
-  } else {
-    cleaned = cleaned.replace(/\s+/g, " ");
-  }
-  return cleaned.trim();
-}
-function calculateReadingTime(content, wordsPerMinute = 200) {
-  let text = "";
-  if (typeof content === "object" && content !== null) {
-    const extractText = (node) => {
-      if (!node) return "";
-      let result = "";
-      if (node.text) {
-        result += node.text + " ";
-      }
-      if (Array.isArray(node.content)) {
-        result += node.content.map(extractText).join(" ");
-      }
-      return result;
-    };
-    text = extractText(content);
-  } else if (typeof content === "string") {
-    text = content.replace(/<[^>]*>/g, "");
-  }
-  const words = text.trim().split(/\s+/).filter((word) => word.length > 0).length;
-  const time = Math.ceil(words / wordsPerMinute);
-  return time > 0 ? time : 1;
-}
 var sizeClasses = {
   xs: "h-6 w-6 text-xs",
   sm: "h-8 w-8 text-sm",
@@ -878,7 +296,7 @@ function getColorFromName(name) {
   }
   return colors[Math.abs(hash) % colors.length];
 }
-var Avatar = React64__namespace.forwardRef(
+var Avatar = React63__namespace.forwardRef(
   ({
     className,
     src,
@@ -894,9 +312,9 @@ var Avatar = React64__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [imageStatus, setImageStatus] = React64__namespace.useState("loading");
-    const [showFallback, setShowFallback] = React64__namespace.useState(!src);
-    React64__namespace.useEffect(() => {
+    const [imageStatus, setImageStatus] = React63__namespace.useState("loading");
+    const [showFallback, setShowFallback] = React63__namespace.useState(!src);
+    React63__namespace.useEffect(() => {
       if (!src) {
         setShowFallback(true);
         setImageStatus("error");
@@ -916,7 +334,7 @@ var Avatar = React64__namespace.forwardRef(
       };
       img.src = src;
     }, [src, onLoad, onError]);
-    const initials = name ? getInitials(name, maxInitials) : "";
+    const initials = name ? utils.getInitials(name, maxInitials) : "";
     const ariaLabel = alt || name || "Avatar";
     const autoColor = name && !fallbackColor ? getColorFromName(name) : "";
     const bgClass = fallbackColor || (autoColor ? `bg-gradient-to-br ${autoColor}` : "bg-gray-500");
@@ -961,7 +379,7 @@ var Avatar = React64__namespace.forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var AvatarImage = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarImage = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "img",
   {
     ref,
@@ -970,7 +388,7 @@ var AvatarImage = React64__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 AvatarImage.displayName = "AvatarImage";
-var AvatarFallback = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AvatarFallback = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -982,9 +400,9 @@ var AvatarFallback = React64__namespace.forwardRef(({ className, ...props }, ref
   }
 ));
 AvatarFallback.displayName = "AvatarFallback";
-var Input = React64__namespace.forwardRef(
+var Input = React63__namespace.forwardRef(
   ({ className, type, error, helperText, label, required, id, ...props }, ref) => {
-    const inputId = id || `input-${React64__namespace.useId()}`;
+    const inputId = id || `input-${React63__namespace.useId()}`;
     return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "space-y-2", children: [
       label && /* @__PURE__ */ jsxRuntime.jsxs(
         "label",
@@ -1043,7 +461,7 @@ var Input = React64__namespace.forwardRef(
   }
 );
 Input.displayName = "Input";
-var Textarea = React64__namespace.forwardRef(
+var Textarea = React63__namespace.forwardRef(
   ({
     className,
     error,
@@ -1056,9 +474,9 @@ var Textarea = React64__namespace.forwardRef(
     value,
     ...props
   }, ref) => {
-    const inputId = id || `textarea-${React64__namespace.useId()}`;
-    const [characterCount, setCharacterCount] = React64__namespace.useState(0);
-    React64__namespace.useEffect(() => {
+    const inputId = id || `textarea-${React63__namespace.useId()}`;
+    const [characterCount, setCharacterCount] = React63__namespace.useState(0);
+    React63__namespace.useEffect(() => {
       if (typeof value === "string") {
         setCharacterCount(value.length);
       }
@@ -1189,7 +607,7 @@ var buttonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var ButtonComponent = React64__namespace.forwardRef(
+var ButtonComponent = React63__namespace.forwardRef(
   ({
     className,
     variant,
@@ -1204,7 +622,7 @@ var ButtonComponent = React64__namespace.forwardRef(
   }, ref) => {
     const isDisabled = disabled || loading;
     if (asChild) {
-      const child = React64__namespace.Children.only(children);
+      const child = React63__namespace.Children.only(children);
       return /* @__PURE__ */ jsxRuntime.jsx(
         reactSlot.Slot,
         {
@@ -1259,7 +677,7 @@ var ButtonComponent = React64__namespace.forwardRef(
 );
 ButtonComponent.displayName = "Button";
 var Button = ButtonComponent;
-var Slider = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var Slider = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SliderPrimitive__namespace.Root,
   {
     ref,
@@ -1293,7 +711,7 @@ var Slider = React64__namespace.forwardRef(({ className, ...props }, ref) => /* 
   }
 ));
 Slider.displayName = SliderPrimitive__namespace.Root.displayName;
-var Switch = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Switch = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SwitchPrimitives__namespace.Root,
   {
     className: cn(
@@ -1337,7 +755,7 @@ var toggleVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Toggle = React64__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Toggle = React63__namespace.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TogglePrimitive__namespace.Root,
   {
     ref,
@@ -1388,7 +806,7 @@ var iconButtonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var IconButton = React64__namespace.forwardRef(
+var IconButton = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1403,8 +821,8 @@ var IconButton = React64__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [showTooltip, setShowTooltip] = React64__namespace.useState(false);
-    const [tooltipVisible, setTooltipVisible] = React64__namespace.useState(false);
+    const [showTooltip, setShowTooltip] = React63__namespace.useState(false);
+    const [tooltipVisible, setTooltipVisible] = React63__namespace.useState(false);
     const tooltipClasses = {
       top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
       bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
@@ -1417,7 +835,7 @@ var IconButton = React64__namespace.forwardRef(
       left: "left-full top-1/2 -translate-y-1/2 -ml-1 border-t-transparent border-b-transparent border-r-transparent border-l-current",
       right: "right-full top-1/2 -translate-y-1/2 -mr-1 border-t-transparent border-b-transparent border-l-transparent border-r-current"
     };
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (showTooltip) {
         const timer = setTimeout(() => setTooltipVisible(true), 100);
         return () => clearTimeout(timer);
@@ -1530,7 +948,7 @@ var linkButtonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var LinkButton = React64__namespace.forwardRef(
+var LinkButton = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1630,7 +1048,7 @@ var fabVariants = classVarianceAuthority.cva(
     }
   }
 );
-var FAB = React64__namespace.forwardRef(
+var FAB = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -1645,12 +1063,12 @@ var FAB = React64__namespace.forwardRef(
     actions = [],
     ...props
   }, ref) => {
-    const [showActions, setShowActions] = React64__namespace.useState(active);
+    const [showActions, setShowActions] = React63__namespace.useState(active);
     const isExtended = extended && text;
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       setShowActions(active);
     }, [active]);
-    const handleClick = React64__namespace.useCallback(() => {
+    const handleClick = React63__namespace.useCallback(() => {
       if (actions.length > 0) {
         setShowActions(!showActions);
       }
@@ -1708,7 +1126,7 @@ var FAB = React64__namespace.forwardRef(
   }
 );
 FAB.displayName = "FAB";
-var FABGroup = React64__namespace.forwardRef(
+var FABGroup = React63__namespace.forwardRef(
   ({
     className,
     main,
@@ -1780,7 +1198,7 @@ var segmentedControlVariants = classVarianceAuthority.cva(
     }
   }
 );
-var SegmentedControl = React64__namespace.forwardRef(
+var SegmentedControl = React63__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -1793,9 +1211,9 @@ var SegmentedControl = React64__namespace.forwardRef(
     disabled = false,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React64__namespace.useState(defaultValue || options[0]?.value);
+    const [internalValue, setInternalValue] = React63__namespace.useState(defaultValue || options[0]?.value);
     const currentValue = value !== void 0 ? value : internalValue;
-    const handleOptionClick = React64__namespace.useCallback((optionValue, isDisabled) => {
+    const handleOptionClick = React63__namespace.useCallback((optionValue, isDisabled) => {
       if (isDisabled || disabled) return;
       if (value === void 0) {
         setInternalValue(optionValue);
@@ -1850,7 +1268,7 @@ var SegmentedControl = React64__namespace.forwardRef(
   }
 );
 SegmentedControl.displayName = "SegmentedControl";
-var SegmentedControlItem = React64__namespace.forwardRef(
+var SegmentedControlItem = React63__namespace.forwardRef(
   ({
     className,
     active = false,
@@ -1886,7 +1304,7 @@ var SegmentedControlItem = React64__namespace.forwardRef(
   }
 );
 SegmentedControlItem.displayName = "SegmentedControlItem";
-var Card = React64__namespace.forwardRef(({ className, variant = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Card = React63__namespace.forwardRef(({ className, variant = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1906,7 +1324,7 @@ var Card = React64__namespace.forwardRef(({ className, variant = "default", ...p
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardHeader = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1919,7 +1337,7 @@ var CardHeader = React64__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardTitle = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h3",
   {
     ref,
@@ -1932,7 +1350,7 @@ var CardTitle = React64__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardDescription = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "p",
   {
     ref,
@@ -1945,9 +1363,9 @@ var CardDescription = React64__namespace.forwardRef(({ className, ...props }, re
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardFooter = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -1991,7 +1409,7 @@ var badgeVariants = classVarianceAuthority.cva(
 function Badge({ className, variant, size, ...props }) {
   return /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn(badgeVariants({ variant, size }), className), ...props });
 }
-var Progress = React64__namespace.forwardRef(({ className, value, color = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Progress = React63__namespace.forwardRef(({ className, value, color = "default", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   ProgressPrimitive__namespace.Root,
   {
     ref,
@@ -2022,7 +1440,7 @@ var Progress = React64__namespace.forwardRef(({ className, value, color = "defau
   }
 ));
 Progress.displayName = ProgressPrimitive__namespace.Root.displayName;
-var AccordionItem = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AccordionItem = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AccordionPrimitive2__namespace.Item,
   {
     ref,
@@ -2034,7 +1452,7 @@ var AccordionItem = React64__namespace.forwardRef(({ className, ...props }, ref)
   }
 ));
 AccordionItem.displayName = "AccordionItem";
-var AccordionTrigger = React64__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive2__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
+var AccordionTrigger = React63__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive2__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
   AccordionPrimitive2__namespace.Trigger,
   {
     ref,
@@ -2059,7 +1477,7 @@ var AccordionTrigger = React64__namespace.forwardRef(({ className, children, ...
   }
 ) }));
 AccordionTrigger.displayName = AccordionPrimitive2__namespace.Trigger.displayName;
-var AccordionContent = React64__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AccordionContent = React63__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AccordionPrimitive2__namespace.Content,
   {
     ref,
@@ -2105,20 +1523,20 @@ function InlineLoader({
 }
 function useTheme() {
   const { theme, resolvedTheme, setTheme } = nextThemes.useTheme();
-  const toggle = React64__namespace.useCallback(() => {
+  const toggle = React63__namespace.useCallback(() => {
     if (theme === "system") {
       setTheme(resolvedTheme === "dark" ? "light" : "dark");
     } else {
       setTheme(theme === "dark" ? "light" : "dark");
     }
   }, [theme, resolvedTheme, setTheme]);
-  const setLight = React64__namespace.useCallback(() => {
+  const setLight = React63__namespace.useCallback(() => {
     setTheme("light");
   }, [setTheme]);
-  const setDark = React64__namespace.useCallback(() => {
+  const setDark = React63__namespace.useCallback(() => {
     setTheme("dark");
   }, [setTheme]);
-  const setSystem = React64__namespace.useCallback(() => {
+  const setSystem = React63__namespace.useCallback(() => {
     setTheme("system");
   }, [setTheme]);
   return {
@@ -2136,8 +1554,8 @@ function useTheme() {
 }
 function ThemeToggle({ className }) {
   const { toggle, isDark } = useTheme();
-  const [mounted, setMounted] = React64__namespace.useState(false);
-  React64__namespace.useEffect(() => {
+  const [mounted, setMounted] = React63__namespace.useState(false);
+  React63__namespace.useEffect(() => {
     setMounted(true);
   }, []);
   const handleToggle = () => {
@@ -2208,7 +1626,7 @@ function ThemeToggle({ className }) {
     }
   );
 }
-var Checkbox = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Checkbox = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   CheckboxPrimitive__namespace.Root,
   {
     ref,
@@ -2233,7 +1651,7 @@ Checkbox.displayName = CheckboxPrimitive__namespace.Root.displayName;
 var labelVariants = classVarianceAuthority.cva(
   "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-cyan-200 dark:font-mono"
 );
-var Label = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Label = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   LabelPrimitive__namespace.Root,
   {
     ref,
@@ -2242,7 +1660,7 @@ var Label = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 Label.displayName = LabelPrimitive__namespace.Root.displayName;
-var RadioGroup = React64__namespace.forwardRef(({ className, ...props }, ref) => {
+var RadioGroup = React63__namespace.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsxRuntime.jsx(
     RadioGroupPrimitive__namespace.Root,
     {
@@ -2253,7 +1671,7 @@ var RadioGroup = React64__namespace.forwardRef(({ className, ...props }, ref) =>
   );
 });
 RadioGroup.displayName = RadioGroupPrimitive__namespace.Root.displayName;
-var RadioGroupItem = React64__namespace.forwardRef(({ className, ...props }, ref) => {
+var RadioGroupItem = React63__namespace.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsxRuntime.jsx(
     RadioGroupPrimitive__namespace.Item,
     {
@@ -2271,7 +1689,7 @@ RadioGroupItem.displayName = RadioGroupPrimitive__namespace.Item.displayName;
 var Select = SelectPrimitive__namespace.Root;
 var SelectGroup = SelectPrimitive__namespace.Group;
 var SelectValue = SelectPrimitive__namespace.Value;
-var SelectTrigger = React64__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var SelectTrigger = React63__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SelectPrimitive__namespace.Trigger,
   {
     ref,
@@ -2292,7 +1710,7 @@ var SelectTrigger = React64__namespace.forwardRef(({ className, children, ...pro
   }
 ));
 SelectTrigger.displayName = SelectPrimitive__namespace.Trigger.displayName;
-var SelectScrollUpButton = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectScrollUpButton = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.ScrollUpButton,
   {
     ref,
@@ -2302,7 +1720,7 @@ var SelectScrollUpButton = React64__namespace.forwardRef(({ className, ...props 
   }
 ));
 SelectScrollUpButton.displayName = SelectPrimitive__namespace.ScrollUpButton.displayName;
-var SelectScrollDownButton = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectScrollDownButton = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.ScrollDownButton,
   {
     ref,
@@ -2312,7 +1730,7 @@ var SelectScrollDownButton = React64__namespace.forwardRef(({ className, ...prop
   }
 ));
 SelectScrollDownButton.displayName = SelectPrimitive__namespace.ScrollDownButton.displayName;
-var SelectContent = React64__namespace.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.Portal, { children: /* @__PURE__ */ jsxRuntime.jsxs(
+var SelectContent = React63__namespace.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(SelectPrimitive__namespace.Portal, { children: /* @__PURE__ */ jsxRuntime.jsxs(
   SelectPrimitive__namespace.Content,
   {
     ref,
@@ -2345,7 +1763,7 @@ var SelectContent = React64__namespace.forwardRef(({ className, children, positi
   }
 ) }));
 SelectContent.displayName = SelectPrimitive__namespace.Content.displayName;
-var SelectLabel = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectLabel = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.Label,
   {
     ref,
@@ -2354,7 +1772,7 @@ var SelectLabel = React64__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 SelectLabel.displayName = SelectPrimitive__namespace.Label.displayName;
-var SelectItem = React64__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var SelectItem = React63__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   SelectPrimitive__namespace.Item,
   {
     ref,
@@ -2372,7 +1790,7 @@ var SelectItem = React64__namespace.forwardRef(({ className, children, ...props 
   }
 ));
 SelectItem.displayName = SelectPrimitive__namespace.Item.displayName;
-var SelectSeparator = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var SelectSeparator = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   SelectPrimitive__namespace.Separator,
   {
     ref,
@@ -2421,7 +1839,7 @@ function getFileIcon(file) {
     return /* @__PURE__ */ jsxRuntime.jsx(File__default.default, { className: "h-4 w-4" });
   }
 }
-var FileUpload = React64__namespace.forwardRef(
+var FileUpload = React63__namespace.forwardRef(
   ({
     className,
     files = [],
@@ -2440,9 +1858,9 @@ var FileUpload = React64__namespace.forwardRef(
     size = "md",
     ...props
   }, ref) => {
-    const [isDragging, setIsDragging] = React64__namespace.useState(false);
-    const inputRef = React64__namespace.useRef(null);
-    const processFiles = React64__namespace.useCallback((fileList) => {
+    const [isDragging, setIsDragging] = React63__namespace.useState(false);
+    const inputRef = React63__namespace.useRef(null);
+    const processFiles = React63__namespace.useCallback((fileList) => {
       const filesArray = Array.from(fileList);
       if (!multiple && filesArray.length > 1) {
         console.warn("Apenas um arquivo \xE9 permitido");
@@ -2474,7 +1892,7 @@ var FileUpload = React64__namespace.forwardRef(
         onFilesAdd?.(newFiles);
       }
     }, [multiple, maxFiles, files.length, maxSize, onFilesAdd]);
-    const handleDrop = React64__namespace.useCallback((e) => {
+    const handleDrop = React63__namespace.useCallback((e) => {
       e.preventDefault();
       setIsDragging(false);
       if (disabled || loading) return;
@@ -2483,32 +1901,32 @@ var FileUpload = React64__namespace.forwardRef(
         processFiles(files2);
       }
     }, [disabled, loading, processFiles]);
-    const handleDragOver = React64__namespace.useCallback((e) => {
+    const handleDragOver = React63__namespace.useCallback((e) => {
       e.preventDefault();
       if (!disabled && !loading) {
         setIsDragging(true);
       }
     }, [disabled, loading]);
-    const handleDragLeave = React64__namespace.useCallback((e) => {
+    const handleDragLeave = React63__namespace.useCallback((e) => {
       e.preventDefault();
       setIsDragging(false);
     }, []);
-    const handleFileSelect = React64__namespace.useCallback((e) => {
+    const handleFileSelect = React63__namespace.useCallback((e) => {
       const files2 = e.target.files;
       if (files2 && files2.length > 0) {
         processFiles(files2);
       }
       e.target.value = "";
     }, [processFiles]);
-    const handleClick = React64__namespace.useCallback(() => {
+    const handleClick = React63__namespace.useCallback(() => {
       if (!disabled && !loading) {
         inputRef.current?.click();
       }
     }, [disabled, loading]);
-    const handleRemoveFile = React64__namespace.useCallback((id) => {
+    const handleRemoveFile = React63__namespace.useCallback((id) => {
       onFileRemove?.(id);
     }, [onFileRemove]);
-    const handleClear = React64__namespace.useCallback(() => {
+    const handleClear = React63__namespace.useCallback(() => {
       onClear?.();
     }, [onClear]);
     return /* @__PURE__ */ jsxRuntime.jsxs("div", { ref, className: cn("space-y-4", className), ...props, children: [
@@ -2637,7 +2055,7 @@ var datePickerVariants = classVarianceAuthority.cva(
     }
   }
 );
-function formatDate3(date, format) {
+function formatDate(date, format) {
   if (!date) return "";
   const day = date.getDate().toString().padStart(2, "0");
   const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -2651,16 +2069,16 @@ function formatDate3(date, format) {
 }
 function formatDateRange(range) {
   if (!range.from) return "";
-  if (!range.to) return formatDate3(range.from);
-  return `${formatDate3(range.from)} - ${formatDate3(range.to)}`;
+  if (!range.to) return formatDate(range.from);
+  return `${formatDate(range.from)} - ${formatDate(range.to)}`;
 }
 function formatMultipleDates(dates) {
   if (dates.length === 0) return "";
-  if (dates.length === 1) return formatDate3(dates[0]);
-  if (dates.length === 2) return `${formatDate3(dates[0])} e ${formatDate3(dates[1])}`;
-  return `${formatDate3(dates[0])} (+${dates.length - 1})`;
+  if (dates.length === 1) return formatDate(dates[0]);
+  if (dates.length === 2) return `${formatDate(dates[0])} e ${formatDate(dates[1])}`;
+  return `${formatDate(dates[0])} (+${dates.length - 1})`;
 }
-var DatePicker = React64__namespace.forwardRef(
+var DatePicker = React63__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -2680,12 +2098,12 @@ var DatePicker = React64__namespace.forwardRef(
     disabled = false,
     ...props
   }, _ref) => {
-    const [isOpen, setIsOpen] = React64__namespace.useState(false);
-    const [selectedDates, setSelectedDates] = React64__namespace.useState([]);
-    const [inputValue, setInputValue] = React64__namespace.useState("");
-    const containerRef = React64__namespace.useRef(null);
-    const buttonRef = React64__namespace.useRef(null);
-    React64__namespace.useEffect(() => {
+    const [isOpen, setIsOpen] = React63__namespace.useState(false);
+    const [selectedDates, setSelectedDates] = React63__namespace.useState([]);
+    const [inputValue, setInputValue] = React63__namespace.useState("");
+    const containerRef = React63__namespace.useRef(null);
+    const buttonRef = React63__namespace.useRef(null);
+    React63__namespace.useEffect(() => {
       if (!value) {
         setInputValue("");
         setSelectedDates([]);
@@ -2702,19 +2120,19 @@ var DatePicker = React64__namespace.forwardRef(
         setInputValue(formatMultipleDates(value));
       } else if (value instanceof Date) {
         setSelectedDates([value]);
-        setInputValue(formatDate3(value, format));
+        setInputValue(formatDate(value, format));
       }
     }, [value, range, multiple, format]);
-    const handleSingleSelect = React64__namespace.useCallback((day) => {
+    const handleSingleSelect = React63__namespace.useCallback((day) => {
       onChange?.(day);
     }, [onChange]);
-    const handleMultipleSelect = React64__namespace.useCallback((dates) => {
+    const handleMultipleSelect = React63__namespace.useCallback((dates) => {
       onChange?.(dates);
     }, [onChange]);
-    const handleRangeSelect = React64__namespace.useCallback((range2) => {
+    const handleRangeSelect = React63__namespace.useCallback((range2) => {
       onChange?.(range2);
     }, [onChange]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -2869,7 +2287,7 @@ function timeToString(time, use12Hours = false, showSeconds = false) {
   const secondsStr = showSeconds ? `:${padNumber(seconds)}` : "";
   return `${timeStr}${secondsStr}${use12Hours ? ` ${period}` : ""}`;
 }
-var TimePicker = React64__namespace.forwardRef(
+var TimePicker = React63__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -2886,13 +2304,13 @@ var TimePicker = React64__namespace.forwardRef(
     // maxTime, // TODO: implementar validação de tempo máximo
     ...props
   }, ref) => {
-    const [isOpen, setIsOpen] = React64__namespace.useState(false);
-    const [hours, setHours] = React64__namespace.useState(value?.hours || 0);
-    const [minutes, setMinutes] = React64__namespace.useState(value?.minutes || 0);
-    const [seconds, setSeconds] = React64__namespace.useState(value?.seconds || 0);
-    const [period, setPeriod] = React64__namespace.useState(value?.period || "AM");
-    const containerRef = React64__namespace.useRef(null);
-    React64__namespace.useEffect(() => {
+    const [isOpen, setIsOpen] = React63__namespace.useState(false);
+    const [hours, setHours] = React63__namespace.useState(value?.hours || 0);
+    const [minutes, setMinutes] = React63__namespace.useState(value?.minutes || 0);
+    const [seconds, setSeconds] = React63__namespace.useState(value?.seconds || 0);
+    const [period, setPeriod] = React63__namespace.useState(value?.period || "AM");
+    const containerRef = React63__namespace.useRef(null);
+    React63__namespace.useEffect(() => {
       if (value) {
         setHours(value.hours);
         setMinutes(value.minutes);
@@ -2902,7 +2320,7 @@ var TimePicker = React64__namespace.forwardRef(
         }
       }
     }, [value, use12Hours]);
-    const handleHoursChange = React64__namespace.useCallback((newHours) => {
+    const handleHoursChange = React63__namespace.useCallback((newHours) => {
       if (newHours < 0) newHours = 0;
       if (newHours > 23) newHours = 23;
       setHours(newHours);
@@ -2914,7 +2332,7 @@ var TimePicker = React64__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [minutes, seconds, period, use12Hours, showSeconds, onChange]);
-    const handleMinutesChange = React64__namespace.useCallback((newMinutes) => {
+    const handleMinutesChange = React63__namespace.useCallback((newMinutes) => {
       if (newMinutes < 0) newMinutes = 0;
       if (newMinutes > 59) newMinutes = 59;
       newMinutes = Math.round(newMinutes / minuteStep) * minuteStep;
@@ -2927,7 +2345,7 @@ var TimePicker = React64__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, seconds, period, use12Hours, showSeconds, minuteStep, onChange]);
-    const handleSecondsChange = React64__namespace.useCallback((newSeconds) => {
+    const handleSecondsChange = React63__namespace.useCallback((newSeconds) => {
       if (!showSeconds) return;
       if (newSeconds < 0) newSeconds = 0;
       if (newSeconds > 59) newSeconds = 59;
@@ -2941,7 +2359,7 @@ var TimePicker = React64__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, minutes, period, use12Hours, secondStep, onChange]);
-    const handlePeriodChange = React64__namespace.useCallback((newPeriod) => {
+    const handlePeriodChange = React63__namespace.useCallback((newPeriod) => {
       setPeriod(newPeriod);
       let newHours = hours;
       if (newPeriod === "AM" && hours === 12) {
@@ -2958,7 +2376,7 @@ var TimePicker = React64__namespace.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, minutes, seconds, showSeconds, onChange]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -3113,7 +2531,7 @@ var rangeSliderVariants = classVarianceAuthority.cva(
     }
   }
 );
-var RangeSlider = React64__namespace.forwardRef(
+var RangeSlider = React63__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -3133,11 +2551,11 @@ var RangeSlider = React64__namespace.forwardRef(
     color = "primary",
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React64__namespace.useState(defaultValue);
-    const [isDragging, setIsDragging] = React64__namespace.useState(null);
-    const sliderRef = React64__namespace.useRef(null);
-    const minThumbRef = React64__namespace.useRef(null);
-    const maxThumbRef = React64__namespace.useRef(null);
+    const [internalValue, setInternalValue] = React63__namespace.useState(defaultValue);
+    const [isDragging, setIsDragging] = React63__namespace.useState(null);
+    const sliderRef = React63__namespace.useRef(null);
+    const minThumbRef = React63__namespace.useRef(null);
+    const maxThumbRef = React63__namespace.useRef(null);
     const currentValue = value || internalValue;
     const valueToPercent = (val) => {
       return (val - min) / (max - min) * 100;
@@ -3154,7 +2572,7 @@ var RangeSlider = React64__namespace.forwardRef(
       const percent = position / rect.width * 100;
       return Math.max(0, Math.min(100, percent));
     };
-    const updateValue = React64__namespace.useCallback((type, percent) => {
+    const updateValue = React63__namespace.useCallback((type, percent) => {
       const newValue = percentToValue(percent);
       const updated = { ...currentValue };
       if (type === "min") {
@@ -3164,26 +2582,26 @@ var RangeSlider = React64__namespace.forwardRef(
       }
       setValue(updated);
     }, [step]);
-    const setValue = React64__namespace.useCallback((newValue) => {
+    const setValue = React63__namespace.useCallback((newValue) => {
       setInternalValue(newValue);
       onChange?.(newValue);
     }, [onChange]);
-    const handleMouseDown = React64__namespace.useCallback((type) => {
+    const handleMouseDown = React63__namespace.useCallback((type) => {
       if (disabled) return;
       setIsDragging(type);
     }, [disabled]);
-    const handleMouseMove = React64__namespace.useCallback((event) => {
+    const handleMouseMove = React63__namespace.useCallback((event) => {
       if (!isDragging || disabled) return;
       const percent = getPosition(event);
       updateValue(isDragging, percent);
     }, [isDragging, disabled, updateValue]);
-    const handleMouseUp = React64__namespace.useCallback(() => {
+    const handleMouseUp = React63__namespace.useCallback(() => {
       if (isDragging) {
         onChangeEnd?.(currentValue);
         setIsDragging(null);
       }
     }, [isDragging, currentValue, onChangeEnd]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (isDragging) {
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseup", handleMouseUp);
@@ -3319,7 +2737,7 @@ var searchInputVariants = classVarianceAuthority.cva(
     }
   }
 );
-var SearchInput = React64__namespace.forwardRef(
+var SearchInput = React63__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -3340,15 +2758,15 @@ var SearchInput = React64__namespace.forwardRef(
     disabled
     // props, // Props adicionais não utilizados
   }, ref) => {
-    const [internalValue, setInternalValue] = React64__namespace.useState(value);
-    const [isOpen, setIsOpen] = React64__namespace.useState(false);
-    const [selectedIndex, setSelectedIndex] = React64__namespace.useState(-1);
-    const [filteredSuggestions, setFilteredSuggestions] = React64__namespace.useState([]);
-    const inputRef = React64__namespace.useRef(null);
-    const containerRef = React64__namespace.useRef(null);
-    const debounceRef = React64__namespace.useRef(null);
+    const [internalValue, setInternalValue] = React63__namespace.useState(value);
+    const [isOpen, setIsOpen] = React63__namespace.useState(false);
+    const [selectedIndex, setSelectedIndex] = React63__namespace.useState(-1);
+    const [filteredSuggestions, setFilteredSuggestions] = React63__namespace.useState([]);
+    const inputRef = React63__namespace.useRef(null);
+    const containerRef = React63__namespace.useRef(null);
+    const debounceRef = React63__namespace.useRef(null);
     const currentValue = value !== void 0 ? value : internalValue;
-    const setValue = React64__namespace.useCallback((newValue) => {
+    const setValue = React63__namespace.useCallback((newValue) => {
       setInternalValue(newValue);
       if (debounceRef.current) {
         clearTimeout(debounceRef.current);
@@ -3357,7 +2775,7 @@ var SearchInput = React64__namespace.forwardRef(
         onChange?.(newValue);
       }, debounceTime);
     }, [onChange, debounceTime]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       let next;
       if (!currentValue.trim()) {
         const historySuggestions = history.slice(0, 5).map((item, index) => ({
@@ -3377,7 +2795,7 @@ var SearchInput = React64__namespace.forwardRef(
         setFilteredSuggestions(next);
       }
     }, [currentValue, suggestions, history, maxSuggestions, filteredSuggestions]);
-    const handleKeyDown = React64__namespace.useCallback((event) => {
+    const handleKeyDown = React63__namespace.useCallback((event) => {
       switch (event.key) {
         case "Enter":
           event.preventDefault();
@@ -3411,19 +2829,19 @@ var SearchInput = React64__namespace.forwardRef(
           break;
       }
     }, [selectedIndex, filteredSuggestions, currentValue, setValue, onSubmit]);
-    const handleFocus = React64__namespace.useCallback(() => {
+    const handleFocus = React63__namespace.useCallback(() => {
       setIsOpen(true);
     }, []);
-    const handleBlur = React64__namespace.useCallback((event) => {
+    const handleBlur = React63__namespace.useCallback((event) => {
       if (!event.relatedTarget?.closest(".search-suggestion")) {
         setTimeout(() => setIsOpen(false), 150);
       }
     }, []);
-    const handleClear = React64__namespace.useCallback(() => {
+    const handleClear = React63__namespace.useCallback(() => {
       setValue("");
       inputRef.current?.focus();
     }, [setValue]);
-    const handleSuggestionClick = React64__namespace.useCallback((suggestion) => {
+    const handleSuggestionClick = React63__namespace.useCallback((suggestion) => {
       if (suggestion.action) {
         suggestion.action();
       } else {
@@ -3432,7 +2850,7 @@ var SearchInput = React64__namespace.forwardRef(
       }
       setIsOpen(false);
     }, [setValue, onSubmit]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -3591,7 +3009,7 @@ function applyMask(value, mask) {
 function removeMask(value) {
   return value.replace(/\D/g, "");
 }
-var PhoneInput = React64__namespace.forwardRef(
+var PhoneInput = React63__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -3608,19 +3026,19 @@ var PhoneInput = React64__namespace.forwardRef(
     numbersOnly = true,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React64__namespace.useState(value);
-    const [selectedCountry, setSelectedCountry] = React64__namespace.useState(
+    const [internalValue, setInternalValue] = React63__namespace.useState(value);
+    const [selectedCountry, setSelectedCountry] = React63__namespace.useState(
       countries.find((c) => c.code === country) || countries[0]
     );
-    const [isDropdownOpen, setIsDropdownOpen] = React64__namespace.useState(false);
-    const inputRef = React64__namespace.useRef(null);
-    const dropdownRef = React64__namespace.useRef(null);
+    const [isDropdownOpen, setIsDropdownOpen] = React63__namespace.useState(false);
+    const inputRef = React63__namespace.useRef(null);
+    const dropdownRef = React63__namespace.useRef(null);
     const currentValue = value !== void 0 ? value : internalValue;
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       const newCountry = countries.find((c) => c.code === country) || countries[0];
       setSelectedCountry(newCountry);
     }, [country, countries]);
-    const handleInputChange = React64__namespace.useCallback((event) => {
+    const handleInputChange = React63__namespace.useCallback((event) => {
       let inputValue = event.target.value;
       if (numbersOnly) {
         inputValue = removeMask(inputValue);
@@ -3630,7 +3048,7 @@ var PhoneInput = React64__namespace.forwardRef(
       const finalValue = includeDDI ? `${selectedCountry.ddi} ${removeMask(maskedValue)}` : removeMask(maskedValue);
       onChange?.(finalValue, selectedCountry);
     }, [selectedCountry, numbersOnly, includeDDI, onChange]);
-    const handleCountrySelect = React64__namespace.useCallback((country2) => {
+    const handleCountrySelect = React63__namespace.useCallback((country2) => {
       setSelectedCountry(country2);
       setIsDropdownOpen(false);
       onCountryChange?.(country2);
@@ -3639,7 +3057,7 @@ var PhoneInput = React64__namespace.forwardRef(
         onChange?.("", country2);
       }
     }, [selectedCountry, onCountryChange, onChange]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target) && !inputRef.current?.contains(event.target)) {
           setIsDropdownOpen(false);
@@ -3747,7 +3165,7 @@ function PageHeader({ title, description, children }) {
   );
 }
 var AspectRatio = AspectRatioPrimitive__namespace.Root;
-var Breadcrumb = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Breadcrumb = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "ol",
   {
     ref,
@@ -3759,7 +3177,7 @@ var Breadcrumb = React64__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 Breadcrumb.displayName = "Breadcrumb";
-var BreadcrumbList = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var BreadcrumbList = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "ol",
   {
     ref,
@@ -3768,7 +3186,7 @@ var BreadcrumbList = React64__namespace.forwardRef(({ className, ...props }, ref
   }
 ));
 BreadcrumbList.displayName = "BreadcrumbList";
-var BreadcrumbItem = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var BreadcrumbItem = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "li",
   {
     ref,
@@ -3777,7 +3195,7 @@ var BreadcrumbItem = React64__namespace.forwardRef(({ className, ...props }, ref
   }
 ));
 BreadcrumbItem.displayName = "BreadcrumbItem";
-var BreadcrumbLink = React64__namespace.forwardRef(({ className, isCurrentPage, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var BreadcrumbLink = React63__namespace.forwardRef(({ className, isCurrentPage, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "a",
   {
     ref,
@@ -3806,7 +3224,7 @@ var BreadcrumbSeparator = ({
   }
 );
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
-var BreadcrumbPage = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var BreadcrumbPage = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "span",
   {
     ref,
@@ -3818,7 +3236,7 @@ var BreadcrumbPage = React64__namespace.forwardRef(({ className, ...props }, ref
   }
 ));
 BreadcrumbPage.displayName = "BreadcrumbPage";
-var ScrollArea = React64__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ScrollArea = React63__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   ScrollAreaPrimitive__namespace.Root,
   {
     ref,
@@ -3832,7 +3250,7 @@ var ScrollArea = React64__namespace.forwardRef(({ className, children, ...props 
   }
 ));
 ScrollArea.displayName = ScrollAreaPrimitive__namespace.Root.displayName;
-var ScrollBar = React64__namespace.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ScrollBar = React63__namespace.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   ScrollAreaPrimitive__namespace.ScrollAreaScrollbar,
   {
     ref,
@@ -3848,7 +3266,7 @@ var ScrollBar = React64__namespace.forwardRef(({ className, orientation = "verti
   }
 ));
 ScrollBar.displayName = ScrollAreaPrimitive__namespace.ScrollAreaScrollbar.displayName;
-var Separator2 = React64__namespace.forwardRef(
+var Separator2 = React63__namespace.forwardRef(
   ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     SeparatorPrimitive__namespace.Root,
     {
@@ -3884,7 +3302,7 @@ function SheetPortal({
 }) {
   return /* @__PURE__ */ jsxRuntime.jsx(reactDialog.Portal, { "data-slot": "sheet-portal", ...props });
 }
-var SheetOverlay = React64__namespace.forwardRef(({ className, ...props }, ref) => {
+var SheetOverlay = React63__namespace.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsxRuntime.jsx(
     reactDialog.Overlay,
     {
@@ -3983,7 +3401,7 @@ function SheetDescription({
     }
   );
 }
-var Table = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsxRuntime.jsx(
+var Table = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsxRuntime.jsx(
   "table",
   {
     ref,
@@ -3992,9 +3410,9 @@ var Table = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @
   }
 ) }));
 Table.displayName = "Table";
-var TableHeader = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
+var TableHeader = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
 TableHeader.displayName = "TableHeader";
-var TableBody = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableBody = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tbody",
   {
     ref,
@@ -4003,7 +3421,7 @@ var TableBody = React64__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableBody.displayName = "TableBody";
-var TableFooter = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableFooter = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tfoot",
   {
     ref,
@@ -4015,7 +3433,7 @@ var TableFooter = React64__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 TableFooter.displayName = "TableFooter";
-var TableRow = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableRow = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "tr",
   {
     ref,
@@ -4027,7 +3445,7 @@ var TableRow = React64__namespace.forwardRef(({ className, ...props }, ref) => /
   }
 ));
 TableRow.displayName = "TableRow";
-var TableHead = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableHead = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "th",
   {
     ref,
@@ -4039,7 +3457,7 @@ var TableHead = React64__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableHead.displayName = "TableHead";
-var TableCell = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableCell = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "td",
   {
     ref,
@@ -4048,7 +3466,7 @@ var TableCell = React64__namespace.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 TableCell.displayName = "TableCell";
-var TableCaption = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TableCaption = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "caption",
   {
     ref,
@@ -4096,7 +3514,7 @@ var containerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Container = React64__namespace.forwardRef(
+var Container = React63__namespace.forwardRef(
   ({
     className,
     size = "7xl",
@@ -4122,7 +3540,7 @@ var Container = React64__namespace.forwardRef(
   }
 );
 Container.displayName = "Container";
-var ContainerFluid = React64__namespace.forwardRef(
+var ContainerFluid = React63__namespace.forwardRef(
   ({
     className,
     padding = "md",
@@ -4156,7 +3574,7 @@ var spacingClasses = {
   xl: "py-20",
   "2xl": "py-24"
 };
-var ContainerSection = React64__namespace.forwardRef(
+var ContainerSection = React63__namespace.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -4322,7 +3740,7 @@ var gridVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Grid = React64__namespace.forwardRef(
+var Grid = React63__namespace.forwardRef(
   ({
     className,
     cols,
@@ -4342,7 +3760,7 @@ var Grid = React64__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React64__namespace.useMemo(() => {
+    const gridStyle = React63__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (templateCols) {
         customStyle.gridTemplateColumns = templateCols;
@@ -4384,7 +3802,7 @@ var Grid = React64__namespace.forwardRef(
   }
 );
 Grid.displayName = "Grid";
-var GridItem = React64__namespace.forwardRef(
+var GridItem = React63__namespace.forwardRef(
   ({
     className,
     colStart,
@@ -4395,7 +3813,7 @@ var GridItem = React64__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React64__namespace.useMemo(() => {
+    const gridStyle = React63__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (colStart !== void 0) {
         customStyle.gridColumnStart = colStart;
@@ -4498,7 +3916,7 @@ var flexVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Flex = React64__namespace.forwardRef(
+var Flex = React63__namespace.forwardRef(
   ({
     className,
     direction = "row",
@@ -4536,7 +3954,7 @@ var Flex = React64__namespace.forwardRef(
   }
 );
 Flex.displayName = "Flex";
-var FlexCenter = React64__namespace.forwardRef(
+var FlexCenter = React63__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -4550,7 +3968,7 @@ var FlexCenter = React64__namespace.forwardRef(
   }
 );
 FlexCenter.displayName = "FlexCenter";
-var FlexBetween = React64__namespace.forwardRef(
+var FlexBetween = React63__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -4563,7 +3981,7 @@ var FlexBetween = React64__namespace.forwardRef(
   }
 );
 FlexBetween.displayName = "FlexBetween";
-var FlexStart = React64__namespace.forwardRef(
+var FlexStart = React63__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -4577,7 +3995,7 @@ var FlexStart = React64__namespace.forwardRef(
   }
 );
 FlexStart.displayName = "FlexStart";
-var FlexEnd = React64__namespace.forwardRef(
+var FlexEnd = React63__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -4591,7 +4009,7 @@ var FlexEnd = React64__namespace.forwardRef(
   }
 );
 FlexEnd.displayName = "FlexEnd";
-var FlexColumn = React64__namespace.forwardRef(
+var FlexColumn = React63__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -4604,7 +4022,7 @@ var FlexColumn = React64__namespace.forwardRef(
   }
 );
 FlexColumn.displayName = "FlexColumn";
-var FlexRow = React64__namespace.forwardRef(
+var FlexRow = React63__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Flex,
@@ -4650,7 +4068,7 @@ var spacerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Spacer = React64__namespace.forwardRef(
+var Spacer = React63__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -4663,7 +4081,7 @@ var Spacer = React64__namespace.forwardRef(
     style,
     ...props
   }, ref) => {
-    const spacerStyle = React64__namespace.useMemo(() => {
+    const spacerStyle = React63__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (width !== void 0) {
         customStyle.width = typeof width === "number" ? `${width}px` : width;
@@ -4697,7 +4115,7 @@ var Spacer = React64__namespace.forwardRef(
   }
 );
 Spacer.displayName = "Spacer";
-var VerticalSpacer = React64__namespace.forwardRef(
+var VerticalSpacer = React63__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Spacer,
@@ -4710,7 +4128,7 @@ var VerticalSpacer = React64__namespace.forwardRef(
   }
 );
 VerticalSpacer.displayName = "VerticalSpacer";
-var HorizontalSpacer = React64__namespace.forwardRef(
+var HorizontalSpacer = React63__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Spacer,
@@ -4754,7 +4172,7 @@ var dividerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Divider = React64__namespace.forwardRef(
+var Divider = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -4828,7 +4246,7 @@ var spacingClasses2 = {
   lg: "my-8",
   xl: "my-12"
 };
-var SectionDivider = React64__namespace.forwardRef(
+var SectionDivider = React63__namespace.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -4844,7 +4262,7 @@ var textColorClasses = {
   primary: "text-primary",
   secondary: "text-secondary-foreground"
 };
-var TextDivider = React64__namespace.forwardRef(
+var TextDivider = React63__namespace.forwardRef(
   ({
     className,
     children,
@@ -4911,7 +4329,7 @@ var panelVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Panel = React64__namespace.forwardRef(
+var Panel = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -4942,7 +4360,7 @@ var Panel = React64__namespace.forwardRef(
   }
 );
 Panel.displayName = "Panel";
-var PanelHeader = React64__namespace.forwardRef(
+var PanelHeader = React63__namespace.forwardRef(
   ({
     className,
     divider = false,
@@ -4965,7 +4383,7 @@ var PanelHeader = React64__namespace.forwardRef(
   }
 );
 PanelHeader.displayName = "PanelHeader";
-var PanelTitle = React64__namespace.forwardRef(
+var PanelTitle = React63__namespace.forwardRef(
   ({
     className,
     children,
@@ -4983,7 +4401,7 @@ var PanelTitle = React64__namespace.forwardRef(
   }
 );
 PanelTitle.displayName = "PanelTitle";
-var PanelDescription = React64__namespace.forwardRef(
+var PanelDescription = React63__namespace.forwardRef(
   ({
     className,
     children,
@@ -5001,7 +4419,7 @@ var PanelDescription = React64__namespace.forwardRef(
   }
 );
 PanelDescription.displayName = "PanelDescription";
-var PanelContent = React64__namespace.forwardRef(
+var PanelContent = React63__namespace.forwardRef(
   ({
     className,
     children,
@@ -5019,7 +4437,7 @@ var PanelContent = React64__namespace.forwardRef(
   }
 );
 PanelContent.displayName = "PanelContent";
-var PanelFooter = React64__namespace.forwardRef(
+var PanelFooter = React63__namespace.forwardRef(
   ({
     className,
     divider = false,
@@ -5048,7 +4466,7 @@ var spacingClasses3 = {
   lg: "gap-8",
   xl: "gap-10"
 };
-var PanelGroup = React64__namespace.forwardRef(
+var PanelGroup = React63__namespace.forwardRef(
   ({
     className,
     spacing = "md",
@@ -5084,7 +4502,7 @@ var alertVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Alert = React64__namespace.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Alert = React63__namespace.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -5094,7 +4512,7 @@ var Alert = React64__namespace.forwardRef(({ className, variant, ...props }, ref
   }
 ));
 Alert.displayName = "Alert";
-var AlertTitle = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertTitle = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h5",
   {
     ref,
@@ -5103,7 +4521,7 @@ var AlertTitle = React64__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 AlertTitle.displayName = "AlertTitle";
-var AlertDescription = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDescription = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -5115,7 +4533,7 @@ AlertDescription.displayName = "AlertDescription";
 var AlertDialog = AlertDialogPrimitive__namespace.Root;
 var AlertDialogTrigger = AlertDialogPrimitive__namespace.Trigger;
 var AlertDialogPortal = AlertDialogPrimitive__namespace.Portal;
-var AlertDialogOverlay = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogOverlay = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Overlay,
   {
     className: cn(
@@ -5127,7 +4545,7 @@ var AlertDialogOverlay = React64__namespace.forwardRef(({ className, ...props },
   }
 ));
 AlertDialogOverlay.displayName = AlertDialogPrimitive__namespace.Overlay.displayName;
-var AlertDialogContent = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(AlertDialogPortal, { children: [
+var AlertDialogContent = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(AlertDialogPortal, { children: [
   /* @__PURE__ */ jsxRuntime.jsx(AlertDialogOverlay, {}),
   /* @__PURE__ */ jsxRuntime.jsx(
     AlertDialogPrimitive__namespace.Content,
@@ -5170,7 +4588,7 @@ var AlertDialogFooter = ({
   }
 );
 AlertDialogFooter.displayName = "AlertDialogFooter";
-var AlertDialogTitle = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogTitle = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Title,
   {
     ref,
@@ -5179,7 +4597,7 @@ var AlertDialogTitle = React64__namespace.forwardRef(({ className, ...props }, r
   }
 ));
 AlertDialogTitle.displayName = AlertDialogPrimitive__namespace.Title.displayName;
-var AlertDialogDescription = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogDescription = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Description,
   {
     ref,
@@ -5188,7 +4606,7 @@ var AlertDialogDescription = React64__namespace.forwardRef(({ className, ...prop
   }
 ));
 AlertDialogDescription.displayName = AlertDialogPrimitive__namespace.Description.displayName;
-var AlertDialogAction = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogAction = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Action,
   {
     ref,
@@ -5197,7 +4615,7 @@ var AlertDialogAction = React64__namespace.forwardRef(({ className, ...props }, 
   }
 ));
 AlertDialogAction.displayName = AlertDialogPrimitive__namespace.Action.displayName;
-var AlertDialogCancel = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AlertDialogCancel = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AlertDialogPrimitive__namespace.Cancel,
   {
     ref,
@@ -5220,20 +4638,20 @@ function Skeleton({ className, ...props }) {
     }
   );
 }
-var Toaster = React64__namespace.forwardRef((props, ref) => {
+var Toaster = React63__namespace.forwardRef((props, ref) => {
   const { theme = "system" } = nextThemes.useTheme();
-  return React64__namespace.createElement(
+  return React63__namespace.createElement(
     sonner.Toaster,
     {
       ref,
       theme,
       className: "toaster group",
       icons: {
-        success: React64__namespace.createElement(lucideReact.Check, { className: "h-4 w-4" }),
-        info: React64__namespace.createElement(lucideReact.Info, { className: "h-4 w-4" }),
-        warning: React64__namespace.createElement(lucideReact.AlertTriangle, { className: "h-4 w-4" }),
-        error: React64__namespace.createElement(lucideReact.Octagon, { className: "h-4 w-4" }),
-        loading: React64__namespace.createElement(lucideReact.Loader2, { className: "h-4 w-4 animate-spin" })
+        success: React63__namespace.createElement(lucideReact.Check, { className: "h-4 w-4" }),
+        info: React63__namespace.createElement(lucideReact.Info, { className: "h-4 w-4" }),
+        warning: React63__namespace.createElement(lucideReact.AlertTriangle, { className: "h-4 w-4" }),
+        error: React63__namespace.createElement(lucideReact.Octagon, { className: "h-4 w-4" }),
+        loading: React63__namespace.createElement(lucideReact.Loader2, { className: "h-4 w-4 animate-spin" })
       },
       toastOptions: {
         classNames: {
@@ -5290,7 +4708,7 @@ var speedClasses = {
   normal: "animate-spin",
   fast: "animate-spin-fast"
 };
-var Spinner = React64__namespace.forwardRef(
+var Spinner = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -5343,7 +4761,7 @@ var Spinner = React64__namespace.forwardRef(
   }
 );
 Spinner.displayName = "Spinner";
-var SpinnerOverlay = React64__namespace.forwardRef(
+var SpinnerOverlay = React63__namespace.forwardRef(
   ({
     className,
     fullscreen = false,
@@ -5374,7 +4792,7 @@ var dotSizeClasses = {
   md: "h-2 w-2",
   lg: "h-3 w-3"
 };
-var DotsSpinner = React64__namespace.forwardRef(
+var DotsSpinner = React63__namespace.forwardRef(
   ({
     className,
     count = 3,
@@ -5421,7 +4839,7 @@ var pulseSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var PulseSpinner = React64__namespace.forwardRef(
+var PulseSpinner = React63__namespace.forwardRef(
   ({
     className,
     rings = 3,
@@ -5506,7 +4924,7 @@ function formatValue(value, format, currency, decimals = 0) {
       return formatted;
   }
 }
-var KPI = React64__namespace.forwardRef(
+var KPI = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -5581,7 +4999,7 @@ var gridColsClasses = {
   3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
   4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
 };
-var KPIGrid = React64__namespace.forwardRef(
+var KPIGrid = React63__namespace.forwardRef(
   ({
     className,
     cols = 4,
@@ -5604,7 +5022,7 @@ var KPIGrid = React64__namespace.forwardRef(
   }
 );
 KPIGrid.displayName = "KPIGrid";
-var KPIChart = React64__namespace.forwardRef(
+var KPIChart = React63__namespace.forwardRef(
   ({
     className,
     chart,
@@ -5672,7 +5090,7 @@ var iconSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var EmptyState = React64__namespace.forwardRef(
+var EmptyState = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -5729,7 +5147,7 @@ var EmptyState = React64__namespace.forwardRef(
   }
 );
 EmptyState.displayName = "EmptyState";
-var EmptyStateIllustrated = React64__namespace.forwardRef(
+var EmptyStateIllustrated = React63__namespace.forwardRef(
   ({
     className,
     illustration,
@@ -5847,7 +5265,7 @@ var notificationVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Notification = React64__namespace.forwardRef(
+var Notification = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -5863,8 +5281,8 @@ var Notification = React64__namespace.forwardRef(
     toast = false,
     ...props
   }, ref) => {
-    const [visible, setVisible] = React64__namespace.useState(true);
-    React64__namespace.useEffect(() => {
+    const [visible, setVisible] = React63__namespace.useState(true);
+    React63__namespace.useEffect(() => {
       if (autoClose && onDismiss) {
         const timer = setTimeout(() => {
           handleClose();
@@ -5939,7 +5357,7 @@ var spacingClasses4 = {
   md: "gap-3",
   lg: "gap-4"
 };
-var NotificationGroup = React64__namespace.forwardRef(
+var NotificationGroup = React63__namespace.forwardRef(
   ({
     className,
     children,
@@ -5965,7 +5383,7 @@ var NotificationGroup = React64__namespace.forwardRef(
   }
 );
 NotificationGroup.displayName = "NotificationGroup";
-var NotificationToast = React64__namespace.forwardRef(
+var NotificationToast = React63__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Notification,
@@ -5979,8 +5397,8 @@ var NotificationToast = React64__namespace.forwardRef(
 );
 NotificationToast.displayName = "NotificationToast";
 function useNotification() {
-  const [notifications, setNotifications] = React64__namespace.useState(/* @__PURE__ */ new Map());
-  const notify = React64__namespace.useCallback((options) => {
+  const [notifications, setNotifications] = React63__namespace.useState(/* @__PURE__ */ new Map());
+  const notify = React63__namespace.useCallback((options) => {
     const id = options.id || Math.random().toString(36).substr(2, 9);
     setNotifications((prev) => new Map(prev).set(id, options));
     if (options.autoClose !== false) {
@@ -5991,14 +5409,14 @@ function useNotification() {
     }
     return id;
   }, []);
-  const dismiss = React64__namespace.useCallback((id) => {
+  const dismiss = React63__namespace.useCallback((id) => {
     setNotifications((prev) => {
       const next = new Map(prev);
       next.delete(id);
       return next;
     });
   }, []);
-  const clear = React64__namespace.useCallback(() => {
+  const clear = React63__namespace.useCallback(() => {
     setNotifications(/* @__PURE__ */ new Map());
   }, []);
   return {
@@ -6024,7 +5442,7 @@ var NotificationProvider = ({ children }) => {
   ] });
 };
 function useSmoothScroll() {
-  const scrollToTop = React64.useCallback(() => {
+  const scrollToTop = React63.useCallback(() => {
     window.scrollTo({
       top: 0,
       behavior: "smooth"
@@ -6036,8 +5454,8 @@ function useSmoothScroll() {
   };
 }
 function useScrollPosition() {
-  const [scrollPosition, setScrollPosition] = React64.useState({ x: 0, y: 0 });
-  React64.useEffect(() => {
+  const [scrollPosition, setScrollPosition] = React63.useState({ x: 0, y: 0 });
+  React63.useEffect(() => {
     const handleScroll = () => {
       setScrollPosition({
         x: window.scrollX,
@@ -6076,7 +5494,7 @@ function BackToTop() {
   return /* @__PURE__ */ jsxRuntime.jsx(BackToTopButton, {});
 }
 var Accordion2 = AccordionPrimitive2__namespace.Root;
-var AccordionItem2 = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AccordionItem2 = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AccordionPrimitive2__namespace.Item,
   {
     ref,
@@ -6085,7 +5503,7 @@ var AccordionItem2 = React64__namespace.forwardRef(({ className, ...props }, ref
   }
 ));
 AccordionItem2.displayName = "AccordionItem";
-var AccordionTrigger2 = React64__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive2__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
+var AccordionTrigger2 = React63__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(AccordionPrimitive2__namespace.Header, { className: "flex", children: /* @__PURE__ */ jsxRuntime.jsxs(
   AccordionPrimitive2__namespace.Trigger,
   {
     ref,
@@ -6106,7 +5524,7 @@ var AccordionTrigger2 = React64__namespace.forwardRef(({ className, children, ..
   }
 ) }));
 AccordionTrigger2.displayName = AccordionPrimitive2__namespace.Trigger.displayName;
-var AccordionContent2 = React64__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var AccordionContent2 = React63__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   AccordionPrimitive2__namespace.Content,
   {
     ref,
@@ -6123,7 +5541,7 @@ var Dialog = reactDialog.Root;
 var DialogTrigger = reactDialog.Trigger;
 var DialogPortal = reactDialog.Portal;
 var DialogClose = reactDialog.Close;
-var DialogOverlay = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogOverlay = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Overlay,
   {
     ref,
@@ -6136,7 +5554,7 @@ var DialogOverlay = React64__namespace.forwardRef(({ className, ...props }, ref)
   }
 ));
 DialogOverlay.displayName = reactDialog.Overlay.displayName;
-var DialogContent = React64__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(DialogPortal, { children: [
+var DialogContent = React63__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(DialogPortal, { children: [
   /* @__PURE__ */ jsxRuntime.jsx(DialogOverlay, {}),
   /* @__PURE__ */ jsxRuntime.jsxs(
     reactDialog.Content,
@@ -6190,7 +5608,7 @@ var DialogFooter = ({
   }
 );
 DialogFooter.displayName = "DialogFooter";
-var DialogTitle = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogTitle = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Title,
   {
     ref,
@@ -6202,7 +5620,7 @@ var DialogTitle = React64__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 DialogTitle.displayName = reactDialog.Title.displayName;
-var DialogDescription = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DialogDescription = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDialog.Description,
   {
     ref,
@@ -6214,7 +5632,7 @@ var DialogDescription = React64__namespace.forwardRef(({ className, ...props }, 
   }
 ));
 DialogDescription.displayName = reactDialog.Description.displayName;
-var Command = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Command = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command,
   {
     ref,
@@ -6235,7 +5653,7 @@ var CommandDialog = ({
     /* @__PURE__ */ jsxRuntime.jsx(Command, { className: "[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[data-cmdk-input-wrapper]_svg]:h-5 [&_[data-cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5", children })
   ] }) });
 };
-var CommandInput = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center border-b px-3", "data-cmdk-input-wrapper": "", children: [
+var CommandInput = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center border-b px-3", "data-cmdk-input-wrapper": "", children: [
   /* @__PURE__ */ jsxRuntime.jsx(lucideReact.Search, { className: "mr-2 h-4 w-4 shrink-0 opacity-50" }),
   /* @__PURE__ */ jsxRuntime.jsx(
     cmdk.Command.Input,
@@ -6250,7 +5668,7 @@ var CommandInput = React64__namespace.forwardRef(({ className, ...props }, ref) 
   )
 ] }));
 CommandInput.displayName = cmdk.Command.Input.displayName;
-var CommandList = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandList = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.List,
   {
     ref,
@@ -6259,7 +5677,7 @@ var CommandList = React64__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 CommandList.displayName = cmdk.Command.List.displayName;
-var CommandEmpty = React64__namespace.forwardRef((props, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandEmpty = React63__namespace.forwardRef((props, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Empty,
   {
     ref,
@@ -6268,7 +5686,7 @@ var CommandEmpty = React64__namespace.forwardRef((props, ref) => /* @__PURE__ */
   }
 ));
 CommandEmpty.displayName = cmdk.Command.Empty.displayName;
-var CommandGroup = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandGroup = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Group,
   {
     ref,
@@ -6280,7 +5698,7 @@ var CommandGroup = React64__namespace.forwardRef(({ className, ...props }, ref) 
   }
 ));
 CommandGroup.displayName = cmdk.Command.Group.displayName;
-var CommandSeparator = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandSeparator = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Separator,
   {
     ref,
@@ -6289,7 +5707,7 @@ var CommandSeparator = React64__namespace.forwardRef(({ className, ...props }, r
   }
 ));
 CommandSeparator.displayName = cmdk.Command.Separator.displayName;
-var CommandItem = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CommandItem = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   cmdk.Command.Item,
   {
     ref,
@@ -6317,7 +5735,7 @@ var CommandShortcut = ({
   );
 };
 CommandShortcut.displayName = "CommandShortcut";
-var NavigationMenu = React64__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var NavigationMenu = React63__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   NavigationMenuPrimitive__namespace.Root,
   {
     ref,
@@ -6334,7 +5752,7 @@ var NavigationMenu = React64__namespace.forwardRef(({ className, children, ...pr
   }
 ));
 NavigationMenu.displayName = NavigationMenuPrimitive__namespace.Root.displayName;
-var NavigationMenuList = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuList = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.List,
   {
     ref,
@@ -6354,7 +5772,7 @@ var navigationMenuTriggerStyle = classVarianceAuthority.cva(
     "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-accent-foreground data-[state=open]:bg-accent/50 data-[state=open]:hover:bg-accent data-[state=open]:focus:bg-accent"
   )
 );
-var NavigationMenuTrigger = React64__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var NavigationMenuTrigger = React63__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   NavigationMenuPrimitive__namespace.Trigger,
   {
     ref,
@@ -6377,7 +5795,7 @@ var NavigationMenuTrigger = React64__namespace.forwardRef(({ className, children
   }
 ));
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive__namespace.Trigger.displayName;
-var NavigationMenuContent = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuContent = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.Content,
   {
     ref,
@@ -6390,7 +5808,7 @@ var NavigationMenuContent = React64__namespace.forwardRef(({ className, ...props
 ));
 NavigationMenuContent.displayName = NavigationMenuPrimitive__namespace.Content.displayName;
 var NavigationMenuLink = NavigationMenuPrimitive__namespace.Link;
-var NavigationMenuViewport = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn("absolute left-0 top-full flex justify-center"), children: /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuViewport = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { className: cn("absolute left-0 top-full flex justify-center"), children: /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.Viewport,
   {
     className: cn(
@@ -6402,7 +5820,7 @@ var NavigationMenuViewport = React64__namespace.forwardRef(({ className, ...prop
   }
 ) }));
 NavigationMenuViewport.displayName = NavigationMenuPrimitive__namespace.Viewport.displayName;
-var NavigationMenuIndicator = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var NavigationMenuIndicator = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   NavigationMenuPrimitive__namespace.Indicator,
   {
     ref,
@@ -6417,7 +5835,7 @@ var NavigationMenuIndicator = React64__namespace.forwardRef(({ className, ...pro
 ));
 NavigationMenuIndicator.displayName = NavigationMenuPrimitive__namespace.Indicator.displayName;
 var Tabs = TabsPrimitive__namespace.Root;
-var TabsList = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TabsList = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TabsPrimitive__namespace.List,
   {
     ref,
@@ -6429,7 +5847,7 @@ var TabsList = React64__namespace.forwardRef(({ className, ...props }, ref) => /
   }
 ));
 TabsList.displayName = TabsPrimitive__namespace.List.displayName;
-var TabsTrigger = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TabsTrigger = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TabsPrimitive__namespace.Trigger,
   {
     ref,
@@ -6445,7 +5863,7 @@ var TabsTrigger = React64__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 TabsTrigger.displayName = TabsPrimitive__namespace.Trigger.displayName;
-var TabsContent = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var TabsContent = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   TabsPrimitive__namespace.Content,
   {
     ref,
@@ -6479,7 +5897,7 @@ var menuVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Menu = React64__namespace.forwardRef(
+var Menu = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -6492,17 +5910,17 @@ var Menu = React64__namespace.forwardRef(
     closeOnClick = true,
     ...props
   }, ref) => {
-    const [internalOpen, setInternalOpen] = React64__namespace.useState(false);
-    const [openSubmenus, setOpenSubmenus] = React64__namespace.useState(/* @__PURE__ */ new Set());
+    const [internalOpen, setInternalOpen] = React63__namespace.useState(false);
+    const [openSubmenus, setOpenSubmenus] = React63__namespace.useState(/* @__PURE__ */ new Set());
     const isOpen = controlledOpen !== void 0 ? controlledOpen : internalOpen;
-    const containerRef = React64__namespace.useRef(null);
-    const handleOpenChange = React64__namespace.useCallback((newOpen) => {
+    const containerRef = React63__namespace.useRef(null);
+    const handleOpenChange = React63__namespace.useCallback((newOpen) => {
       if (controlledOpen === void 0) {
         setInternalOpen(newOpen);
       }
       onOpenChange?.(newOpen);
     }, [controlledOpen, onOpenChange]);
-    const toggleSubmenu = React64__namespace.useCallback((itemId) => {
+    const toggleSubmenu = React63__namespace.useCallback((itemId) => {
       setOpenSubmenus((prev) => {
         const next = new Set(prev);
         if (next.has(itemId)) {
@@ -6513,7 +5931,7 @@ var Menu = React64__namespace.forwardRef(
         return next;
       });
     }, []);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           handleOpenChange(false);
@@ -6653,7 +6071,7 @@ var Menu = React64__namespace.forwardRef(
   }
 );
 Menu.displayName = "Menu";
-var MenuBar = React64__namespace.forwardRef(
+var MenuBar = React63__namespace.forwardRef(
   ({
     className,
     menus,
@@ -6684,17 +6102,17 @@ var MenuBar = React64__namespace.forwardRef(
   }
 );
 MenuBar.displayName = "MenuBar";
-var NavigationContextMenu = React64__namespace.forwardRef(
+var NavigationContextMenu = React63__namespace.forwardRef(
   ({
     className,
     children,
     items,
     ...props
   }, ref) => {
-    const [open, setOpen] = React64__namespace.useState(false);
-    const [position, setPosition] = React64__namespace.useState({ x: 0, y: 0 });
-    const containerRef = React64__namespace.useRef(null);
-    const handleContextMenu = React64__namespace.useCallback((event) => {
+    const [open, setOpen] = React63__namespace.useState(false);
+    const [position, setPosition] = React63__namespace.useState({ x: 0, y: 0 });
+    const containerRef = React63__namespace.useRef(null);
+    const handleContextMenu = React63__namespace.useCallback((event) => {
       event.preventDefault();
       setPosition({ x: event.clientX, y: event.clientY });
       setOpen(true);
@@ -6805,7 +6223,7 @@ function generateRange(page, totalPages, siblingCount) {
   }
   return range;
 }
-var Pagination = React64__namespace.forwardRef(
+var Pagination = React63__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -6822,31 +6240,31 @@ var Pagination = React64__namespace.forwardRef(
     siblingCount = 1,
     ...props
   }, ref) => {
-    const pages = React64__namespace.useMemo(() => {
+    const pages = React63__namespace.useMemo(() => {
       if (totalPages <= 7) {
         return Array.from({ length: totalPages }, (_, i) => i + 1);
       }
       return generateRange(page, totalPages, siblingCount);
     }, [page, totalPages, siblingCount]);
-    const handlePrevious = React64__namespace.useCallback(() => {
+    const handlePrevious = React63__namespace.useCallback(() => {
       if (page > 1) {
         onPrevious?.();
         onChange?.(page - 1);
       }
     }, [page, onChange, onPrevious]);
-    const handleNext = React64__namespace.useCallback(() => {
+    const handleNext = React63__namespace.useCallback(() => {
       if (page < totalPages) {
         onNext?.();
         onChange?.(page + 1);
       }
     }, [page, totalPages, onChange, onNext]);
-    const handlePageClick = React64__namespace.useCallback((page2) => {
+    const handlePageClick = React63__namespace.useCallback((page2) => {
       onChange?.(page2);
     }, [onChange]);
-    const handleFirst = React64__namespace.useCallback(() => {
+    const handleFirst = React63__namespace.useCallback(() => {
       onChange?.(1);
     }, [onChange]);
-    const handleLast = React64__namespace.useCallback(() => {
+    const handleLast = React63__namespace.useCallback(() => {
       onChange?.(totalPages);
     }, [onChange, totalPages]);
     const sizeClasses2 = {
@@ -6958,7 +6376,7 @@ var Pagination = React64__namespace.forwardRef(
   }
 );
 Pagination.displayName = "Pagination";
-var PaginationInfo = React64__namespace.forwardRef(
+var PaginationInfo = React63__namespace.forwardRef(
   ({
     className,
     page,
@@ -6994,7 +6412,7 @@ var PaginationInfo = React64__namespace.forwardRef(
   }
 );
 PaginationInfo.displayName = "PaginationInfo";
-var PaginationCompact = React64__namespace.forwardRef(
+var PaginationCompact = React63__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Pagination,
@@ -7050,7 +6468,7 @@ var stepVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Steps = React64__namespace.forwardRef(
+var Steps = React63__namespace.forwardRef(
   ({
     className,
     orientation = "horizontal",
@@ -7062,7 +6480,7 @@ var Steps = React64__namespace.forwardRef(
     showConnector = true,
     ...props
   }, ref) => {
-    const stepsWithStatus = React64__namespace.useMemo(() => {
+    const stepsWithStatus = React63__namespace.useMemo(() => {
       return steps.map((step, index) => {
         let status = "pending";
         if (index < current) {
@@ -7210,7 +6628,7 @@ var Steps = React64__namespace.forwardRef(
   }
 );
 Steps.displayName = "Steps";
-var StepItem = React64__namespace.forwardRef(
+var StepItem = React63__namespace.forwardRef(
   ({
     className,
     number,
@@ -7295,7 +6713,7 @@ var sidebarVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Sidebar = React64__namespace.forwardRef(
+var Sidebar = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -7313,25 +6731,25 @@ var Sidebar = React64__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [internalCollapsed, setInternalCollapsed] = React64__namespace.useState(collapsed);
-    const [internalOpen, setInternalOpen] = React64__namespace.useState(open);
+    const [internalCollapsed, setInternalCollapsed] = React63__namespace.useState(collapsed);
+    const [internalOpen, setInternalOpen] = React63__namespace.useState(open);
     const isCollapsed = onCollapse ? collapsed : internalCollapsed;
     const isOpen = overlay ? onOpenChange ? open : internalOpen : true;
-    const handleCollapse = React64__namespace.useCallback(() => {
+    const handleCollapse = React63__namespace.useCallback(() => {
       if (onCollapse) {
         onCollapse(!isCollapsed);
       } else {
         setInternalCollapsed(!isCollapsed);
       }
     }, [isCollapsed, onCollapse]);
-    const handleOpenChange = React64__namespace.useCallback((newOpen) => {
+    const handleOpenChange = React63__namespace.useCallback((newOpen) => {
       if (onOpenChange) {
         onOpenChange(newOpen);
       } else {
         setInternalOpen(newOpen);
       }
     }, [onOpenChange]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (overlay && isOpen) {
         const handleClickOutside = (event) => {
           const target = event.target;
@@ -7482,14 +6900,14 @@ var Sidebar = React64__namespace.forwardRef(
   }
 );
 Sidebar.displayName = "Sidebar";
-var SidebarTrigger = React64__namespace.forwardRef(
+var SidebarTrigger = React63__namespace.forwardRef(
   ({
     className,
     children,
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React64__namespace.useCallback((event) => {
+    const handleClick = React63__namespace.useCallback((event) => {
       onClick?.(event);
       window.dispatchEvent(new CustomEvent("sidebar:toggle"));
     }, [onClick]);
@@ -7536,7 +6954,7 @@ var topBarVariants = classVarianceAuthority.cva(
     }
   }
 );
-var TopBar = React64__namespace.forwardRef(
+var TopBar = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -7671,7 +7089,7 @@ var TopBar = React64__namespace.forwardRef(
   }
 );
 TopBar.displayName = "TopBar";
-var TopBarTitle = React64__namespace.forwardRef(
+var TopBarTitle = React63__namespace.forwardRef(
   ({
     className,
     title,
@@ -7693,7 +7111,7 @@ var TopBarTitle = React64__namespace.forwardRef(
   }
 );
 TopBarTitle.displayName = "TopBarTitle";
-var TopBarActions = React64__namespace.forwardRef(
+var TopBarActions = React63__namespace.forwardRef(
   ({
     className,
     children,
@@ -7919,7 +7337,7 @@ function QuickStatsComponent({
     }
   );
 }
-var QuickStats = React64__namespace.default.memo(QuickStatsComponent);
+var QuickStats = React63__namespace.default.memo(QuickStatsComponent);
 QuickStats.displayName = "QuickStats";
 var STAGGER_DELAY_SECONDS = 0.1;
 function QuickActions({
@@ -8097,7 +7515,7 @@ function RecentPostsList({
     )) }) })
   ] });
 }
-var Card2 = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var Card2 = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -8109,7 +7527,7 @@ var Card2 = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 Card2.displayName = "Card";
-var CardHeader2 = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardHeader2 = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -8118,7 +7536,7 @@ var CardHeader2 = React64__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 CardHeader2.displayName = "CardHeader";
-var CardTitle2 = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardTitle2 = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "h3",
   {
     ref,
@@ -8130,7 +7548,7 @@ var CardTitle2 = React64__namespace.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 CardTitle2.displayName = "CardTitle";
-var CardDescription2 = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardDescription2 = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "p",
   {
     ref,
@@ -8139,9 +7557,9 @@ var CardDescription2 = React64__namespace.forwardRef(({ className, ...props }, r
   }
 ));
 CardDescription2.displayName = "CardDescription";
-var CardContent2 = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent2 = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent2.displayName = "CardContent";
-var CardFooter2 = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var CardFooter2 = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -8150,7 +7568,7 @@ var CardFooter2 = React64__namespace.forwardRef(({ className, ...props }, ref) =
   }
 ));
 CardFooter2.displayName = "CardFooter";
-var HighlightCard = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var HighlightCard = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "div",
   {
     ref,
@@ -8234,7 +7652,7 @@ var ContextMenuGroup = reactContextMenu.Group;
 var ContextMenuPortal = reactContextMenu.Portal;
 var ContextMenuSub = reactContextMenu.Sub;
 var ContextMenuRadioGroup = reactContextMenu.RadioGroup;
-var ContextMenuSubTrigger = React64__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ContextMenuSubTrigger = React63__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactContextMenu.SubTrigger,
   {
     ref,
@@ -8253,7 +7671,7 @@ var ContextMenuSubTrigger = React64__namespace.forwardRef(({ className, inset, c
   }
 ));
 ContextMenuSubTrigger.displayName = reactContextMenu.SubTrigger.displayName;
-var ContextMenuSubContent = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuSubContent = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.SubContent,
   {
     ref,
@@ -8266,7 +7684,7 @@ var ContextMenuSubContent = React64__namespace.forwardRef(({ className, ...props
   }
 ));
 ContextMenuSubContent.displayName = reactContextMenu.SubContent.displayName;
-var ContextMenuContent = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactContextMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuContent = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactContextMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Content,
   {
     ref,
@@ -8282,7 +7700,7 @@ var ContextMenuContent = React64__namespace.forwardRef(({ className, ...props },
   }
 ) }));
 ContextMenuContent.displayName = reactContextMenu.Content.displayName;
-var ContextMenuItem = React64__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuItem = React63__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Item,
   {
     ref,
@@ -8300,7 +7718,7 @@ var ContextMenuItem = React64__namespace.forwardRef(({ className, inset, ...prop
   }
 ));
 ContextMenuItem.displayName = reactContextMenu.Item.displayName;
-var ContextMenuCheckboxItem = React64__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ContextMenuCheckboxItem = React63__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactContextMenu.CheckboxItem,
   {
     ref,
@@ -8317,7 +7735,7 @@ var ContextMenuCheckboxItem = React64__namespace.forwardRef(({ className, childr
   }
 ));
 ContextMenuCheckboxItem.displayName = reactContextMenu.CheckboxItem.displayName;
-var ContextMenuRadioItem = React64__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var ContextMenuRadioItem = React63__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactContextMenu.RadioItem,
   {
     ref,
@@ -8333,7 +7751,7 @@ var ContextMenuRadioItem = React64__namespace.forwardRef(({ className, children,
   }
 ));
 ContextMenuRadioItem.displayName = reactContextMenu.RadioItem.displayName;
-var ContextMenuLabel = React64__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuLabel = React63__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Label,
   {
     ref,
@@ -8346,7 +7764,7 @@ var ContextMenuLabel = React64__namespace.forwardRef(({ className, inset, ...pro
   }
 ));
 ContextMenuLabel.displayName = reactContextMenu.Label.displayName;
-var ContextMenuSeparator = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var ContextMenuSeparator = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactContextMenu.Separator,
   {
     ref,
@@ -8377,7 +7795,7 @@ var DropdownMenuGroup = reactDropdownMenu.Group;
 var DropdownMenuPortal = reactDropdownMenu.Portal;
 var DropdownMenuSub = reactDropdownMenu.Sub;
 var DropdownMenuRadioGroup = reactDropdownMenu.RadioGroup;
-var DropdownMenuSubTrigger = React64__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuSubTrigger = React63__namespace.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.SubTrigger,
   {
     ref,
@@ -8395,7 +7813,7 @@ var DropdownMenuSubTrigger = React64__namespace.forwardRef(({ className, inset, 
   }
 ));
 DropdownMenuSubTrigger.displayName = reactDropdownMenu.SubTrigger.displayName;
-var DropdownMenuSubContent = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuSubContent = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.SubContent,
   {
     ref,
@@ -8412,7 +7830,7 @@ var DropdownMenuSubContent = React64__namespace.forwardRef(({ className, ...prop
   }
 ));
 DropdownMenuSubContent.displayName = reactDropdownMenu.SubContent.displayName;
-var DropdownMenuContent = React64__namespace.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactDropdownMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuContent = React63__namespace.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactDropdownMenu.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Content,
   {
     ref,
@@ -8430,7 +7848,7 @@ var DropdownMenuContent = React64__namespace.forwardRef(({ className, sideOffset
   }
 ) }));
 DropdownMenuContent.displayName = reactDropdownMenu.Content.displayName;
-var DropdownMenuItem = React64__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuItem = React63__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Item,
   {
     ref,
@@ -8445,7 +7863,7 @@ var DropdownMenuItem = React64__namespace.forwardRef(({ className, inset, ...pro
   }
 ));
 DropdownMenuItem.displayName = reactDropdownMenu.Item.displayName;
-var DropdownMenuCheckboxItem = React64__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuCheckboxItem = React63__namespace.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.CheckboxItem,
   {
     ref,
@@ -8464,7 +7882,7 @@ var DropdownMenuCheckboxItem = React64__namespace.forwardRef(({ className, child
   }
 ));
 DropdownMenuCheckboxItem.displayName = reactDropdownMenu.CheckboxItem.displayName;
-var DropdownMenuRadioItem = React64__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
+var DropdownMenuRadioItem = React63__namespace.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsxs(
   reactDropdownMenu.RadioItem,
   {
     ref,
@@ -8482,7 +7900,7 @@ var DropdownMenuRadioItem = React64__namespace.forwardRef(({ className, children
   }
 ));
 DropdownMenuRadioItem.displayName = reactDropdownMenu.RadioItem.displayName;
-var DropdownMenuLabel = React64__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuLabel = React63__namespace.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Label,
   {
     ref,
@@ -8495,7 +7913,7 @@ var DropdownMenuLabel = React64__namespace.forwardRef(({ className, inset, ...pr
   }
 ));
 DropdownMenuLabel.displayName = reactDropdownMenu.Label.displayName;
-var DropdownMenuSeparator = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var DropdownMenuSeparator = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactDropdownMenu.Separator,
   {
     ref,
@@ -8519,7 +7937,7 @@ var DropdownMenuShortcut = ({
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
 var HoverCard = reactHoverCard.Root;
 var HoverCardTrigger = reactHoverCard.Trigger;
-var HoverCardContent = React64__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var HoverCardContent = React63__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   reactHoverCard.Content,
   {
     ref,
@@ -8535,7 +7953,7 @@ var HoverCardContent = React64__namespace.forwardRef(({ className, align = "cent
 HoverCardContent.displayName = reactHoverCard.Content.displayName;
 var Popover = reactPopover.Root;
 var PopoverTrigger = reactPopover.Trigger;
-var PopoverContent = React64__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactPopover.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
+var PopoverContent = React63__namespace.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(reactPopover.Portal, { children: /* @__PURE__ */ jsxRuntime.jsx(
   reactPopover.Content,
   {
     ref,
@@ -8632,7 +8050,7 @@ var modalVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Modal = React64__namespace.forwardRef(
+var Modal = React63__namespace.forwardRef(
   ({
     className,
     size = "md",
@@ -8650,8 +8068,8 @@ var Modal = React64__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const modalRef = React64__namespace.useRef(null);
-    const setModalRef = React64__namespace.useCallback((node) => {
+    const modalRef = React63__namespace.useRef(null);
+    const setModalRef = React63__namespace.useCallback((node) => {
       modalRef.current = node;
       if (typeof ref === "function") {
         ref(node);
@@ -8659,7 +8077,7 @@ var Modal = React64__namespace.forwardRef(
         ref.current = node;
       }
     }, [ref]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -8667,7 +8085,7 @@ var Modal = React64__namespace.forwardRef(
         };
       }
     }, [open, preventBodyScroll]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -8677,12 +8095,12 @@ var Modal = React64__namespace.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (open && modalRef.current) {
         modalRef.current.focus();
       }
     }, [open]);
-    const handleBackdropClick = React64__namespace.useCallback((event) => {
+    const handleBackdropClick = React63__namespace.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop) {
         onOpenChange(false);
       }
@@ -8739,7 +8157,7 @@ var Modal = React64__namespace.forwardRef(
   }
 );
 Modal.displayName = "Modal";
-var ModalHeader = React64__namespace.forwardRef(
+var ModalHeader = React63__namespace.forwardRef(
   ({
     className,
     title,
@@ -8765,7 +8183,7 @@ var ModalHeader = React64__namespace.forwardRef(
   }
 );
 ModalHeader.displayName = "ModalHeader";
-var ModalContent = React64__namespace.forwardRef(
+var ModalContent = React63__namespace.forwardRef(
   ({
     className,
     children,
@@ -8783,7 +8201,7 @@ var ModalContent = React64__namespace.forwardRef(
   }
 );
 ModalContent.displayName = "ModalContent";
-var ModalFooter = React64__namespace.forwardRef(
+var ModalFooter = React63__namespace.forwardRef(
   ({
     className,
     children,
@@ -8804,7 +8222,7 @@ var ModalFooter = React64__namespace.forwardRef(
   }
 );
 ModalFooter.displayName = "ModalFooter";
-var ModalTrigger = React64__namespace.forwardRef(
+var ModalTrigger = React63__namespace.forwardRef(
   ({
     className,
     children,
@@ -8812,7 +8230,7 @@ var ModalTrigger = React64__namespace.forwardRef(
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React64__namespace.useCallback((event) => {
+    const handleClick = React63__namespace.useCallback((event) => {
       onClick?.(event);
       onOpen?.();
     }, [onClick, onOpen]);
@@ -8859,7 +8277,7 @@ var drawerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Drawer = React64__namespace.forwardRef(
+var Drawer = React63__namespace.forwardRef(
   ({
     className,
     position = "right",
@@ -8878,8 +8296,8 @@ var Drawer = React64__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const drawerRef = React64__namespace.useRef(null);
-    const setDrawerRef = React64__namespace.useCallback((node) => {
+    const drawerRef = React63__namespace.useRef(null);
+    const setDrawerRef = React63__namespace.useCallback((node) => {
       drawerRef.current = node;
       if (typeof ref === "function") {
         ref(node);
@@ -8887,7 +8305,7 @@ var Drawer = React64__namespace.forwardRef(
         ref.current = node;
       }
     }, [ref]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -8895,7 +8313,7 @@ var Drawer = React64__namespace.forwardRef(
         };
       }
     }, [open, preventBodyScroll]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -8905,12 +8323,12 @@ var Drawer = React64__namespace.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (open && drawerRef.current) {
         drawerRef.current.focus();
       }
     }, [open]);
-    const handleBackdropClick = React64__namespace.useCallback((event) => {
+    const handleBackdropClick = React63__namespace.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop) {
         onOpenChange(false);
       }
@@ -8981,7 +8399,7 @@ var Drawer = React64__namespace.forwardRef(
   }
 );
 Drawer.displayName = "Drawer";
-var DrawerHeader = React64__namespace.forwardRef(
+var DrawerHeader = React63__namespace.forwardRef(
   ({
     className,
     title,
@@ -9007,7 +8425,7 @@ var DrawerHeader = React64__namespace.forwardRef(
   }
 );
 DrawerHeader.displayName = "DrawerHeader";
-var DrawerContent = React64__namespace.forwardRef(
+var DrawerContent = React63__namespace.forwardRef(
   ({
     className,
     children,
@@ -9025,7 +8443,7 @@ var DrawerContent = React64__namespace.forwardRef(
   }
 );
 DrawerContent.displayName = "DrawerContent";
-var DrawerFooter = React64__namespace.forwardRef(
+var DrawerFooter = React63__namespace.forwardRef(
   ({
     className,
     children,
@@ -9046,7 +8464,7 @@ var DrawerFooter = React64__namespace.forwardRef(
   }
 );
 DrawerFooter.displayName = "DrawerFooter";
-var DrawerTrigger = React64__namespace.forwardRef(
+var DrawerTrigger = React63__namespace.forwardRef(
   ({
     className,
     children,
@@ -9054,7 +8472,7 @@ var DrawerTrigger = React64__namespace.forwardRef(
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React64__namespace.useCallback((event) => {
+    const handleClick = React63__namespace.useCallback((event) => {
       onClick?.(event);
       onOpen?.();
     }, [onClick, onOpen]);
@@ -9099,7 +8517,7 @@ var lightboxVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Lightbox = React64__namespace.forwardRef(
+var Lightbox = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -9125,21 +8543,21 @@ var Lightbox = React64__namespace.forwardRef(
     mediaContainerClassName,
     ...props
   }, ref) => {
-    const [zoom, setZoom] = React64__namespace.useState(ZOOM_CONFIG.DEFAULT);
-    const [rotation, setRotation] = React64__namespace.useState(0);
-    const [isPlaying, setIsPlaying] = React64__namespace.useState(autoPlayVideos);
-    const [isFullscreen, setIsFullscreen] = React64__namespace.useState(false);
-    const [touchStart, setTouchStart] = React64__namespace.useState(null);
-    const [isDragging, setIsDragging] = React64__namespace.useState(false);
-    const [dragOffset, setDragOffset] = React64__namespace.useState({ x: 0, y: 0 });
-    const videoRef = React64__namespace.useRef(null);
-    const containerRef = React64__namespace.useRef(null);
-    const mediaRef = React64__namespace.useRef(null);
+    const [zoom, setZoom] = React63__namespace.useState(ZOOM_CONFIG.DEFAULT);
+    const [rotation, setRotation] = React63__namespace.useState(0);
+    const [isPlaying, setIsPlaying] = React63__namespace.useState(autoPlayVideos);
+    const [isFullscreen, setIsFullscreen] = React63__namespace.useState(false);
+    const [touchStart, setTouchStart] = React63__namespace.useState(null);
+    const [isDragging, setIsDragging] = React63__namespace.useState(false);
+    const [dragOffset, setDragOffset] = React63__namespace.useState({ x: 0, y: 0 });
+    const videoRef = React63__namespace.useRef(null);
+    const containerRef = React63__namespace.useRef(null);
+    const mediaRef = React63__namespace.useRef(null);
     const currentItem = items[index];
     const hasMultipleItems = items.length > 1;
     const isImage = currentItem?.type === "image";
     const isVideo = currentItem?.type === "video";
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (open) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -9147,7 +8565,7 @@ var Lightbox = React64__namespace.forwardRef(
         };
       }
     }, [open]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (!open) return;
       const handleKeyDown = (event) => {
         switch (event.key) {
@@ -9203,20 +8621,20 @@ var Lightbox = React64__namespace.forwardRef(
       document.addEventListener("keydown", handleKeyDown);
       return () => document.removeEventListener("keydown", handleKeyDown);
     }, [open, index, zoom, isVideo, allowZoom, allowRotation]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (isVideo && autoPlayVideos && videoRef.current && open) {
         videoRef.current.play().catch(console.error);
         setIsPlaying(true);
       }
     }, [index, isVideo, autoPlayVideos, open]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (!autoPlayInterval || !hasMultipleItems || !open) return;
       const interval = setInterval(() => {
         handleNext();
       }, autoPlayInterval);
       return () => clearInterval(interval);
     }, [autoPlayInterval, hasMultipleItems, open, index]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       setZoom(ZOOM_CONFIG.DEFAULT);
       setRotation(0);
       setDragOffset({ x: 0, y: 0 });
@@ -9225,35 +8643,35 @@ var Lightbox = React64__namespace.forwardRef(
         setIsPlaying(autoPlayVideos);
       }
     }, [index, isVideo, autoPlayVideos]);
-    const handlePrevious = React64__namespace.useCallback(() => {
+    const handlePrevious = React63__namespace.useCallback(() => {
       if (index > 0) {
         onIndexChange(index - 1);
       } else if (hasMultipleItems) {
         onIndexChange(items.length - 1);
       }
     }, [index, items.length, onIndexChange, hasMultipleItems]);
-    const handleNext = React64__namespace.useCallback(() => {
+    const handleNext = React63__namespace.useCallback(() => {
       if (index < items.length - 1) {
         onIndexChange(index + 1);
       } else if (hasMultipleItems) {
         onIndexChange(0);
       }
     }, [index, items.length, onIndexChange, hasMultipleItems]);
-    const handleZoomIn = React64__namespace.useCallback(() => {
+    const handleZoomIn = React63__namespace.useCallback(() => {
       setZoom((prev) => Math.min(prev + ZOOM_CONFIG.STEP, ZOOM_CONFIG.MAX));
     }, []);
-    const handleZoomOut = React64__namespace.useCallback(() => {
+    const handleZoomOut = React63__namespace.useCallback(() => {
       setZoom((prev) => Math.max(prev - ZOOM_CONFIG.STEP, ZOOM_CONFIG.MIN));
     }, []);
-    const handleResetZoom = React64__namespace.useCallback(() => {
+    const handleResetZoom = React63__namespace.useCallback(() => {
       setZoom(ZOOM_CONFIG.DEFAULT);
       setRotation(0);
       setDragOffset({ x: 0, y: 0 });
     }, []);
-    const handleRotate = React64__namespace.useCallback(() => {
+    const handleRotate = React63__namespace.useCallback(() => {
       setRotation((prev) => (prev + 90) % 360);
     }, []);
-    const handlePlayPause = React64__namespace.useCallback(() => {
+    const handlePlayPause = React63__namespace.useCallback(() => {
       if (videoRef.current) {
         if (isPlaying) {
           videoRef.current.pause();
@@ -9263,7 +8681,7 @@ var Lightbox = React64__namespace.forwardRef(
         setIsPlaying(!isPlaying);
       }
     }, [isPlaying]);
-    const handleToggleFullscreen = React64__namespace.useCallback(() => {
+    const handleToggleFullscreen = React63__namespace.useCallback(() => {
       if (!containerRef.current) return;
       if (!document.fullscreenElement) {
         containerRef.current.requestFullscreen().then(() => {
@@ -9275,14 +8693,14 @@ var Lightbox = React64__namespace.forwardRef(
         });
       }
     }, []);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       const handleFullscreenChange = () => {
         setIsFullscreen(!!document.fullscreenElement);
       };
       document.addEventListener("fullscreenchange", handleFullscreenChange);
       return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
     }, []);
-    const handleDownload = React64__namespace.useCallback(() => {
+    const handleDownload = React63__namespace.useCallback(() => {
       if (currentItem?.downloadUrl || currentItem?.url) {
         const link = document.createElement("a");
         link.href = currentItem.downloadUrl || currentItem.url;
@@ -9293,7 +8711,7 @@ var Lightbox = React64__namespace.forwardRef(
         document.body.removeChild(link);
       }
     }, [currentItem]);
-    const handleTouchStart = React64__namespace.useCallback((e) => {
+    const handleTouchStart = React63__namespace.useCallback((e) => {
       if (!enableGestures || !isImage || zoom <= ZOOM_CONFIG.DEFAULT) return;
       setTouchStart({
         x: e.touches[0].clientX,
@@ -9301,7 +8719,7 @@ var Lightbox = React64__namespace.forwardRef(
       });
       setIsDragging(true);
     }, [enableGestures, isImage, zoom]);
-    const handleTouchMove = React64__namespace.useCallback((e) => {
+    const handleTouchMove = React63__namespace.useCallback((e) => {
       if (!touchStart || !isDragging || !isImage || zoom <= ZOOM_CONFIG.DEFAULT) return;
       const deltaX = e.touches[0].clientX - touchStart.x;
       const deltaY = e.touches[0].clientY - touchStart.y;
@@ -9310,7 +8728,7 @@ var Lightbox = React64__namespace.forwardRef(
         y: deltaY
       });
     }, [touchStart, isDragging, isImage, zoom]);
-    const handleTouchEnd = React64__namespace.useCallback(() => {
+    const handleTouchEnd = React63__namespace.useCallback(() => {
       if (!enableGestures || !isImage) return;
       if (!isDragging && touchStart && zoom <= ZOOM_CONFIG.DEFAULT) {
         const swipeThreshold = 50;
@@ -9326,7 +8744,7 @@ var Lightbox = React64__namespace.forwardRef(
       setTouchStart(null);
       setIsDragging(false);
     }, [enableGestures, isImage, zoom, dragOffset, handlePrevious, handleNext, isDragging, touchStart]);
-    const handleDoubleClick = React64__namespace.useCallback(() => {
+    const handleDoubleClick = React63__namespace.useCallback(() => {
       if (allowZoom && isImage) {
         if (zoom > ZOOM_CONFIG.DEFAULT) {
           handleResetZoom();
@@ -9623,7 +9041,7 @@ var confirmDialogVariants = classVarianceAuthority.cva(
     }
   }
 );
-var ConfirmDialog = React64__namespace.forwardRef(
+var ConfirmDialog = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -9644,9 +9062,9 @@ var ConfirmDialog = React64__namespace.forwardRef(
     confirmVariant = "default"
     // props, // Props adicionais não utilizados
   }, ref) => {
-    const [internalLoading, setInternalLoading] = React64__namespace.useState(false);
+    const [internalLoading, setInternalLoading] = React63__namespace.useState(false);
     const isLoading = loading || internalLoading;
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -9656,7 +9074,7 @@ var ConfirmDialog = React64__namespace.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    const handleConfirm = React64__namespace.useCallback(async () => {
+    const handleConfirm = React63__namespace.useCallback(async () => {
       if (isLoading) return;
       try {
         if (onConfirm) {
@@ -9670,14 +9088,14 @@ var ConfirmDialog = React64__namespace.forwardRef(
         setInternalLoading(false);
       }
     }, [isLoading, onConfirm, closeOnConfirm, onOpenChange]);
-    const handleCancel = React64__namespace.useCallback(() => {
+    const handleCancel = React63__namespace.useCallback(() => {
       if (isLoading) return;
       onCancel?.();
       if (closeOnCancel) {
         onOpenChange(false);
       }
     }, [isLoading, onCancel, closeOnCancel, onOpenChange]);
-    const handleBackdropClick = React64__namespace.useCallback((event) => {
+    const handleBackdropClick = React63__namespace.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop && !isLoading) {
         onOpenChange(false);
       }
@@ -9780,22 +9198,22 @@ var ConfirmDialog = React64__namespace.forwardRef(
 );
 ConfirmDialog.displayName = "ConfirmDialog";
 function useConfirm() {
-  const [isOpen, setIsOpen] = React64__namespace.useState(false);
-  const [options, setOptions] = React64__namespace.useState(null);
-  const confirm = React64__namespace.useCallback((options2) => {
+  const [isOpen, setIsOpen] = React63__namespace.useState(false);
+  const [options, setOptions] = React63__namespace.useState(null);
+  const confirm = React63__namespace.useCallback((options2) => {
     setOptions(options2);
     setIsOpen(true);
   }, []);
-  const handleConfirm = React64__namespace.useCallback(async () => {
+  const handleConfirm = React63__namespace.useCallback(async () => {
     if (options.onConfirm) {
       await options.onConfirm();
     }
     setIsOpen(false);
   }, [options]);
-  const handleCancel = React64__namespace.useCallback(() => {
+  const handleCancel = React63__namespace.useCallback(() => {
     setIsOpen(false);
   }, []);
-  const ConfirmDialogComponent = React64__namespace.useCallback(() => /* @__PURE__ */ jsxRuntime.jsx(
+  const ConfirmDialogComponent = React63__namespace.useCallback(() => /* @__PURE__ */ jsxRuntime.jsx(
     ConfirmDialog,
     {
       open: isOpen,
@@ -9852,22 +9270,22 @@ function getWeekdayLabels(locale) {
 }
 function Calendar3({ className, selected, onSelect, disabled }) {
   const initialMonth = selected ?? /* @__PURE__ */ new Date();
-  const [currentMonth, setCurrentMonth] = React64__namespace.useState(
+  const [currentMonth, setCurrentMonth] = React63__namespace.useState(
     startOfDay(initialMonth)
   );
-  const today = React64__namespace.useMemo(() => startOfDay(/* @__PURE__ */ new Date()), []);
-  const days = React64__namespace.useMemo(() => getMonthGrid(currentMonth), [currentMonth]);
-  const weekdayLabels = React64__namespace.useMemo(
+  const today = React63__namespace.useMemo(() => startOfDay(/* @__PURE__ */ new Date()), []);
+  const days = React63__namespace.useMemo(() => getMonthGrid(currentMonth), [currentMonth]);
+  const weekdayLabels = React63__namespace.useMemo(
     () => getWeekdayLabels("pt-BR"),
     []
   );
-  const handlePrevMonth = React64__namespace.useCallback(() => {
+  const handlePrevMonth = React63__namespace.useCallback(() => {
     setCurrentMonth((prev) => addMonths(prev, -1));
   }, []);
-  const handleNextMonth = React64__namespace.useCallback(() => {
+  const handleNextMonth = React63__namespace.useCallback(() => {
     setCurrentMonth((prev) => addMonths(prev, 1));
   }, []);
-  const handleSelect = React64__namespace.useCallback(
+  const handleSelect = React63__namespace.useCallback(
     (date) => {
       if (disabled?.(date)) return;
       if (onSelect) {
@@ -9880,7 +9298,7 @@ function Calendar3({ className, selected, onSelect, disabled }) {
     },
     [disabled, onSelect, selected]
   );
-  const monthLabel = React64__namespace.useMemo(
+  const monthLabel = React63__namespace.useMemo(
     () => currentMonth.toLocaleDateString("pt-BR", {
       month: "long",
       year: "numeric"
@@ -9964,7 +9382,7 @@ function CalendarDayButton({
   onSelect,
   className
 }) {
-  const handleClick = React64__namespace.useCallback(() => {
+  const handleClick = React63__namespace.useCallback(() => {
     if (disabled) return;
     onSelect?.(date);
   }, [date, disabled, onSelect]);
@@ -9991,15 +9409,15 @@ function CalendarDayButton({
     }
   );
 }
-var CarouselContext = React64__namespace.createContext(null);
+var CarouselContext = React63__namespace.createContext(null);
 function useCarousel() {
-  const context = React64__namespace.useContext(CarouselContext);
+  const context = React63__namespace.useContext(CarouselContext);
   if (!context) {
     throw new Error("useCarousel must be used within a <Carousel />");
   }
   return context;
 }
-var Carousel = React64__namespace.forwardRef(
+var Carousel = React63__namespace.forwardRef(
   ({
     orientation = "horizontal",
     opts,
@@ -10016,22 +9434,22 @@ var Carousel = React64__namespace.forwardRef(
       },
       plugins
     );
-    const [canScrollPrev, setCanScrollPrev] = React64__namespace.useState(false);
-    const [canScrollNext, setCanScrollNext] = React64__namespace.useState(false);
-    const onSelect = React64__namespace.useCallback((api2) => {
+    const [canScrollPrev, setCanScrollPrev] = React63__namespace.useState(false);
+    const [canScrollNext, setCanScrollNext] = React63__namespace.useState(false);
+    const onSelect = React63__namespace.useCallback((api2) => {
       if (!api2) {
         return;
       }
       setCanScrollPrev(api2.canScrollPrev());
       setCanScrollNext(api2.canScrollNext());
     }, []);
-    const scrollPrev = React64__namespace.useCallback(() => {
+    const scrollPrev = React63__namespace.useCallback(() => {
       api?.scrollPrev();
     }, [api]);
-    const scrollNext = React64__namespace.useCallback(() => {
+    const scrollNext = React63__namespace.useCallback(() => {
       api?.scrollNext();
     }, [api]);
-    const handleKeyDown = React64__namespace.useCallback(
+    const handleKeyDown = React63__namespace.useCallback(
       (event) => {
         if (event.key === "ArrowLeft") {
           event.preventDefault();
@@ -10043,13 +9461,13 @@ var Carousel = React64__namespace.forwardRef(
       },
       [scrollPrev, scrollNext]
     );
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (!api || !setApi) {
         return;
       }
       setApi(api);
     }, [api, setApi]);
-    React64__namespace.useEffect(() => {
+    React63__namespace.useEffect(() => {
       if (!api) {
         return;
       }
@@ -10060,7 +9478,7 @@ var Carousel = React64__namespace.forwardRef(
         api?.off("select", onSelect);
       };
     }, [api, onSelect]);
-    const contextValue = React64__namespace.useMemo(() => ({
+    const contextValue = React63__namespace.useMemo(() => ({
       carouselRef,
       api,
       opts,
@@ -10085,7 +9503,7 @@ var Carousel = React64__namespace.forwardRef(
   }
 );
 Carousel.displayName = "Carousel";
-var CarouselContent = React64__namespace.forwardRef(({ className, ...props }, ref) => {
+var CarouselContent = React63__namespace.forwardRef(({ className, ...props }, ref) => {
   const { carouselRef, orientation } = useCarousel();
   return /* @__PURE__ */ jsxRuntime.jsx("div", { ref: carouselRef, className: "overflow-hidden", children: /* @__PURE__ */ jsxRuntime.jsx(
     "div",
@@ -10101,7 +9519,7 @@ var CarouselContent = React64__namespace.forwardRef(({ className, ...props }, re
   ) });
 });
 CarouselContent.displayName = "CarouselContent";
-var CarouselItem = React64__namespace.forwardRef(({ className, ...props }, ref) => {
+var CarouselItem = React63__namespace.forwardRef(({ className, ...props }, ref) => {
   const { orientation } = useCarousel();
   return /* @__PURE__ */ jsxRuntime.jsx(
     "fieldset",
@@ -10118,7 +9536,7 @@ var CarouselItem = React64__namespace.forwardRef(({ className, ...props }, ref) 
   );
 });
 CarouselItem.displayName = "CarouselItem";
-var CarouselPrevious = React64__namespace.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+var CarouselPrevious = React63__namespace.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
   return /* @__PURE__ */ jsxRuntime.jsxs(
     Button,
@@ -10142,7 +9560,7 @@ var CarouselPrevious = React64__namespace.forwardRef(({ className, variant = "ou
   );
 });
 CarouselPrevious.displayName = "CarouselPrevious";
-var CarouselNext = React64__namespace.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+var CarouselNext = React63__namespace.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
   return /* @__PURE__ */ jsxRuntime.jsxs(
     Button,
@@ -10193,7 +9611,7 @@ var chipVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Chip = React64__namespace.forwardRef(
+var Chip = React63__namespace.forwardRef(
   ({
     className,
     variant,
@@ -10256,7 +9674,7 @@ var spacingClasses5 = {
   md: "gap-2",
   lg: "gap-3"
 };
-var ChipGroup = React64__namespace.forwardRef(
+var ChipGroup = React63__namespace.forwardRef(
   ({
     className,
     spacing = "md",
@@ -10282,8 +9700,8 @@ var ChipGroup = React64__namespace.forwardRef(
 );
 ChipGroup.displayName = "ChipGroup";
 function useMasonryLayout(containerRef, columns, gap) {
-  const [positions, setPositions] = React64__namespace.useState([]);
-  React64__namespace.useEffect(() => {
+  const [positions, setPositions] = React63__namespace.useState([]);
+  React63__namespace.useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;
     const containerWidth = container.offsetWidth;
@@ -10304,7 +9722,7 @@ function useMasonryLayout(containerRef, columns, gap) {
   }, [columns, gap]);
   return positions;
 }
-var Masonry = React64__namespace.forwardRef(
+var Masonry = React63__namespace.forwardRef(
   ({
     className,
     columns = { sm: 1, md: 2, lg: 3, xl: 4 },
@@ -10312,9 +9730,9 @@ var Masonry = React64__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const innerRef = React64__namespace.useRef(null);
-    const [resolvedColumns, setResolvedColumns] = React64__namespace.useState(4);
-    React64__namespace.useEffect(() => {
+    const innerRef = React63__namespace.useRef(null);
+    const [resolvedColumns, setResolvedColumns] = React63__namespace.useState(4);
+    React63__namespace.useEffect(() => {
       const handleResize = () => {
         if (typeof columns === "number") {
           setResolvedColumns(columns);
@@ -10333,13 +9751,13 @@ var Masonry = React64__namespace.forwardRef(
     }, [columns]);
     const gapValue = typeof gap === "number" ? gap : parseInt(gap) || 16;
     const positions = useMasonryLayout(innerRef, resolvedColumns, gapValue);
-    const childrenWithPositions = React64__namespace.Children.toArray(children).map((child, index) => {
-      if (!React64__namespace.isValidElement(child)) return child;
+    const childrenWithPositions = React63__namespace.Children.toArray(children).map((child, index) => {
+      if (!React63__namespace.isValidElement(child)) return child;
       const position = positions[index];
       if (!position) return child;
       const containerWidth = innerRef.current?.offsetWidth || 0;
       const columnWidth = (containerWidth - gapValue * (resolvedColumns - 1)) / resolvedColumns;
-      return React64__namespace.cloneElement(child, {
+      return React63__namespace.cloneElement(child, {
         style: {
           ...child.props.style,
           position: "absolute",
@@ -10375,7 +9793,7 @@ var Masonry = React64__namespace.forwardRef(
   }
 );
 Masonry.displayName = "Masonry";
-var MasonryItem = React64__namespace.forwardRef(
+var MasonryItem = React63__namespace.forwardRef(
   ({ className, children, ...props }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       "div",
@@ -10420,7 +9838,7 @@ var timelineDotVariants = classVarianceAuthority.cva(
     }
   }
 );
-var TimelineItem = React64__namespace.forwardRef(
+var TimelineItem = React63__namespace.forwardRef(
   ({
     className,
     status = "default",
@@ -10435,7 +9853,7 @@ var TimelineItem = React64__namespace.forwardRef(
   }, ref) => {
     let IconComponent = icon;
     if (!IconComponent && iconType) {
-      IconComponent = React64__namespace.createElement(defaultIcons2[iconType], {
+      IconComponent = React63__namespace.createElement(defaultIcons2[iconType], {
         className: "h-2.5 w-2.5 text-primary-foreground"
       });
     }
@@ -10468,7 +9886,7 @@ var TimelineItem = React64__namespace.forwardRef(
   }
 );
 TimelineItem.displayName = "TimelineItem";
-var Timeline = React64__namespace.forwardRef(
+var Timeline = React63__namespace.forwardRef(
   ({
     className,
     children,
@@ -10480,9 +9898,9 @@ var Timeline = React64__namespace.forwardRef(
         ref,
         className: cn("space-y-0", className),
         ...props,
-        children: React64__namespace.Children.map(children, (child) => {
-          if (!React64__namespace.isValidElement(child)) return child;
-          return React64__namespace.cloneElement(child, {
+        children: React63__namespace.Children.map(children, (child) => {
+          if (!React63__namespace.isValidElement(child)) return child;
+          return React63__namespace.cloneElement(child, {
             ...child.props,
             className: cn(child.props.className)
           });
@@ -10492,7 +9910,7 @@ var Timeline = React64__namespace.forwardRef(
   }
 );
 Timeline.displayName = "Timeline";
-var TimelineSeparator = React64__namespace.forwardRef(
+var TimelineSeparator = React63__namespace.forwardRef(
   ({ className, children, ...props }, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       "div",
@@ -10539,7 +9957,7 @@ var starSizeClasses = {
   md: "h-5 w-5",
   lg: "h-6 w-6"
 };
-var Rating = React64__namespace.forwardRef(
+var Rating = React63__namespace.forwardRef(
   ({
     className,
     value = 0,
@@ -10557,8 +9975,8 @@ var Rating = React64__namespace.forwardRef(
     color,
     ...props
   }, ref) => {
-    const [hoverValue, setHoverValue] = React64__namespace.useState(0);
-    const [isHovering, setIsHovering] = React64__namespace.useState(false);
+    const [hoverValue, setHoverValue] = React63__namespace.useState(0);
+    const [isHovering, setIsHovering] = React63__namespace.useState(false);
     const displayValue = isHovering ? hoverValue : value;
     const formattedValue = allowHalf ? displayValue.toFixed(1) : Math.round(displayValue).toString();
     const handleStarClick = (starValue) => {
@@ -10648,7 +10066,7 @@ var progressHeightClasses = {
   md: "h-2",
   lg: "h-3"
 };
-var RatingProgress = React64__namespace.forwardRef(
+var RatingProgress = React63__namespace.forwardRef(
   ({
     className,
     value,
@@ -10690,7 +10108,7 @@ var RatingProgress = React64__namespace.forwardRef(
   }
 );
 RatingProgress.displayName = "RatingProgress";
-var RatingSummary = React64__namespace.forwardRef(
+var RatingSummary = React63__namespace.forwardRef(
   ({
     className,
     average,
@@ -10785,9 +10203,9 @@ function CelestialBackground({
   variant = "default"
 }) {
   const config = STAR_CONFIGS[variant];
-  const [stars, setStars] = React64.useState([]);
-  const [isMounted, setIsMounted] = React64.useState(false);
-  React64.useEffect(() => {
+  const [stars, setStars] = React63.useState([]);
+  const [isMounted, setIsMounted] = React63.useState(false);
+  React63.useEffect(() => {
     setStars(generateStars(config.count, [...config.sizes], [...config.opacity]));
     setIsMounted(true);
   }, [config.count, config.sizes, config.opacity]);
@@ -10842,13 +10260,13 @@ function FloatingGrid({
   variant = "default",
   intensity = 0.5
 } = {}) {
-  const canvasRef = React64.useRef(null);
+  const canvasRef = React63.useRef(null);
   const { theme } = nextThemes.useTheme();
-  const [mounted, setMounted] = React64.useState(false);
-  React64.useEffect(() => {
+  const [mounted, setMounted] = React63.useState(false);
+  React63.useEffect(() => {
     setMounted(true);
   }, []);
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     if (!mounted || theme !== "dark") return;
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -10982,9 +10400,9 @@ function generateColumn(i, columnCount, isMobile, isTablet) {
   };
 }
 function MatrixBackgroundInner({ variant = "global" }) {
-  const [matrixColumns, setMatrixColumns] = React64.useState([]);
-  const [isInitialized, setIsInitialized] = React64.useState(false);
-  const initializeMatrix = React64.useCallback(() => {
+  const [matrixColumns, setMatrixColumns] = React63.useState([]);
+  const [isInitialized, setIsInitialized] = React63.useState(false);
+  const initializeMatrix = React63.useCallback(() => {
     if (isInitialized || typeof window === "undefined") return;
     const width = window.innerWidth;
     const isMobile = width < MOBILE_BREAKPOINT;
@@ -10996,7 +10414,7 @@ function MatrixBackgroundInner({ variant = "global" }) {
     setMatrixColumns(initialColumns);
     setIsInitialized(true);
   }, [isInitialized]);
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     if (typeof window !== "undefined" && !isInitialized) {
       initializeMatrix();
     }
@@ -11093,15 +10511,15 @@ function MatrixBackgroundInner({ variant = "global" }) {
     )
   ] });
 }
-var MatrixBackground = React64.memo(MatrixBackgroundInner);
+var MatrixBackground = React63.memo(MatrixBackgroundInner);
 function StarsBackground() {
   const { resolvedTheme } = nextThemes.useTheme();
-  const [mounted, setMounted] = React64.useState(false);
-  const [stars, setStars] = React64.useState([]);
-  React64.useEffect(() => {
+  const [mounted, setMounted] = React63.useState(false);
+  const [stars, setStars] = React63.useState([]);
+  React63.useEffect(() => {
     setMounted(true);
   }, []);
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     if (!mounted) return;
     const starsCount = 150;
     const newStars = Array.from({ length: starsCount }, (_, i) => {
@@ -11226,7 +10644,7 @@ function ParticlesEffect({
     }
   );
 }
-var Label3 = React64__namespace.default.forwardRef(
+var Label3 = React63__namespace.default.forwardRef(
   ({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     "label",
     {
@@ -11240,7 +10658,7 @@ var Label3 = React64__namespace.default.forwardRef(
   )
 );
 Label3.displayName = "Label";
-var Separator3 = React64__namespace.default.forwardRef(
+var Separator3 = React63__namespace.default.forwardRef(
   ({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     "div",
     {
@@ -11278,10 +10696,10 @@ var _SimpleCookieManager = class _SimpleCookieManager {
 __publicField(_SimpleCookieManager, "instance");
 var SimpleCookieManager = _SimpleCookieManager;
 function CookieBanner() {
-  const [showBanner, setShowBanner] = React64.useState(false);
-  const [canShowBanner, setCanShowBanner] = React64.useState(false);
-  const [showCustomize, setShowCustomize] = React64.useState(false);
-  const [preferences, setPreferences] = React64.useState({
+  const [showBanner, setShowBanner] = React63.useState(false);
+  const [canShowBanner, setCanShowBanner] = React63.useState(false);
+  const [showCustomize, setShowCustomize] = React63.useState(false);
+  const [preferences, setPreferences] = React63.useState({
     essential: true,
     // Sempre verdadeiro, não pode ser desabilitado
     performance: true,
@@ -11289,7 +10707,7 @@ function CookieBanner() {
     analytics: true
   });
   const cookieManager = SimpleCookieManager.getInstance();
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     if (typeof globalThis.window === "undefined") return;
     if (cookieManager.hasConsent()) {
       const savedPreferences = cookieManager.getPreferences();
@@ -11304,11 +10722,11 @@ function CookieBanner() {
       }
     }
   }, [cookieManager]);
-  const hasShownBannerRef = React64.useRef(false);
-  const scrollThresholdRef = React64.useRef(0);
-  const scrollTimeoutRef = React64.useRef(null);
-  const mouseTimeoutRef = React64.useRef(null);
-  React64.useEffect(() => {
+  const hasShownBannerRef = React63.useRef(false);
+  const scrollThresholdRef = React63.useRef(0);
+  const scrollTimeoutRef = React63.useRef(null);
+  const mouseTimeoutRef = React63.useRef(null);
+  React63.useEffect(() => {
     if (typeof globalThis.window === "undefined" || !canShowBanner || hasShownBannerRef.current)
       return;
     const heroHeight = globalThis.window.innerHeight;
@@ -11739,10 +11157,10 @@ function CookieBanner() {
 }
 function useCookieConsent() {
   const cookieManager = SimpleCookieManager.getInstance();
-  const [preferences, setPreferences] = React64.useState(
+  const [preferences, setPreferences] = React63.useState(
     cookieManager.getPreferences()
   );
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     if (typeof globalThis.window === "undefined") return;
     setPreferences(cookieManager.getPreferences());
     const handleConsentUpdate = (event) => {
@@ -11761,7 +11179,7 @@ function useCookieConsent() {
   }, [cookieManager]);
   return preferences;
 }
-var ErrorBoundary = class extends React64.Component {
+var ErrorBoundary = class extends React63.Component {
   constructor(props) {
     super(props);
     __publicField(this, "handleReset", () => {
@@ -11831,7 +11249,7 @@ var ErrorBoundary = class extends React64.Component {
     return this.props.children;
   }
 };
-var Skeleton2 = React64__namespace.default.forwardRef(
+var Skeleton2 = React63__namespace.default.forwardRef(
   ({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     "div",
     {
@@ -11846,14 +11264,14 @@ var Skeleton2 = React64__namespace.default.forwardRef(
 );
 Skeleton2.displayName = "Skeleton";
 function LoadingScreen({ progress = 0, currentStep = "Inicializando..." }) {
-  const [displayedProgress, setDisplayedProgress] = React64.useState(0);
-  const [stars, setStars] = React64.useState([]);
+  const [displayedProgress, setDisplayedProgress] = React63.useState(0);
+  const [stars, setStars] = React63.useState([]);
   const primaryColor = "var(--color-blue-600)";
   const secondaryColor = "var(--color-purple-600)";
   const accentColor = "var(--color-red-600)";
   const primaryRGB = primaryColor;
   const secondaryRGB = secondaryColor;
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     const starsCount = 100;
     const newStars = Array.from({ length: starsCount }, (_, i) => ({
       id: i,
@@ -11865,7 +11283,7 @@ function LoadingScreen({ progress = 0, currentStep = "Inicializando..." }) {
     }));
     setStars(newStars);
   }, []);
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     if (progress === void 0) {
       setDisplayedProgress(0);
       return;
@@ -12064,7 +11482,7 @@ function LoadingScreen({ progress = 0, currentStep = "Inicializando..." }) {
     }
   );
 }
-var Button2 = React64__namespace.default.forwardRef(
+var Button2 = React63__namespace.default.forwardRef(
   ({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     "button",
     {
@@ -12079,7 +11497,7 @@ var Button2 = React64__namespace.default.forwardRef(
   )
 );
 Button2.displayName = "Button";
-var Card3 = React64__namespace.default.forwardRef(
+var Card3 = React63__namespace.default.forwardRef(
   ({ className, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     "div",
     {
@@ -12096,12 +11514,12 @@ var Card3 = React64__namespace.default.forwardRef(
 Card3.displayName = "Card";
 function InstallPrompt() {
   const { resolvedTheme } = nextThemes.useTheme();
-  const [mounted, setMounted] = React64.useState(false);
-  const [showPrompt, setShowPrompt] = React64.useState(false);
-  React64.useEffect(() => {
+  const [mounted, setMounted] = React63.useState(false);
+  const [showPrompt, setShowPrompt] = React63.useState(false);
+  React63.useEffect(() => {
     setMounted(true);
   }, []);
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     if (typeof window === "undefined") return;
     const dismissed = localStorage.getItem("pwa-install-dismissed");
     if (!dismissed) {
@@ -12226,8 +11644,8 @@ function InstallPrompt() {
   );
 }
 function TokensDemo() {
-  const [mounted, setMounted] = React64.useState(false);
-  React64.useEffect(() => {
+  const [mounted, setMounted] = React63.useState(false);
+  React63.useEffect(() => {
     setMounted(true);
   }, []);
   if (!mounted) return null;
@@ -12328,7 +11746,7 @@ var kbdVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Kbd = React64__namespace.forwardRef(
+var Kbd = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -12348,7 +11766,7 @@ var Kbd = React64__namespace.forwardRef(
   }
 );
 Kbd.displayName = "Kbd";
-var KbdCombo = React64__namespace.forwardRef(
+var KbdCombo = React63__namespace.forwardRef(
   ({
     className,
     keys,
@@ -12363,7 +11781,7 @@ var KbdCombo = React64__namespace.forwardRef(
         ref,
         className: cn("flex items-center gap-1", className),
         ...props,
-        children: keys.map((key, index) => /* @__PURE__ */ jsxRuntime.jsxs(React64__namespace.Fragment, { children: [
+        children: keys.map((key, index) => /* @__PURE__ */ jsxRuntime.jsxs(React63__namespace.Fragment, { children: [
           index > 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text-muted-foreground text-xs font-normal", children: separator }),
           /* @__PURE__ */ jsxRuntime.jsx(Kbd, { size, variant, children: key })
         ] }, index))
@@ -12398,7 +11816,7 @@ var codeVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Code = React64__namespace.forwardRef(
+var Code = React63__namespace.forwardRef(
   ({
     className,
     variant = "inline",
@@ -12411,9 +11829,9 @@ var Code = React64__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [copied, setCopied] = React64__namespace.useState(false);
-    const codeRef = React64__namespace.useRef(null);
-    const handleCopy = React64__namespace.useCallback(async () => {
+    const [copied, setCopied] = React63__namespace.useState(false);
+    const codeRef = React63__namespace.useRef(null);
+    const handleCopy = React63__namespace.useCallback(async () => {
       if (codeRef.current) {
         const text = codeRef.current.textContent || "";
         await navigator.clipboard.writeText(text);
@@ -12474,7 +11892,7 @@ var Code = React64__namespace.forwardRef(
   }
 );
 Code.displayName = "Code";
-var CodeInline = React64__namespace.forwardRef(
+var CodeInline = React63__namespace.forwardRef(
   ({
     className,
     color = "default",
@@ -12493,7 +11911,7 @@ var CodeInline = React64__namespace.forwardRef(
   }
 );
 CodeInline.displayName = "CodeInline";
-var CodeBlock = React64__namespace.forwardRef(
+var CodeBlock = React63__namespace.forwardRef(
   ({
     className,
     ...props
@@ -12540,7 +11958,7 @@ var quoteVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Quote = React64__namespace.forwardRef(
+var Quote = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -12591,7 +12009,7 @@ var Quote = React64__namespace.forwardRef(
   }
 );
 Quote.displayName = "Quote";
-var QuoteTestimonial = React64__namespace.forwardRef(
+var QuoteTestimonial = React63__namespace.forwardRef(
   ({
     className,
     author,
@@ -12645,7 +12063,7 @@ var QuoteTestimonial = React64__namespace.forwardRef(
   }
 );
 QuoteTestimonial.displayName = "QuoteTestimonial";
-var QuoteBlock = React64__namespace.forwardRef(
+var QuoteBlock = React63__namespace.forwardRef(
   ({
     className,
     children,
@@ -12668,7 +12086,7 @@ var QuoteBlock = React64__namespace.forwardRef(
   }
 );
 QuoteBlock.displayName = "QuoteBlock";
-var VisuallyHidden = React64__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+var VisuallyHidden = React63__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   "span",
   {
     ref,
@@ -12682,13 +12100,13 @@ var VisuallyHidden = React64__namespace.forwardRef(({ className, ...props }, ref
 ));
 VisuallyHidden.displayName = "VisuallyHidden";
 function usePWA() {
-  const [deferredPrompt, setDeferredPrompt] = React64.useState(null);
-  const [isInstallable, setIsInstallable] = React64.useState(false);
-  const [isInstalled, setIsInstalled] = React64.useState(false);
-  const [isStandalone, setIsStandalone] = React64.useState(false);
-  const [updateAvailable, setUpdateAvailable] = React64.useState(false);
-  const [swRegistration, setSwRegistration] = React64.useState(null);
-  React64.useEffect(() => {
+  const [deferredPrompt, setDeferredPrompt] = React63.useState(null);
+  const [isInstallable, setIsInstallable] = React63.useState(false);
+  const [isInstalled, setIsInstalled] = React63.useState(false);
+  const [isStandalone, setIsStandalone] = React63.useState(false);
+  const [updateAvailable, setUpdateAvailable] = React63.useState(false);
+  const [swRegistration, setSwRegistration] = React63.useState(null);
+  React63.useEffect(() => {
     if (typeof window === "undefined" || !("serviceWorker" in navigator)) {
       return;
     }
@@ -12710,7 +12128,7 @@ function usePWA() {
     }).catch(() => {
     });
   }, []);
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     if (typeof window === "undefined") return;
     const nav = window.navigator;
     const isStandaloneiOS = nav.standalone === true;
@@ -12724,7 +12142,7 @@ function usePWA() {
     setIsStandalone(standalone);
     setIsInstalled(standalone);
   }, []);
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     if (typeof window === "undefined") return;
     const handleBeforeInstallPrompt = (e) => {
       e.preventDefault();
@@ -12746,7 +12164,7 @@ function usePWA() {
       window.removeEventListener("appinstalled", handleAppInstalled);
     };
   }, []);
-  const promptInstall = React64.useCallback(async () => {
+  const promptInstall = React63.useCallback(async () => {
     if (!deferredPrompt) {
       return;
     }
@@ -12755,7 +12173,7 @@ function usePWA() {
     setDeferredPrompt(null);
     setIsInstallable(false);
   }, [deferredPrompt]);
-  const updateServiceWorker = React64.useCallback(() => {
+  const updateServiceWorker = React63.useCallback(() => {
     if (!swRegistration || !swRegistration.waiting) {
       return;
     }
@@ -12775,9 +12193,9 @@ function usePWA() {
 }
 function UpdateNotification() {
   const { resolvedTheme } = nextThemes.useTheme();
-  const [mounted, setMounted] = React64.useState(false);
+  const [mounted, setMounted] = React63.useState(false);
   const { updateAvailable, updateServiceWorker } = usePWA();
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     setMounted(true);
   }, []);
   const isDark = mounted ? resolvedTheme === "dark" : false;
@@ -12897,7 +12315,7 @@ var aspectRatioBoxVariants = classVarianceAuthority.cva(
     }
   }
 );
-var AspectRatioBox = React64__namespace.forwardRef(
+var AspectRatioBox = React63__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -12906,13 +12324,13 @@ var AspectRatioBox = React64__namespace.forwardRef(
     objectFit = "cover",
     ...props
   }, ref) => {
-    const resolvedRatio = React64__namespace.useMemo(() => {
+    const resolvedRatio = React63__namespace.useMemo(() => {
       if (typeof ratio === "string" && ratio in ASPECT_RATIOS) {
         return ASPECT_RATIOS[ratio];
       }
       return ratio;
     }, [ratio]);
-    const paddingBottom = React64__namespace.useMemo(() => {
+    const paddingBottom = React63__namespace.useMemo(() => {
       const [width, height] = resolvedRatio.split("/").map(Number);
       return `${height / width * 100}%`;
     }, [resolvedRatio]);
@@ -12928,7 +12346,7 @@ var AspectRatioBox = React64__namespace.forwardRef(
         className: cn(aspectRatioBoxVariants({ variant }), className),
         style: { paddingBottom },
         ...props,
-        children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute inset-0", children: React64__namespace.isValidElement(children) ? React64__namespace.cloneElement(children, {
+        children: /* @__PURE__ */ jsxRuntime.jsx("div", { className: "absolute inset-0", children: React63__namespace.isValidElement(children) ? React63__namespace.cloneElement(children, {
           className: cn(
             objectFitClasses[objectFit],
             children.props.className
@@ -12939,7 +12357,7 @@ var AspectRatioBox = React64__namespace.forwardRef(
   }
 );
 AspectRatioBox.displayName = "AspectRatioBox";
-var AspectRatioImage = React64__namespace.forwardRef(
+var AspectRatioImage = React63__namespace.forwardRef(
   ({
     className,
     ratio = "square",
@@ -12961,7 +12379,7 @@ var AspectRatioImage = React64__namespace.forwardRef(
   }
 );
 AspectRatioImage.displayName = "AspectRatioImage";
-var AspectRatioVideo = React64__namespace.forwardRef(
+var AspectRatioVideo = React63__namespace.forwardRef(
   ({
     className,
     ratio = "video",
@@ -12979,7 +12397,7 @@ var AspectRatioVideo = React64__namespace.forwardRef(
   }
 );
 AspectRatioVideo.displayName = "AspectRatioVideo";
-var AspectRatioIframe = React64__namespace.forwardRef(
+var AspectRatioIframe = React63__namespace.forwardRef(
   ({
     className,
     ratio = "video",
@@ -13017,7 +12435,7 @@ var centerVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Center = React64__namespace.forwardRef(
+var Center = React63__namespace.forwardRef(
   ({
     className,
     direction = "both",
@@ -13030,7 +12448,7 @@ var Center = React64__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const centerStyle = React64__namespace.useMemo(() => {
+    const centerStyle = React63__namespace.useMemo(() => {
       const customStyle = { ...style };
       if (padding !== void 0) {
         customStyle.padding = typeof padding === "number" ? `${padding}px` : padding;
@@ -13059,7 +12477,7 @@ var Center = React64__namespace.forwardRef(
   }
 );
 Center.displayName = "Center";
-var CenterInline = React64__namespace.forwardRef(
+var CenterInline = React63__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Center,
@@ -13072,7 +12490,7 @@ var CenterInline = React64__namespace.forwardRef(
   }
 );
 CenterInline.displayName = "CenterInline";
-var CenterScreen = React64__namespace.forwardRef(
+var CenterScreen = React63__namespace.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsxRuntime.jsx(
       Center,
@@ -13087,7 +12505,7 @@ var CenterScreen = React64__namespace.forwardRef(
   }
 );
 CenterScreen.displayName = "CenterScreen";
-var CenterText = React64__namespace.forwardRef(
+var CenterText = React63__namespace.forwardRef(
   ({
     className,
     align = "center",
@@ -13116,9 +12534,9 @@ var COLORS = {
   gray: "var(--color-gray-500)"
 };
 var SocialButton = ({ action, size, variant, showCount, animated, onClick }) => {
-  const [isActive, setIsActive] = React64.useState(action.active || false);
-  const [count, setCount] = React64.useState(action.count || 0);
-  React64.useEffect(() => {
+  const [isActive, setIsActive] = React63.useState(action.active || false);
+  const [count, setCount] = React63.useState(action.count || 0);
+  React63.useEffect(() => {
     const key = `social-${action.id}`;
     const saved = localStorage.getItem(key);
     if (saved) {
@@ -13131,7 +12549,7 @@ var SocialButton = ({ action, size, variant, showCount, animated, onClick }) => 
       }
     }
   }, [action.id]);
-  const saveState = React64.useCallback((newActive, newCount) => {
+  const saveState = React63.useCallback((newActive, newCount) => {
     const key = `social-${action.id}`;
     localStorage.setItem(key, JSON.stringify({
       active: newActive,
@@ -13139,7 +12557,7 @@ var SocialButton = ({ action, size, variant, showCount, animated, onClick }) => 
       timestamp: Date.now()
     }));
   }, [action.id]);
-  const handleClick = React64.useCallback(() => {
+  const handleClick = React63.useCallback(() => {
     if (action.disabled) return;
     const newActive = !isActive;
     const newCount = action.type === "like" || action.type === "bookmark" ? newActive ? count + 1 : Math.max(0, count - 1) : count;
@@ -13316,11 +12734,11 @@ function ThemeProvider({ children, ...props }) {
     }
   );
 }
-var TokensContext = React64.createContext(void 0);
+var TokensContext = React63.createContext(void 0);
 function TokensProvider({ tokens: initialTokens, children }) {
-  const [tokens2, setTokens2] = React64.useState(initialTokens);
-  const [theme, setTheme] = React64.useState("light");
-  React64.useEffect(() => {
+  const [tokens2, setTokens] = React63.useState(initialTokens);
+  const [theme, setTheme] = React63.useState("light");
+  React63.useEffect(() => {
     const root = document.documentElement;
     const syncTheme = () => {
       const isDark = root.classList.contains("dark") || root.dataset.theme === "dark";
@@ -13331,11 +12749,11 @@ function TokensProvider({ tokens: initialTokens, children }) {
     observer.observe(root, { attributes: true, attributeFilter: ["class", "data-theme"] });
     return () => observer.disconnect();
   }, []);
-  const themedTokens = React64.useMemo(() => {
+  const themedTokens = React63.useMemo(() => {
     if (!tokens2) return void 0;
     return tokens2?.themes?.[theme] ?? tokens2?.[`${theme}Theme`] ?? tokens2;
   }, [tokens2, theme]);
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     if (themedTokens) {
       const root = document.documentElement;
       if (themedTokens.color) {
@@ -13366,14 +12784,14 @@ function TokensProvider({ tokens: initialTokens, children }) {
       root.style.setProperty("color-scheme", theme);
     }
   }, [themedTokens, theme]);
-  React64.useEffect(() => {
+  React63.useEffect(() => {
     const root = document.documentElement;
     root.classList.remove("light", "dark");
     root.classList.add(theme);
   }, [theme]);
   const value = {
     tokens: tokens2,
-    setTokens: setTokens2,
+    setTokens,
     theme,
     setTheme
   };
@@ -13392,10 +12810,10 @@ function useCarouselKeyboard({
     pauseOnHover = true,
     keyMap = ["ArrowLeft", "ArrowRight"]
   } = options;
-  const [isPaused, setIsPaused] = React64__namespace.default.useState(false);
-  const intervalRef = React64__namespace.default.useRef(null);
-  const containerRef = React64__namespace.default.useRef(null);
-  const next = React64__namespace.default.useCallback(() => {
+  const [isPaused, setIsPaused] = React63__namespace.default.useState(false);
+  const intervalRef = React63__namespace.default.useRef(null);
+  const containerRef = React63__namespace.default.useRef(null);
+  const next = React63__namespace.default.useCallback(() => {
     const nextIndex = currentIndex + 1;
     if (nextIndex >= totalItems) {
       if (loop) {
@@ -13405,7 +12823,7 @@ function useCarouselKeyboard({
       onIndexChange?.(nextIndex);
     }
   }, [currentIndex, totalItems, loop, onIndexChange]);
-  const prev = React64__namespace.default.useCallback(() => {
+  const prev = React63__namespace.default.useCallback(() => {
     const prevIndex = currentIndex - 1;
     if (prevIndex < 0) {
       if (loop) {
@@ -13415,12 +12833,12 @@ function useCarouselKeyboard({
       onIndexChange?.(prevIndex);
     }
   }, [currentIndex, totalItems, loop, onIndexChange]);
-  const goTo = React64__namespace.default.useCallback((index) => {
+  const goTo = React63__namespace.default.useCallback((index) => {
     if (index >= 0 && index < totalItems) {
       onIndexChange?.(index);
     }
   }, [totalItems, onIndexChange]);
-  React64__namespace.default.useEffect(() => {
+  React63__namespace.default.useEffect(() => {
     if (autoPlay && !isPaused) {
       intervalRef.current = setInterval(next, autoPlayInterval);
     } else {
@@ -13435,7 +12853,7 @@ function useCarouselKeyboard({
       }
     };
   }, [autoPlay, isPaused, next, autoPlayInterval]);
-  React64__namespace.default.useEffect(() => {
+  React63__namespace.default.useEffect(() => {
     const handleKeyDown = (event) => {
       if (!keyMap.includes(event.key)) return;
       event.preventDefault();
@@ -13459,7 +12877,7 @@ function useCarouselKeyboard({
       }
     };
   }, [keyMap, next, prev]);
-  React64__namespace.default.useEffect(() => {
+  React63__namespace.default.useEffect(() => {
     if (!pauseOnHover || !autoPlay) return;
     const container = containerRef.current;
     if (!container) return;
@@ -13472,13 +12890,13 @@ function useCarouselKeyboard({
       container.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [pauseOnHover, autoPlay]);
-  const pause = React64__namespace.default.useCallback(() => {
+  const pause = React63__namespace.default.useCallback(() => {
     setIsPaused(true);
   }, []);
-  const resume = React64__namespace.default.useCallback(() => {
+  const resume = React63__namespace.default.useCallback(() => {
     setIsPaused(false);
   }, []);
-  const stop = React64__namespace.default.useCallback(() => {
+  const stop = React63__namespace.default.useCallback(() => {
     setIsPaused(true);
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -13517,9 +12935,9 @@ function useTableOfContents({
     activeOnScroll = true,
     nested = true
   } = options;
-  const [items, setItems] = React64__namespace.default.useState([]);
-  const [activeId, setActiveId] = React64__namespace.default.useState(null);
-  const generateTOC = React64__namespace.default.useCallback(() => {
+  const [items, setItems] = React63__namespace.default.useState([]);
+  const [activeId, setActiveId] = React63__namespace.default.useState(null);
+  const generateTOC = React63__namespace.default.useCallback(() => {
     const container = containerRef?.current;
     if (!container) return [];
     const headingElements = container.querySelectorAll(headings.join(", "));
@@ -13540,20 +12958,20 @@ function useTableOfContents({
     });
     return tocItems;
   }, [containerRef, headings]);
-  React64__namespace.default.useEffect(() => {
+  React63__namespace.default.useEffect(() => {
     const tocItems = generateTOC();
     setItems(tocItems);
   }, [generateTOC]);
-  const scrollToItem = React64__namespace.default.useCallback((itemId) => {
+  const scrollToItem = React63__namespace.default.useCallback((itemId) => {
     const element = document.getElementById(itemId);
     if (!element) return;
-    scrollToElement(element, {
+    utils.scrollToElement(element, {
       smooth: smoothScroll,
       offset
     });
     setActiveId(itemId);
   }, [offset, smoothScroll]);
-  React64__namespace.default.useEffect(() => {
+  React63__namespace.default.useEffect(() => {
     if (!activeOnScroll || items.length === 0) return;
     const observer = new IntersectionObserver(
       (entries) => {
@@ -13581,7 +12999,7 @@ function useTableOfContents({
       });
     };
   }, [activeOnScroll, items, offset]);
-  const nestedItems = React64__namespace.default.useMemo(() => {
+  const nestedItems = React63__namespace.default.useMemo(() => {
     if (!nested) return items;
     const result = [];
     const stack = [];
@@ -13599,7 +13017,7 @@ function useTableOfContents({
     });
     return result;
   }, [items, nested]);
-  const renderItem = React64__namespace.default.useCallback((item, depth = 0) => {
+  const renderItem = React63__namespace.default.useCallback((item, depth = 0) => {
     const isActive = item.id === activeId;
     const hasChildren = "children" in item && item.children && item.children.length > 0;
     return {
@@ -13610,7 +13028,7 @@ function useTableOfContents({
       scrollTo: () => scrollToItem(item.id)
     };
   }, [activeId, scrollToItem]);
-  const renderItems = React64__namespace.default.useCallback(() => {
+  const renderItems = React63__namespace.default.useCallback(() => {
     const flatItems = [];
     const flatten = (items2, depth = 0) => {
       items2.forEach((item) => {
@@ -13623,7 +13041,7 @@ function useTableOfContents({
     flatten(nestedItems);
     return flatItems;
   }, [nestedItems, renderItem]);
-  const stats = React64__namespace.default.useMemo(() => {
+  const stats = React63__namespace.default.useMemo(() => {
     const levelCounts = {};
     items.forEach((item) => {
       levelCounts[item.level] = (levelCounts[item.level] || 0) + 1;
@@ -13636,11 +13054,11 @@ function useTableOfContents({
       activeIndex: items.findIndex((item) => item.id === activeId)
     };
   }, [items, activeId]);
-  const refresh = React64__namespace.default.useCallback(() => {
+  const refresh = React63__namespace.default.useCallback(() => {
     const tocItems = generateTOC();
     setItems(tocItems);
   }, [generateTOC]);
-  const reset = React64__namespace.default.useCallback(() => {
+  const reset = React63__namespace.default.useCallback(() => {
     setItems([]);
     setActiveId(null);
   }, []);

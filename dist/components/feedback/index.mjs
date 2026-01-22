@@ -1,7 +1,6 @@
 import * as React8 from 'react';
 import { cva } from 'class-variance-authority';
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
@@ -29,6 +28,7 @@ import Check2 from 'lucide-react/dist/esm/icons/check';
 import Info2 from 'lucide-react/dist/esm/icons/info';
 import X from 'lucide-react/dist/esm/icons/x';
 
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;

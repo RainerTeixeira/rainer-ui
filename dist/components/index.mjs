@@ -1,9 +1,9 @@
-import * as React64 from 'react';
-import React64__default, { memo, createContext, useState, useCallback, useEffect, useRef, Component, useMemo } from 'react';
+import * as React63 from 'react';
+import React63__default, { memo, createContext, useState, useCallback, useEffect, useRef, Component, useMemo } from 'react';
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { getInitials, scrollToElement } from '@rainersoft/utils';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
@@ -104,6 +104,7 @@ import QuoteIcon from 'lucide-react/dist/esm/icons/quote';
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
@@ -160,588 +161,6 @@ var motionSemanticTyped = motionSemantic;
     navigation: motionSemanticTyped.navigation?.page
   }
 });
-var __defProp2 = Object.defineProperty;
-var __defNormalProp2 = (obj, key, value) => key in obj ? __defProp2(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp2(target, name, { get: all[name], enumerable: true });
-};
-var __publicField2 = (obj, key, value) => __defNormalProp2(obj, key + "", value);
-var DEFAULT_LOCALE = "pt-BR";
-var CURRENCY_MAP = {
-  "pt-BR": "BRL",
-  "en-US": "USD",
-  "es-ES": "EUR"
-};
-var date_exports = {};
-__export(date_exports, {
-  formatDate: () => formatDate,
-  formatDateTime: () => formatDateTime,
-  formatRelativeDate: () => formatRelativeDate,
-  isValidDate: () => isValidDate,
-  toISOString: () => toISOString
-});
-var RELATIVE_TEXTS = {
-  "pt-BR": {
-    now: "agora",
-    minute: (n) => `h\xE1 ${n} ${n === 1 ? "minuto" : "minutos"}`,
-    hour: (n) => `h\xE1 ${n} ${n === 1 ? "hora" : "horas"}`,
-    day: (n) => `h\xE1 ${n} ${n === 1 ? "dia" : "dias"}`,
-    month: (n) => `h\xE1 ${n} ${n === 1 ? "m\xEAs" : "meses"}`,
-    year: (n) => `h\xE1 ${n} ${n === 1 ? "ano" : "anos"}`
-  },
-  "en-US": {
-    now: "now",
-    minute: (n) => `${n} ${n === 1 ? "minute" : "minutes"} ago`,
-    hour: (n) => `${n} ${n === 1 ? "hour" : "hours"} ago`,
-    day: (n) => `${n} ${n === 1 ? "day" : "days"} ago`,
-    month: (n) => `${n} ${n === 1 ? "month" : "months"} ago`,
-    year: (n) => `${n} ${n === 1 ? "year" : "years"} ago`
-  },
-  "es-ES": {
-    now: "ahora",
-    minute: (n) => `hace ${n} ${n === 1 ? "minuto" : "minutos"}`,
-    hour: (n) => `hace ${n} ${n === 1 ? "hora" : "horas"}`,
-    day: (n) => `hace ${n} ${n === 1 ? "d\xEDa" : "d\xEDas"}`,
-    month: (n) => `hace ${n} ${n === 1 ? "mes" : "meses"}`,
-    year: (n) => `hace ${n} ${n === 1 ? "a\xF1o" : "a\xF1os"}`
-  }
-};
-function formatDate(date, format = "long", locale = DEFAULT_LOCALE) {
-  const d = typeof date === "string" ? new Date(date) : date;
-  const options = {
-    day: "numeric",
-    month: format === "short" ? "2-digit" : "long",
-    year: "numeric",
-    ...format === "full" && { weekday: "long" }
-  };
-  if (format === "short") {
-    return d.toLocaleDateString(locale, { day: "2-digit", month: "2-digit", year: "numeric" });
-  }
-  return d.toLocaleDateString(locale, options);
-}
-function formatDateTime(date, locale = DEFAULT_LOCALE) {
-  const d = typeof date === "string" ? new Date(date) : date;
-  return d.toLocaleString(locale, {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit"
-  });
-}
-function formatRelativeDate(date, locale = DEFAULT_LOCALE) {
-  const d = typeof date === "string" ? new Date(date) : date;
-  if (!(d instanceof Date) || Number.isNaN(d.getTime())) {
-    return "";
-  }
-  const now = /* @__PURE__ */ new Date();
-  const diffMs = now.getTime() - d.getTime();
-  const diffSec = Math.floor(diffMs / 1e3);
-  const diffMin = Math.floor(diffSec / 60);
-  const diffHour = Math.floor(diffMin / 60);
-  const diffDay = Math.floor(diffHour / 24);
-  const diffMonth = Math.floor(diffDay / 30.4375);
-  const diffYear = Math.floor(diffDay / 365);
-  const texts = RELATIVE_TEXTS[locale];
-  if (diffSec < 10) {
-    if (locale === "pt-BR") return "agora mesmo";
-    if (locale === "en-US") return "just now";
-    if (locale === "es-ES") return "ahora mismo";
-  }
-  if (diffSec < 60) return texts.now;
-  if (diffMin < 60) return texts.minute(diffMin);
-  if (diffHour < 24) return texts.hour(diffHour);
-  if (diffDay === 1) {
-    if (locale === "pt-BR") return "ontem";
-    if (locale === "en-US") return "yesterday";
-    if (locale === "es-ES") return "ayer";
-  }
-  if (diffDay === 2) {
-    if (locale === "pt-BR") return "anteontem";
-    if (locale === "en-US") return "the day before yesterday";
-    if (locale === "es-ES") return "anteayer";
-  }
-  if (diffDay < 30) return texts.day(diffDay);
-  if (diffMonth < 12) return texts.month(diffMonth);
-  return texts.year(diffYear);
-}
-function toISOString(date) {
-  return date.toISOString();
-}
-function isValidDate(date) {
-  return date instanceof Date && !isNaN(date.getTime());
-}
-var status_exports = {};
-__export(status_exports, {
-  getStatusColor: () => getStatusColor,
-  getStatusVariant: () => getStatusVariant,
-  translatePostStatus: () => translatePostStatus,
-  translateStatus: () => translateStatus
-});
-var STATUS_TRANSLATIONS = {
-  "pt-BR": {
-    // Estados de conteúdo
-    DRAFT: "Rascunho",
-    PUBLISHED: "Publicado",
-    ARCHIVED: "Arquivado",
-    SCHEDULED: "Agendado",
-    DELETED: "Exclu\xEDdo",
-    // Estados de processo
-    PENDING: "Pendente",
-    ACTIVE: "Ativo",
-    INACTIVE: "Inativo",
-    COMPLETED: "Conclu\xEDdo",
-    CANCELLED: "Cancelado",
-    // Estados de aprovação
-    APPROVED: "Aprovado",
-    REJECTED: "Rejeitado",
-    // Estados de pedido/pagamento
-    PROCESSING: "Processando",
-    PAID: "Pago",
-    UNPAID: "N\xE3o Pago",
-    REFUNDED: "Reembolsado",
-    FAILED: "Falhou",
-    // Estados de usuário
-    VERIFIED: "Verificado",
-    UNVERIFIED: "N\xE3o Verificado",
-    BANNED: "Banido",
-    SUSPENDED: "Suspenso"
-  },
-  "en-US": {
-    DRAFT: "Draft",
-    PUBLISHED: "Published",
-    ARCHIVED: "Archived",
-    SCHEDULED: "Scheduled",
-    DELETED: "Deleted",
-    PENDING: "Pending",
-    ACTIVE: "Active",
-    INACTIVE: "Inactive",
-    COMPLETED: "Completed",
-    CANCELLED: "Cancelled",
-    APPROVED: "Approved",
-    REJECTED: "Rejected",
-    PROCESSING: "Processing",
-    PAID: "Paid",
-    UNPAID: "Unpaid",
-    REFUNDED: "Refunded",
-    FAILED: "Failed",
-    VERIFIED: "Verified",
-    UNVERIFIED: "Unverified",
-    BANNED: "Banned",
-    SUSPENDED: "Suspended"
-  },
-  "es-ES": {
-    DRAFT: "Borrador",
-    PUBLISHED: "Publicado",
-    ARCHIVED: "Archivado",
-    SCHEDULED: "Programado",
-    DELETED: "Eliminado",
-    PENDING: "Pendiente",
-    ACTIVE: "Activo",
-    INACTIVE: "Inactivo",
-    COMPLETED: "Completado",
-    CANCELLED: "Cancelado",
-    APPROVED: "Aprobado",
-    REJECTED: "Rechazado",
-    PROCESSING: "Procesando",
-    PAID: "Pagado",
-    UNPAID: "No Pagado",
-    REFUNDED: "Reembolsado",
-    FAILED: "Fallido",
-    VERIFIED: "Verificado",
-    UNVERIFIED: "No Verificado",
-    BANNED: "Bloqueado",
-    SUSPENDED: "Suspendido"
-  }
-};
-function translateStatus(status, locale = DEFAULT_LOCALE) {
-  const normalized = status.toUpperCase();
-  return STATUS_TRANSLATIONS[locale][normalized] || status;
-}
-function getStatusColor(status) {
-  const normalized = status.toUpperCase();
-  const colorMap = {
-    DRAFT: "text-gray-600",
-    PENDING: "text-yellow-600",
-    PUBLISHED: "text-green-600",
-    ACTIVE: "text-green-600",
-    INACTIVE: "text-gray-600",
-    ARCHIVED: "text-orange-600",
-    DELETED: "text-red-600",
-    SCHEDULED: "text-blue-600",
-    COMPLETED: "text-green-600",
-    CANCELLED: "text-red-600",
-    APPROVED: "text-green-600",
-    REJECTED: "text-red-600",
-    FAILED: "text-red-600",
-    VERIFIED: "text-green-600",
-    BANNED: "text-red-600"
-  };
-  return colorMap[normalized] || "text-gray-600";
-}
-function getStatusVariant(status) {
-  const normalized = status.toUpperCase();
-  if (["PUBLISHED", "ACTIVE", "COMPLETED", "APPROVED", "VERIFIED"].includes(normalized)) {
-    return "default";
-  }
-  if (["DELETED", "CANCELLED", "REJECTED", "FAILED", "BANNED"].includes(normalized)) {
-    return "destructive";
-  }
-  if (["DRAFT", "INACTIVE", "ARCHIVED"].includes(normalized)) {
-    return "secondary";
-  }
-  return "outline";
-}
-function translatePostStatus(status, locale = DEFAULT_LOCALE) {
-  const postStatusMap = {
-    "draft": "DRAFT",
-    "published": "PUBLISHED",
-    "archived": "ARCHIVED",
-    "scheduled": "SCHEDULED",
-    "pending_review": "PENDING"
-  };
-  const normalized = postStatusMap[status.toLowerCase()] || status.toUpperCase();
-  if (status.toLowerCase() === "pending_review") {
-    const translations = {
-      "pt-BR": "Aguardando Revis\xE3o",
-      "en-US": "Pending Review",
-      "es-ES": "Pendiente de Revisi\xF3n"
-    };
-    return translations[locale] || translations["pt-BR"];
-  }
-  return translateStatus(normalized, locale);
-}
-function scrollToElement(element, options = {}) {
-  if (typeof window === "undefined") return;
-  const { smooth = false, offset = 0, behavior } = options;
-  let targetElement;
-  if (typeof element === "string") {
-    targetElement = document.querySelector(element);
-  } else {
-    targetElement = element;
-  }
-  if (!targetElement) return;
-  const rect = targetElement.getBoundingClientRect();
-  const absoluteY = rect.top + window.scrollY - offset;
-  window.scrollTo({
-    left: 0,
-    top: absoluteY,
-    behavior: behavior || (smooth ? "smooth" : "auto")
-  });
-}
-var AuthStorage = class {
-  static setItem(key, value) {
-    if (!this.isClient) return;
-    try {
-      localStorage.setItem(key, value);
-    } catch (error) {
-      console.warn("Failed to save to localStorage:", error);
-    }
-  }
-  static getItem(key) {
-    if (!this.isClient) return null;
-    try {
-      return localStorage.getItem(key);
-    } catch (error) {
-      console.warn("Failed to read from localStorage:", error);
-      return null;
-    }
-  }
-  static removeItem(key) {
-    if (!this.isClient) return;
-    try {
-      localStorage.removeItem(key);
-    } catch (error) {
-      console.warn("Failed to remove from localStorage:", error);
-    }
-  }
-  static setUser(user, key) {
-    this.setItem(key, JSON.stringify(user));
-  }
-  static getUser(key) {
-    const data = this.getItem(key);
-    if (!data) return null;
-    try {
-      return JSON.parse(data);
-    } catch {
-      this.removeItem(key);
-      return null;
-    }
-  }
-  static removeUser(key) {
-    this.removeItem(key);
-  }
-};
-__publicField2(AuthStorage, "isClient", typeof window !== "undefined");
-var authentication_exports = {};
-__export(authentication_exports, {
-  getRefreshToken: () => getRefreshToken,
-  getToken: () => getToken,
-  getTokens: () => getTokens,
-  hasToken: () => hasToken,
-  removeToken: () => removeToken,
-  setRefreshToken: () => setRefreshToken,
-  setToken: () => setToken,
-  setTokens: () => setTokens
-});
-var TOKEN_KEY = "auth_token";
-var REFRESH_TOKEN_KEY = "refresh_token";
-var getToken = () => {
-  if (typeof window === "undefined") {
-    return null;
-  }
-  return localStorage.getItem(TOKEN_KEY);
-};
-var setToken = (token) => {
-  if (typeof window === "undefined") {
-    return;
-  }
-  localStorage.setItem(TOKEN_KEY, token);
-};
-var getRefreshToken = () => {
-  if (typeof window === "undefined") {
-    return null;
-  }
-  return localStorage.getItem(REFRESH_TOKEN_KEY);
-};
-var setRefreshToken = (refreshToken) => {
-  if (typeof window === "undefined") {
-    return;
-  }
-  localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
-};
-var removeToken = () => {
-  if (typeof window === "undefined") {
-    return;
-  }
-  localStorage.removeItem(TOKEN_KEY);
-  localStorage.removeItem(REFRESH_TOKEN_KEY);
-};
-var hasToken = () => {
-  return !!getToken();
-};
-var getTokens = () => {
-  return {
-    accessToken: getToken(),
-    refreshToken: getRefreshToken()
-  };
-};
-var setTokens = ({
-  accessToken,
-  refreshToken
-}) => {
-  setToken(accessToken);
-  setRefreshToken(refreshToken);
-};
-function getInitials(name, maxInitials = 2) {
-  return name.split(" ").filter((word) => word.length > 0).map((word) => word[0]).join("").toUpperCase().slice(0, maxInitials);
-}
-function formatCurrency(value, locale = DEFAULT_LOCALE, options) {
-  const currency = CURRENCY_MAP[locale];
-  return new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency,
-    ...options
-  }).format(value);
-}
-function formatNumber2(value, decimals = 0, locale = DEFAULT_LOCALE) {
-  return new Intl.NumberFormat(locale, {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
-  }).format(value);
-}
-function formatCompact(value, decimals = 1, locale = DEFAULT_LOCALE) {
-  return new Intl.NumberFormat(locale, {
-    notation: "compact",
-    compactDisplay: "short",
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
-  }).format(value);
-}
-var pt_br_exports = {};
-__export(pt_br_exports, {
-  default: () => pt_br_default,
-  formatCompact: () => formatCompact2,
-  formatCurrency: () => formatCurrency2,
-  formatDate: () => formatDate2,
-  formatDateTime: () => formatDateTime2,
-  formatNumber: () => formatNumber3,
-  formatRelativeDate: () => formatRelativeDate2,
-  translateStatus: () => translateStatus2
-});
-function formatDate2(date, format = "long") {
-  return formatDate(date, format, "pt-BR");
-}
-function formatDateTime2(date) {
-  return formatDateTime(date, "pt-BR");
-}
-function formatRelativeDate2(date) {
-  return formatRelativeDate(date, "pt-BR");
-}
-function formatCurrency2(value, options) {
-  return formatCurrency(value, "pt-BR", options);
-}
-function formatNumber3(value, decimals = 0) {
-  return formatNumber2(value, decimals, "pt-BR");
-}
-function formatCompact2(value, decimals = 1) {
-  return formatCompact(value, decimals, "pt-BR");
-}
-function translateStatus2(status) {
-  return translateStatus(status, "pt-BR");
-}
-var pt_br_default = {
-  formatDate: formatDate2,
-  formatDateTime: formatDateTime2,
-  formatRelativeDate: formatRelativeDate2,
-  formatCurrency: formatCurrency2,
-  formatNumber: formatNumber3,
-  formatCompact: formatCompact2,
-  translateStatus: translateStatus2
-};
-var text_exports = {};
-__export(text_exports, {
-  calculateReadingTime: () => calculateReadingTime,
-  capitalize: () => capitalize,
-  cleanText: () => cleanText2,
-  countWords: () => countWords2,
-  extractInitials: () => extractInitials,
-  generateAvatarUrl: () => generateAvatarUrl,
-  generateDynamicAvatarUrl: () => generateDynamicAvatarUrl,
-  generateUniqueId: () => generateUniqueId,
-  getAvatarColorFromName: () => getAvatarColorFromName,
-  isEmpty: () => isEmpty,
-  isValidAvatarUrl: () => isValidAvatarUrl,
-  normalizeSpaces: () => normalizeSpaces,
-  truncateText: () => truncateText
-});
-function extractInitials(name, maxChars = 2) {
-  if (!name || !name.trim()) {
-    return "";
-  }
-  const words = name.trim().split(/\s+/);
-  const initials = words.slice(0, maxChars).map((word) => word.charAt(0).toUpperCase()).join("");
-  return initials;
-}
-function generateAvatarUrl(name, size = 200, backgroundColor = "0891b2", textColor = "fff") {
-  const encodedName = encodeURIComponent(name);
-  return `https://ui-avatars.com/api/?name=${encodedName}&size=${size}&background=${backgroundColor}&color=${textColor}&font-size=0.5`;
-}
-function isValidAvatarUrl(url) {
-  if (!url || typeof url !== "string") {
-    return false;
-  }
-  try {
-    new URL(url);
-    return true;
-  } catch {
-    return false;
-  }
-}
-function getAvatarColorFromName(name) {
-  if (!name || typeof name !== "string") {
-    return "#0891b2";
-  }
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) {
-    hash = name.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  const colors = [
-    "#0891b2",
-    // cyan-600
-    "#9333ea",
-    // purple-600
-    "#db2777",
-    // pink-600
-    "#059669",
-    // emerald-600
-    "#2563eb",
-    // blue-600
-    "#f97316",
-    // orange-500
-    "#dc2626",
-    // red-600
-    "#7c3aed"
-    // violet-600
-  ];
-  const index = Math.abs(hash) % colors.length;
-  return colors[index];
-}
-function generateDynamicAvatarUrl(name, size = 200) {
-  const color = getAvatarColorFromName(name);
-  const colorHex = color.replace("#", "");
-  return generateAvatarUrl(name, size, colorHex, "fff");
-}
-function generateUniqueId(text, prefix = "", suffix = "") {
-  const slug = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim().substring(0, 50);
-  const parts = [prefix, slug, suffix].filter(Boolean);
-  return parts.join("-");
-}
-function truncateText(text, maxLength, suffix = "...") {
-  if (!text || text.length <= maxLength) {
-    return text || "";
-  }
-  return text.substring(0, maxLength - suffix.length) + suffix;
-}
-function capitalize(text, options = {}) {
-  if (!text) return "";
-  const { firstWordOnly = false, lowerRest = false } = options;
-  if (firstWordOnly) {
-    return text.charAt(0).toUpperCase() + (lowerRest ? text.slice(1).toLowerCase() : text.slice(1));
-  }
-  if (lowerRest) {
-    return text.replace(/\b\w/g, (char) => char.toUpperCase()).toLowerCase();
-  }
-  return text.replace(/\b\w/g, (char) => char.toUpperCase());
-}
-function cleanText2(text, allowSpaces = true) {
-  if (!text) return "";
-  const pattern = allowSpaces ? /[^\w\s]/g : /[^\w]/g;
-  return text.replace(pattern, "");
-}
-function countWords2(text) {
-  if (!text || !text.trim()) {
-    return 0;
-  }
-  return text.trim().split(/\s+/).length;
-}
-function isEmpty(text) {
-  return !text || !text.trim();
-}
-function normalizeSpaces(text, options = {}) {
-  if (!text) return "";
-  const { newlines = false } = options;
-  let cleaned = text;
-  if (newlines) {
-    cleaned = cleaned.replace(/\s+/g, " ");
-  } else {
-    cleaned = cleaned.replace(/\s+/g, " ");
-  }
-  return cleaned.trim();
-}
-function calculateReadingTime(content, wordsPerMinute = 200) {
-  let text = "";
-  if (typeof content === "object" && content !== null) {
-    const extractText = (node) => {
-      if (!node) return "";
-      let result = "";
-      if (node.text) {
-        result += node.text + " ";
-      }
-      if (Array.isArray(node.content)) {
-        result += node.content.map(extractText).join(" ");
-      }
-      return result;
-    };
-    text = extractText(content);
-  } else if (typeof content === "string") {
-    text = content.replace(/<[^>]*>/g, "");
-  }
-  const words = text.trim().split(/\s+/).filter((word) => word.length > 0).length;
-  const time = Math.ceil(words / wordsPerMinute);
-  return time > 0 ? time : 1;
-}
 var sizeClasses = {
   xs: "h-6 w-6 text-xs",
   sm: "h-8 w-8 text-sm",
@@ -775,7 +194,7 @@ function getColorFromName(name) {
   }
   return colors[Math.abs(hash) % colors.length];
 }
-var Avatar = React64.forwardRef(
+var Avatar = React63.forwardRef(
   ({
     className,
     src,
@@ -791,9 +210,9 @@ var Avatar = React64.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [imageStatus, setImageStatus] = React64.useState("loading");
-    const [showFallback, setShowFallback] = React64.useState(!src);
-    React64.useEffect(() => {
+    const [imageStatus, setImageStatus] = React63.useState("loading");
+    const [showFallback, setShowFallback] = React63.useState(!src);
+    React63.useEffect(() => {
       if (!src) {
         setShowFallback(true);
         setImageStatus("error");
@@ -858,7 +277,7 @@ var Avatar = React64.forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var AvatarImage = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AvatarImage = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "img",
   {
     ref,
@@ -867,7 +286,7 @@ var AvatarImage = React64.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 AvatarImage.displayName = "AvatarImage";
-var AvatarFallback = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AvatarFallback = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -879,9 +298,9 @@ var AvatarFallback = React64.forwardRef(({ className, ...props }, ref) => /* @__
   }
 ));
 AvatarFallback.displayName = "AvatarFallback";
-var Input = React64.forwardRef(
+var Input = React63.forwardRef(
   ({ className, type, error, helperText, label, required, id, ...props }, ref) => {
-    const inputId = id || `input-${React64.useId()}`;
+    const inputId = id || `input-${React63.useId()}`;
     return /* @__PURE__ */ jsxs("div", { className: "space-y-2", children: [
       label && /* @__PURE__ */ jsxs(
         "label",
@@ -940,7 +359,7 @@ var Input = React64.forwardRef(
   }
 );
 Input.displayName = "Input";
-var Textarea = React64.forwardRef(
+var Textarea = React63.forwardRef(
   ({
     className,
     error,
@@ -953,9 +372,9 @@ var Textarea = React64.forwardRef(
     value,
     ...props
   }, ref) => {
-    const inputId = id || `textarea-${React64.useId()}`;
-    const [characterCount, setCharacterCount] = React64.useState(0);
-    React64.useEffect(() => {
+    const inputId = id || `textarea-${React63.useId()}`;
+    const [characterCount, setCharacterCount] = React63.useState(0);
+    React63.useEffect(() => {
       if (typeof value === "string") {
         setCharacterCount(value.length);
       }
@@ -1086,7 +505,7 @@ var buttonVariants = cva(
     }
   }
 );
-var ButtonComponent = React64.forwardRef(
+var ButtonComponent = React63.forwardRef(
   ({
     className,
     variant,
@@ -1101,7 +520,7 @@ var ButtonComponent = React64.forwardRef(
   }, ref) => {
     const isDisabled = disabled || loading;
     if (asChild) {
-      const child = React64.Children.only(children);
+      const child = React63.Children.only(children);
       return /* @__PURE__ */ jsx(
         Slot,
         {
@@ -1156,7 +575,7 @@ var ButtonComponent = React64.forwardRef(
 );
 ButtonComponent.displayName = "Button";
 var Button = ButtonComponent;
-var Slider = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(
+var Slider = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(
   SliderPrimitive.Root,
   {
     ref,
@@ -1190,7 +609,7 @@ var Slider = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ *
   }
 ));
 Slider.displayName = SliderPrimitive.Root.displayName;
-var Switch = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Switch = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SwitchPrimitives.Root,
   {
     className: cn(
@@ -1234,7 +653,7 @@ var toggleVariants = cva(
     }
   }
 );
-var Toggle = React64.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsx(
+var Toggle = React63.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsx(
   TogglePrimitive.Root,
   {
     ref,
@@ -1285,7 +704,7 @@ var iconButtonVariants = cva(
     }
   }
 );
-var IconButton = React64.forwardRef(
+var IconButton = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -1300,8 +719,8 @@ var IconButton = React64.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [showTooltip, setShowTooltip] = React64.useState(false);
-    const [tooltipVisible, setTooltipVisible] = React64.useState(false);
+    const [showTooltip, setShowTooltip] = React63.useState(false);
+    const [tooltipVisible, setTooltipVisible] = React63.useState(false);
     const tooltipClasses = {
       top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
       bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
@@ -1314,7 +733,7 @@ var IconButton = React64.forwardRef(
       left: "left-full top-1/2 -translate-y-1/2 -ml-1 border-t-transparent border-b-transparent border-r-transparent border-l-current",
       right: "right-full top-1/2 -translate-y-1/2 -mr-1 border-t-transparent border-b-transparent border-l-transparent border-r-current"
     };
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (showTooltip) {
         const timer = setTimeout(() => setTooltipVisible(true), 100);
         return () => clearTimeout(timer);
@@ -1427,7 +846,7 @@ var linkButtonVariants = cva(
     }
   }
 );
-var LinkButton = React64.forwardRef(
+var LinkButton = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -1527,7 +946,7 @@ var fabVariants = cva(
     }
   }
 );
-var FAB = React64.forwardRef(
+var FAB = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -1542,12 +961,12 @@ var FAB = React64.forwardRef(
     actions = [],
     ...props
   }, ref) => {
-    const [showActions, setShowActions] = React64.useState(active);
+    const [showActions, setShowActions] = React63.useState(active);
     const isExtended = extended && text;
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       setShowActions(active);
     }, [active]);
-    const handleClick = React64.useCallback(() => {
+    const handleClick = React63.useCallback(() => {
       if (actions.length > 0) {
         setShowActions(!showActions);
       }
@@ -1605,7 +1024,7 @@ var FAB = React64.forwardRef(
   }
 );
 FAB.displayName = "FAB";
-var FABGroup = React64.forwardRef(
+var FABGroup = React63.forwardRef(
   ({
     className,
     main,
@@ -1677,7 +1096,7 @@ var segmentedControlVariants = cva(
     }
   }
 );
-var SegmentedControl = React64.forwardRef(
+var SegmentedControl = React63.forwardRef(
   ({
     className,
     size = "md",
@@ -1690,9 +1109,9 @@ var SegmentedControl = React64.forwardRef(
     disabled = false,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React64.useState(defaultValue || options[0]?.value);
+    const [internalValue, setInternalValue] = React63.useState(defaultValue || options[0]?.value);
     const currentValue = value !== void 0 ? value : internalValue;
-    const handleOptionClick = React64.useCallback((optionValue, isDisabled) => {
+    const handleOptionClick = React63.useCallback((optionValue, isDisabled) => {
       if (isDisabled || disabled) return;
       if (value === void 0) {
         setInternalValue(optionValue);
@@ -1747,7 +1166,7 @@ var SegmentedControl = React64.forwardRef(
   }
 );
 SegmentedControl.displayName = "SegmentedControl";
-var SegmentedControlItem = React64.forwardRef(
+var SegmentedControlItem = React63.forwardRef(
   ({
     className,
     active = false,
@@ -1783,7 +1202,7 @@ var SegmentedControlItem = React64.forwardRef(
   }
 );
 SegmentedControlItem.displayName = "SegmentedControlItem";
-var Card = React64.forwardRef(({ className, variant = "default", ...props }, ref) => /* @__PURE__ */ jsx(
+var Card = React63.forwardRef(({ className, variant = "default", ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1803,7 +1222,7 @@ var Card = React64.forwardRef(({ className, variant = "default", ...props }, ref
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardHeader = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1816,7 +1235,7 @@ var CardHeader = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardTitle = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h3",
   {
     ref,
@@ -1829,7 +1248,7 @@ var CardTitle = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardDescription = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "p",
   {
     ref,
@@ -1842,9 +1261,9 @@ var CardDescription = React64.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardFooter = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1888,7 +1307,7 @@ var badgeVariants = cva(
 function Badge({ className, variant, size, ...props }) {
   return /* @__PURE__ */ jsx("div", { className: cn(badgeVariants({ variant, size }), className), ...props });
 }
-var Progress = React64.forwardRef(({ className, value, color = "default", ...props }, ref) => /* @__PURE__ */ jsx(
+var Progress = React63.forwardRef(({ className, value, color = "default", ...props }, ref) => /* @__PURE__ */ jsx(
   ProgressPrimitive.Root,
   {
     ref,
@@ -1919,7 +1338,7 @@ var Progress = React64.forwardRef(({ className, value, color = "default", ...pro
   }
 ));
 Progress.displayName = ProgressPrimitive.Root.displayName;
-var AccordionItem = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AccordionItem = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AccordionPrimitive2.Item,
   {
     ref,
@@ -1931,7 +1350,7 @@ var AccordionItem = React64.forwardRef(({ className, ...props }, ref) => /* @__P
   }
 ));
 AccordionItem.displayName = "AccordionItem";
-var AccordionTrigger = React64.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(AccordionPrimitive2.Header, { className: "flex", children: /* @__PURE__ */ jsxs(
+var AccordionTrigger = React63.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(AccordionPrimitive2.Header, { className: "flex", children: /* @__PURE__ */ jsxs(
   AccordionPrimitive2.Trigger,
   {
     ref,
@@ -1956,7 +1375,7 @@ var AccordionTrigger = React64.forwardRef(({ className, children, ...props }, re
   }
 ) }));
 AccordionTrigger.displayName = AccordionPrimitive2.Trigger.displayName;
-var AccordionContent = React64.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(
+var AccordionContent = React63.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(
   AccordionPrimitive2.Content,
   {
     ref,
@@ -2002,20 +1421,20 @@ function InlineLoader({
 }
 function useTheme() {
   const { theme, resolvedTheme, setTheme } = useTheme$1();
-  const toggle = React64.useCallback(() => {
+  const toggle = React63.useCallback(() => {
     if (theme === "system") {
       setTheme(resolvedTheme === "dark" ? "light" : "dark");
     } else {
       setTheme(theme === "dark" ? "light" : "dark");
     }
   }, [theme, resolvedTheme, setTheme]);
-  const setLight = React64.useCallback(() => {
+  const setLight = React63.useCallback(() => {
     setTheme("light");
   }, [setTheme]);
-  const setDark = React64.useCallback(() => {
+  const setDark = React63.useCallback(() => {
     setTheme("dark");
   }, [setTheme]);
-  const setSystem = React64.useCallback(() => {
+  const setSystem = React63.useCallback(() => {
     setTheme("system");
   }, [setTheme]);
   return {
@@ -2033,8 +1452,8 @@ function useTheme() {
 }
 function ThemeToggle({ className }) {
   const { toggle, isDark } = useTheme();
-  const [mounted, setMounted] = React64.useState(false);
-  React64.useEffect(() => {
+  const [mounted, setMounted] = React63.useState(false);
+  React63.useEffect(() => {
     setMounted(true);
   }, []);
   const handleToggle = () => {
@@ -2105,7 +1524,7 @@ function ThemeToggle({ className }) {
     }
   );
 }
-var Checkbox = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Checkbox = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   CheckboxPrimitive.Root,
   {
     ref,
@@ -2130,7 +1549,7 @@ Checkbox.displayName = CheckboxPrimitive.Root.displayName;
 var labelVariants = cva(
   "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 dark:text-cyan-200 dark:font-mono"
 );
-var Label = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Label = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   LabelPrimitive.Root,
   {
     ref,
@@ -2139,7 +1558,7 @@ var Label = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */
   }
 ));
 Label.displayName = LabelPrimitive.Root.displayName;
-var RadioGroup = React64.forwardRef(({ className, ...props }, ref) => {
+var RadioGroup = React63.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsx(
     RadioGroupPrimitive.Root,
     {
@@ -2150,7 +1569,7 @@ var RadioGroup = React64.forwardRef(({ className, ...props }, ref) => {
   );
 });
 RadioGroup.displayName = RadioGroupPrimitive.Root.displayName;
-var RadioGroupItem = React64.forwardRef(({ className, ...props }, ref) => {
+var RadioGroupItem = React63.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsx(
     RadioGroupPrimitive.Item,
     {
@@ -2168,7 +1587,7 @@ RadioGroupItem.displayName = RadioGroupPrimitive.Item.displayName;
 var Select = SelectPrimitive.Root;
 var SelectGroup = SelectPrimitive.Group;
 var SelectValue = SelectPrimitive.Value;
-var SelectTrigger = React64.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var SelectTrigger = React63.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   SelectPrimitive.Trigger,
   {
     ref,
@@ -2189,7 +1608,7 @@ var SelectTrigger = React64.forwardRef(({ className, children, ...props }, ref) 
   }
 ));
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
-var SelectScrollUpButton = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var SelectScrollUpButton = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SelectPrimitive.ScrollUpButton,
   {
     ref,
@@ -2199,7 +1618,7 @@ var SelectScrollUpButton = React64.forwardRef(({ className, ...props }, ref) => 
   }
 ));
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
-var SelectScrollDownButton = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var SelectScrollDownButton = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SelectPrimitive.ScrollDownButton,
   {
     ref,
@@ -2209,7 +1628,7 @@ var SelectScrollDownButton = React64.forwardRef(({ className, ...props }, ref) =
   }
 ));
 SelectScrollDownButton.displayName = SelectPrimitive.ScrollDownButton.displayName;
-var SelectContent = React64.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ jsx(SelectPrimitive.Portal, { children: /* @__PURE__ */ jsxs(
+var SelectContent = React63.forwardRef(({ className, children, position = "popper", ...props }, ref) => /* @__PURE__ */ jsx(SelectPrimitive.Portal, { children: /* @__PURE__ */ jsxs(
   SelectPrimitive.Content,
   {
     ref,
@@ -2242,7 +1661,7 @@ var SelectContent = React64.forwardRef(({ className, children, position = "poppe
   }
 ) }));
 SelectContent.displayName = SelectPrimitive.Content.displayName;
-var SelectLabel = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var SelectLabel = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SelectPrimitive.Label,
   {
     ref,
@@ -2251,7 +1670,7 @@ var SelectLabel = React64.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 SelectLabel.displayName = SelectPrimitive.Label.displayName;
-var SelectItem = React64.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var SelectItem = React63.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   SelectPrimitive.Item,
   {
     ref,
@@ -2269,7 +1688,7 @@ var SelectItem = React64.forwardRef(({ className, children, ...props }, ref) => 
   }
 ));
 SelectItem.displayName = SelectPrimitive.Item.displayName;
-var SelectSeparator = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var SelectSeparator = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SelectPrimitive.Separator,
   {
     ref,
@@ -2318,7 +1737,7 @@ function getFileIcon(file) {
     return /* @__PURE__ */ jsx(File, { className: "h-4 w-4" });
   }
 }
-var FileUpload = React64.forwardRef(
+var FileUpload = React63.forwardRef(
   ({
     className,
     files = [],
@@ -2337,9 +1756,9 @@ var FileUpload = React64.forwardRef(
     size = "md",
     ...props
   }, ref) => {
-    const [isDragging, setIsDragging] = React64.useState(false);
-    const inputRef = React64.useRef(null);
-    const processFiles = React64.useCallback((fileList) => {
+    const [isDragging, setIsDragging] = React63.useState(false);
+    const inputRef = React63.useRef(null);
+    const processFiles = React63.useCallback((fileList) => {
       const filesArray = Array.from(fileList);
       if (!multiple && filesArray.length > 1) {
         console.warn("Apenas um arquivo \xE9 permitido");
@@ -2371,7 +1790,7 @@ var FileUpload = React64.forwardRef(
         onFilesAdd?.(newFiles);
       }
     }, [multiple, maxFiles, files.length, maxSize, onFilesAdd]);
-    const handleDrop = React64.useCallback((e) => {
+    const handleDrop = React63.useCallback((e) => {
       e.preventDefault();
       setIsDragging(false);
       if (disabled || loading) return;
@@ -2380,32 +1799,32 @@ var FileUpload = React64.forwardRef(
         processFiles(files2);
       }
     }, [disabled, loading, processFiles]);
-    const handleDragOver = React64.useCallback((e) => {
+    const handleDragOver = React63.useCallback((e) => {
       e.preventDefault();
       if (!disabled && !loading) {
         setIsDragging(true);
       }
     }, [disabled, loading]);
-    const handleDragLeave = React64.useCallback((e) => {
+    const handleDragLeave = React63.useCallback((e) => {
       e.preventDefault();
       setIsDragging(false);
     }, []);
-    const handleFileSelect = React64.useCallback((e) => {
+    const handleFileSelect = React63.useCallback((e) => {
       const files2 = e.target.files;
       if (files2 && files2.length > 0) {
         processFiles(files2);
       }
       e.target.value = "";
     }, [processFiles]);
-    const handleClick = React64.useCallback(() => {
+    const handleClick = React63.useCallback(() => {
       if (!disabled && !loading) {
         inputRef.current?.click();
       }
     }, [disabled, loading]);
-    const handleRemoveFile = React64.useCallback((id) => {
+    const handleRemoveFile = React63.useCallback((id) => {
       onFileRemove?.(id);
     }, [onFileRemove]);
-    const handleClear = React64.useCallback(() => {
+    const handleClear = React63.useCallback(() => {
       onClear?.();
     }, [onClear]);
     return /* @__PURE__ */ jsxs("div", { ref, className: cn("space-y-4", className), ...props, children: [
@@ -2534,7 +1953,7 @@ var datePickerVariants = cva(
     }
   }
 );
-function formatDate3(date, format) {
+function formatDate(date, format) {
   if (!date) return "";
   const day = date.getDate().toString().padStart(2, "0");
   const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -2548,16 +1967,16 @@ function formatDate3(date, format) {
 }
 function formatDateRange(range) {
   if (!range.from) return "";
-  if (!range.to) return formatDate3(range.from);
-  return `${formatDate3(range.from)} - ${formatDate3(range.to)}`;
+  if (!range.to) return formatDate(range.from);
+  return `${formatDate(range.from)} - ${formatDate(range.to)}`;
 }
 function formatMultipleDates(dates) {
   if (dates.length === 0) return "";
-  if (dates.length === 1) return formatDate3(dates[0]);
-  if (dates.length === 2) return `${formatDate3(dates[0])} e ${formatDate3(dates[1])}`;
-  return `${formatDate3(dates[0])} (+${dates.length - 1})`;
+  if (dates.length === 1) return formatDate(dates[0]);
+  if (dates.length === 2) return `${formatDate(dates[0])} e ${formatDate(dates[1])}`;
+  return `${formatDate(dates[0])} (+${dates.length - 1})`;
 }
-var DatePicker = React64.forwardRef(
+var DatePicker = React63.forwardRef(
   ({
     className,
     size = "md",
@@ -2577,12 +1996,12 @@ var DatePicker = React64.forwardRef(
     disabled = false,
     ...props
   }, _ref) => {
-    const [isOpen, setIsOpen] = React64.useState(false);
-    const [selectedDates, setSelectedDates] = React64.useState([]);
-    const [inputValue, setInputValue] = React64.useState("");
-    const containerRef = React64.useRef(null);
-    const buttonRef = React64.useRef(null);
-    React64.useEffect(() => {
+    const [isOpen, setIsOpen] = React63.useState(false);
+    const [selectedDates, setSelectedDates] = React63.useState([]);
+    const [inputValue, setInputValue] = React63.useState("");
+    const containerRef = React63.useRef(null);
+    const buttonRef = React63.useRef(null);
+    React63.useEffect(() => {
       if (!value) {
         setInputValue("");
         setSelectedDates([]);
@@ -2599,19 +2018,19 @@ var DatePicker = React64.forwardRef(
         setInputValue(formatMultipleDates(value));
       } else if (value instanceof Date) {
         setSelectedDates([value]);
-        setInputValue(formatDate3(value, format));
+        setInputValue(formatDate(value, format));
       }
     }, [value, range, multiple, format]);
-    const handleSingleSelect = React64.useCallback((day) => {
+    const handleSingleSelect = React63.useCallback((day) => {
       onChange?.(day);
     }, [onChange]);
-    const handleMultipleSelect = React64.useCallback((dates) => {
+    const handleMultipleSelect = React63.useCallback((dates) => {
       onChange?.(dates);
     }, [onChange]);
-    const handleRangeSelect = React64.useCallback((range2) => {
+    const handleRangeSelect = React63.useCallback((range2) => {
       onChange?.(range2);
     }, [onChange]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -2766,7 +2185,7 @@ function timeToString(time, use12Hours = false, showSeconds = false) {
   const secondsStr = showSeconds ? `:${padNumber(seconds)}` : "";
   return `${timeStr}${secondsStr}${use12Hours ? ` ${period}` : ""}`;
 }
-var TimePicker = React64.forwardRef(
+var TimePicker = React63.forwardRef(
   ({
     className,
     size = "md",
@@ -2783,13 +2202,13 @@ var TimePicker = React64.forwardRef(
     // maxTime, // TODO: implementar validação de tempo máximo
     ...props
   }, ref) => {
-    const [isOpen, setIsOpen] = React64.useState(false);
-    const [hours, setHours] = React64.useState(value?.hours || 0);
-    const [minutes, setMinutes] = React64.useState(value?.minutes || 0);
-    const [seconds, setSeconds] = React64.useState(value?.seconds || 0);
-    const [period, setPeriod] = React64.useState(value?.period || "AM");
-    const containerRef = React64.useRef(null);
-    React64.useEffect(() => {
+    const [isOpen, setIsOpen] = React63.useState(false);
+    const [hours, setHours] = React63.useState(value?.hours || 0);
+    const [minutes, setMinutes] = React63.useState(value?.minutes || 0);
+    const [seconds, setSeconds] = React63.useState(value?.seconds || 0);
+    const [period, setPeriod] = React63.useState(value?.period || "AM");
+    const containerRef = React63.useRef(null);
+    React63.useEffect(() => {
       if (value) {
         setHours(value.hours);
         setMinutes(value.minutes);
@@ -2799,7 +2218,7 @@ var TimePicker = React64.forwardRef(
         }
       }
     }, [value, use12Hours]);
-    const handleHoursChange = React64.useCallback((newHours) => {
+    const handleHoursChange = React63.useCallback((newHours) => {
       if (newHours < 0) newHours = 0;
       if (newHours > 23) newHours = 23;
       setHours(newHours);
@@ -2811,7 +2230,7 @@ var TimePicker = React64.forwardRef(
       };
       onChange?.(newTime);
     }, [minutes, seconds, period, use12Hours, showSeconds, onChange]);
-    const handleMinutesChange = React64.useCallback((newMinutes) => {
+    const handleMinutesChange = React63.useCallback((newMinutes) => {
       if (newMinutes < 0) newMinutes = 0;
       if (newMinutes > 59) newMinutes = 59;
       newMinutes = Math.round(newMinutes / minuteStep) * minuteStep;
@@ -2824,7 +2243,7 @@ var TimePicker = React64.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, seconds, period, use12Hours, showSeconds, minuteStep, onChange]);
-    const handleSecondsChange = React64.useCallback((newSeconds) => {
+    const handleSecondsChange = React63.useCallback((newSeconds) => {
       if (!showSeconds) return;
       if (newSeconds < 0) newSeconds = 0;
       if (newSeconds > 59) newSeconds = 59;
@@ -2838,7 +2257,7 @@ var TimePicker = React64.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, minutes, period, use12Hours, secondStep, onChange]);
-    const handlePeriodChange = React64.useCallback((newPeriod) => {
+    const handlePeriodChange = React63.useCallback((newPeriod) => {
       setPeriod(newPeriod);
       let newHours = hours;
       if (newPeriod === "AM" && hours === 12) {
@@ -2855,7 +2274,7 @@ var TimePicker = React64.forwardRef(
       };
       onChange?.(newTime);
     }, [hours, minutes, seconds, showSeconds, onChange]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -3010,7 +2429,7 @@ var rangeSliderVariants = cva(
     }
   }
 );
-var RangeSlider = React64.forwardRef(
+var RangeSlider = React63.forwardRef(
   ({
     className,
     size = "md",
@@ -3030,11 +2449,11 @@ var RangeSlider = React64.forwardRef(
     color = "primary",
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React64.useState(defaultValue);
-    const [isDragging, setIsDragging] = React64.useState(null);
-    const sliderRef = React64.useRef(null);
-    const minThumbRef = React64.useRef(null);
-    const maxThumbRef = React64.useRef(null);
+    const [internalValue, setInternalValue] = React63.useState(defaultValue);
+    const [isDragging, setIsDragging] = React63.useState(null);
+    const sliderRef = React63.useRef(null);
+    const minThumbRef = React63.useRef(null);
+    const maxThumbRef = React63.useRef(null);
     const currentValue = value || internalValue;
     const valueToPercent = (val) => {
       return (val - min) / (max - min) * 100;
@@ -3051,7 +2470,7 @@ var RangeSlider = React64.forwardRef(
       const percent = position / rect.width * 100;
       return Math.max(0, Math.min(100, percent));
     };
-    const updateValue = React64.useCallback((type, percent) => {
+    const updateValue = React63.useCallback((type, percent) => {
       const newValue = percentToValue(percent);
       const updated = { ...currentValue };
       if (type === "min") {
@@ -3061,26 +2480,26 @@ var RangeSlider = React64.forwardRef(
       }
       setValue(updated);
     }, [step]);
-    const setValue = React64.useCallback((newValue) => {
+    const setValue = React63.useCallback((newValue) => {
       setInternalValue(newValue);
       onChange?.(newValue);
     }, [onChange]);
-    const handleMouseDown = React64.useCallback((type) => {
+    const handleMouseDown = React63.useCallback((type) => {
       if (disabled) return;
       setIsDragging(type);
     }, [disabled]);
-    const handleMouseMove = React64.useCallback((event) => {
+    const handleMouseMove = React63.useCallback((event) => {
       if (!isDragging || disabled) return;
       const percent = getPosition(event);
       updateValue(isDragging, percent);
     }, [isDragging, disabled, updateValue]);
-    const handleMouseUp = React64.useCallback(() => {
+    const handleMouseUp = React63.useCallback(() => {
       if (isDragging) {
         onChangeEnd?.(currentValue);
         setIsDragging(null);
       }
     }, [isDragging, currentValue, onChangeEnd]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (isDragging) {
         document.addEventListener("mousemove", handleMouseMove);
         document.addEventListener("mouseup", handleMouseUp);
@@ -3216,7 +2635,7 @@ var searchInputVariants = cva(
     }
   }
 );
-var SearchInput = React64.forwardRef(
+var SearchInput = React63.forwardRef(
   ({
     className,
     size = "md",
@@ -3237,15 +2656,15 @@ var SearchInput = React64.forwardRef(
     disabled
     // props, // Props adicionais não utilizados
   }, ref) => {
-    const [internalValue, setInternalValue] = React64.useState(value);
-    const [isOpen, setIsOpen] = React64.useState(false);
-    const [selectedIndex, setSelectedIndex] = React64.useState(-1);
-    const [filteredSuggestions, setFilteredSuggestions] = React64.useState([]);
-    const inputRef = React64.useRef(null);
-    const containerRef = React64.useRef(null);
-    const debounceRef = React64.useRef(null);
+    const [internalValue, setInternalValue] = React63.useState(value);
+    const [isOpen, setIsOpen] = React63.useState(false);
+    const [selectedIndex, setSelectedIndex] = React63.useState(-1);
+    const [filteredSuggestions, setFilteredSuggestions] = React63.useState([]);
+    const inputRef = React63.useRef(null);
+    const containerRef = React63.useRef(null);
+    const debounceRef = React63.useRef(null);
     const currentValue = value !== void 0 ? value : internalValue;
-    const setValue = React64.useCallback((newValue) => {
+    const setValue = React63.useCallback((newValue) => {
       setInternalValue(newValue);
       if (debounceRef.current) {
         clearTimeout(debounceRef.current);
@@ -3254,7 +2673,7 @@ var SearchInput = React64.forwardRef(
         onChange?.(newValue);
       }, debounceTime);
     }, [onChange, debounceTime]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       let next;
       if (!currentValue.trim()) {
         const historySuggestions = history.slice(0, 5).map((item, index) => ({
@@ -3274,7 +2693,7 @@ var SearchInput = React64.forwardRef(
         setFilteredSuggestions(next);
       }
     }, [currentValue, suggestions, history, maxSuggestions, filteredSuggestions]);
-    const handleKeyDown = React64.useCallback((event) => {
+    const handleKeyDown = React63.useCallback((event) => {
       switch (event.key) {
         case "Enter":
           event.preventDefault();
@@ -3308,19 +2727,19 @@ var SearchInput = React64.forwardRef(
           break;
       }
     }, [selectedIndex, filteredSuggestions, currentValue, setValue, onSubmit]);
-    const handleFocus = React64.useCallback(() => {
+    const handleFocus = React63.useCallback(() => {
       setIsOpen(true);
     }, []);
-    const handleBlur = React64.useCallback((event) => {
+    const handleBlur = React63.useCallback((event) => {
       if (!event.relatedTarget?.closest(".search-suggestion")) {
         setTimeout(() => setIsOpen(false), 150);
       }
     }, []);
-    const handleClear = React64.useCallback(() => {
+    const handleClear = React63.useCallback(() => {
       setValue("");
       inputRef.current?.focus();
     }, [setValue]);
-    const handleSuggestionClick = React64.useCallback((suggestion) => {
+    const handleSuggestionClick = React63.useCallback((suggestion) => {
       if (suggestion.action) {
         suggestion.action();
       } else {
@@ -3329,7 +2748,7 @@ var SearchInput = React64.forwardRef(
       }
       setIsOpen(false);
     }, [setValue, onSubmit]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           setIsOpen(false);
@@ -3488,7 +2907,7 @@ function applyMask(value, mask) {
 function removeMask(value) {
   return value.replace(/\D/g, "");
 }
-var PhoneInput = React64.forwardRef(
+var PhoneInput = React63.forwardRef(
   ({
     className,
     size = "md",
@@ -3505,19 +2924,19 @@ var PhoneInput = React64.forwardRef(
     numbersOnly = true,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React64.useState(value);
-    const [selectedCountry, setSelectedCountry] = React64.useState(
+    const [internalValue, setInternalValue] = React63.useState(value);
+    const [selectedCountry, setSelectedCountry] = React63.useState(
       countries.find((c) => c.code === country) || countries[0]
     );
-    const [isDropdownOpen, setIsDropdownOpen] = React64.useState(false);
-    const inputRef = React64.useRef(null);
-    const dropdownRef = React64.useRef(null);
+    const [isDropdownOpen, setIsDropdownOpen] = React63.useState(false);
+    const inputRef = React63.useRef(null);
+    const dropdownRef = React63.useRef(null);
     const currentValue = value !== void 0 ? value : internalValue;
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       const newCountry = countries.find((c) => c.code === country) || countries[0];
       setSelectedCountry(newCountry);
     }, [country, countries]);
-    const handleInputChange = React64.useCallback((event) => {
+    const handleInputChange = React63.useCallback((event) => {
       let inputValue = event.target.value;
       if (numbersOnly) {
         inputValue = removeMask(inputValue);
@@ -3527,7 +2946,7 @@ var PhoneInput = React64.forwardRef(
       const finalValue = includeDDI ? `${selectedCountry.ddi} ${removeMask(maskedValue)}` : removeMask(maskedValue);
       onChange?.(finalValue, selectedCountry);
     }, [selectedCountry, numbersOnly, includeDDI, onChange]);
-    const handleCountrySelect = React64.useCallback((country2) => {
+    const handleCountrySelect = React63.useCallback((country2) => {
       setSelectedCountry(country2);
       setIsDropdownOpen(false);
       onCountryChange?.(country2);
@@ -3536,7 +2955,7 @@ var PhoneInput = React64.forwardRef(
         onChange?.("", country2);
       }
     }, [selectedCountry, onCountryChange, onChange]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       const handleClickOutside = (event) => {
         if (dropdownRef.current && !dropdownRef.current.contains(event.target) && !inputRef.current?.contains(event.target)) {
           setIsDropdownOpen(false);
@@ -3644,7 +3063,7 @@ function PageHeader({ title, description, children }) {
   );
 }
 var AspectRatio = AspectRatioPrimitive.Root;
-var Breadcrumb = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Breadcrumb = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "ol",
   {
     ref,
@@ -3656,7 +3075,7 @@ var Breadcrumb = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 Breadcrumb.displayName = "Breadcrumb";
-var BreadcrumbList = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var BreadcrumbList = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "ol",
   {
     ref,
@@ -3665,7 +3084,7 @@ var BreadcrumbList = React64.forwardRef(({ className, ...props }, ref) => /* @__
   }
 ));
 BreadcrumbList.displayName = "BreadcrumbList";
-var BreadcrumbItem = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var BreadcrumbItem = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "li",
   {
     ref,
@@ -3674,7 +3093,7 @@ var BreadcrumbItem = React64.forwardRef(({ className, ...props }, ref) => /* @__
   }
 ));
 BreadcrumbItem.displayName = "BreadcrumbItem";
-var BreadcrumbLink = React64.forwardRef(({ className, isCurrentPage, ...props }, ref) => /* @__PURE__ */ jsx(
+var BreadcrumbLink = React63.forwardRef(({ className, isCurrentPage, ...props }, ref) => /* @__PURE__ */ jsx(
   "a",
   {
     ref,
@@ -3703,7 +3122,7 @@ var BreadcrumbSeparator = ({
   }
 );
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
-var BreadcrumbPage = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var BreadcrumbPage = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "span",
   {
     ref,
@@ -3715,7 +3134,7 @@ var BreadcrumbPage = React64.forwardRef(({ className, ...props }, ref) => /* @__
   }
 ));
 BreadcrumbPage.displayName = "BreadcrumbPage";
-var ScrollArea = React64.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var ScrollArea = React63.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   ScrollAreaPrimitive.Root,
   {
     ref,
@@ -3729,7 +3148,7 @@ var ScrollArea = React64.forwardRef(({ className, children, ...props }, ref) => 
   }
 ));
 ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
-var ScrollBar = React64.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsx(
+var ScrollBar = React63.forwardRef(({ className, orientation = "vertical", ...props }, ref) => /* @__PURE__ */ jsx(
   ScrollAreaPrimitive.ScrollAreaScrollbar,
   {
     ref,
@@ -3745,7 +3164,7 @@ var ScrollBar = React64.forwardRef(({ className, orientation = "vertical", ...pr
   }
 ));
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
-var Separator2 = React64.forwardRef(
+var Separator2 = React63.forwardRef(
   ({ className, orientation = "horizontal", decorative = true, ...props }, ref) => /* @__PURE__ */ jsx(
     SeparatorPrimitive.Root,
     {
@@ -3781,7 +3200,7 @@ function SheetPortal({
 }) {
   return /* @__PURE__ */ jsx(Portal, { "data-slot": "sheet-portal", ...props });
 }
-var SheetOverlay = React64.forwardRef(({ className, ...props }, ref) => {
+var SheetOverlay = React63.forwardRef(({ className, ...props }, ref) => {
   return /* @__PURE__ */ jsx(
     Overlay,
     {
@@ -3880,7 +3299,7 @@ function SheetDescription({
     }
   );
 }
-var Table = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsx(
+var Table = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: "relative w-full overflow-auto", children: /* @__PURE__ */ jsx(
   "table",
   {
     ref,
@@ -3889,9 +3308,9 @@ var Table = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */
   }
 ) }));
 Table.displayName = "Table";
-var TableHeader = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
+var TableHeader = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("thead", { ref, className: cn("[&_tr]:border-b", className), ...props }));
 TableHeader.displayName = "TableHeader";
-var TableBody = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableBody = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "tbody",
   {
     ref,
@@ -3900,7 +3319,7 @@ var TableBody = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 TableBody.displayName = "TableBody";
-var TableFooter = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableFooter = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "tfoot",
   {
     ref,
@@ -3912,7 +3331,7 @@ var TableFooter = React64.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 TableFooter.displayName = "TableFooter";
-var TableRow = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableRow = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "tr",
   {
     ref,
@@ -3924,7 +3343,7 @@ var TableRow = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__
   }
 ));
 TableRow.displayName = "TableRow";
-var TableHead = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableHead = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "th",
   {
     ref,
@@ -3936,7 +3355,7 @@ var TableHead = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 TableHead.displayName = "TableHead";
-var TableCell = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableCell = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "td",
   {
     ref,
@@ -3945,7 +3364,7 @@ var TableCell = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 TableCell.displayName = "TableCell";
-var TableCaption = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TableCaption = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "caption",
   {
     ref,
@@ -3993,7 +3412,7 @@ var containerVariants = cva(
     }
   }
 );
-var Container = React64.forwardRef(
+var Container = React63.forwardRef(
   ({
     className,
     size = "7xl",
@@ -4019,7 +3438,7 @@ var Container = React64.forwardRef(
   }
 );
 Container.displayName = "Container";
-var ContainerFluid = React64.forwardRef(
+var ContainerFluid = React63.forwardRef(
   ({
     className,
     padding = "md",
@@ -4053,7 +3472,7 @@ var spacingClasses = {
   xl: "py-20",
   "2xl": "py-24"
 };
-var ContainerSection = React64.forwardRef(
+var ContainerSection = React63.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -4219,7 +3638,7 @@ var gridVariants = cva(
     }
   }
 );
-var Grid = React64.forwardRef(
+var Grid = React63.forwardRef(
   ({
     className,
     cols,
@@ -4239,7 +3658,7 @@ var Grid = React64.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React64.useMemo(() => {
+    const gridStyle = React63.useMemo(() => {
       const customStyle = { ...style };
       if (templateCols) {
         customStyle.gridTemplateColumns = templateCols;
@@ -4281,7 +3700,7 @@ var Grid = React64.forwardRef(
   }
 );
 Grid.displayName = "Grid";
-var GridItem = React64.forwardRef(
+var GridItem = React63.forwardRef(
   ({
     className,
     colStart,
@@ -4292,7 +3711,7 @@ var GridItem = React64.forwardRef(
     style,
     ...props
   }, ref) => {
-    const gridStyle = React64.useMemo(() => {
+    const gridStyle = React63.useMemo(() => {
       const customStyle = { ...style };
       if (colStart !== void 0) {
         customStyle.gridColumnStart = colStart;
@@ -4395,7 +3814,7 @@ var flexVariants = cva(
     }
   }
 );
-var Flex = React64.forwardRef(
+var Flex = React63.forwardRef(
   ({
     className,
     direction = "row",
@@ -4433,7 +3852,7 @@ var Flex = React64.forwardRef(
   }
 );
 Flex.displayName = "Flex";
-var FlexCenter = React64.forwardRef(
+var FlexCenter = React63.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -4447,7 +3866,7 @@ var FlexCenter = React64.forwardRef(
   }
 );
 FlexCenter.displayName = "FlexCenter";
-var FlexBetween = React64.forwardRef(
+var FlexBetween = React63.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -4460,7 +3879,7 @@ var FlexBetween = React64.forwardRef(
   }
 );
 FlexBetween.displayName = "FlexBetween";
-var FlexStart = React64.forwardRef(
+var FlexStart = React63.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -4474,7 +3893,7 @@ var FlexStart = React64.forwardRef(
   }
 );
 FlexStart.displayName = "FlexStart";
-var FlexEnd = React64.forwardRef(
+var FlexEnd = React63.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -4488,7 +3907,7 @@ var FlexEnd = React64.forwardRef(
   }
 );
 FlexEnd.displayName = "FlexEnd";
-var FlexColumn = React64.forwardRef(
+var FlexColumn = React63.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -4501,7 +3920,7 @@ var FlexColumn = React64.forwardRef(
   }
 );
 FlexColumn.displayName = "FlexColumn";
-var FlexRow = React64.forwardRef(
+var FlexRow = React63.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Flex,
@@ -4547,7 +3966,7 @@ var spacerVariants = cva(
     }
   }
 );
-var Spacer = React64.forwardRef(
+var Spacer = React63.forwardRef(
   ({
     className,
     size = "md",
@@ -4560,7 +3979,7 @@ var Spacer = React64.forwardRef(
     style,
     ...props
   }, ref) => {
-    const spacerStyle = React64.useMemo(() => {
+    const spacerStyle = React63.useMemo(() => {
       const customStyle = { ...style };
       if (width !== void 0) {
         customStyle.width = typeof width === "number" ? `${width}px` : width;
@@ -4594,7 +4013,7 @@ var Spacer = React64.forwardRef(
   }
 );
 Spacer.displayName = "Spacer";
-var VerticalSpacer = React64.forwardRef(
+var VerticalSpacer = React63.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Spacer,
@@ -4607,7 +4026,7 @@ var VerticalSpacer = React64.forwardRef(
   }
 );
 VerticalSpacer.displayName = "VerticalSpacer";
-var HorizontalSpacer = React64.forwardRef(
+var HorizontalSpacer = React63.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Spacer,
@@ -4651,7 +4070,7 @@ var dividerVariants = cva(
     }
   }
 );
-var Divider = React64.forwardRef(
+var Divider = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -4725,7 +4144,7 @@ var spacingClasses2 = {
   lg: "my-8",
   xl: "my-12"
 };
-var SectionDivider = React64.forwardRef(
+var SectionDivider = React63.forwardRef(
   ({
     className,
     spacing = "lg",
@@ -4741,7 +4160,7 @@ var textColorClasses = {
   primary: "text-primary",
   secondary: "text-secondary-foreground"
 };
-var TextDivider = React64.forwardRef(
+var TextDivider = React63.forwardRef(
   ({
     className,
     children,
@@ -4808,7 +4227,7 @@ var panelVariants = cva(
     }
   }
 );
-var Panel = React64.forwardRef(
+var Panel = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -4839,7 +4258,7 @@ var Panel = React64.forwardRef(
   }
 );
 Panel.displayName = "Panel";
-var PanelHeader = React64.forwardRef(
+var PanelHeader = React63.forwardRef(
   ({
     className,
     divider = false,
@@ -4862,7 +4281,7 @@ var PanelHeader = React64.forwardRef(
   }
 );
 PanelHeader.displayName = "PanelHeader";
-var PanelTitle = React64.forwardRef(
+var PanelTitle = React63.forwardRef(
   ({
     className,
     children,
@@ -4880,7 +4299,7 @@ var PanelTitle = React64.forwardRef(
   }
 );
 PanelTitle.displayName = "PanelTitle";
-var PanelDescription = React64.forwardRef(
+var PanelDescription = React63.forwardRef(
   ({
     className,
     children,
@@ -4898,7 +4317,7 @@ var PanelDescription = React64.forwardRef(
   }
 );
 PanelDescription.displayName = "PanelDescription";
-var PanelContent = React64.forwardRef(
+var PanelContent = React63.forwardRef(
   ({
     className,
     children,
@@ -4916,7 +4335,7 @@ var PanelContent = React64.forwardRef(
   }
 );
 PanelContent.displayName = "PanelContent";
-var PanelFooter = React64.forwardRef(
+var PanelFooter = React63.forwardRef(
   ({
     className,
     divider = false,
@@ -4945,7 +4364,7 @@ var spacingClasses3 = {
   lg: "gap-8",
   xl: "gap-10"
 };
-var PanelGroup = React64.forwardRef(
+var PanelGroup = React63.forwardRef(
   ({
     className,
     spacing = "md",
@@ -4981,7 +4400,7 @@ var alertVariants = cva(
     }
   }
 );
-var Alert = React64.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsx(
+var Alert = React63.forwardRef(({ className, variant, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -4991,7 +4410,7 @@ var Alert = React64.forwardRef(({ className, variant, ...props }, ref) => /* @__
   }
 ));
 Alert.displayName = "Alert";
-var AlertTitle = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertTitle = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h5",
   {
     ref,
@@ -5000,7 +4419,7 @@ var AlertTitle = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 AlertTitle.displayName = "AlertTitle";
-var AlertDescription = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDescription = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -5012,7 +4431,7 @@ AlertDescription.displayName = "AlertDescription";
 var AlertDialog = AlertDialogPrimitive.Root;
 var AlertDialogTrigger = AlertDialogPrimitive.Trigger;
 var AlertDialogPortal = AlertDialogPrimitive.Portal;
-var AlertDialogOverlay = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogOverlay = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Overlay,
   {
     className: cn(
@@ -5024,7 +4443,7 @@ var AlertDialogOverlay = React64.forwardRef(({ className, ...props }, ref) => /*
   }
 ));
 AlertDialogOverlay.displayName = AlertDialogPrimitive.Overlay.displayName;
-var AlertDialogContent = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(AlertDialogPortal, { children: [
+var AlertDialogContent = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(AlertDialogPortal, { children: [
   /* @__PURE__ */ jsx(AlertDialogOverlay, {}),
   /* @__PURE__ */ jsx(
     AlertDialogPrimitive.Content,
@@ -5067,7 +4486,7 @@ var AlertDialogFooter = ({
   }
 );
 AlertDialogFooter.displayName = "AlertDialogFooter";
-var AlertDialogTitle = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogTitle = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Title,
   {
     ref,
@@ -5076,7 +4495,7 @@ var AlertDialogTitle = React64.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 AlertDialogTitle.displayName = AlertDialogPrimitive.Title.displayName;
-var AlertDialogDescription = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogDescription = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Description,
   {
     ref,
@@ -5085,7 +4504,7 @@ var AlertDialogDescription = React64.forwardRef(({ className, ...props }, ref) =
   }
 ));
 AlertDialogDescription.displayName = AlertDialogPrimitive.Description.displayName;
-var AlertDialogAction = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogAction = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Action,
   {
     ref,
@@ -5094,7 +4513,7 @@ var AlertDialogAction = React64.forwardRef(({ className, ...props }, ref) => /* 
   }
 ));
 AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
-var AlertDialogCancel = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AlertDialogCancel = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AlertDialogPrimitive.Cancel,
   {
     ref,
@@ -5117,20 +4536,20 @@ function Skeleton({ className, ...props }) {
     }
   );
 }
-var Toaster = React64.forwardRef((props, ref) => {
+var Toaster = React63.forwardRef((props, ref) => {
   const { theme = "system" } = useTheme$1();
-  return React64.createElement(
+  return React63.createElement(
     Toaster$1,
     {
       ref,
       theme,
       className: "toaster group",
       icons: {
-        success: React64.createElement(Check, { className: "h-4 w-4" }),
-        info: React64.createElement(Info, { className: "h-4 w-4" }),
-        warning: React64.createElement(AlertTriangle, { className: "h-4 w-4" }),
-        error: React64.createElement(Octagon, { className: "h-4 w-4" }),
-        loading: React64.createElement(Loader2, { className: "h-4 w-4 animate-spin" })
+        success: React63.createElement(Check, { className: "h-4 w-4" }),
+        info: React63.createElement(Info, { className: "h-4 w-4" }),
+        warning: React63.createElement(AlertTriangle, { className: "h-4 w-4" }),
+        error: React63.createElement(Octagon, { className: "h-4 w-4" }),
+        loading: React63.createElement(Loader2, { className: "h-4 w-4 animate-spin" })
       },
       toastOptions: {
         classNames: {
@@ -5187,7 +4606,7 @@ var speedClasses = {
   normal: "animate-spin",
   fast: "animate-spin-fast"
 };
-var Spinner = React64.forwardRef(
+var Spinner = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -5240,7 +4659,7 @@ var Spinner = React64.forwardRef(
   }
 );
 Spinner.displayName = "Spinner";
-var SpinnerOverlay = React64.forwardRef(
+var SpinnerOverlay = React63.forwardRef(
   ({
     className,
     fullscreen = false,
@@ -5271,7 +4690,7 @@ var dotSizeClasses = {
   md: "h-2 w-2",
   lg: "h-3 w-3"
 };
-var DotsSpinner = React64.forwardRef(
+var DotsSpinner = React63.forwardRef(
   ({
     className,
     count = 3,
@@ -5318,7 +4737,7 @@ var pulseSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var PulseSpinner = React64.forwardRef(
+var PulseSpinner = React63.forwardRef(
   ({
     className,
     rings = 3,
@@ -5403,7 +4822,7 @@ function formatValue(value, format, currency, decimals = 0) {
       return formatted;
   }
 }
-var KPI = React64.forwardRef(
+var KPI = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -5478,7 +4897,7 @@ var gridColsClasses = {
   3: "grid-cols-1 md:grid-cols-2 lg:grid-cols-3",
   4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
 };
-var KPIGrid = React64.forwardRef(
+var KPIGrid = React63.forwardRef(
   ({
     className,
     cols = 4,
@@ -5501,7 +4920,7 @@ var KPIGrid = React64.forwardRef(
   }
 );
 KPIGrid.displayName = "KPIGrid";
-var KPIChart = React64.forwardRef(
+var KPIChart = React63.forwardRef(
   ({
     className,
     chart,
@@ -5569,7 +4988,7 @@ var iconSizeClasses = {
   lg: "h-16 w-16",
   xl: "h-20 w-20"
 };
-var EmptyState = React64.forwardRef(
+var EmptyState = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -5626,7 +5045,7 @@ var EmptyState = React64.forwardRef(
   }
 );
 EmptyState.displayName = "EmptyState";
-var EmptyStateIllustrated = React64.forwardRef(
+var EmptyStateIllustrated = React63.forwardRef(
   ({
     className,
     illustration,
@@ -5744,7 +5163,7 @@ var notificationVariants = cva(
     }
   }
 );
-var Notification = React64.forwardRef(
+var Notification = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -5760,8 +5179,8 @@ var Notification = React64.forwardRef(
     toast = false,
     ...props
   }, ref) => {
-    const [visible, setVisible] = React64.useState(true);
-    React64.useEffect(() => {
+    const [visible, setVisible] = React63.useState(true);
+    React63.useEffect(() => {
       if (autoClose && onDismiss) {
         const timer = setTimeout(() => {
           handleClose();
@@ -5836,7 +5255,7 @@ var spacingClasses4 = {
   md: "gap-3",
   lg: "gap-4"
 };
-var NotificationGroup = React64.forwardRef(
+var NotificationGroup = React63.forwardRef(
   ({
     className,
     children,
@@ -5862,7 +5281,7 @@ var NotificationGroup = React64.forwardRef(
   }
 );
 NotificationGroup.displayName = "NotificationGroup";
-var NotificationToast = React64.forwardRef(
+var NotificationToast = React63.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Notification,
@@ -5876,8 +5295,8 @@ var NotificationToast = React64.forwardRef(
 );
 NotificationToast.displayName = "NotificationToast";
 function useNotification() {
-  const [notifications, setNotifications] = React64.useState(/* @__PURE__ */ new Map());
-  const notify = React64.useCallback((options) => {
+  const [notifications, setNotifications] = React63.useState(/* @__PURE__ */ new Map());
+  const notify = React63.useCallback((options) => {
     const id = options.id || Math.random().toString(36).substr(2, 9);
     setNotifications((prev) => new Map(prev).set(id, options));
     if (options.autoClose !== false) {
@@ -5888,14 +5307,14 @@ function useNotification() {
     }
     return id;
   }, []);
-  const dismiss = React64.useCallback((id) => {
+  const dismiss = React63.useCallback((id) => {
     setNotifications((prev) => {
       const next = new Map(prev);
       next.delete(id);
       return next;
     });
   }, []);
-  const clear = React64.useCallback(() => {
+  const clear = React63.useCallback(() => {
     setNotifications(/* @__PURE__ */ new Map());
   }, []);
   return {
@@ -5973,7 +5392,7 @@ function BackToTop() {
   return /* @__PURE__ */ jsx(BackToTopButton, {});
 }
 var Accordion2 = AccordionPrimitive2.Root;
-var AccordionItem2 = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AccordionItem2 = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AccordionPrimitive2.Item,
   {
     ref,
@@ -5982,7 +5401,7 @@ var AccordionItem2 = React64.forwardRef(({ className, ...props }, ref) => /* @__
   }
 ));
 AccordionItem2.displayName = "AccordionItem";
-var AccordionTrigger2 = React64.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(AccordionPrimitive2.Header, { className: "flex", children: /* @__PURE__ */ jsxs(
+var AccordionTrigger2 = React63.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(AccordionPrimitive2.Header, { className: "flex", children: /* @__PURE__ */ jsxs(
   AccordionPrimitive2.Trigger,
   {
     ref,
@@ -6003,7 +5422,7 @@ var AccordionTrigger2 = React64.forwardRef(({ className, children, ...props }, r
   }
 ) }));
 AccordionTrigger2.displayName = AccordionPrimitive2.Trigger.displayName;
-var AccordionContent2 = React64.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(
+var AccordionContent2 = React63.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(
   AccordionPrimitive2.Content,
   {
     ref,
@@ -6020,7 +5439,7 @@ var Dialog = Root$1;
 var DialogTrigger = Trigger$1;
 var DialogPortal = Portal;
 var DialogClose = Close;
-var DialogOverlay = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DialogOverlay = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Overlay,
   {
     ref,
@@ -6033,7 +5452,7 @@ var DialogOverlay = React64.forwardRef(({ className, ...props }, ref) => /* @__P
   }
 ));
 DialogOverlay.displayName = Overlay.displayName;
-var DialogContent = React64.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(DialogPortal, { children: [
+var DialogContent = React63.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(DialogPortal, { children: [
   /* @__PURE__ */ jsx(DialogOverlay, {}),
   /* @__PURE__ */ jsxs(
     Content,
@@ -6087,7 +5506,7 @@ var DialogFooter = ({
   }
 );
 DialogFooter.displayName = "DialogFooter";
-var DialogTitle = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DialogTitle = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Title,
   {
     ref,
@@ -6099,7 +5518,7 @@ var DialogTitle = React64.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 DialogTitle.displayName = Title.displayName;
-var DialogDescription = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DialogDescription = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Description,
   {
     ref,
@@ -6111,7 +5530,7 @@ var DialogDescription = React64.forwardRef(({ className, ...props }, ref) => /* 
   }
 ));
 DialogDescription.displayName = Description.displayName;
-var Command = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Command = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Command$1,
   {
     ref,
@@ -6132,7 +5551,7 @@ var CommandDialog = ({
     /* @__PURE__ */ jsx(Command, { className: "[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-muted-foreground [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[data-cmdk-input-wrapper]_svg]:h-5 [&_[data-cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5", children })
   ] }) });
 };
-var CommandInput = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs("div", { className: "flex items-center border-b px-3", "data-cmdk-input-wrapper": "", children: [
+var CommandInput = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs("div", { className: "flex items-center border-b px-3", "data-cmdk-input-wrapper": "", children: [
   /* @__PURE__ */ jsx(Search$1, { className: "mr-2 h-4 w-4 shrink-0 opacity-50" }),
   /* @__PURE__ */ jsx(
     Command$1.Input,
@@ -6147,7 +5566,7 @@ var CommandInput = React64.forwardRef(({ className, ...props }, ref) => /* @__PU
   )
 ] }));
 CommandInput.displayName = Command$1.Input.displayName;
-var CommandList = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CommandList = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Command$1.List,
   {
     ref,
@@ -6156,7 +5575,7 @@ var CommandList = React64.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 CommandList.displayName = Command$1.List.displayName;
-var CommandEmpty = React64.forwardRef((props, ref) => /* @__PURE__ */ jsx(
+var CommandEmpty = React63.forwardRef((props, ref) => /* @__PURE__ */ jsx(
   Command$1.Empty,
   {
     ref,
@@ -6165,7 +5584,7 @@ var CommandEmpty = React64.forwardRef((props, ref) => /* @__PURE__ */ jsx(
   }
 ));
 CommandEmpty.displayName = Command$1.Empty.displayName;
-var CommandGroup = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CommandGroup = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Command$1.Group,
   {
     ref,
@@ -6177,7 +5596,7 @@ var CommandGroup = React64.forwardRef(({ className, ...props }, ref) => /* @__PU
   }
 ));
 CommandGroup.displayName = Command$1.Group.displayName;
-var CommandSeparator = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CommandSeparator = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Command$1.Separator,
   {
     ref,
@@ -6186,7 +5605,7 @@ var CommandSeparator = React64.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 CommandSeparator.displayName = Command$1.Separator.displayName;
-var CommandItem = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CommandItem = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Command$1.Item,
   {
     ref,
@@ -6214,7 +5633,7 @@ var CommandShortcut = ({
   );
 };
 CommandShortcut.displayName = "CommandShortcut";
-var NavigationMenu = React64.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var NavigationMenu = React63.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   NavigationMenuPrimitive.Root,
   {
     ref,
@@ -6231,7 +5650,7 @@ var NavigationMenu = React64.forwardRef(({ className, children, ...props }, ref)
   }
 ));
 NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName;
-var NavigationMenuList = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var NavigationMenuList = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   NavigationMenuPrimitive.List,
   {
     ref,
@@ -6251,7 +5670,7 @@ var navigationMenuTriggerStyle = cva(
     "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[state=open]:text-accent-foreground data-[state=open]:bg-accent/50 data-[state=open]:hover:bg-accent data-[state=open]:focus:bg-accent"
   )
 );
-var NavigationMenuTrigger = React64.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var NavigationMenuTrigger = React63.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   NavigationMenuPrimitive.Trigger,
   {
     ref,
@@ -6274,7 +5693,7 @@ var NavigationMenuTrigger = React64.forwardRef(({ className, children, ...props 
   }
 ));
 NavigationMenuTrigger.displayName = NavigationMenuPrimitive.Trigger.displayName;
-var NavigationMenuContent = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var NavigationMenuContent = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   NavigationMenuPrimitive.Content,
   {
     ref,
@@ -6287,7 +5706,7 @@ var NavigationMenuContent = React64.forwardRef(({ className, ...props }, ref) =>
 ));
 NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName;
 var NavigationMenuLink = NavigationMenuPrimitive.Link;
-var NavigationMenuViewport = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: cn("absolute left-0 top-full flex justify-center"), children: /* @__PURE__ */ jsx(
+var NavigationMenuViewport = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { className: cn("absolute left-0 top-full flex justify-center"), children: /* @__PURE__ */ jsx(
   NavigationMenuPrimitive.Viewport,
   {
     className: cn(
@@ -6299,7 +5718,7 @@ var NavigationMenuViewport = React64.forwardRef(({ className, ...props }, ref) =
   }
 ) }));
 NavigationMenuViewport.displayName = NavigationMenuPrimitive.Viewport.displayName;
-var NavigationMenuIndicator = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var NavigationMenuIndicator = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   NavigationMenuPrimitive.Indicator,
   {
     ref,
@@ -6314,7 +5733,7 @@ var NavigationMenuIndicator = React64.forwardRef(({ className, ...props }, ref) 
 ));
 NavigationMenuIndicator.displayName = NavigationMenuPrimitive.Indicator.displayName;
 var Tabs = TabsPrimitive.Root;
-var TabsList = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TabsList = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   TabsPrimitive.List,
   {
     ref,
@@ -6326,7 +5745,7 @@ var TabsList = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__
   }
 ));
 TabsList.displayName = TabsPrimitive.List.displayName;
-var TabsTrigger = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TabsTrigger = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   TabsPrimitive.Trigger,
   {
     ref,
@@ -6342,7 +5761,7 @@ var TabsTrigger = React64.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 TabsTrigger.displayName = TabsPrimitive.Trigger.displayName;
-var TabsContent = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var TabsContent = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   TabsPrimitive.Content,
   {
     ref,
@@ -6376,7 +5795,7 @@ var menuVariants = cva(
     }
   }
 );
-var Menu = React64.forwardRef(
+var Menu = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -6389,17 +5808,17 @@ var Menu = React64.forwardRef(
     closeOnClick = true,
     ...props
   }, ref) => {
-    const [internalOpen, setInternalOpen] = React64.useState(false);
-    const [openSubmenus, setOpenSubmenus] = React64.useState(/* @__PURE__ */ new Set());
+    const [internalOpen, setInternalOpen] = React63.useState(false);
+    const [openSubmenus, setOpenSubmenus] = React63.useState(/* @__PURE__ */ new Set());
     const isOpen = controlledOpen !== void 0 ? controlledOpen : internalOpen;
-    const containerRef = React64.useRef(null);
-    const handleOpenChange = React64.useCallback((newOpen) => {
+    const containerRef = React63.useRef(null);
+    const handleOpenChange = React63.useCallback((newOpen) => {
       if (controlledOpen === void 0) {
         setInternalOpen(newOpen);
       }
       onOpenChange?.(newOpen);
     }, [controlledOpen, onOpenChange]);
-    const toggleSubmenu = React64.useCallback((itemId) => {
+    const toggleSubmenu = React63.useCallback((itemId) => {
       setOpenSubmenus((prev) => {
         const next = new Set(prev);
         if (next.has(itemId)) {
@@ -6410,7 +5829,7 @@ var Menu = React64.forwardRef(
         return next;
       });
     }, []);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       const handleClickOutside = (event) => {
         if (containerRef.current && !containerRef.current.contains(event.target)) {
           handleOpenChange(false);
@@ -6550,7 +5969,7 @@ var Menu = React64.forwardRef(
   }
 );
 Menu.displayName = "Menu";
-var MenuBar = React64.forwardRef(
+var MenuBar = React63.forwardRef(
   ({
     className,
     menus,
@@ -6581,17 +6000,17 @@ var MenuBar = React64.forwardRef(
   }
 );
 MenuBar.displayName = "MenuBar";
-var NavigationContextMenu = React64.forwardRef(
+var NavigationContextMenu = React63.forwardRef(
   ({
     className,
     children,
     items,
     ...props
   }, ref) => {
-    const [open, setOpen] = React64.useState(false);
-    const [position, setPosition] = React64.useState({ x: 0, y: 0 });
-    const containerRef = React64.useRef(null);
-    const handleContextMenu = React64.useCallback((event) => {
+    const [open, setOpen] = React63.useState(false);
+    const [position, setPosition] = React63.useState({ x: 0, y: 0 });
+    const containerRef = React63.useRef(null);
+    const handleContextMenu = React63.useCallback((event) => {
       event.preventDefault();
       setPosition({ x: event.clientX, y: event.clientY });
       setOpen(true);
@@ -6702,7 +6121,7 @@ function generateRange(page, totalPages, siblingCount) {
   }
   return range;
 }
-var Pagination = React64.forwardRef(
+var Pagination = React63.forwardRef(
   ({
     className,
     size = "md",
@@ -6719,31 +6138,31 @@ var Pagination = React64.forwardRef(
     siblingCount = 1,
     ...props
   }, ref) => {
-    const pages = React64.useMemo(() => {
+    const pages = React63.useMemo(() => {
       if (totalPages <= 7) {
         return Array.from({ length: totalPages }, (_, i) => i + 1);
       }
       return generateRange(page, totalPages, siblingCount);
     }, [page, totalPages, siblingCount]);
-    const handlePrevious = React64.useCallback(() => {
+    const handlePrevious = React63.useCallback(() => {
       if (page > 1) {
         onPrevious?.();
         onChange?.(page - 1);
       }
     }, [page, onChange, onPrevious]);
-    const handleNext = React64.useCallback(() => {
+    const handleNext = React63.useCallback(() => {
       if (page < totalPages) {
         onNext?.();
         onChange?.(page + 1);
       }
     }, [page, totalPages, onChange, onNext]);
-    const handlePageClick = React64.useCallback((page2) => {
+    const handlePageClick = React63.useCallback((page2) => {
       onChange?.(page2);
     }, [onChange]);
-    const handleFirst = React64.useCallback(() => {
+    const handleFirst = React63.useCallback(() => {
       onChange?.(1);
     }, [onChange]);
-    const handleLast = React64.useCallback(() => {
+    const handleLast = React63.useCallback(() => {
       onChange?.(totalPages);
     }, [onChange, totalPages]);
     const sizeClasses2 = {
@@ -6855,7 +6274,7 @@ var Pagination = React64.forwardRef(
   }
 );
 Pagination.displayName = "Pagination";
-var PaginationInfo = React64.forwardRef(
+var PaginationInfo = React63.forwardRef(
   ({
     className,
     page,
@@ -6891,7 +6310,7 @@ var PaginationInfo = React64.forwardRef(
   }
 );
 PaginationInfo.displayName = "PaginationInfo";
-var PaginationCompact = React64.forwardRef(
+var PaginationCompact = React63.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Pagination,
@@ -6947,7 +6366,7 @@ var stepVariants = cva(
     }
   }
 );
-var Steps = React64.forwardRef(
+var Steps = React63.forwardRef(
   ({
     className,
     orientation = "horizontal",
@@ -6959,7 +6378,7 @@ var Steps = React64.forwardRef(
     showConnector = true,
     ...props
   }, ref) => {
-    const stepsWithStatus = React64.useMemo(() => {
+    const stepsWithStatus = React63.useMemo(() => {
       return steps.map((step, index) => {
         let status = "pending";
         if (index < current) {
@@ -7107,7 +6526,7 @@ var Steps = React64.forwardRef(
   }
 );
 Steps.displayName = "Steps";
-var StepItem = React64.forwardRef(
+var StepItem = React63.forwardRef(
   ({
     className,
     number,
@@ -7192,7 +6611,7 @@ var sidebarVariants = cva(
     }
   }
 );
-var Sidebar = React64.forwardRef(
+var Sidebar = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -7210,25 +6629,25 @@ var Sidebar = React64.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [internalCollapsed, setInternalCollapsed] = React64.useState(collapsed);
-    const [internalOpen, setInternalOpen] = React64.useState(open);
+    const [internalCollapsed, setInternalCollapsed] = React63.useState(collapsed);
+    const [internalOpen, setInternalOpen] = React63.useState(open);
     const isCollapsed = onCollapse ? collapsed : internalCollapsed;
     const isOpen = overlay ? onOpenChange ? open : internalOpen : true;
-    const handleCollapse = React64.useCallback(() => {
+    const handleCollapse = React63.useCallback(() => {
       if (onCollapse) {
         onCollapse(!isCollapsed);
       } else {
         setInternalCollapsed(!isCollapsed);
       }
     }, [isCollapsed, onCollapse]);
-    const handleOpenChange = React64.useCallback((newOpen) => {
+    const handleOpenChange = React63.useCallback((newOpen) => {
       if (onOpenChange) {
         onOpenChange(newOpen);
       } else {
         setInternalOpen(newOpen);
       }
     }, [onOpenChange]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (overlay && isOpen) {
         const handleClickOutside = (event) => {
           const target = event.target;
@@ -7379,14 +6798,14 @@ var Sidebar = React64.forwardRef(
   }
 );
 Sidebar.displayName = "Sidebar";
-var SidebarTrigger = React64.forwardRef(
+var SidebarTrigger = React63.forwardRef(
   ({
     className,
     children,
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React64.useCallback((event) => {
+    const handleClick = React63.useCallback((event) => {
       onClick?.(event);
       window.dispatchEvent(new CustomEvent("sidebar:toggle"));
     }, [onClick]);
@@ -7433,7 +6852,7 @@ var topBarVariants = cva(
     }
   }
 );
-var TopBar = React64.forwardRef(
+var TopBar = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -7568,7 +6987,7 @@ var TopBar = React64.forwardRef(
   }
 );
 TopBar.displayName = "TopBar";
-var TopBarTitle = React64.forwardRef(
+var TopBarTitle = React63.forwardRef(
   ({
     className,
     title,
@@ -7590,7 +7009,7 @@ var TopBarTitle = React64.forwardRef(
   }
 );
 TopBarTitle.displayName = "TopBarTitle";
-var TopBarActions = React64.forwardRef(
+var TopBarActions = React63.forwardRef(
   ({
     className,
     children,
@@ -7816,7 +7235,7 @@ function QuickStatsComponent({
     }
   );
 }
-var QuickStats = React64__default.memo(QuickStatsComponent);
+var QuickStats = React63__default.memo(QuickStatsComponent);
 QuickStats.displayName = "QuickStats";
 var STAGGER_DELAY_SECONDS = 0.1;
 function QuickActions({
@@ -7994,7 +7413,7 @@ function RecentPostsList({
     )) }) })
   ] });
 }
-var Card2 = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Card2 = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -8006,7 +7425,7 @@ var Card2 = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */
   }
 ));
 Card2.displayName = "Card";
-var CardHeader2 = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardHeader2 = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -8015,7 +7434,7 @@ var CardHeader2 = React64.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 CardHeader2.displayName = "CardHeader";
-var CardTitle2 = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardTitle2 = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h3",
   {
     ref,
@@ -8027,7 +7446,7 @@ var CardTitle2 = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 CardTitle2.displayName = "CardTitle";
-var CardDescription2 = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardDescription2 = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "p",
   {
     ref,
@@ -8036,9 +7455,9 @@ var CardDescription2 = React64.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 CardDescription2.displayName = "CardDescription";
-var CardContent2 = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent2 = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent2.displayName = "CardContent";
-var CardFooter2 = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardFooter2 = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -8047,7 +7466,7 @@ var CardFooter2 = React64.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 CardFooter2.displayName = "CardFooter";
-var HighlightCard = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var HighlightCard = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -8131,7 +7550,7 @@ var ContextMenuGroup = Group;
 var ContextMenuPortal = Portal$1;
 var ContextMenuSub = Sub;
 var ContextMenuRadioGroup = RadioGroup$1;
-var ContextMenuSubTrigger = React64.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var ContextMenuSubTrigger = React63.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   SubTrigger,
   {
     ref,
@@ -8150,7 +7569,7 @@ var ContextMenuSubTrigger = React64.forwardRef(({ className, inset, children, ..
   }
 ));
 ContextMenuSubTrigger.displayName = SubTrigger.displayName;
-var ContextMenuSubContent = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var ContextMenuSubContent = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SubContent,
   {
     ref,
@@ -8163,7 +7582,7 @@ var ContextMenuSubContent = React64.forwardRef(({ className, ...props }, ref) =>
   }
 ));
 ContextMenuSubContent.displayName = SubContent.displayName;
-var ContextMenuContent = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(Portal$1, { children: /* @__PURE__ */ jsx(
+var ContextMenuContent = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(Portal$1, { children: /* @__PURE__ */ jsx(
   Content$1,
   {
     ref,
@@ -8179,7 +7598,7 @@ var ContextMenuContent = React64.forwardRef(({ className, ...props }, ref) => /*
   }
 ) }));
 ContextMenuContent.displayName = Content$1.displayName;
-var ContextMenuItem = React64.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
+var ContextMenuItem = React63.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
   Item,
   {
     ref,
@@ -8197,7 +7616,7 @@ var ContextMenuItem = React64.forwardRef(({ className, inset, ...props }, ref) =
   }
 ));
 ContextMenuItem.displayName = Item.displayName;
-var ContextMenuCheckboxItem = React64.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxs(
+var ContextMenuCheckboxItem = React63.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxs(
   CheckboxItem,
   {
     ref,
@@ -8214,7 +7633,7 @@ var ContextMenuCheckboxItem = React64.forwardRef(({ className, children, checked
   }
 ));
 ContextMenuCheckboxItem.displayName = CheckboxItem.displayName;
-var ContextMenuRadioItem = React64.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var ContextMenuRadioItem = React63.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   RadioItem,
   {
     ref,
@@ -8230,7 +7649,7 @@ var ContextMenuRadioItem = React64.forwardRef(({ className, children, ...props }
   }
 ));
 ContextMenuRadioItem.displayName = RadioItem.displayName;
-var ContextMenuLabel = React64.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
+var ContextMenuLabel = React63.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
   Label$1,
   {
     ref,
@@ -8243,7 +7662,7 @@ var ContextMenuLabel = React64.forwardRef(({ className, inset, ...props }, ref) 
   }
 ));
 ContextMenuLabel.displayName = Label$1.displayName;
-var ContextMenuSeparator = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var ContextMenuSeparator = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Separator,
   {
     ref,
@@ -8274,7 +7693,7 @@ var DropdownMenuGroup = Group$1;
 var DropdownMenuPortal = Portal$2;
 var DropdownMenuSub = Sub$1;
 var DropdownMenuRadioGroup = RadioGroup$2;
-var DropdownMenuSubTrigger = React64.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var DropdownMenuSubTrigger = React63.forwardRef(({ className, inset, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   SubTrigger$1,
   {
     ref,
@@ -8292,7 +7711,7 @@ var DropdownMenuSubTrigger = React64.forwardRef(({ className, inset, children, .
   }
 ));
 DropdownMenuSubTrigger.displayName = SubTrigger$1.displayName;
-var DropdownMenuSubContent = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DropdownMenuSubContent = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SubContent$1,
   {
     ref,
@@ -8309,7 +7728,7 @@ var DropdownMenuSubContent = React64.forwardRef(({ className, ...props }, ref) =
   }
 ));
 DropdownMenuSubContent.displayName = SubContent$1.displayName;
-var DropdownMenuContent = React64.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsx(Portal$2, { children: /* @__PURE__ */ jsx(
+var DropdownMenuContent = React63.forwardRef(({ className, sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsx(Portal$2, { children: /* @__PURE__ */ jsx(
   Content$2,
   {
     ref,
@@ -8327,7 +7746,7 @@ var DropdownMenuContent = React64.forwardRef(({ className, sideOffset = 4, ...pr
   }
 ) }));
 DropdownMenuContent.displayName = Content$2.displayName;
-var DropdownMenuItem = React64.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
+var DropdownMenuItem = React63.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
   Item$1,
   {
     ref,
@@ -8342,7 +7761,7 @@ var DropdownMenuItem = React64.forwardRef(({ className, inset, ...props }, ref) 
   }
 ));
 DropdownMenuItem.displayName = Item$1.displayName;
-var DropdownMenuCheckboxItem = React64.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxs(
+var DropdownMenuCheckboxItem = React63.forwardRef(({ className, children, checked, ...props }, ref) => /* @__PURE__ */ jsxs(
   CheckboxItem$1,
   {
     ref,
@@ -8361,7 +7780,7 @@ var DropdownMenuCheckboxItem = React64.forwardRef(({ className, children, checke
   }
 ));
 DropdownMenuCheckboxItem.displayName = CheckboxItem$1.displayName;
-var DropdownMenuRadioItem = React64.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
+var DropdownMenuRadioItem = React63.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsxs(
   RadioItem$1,
   {
     ref,
@@ -8379,7 +7798,7 @@ var DropdownMenuRadioItem = React64.forwardRef(({ className, children, ...props 
   }
 ));
 DropdownMenuRadioItem.displayName = RadioItem$1.displayName;
-var DropdownMenuLabel = React64.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
+var DropdownMenuLabel = React63.forwardRef(({ className, inset, ...props }, ref) => /* @__PURE__ */ jsx(
   Label$2,
   {
     ref,
@@ -8392,7 +7811,7 @@ var DropdownMenuLabel = React64.forwardRef(({ className, inset, ...props }, ref)
   }
 ));
 DropdownMenuLabel.displayName = Label$2.displayName;
-var DropdownMenuSeparator = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var DropdownMenuSeparator = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   Separator$1,
   {
     ref,
@@ -8416,7 +7835,7 @@ var DropdownMenuShortcut = ({
 DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
 var HoverCard = Root$3;
 var HoverCardTrigger = Trigger$3;
-var HoverCardContent = React64.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsx(
+var HoverCardContent = React63.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsx(
   Content$3,
   {
     ref,
@@ -8432,7 +7851,7 @@ var HoverCardContent = React64.forwardRef(({ className, align = "center", sideOf
 HoverCardContent.displayName = Content$3.displayName;
 var Popover = Root$4;
 var PopoverTrigger = Trigger$4;
-var PopoverContent = React64.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsx(Portal$3, { children: /* @__PURE__ */ jsx(
+var PopoverContent = React63.forwardRef(({ className, align = "center", sideOffset = 4, ...props }, ref) => /* @__PURE__ */ jsx(Portal$3, { children: /* @__PURE__ */ jsx(
   Content$4,
   {
     ref,
@@ -8529,7 +7948,7 @@ var modalVariants = cva(
     }
   }
 );
-var Modal = React64.forwardRef(
+var Modal = React63.forwardRef(
   ({
     className,
     size = "md",
@@ -8547,8 +7966,8 @@ var Modal = React64.forwardRef(
     children,
     ...props
   }, ref) => {
-    const modalRef = React64.useRef(null);
-    const setModalRef = React64.useCallback((node) => {
+    const modalRef = React63.useRef(null);
+    const setModalRef = React63.useCallback((node) => {
       modalRef.current = node;
       if (typeof ref === "function") {
         ref(node);
@@ -8556,7 +7975,7 @@ var Modal = React64.forwardRef(
         ref.current = node;
       }
     }, [ref]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -8564,7 +7983,7 @@ var Modal = React64.forwardRef(
         };
       }
     }, [open, preventBodyScroll]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -8574,12 +7993,12 @@ var Modal = React64.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (open && modalRef.current) {
         modalRef.current.focus();
       }
     }, [open]);
-    const handleBackdropClick = React64.useCallback((event) => {
+    const handleBackdropClick = React63.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop) {
         onOpenChange(false);
       }
@@ -8636,7 +8055,7 @@ var Modal = React64.forwardRef(
   }
 );
 Modal.displayName = "Modal";
-var ModalHeader = React64.forwardRef(
+var ModalHeader = React63.forwardRef(
   ({
     className,
     title,
@@ -8662,7 +8081,7 @@ var ModalHeader = React64.forwardRef(
   }
 );
 ModalHeader.displayName = "ModalHeader";
-var ModalContent = React64.forwardRef(
+var ModalContent = React63.forwardRef(
   ({
     className,
     children,
@@ -8680,7 +8099,7 @@ var ModalContent = React64.forwardRef(
   }
 );
 ModalContent.displayName = "ModalContent";
-var ModalFooter = React64.forwardRef(
+var ModalFooter = React63.forwardRef(
   ({
     className,
     children,
@@ -8701,7 +8120,7 @@ var ModalFooter = React64.forwardRef(
   }
 );
 ModalFooter.displayName = "ModalFooter";
-var ModalTrigger = React64.forwardRef(
+var ModalTrigger = React63.forwardRef(
   ({
     className,
     children,
@@ -8709,7 +8128,7 @@ var ModalTrigger = React64.forwardRef(
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React64.useCallback((event) => {
+    const handleClick = React63.useCallback((event) => {
       onClick?.(event);
       onOpen?.();
     }, [onClick, onOpen]);
@@ -8756,7 +8175,7 @@ var drawerVariants = cva(
     }
   }
 );
-var Drawer = React64.forwardRef(
+var Drawer = React63.forwardRef(
   ({
     className,
     position = "right",
@@ -8775,8 +8194,8 @@ var Drawer = React64.forwardRef(
     children,
     ...props
   }, ref) => {
-    const drawerRef = React64.useRef(null);
-    const setDrawerRef = React64.useCallback((node) => {
+    const drawerRef = React63.useRef(null);
+    const setDrawerRef = React63.useCallback((node) => {
       drawerRef.current = node;
       if (typeof ref === "function") {
         ref(node);
@@ -8784,7 +8203,7 @@ var Drawer = React64.forwardRef(
         ref.current = node;
       }
     }, [ref]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (open && preventBodyScroll) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -8792,7 +8211,7 @@ var Drawer = React64.forwardRef(
         };
       }
     }, [open, preventBodyScroll]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -8802,12 +8221,12 @@ var Drawer = React64.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (open && drawerRef.current) {
         drawerRef.current.focus();
       }
     }, [open]);
-    const handleBackdropClick = React64.useCallback((event) => {
+    const handleBackdropClick = React63.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop) {
         onOpenChange(false);
       }
@@ -8878,7 +8297,7 @@ var Drawer = React64.forwardRef(
   }
 );
 Drawer.displayName = "Drawer";
-var DrawerHeader = React64.forwardRef(
+var DrawerHeader = React63.forwardRef(
   ({
     className,
     title,
@@ -8904,7 +8323,7 @@ var DrawerHeader = React64.forwardRef(
   }
 );
 DrawerHeader.displayName = "DrawerHeader";
-var DrawerContent = React64.forwardRef(
+var DrawerContent = React63.forwardRef(
   ({
     className,
     children,
@@ -8922,7 +8341,7 @@ var DrawerContent = React64.forwardRef(
   }
 );
 DrawerContent.displayName = "DrawerContent";
-var DrawerFooter = React64.forwardRef(
+var DrawerFooter = React63.forwardRef(
   ({
     className,
     children,
@@ -8943,7 +8362,7 @@ var DrawerFooter = React64.forwardRef(
   }
 );
 DrawerFooter.displayName = "DrawerFooter";
-var DrawerTrigger = React64.forwardRef(
+var DrawerTrigger = React63.forwardRef(
   ({
     className,
     children,
@@ -8951,7 +8370,7 @@ var DrawerTrigger = React64.forwardRef(
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React64.useCallback((event) => {
+    const handleClick = React63.useCallback((event) => {
       onClick?.(event);
       onOpen?.();
     }, [onClick, onOpen]);
@@ -8996,7 +8415,7 @@ var lightboxVariants = cva(
     }
   }
 );
-var Lightbox = React64.forwardRef(
+var Lightbox = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -9022,21 +8441,21 @@ var Lightbox = React64.forwardRef(
     mediaContainerClassName,
     ...props
   }, ref) => {
-    const [zoom, setZoom] = React64.useState(ZOOM_CONFIG.DEFAULT);
-    const [rotation, setRotation] = React64.useState(0);
-    const [isPlaying, setIsPlaying] = React64.useState(autoPlayVideos);
-    const [isFullscreen, setIsFullscreen] = React64.useState(false);
-    const [touchStart, setTouchStart] = React64.useState(null);
-    const [isDragging, setIsDragging] = React64.useState(false);
-    const [dragOffset, setDragOffset] = React64.useState({ x: 0, y: 0 });
-    const videoRef = React64.useRef(null);
-    const containerRef = React64.useRef(null);
-    const mediaRef = React64.useRef(null);
+    const [zoom, setZoom] = React63.useState(ZOOM_CONFIG.DEFAULT);
+    const [rotation, setRotation] = React63.useState(0);
+    const [isPlaying, setIsPlaying] = React63.useState(autoPlayVideos);
+    const [isFullscreen, setIsFullscreen] = React63.useState(false);
+    const [touchStart, setTouchStart] = React63.useState(null);
+    const [isDragging, setIsDragging] = React63.useState(false);
+    const [dragOffset, setDragOffset] = React63.useState({ x: 0, y: 0 });
+    const videoRef = React63.useRef(null);
+    const containerRef = React63.useRef(null);
+    const mediaRef = React63.useRef(null);
     const currentItem = items[index];
     const hasMultipleItems = items.length > 1;
     const isImage = currentItem?.type === "image";
     const isVideo = currentItem?.type === "video";
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (open) {
         document.body.style.overflow = "hidden";
         return () => {
@@ -9044,7 +8463,7 @@ var Lightbox = React64.forwardRef(
         };
       }
     }, [open]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (!open) return;
       const handleKeyDown = (event) => {
         switch (event.key) {
@@ -9100,20 +8519,20 @@ var Lightbox = React64.forwardRef(
       document.addEventListener("keydown", handleKeyDown);
       return () => document.removeEventListener("keydown", handleKeyDown);
     }, [open, index, zoom, isVideo, allowZoom, allowRotation]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (isVideo && autoPlayVideos && videoRef.current && open) {
         videoRef.current.play().catch(console.error);
         setIsPlaying(true);
       }
     }, [index, isVideo, autoPlayVideos, open]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (!autoPlayInterval || !hasMultipleItems || !open) return;
       const interval = setInterval(() => {
         handleNext();
       }, autoPlayInterval);
       return () => clearInterval(interval);
     }, [autoPlayInterval, hasMultipleItems, open, index]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       setZoom(ZOOM_CONFIG.DEFAULT);
       setRotation(0);
       setDragOffset({ x: 0, y: 0 });
@@ -9122,35 +8541,35 @@ var Lightbox = React64.forwardRef(
         setIsPlaying(autoPlayVideos);
       }
     }, [index, isVideo, autoPlayVideos]);
-    const handlePrevious = React64.useCallback(() => {
+    const handlePrevious = React63.useCallback(() => {
       if (index > 0) {
         onIndexChange(index - 1);
       } else if (hasMultipleItems) {
         onIndexChange(items.length - 1);
       }
     }, [index, items.length, onIndexChange, hasMultipleItems]);
-    const handleNext = React64.useCallback(() => {
+    const handleNext = React63.useCallback(() => {
       if (index < items.length - 1) {
         onIndexChange(index + 1);
       } else if (hasMultipleItems) {
         onIndexChange(0);
       }
     }, [index, items.length, onIndexChange, hasMultipleItems]);
-    const handleZoomIn = React64.useCallback(() => {
+    const handleZoomIn = React63.useCallback(() => {
       setZoom((prev) => Math.min(prev + ZOOM_CONFIG.STEP, ZOOM_CONFIG.MAX));
     }, []);
-    const handleZoomOut = React64.useCallback(() => {
+    const handleZoomOut = React63.useCallback(() => {
       setZoom((prev) => Math.max(prev - ZOOM_CONFIG.STEP, ZOOM_CONFIG.MIN));
     }, []);
-    const handleResetZoom = React64.useCallback(() => {
+    const handleResetZoom = React63.useCallback(() => {
       setZoom(ZOOM_CONFIG.DEFAULT);
       setRotation(0);
       setDragOffset({ x: 0, y: 0 });
     }, []);
-    const handleRotate = React64.useCallback(() => {
+    const handleRotate = React63.useCallback(() => {
       setRotation((prev) => (prev + 90) % 360);
     }, []);
-    const handlePlayPause = React64.useCallback(() => {
+    const handlePlayPause = React63.useCallback(() => {
       if (videoRef.current) {
         if (isPlaying) {
           videoRef.current.pause();
@@ -9160,7 +8579,7 @@ var Lightbox = React64.forwardRef(
         setIsPlaying(!isPlaying);
       }
     }, [isPlaying]);
-    const handleToggleFullscreen = React64.useCallback(() => {
+    const handleToggleFullscreen = React63.useCallback(() => {
       if (!containerRef.current) return;
       if (!document.fullscreenElement) {
         containerRef.current.requestFullscreen().then(() => {
@@ -9172,14 +8591,14 @@ var Lightbox = React64.forwardRef(
         });
       }
     }, []);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       const handleFullscreenChange = () => {
         setIsFullscreen(!!document.fullscreenElement);
       };
       document.addEventListener("fullscreenchange", handleFullscreenChange);
       return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
     }, []);
-    const handleDownload = React64.useCallback(() => {
+    const handleDownload = React63.useCallback(() => {
       if (currentItem?.downloadUrl || currentItem?.url) {
         const link = document.createElement("a");
         link.href = currentItem.downloadUrl || currentItem.url;
@@ -9190,7 +8609,7 @@ var Lightbox = React64.forwardRef(
         document.body.removeChild(link);
       }
     }, [currentItem]);
-    const handleTouchStart = React64.useCallback((e) => {
+    const handleTouchStart = React63.useCallback((e) => {
       if (!enableGestures || !isImage || zoom <= ZOOM_CONFIG.DEFAULT) return;
       setTouchStart({
         x: e.touches[0].clientX,
@@ -9198,7 +8617,7 @@ var Lightbox = React64.forwardRef(
       });
       setIsDragging(true);
     }, [enableGestures, isImage, zoom]);
-    const handleTouchMove = React64.useCallback((e) => {
+    const handleTouchMove = React63.useCallback((e) => {
       if (!touchStart || !isDragging || !isImage || zoom <= ZOOM_CONFIG.DEFAULT) return;
       const deltaX = e.touches[0].clientX - touchStart.x;
       const deltaY = e.touches[0].clientY - touchStart.y;
@@ -9207,7 +8626,7 @@ var Lightbox = React64.forwardRef(
         y: deltaY
       });
     }, [touchStart, isDragging, isImage, zoom]);
-    const handleTouchEnd = React64.useCallback(() => {
+    const handleTouchEnd = React63.useCallback(() => {
       if (!enableGestures || !isImage) return;
       if (!isDragging && touchStart && zoom <= ZOOM_CONFIG.DEFAULT) {
         const swipeThreshold = 50;
@@ -9223,7 +8642,7 @@ var Lightbox = React64.forwardRef(
       setTouchStart(null);
       setIsDragging(false);
     }, [enableGestures, isImage, zoom, dragOffset, handlePrevious, handleNext, isDragging, touchStart]);
-    const handleDoubleClick = React64.useCallback(() => {
+    const handleDoubleClick = React63.useCallback(() => {
       if (allowZoom && isImage) {
         if (zoom > ZOOM_CONFIG.DEFAULT) {
           handleResetZoom();
@@ -9520,7 +8939,7 @@ var confirmDialogVariants = cva(
     }
   }
 );
-var ConfirmDialog = React64.forwardRef(
+var ConfirmDialog = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -9541,9 +8960,9 @@ var ConfirmDialog = React64.forwardRef(
     confirmVariant = "default"
     // props, // Props adicionais não utilizados
   }, ref) => {
-    const [internalLoading, setInternalLoading] = React64.useState(false);
+    const [internalLoading, setInternalLoading] = React63.useState(false);
     const isLoading = loading || internalLoading;
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (!open || !closeOnEscape) return;
       const handleEscape = (event) => {
         if (event.key === "Escape") {
@@ -9553,7 +8972,7 @@ var ConfirmDialog = React64.forwardRef(
       document.addEventListener("keydown", handleEscape);
       return () => document.removeEventListener("keydown", handleEscape);
     }, [open, closeOnEscape, onOpenChange]);
-    const handleConfirm = React64.useCallback(async () => {
+    const handleConfirm = React63.useCallback(async () => {
       if (isLoading) return;
       try {
         if (onConfirm) {
@@ -9567,14 +8986,14 @@ var ConfirmDialog = React64.forwardRef(
         setInternalLoading(false);
       }
     }, [isLoading, onConfirm, closeOnConfirm, onOpenChange]);
-    const handleCancel = React64.useCallback(() => {
+    const handleCancel = React63.useCallback(() => {
       if (isLoading) return;
       onCancel?.();
       if (closeOnCancel) {
         onOpenChange(false);
       }
     }, [isLoading, onCancel, closeOnCancel, onOpenChange]);
-    const handleBackdropClick = React64.useCallback((event) => {
+    const handleBackdropClick = React63.useCallback((event) => {
       if (event.target === event.currentTarget && closeOnBackdrop && !isLoading) {
         onOpenChange(false);
       }
@@ -9677,22 +9096,22 @@ var ConfirmDialog = React64.forwardRef(
 );
 ConfirmDialog.displayName = "ConfirmDialog";
 function useConfirm() {
-  const [isOpen, setIsOpen] = React64.useState(false);
-  const [options, setOptions] = React64.useState(null);
-  const confirm = React64.useCallback((options2) => {
+  const [isOpen, setIsOpen] = React63.useState(false);
+  const [options, setOptions] = React63.useState(null);
+  const confirm = React63.useCallback((options2) => {
     setOptions(options2);
     setIsOpen(true);
   }, []);
-  const handleConfirm = React64.useCallback(async () => {
+  const handleConfirm = React63.useCallback(async () => {
     if (options.onConfirm) {
       await options.onConfirm();
     }
     setIsOpen(false);
   }, [options]);
-  const handleCancel = React64.useCallback(() => {
+  const handleCancel = React63.useCallback(() => {
     setIsOpen(false);
   }, []);
-  const ConfirmDialogComponent = React64.useCallback(() => /* @__PURE__ */ jsx(
+  const ConfirmDialogComponent = React63.useCallback(() => /* @__PURE__ */ jsx(
     ConfirmDialog,
     {
       open: isOpen,
@@ -9749,22 +9168,22 @@ function getWeekdayLabels(locale) {
 }
 function Calendar3({ className, selected, onSelect, disabled }) {
   const initialMonth = selected ?? /* @__PURE__ */ new Date();
-  const [currentMonth, setCurrentMonth] = React64.useState(
+  const [currentMonth, setCurrentMonth] = React63.useState(
     startOfDay(initialMonth)
   );
-  const today = React64.useMemo(() => startOfDay(/* @__PURE__ */ new Date()), []);
-  const days = React64.useMemo(() => getMonthGrid(currentMonth), [currentMonth]);
-  const weekdayLabels = React64.useMemo(
+  const today = React63.useMemo(() => startOfDay(/* @__PURE__ */ new Date()), []);
+  const days = React63.useMemo(() => getMonthGrid(currentMonth), [currentMonth]);
+  const weekdayLabels = React63.useMemo(
     () => getWeekdayLabels("pt-BR"),
     []
   );
-  const handlePrevMonth = React64.useCallback(() => {
+  const handlePrevMonth = React63.useCallback(() => {
     setCurrentMonth((prev) => addMonths(prev, -1));
   }, []);
-  const handleNextMonth = React64.useCallback(() => {
+  const handleNextMonth = React63.useCallback(() => {
     setCurrentMonth((prev) => addMonths(prev, 1));
   }, []);
-  const handleSelect = React64.useCallback(
+  const handleSelect = React63.useCallback(
     (date) => {
       if (disabled?.(date)) return;
       if (onSelect) {
@@ -9777,7 +9196,7 @@ function Calendar3({ className, selected, onSelect, disabled }) {
     },
     [disabled, onSelect, selected]
   );
-  const monthLabel = React64.useMemo(
+  const monthLabel = React63.useMemo(
     () => currentMonth.toLocaleDateString("pt-BR", {
       month: "long",
       year: "numeric"
@@ -9861,7 +9280,7 @@ function CalendarDayButton({
   onSelect,
   className
 }) {
-  const handleClick = React64.useCallback(() => {
+  const handleClick = React63.useCallback(() => {
     if (disabled) return;
     onSelect?.(date);
   }, [date, disabled, onSelect]);
@@ -9888,15 +9307,15 @@ function CalendarDayButton({
     }
   );
 }
-var CarouselContext = React64.createContext(null);
+var CarouselContext = React63.createContext(null);
 function useCarousel() {
-  const context = React64.useContext(CarouselContext);
+  const context = React63.useContext(CarouselContext);
   if (!context) {
     throw new Error("useCarousel must be used within a <Carousel />");
   }
   return context;
 }
-var Carousel = React64.forwardRef(
+var Carousel = React63.forwardRef(
   ({
     orientation = "horizontal",
     opts,
@@ -9913,22 +9332,22 @@ var Carousel = React64.forwardRef(
       },
       plugins
     );
-    const [canScrollPrev, setCanScrollPrev] = React64.useState(false);
-    const [canScrollNext, setCanScrollNext] = React64.useState(false);
-    const onSelect = React64.useCallback((api2) => {
+    const [canScrollPrev, setCanScrollPrev] = React63.useState(false);
+    const [canScrollNext, setCanScrollNext] = React63.useState(false);
+    const onSelect = React63.useCallback((api2) => {
       if (!api2) {
         return;
       }
       setCanScrollPrev(api2.canScrollPrev());
       setCanScrollNext(api2.canScrollNext());
     }, []);
-    const scrollPrev = React64.useCallback(() => {
+    const scrollPrev = React63.useCallback(() => {
       api?.scrollPrev();
     }, [api]);
-    const scrollNext = React64.useCallback(() => {
+    const scrollNext = React63.useCallback(() => {
       api?.scrollNext();
     }, [api]);
-    const handleKeyDown = React64.useCallback(
+    const handleKeyDown = React63.useCallback(
       (event) => {
         if (event.key === "ArrowLeft") {
           event.preventDefault();
@@ -9940,13 +9359,13 @@ var Carousel = React64.forwardRef(
       },
       [scrollPrev, scrollNext]
     );
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (!api || !setApi) {
         return;
       }
       setApi(api);
     }, [api, setApi]);
-    React64.useEffect(() => {
+    React63.useEffect(() => {
       if (!api) {
         return;
       }
@@ -9957,7 +9376,7 @@ var Carousel = React64.forwardRef(
         api?.off("select", onSelect);
       };
     }, [api, onSelect]);
-    const contextValue = React64.useMemo(() => ({
+    const contextValue = React63.useMemo(() => ({
       carouselRef,
       api,
       opts,
@@ -9982,7 +9401,7 @@ var Carousel = React64.forwardRef(
   }
 );
 Carousel.displayName = "Carousel";
-var CarouselContent = React64.forwardRef(({ className, ...props }, ref) => {
+var CarouselContent = React63.forwardRef(({ className, ...props }, ref) => {
   const { carouselRef, orientation } = useCarousel();
   return /* @__PURE__ */ jsx("div", { ref: carouselRef, className: "overflow-hidden", children: /* @__PURE__ */ jsx(
     "div",
@@ -9998,7 +9417,7 @@ var CarouselContent = React64.forwardRef(({ className, ...props }, ref) => {
   ) });
 });
 CarouselContent.displayName = "CarouselContent";
-var CarouselItem = React64.forwardRef(({ className, ...props }, ref) => {
+var CarouselItem = React63.forwardRef(({ className, ...props }, ref) => {
   const { orientation } = useCarousel();
   return /* @__PURE__ */ jsx(
     "fieldset",
@@ -10015,7 +9434,7 @@ var CarouselItem = React64.forwardRef(({ className, ...props }, ref) => {
   );
 });
 CarouselItem.displayName = "CarouselItem";
-var CarouselPrevious = React64.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+var CarouselPrevious = React63.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel();
   return /* @__PURE__ */ jsxs(
     Button,
@@ -10039,7 +9458,7 @@ var CarouselPrevious = React64.forwardRef(({ className, variant = "outline", siz
   );
 });
 CarouselPrevious.displayName = "CarouselPrevious";
-var CarouselNext = React64.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
+var CarouselNext = React63.forwardRef(({ className, variant = "outline", size = "icon", ...props }, ref) => {
   const { orientation, scrollNext, canScrollNext } = useCarousel();
   return /* @__PURE__ */ jsxs(
     Button,
@@ -10090,7 +9509,7 @@ var chipVariants = cva(
     }
   }
 );
-var Chip = React64.forwardRef(
+var Chip = React63.forwardRef(
   ({
     className,
     variant,
@@ -10153,7 +9572,7 @@ var spacingClasses5 = {
   md: "gap-2",
   lg: "gap-3"
 };
-var ChipGroup = React64.forwardRef(
+var ChipGroup = React63.forwardRef(
   ({
     className,
     spacing = "md",
@@ -10179,8 +9598,8 @@ var ChipGroup = React64.forwardRef(
 );
 ChipGroup.displayName = "ChipGroup";
 function useMasonryLayout(containerRef, columns, gap) {
-  const [positions, setPositions] = React64.useState([]);
-  React64.useEffect(() => {
+  const [positions, setPositions] = React63.useState([]);
+  React63.useEffect(() => {
     if (!containerRef.current) return;
     const container = containerRef.current;
     const containerWidth = container.offsetWidth;
@@ -10201,7 +9620,7 @@ function useMasonryLayout(containerRef, columns, gap) {
   }, [columns, gap]);
   return positions;
 }
-var Masonry = React64.forwardRef(
+var Masonry = React63.forwardRef(
   ({
     className,
     columns = { sm: 1, md: 2, lg: 3, xl: 4 },
@@ -10209,9 +9628,9 @@ var Masonry = React64.forwardRef(
     children,
     ...props
   }, ref) => {
-    const innerRef = React64.useRef(null);
-    const [resolvedColumns, setResolvedColumns] = React64.useState(4);
-    React64.useEffect(() => {
+    const innerRef = React63.useRef(null);
+    const [resolvedColumns, setResolvedColumns] = React63.useState(4);
+    React63.useEffect(() => {
       const handleResize = () => {
         if (typeof columns === "number") {
           setResolvedColumns(columns);
@@ -10230,13 +9649,13 @@ var Masonry = React64.forwardRef(
     }, [columns]);
     const gapValue = typeof gap === "number" ? gap : parseInt(gap) || 16;
     const positions = useMasonryLayout(innerRef, resolvedColumns, gapValue);
-    const childrenWithPositions = React64.Children.toArray(children).map((child, index) => {
-      if (!React64.isValidElement(child)) return child;
+    const childrenWithPositions = React63.Children.toArray(children).map((child, index) => {
+      if (!React63.isValidElement(child)) return child;
       const position = positions[index];
       if (!position) return child;
       const containerWidth = innerRef.current?.offsetWidth || 0;
       const columnWidth = (containerWidth - gapValue * (resolvedColumns - 1)) / resolvedColumns;
-      return React64.cloneElement(child, {
+      return React63.cloneElement(child, {
         style: {
           ...child.props.style,
           position: "absolute",
@@ -10272,7 +9691,7 @@ var Masonry = React64.forwardRef(
   }
 );
 Masonry.displayName = "Masonry";
-var MasonryItem = React64.forwardRef(
+var MasonryItem = React63.forwardRef(
   ({ className, children, ...props }, ref) => {
     return /* @__PURE__ */ jsx(
       "div",
@@ -10317,7 +9736,7 @@ var timelineDotVariants = cva(
     }
   }
 );
-var TimelineItem = React64.forwardRef(
+var TimelineItem = React63.forwardRef(
   ({
     className,
     status = "default",
@@ -10332,7 +9751,7 @@ var TimelineItem = React64.forwardRef(
   }, ref) => {
     let IconComponent = icon;
     if (!IconComponent && iconType) {
-      IconComponent = React64.createElement(defaultIcons2[iconType], {
+      IconComponent = React63.createElement(defaultIcons2[iconType], {
         className: "h-2.5 w-2.5 text-primary-foreground"
       });
     }
@@ -10365,7 +9784,7 @@ var TimelineItem = React64.forwardRef(
   }
 );
 TimelineItem.displayName = "TimelineItem";
-var Timeline = React64.forwardRef(
+var Timeline = React63.forwardRef(
   ({
     className,
     children,
@@ -10377,9 +9796,9 @@ var Timeline = React64.forwardRef(
         ref,
         className: cn("space-y-0", className),
         ...props,
-        children: React64.Children.map(children, (child) => {
-          if (!React64.isValidElement(child)) return child;
-          return React64.cloneElement(child, {
+        children: React63.Children.map(children, (child) => {
+          if (!React63.isValidElement(child)) return child;
+          return React63.cloneElement(child, {
             ...child.props,
             className: cn(child.props.className)
           });
@@ -10389,7 +9808,7 @@ var Timeline = React64.forwardRef(
   }
 );
 Timeline.displayName = "Timeline";
-var TimelineSeparator = React64.forwardRef(
+var TimelineSeparator = React63.forwardRef(
   ({ className, children, ...props }, ref) => {
     return /* @__PURE__ */ jsx(
       "div",
@@ -10436,7 +9855,7 @@ var starSizeClasses = {
   md: "h-5 w-5",
   lg: "h-6 w-6"
 };
-var Rating = React64.forwardRef(
+var Rating = React63.forwardRef(
   ({
     className,
     value = 0,
@@ -10454,8 +9873,8 @@ var Rating = React64.forwardRef(
     color,
     ...props
   }, ref) => {
-    const [hoverValue, setHoverValue] = React64.useState(0);
-    const [isHovering, setIsHovering] = React64.useState(false);
+    const [hoverValue, setHoverValue] = React63.useState(0);
+    const [isHovering, setIsHovering] = React63.useState(false);
     const displayValue = isHovering ? hoverValue : value;
     const formattedValue = allowHalf ? displayValue.toFixed(1) : Math.round(displayValue).toString();
     const handleStarClick = (starValue) => {
@@ -10545,7 +9964,7 @@ var progressHeightClasses = {
   md: "h-2",
   lg: "h-3"
 };
-var RatingProgress = React64.forwardRef(
+var RatingProgress = React63.forwardRef(
   ({
     className,
     value,
@@ -10587,7 +10006,7 @@ var RatingProgress = React64.forwardRef(
   }
 );
 RatingProgress.displayName = "RatingProgress";
-var RatingSummary = React64.forwardRef(
+var RatingSummary = React63.forwardRef(
   ({
     className,
     average,
@@ -11123,7 +10542,7 @@ function ParticlesEffect({
     }
   );
 }
-var Label3 = React64__default.forwardRef(
+var Label3 = React63__default.forwardRef(
   ({ className, ...props }, ref) => /* @__PURE__ */ jsx(
     "label",
     {
@@ -11137,7 +10556,7 @@ var Label3 = React64__default.forwardRef(
   )
 );
 Label3.displayName = "Label";
-var Separator3 = React64__default.forwardRef(
+var Separator3 = React63__default.forwardRef(
   ({ className, ...props }, ref) => /* @__PURE__ */ jsx(
     "div",
     {
@@ -11728,7 +11147,7 @@ var ErrorBoundary = class extends Component {
     return this.props.children;
   }
 };
-var Skeleton2 = React64__default.forwardRef(
+var Skeleton2 = React63__default.forwardRef(
   ({ className, ...props }, ref) => /* @__PURE__ */ jsx(
     "div",
     {
@@ -11961,7 +11380,7 @@ function LoadingScreen({ progress = 0, currentStep = "Inicializando..." }) {
     }
   );
 }
-var Button2 = React64__default.forwardRef(
+var Button2 = React63__default.forwardRef(
   ({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(
     "button",
     {
@@ -11976,7 +11395,7 @@ var Button2 = React64__default.forwardRef(
   )
 );
 Button2.displayName = "Button";
-var Card3 = React64__default.forwardRef(
+var Card3 = React63__default.forwardRef(
   ({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(
     "div",
     {
@@ -12225,7 +11644,7 @@ var kbdVariants = cva(
     }
   }
 );
-var Kbd = React64.forwardRef(
+var Kbd = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -12245,7 +11664,7 @@ var Kbd = React64.forwardRef(
   }
 );
 Kbd.displayName = "Kbd";
-var KbdCombo = React64.forwardRef(
+var KbdCombo = React63.forwardRef(
   ({
     className,
     keys,
@@ -12260,7 +11679,7 @@ var KbdCombo = React64.forwardRef(
         ref,
         className: cn("flex items-center gap-1", className),
         ...props,
-        children: keys.map((key, index) => /* @__PURE__ */ jsxs(React64.Fragment, { children: [
+        children: keys.map((key, index) => /* @__PURE__ */ jsxs(React63.Fragment, { children: [
           index > 0 && /* @__PURE__ */ jsx("span", { className: "text-muted-foreground text-xs font-normal", children: separator }),
           /* @__PURE__ */ jsx(Kbd, { size, variant, children: key })
         ] }, index))
@@ -12295,7 +11714,7 @@ var codeVariants = cva(
     }
   }
 );
-var Code = React64.forwardRef(
+var Code = React63.forwardRef(
   ({
     className,
     variant = "inline",
@@ -12308,9 +11727,9 @@ var Code = React64.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [copied, setCopied] = React64.useState(false);
-    const codeRef = React64.useRef(null);
-    const handleCopy = React64.useCallback(async () => {
+    const [copied, setCopied] = React63.useState(false);
+    const codeRef = React63.useRef(null);
+    const handleCopy = React63.useCallback(async () => {
       if (codeRef.current) {
         const text = codeRef.current.textContent || "";
         await navigator.clipboard.writeText(text);
@@ -12371,7 +11790,7 @@ var Code = React64.forwardRef(
   }
 );
 Code.displayName = "Code";
-var CodeInline = React64.forwardRef(
+var CodeInline = React63.forwardRef(
   ({
     className,
     color = "default",
@@ -12390,7 +11809,7 @@ var CodeInline = React64.forwardRef(
   }
 );
 CodeInline.displayName = "CodeInline";
-var CodeBlock = React64.forwardRef(
+var CodeBlock = React63.forwardRef(
   ({
     className,
     ...props
@@ -12437,7 +11856,7 @@ var quoteVariants = cva(
     }
   }
 );
-var Quote = React64.forwardRef(
+var Quote = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -12488,7 +11907,7 @@ var Quote = React64.forwardRef(
   }
 );
 Quote.displayName = "Quote";
-var QuoteTestimonial = React64.forwardRef(
+var QuoteTestimonial = React63.forwardRef(
   ({
     className,
     author,
@@ -12542,7 +11961,7 @@ var QuoteTestimonial = React64.forwardRef(
   }
 );
 QuoteTestimonial.displayName = "QuoteTestimonial";
-var QuoteBlock = React64.forwardRef(
+var QuoteBlock = React63.forwardRef(
   ({
     className,
     children,
@@ -12565,7 +11984,7 @@ var QuoteBlock = React64.forwardRef(
   }
 );
 QuoteBlock.displayName = "QuoteBlock";
-var VisuallyHidden = React64.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var VisuallyHidden = React63.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "span",
   {
     ref,
@@ -12794,7 +12213,7 @@ var aspectRatioBoxVariants = cva(
     }
   }
 );
-var AspectRatioBox = React64.forwardRef(
+var AspectRatioBox = React63.forwardRef(
   ({
     className,
     variant = "default",
@@ -12803,13 +12222,13 @@ var AspectRatioBox = React64.forwardRef(
     objectFit = "cover",
     ...props
   }, ref) => {
-    const resolvedRatio = React64.useMemo(() => {
+    const resolvedRatio = React63.useMemo(() => {
       if (typeof ratio === "string" && ratio in ASPECT_RATIOS) {
         return ASPECT_RATIOS[ratio];
       }
       return ratio;
     }, [ratio]);
-    const paddingBottom = React64.useMemo(() => {
+    const paddingBottom = React63.useMemo(() => {
       const [width, height] = resolvedRatio.split("/").map(Number);
       return `${height / width * 100}%`;
     }, [resolvedRatio]);
@@ -12825,7 +12244,7 @@ var AspectRatioBox = React64.forwardRef(
         className: cn(aspectRatioBoxVariants({ variant }), className),
         style: { paddingBottom },
         ...props,
-        children: /* @__PURE__ */ jsx("div", { className: "absolute inset-0", children: React64.isValidElement(children) ? React64.cloneElement(children, {
+        children: /* @__PURE__ */ jsx("div", { className: "absolute inset-0", children: React63.isValidElement(children) ? React63.cloneElement(children, {
           className: cn(
             objectFitClasses[objectFit],
             children.props.className
@@ -12836,7 +12255,7 @@ var AspectRatioBox = React64.forwardRef(
   }
 );
 AspectRatioBox.displayName = "AspectRatioBox";
-var AspectRatioImage = React64.forwardRef(
+var AspectRatioImage = React63.forwardRef(
   ({
     className,
     ratio = "square",
@@ -12858,7 +12277,7 @@ var AspectRatioImage = React64.forwardRef(
   }
 );
 AspectRatioImage.displayName = "AspectRatioImage";
-var AspectRatioVideo = React64.forwardRef(
+var AspectRatioVideo = React63.forwardRef(
   ({
     className,
     ratio = "video",
@@ -12876,7 +12295,7 @@ var AspectRatioVideo = React64.forwardRef(
   }
 );
 AspectRatioVideo.displayName = "AspectRatioVideo";
-var AspectRatioIframe = React64.forwardRef(
+var AspectRatioIframe = React63.forwardRef(
   ({
     className,
     ratio = "video",
@@ -12914,7 +12333,7 @@ var centerVariants = cva(
     }
   }
 );
-var Center = React64.forwardRef(
+var Center = React63.forwardRef(
   ({
     className,
     direction = "both",
@@ -12927,7 +12346,7 @@ var Center = React64.forwardRef(
     children,
     ...props
   }, ref) => {
-    const centerStyle = React64.useMemo(() => {
+    const centerStyle = React63.useMemo(() => {
       const customStyle = { ...style };
       if (padding !== void 0) {
         customStyle.padding = typeof padding === "number" ? `${padding}px` : padding;
@@ -12956,7 +12375,7 @@ var Center = React64.forwardRef(
   }
 );
 Center.displayName = "Center";
-var CenterInline = React64.forwardRef(
+var CenterInline = React63.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Center,
@@ -12969,7 +12388,7 @@ var CenterInline = React64.forwardRef(
   }
 );
 CenterInline.displayName = "CenterInline";
-var CenterScreen = React64.forwardRef(
+var CenterScreen = React63.forwardRef(
   (props, ref) => {
     return /* @__PURE__ */ jsx(
       Center,
@@ -12984,7 +12403,7 @@ var CenterScreen = React64.forwardRef(
   }
 );
 CenterScreen.displayName = "CenterScreen";
-var CenterText = React64.forwardRef(
+var CenterText = React63.forwardRef(
   ({
     className,
     align = "center",
@@ -13215,7 +12634,7 @@ function ThemeProvider({ children, ...props }) {
 }
 var TokensContext = createContext(void 0);
 function TokensProvider({ tokens: initialTokens, children }) {
-  const [tokens2, setTokens2] = useState(initialTokens);
+  const [tokens2, setTokens] = useState(initialTokens);
   const [theme, setTheme] = useState("light");
   useEffect(() => {
     const root = document.documentElement;
@@ -13270,7 +12689,7 @@ function TokensProvider({ tokens: initialTokens, children }) {
   }, [theme]);
   const value = {
     tokens: tokens2,
-    setTokens: setTokens2,
+    setTokens,
     theme,
     setTheme
   };
@@ -13289,10 +12708,10 @@ function useCarouselKeyboard({
     pauseOnHover = true,
     keyMap = ["ArrowLeft", "ArrowRight"]
   } = options;
-  const [isPaused, setIsPaused] = React64__default.useState(false);
-  const intervalRef = React64__default.useRef(null);
-  const containerRef = React64__default.useRef(null);
-  const next = React64__default.useCallback(() => {
+  const [isPaused, setIsPaused] = React63__default.useState(false);
+  const intervalRef = React63__default.useRef(null);
+  const containerRef = React63__default.useRef(null);
+  const next = React63__default.useCallback(() => {
     const nextIndex = currentIndex + 1;
     if (nextIndex >= totalItems) {
       if (loop) {
@@ -13302,7 +12721,7 @@ function useCarouselKeyboard({
       onIndexChange?.(nextIndex);
     }
   }, [currentIndex, totalItems, loop, onIndexChange]);
-  const prev = React64__default.useCallback(() => {
+  const prev = React63__default.useCallback(() => {
     const prevIndex = currentIndex - 1;
     if (prevIndex < 0) {
       if (loop) {
@@ -13312,12 +12731,12 @@ function useCarouselKeyboard({
       onIndexChange?.(prevIndex);
     }
   }, [currentIndex, totalItems, loop, onIndexChange]);
-  const goTo = React64__default.useCallback((index) => {
+  const goTo = React63__default.useCallback((index) => {
     if (index >= 0 && index < totalItems) {
       onIndexChange?.(index);
     }
   }, [totalItems, onIndexChange]);
-  React64__default.useEffect(() => {
+  React63__default.useEffect(() => {
     if (autoPlay && !isPaused) {
       intervalRef.current = setInterval(next, autoPlayInterval);
     } else {
@@ -13332,7 +12751,7 @@ function useCarouselKeyboard({
       }
     };
   }, [autoPlay, isPaused, next, autoPlayInterval]);
-  React64__default.useEffect(() => {
+  React63__default.useEffect(() => {
     const handleKeyDown = (event) => {
       if (!keyMap.includes(event.key)) return;
       event.preventDefault();
@@ -13356,7 +12775,7 @@ function useCarouselKeyboard({
       }
     };
   }, [keyMap, next, prev]);
-  React64__default.useEffect(() => {
+  React63__default.useEffect(() => {
     if (!pauseOnHover || !autoPlay) return;
     const container = containerRef.current;
     if (!container) return;
@@ -13369,13 +12788,13 @@ function useCarouselKeyboard({
       container.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [pauseOnHover, autoPlay]);
-  const pause = React64__default.useCallback(() => {
+  const pause = React63__default.useCallback(() => {
     setIsPaused(true);
   }, []);
-  const resume = React64__default.useCallback(() => {
+  const resume = React63__default.useCallback(() => {
     setIsPaused(false);
   }, []);
-  const stop = React64__default.useCallback(() => {
+  const stop = React63__default.useCallback(() => {
     setIsPaused(true);
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -13414,9 +12833,9 @@ function useTableOfContents({
     activeOnScroll = true,
     nested = true
   } = options;
-  const [items, setItems] = React64__default.useState([]);
-  const [activeId, setActiveId] = React64__default.useState(null);
-  const generateTOC = React64__default.useCallback(() => {
+  const [items, setItems] = React63__default.useState([]);
+  const [activeId, setActiveId] = React63__default.useState(null);
+  const generateTOC = React63__default.useCallback(() => {
     const container = containerRef?.current;
     if (!container) return [];
     const headingElements = container.querySelectorAll(headings.join(", "));
@@ -13437,11 +12856,11 @@ function useTableOfContents({
     });
     return tocItems;
   }, [containerRef, headings]);
-  React64__default.useEffect(() => {
+  React63__default.useEffect(() => {
     const tocItems = generateTOC();
     setItems(tocItems);
   }, [generateTOC]);
-  const scrollToItem = React64__default.useCallback((itemId) => {
+  const scrollToItem = React63__default.useCallback((itemId) => {
     const element = document.getElementById(itemId);
     if (!element) return;
     scrollToElement(element, {
@@ -13450,7 +12869,7 @@ function useTableOfContents({
     });
     setActiveId(itemId);
   }, [offset, smoothScroll]);
-  React64__default.useEffect(() => {
+  React63__default.useEffect(() => {
     if (!activeOnScroll || items.length === 0) return;
     const observer = new IntersectionObserver(
       (entries) => {
@@ -13478,7 +12897,7 @@ function useTableOfContents({
       });
     };
   }, [activeOnScroll, items, offset]);
-  const nestedItems = React64__default.useMemo(() => {
+  const nestedItems = React63__default.useMemo(() => {
     if (!nested) return items;
     const result = [];
     const stack = [];
@@ -13496,7 +12915,7 @@ function useTableOfContents({
     });
     return result;
   }, [items, nested]);
-  const renderItem = React64__default.useCallback((item, depth = 0) => {
+  const renderItem = React63__default.useCallback((item, depth = 0) => {
     const isActive = item.id === activeId;
     const hasChildren = "children" in item && item.children && item.children.length > 0;
     return {
@@ -13507,7 +12926,7 @@ function useTableOfContents({
       scrollTo: () => scrollToItem(item.id)
     };
   }, [activeId, scrollToItem]);
-  const renderItems = React64__default.useCallback(() => {
+  const renderItems = React63__default.useCallback(() => {
     const flatItems = [];
     const flatten = (items2, depth = 0) => {
       items2.forEach((item) => {
@@ -13520,7 +12939,7 @@ function useTableOfContents({
     flatten(nestedItems);
     return flatItems;
   }, [nestedItems, renderItem]);
-  const stats = React64__default.useMemo(() => {
+  const stats = React63__default.useMemo(() => {
     const levelCounts = {};
     items.forEach((item) => {
       levelCounts[item.level] = (levelCounts[item.level] || 0) + 1;
@@ -13533,11 +12952,11 @@ function useTableOfContents({
       activeIndex: items.findIndex((item) => item.id === activeId)
     };
   }, [items, activeId]);
-  const refresh = React64__default.useCallback(() => {
+  const refresh = React63__default.useCallback(() => {
     const tocItems = generateTOC();
     setItems(tocItems);
   }, [generateTOC]);
-  const reset = React64__default.useCallback(() => {
+  const reset = React63__default.useCallback(() => {
     setItems([]);
     setActiveId(null);
   }, []);

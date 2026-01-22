@@ -13,14 +13,98 @@ import { Quote, QuoteTestimonial } from '@ui/components/content/Quote'
 import { Kbd, KbdCombo } from '@ui/components/content/Kbd'
 import { ThemeToggle } from '@ui/components/utilities/ThemeToggle'
 import { InlineLoader, Accordion, Avatar, Badge, Button, Card, Fab, IconButton, Input, LinkButton, Progress, SegmentedControl, Slider, Switch, Textarea, Toggle } from './components/ui'
+import { AnalyticsOverview, HelpCenter, QuickActions, QuickStats, RecentPostsList, StatsCards, StatsOverview } from './components/dashboard'
+import { Code as ContentCode } from './components/content'
+import { Calendar, Carousel, Chip, Masonry, Rating, Timeline } from './components/data-display'
+import { TokensDemo } from './components/development'
+import { CelestialBackground, FloatingGrid, MatrixBackground, ParticlesEffect, StarsBackground } from './components/effects'
+import {
+  AlertDialog as FeedbackAlertDialog,
+  Alert as FeedbackAlert,
+  Badge as FeedbackBadge,
+  EmptyState as FeedbackEmptyState,
+  Kpi as FeedbackKpi,
+  Notification as FeedbackNotification,
+  Progress as FeedbackProgress,
+  Skeleton as FeedbackSkeleton,
+  Sonner as FeedbackSonner,
+  Spinner as FeedbackSpinner,
+} from './components/feedback'
+import { ErrorBoundary as InfrastructureErrorBoundary, LoadingScreen as InfrastructureLoadingScreen } from './components/infrastructure'
+import {
+  Accordion as NavigationAccordion,
+  BackToTop as NavigationBackToTop,
+  Collapsible as NavigationCollapsible,
+  Command as NavigationCommand,
+  Menu as NavigationMenu,
+  NavigationMenu as NavigationNavigationMenu,
+  Pagination as NavigationPagination,
+  Sidebar as NavigationSidebar,
+  Steps as NavigationSteps,
+  Tabs as NavigationTabs,
+  TopBar as NavigationTopBar,
+} from './components/navigation'
+import { InstallPrompt as PwaInstallPrompt } from './components/pwa'
+import { SocialBar as SocialSocialBar } from './components/social'
+import { ThemeToggle as UtilitiesThemeToggle, UpdateNotification as UtilitiesUpdateNotification } from './components/utilities'
+import {
+  ConfirmDialog as OverlaysConfirmDialog,
+  ContextMenu as OverlaysContextMenu,
+  Dialog as OverlaysDialog,
+  Drawer as OverlaysDrawer,
+  DropdownMenu as OverlaysDropdownMenu,
+  HoverCard as OverlaysHoverCard,
+  Lightbox as OverlaysLightbox,
+  Modal as OverlaysModal,
+  Popover as OverlaysPopover,
+  Tooltip as OverlaysTooltip,
+} from './components/overlays'
+import {
+  AspectRatio as LayoutAspectRatio,
+  Breadcrumb as LayoutBreadcrumb,
+  Card as LayoutCard,
+  Container as LayoutContainer,
+  Divider as LayoutDivider,
+  Flex as LayoutFlex,
+  Grid as LayoutGrid,
+  PageHeader as LayoutPageHeader,
+  Panel as LayoutPanel,
+  ScrollArea as LayoutScrollArea,
+  Separator as LayoutSeparator,
+  Sheet as LayoutSheet,
+  Spacer as LayoutSpacer,
+  Table as LayoutTable,
+} from './components/layout'
+import {
+  Checkbox as FormsCheckbox,
+  DatePicker as FormsDatePicker,
+  FileUpload as FormsFileUpload,
+  Form as FormsForm,
+  Input as FormsInput,
+  Label as FormsLabel,
+  PhoneInput as FormsPhoneInput,
+  RadioGroup as FormsRadioGroup,
+  RangeSlider as FormsRangeSlider,
+  SearchInput as FormsSearchInput,
+  Select as FormsSelect,
+  Textarea as FormsTextarea,
+  TimePicker as FormsTimePicker,
+} from './components/forms'
+import {
+  AuthProvider as ProvidersAuthProvider,
+  DataProvider as ProvidersDataProvider,
+  ModalProvider as ProvidersModalProvider,
+  NotificationProvider as ProvidersNotificationProvider,
+  ThemeProvider as ProvidersThemeProvider,
+} from './components/providers'
 import { useTheme } from '@rainersoft/ui'
+import { formatCurrency, formatDate } from '@rainersoft/utils'
 
 /**
  * Configuração das seções do showcase
  * Cada seção representa uma categoria de componentes
  */
 const showcaseSections = [
-  { id: 'home', label: 'Home', description: 'Página inicial do showcase' },
   { id: 'accessibility', label: 'Accessibility', description: 'Componentes de acessibilidade' },
   { id: 'compliance', label: 'Compliance', description: 'Componentes de conformidade' },
   { id: 'content', label: 'Content', description: 'Componentes de conteúdo' },
@@ -39,7 +123,746 @@ const showcaseSections = [
   { id: 'social', label: 'Social', description: 'Componentes sociais' },
   { id: 'ui', label: 'UI Components', description: 'Componentes UI básicos' },
   { id: 'utilities', label: 'Utilities', description: 'Componentes utilitários' }
-]
+];
+
+function SocialPage() {
+  const examples = [
+    {
+      name: 'SocialBar',
+      exportLine: "export { default as SocialBar } from './social-bar';",
+      element: <SocialSocialBar />,
+    },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Social</h1>
+        <p className="text-[var(--color-text-secondary)]">Componentes sociais.</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">{example.exportLine}</p>
+            </div>
+
+            <Card className="p-0">
+              <div className="p-5">{example.element}</div>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function OverlaysPage() {
+  const examples = [
+    { name: 'ConfirmDialog', exportLine: "export { default as ConfirmDialog } from './confirm-dialog';", element: <OverlaysConfirmDialog /> },
+    { name: 'ContextMenu', exportLine: "export { default as ContextMenu } from './context-menu';", element: <OverlaysContextMenu /> },
+    { name: 'Dialog', exportLine: "export { default as Dialog } from './dialog';", element: <OverlaysDialog /> },
+    { name: 'Drawer', exportLine: "export { default as Drawer } from './drawer';", element: <OverlaysDrawer /> },
+    { name: 'DropdownMenu', exportLine: "export { default as DropdownMenu } from './dropdown-menu';", element: <OverlaysDropdownMenu /> },
+    { name: 'HoverCard', exportLine: "export { default as HoverCard } from './hover-card';", element: <OverlaysHoverCard /> },
+    { name: 'Lightbox', exportLine: "export { default as Lightbox } from './lightbox';", element: <OverlaysLightbox /> },
+    { name: 'Modal', exportLine: "export { default as Modal } from './modal';", element: <OverlaysModal /> },
+    { name: 'Popover', exportLine: "export { default as Popover } from './popover';", element: <OverlaysPopover /> },
+    { name: 'Tooltip', exportLine: "export { default as Tooltip } from './tooltip';", element: <OverlaysTooltip /> },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Overlays</h1>
+        <p className="text-[var(--color-text-secondary)]">Componentes de sobreposições.</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">{example.exportLine}</p>
+            </div>
+
+            <Card className="p-0">
+              <div className="p-5">{example.element}</div>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function LayoutPage() {
+  const examples = [
+    { name: 'AspectRatio', exportLine: "export { default as AspectRatio } from './aspect-ratio';", element: <LayoutAspectRatio /> },
+    { name: 'Breadcrumb', exportLine: "export { default as Breadcrumb } from './breadcrumb';", element: <LayoutBreadcrumb /> },
+    { name: 'Card', exportLine: "export { default as Card } from './card';", element: <LayoutCard /> },
+    { name: 'Container', exportLine: "export { default as Container } from './container';", element: <LayoutContainer /> },
+    { name: 'Divider', exportLine: "export { default as Divider } from './divider';", element: <LayoutDivider /> },
+    { name: 'Flex', exportLine: "export { default as Flex } from './flex';", element: <LayoutFlex /> },
+    { name: 'Grid', exportLine: "export { default as Grid } from './grid';", element: <LayoutGrid /> },
+    { name: 'PageHeader', exportLine: "export { default as PageHeader } from './PageHeader';", element: <LayoutPageHeader /> },
+    { name: 'Panel', exportLine: "export { default as Panel } from './panel';", element: <LayoutPanel /> },
+    { name: 'ScrollArea', exportLine: "export { default as ScrollArea } from './scroll-area';", element: <LayoutScrollArea /> },
+    { name: 'Separator', exportLine: "export { default as Separator } from './separator';", element: <LayoutSeparator /> },
+    { name: 'Sheet', exportLine: "export { default as Sheet } from './sheet';", element: <LayoutSheet /> },
+    { name: 'Spacer', exportLine: "export { default as Spacer } from './spacer';", element: <LayoutSpacer /> },
+    { name: 'Table', exportLine: "export { default as Table } from './table';", element: <LayoutTable /> },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Layout</h1>
+        <p className="text-[var(--color-text-secondary)]">Componentes de layout.</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">{example.exportLine}</p>
+            </div>
+
+            <Card className="p-0">
+              <div className="p-5">{example.element}</div>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function FormsPage() {
+  const examples = [
+    { name: 'Checkbox', exportLine: "export { default as Checkbox } from './checkbox';", element: <FormsCheckbox /> },
+    { name: 'DatePicker', exportLine: "export { default as DatePicker } from './date-picker';", element: <FormsDatePicker /> },
+    { name: 'FileUpload', exportLine: "export { default as FileUpload } from './file-upload';", element: <FormsFileUpload /> },
+    { name: 'Form', exportLine: "export { default as Form } from './form';", element: <FormsForm /> },
+    { name: 'Input', exportLine: "export { default as Input } from './input';", element: <FormsInput /> },
+    { name: 'Label', exportLine: "export { default as Label } from './label';", element: <FormsLabel /> },
+    { name: 'PhoneInput', exportLine: "export { default as PhoneInput } from './phone-input';", element: <FormsPhoneInput /> },
+    { name: 'RadioGroup', exportLine: "export { default as RadioGroup } from './radio-group';", element: <FormsRadioGroup /> },
+    { name: 'RangeSlider', exportLine: "export { default as RangeSlider } from './range-slider';", element: <FormsRangeSlider /> },
+    { name: 'SearchInput', exportLine: "export { default as SearchInput } from './search-input';", element: <FormsSearchInput /> },
+    { name: 'Select', exportLine: "export { default as Select } from './select';", element: <FormsSelect /> },
+    { name: 'Textarea', exportLine: "export { default as Textarea } from './textarea';", element: <FormsTextarea /> },
+    { name: 'TimePicker', exportLine: "export { default as TimePicker } from './time-picker';", element: <FormsTimePicker /> },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Forms</h1>
+        <p className="text-[var(--color-text-secondary)]">Componentes de formulário.</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">{example.exportLine}</p>
+            </div>
+
+            <Card className="p-0">
+              <div className="p-5">{example.element}</div>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function ProvidersPage() {
+  const examples = [
+    {
+      name: 'ThemeProvider',
+      exportLine: "export { default as ThemeProvider, useThemeProvider } from './theme-provider';",
+      element: (
+        <ProvidersThemeProvider>
+          <div className="space-y-2">
+            <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>Tema atual: (useThemeProvider().theme)</p>
+            <button className="text-xs px-3 py-1 rounded-md" style={{ backgroundColor: 'var(--color-button-primary-default)', color: 'var(--color-button-primary-text)' }}>Toggle Theme</button>
+          </div>
+        </ProvidersThemeProvider>
+      ),
+    },
+    {
+      name: 'AuthProvider',
+      exportLine: "export { default as AuthProvider, useAuthProvider } from './auth-provider';",
+      element: (
+        <ProvidersAuthProvider>
+          <div className="space-y-2">
+            <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>Auth demo: (useAuthProvider().user?.name || &apos;Não autenticado&apos;)</p>
+            <button className="text-xs px-3 py-1 rounded-md" style={{ backgroundColor: 'var(--color-button-primary-default)', color: 'var(--color-button-primary-text)' }}>Login Demo</button>
+          </div>
+        </ProvidersAuthProvider>
+      ),
+    },
+    {
+      name: 'DataProvider',
+      exportLine: "export { default as DataProvider, useDataProvider } from './data-provider';",
+      element: (
+        <ProvidersDataProvider>
+          <div className="space-y-2">
+            <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>Itens: (useDataProvider().items.length)</p>
+            <button className="text-xs px-3 py-1 rounded-md" style={{ backgroundColor: 'var(--color-button-primary-default)', color: 'var(--color-button-primary-text)' }}>Add Item</button>
+          </div>
+        </ProvidersDataProvider>
+      ),
+    },
+    {
+      name: 'NotificationProvider',
+      exportLine: "export { default as NotificationProvider, useNotificationProvider } from './notification-provider';",
+      element: (
+        <ProvidersNotificationProvider>
+          <div className="space-y-2">
+            <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>Notificações: (useNotificationProvider().notifications.length)</p>
+            <button className="text-xs px-3 py-1 rounded-md" style={{ backgroundColor: 'var(--color-button-primary-default)', color: 'var(--color-button-primary-text)' }}>Add Notificação</button>
+          </div>
+        </ProvidersNotificationProvider>
+      ),
+    },
+    {
+      name: 'ModalProvider',
+      exportLine: "export { default as ModalProvider, useModalProvider } from './modal-provider';",
+      element: (
+        <ProvidersModalProvider>
+          <div className="space-y-2">
+            <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>Modal: (useModalProvider().openModal)</p>
+            <button className="text-xs px-3 py-1 rounded-md" style={{ backgroundColor: 'var(--color-button-primary-default)', color: 'var(--color-button-primary-text)' }}>Abrir Modal</button>
+          </div>
+        </ProvidersModalProvider>
+      ),
+    },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Providers</h1>
+        <p className="text-[var(--color-text-secondary)]">Provedores de contexto.</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">{example.exportLine}</p>
+            </div>
+
+            <Card className="p-0">
+              <div className="p-5">{example.element}</div>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function UtilitiesPage() {
+  const examples = [
+    { name: 'ThemeToggle', exportLine: "export { default as ThemeToggle } from './ThemeToggle';", element: <UtilitiesThemeToggle /> },
+    {
+      name: 'UpdateNotification',
+      exportLine: "export { default as UpdateNotification } from './UpdateNotification';",
+      element: <UtilitiesUpdateNotification />,
+    },
+    {
+      name: 'UtilsDemo',
+      exportLine: "// Exemplo de uso de @rainersoft/utils",
+      element: (
+        <div className="space-y-2">
+          <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>Utils (formatCurrency, formatDate):</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-primary)' }}>{formatCurrency(1234.56)}</p>
+          <p className="text-xs" style={{ color: 'var(--color-text-primary)' }}>{formatDate(new Date())}</p>
+        </div>
+      ),
+    },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Utilities</h1>
+        <p className="text-[var(--color-text-secondary)]">Componentes utilitários.</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">{example.exportLine}</p>
+            </div>
+
+            <Card className="p-0">
+              <div className="p-5">{example.element}</div>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function NavigationPage() {
+  const examples = [
+    { name: 'BackToTop', exportLine: "export { default as BackToTop } from './BackToTop';", element: <NavigationBackToTop /> },
+    { name: 'Accordion', exportLine: "export { default as Accordion } from './accordion';", element: <NavigationAccordion /> },
+    { name: 'Collapsible', exportLine: "export { default as Collapsible } from './collapsible';", element: <NavigationCollapsible /> },
+    { name: 'Command', exportLine: "export { default as Command } from './command';", element: <NavigationCommand /> },
+    { name: 'Menu', exportLine: "export { default as Menu } from './menu';", element: <NavigationMenu /> },
+    {
+      name: 'NavigationMenu',
+      exportLine: "export { default as NavigationMenu } from './navigation-menu';",
+      element: <NavigationNavigationMenu />,
+    },
+    { name: 'Pagination', exportLine: "export { default as Pagination } from './pagination';", element: <NavigationPagination /> },
+    { name: 'Sidebar', exportLine: "export { default as Sidebar } from './sidebar';", element: <NavigationSidebar /> },
+    { name: 'Steps', exportLine: "export { default as Steps } from './steps';", element: <NavigationSteps /> },
+    { name: 'Tabs', exportLine: "export { default as Tabs } from './tabs';", element: <NavigationTabs /> },
+    { name: 'TopBar', exportLine: "export { default as TopBar } from './top-bar';", element: <NavigationTopBar /> },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Navigation</h1>
+        <p className="text-[var(--color-text-secondary)]">Componentes de navegação.</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">{example.exportLine}</p>
+            </div>
+
+            <Card className="p-0">
+              <div className="p-5">{example.element}</div>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function PwaPage() {
+  const examples = [
+    {
+      name: 'InstallPrompt',
+      exportLine: "export { default as InstallPrompt } from './InstallPrompt';",
+      element: <PwaInstallPrompt />,
+    },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">PWA</h1>
+        <p className="text-[var(--color-text-secondary)]">Componentes de Progressive Web App.</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">{example.exportLine}</p>
+            </div>
+
+            {example.element}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function InfrastructurePage() {
+  const examples = [
+    {
+      name: 'ErrorBoundary',
+      exportLine: "export { default as ErrorBoundary } from './ErrorBoundary';",
+      element: <InfrastructureErrorBoundary />,
+    },
+    {
+      name: 'LoadingScreen',
+      exportLine: "export { default as LoadingScreen } from './LoadingScreen';",
+      element: <InfrastructureLoadingScreen />,
+    },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Infrastructure</h1>
+        <p className="text-[var(--color-text-secondary)]">Componentes de infraestrutura e estados globais.</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">{example.exportLine}</p>
+            </div>
+
+            <Card className="p-0">
+              <div className="p-5">{example.element}</div>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function FeedbackPage() {
+  const examples = [
+    {
+      name: 'AlertDialog',
+      exportLine: "export { default as AlertDialog } from './alert-dialog';",
+      element: <FeedbackAlertDialog />,
+    },
+    {
+      name: 'Alert',
+      exportLine: "export { default as Alert } from './alert';",
+      element: (
+        <div className="space-y-3">
+          <FeedbackAlert tone="info" title="Info" description="Mensagem informativa" />
+          <FeedbackAlert tone="success" title="Sucesso" description="Operação concluída" />
+          <FeedbackAlert tone="warning" title="Atenção" description="Revise os dados" />
+          <FeedbackAlert tone="danger" title="Erro" description="Falha ao processar" />
+        </div>
+      ),
+    },
+    {
+      name: 'Badge',
+      exportLine: "export { default as Badge } from './badge';",
+      element: <FeedbackBadge />,
+    },
+    {
+      name: 'EmptyState',
+      exportLine: "export { default as EmptyState } from './empty-state';",
+      element: <FeedbackEmptyState />,
+    },
+    {
+      name: 'Kpi',
+      exportLine: "export { default as Kpi } from './kpi';",
+      element: <FeedbackKpi />,
+    },
+    {
+      name: 'Notification',
+      exportLine: "export { default as Notification } from './notification';",
+      element: <FeedbackNotification />,
+    },
+    {
+      name: 'Progress',
+      exportLine: "export { default as Progress } from './progress';",
+      element: <FeedbackProgress />,
+    },
+    {
+      name: 'Skeleton',
+      exportLine: "export { default as Skeleton } from './skeleton';",
+      element: <FeedbackSkeleton />,
+    },
+    {
+      name: 'Sonner',
+      exportLine: "export { default as Sonner } from './sonner';",
+      element: <FeedbackSonner />,
+    },
+    {
+      name: 'Spinner',
+      exportLine: "export { default as Spinner } from './spinner';",
+      element: <FeedbackSpinner />,
+    },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Feedback</h1>
+        <p className="text-[var(--color-text-secondary)]">Componentes de feedback e estados.</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">{example.exportLine}</p>
+            </div>
+
+            <Card className="p-0">
+              <div className="p-5">{example.element}</div>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function EffectsPage() {
+  const examples = [
+    {
+      name: 'CelestialBackground',
+      exportLine: "export { default as CelestialBackground } from './CelestialBackground';",
+      element: <CelestialBackground />,
+    },
+    {
+      name: 'FloatingGrid',
+      exportLine: "export { default as FloatingGrid } from './FloatingGrid';",
+      element: <FloatingGrid />,
+    },
+    {
+      name: 'MatrixBackground',
+      exportLine: "export { default as MatrixBackground } from './MatrixBackground';",
+      element: <MatrixBackground />,
+    },
+    {
+      name: 'ParticlesEffect',
+      exportLine: "export { default as ParticlesEffect } from './ParticlesEffect';",
+      element: <ParticlesEffect />,
+    },
+    {
+      name: 'StarsBackground',
+      exportLine: "export { default as StarsBackground } from './StarsBackground';",
+      element: <StarsBackground />,
+    },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Effects</h1>
+        <p className="text-[var(--color-text-secondary)]">Efeitos visuais usando tokens (CSS vars).</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">{example.exportLine}</p>
+            </div>
+
+            {example.element}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function DevelopmentPage() {
+  const examples = [
+    {
+      name: 'TokensDemo',
+      exportLine: "export { default as TokensDemo } from './TokensDemo';",
+      element: <TokensDemo />,
+    },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Development</h1>
+        <p className="text-[var(--color-text-secondary)]">Ferramentas e demos para desenvolvimento.</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">{example.exportLine}</p>
+            </div>
+
+            {example.element}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function DataDisplayPage() {
+  const examples = [
+    { name: 'Calendar', exportLine: "export { default as Calendar } from './calendar';", element: <Calendar /> },
+    { name: 'Carousel', exportLine: "export { default as Carousel } from './carousel';", element: <Carousel /> },
+    {
+      name: 'Chip',
+      exportLine: "export { default as Chip } from './chip';",
+      element: (
+        <div className="flex flex-wrap gap-2">
+          <Chip label="Default" tone="default" />
+          <Chip label="Success" tone="success" />
+          <Chip label="Warning" tone="warning" />
+          <Chip label="Danger" tone="danger" />
+        </div>
+      ),
+    },
+    { name: 'Masonry', exportLine: "export { default as Masonry } from './masonry';", element: <Masonry /> },
+    { name: 'Rating', exportLine: "export { default as Rating } from './rating';", element: <Rating /> },
+    { name: 'Timeline', exportLine: "export { default as Timeline } from './timeline';", element: <Timeline /> },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Data Display</h1>
+        <p className="text-[var(--color-text-secondary)]">Exemplos de exibição de dados.</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">{example.exportLine}</p>
+            </div>
+
+            <Card className="p-0">
+              <div className="p-5">{example.element}</div>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function ContentPage() {
+  const examples = [
+    {
+      name: 'Code',
+      exportLine: "export { default as Code } from './Code';",
+      element: (
+        <Card className="p-0">
+          <div className="p-5">
+            <ContentCode />
+          </div>
+        </Card>
+      ),
+    },
+    {
+      name: 'Kbd',
+      exportLine: "export { Kbd, KbdCombo } from './Kbd';",
+      element: (
+        <Card className="p-0">
+          <div className="p-5 space-y-4">
+            <div className="flex items-center gap-2">
+              <Kbd>Ctrl</Kbd>
+              <Kbd>Shift</Kbd>
+              <Kbd>K</Kbd>
+            </div>
+            <div>
+              <p className="text-xs mb-2" style={{ color: 'var(--color-text-secondary)' }}>
+                Combinação
+              </p>
+              <KbdCombo keys={['Ctrl', 'K']} />
+            </div>
+          </div>
+        </Card>
+      ),
+    },
+    {
+      name: 'Quote',
+      exportLine: "export { Quote, QuoteTestimonial } from './Quote';",
+      element: (
+        <div className="grid gap-4 lg:grid-cols-2">
+          <Card className="p-0">
+            <div className="p-5">
+              <Quote author="Equipe Rainersoft" source="UI Library" showIcon>
+                Construímos componentes com foco em acessibilidade, consistência e tokens semânticos.
+              </Quote>
+            </div>
+          </Card>
+          <Card className="p-0">
+            <div className="p-5">
+              <QuoteTestimonial author="Designer de Produto" source="UI/UX" showIcon>
+                A biblioteca Rainersoft UI acelera entregas mantendo padrão visual e qualidade.
+              </QuoteTestimonial>
+            </div>
+          </Card>
+        </div>
+      ),
+    },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Content</h1>
+        <p className="text-[var(--color-text-secondary)]">Exemplos de componentes de conteúdo.</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">{example.exportLine}</p>
+            </div>
+            {example.element}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function DashboardPage() {
+  const examples = [
+    { name: 'AnalyticsOverview', file: './analytics-overview', element: <AnalyticsOverview /> },
+    { name: 'HelpCenter', file: './help-center', element: <HelpCenter /> },
+    { name: 'QuickActions', file: './quick-actions', element: <QuickActions /> },
+    { name: 'QuickStats', file: './quick-stats', element: <QuickStats /> },
+    { name: 'RecentPostsList', file: './recent-posts-list', element: <RecentPostsList /> },
+    { name: 'StatsCards', file: './stats-cards', element: <StatsCards /> },
+    { name: 'StatsOverview', file: './stats-overview', element: <StatsOverview /> },
+  ]
+
+  return (
+    <div className="space-y-6">
+      <div className="space-y-1">
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Dashboard</h1>
+        <p className="text-[var(--color-text-secondary)]">Exemplo realista com cards, métricas e listas.</p>
+      </div>
+
+      <div className="space-y-6">
+        {examples.map((example) => (
+          <div key={example.name} className="space-y-3">
+            <div className="space-y-1">
+              <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">{example.name}</h2>
+              <p className="text-xs text-[var(--color-text-secondary)]">
+                {`export { default as ${example.name} } from '${example.file}';`}
+              </p>
+            </div>
+            {example.element}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 /**
  * Tipo que mapeia seções de componentes para lista de nomes de componentes
@@ -64,7 +887,7 @@ const sectionComponentNames: SectionComponentMap = (() => {
  * Lista ordenada das seções de componentes para navegação
  * Ordenada alfabeticamente pelo label para melhor experiência do usuário
  */
-const sectionsOrdered = [...showcaseSections].sort((a, b) => a.label.localeCompare(b.label))
+const sectionsOrdered = [...showcaseSections]
 
 /**
  * Página de demonstração de componentes de acessibilidade
@@ -85,7 +908,7 @@ function AccessibilityPage() {
       <div className="bg-[var(--color-background-secondary)] border border-[var(--color-border-default)] rounded-lg p-6 space-y-4">
         <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">Botão com Ícone</h2>
         <p className="text-sm text-[var(--color-text-secondary)]">Botões que usam apenas ícones devem ter texto oculto para screen readers.</p>
-        
+
         <div className="flex gap-4">
           <button
             className="inline-flex items-center justify-center w-10 h-10 rounded-md text-[var(--color-button-primary-text)] transition-opacity hover:opacity-90"
@@ -96,7 +919,7 @@ function AccessibilityPage() {
             </svg>
             <VisuallyHidden>Adicionar novo item</VisuallyHidden>
           </button>
-          
+
           <button
             className="inline-flex items-center justify-center w-10 h-10 rounded-md text-[var(--color-button-danger-text)] transition-opacity hover:opacity-90"
             style={{ backgroundColor: 'var(--color-button-danger-default)' }}
@@ -106,7 +929,7 @@ function AccessibilityPage() {
             </svg>
             <VisuallyHidden>Excluir item</VisuallyHidden>
           </button>
-          
+
           <button
             className="inline-flex items-center justify-center w-10 h-10 rounded-md text-[var(--color-button-secondary-text)] transition-opacity hover:opacity-90"
             style={{ backgroundColor: 'var(--color-button-secondary-default)' }}
@@ -123,7 +946,7 @@ function AccessibilityPage() {
       <div className="bg-[var(--color-background-secondary)] border border-[var(--color-border-default)] rounded-lg p-6 space-y-4">
         <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">Skip Navigation</h2>
         <p className="text-sm text-[var(--color-text-secondary)]">Links para pular diretamente ao conteúdo principal, visíveis apenas quando focados.</p>
-        
+
         <div className="relative">
           <VisuallyHidden asChild>
             <a
@@ -153,7 +976,7 @@ function AccessibilityPage() {
       <div className="bg-[var(--color-background-secondary)] border border-[var(--color-border-default)] rounded-lg p-6 space-y-4">
         <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">Status de Carregamento</h2>
         <p className="text-sm text-[var(--color-text-secondary)]">Informar screen readers sobre o status de operações assíncronas.</p>
-        
+
         <div className="flex items-center gap-3">
           <div className="animate-spin w-5 h-5 border-2 border-t-transparent rounded-full" style={{ borderColor: 'var(--color-text-link)', borderTopColor: 'transparent' }}></div>
           <span className="text-[var(--color-text-primary)]">Carregando...</span>
@@ -167,20 +990,20 @@ function AccessibilityPage() {
       <div className="bg-[var(--color-background-secondary)] border border-[var(--color-border-default)] rounded-lg p-6 space-y-4">
         <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">Indicadores Visuais</h2>
         <p className="text-sm text-[var(--color-text-secondary)]">Cores e ícones devem ter descrições textuais para screen readers.</p>
-        
+
         <div className="space-y-3">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--color-status-success-default)' }}></div>
             <span className="text-[var(--color-text-primary)]">Online</span>
             <VisuallyHidden>Status: conectado e disponível</VisuallyHidden>
           </div>
-          
+
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--color-status-error-default)' }}></div>
             <span className="text-[var(--color-text-primary)]">Offline</span>
             <VisuallyHidden>Status: desconectado</VisuallyHidden>
           </div>
-          
+
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 rounded-full" style={{ backgroundColor: 'var(--color-status-warning-default)' }}></div>
             <span className="text-[var(--color-text-primary)]">Ausente</span>
@@ -193,7 +1016,7 @@ function AccessibilityPage() {
       <div className="bg-[var(--color-background-secondary)] border border-[var(--color-border-default)] rounded-lg p-6 space-y-4">
         <h2 className="text-lg font-semibold text-[var(--color-text-primary)]">Formulários Acessíveis</h2>
         <p className="text-sm text-[var(--color-text-secondary)]">Campos obrigatórios e mensagens de erro devem ser anunciados.</p>
-        
+
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-[var(--color-text-primary)] mb-1">
@@ -201,8 +1024,8 @@ function AccessibilityPage() {
               <span className="ml-1" style={{ color: 'var(--color-status-error-default)' }}>*</span>
               <VisuallyHidden>(campo obrigatório)</VisuallyHidden>
             </label>
-            <input 
-              type="email" 
+            <input
+              type="email"
               className="w-full px-3 py-2 border rounded-md bg-[var(--color-background-primary)] text-[var(--color-text-primary)] focus:outline-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
               style={{ borderColor: 'var(--color-border-default)', outlineColor: 'var(--color-interactive-focus-ring)' }}
               placeholder="seu@email.com"
@@ -275,7 +1098,7 @@ function UiPage() {
           </div>
           <div className="flex items-center gap-3">
             <div className="flex -space-x-2">
-              {['primary','secondary','tertiary','inverse'].map((tone) => (
+              {['primary', 'secondary', 'tertiary', 'inverse'].map((tone) => (
                 <span key={tone} className="inline-block h-8 w-8 rounded-full ring-2 ring-[var(--color-background-primary)]" style={{ backgroundColor: `var(--color-text-${tone === 'inverse' ? 'inverse' : 'primary'})` }} />
               ))}
             </div>
@@ -426,21 +1249,21 @@ function CompliancePage() {
         <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">Compliance</h1>
         <p className="text-[var(--color-text-secondary)]">Componentes de conformidade e boas práticas.</p>
       </div>
-      
+
       <div className="grid gap-6 md:grid-cols-2">
         <div className="bg-[var(--color-background-primary)] border border-[var(--color-border-default)] rounded-lg p-6 shadow-sm">
           <Quote author="Equipe Rainersoft" role="UI Library">
             Criamos componentes com foco em acessibilidade e consistência.
           </Quote>
         </div>
-        
+
         <div className="bg-[var(--color-background-primary)] border border-[var(--color-border-default)] rounded-lg p-6 shadow-sm">
           <QuoteTestimonial author="Designer de Produto" role="UI/UX">
             A biblioteca Rainersoft UI facilita criar interfaces consistentes e acessíveis.
           </QuoteTestimonial>
         </div>
       </div>
-      
+
       <div className="bg-[var(--color-background-primary)] border border-[var(--color-border-default)] rounded-lg p-6 shadow-sm">
         <h2 className="text-lg font-semibold text-[var(--color-text-primary)] mb-4">Atalhos de Teclado</h2>
         <div className="space-y-3">
@@ -474,7 +1297,7 @@ function PlaceholderPage({ section }: { section: string }) {
   return (
     <div className="space-y-4">
       <div className="space-y-1">
-        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)] capitalize">{friendlyName}</h1>
+        <h1 className="text-2xl font-semibold text-[var(--color-text-primary)]">{friendlyName}</h1>
         <p className="text-[var(--color-text-secondary)]">Componentes reais detectados na seção.</p>
       </div>
 
@@ -527,93 +1350,7 @@ function PlaceholderPage({ section }: { section: string }) {
  * @returns {JSX.Element} Página home com cards de exemplo
  */
 function HomePage() {
-  return (
-    <div className="space-y-6">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-bold text-[var(--color-text-primary)]">Rainersoft UI Showcase</h1>
-        <p className="text-lg text-[var(--color-text-secondary)]">Biblioteca de componentes React com design moderno e acessível.</p>
-      </div>
-
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {showcaseSections.map((section) => (
-          <Link
-            key={section.id}
-            to={`/${section.id}`}
-            className="block group"
-          >
-            <div className="bg-[var(--color-background-primary)] border border-[var(--color-border-default)] rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow duration-200">
-              <div className="space-y-3">
-                <div className="flex items-center gap-3">
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center transition-colors"
-                    style={{ backgroundColor: 'var(--color-background-secondary)' }}
-                  >
-                    <span className="font-semibold text-sm" style={{ color: 'var(--color-text-primary)' }}>
-                      {section.label.charAt(0)}
-                    </span>
-                  </div>
-                  <div>
-                    <h2 className="text-lg font-semibold text-[var(--color-text-primary)] transition-colors">
-                      {section.label}
-                    </h2>
-                    <p className="text-sm text-[var(--color-text-secondary)]">{section.description}</p>
-                  </div>
-                </div>
-                
-                {section.id === 'ui' && (
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="px-2 py-1 text-xs rounded-full" style={{ backgroundColor: 'var(--color-background-secondary)', color: 'var(--color-text-secondary)' }}>15+ componentes</span>
-                    <span className="px-2 py-1 text-xs rounded-full" style={{ backgroundColor: 'var(--color-status-success-light)', color: 'var(--color-status-success-text)' }}>Fully functional</span>
-                  </div>
-                )}
-                
-                {section.id === 'accessibility' && (
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="px-2 py-1 text-xs rounded-full" style={{ backgroundColor: 'var(--color-background-secondary)', color: 'var(--color-text-secondary)' }}>WCAG 2.1</span>
-                    <span className="px-2 py-1 text-xs rounded-full" style={{ backgroundColor: 'var(--color-background-secondary)', color: 'var(--color-text-secondary)' }}>Screen readers</span>
-                  </div>
-                )}
-                
-                {section.id === 'compliance' && (
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <span className="px-2 py-1 text-xs rounded-full" style={{ backgroundColor: 'var(--color-background-secondary)', color: 'var(--color-text-secondary)' }}>GDPR</span>
-                    <span className="px-2 py-1 text-xs rounded-full" style={{ backgroundColor: 'var(--color-status-success-light)', color: 'var(--color-status-success-text)' }}>Privacy</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
-
-      <div className="border border-[var(--color-border-default)] rounded-lg p-6" style={{ backgroundColor: 'var(--color-background-secondary)' }}>
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: 'var(--color-button-primary-default)', color: 'var(--color-button-primary-text)' }}>
-            <span className="font-bold">R</span>
-          </div>
-          <h2 className="text-xl font-semibold text-[var(--color-text-primary)]">Sobre a Rainersoft UI</h2>
-        </div>
-        <p className="text-[var(--color-text-secondary)] mb-4">
-          Uma biblioteca de componentes React moderna, acessível e totalmente customizável.
-          Construída com TypeScript, Tailwind CSS e as melhores práticas de design.
-        </p>
-        <div className="grid gap-4 md:grid-cols-3">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--color-status-success-default)' }}></div>
-            <span className="text-sm text-[var(--color-text-secondary)]">Acessibilidade WCAG 2.1</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--color-button-primary-default)' }}></div>
-            <span className="text-sm text-[var(--color-text-secondary)]">Design System Completo</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--color-background-inverse)' }}></div>
-            <span className="text-sm text-[var(--color-text-secondary)]">TypeScript First</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
+  return <PlaceholderPage section="home" />
 }
 
 /**
@@ -699,7 +1436,22 @@ function Layout() {
 function resolveSection(section: string) {
   if (section === 'accessibility') return <AccessibilityPage />
   if (section === 'compliance') return <CompliancePage />
+  if (section === 'content') return <ContentPage />
+  if (section === 'dashboard') return <DashboardPage />
+  if (section === 'data-display') return <DataDisplayPage />
+  if (section === 'development') return <DevelopmentPage />
+  if (section === 'effects') return <EffectsPage />
+  if (section === 'feedback') return <FeedbackPage />
+  if (section === 'forms') return <FormsPage />
+  if (section === 'infrastructure') return <InfrastructurePage />
+  if (section === 'layout') return <LayoutPage />
+  if (section === 'navigation') return <NavigationPage />
+  if (section === 'overlays') return <OverlaysPage />
+  if (section === 'providers') return <ProvidersPage />
+  if (section === 'pwa') return <PwaPage />
+  if (section === 'social') return <SocialPage />
   if (section === 'ui') return <UiPage />
+  if (section === 'utilities') return <UtilitiesPage />
   return <PlaceholderPage section={section} />
 }
 

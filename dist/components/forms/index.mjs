@@ -1,7 +1,6 @@
 import * as React10 from 'react';
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { Check, Circle, ChevronDown, ChevronUp } from 'lucide-react';
@@ -27,6 +26,7 @@ import Search from 'lucide-react/dist/esm/icons/search';
 import Globe from 'lucide-react/dist/esm/icons/globe';
 import Phone from 'lucide-react/dist/esm/icons/phone';
 
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;

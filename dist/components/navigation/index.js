@@ -5,7 +5,6 @@ var reactSlot = require('@radix-ui/react-slot');
 var classVarianceAuthority = require('class-variance-authority');
 var React7 = require('react');
 require('@rainersoft/design-tokens/formats/css-vars.css');
-var tokens = require('@rainersoft/design-tokens');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var jsxRuntime = require('react/jsx-runtime');
@@ -49,7 +48,6 @@ function _interopNamespace(e) {
 }
 
 var React7__namespace = /*#__PURE__*/_interopNamespace(React7);
-var tokens__default = /*#__PURE__*/_interopDefault(tokens);
 var AccordionPrimitive__namespace = /*#__PURE__*/_interopNamespace(AccordionPrimitive);
 var CollapsiblePrimitive__namespace = /*#__PURE__*/_interopNamespace(CollapsiblePrimitive);
 var NavigationMenuPrimitive__namespace = /*#__PURE__*/_interopNamespace(NavigationMenuPrimitive);
@@ -67,17 +65,18 @@ var ArrowLeft__default = /*#__PURE__*/_interopDefault(ArrowLeft);
 var Bell__default = /*#__PURE__*/_interopDefault(Bell);
 var Search2__default = /*#__PURE__*/_interopDefault(Search2);
 
-var tokensWithThemes = tokens__default.default;
-tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens__default.default;
-tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens__default.default;
+var tokens = {};
+var tokensWithThemes = tokens;
+tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
+tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var layoutClassesSemantic = tokens__default.default.semantics?.layoutClasses ?? {};
+var layoutClassesSemantic = tokens.semantics?.layoutClasses ?? {};
 layoutClassesSemantic.components ?? {};
 layoutClassesSemantic.sections ?? {};
-var zIndexSemantic = tokens__default.default.semantics?.layout?.zIndex ?? {};
-var zIndexPrimitive = tokens__default.default.primitives?.zIndex ?? {};
+var zIndexSemantic = tokens.semantics?.layout?.zIndex ?? {};
+var zIndexPrimitive = tokens.primitives?.zIndex ?? {};
 var zIndexTokens = {
   ...zIndexPrimitive,
   ...zIndexSemantic
@@ -86,8 +85,8 @@ var Z_INDEX = {
   BACKDROP: String(zIndexTokens.overlay ?? zIndexTokens.modal ?? 400),
   MODAL: String(zIndexTokens.modal ?? 400),
   DROPDOWN: String(zIndexTokens.dropdown ?? 300)};
-tokens__default.default.primitives?.gradientDirections ?? {};
-var motionClasses = tokens__default.default.semantics?.motionClasses ?? {};
+tokens.primitives?.gradientDirections ?? {};
+var motionClasses = tokens.semantics?.motionClasses ?? {};
 var MOTION = {
   TRANSITION: {
     DEFAULT: motionClasses.transition?.default,
@@ -98,9 +97,9 @@ var MOTION = {
     OPACITY: motionClasses.transition?.opacity
   }
 };
-var motionTokens = tokens__default.default.MOTION ?? tokens__default.default.motionTokens ?? tokens__default.default.primitives?.motion ?? {};
+var motionTokens = tokens.MOTION ?? tokens.motionTokens ?? tokens.primitives?.motion ?? {};
 var motion = motionTokens;
-var motionSemanticTokens = tokens__default.default.semantics?.motion ?? {};
+var motionSemanticTokens = tokens.semantics?.motion ?? {};
 var motionSemantic = motionSemanticTokens;
 motion?.delay ?? {};
 var ANIMATION_DURATIONS = motion?.duration ?? {};

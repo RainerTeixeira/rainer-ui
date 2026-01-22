@@ -2,7 +2,6 @@ import { SubTrigger, SubContent, Portal, Content, Item, CheckboxItem, ItemIndica
 import * as React9 from 'react';
 import { ChevronRight, Check, X } from 'lucide-react';
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
@@ -28,6 +27,7 @@ import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle';
 import CheckCircle from 'lucide-react/dist/esm/icons/check-circle';
 import Info from 'lucide-react/dist/esm/icons/info';
 
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;

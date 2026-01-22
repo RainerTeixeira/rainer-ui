@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { SubTrigger, SubContent, Portal, Content, Item, CheckboxItem, ItemIndicator, RadioItem, Label, Separator, Root, Group, RadioGroup, Sub, Trigger } from '@radix-ui/react-dropdown-menu';
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { ChevronRight, Check } from 'lucide-react';
 import { jsxs, jsx } from 'react/jsx-runtime';
 
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;

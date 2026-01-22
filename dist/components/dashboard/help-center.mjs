@@ -1,5 +1,4 @@
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import * as React from 'react';
@@ -10,6 +9,7 @@ import HelpCircle from 'lucide-react/dist/esm/icons/help-circle';
 import MessageCircle from 'lucide-react/dist/esm/icons/message-circle';
 import Video from 'lucide-react/dist/esm/icons/video';
 
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;

@@ -4,7 +4,6 @@ var jsxRuntime = require('react/jsx-runtime');
 var AspectRatioPrimitive = require('@radix-ui/react-aspect-ratio');
 var React5 = require('react');
 require('@rainersoft/design-tokens/formats/css-vars.css');
-var tokens = require('@rainersoft/design-tokens');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var lucideReact = require('lucide-react');
@@ -12,8 +11,6 @@ var ScrollAreaPrimitive = require('@radix-ui/react-scroll-area');
 var SeparatorPrimitive = require('@radix-ui/react-separator');
 var reactDialog = require('@radix-ui/react-dialog');
 var classVarianceAuthority = require('class-variance-authority');
-
-function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -35,7 +32,6 @@ function _interopNamespace(e) {
 
 var AspectRatioPrimitive__namespace = /*#__PURE__*/_interopNamespace(AspectRatioPrimitive);
 var React5__namespace = /*#__PURE__*/_interopNamespace(React5);
-var tokens__default = /*#__PURE__*/_interopDefault(tokens);
 var ScrollAreaPrimitive__namespace = /*#__PURE__*/_interopNamespace(ScrollAreaPrimitive);
 var SeparatorPrimitive__namespace = /*#__PURE__*/_interopNamespace(SeparatorPrimitive);
 
@@ -59,23 +55,24 @@ function PageHeader({ title, description, children }) {
   );
 }
 var AspectRatio = AspectRatioPrimitive__namespace.Root;
-var tokensWithThemes = tokens__default.default;
-tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens__default.default;
-tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens__default.default;
+var tokens = {};
+var tokensWithThemes = tokens;
+tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
+tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var layoutClassesSemantic = tokens__default.default.semantics?.layoutClasses ?? {};
+var layoutClassesSemantic = tokens.semantics?.layoutClasses ?? {};
 layoutClassesSemantic.components ?? {};
 layoutClassesSemantic.sections ?? {};
-var zIndexSemantic = tokens__default.default.semantics?.layout?.zIndex ?? {};
-var zIndexPrimitive = tokens__default.default.primitives?.zIndex ?? {};
+var zIndexSemantic = tokens.semantics?.layout?.zIndex ?? {};
+var zIndexPrimitive = tokens.primitives?.zIndex ?? {};
 ({
   ...zIndexPrimitive,
   ...zIndexSemantic
 });
-tokens__default.default.primitives?.gradientDirections ?? {};
-var motionClasses = tokens__default.default.semantics?.motionClasses ?? {};
+tokens.primitives?.gradientDirections ?? {};
+var motionClasses = tokens.semantics?.motionClasses ?? {};
 ({
   TRANSITION: {
     DEFAULT: motionClasses.transition?.default,
@@ -86,9 +83,9 @@ var motionClasses = tokens__default.default.semantics?.motionClasses ?? {};
     OPACITY: motionClasses.transition?.opacity
   }
 });
-var motionTokens = tokens__default.default.MOTION ?? tokens__default.default.motionTokens ?? tokens__default.default.primitives?.motion ?? {};
+var motionTokens = tokens.MOTION ?? tokens.motionTokens ?? tokens.primitives?.motion ?? {};
 var motion = motionTokens;
-var motionSemanticTokens = tokens__default.default.semantics?.motion ?? {};
+var motionSemanticTokens = tokens.semantics?.motion ?? {};
 var motionSemantic = motionSemanticTokens;
 motion?.delay ?? {};
 var ANIMATION_DURATIONS = motion?.duration ?? {};

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { useTheme } from 'next-themes';
@@ -8,6 +7,7 @@ import { Toaster as Toaster$1 } from 'sonner';
 export { Toaster as Sonner } from 'sonner';
 import { Loader2, Octagon, AlertTriangle, Info, Check } from 'lucide-react';
 
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;

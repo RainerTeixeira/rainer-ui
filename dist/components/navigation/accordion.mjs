@@ -2,11 +2,11 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import * as React from 'react';
 import { ChevronDown } from 'lucide-react';
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { jsx, jsxs } from 'react/jsx-runtime';
 
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;

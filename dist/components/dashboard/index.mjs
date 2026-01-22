@@ -1,9 +1,9 @@
-import * as React19 from 'react';
-import React19__default from 'react';
+import * as React18 from 'react';
+import React18__default from 'react';
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { getInitials } from '@rainersoft/utils';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
@@ -34,6 +34,7 @@ import HelpCircle from 'lucide-react/dist/esm/icons/help-circle';
 import MessageCircle from 'lucide-react/dist/esm/icons/message-circle';
 import Video from 'lucide-react/dist/esm/icons/video';
 
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
@@ -86,570 +87,6 @@ var motionSemanticTyped = motionSemantic;
     navigation: motionSemanticTyped.navigation?.page
   }
 });
-var __defProp = Object.defineProperty;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
-var __publicField = (obj, key, value) => __defNormalProp(obj, key + "", value);
-var DEFAULT_LOCALE = "pt-BR";
-var CURRENCY_MAP = {
-  "pt-BR": "BRL",
-  "en-US": "USD",
-  "es-ES": "EUR"
-};
-var date_exports = {};
-__export(date_exports, {
-  formatDate: () => formatDate,
-  formatDateTime: () => formatDateTime,
-  formatRelativeDate: () => formatRelativeDate,
-  isValidDate: () => isValidDate,
-  toISOString: () => toISOString
-});
-var RELATIVE_TEXTS = {
-  "pt-BR": {
-    now: "agora",
-    minute: (n) => `h\xE1 ${n} ${n === 1 ? "minuto" : "minutos"}`,
-    hour: (n) => `h\xE1 ${n} ${n === 1 ? "hora" : "horas"}`,
-    day: (n) => `h\xE1 ${n} ${n === 1 ? "dia" : "dias"}`,
-    month: (n) => `h\xE1 ${n} ${n === 1 ? "m\xEAs" : "meses"}`,
-    year: (n) => `h\xE1 ${n} ${n === 1 ? "ano" : "anos"}`
-  },
-  "en-US": {
-    now: "now",
-    minute: (n) => `${n} ${n === 1 ? "minute" : "minutes"} ago`,
-    hour: (n) => `${n} ${n === 1 ? "hour" : "hours"} ago`,
-    day: (n) => `${n} ${n === 1 ? "day" : "days"} ago`,
-    month: (n) => `${n} ${n === 1 ? "month" : "months"} ago`,
-    year: (n) => `${n} ${n === 1 ? "year" : "years"} ago`
-  },
-  "es-ES": {
-    now: "ahora",
-    minute: (n) => `hace ${n} ${n === 1 ? "minuto" : "minutos"}`,
-    hour: (n) => `hace ${n} ${n === 1 ? "hora" : "horas"}`,
-    day: (n) => `hace ${n} ${n === 1 ? "d\xEDa" : "d\xEDas"}`,
-    month: (n) => `hace ${n} ${n === 1 ? "mes" : "meses"}`,
-    year: (n) => `hace ${n} ${n === 1 ? "a\xF1o" : "a\xF1os"}`
-  }
-};
-function formatDate(date, format = "long", locale = DEFAULT_LOCALE) {
-  const d = typeof date === "string" ? new Date(date) : date;
-  const options = {
-    day: "numeric",
-    month: format === "short" ? "2-digit" : "long",
-    year: "numeric",
-    ...format === "full" && { weekday: "long" }
-  };
-  if (format === "short") {
-    return d.toLocaleDateString(locale, { day: "2-digit", month: "2-digit", year: "numeric" });
-  }
-  return d.toLocaleDateString(locale, options);
-}
-function formatDateTime(date, locale = DEFAULT_LOCALE) {
-  const d = typeof date === "string" ? new Date(date) : date;
-  return d.toLocaleString(locale, {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit"
-  });
-}
-function formatRelativeDate(date, locale = DEFAULT_LOCALE) {
-  const d = typeof date === "string" ? new Date(date) : date;
-  if (!(d instanceof Date) || Number.isNaN(d.getTime())) {
-    return "";
-  }
-  const now = /* @__PURE__ */ new Date();
-  const diffMs = now.getTime() - d.getTime();
-  const diffSec = Math.floor(diffMs / 1e3);
-  const diffMin = Math.floor(diffSec / 60);
-  const diffHour = Math.floor(diffMin / 60);
-  const diffDay = Math.floor(diffHour / 24);
-  const diffMonth = Math.floor(diffDay / 30.4375);
-  const diffYear = Math.floor(diffDay / 365);
-  const texts = RELATIVE_TEXTS[locale];
-  if (diffSec < 10) {
-    if (locale === "pt-BR") return "agora mesmo";
-    if (locale === "en-US") return "just now";
-    if (locale === "es-ES") return "ahora mismo";
-  }
-  if (diffSec < 60) return texts.now;
-  if (diffMin < 60) return texts.minute(diffMin);
-  if (diffHour < 24) return texts.hour(diffHour);
-  if (diffDay === 1) {
-    if (locale === "pt-BR") return "ontem";
-    if (locale === "en-US") return "yesterday";
-    if (locale === "es-ES") return "ayer";
-  }
-  if (diffDay === 2) {
-    if (locale === "pt-BR") return "anteontem";
-    if (locale === "en-US") return "the day before yesterday";
-    if (locale === "es-ES") return "anteayer";
-  }
-  if (diffDay < 30) return texts.day(diffDay);
-  if (diffMonth < 12) return texts.month(diffMonth);
-  return texts.year(diffYear);
-}
-function toISOString(date) {
-  return date.toISOString();
-}
-function isValidDate(date) {
-  return date instanceof Date && !isNaN(date.getTime());
-}
-var status_exports = {};
-__export(status_exports, {
-  getStatusColor: () => getStatusColor,
-  getStatusVariant: () => getStatusVariant,
-  translatePostStatus: () => translatePostStatus,
-  translateStatus: () => translateStatus
-});
-var STATUS_TRANSLATIONS = {
-  "pt-BR": {
-    // Estados de conteúdo
-    DRAFT: "Rascunho",
-    PUBLISHED: "Publicado",
-    ARCHIVED: "Arquivado",
-    SCHEDULED: "Agendado",
-    DELETED: "Exclu\xEDdo",
-    // Estados de processo
-    PENDING: "Pendente",
-    ACTIVE: "Ativo",
-    INACTIVE: "Inativo",
-    COMPLETED: "Conclu\xEDdo",
-    CANCELLED: "Cancelado",
-    // Estados de aprovação
-    APPROVED: "Aprovado",
-    REJECTED: "Rejeitado",
-    // Estados de pedido/pagamento
-    PROCESSING: "Processando",
-    PAID: "Pago",
-    UNPAID: "N\xE3o Pago",
-    REFUNDED: "Reembolsado",
-    FAILED: "Falhou",
-    // Estados de usuário
-    VERIFIED: "Verificado",
-    UNVERIFIED: "N\xE3o Verificado",
-    BANNED: "Banido",
-    SUSPENDED: "Suspenso"
-  },
-  "en-US": {
-    DRAFT: "Draft",
-    PUBLISHED: "Published",
-    ARCHIVED: "Archived",
-    SCHEDULED: "Scheduled",
-    DELETED: "Deleted",
-    PENDING: "Pending",
-    ACTIVE: "Active",
-    INACTIVE: "Inactive",
-    COMPLETED: "Completed",
-    CANCELLED: "Cancelled",
-    APPROVED: "Approved",
-    REJECTED: "Rejected",
-    PROCESSING: "Processing",
-    PAID: "Paid",
-    UNPAID: "Unpaid",
-    REFUNDED: "Refunded",
-    FAILED: "Failed",
-    VERIFIED: "Verified",
-    UNVERIFIED: "Unverified",
-    BANNED: "Banned",
-    SUSPENDED: "Suspended"
-  },
-  "es-ES": {
-    DRAFT: "Borrador",
-    PUBLISHED: "Publicado",
-    ARCHIVED: "Archivado",
-    SCHEDULED: "Programado",
-    DELETED: "Eliminado",
-    PENDING: "Pendiente",
-    ACTIVE: "Activo",
-    INACTIVE: "Inactivo",
-    COMPLETED: "Completado",
-    CANCELLED: "Cancelado",
-    APPROVED: "Aprobado",
-    REJECTED: "Rechazado",
-    PROCESSING: "Procesando",
-    PAID: "Pagado",
-    UNPAID: "No Pagado",
-    REFUNDED: "Reembolsado",
-    FAILED: "Fallido",
-    VERIFIED: "Verificado",
-    UNVERIFIED: "No Verificado",
-    BANNED: "Bloqueado",
-    SUSPENDED: "Suspendido"
-  }
-};
-function translateStatus(status, locale = DEFAULT_LOCALE) {
-  const normalized = status.toUpperCase();
-  return STATUS_TRANSLATIONS[locale][normalized] || status;
-}
-function getStatusColor(status) {
-  const normalized = status.toUpperCase();
-  const colorMap = {
-    DRAFT: "text-gray-600",
-    PENDING: "text-yellow-600",
-    PUBLISHED: "text-green-600",
-    ACTIVE: "text-green-600",
-    INACTIVE: "text-gray-600",
-    ARCHIVED: "text-orange-600",
-    DELETED: "text-red-600",
-    SCHEDULED: "text-blue-600",
-    COMPLETED: "text-green-600",
-    CANCELLED: "text-red-600",
-    APPROVED: "text-green-600",
-    REJECTED: "text-red-600",
-    FAILED: "text-red-600",
-    VERIFIED: "text-green-600",
-    BANNED: "text-red-600"
-  };
-  return colorMap[normalized] || "text-gray-600";
-}
-function getStatusVariant(status) {
-  const normalized = status.toUpperCase();
-  if (["PUBLISHED", "ACTIVE", "COMPLETED", "APPROVED", "VERIFIED"].includes(normalized)) {
-    return "default";
-  }
-  if (["DELETED", "CANCELLED", "REJECTED", "FAILED", "BANNED"].includes(normalized)) {
-    return "destructive";
-  }
-  if (["DRAFT", "INACTIVE", "ARCHIVED"].includes(normalized)) {
-    return "secondary";
-  }
-  return "outline";
-}
-function translatePostStatus(status, locale = DEFAULT_LOCALE) {
-  const postStatusMap = {
-    "draft": "DRAFT",
-    "published": "PUBLISHED",
-    "archived": "ARCHIVED",
-    "scheduled": "SCHEDULED",
-    "pending_review": "PENDING"
-  };
-  const normalized = postStatusMap[status.toLowerCase()] || status.toUpperCase();
-  if (status.toLowerCase() === "pending_review") {
-    const translations = {
-      "pt-BR": "Aguardando Revis\xE3o",
-      "en-US": "Pending Review",
-      "es-ES": "Pendiente de Revisi\xF3n"
-    };
-    return translations[locale] || translations["pt-BR"];
-  }
-  return translateStatus(normalized, locale);
-}
-var AuthStorage = class {
-  static setItem(key, value) {
-    if (!this.isClient) return;
-    try {
-      localStorage.setItem(key, value);
-    } catch (error) {
-      console.warn("Failed to save to localStorage:", error);
-    }
-  }
-  static getItem(key) {
-    if (!this.isClient) return null;
-    try {
-      return localStorage.getItem(key);
-    } catch (error) {
-      console.warn("Failed to read from localStorage:", error);
-      return null;
-    }
-  }
-  static removeItem(key) {
-    if (!this.isClient) return;
-    try {
-      localStorage.removeItem(key);
-    } catch (error) {
-      console.warn("Failed to remove from localStorage:", error);
-    }
-  }
-  static setUser(user, key) {
-    this.setItem(key, JSON.stringify(user));
-  }
-  static getUser(key) {
-    const data = this.getItem(key);
-    if (!data) return null;
-    try {
-      return JSON.parse(data);
-    } catch {
-      this.removeItem(key);
-      return null;
-    }
-  }
-  static removeUser(key) {
-    this.removeItem(key);
-  }
-};
-__publicField(AuthStorage, "isClient", typeof window !== "undefined");
-var authentication_exports = {};
-__export(authentication_exports, {
-  getRefreshToken: () => getRefreshToken,
-  getToken: () => getToken,
-  getTokens: () => getTokens,
-  hasToken: () => hasToken,
-  removeToken: () => removeToken,
-  setRefreshToken: () => setRefreshToken,
-  setToken: () => setToken,
-  setTokens: () => setTokens
-});
-var TOKEN_KEY = "auth_token";
-var REFRESH_TOKEN_KEY = "refresh_token";
-var getToken = () => {
-  if (typeof window === "undefined") {
-    return null;
-  }
-  return localStorage.getItem(TOKEN_KEY);
-};
-var setToken = (token) => {
-  if (typeof window === "undefined") {
-    return;
-  }
-  localStorage.setItem(TOKEN_KEY, token);
-};
-var getRefreshToken = () => {
-  if (typeof window === "undefined") {
-    return null;
-  }
-  return localStorage.getItem(REFRESH_TOKEN_KEY);
-};
-var setRefreshToken = (refreshToken) => {
-  if (typeof window === "undefined") {
-    return;
-  }
-  localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
-};
-var removeToken = () => {
-  if (typeof window === "undefined") {
-    return;
-  }
-  localStorage.removeItem(TOKEN_KEY);
-  localStorage.removeItem(REFRESH_TOKEN_KEY);
-};
-var hasToken = () => {
-  return !!getToken();
-};
-var getTokens = () => {
-  return {
-    accessToken: getToken(),
-    refreshToken: getRefreshToken()
-  };
-};
-var setTokens = ({
-  accessToken,
-  refreshToken
-}) => {
-  setToken(accessToken);
-  setRefreshToken(refreshToken);
-};
-function getInitials(name, maxInitials = 2) {
-  return name.split(" ").filter((word) => word.length > 0).map((word) => word[0]).join("").toUpperCase().slice(0, maxInitials);
-}
-function formatCurrency(value, locale = DEFAULT_LOCALE, options) {
-  const currency = CURRENCY_MAP[locale];
-  return new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency,
-    ...options
-  }).format(value);
-}
-function formatNumber2(value, decimals = 0, locale = DEFAULT_LOCALE) {
-  return new Intl.NumberFormat(locale, {
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
-  }).format(value);
-}
-function formatCompact(value, decimals = 1, locale = DEFAULT_LOCALE) {
-  return new Intl.NumberFormat(locale, {
-    notation: "compact",
-    compactDisplay: "short",
-    minimumFractionDigits: decimals,
-    maximumFractionDigits: decimals
-  }).format(value);
-}
-var pt_br_exports = {};
-__export(pt_br_exports, {
-  default: () => pt_br_default,
-  formatCompact: () => formatCompact2,
-  formatCurrency: () => formatCurrency2,
-  formatDate: () => formatDate2,
-  formatDateTime: () => formatDateTime2,
-  formatNumber: () => formatNumber3,
-  formatRelativeDate: () => formatRelativeDate2,
-  translateStatus: () => translateStatus2
-});
-function formatDate2(date, format = "long") {
-  return formatDate(date, format, "pt-BR");
-}
-function formatDateTime2(date) {
-  return formatDateTime(date, "pt-BR");
-}
-function formatRelativeDate2(date) {
-  return formatRelativeDate(date, "pt-BR");
-}
-function formatCurrency2(value, options) {
-  return formatCurrency(value, "pt-BR", options);
-}
-function formatNumber3(value, decimals = 0) {
-  return formatNumber2(value, decimals, "pt-BR");
-}
-function formatCompact2(value, decimals = 1) {
-  return formatCompact(value, decimals, "pt-BR");
-}
-function translateStatus2(status) {
-  return translateStatus(status, "pt-BR");
-}
-var pt_br_default = {
-  formatDate: formatDate2,
-  formatDateTime: formatDateTime2,
-  formatRelativeDate: formatRelativeDate2,
-  formatCurrency: formatCurrency2,
-  formatNumber: formatNumber3,
-  formatCompact: formatCompact2,
-  translateStatus: translateStatus2
-};
-var text_exports = {};
-__export(text_exports, {
-  calculateReadingTime: () => calculateReadingTime,
-  capitalize: () => capitalize,
-  cleanText: () => cleanText2,
-  countWords: () => countWords2,
-  extractInitials: () => extractInitials,
-  generateAvatarUrl: () => generateAvatarUrl,
-  generateDynamicAvatarUrl: () => generateDynamicAvatarUrl,
-  generateUniqueId: () => generateUniqueId,
-  getAvatarColorFromName: () => getAvatarColorFromName,
-  isEmpty: () => isEmpty,
-  isValidAvatarUrl: () => isValidAvatarUrl,
-  normalizeSpaces: () => normalizeSpaces,
-  truncateText: () => truncateText
-});
-function extractInitials(name, maxChars = 2) {
-  if (!name || !name.trim()) {
-    return "";
-  }
-  const words = name.trim().split(/\s+/);
-  const initials = words.slice(0, maxChars).map((word) => word.charAt(0).toUpperCase()).join("");
-  return initials;
-}
-function generateAvatarUrl(name, size = 200, backgroundColor = "0891b2", textColor = "fff") {
-  const encodedName = encodeURIComponent(name);
-  return `https://ui-avatars.com/api/?name=${encodedName}&size=${size}&background=${backgroundColor}&color=${textColor}&font-size=0.5`;
-}
-function isValidAvatarUrl(url) {
-  if (!url || typeof url !== "string") {
-    return false;
-  }
-  try {
-    new URL(url);
-    return true;
-  } catch {
-    return false;
-  }
-}
-function getAvatarColorFromName(name) {
-  if (!name || typeof name !== "string") {
-    return "#0891b2";
-  }
-  let hash = 0;
-  for (let i = 0; i < name.length; i++) {
-    hash = name.charCodeAt(i) + ((hash << 5) - hash);
-  }
-  const colors = [
-    "#0891b2",
-    // cyan-600
-    "#9333ea",
-    // purple-600
-    "#db2777",
-    // pink-600
-    "#059669",
-    // emerald-600
-    "#2563eb",
-    // blue-600
-    "#f97316",
-    // orange-500
-    "#dc2626",
-    // red-600
-    "#7c3aed"
-    // violet-600
-  ];
-  const index = Math.abs(hash) % colors.length;
-  return colors[index];
-}
-function generateDynamicAvatarUrl(name, size = 200) {
-  const color = getAvatarColorFromName(name);
-  const colorHex = color.replace("#", "");
-  return generateAvatarUrl(name, size, colorHex, "fff");
-}
-function generateUniqueId(text, prefix = "", suffix = "") {
-  const slug = text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s-]/g, "").replace(/\s+/g, "-").replace(/-+/g, "-").trim().substring(0, 50);
-  const parts = [prefix, slug, suffix].filter(Boolean);
-  return parts.join("-");
-}
-function truncateText(text, maxLength, suffix = "...") {
-  if (!text || text.length <= maxLength) {
-    return text || "";
-  }
-  return text.substring(0, maxLength - suffix.length) + suffix;
-}
-function capitalize(text, options = {}) {
-  if (!text) return "";
-  const { firstWordOnly = false, lowerRest = false } = options;
-  if (firstWordOnly) {
-    return text.charAt(0).toUpperCase() + (lowerRest ? text.slice(1).toLowerCase() : text.slice(1));
-  }
-  if (lowerRest) {
-    return text.replace(/\b\w/g, (char) => char.toUpperCase()).toLowerCase();
-  }
-  return text.replace(/\b\w/g, (char) => char.toUpperCase());
-}
-function cleanText2(text, allowSpaces = true) {
-  if (!text) return "";
-  const pattern = allowSpaces ? /[^\w\s]/g : /[^\w]/g;
-  return text.replace(pattern, "");
-}
-function countWords2(text) {
-  if (!text || !text.trim()) {
-    return 0;
-  }
-  return text.trim().split(/\s+/).length;
-}
-function isEmpty(text) {
-  return !text || !text.trim();
-}
-function normalizeSpaces(text, options = {}) {
-  if (!text) return "";
-  const { newlines = false } = options;
-  let cleaned = text;
-  if (newlines) {
-    cleaned = cleaned.replace(/\s+/g, " ");
-  } else {
-    cleaned = cleaned.replace(/\s+/g, " ");
-  }
-  return cleaned.trim();
-}
-function calculateReadingTime(content, wordsPerMinute = 200) {
-  let text = "";
-  if (typeof content === "object" && content !== null) {
-    const extractText = (node) => {
-      if (!node) return "";
-      let result = "";
-      if (node.text) {
-        result += node.text + " ";
-      }
-      if (Array.isArray(node.content)) {
-        result += node.content.map(extractText).join(" ");
-      }
-      return result;
-    };
-    text = extractText(content);
-  } else if (typeof content === "string") {
-    text = content.replace(/<[^>]*>/g, "");
-  }
-  const words = text.trim().split(/\s+/).filter((word) => word.length > 0).length;
-  const time = Math.ceil(words / wordsPerMinute);
-  return time > 0 ? time : 1;
-}
 var sizeClasses = {
   xs: "h-6 w-6 text-xs",
   sm: "h-8 w-8 text-sm",
@@ -683,7 +120,7 @@ function getColorFromName(name) {
   }
   return colors[Math.abs(hash) % colors.length];
 }
-var Avatar = React19.forwardRef(
+var Avatar = React18.forwardRef(
   ({
     className,
     src,
@@ -699,9 +136,9 @@ var Avatar = React19.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [imageStatus, setImageStatus] = React19.useState("loading");
-    const [showFallback, setShowFallback] = React19.useState(!src);
-    React19.useEffect(() => {
+    const [imageStatus, setImageStatus] = React18.useState("loading");
+    const [showFallback, setShowFallback] = React18.useState(!src);
+    React18.useEffect(() => {
       if (!src) {
         setShowFallback(true);
         setImageStatus("error");
@@ -766,7 +203,7 @@ var Avatar = React19.forwardRef(
   }
 );
 Avatar.displayName = "Avatar";
-var AvatarImage = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AvatarImage = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "img",
   {
     ref,
@@ -775,7 +212,7 @@ var AvatarImage = React19.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 AvatarImage.displayName = "AvatarImage";
-var AvatarFallback = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AvatarFallback = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -787,9 +224,9 @@ var AvatarFallback = React19.forwardRef(({ className, ...props }, ref) => /* @__
   }
 ));
 AvatarFallback.displayName = "AvatarFallback";
-var Input = React19.forwardRef(
+var Input = React18.forwardRef(
   ({ className, type, error, helperText, label, required, id, ...props }, ref) => {
-    const inputId = id || `input-${React19.useId()}`;
+    const inputId = id || `input-${React18.useId()}`;
     return /* @__PURE__ */ jsxs("div", { className: "space-y-2", children: [
       label && /* @__PURE__ */ jsxs(
         "label",
@@ -848,7 +285,7 @@ var Input = React19.forwardRef(
   }
 );
 Input.displayName = "Input";
-var Textarea = React19.forwardRef(
+var Textarea = React18.forwardRef(
   ({
     className,
     error,
@@ -861,9 +298,9 @@ var Textarea = React19.forwardRef(
     value,
     ...props
   }, ref) => {
-    const inputId = id || `textarea-${React19.useId()}`;
-    const [characterCount, setCharacterCount] = React19.useState(0);
-    React19.useEffect(() => {
+    const inputId = id || `textarea-${React18.useId()}`;
+    const [characterCount, setCharacterCount] = React18.useState(0);
+    React18.useEffect(() => {
       if (typeof value === "string") {
         setCharacterCount(value.length);
       }
@@ -994,7 +431,7 @@ var buttonVariants = cva(
     }
   }
 );
-var ButtonComponent = React19.forwardRef(
+var ButtonComponent = React18.forwardRef(
   ({
     className,
     variant,
@@ -1009,7 +446,7 @@ var ButtonComponent = React19.forwardRef(
   }, ref) => {
     const isDisabled = disabled || loading;
     if (asChild) {
-      const child = React19.Children.only(children);
+      const child = React18.Children.only(children);
       return /* @__PURE__ */ jsx(
         Slot,
         {
@@ -1064,7 +501,7 @@ var ButtonComponent = React19.forwardRef(
 );
 ButtonComponent.displayName = "Button";
 var Button = ButtonComponent;
-var Slider = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(
+var Slider = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxs(
   SliderPrimitive.Root,
   {
     ref,
@@ -1098,7 +535,7 @@ var Slider = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ *
   }
 ));
 Slider.displayName = SliderPrimitive.Root.displayName;
-var Switch = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Switch = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   SwitchPrimitives.Root,
   {
     className: cn(
@@ -1142,7 +579,7 @@ var toggleVariants = cva(
     }
   }
 );
-var Toggle = React19.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsx(
+var Toggle = React18.forwardRef(({ className, variant, size, ...props }, ref) => /* @__PURE__ */ jsx(
   TogglePrimitive.Root,
   {
     ref,
@@ -1193,7 +630,7 @@ var iconButtonVariants = cva(
     }
   }
 );
-var IconButton = React19.forwardRef(
+var IconButton = React18.forwardRef(
   ({
     className,
     variant = "default",
@@ -1208,8 +645,8 @@ var IconButton = React19.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [showTooltip, setShowTooltip] = React19.useState(false);
-    const [tooltipVisible, setTooltipVisible] = React19.useState(false);
+    const [showTooltip, setShowTooltip] = React18.useState(false);
+    const [tooltipVisible, setTooltipVisible] = React18.useState(false);
     const tooltipClasses = {
       top: "bottom-full left-1/2 -translate-x-1/2 mb-2",
       bottom: "top-full left-1/2 -translate-x-1/2 mt-2",
@@ -1222,7 +659,7 @@ var IconButton = React19.forwardRef(
       left: "left-full top-1/2 -translate-y-1/2 -ml-1 border-t-transparent border-b-transparent border-r-transparent border-l-current",
       right: "right-full top-1/2 -translate-y-1/2 -mr-1 border-t-transparent border-b-transparent border-l-transparent border-r-current"
     };
-    React19.useEffect(() => {
+    React18.useEffect(() => {
       if (showTooltip) {
         const timer = setTimeout(() => setTooltipVisible(true), 100);
         return () => clearTimeout(timer);
@@ -1335,7 +772,7 @@ var linkButtonVariants = cva(
     }
   }
 );
-var LinkButton = React19.forwardRef(
+var LinkButton = React18.forwardRef(
   ({
     className,
     variant = "default",
@@ -1435,7 +872,7 @@ var fabVariants = cva(
     }
   }
 );
-var FAB = React19.forwardRef(
+var FAB = React18.forwardRef(
   ({
     className,
     variant = "default",
@@ -1450,12 +887,12 @@ var FAB = React19.forwardRef(
     actions = [],
     ...props
   }, ref) => {
-    const [showActions, setShowActions] = React19.useState(active);
+    const [showActions, setShowActions] = React18.useState(active);
     const isExtended = extended && text;
-    React19.useEffect(() => {
+    React18.useEffect(() => {
       setShowActions(active);
     }, [active]);
-    const handleClick = React19.useCallback(() => {
+    const handleClick = React18.useCallback(() => {
       if (actions.length > 0) {
         setShowActions(!showActions);
       }
@@ -1513,7 +950,7 @@ var FAB = React19.forwardRef(
   }
 );
 FAB.displayName = "FAB";
-var FABGroup = React19.forwardRef(
+var FABGroup = React18.forwardRef(
   ({
     className,
     main,
@@ -1585,7 +1022,7 @@ var segmentedControlVariants = cva(
     }
   }
 );
-var SegmentedControl = React19.forwardRef(
+var SegmentedControl = React18.forwardRef(
   ({
     className,
     size = "md",
@@ -1598,9 +1035,9 @@ var SegmentedControl = React19.forwardRef(
     disabled = false,
     ...props
   }, ref) => {
-    const [internalValue, setInternalValue] = React19.useState(defaultValue || options[0]?.value);
+    const [internalValue, setInternalValue] = React18.useState(defaultValue || options[0]?.value);
     const currentValue = value !== void 0 ? value : internalValue;
-    const handleOptionClick = React19.useCallback((optionValue, isDisabled) => {
+    const handleOptionClick = React18.useCallback((optionValue, isDisabled) => {
       if (isDisabled || disabled) return;
       if (value === void 0) {
         setInternalValue(optionValue);
@@ -1655,7 +1092,7 @@ var SegmentedControl = React19.forwardRef(
   }
 );
 SegmentedControl.displayName = "SegmentedControl";
-var SegmentedControlItem = React19.forwardRef(
+var SegmentedControlItem = React18.forwardRef(
   ({
     className,
     active = false,
@@ -1691,7 +1128,7 @@ var SegmentedControlItem = React19.forwardRef(
   }
 );
 SegmentedControlItem.displayName = "SegmentedControlItem";
-var Card = React19.forwardRef(({ className, variant = "default", ...props }, ref) => /* @__PURE__ */ jsx(
+var Card = React18.forwardRef(({ className, variant = "default", ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1711,7 +1148,7 @@ var Card = React19.forwardRef(({ className, variant = "default", ...props }, ref
   }
 ));
 Card.displayName = "Card";
-var CardHeader = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardHeader = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1724,7 +1161,7 @@ var CardHeader = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 CardHeader.displayName = "CardHeader";
-var CardTitle = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardTitle = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h3",
   {
     ref,
@@ -1737,7 +1174,7 @@ var CardTitle = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE_
   }
 ));
 CardTitle.displayName = "CardTitle";
-var CardDescription = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardDescription = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "p",
   {
     ref,
@@ -1750,9 +1187,9 @@ var CardDescription = React19.forwardRef(({ className, ...props }, ref) => /* @_
   }
 ));
 CardDescription.displayName = "CardDescription";
-var CardContent = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent.displayName = "CardContent";
-var CardFooter = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardFooter = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -1796,7 +1233,7 @@ var badgeVariants = cva(
 function Badge({ className, variant, size, ...props }) {
   return /* @__PURE__ */ jsx("div", { className: cn(badgeVariants({ variant, size }), className), ...props });
 }
-var Progress = React19.forwardRef(({ className, value, color = "default", ...props }, ref) => /* @__PURE__ */ jsx(
+var Progress = React18.forwardRef(({ className, value, color = "default", ...props }, ref) => /* @__PURE__ */ jsx(
   ProgressPrimitive.Root,
   {
     ref,
@@ -1827,7 +1264,7 @@ var Progress = React19.forwardRef(({ className, value, color = "default", ...pro
   }
 ));
 Progress.displayName = ProgressPrimitive.Root.displayName;
-var AccordionItem = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var AccordionItem = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   AccordionPrimitive.Item,
   {
     ref,
@@ -1839,7 +1276,7 @@ var AccordionItem = React19.forwardRef(({ className, ...props }, ref) => /* @__P
   }
 ));
 AccordionItem.displayName = "AccordionItem";
-var AccordionTrigger = React19.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(AccordionPrimitive.Header, { className: "flex", children: /* @__PURE__ */ jsxs(
+var AccordionTrigger = React18.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(AccordionPrimitive.Header, { className: "flex", children: /* @__PURE__ */ jsxs(
   AccordionPrimitive.Trigger,
   {
     ref,
@@ -1864,7 +1301,7 @@ var AccordionTrigger = React19.forwardRef(({ className, children, ...props }, re
   }
 ) }));
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
-var AccordionContent = React19.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(
+var AccordionContent = React18.forwardRef(({ className, children, ...props }, ref) => /* @__PURE__ */ jsx(
   AccordionPrimitive.Content,
   {
     ref,
@@ -2091,7 +1528,7 @@ function QuickStatsComponent({
     }
   );
 }
-var QuickStats = React19__default.memo(QuickStatsComponent);
+var QuickStats = React18__default.memo(QuickStatsComponent);
 QuickStats.displayName = "QuickStats";
 var STAGGER_DELAY_SECONDS = 0.1;
 function QuickActions({
@@ -2269,7 +1706,7 @@ function RecentPostsList({
     )) }) })
   ] });
 }
-var Card2 = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var Card2 = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -2281,7 +1718,7 @@ var Card2 = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */
   }
 ));
 Card2.displayName = "Card";
-var CardHeader2 = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardHeader2 = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -2290,7 +1727,7 @@ var CardHeader2 = React19.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 CardHeader2.displayName = "CardHeader";
-var CardTitle2 = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardTitle2 = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "h3",
   {
     ref,
@@ -2302,7 +1739,7 @@ var CardTitle2 = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE
   }
 ));
 CardTitle2.displayName = "CardTitle";
-var CardDescription2 = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardDescription2 = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "p",
   {
     ref,
@@ -2311,9 +1748,9 @@ var CardDescription2 = React19.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 CardDescription2.displayName = "CardDescription";
-var CardContent2 = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
+var CardContent2 = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx("div", { ref, className: cn("p-6 pt-0", className), ...props }));
 CardContent2.displayName = "CardContent";
-var CardFooter2 = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var CardFooter2 = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,
@@ -2322,7 +1759,7 @@ var CardFooter2 = React19.forwardRef(({ className, ...props }, ref) => /* @__PUR
   }
 ));
 CardFooter2.displayName = "CardFooter";
-var HighlightCard = React19.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
+var HighlightCard = React18.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsx(
   "div",
   {
     ref,

@@ -3,14 +3,11 @@
 var React2 = require('react');
 var reactDialog = require('@radix-ui/react-dialog');
 require('@rainersoft/design-tokens/formats/css-vars.css');
-var tokens = require('@rainersoft/design-tokens');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var lucideReact = require('lucide-react');
 var jsxRuntime = require('react/jsx-runtime');
 var cmdk = require('cmdk');
-
-function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -31,19 +28,19 @@ function _interopNamespace(e) {
 }
 
 var React2__namespace = /*#__PURE__*/_interopNamespace(React2);
-var tokens__default = /*#__PURE__*/_interopDefault(tokens);
 
-var tokensWithThemes = tokens__default.default;
-tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens__default.default;
-tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens__default.default;
+var tokens = {};
+var tokensWithThemes = tokens;
+tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
+tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var layoutClassesSemantic = tokens__default.default.semantics?.layoutClasses ?? {};
+var layoutClassesSemantic = tokens.semantics?.layoutClasses ?? {};
 layoutClassesSemantic.components ?? {};
 layoutClassesSemantic.sections ?? {};
-var zIndexSemantic = tokens__default.default.semantics?.layout?.zIndex ?? {};
-var zIndexPrimitive = tokens__default.default.primitives?.zIndex ?? {};
+var zIndexSemantic = tokens.semantics?.layout?.zIndex ?? {};
+var zIndexPrimitive = tokens.primitives?.zIndex ?? {};
 var zIndexTokens = {
   ...zIndexPrimitive,
   ...zIndexSemantic
@@ -51,8 +48,8 @@ var zIndexTokens = {
 var Z_INDEX = {
   BACKDROP: String(zIndexTokens.overlay ?? zIndexTokens.modal ?? 400),
   MODAL: String(zIndexTokens.modal ?? 400)};
-tokens__default.default.primitives?.gradientDirections ?? {};
-var motionClasses = tokens__default.default.semantics?.motionClasses ?? {};
+tokens.primitives?.gradientDirections ?? {};
+var motionClasses = tokens.semantics?.motionClasses ?? {};
 var MOTION = {
   TRANSITION: {
     DEFAULT: motionClasses.transition?.default,
@@ -63,9 +60,9 @@ var MOTION = {
     OPACITY: motionClasses.transition?.opacity
   }
 };
-var motionTokens = tokens__default.default.MOTION ?? tokens__default.default.motionTokens ?? tokens__default.default.primitives?.motion ?? {};
+var motionTokens = tokens.MOTION ?? tokens.motionTokens ?? tokens.primitives?.motion ?? {};
 var motion = motionTokens;
-var motionSemanticTokens = tokens__default.default.semantics?.motion ?? {};
+var motionSemanticTokens = tokens.semantics?.motion ?? {};
 var motionSemantic = motionSemanticTokens;
 motion?.delay ?? {};
 var ANIMATION_DURATIONS = motion?.duration ?? {};

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useTheme as useTheme$1 } from 'next-themes';
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import Moon from 'lucide-react/dist/esm/icons/moon';
@@ -39,6 +38,7 @@ function useTheme() {
     isSystem: theme === "system"
   };
 }
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;

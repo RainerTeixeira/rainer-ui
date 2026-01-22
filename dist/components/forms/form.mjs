@@ -2,13 +2,13 @@ import * as React2 from 'react';
 import { Slot } from '@radix-ui/react-slot';
 import { useFormContext, FormProvider, Controller } from 'react-hook-form';
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import * as LabelPrimitive from '@radix-ui/react-label';
 import { cva } from 'class-variance-authority';
 import { jsx } from 'react/jsx-runtime';
 
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;

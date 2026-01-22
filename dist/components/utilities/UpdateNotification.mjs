@@ -1,7 +1,6 @@
 import * as React2 from 'react';
 import { useState, useEffect, useCallback } from 'react';
 import '@rainersoft/design-tokens/formats/css-vars.css';
-import tokens from '@rainersoft/design-tokens';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { RefreshCw } from 'lucide-react';
@@ -102,6 +101,7 @@ function usePWA() {
     updateServiceWorker
   };
 }
+var tokens = {};
 var tokensWithThemes = tokens;
 tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
 tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
