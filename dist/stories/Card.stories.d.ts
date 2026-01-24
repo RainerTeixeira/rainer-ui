@@ -1,0 +1,10 @@
+import type { StoryObj } from '@storybook/react';
+declare const meta: Meta<import("react").ForwardRefExoticComponent<import("react").HTMLAttributes<HTMLDivElement> & import("react").RefAttributes<HTMLDivElement>>>;
+export default meta;
+type Story = StoryObj<typeof meta>;
+export declare const Default: Story;
+export declare const Simple: Story;
+export declare const WithImage: Story;
+export declare const Interactive: Story;
+export declare const Grid: Story;
+export declare const Nested: Story;

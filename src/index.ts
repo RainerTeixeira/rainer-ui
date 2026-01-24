@@ -70,16 +70,16 @@ export {
 export {
   getThemeColors,
   getSemanticColors,
-  getSemanticColorsSimplified,
   getStatusColor,
   getButtonPrimaryColor,
   getButtonSecondaryColor,
-  getButtonTertiaryColor,
   getButtonPrimaryTextColor,
   getColorFromTheme,
   getBrandColor,
-  getSemanticColorConstants,
   generateTailwindClasses,
+  getButtonTertiaryColor,
+  getSemanticColorsSimplified,
+  getSemanticColorConstants,
 } from './lib/tokens';
 
 // ============================================================================

@@ -1,63 +1,43 @@
 import { useState, useEffect, useCallback } from 'react';
-import { motion as motion$1 } from 'framer-motion';
-import '@rainersoft/design-tokens/formats/css-vars.css';
+import { motion } from 'framer-motion';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
+import '@rainersoft/design-tokens/formats/css-vars.css';
 import { jsx, jsxs } from 'react/jsx-runtime';
 
-var tokens = {};
-var tokensWithThemes = tokens;
-tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
-tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
+var tokens = tokensData;
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
-var layoutClassesSemantic = tokens.semantics?.layoutClasses ?? {};
-layoutClassesSemantic.components ?? {};
-layoutClassesSemantic.sections ?? {};
-var zIndexSemantic = tokens.semantics?.layout?.zIndex ?? {};
-var zIndexPrimitive = tokens.primitives?.zIndex ?? {};
 ({
-  ...zIndexPrimitive,
-  ...zIndexSemantic
+  base: String(tokens.primitives?.zIndex?.base ?? 100),
+  navigation: String(tokens.primitives?.zIndex?.content ?? 150),
+  dropdown: String(tokens.primitives?.zIndex?.dropdown ?? 300),
+  modal: String(tokens.primitives?.zIndex?.modal ?? 400),
+  overlay: String(tokens.primitives?.zIndex?.overlay ?? 400),
+  sticky: String(tokens.primitives?.zIndex?.sticky ?? 200),
+  fixed: String(tokens.primitives?.zIndex?.fixed ?? 300),
+  tooltip: String(tokens.primitives?.zIndex?.tooltip ?? 500)
 });
+var motionTokens = tokens.primitives?.motion ?? {};
+motionTokens.delay ?? {};
+var animationDurations = motionTokens.duration ?? {};
+var animationEasings = motionTokens.easing ?? {};
+var baseDuration = animationDurations.normal ?? animationDurations.default ?? "200ms";
+animationDurations.fast ?? baseDuration;
+animationDurations.slow ?? baseDuration;
+var easeInOut = animationEasings.easeInOut ?? animationEasings.default ?? "ease-in-out";
+animationEasings.easeOut ?? easeInOut;
+animationEasings.spring ?? easeInOut;
+var fallbackMotionSemantic = {
+  };
+tokens.semantics?.motion ?? fallbackMotionSemantic;
+tokens.themes?.light ?? {};
+tokens.themes?.dark ?? {};
+tokens.semantics?.layoutClasses?.components ?? {};
+tokens.semantics?.layoutClasses?.sections ?? {};
 tokens.primitives?.gradientDirections ?? {};
-var motionClasses = tokens.semantics?.motionClasses ?? {};
-({
-  TRANSITION: {
-    DEFAULT: motionClasses.transition?.default,
-    FAST: motionClasses.transition?.fast,
-    SLOW: motionClasses.transition?.slow,
-    COLOR: motionClasses.transition?.color,
-    TRANSFORM: motionClasses.transition?.transform,
-    OPACITY: motionClasses.transition?.opacity
-  }
-});
-var motionTokens = tokens.MOTION ?? tokens.motionTokens ?? tokens.primitives?.motion ?? {};
-var motion = motionTokens;
-var motionSemanticTokens = tokens.semantics?.motion ?? {};
-var motionSemantic = motionSemanticTokens;
-motion?.delay ?? {};
-var ANIMATION_DURATIONS = motion?.duration ?? {};
-var ANIMATION_EASINGS = motion?.easing ?? {};
-var safeMotionDuration = ANIMATION_DURATIONS;
-var safeMotionEasing = ANIMATION_EASINGS;
-var defaultDuration = safeMotionDuration?.normal ?? safeMotionDuration?.default;
-safeMotionDuration?.fast ?? defaultDuration;
-safeMotionDuration?.slow ?? defaultDuration;
-var easeInOut = safeMotionEasing?.easeInOut ?? safeMotionEasing?.default;
-safeMotionEasing?.easeOut ?? easeInOut;
-safeMotionEasing?.spring ?? easeInOut;
-var motionSemanticTyped = motionSemantic;
-({
-  // Presets semânticos
-  semantic: {
-    transition: motionSemanticTyped.transition?.default,
-    interaction: motionSemanticTyped.interaction?.hover,
-    feedback: motionSemanticTyped.feedback?.success,
-    navigation: motionSemanticTyped.navigation?.page
-  }
-});
 var COLORS = {
   primary: "var(--color-blue-500)",
   success: "var(--color-green-500)",
@@ -130,7 +110,7 @@ var SocialButton = ({ action, size, variant, showCount, animated, onClick }) => 
     )
   };
   return /* @__PURE__ */ jsxs(
-    motion$1.button,
+    motion.button,
     {
       className: cn(
         "inline-flex items-center justify-center rounded-md font-medium",
@@ -148,7 +128,7 @@ var SocialButton = ({ action, size, variant, showCount, animated, onClick }) => 
       children: [
         /* @__PURE__ */ jsx("span", { className: cn("flex-shrink-0", iconSizes[size]), children: isActive && action.activeIcon ? action.activeIcon : action.icon }),
         showCount && count > 0 && /* @__PURE__ */ jsx(
-          motion$1.span,
+          motion.span,
           {
             className: "min-w-[1.2rem] text-center font-mono",
             initial: { scale: 0.8, opacity: 0 },

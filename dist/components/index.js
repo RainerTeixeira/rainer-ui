@@ -1,9 +1,10 @@
 'use strict';
 
 var React63 = require('react');
-require('@rainersoft/design-tokens/formats/css-vars.css');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
+var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
+require('@rainersoft/design-tokens/formats/css-vars.css');
 var utils = require('@rainersoft/utils');
 var jsxRuntime = require('react/jsx-runtime');
 var reactSlot = require('@radix-ui/react-slot');
@@ -122,6 +123,7 @@ function _interopNamespace(e) {
 }
 
 var React63__namespace = /*#__PURE__*/_interopNamespace(React63);
+var tokensData__default = /*#__PURE__*/_interopDefault(tokensData);
 var SliderPrimitive__namespace = /*#__PURE__*/_interopNamespace(SliderPrimitive);
 var SwitchPrimitives__namespace = /*#__PURE__*/_interopNamespace(SwitchPrimitives);
 var TogglePrimitive__namespace = /*#__PURE__*/_interopNamespace(TogglePrimitive);
@@ -206,63 +208,45 @@ var QuoteIcon__default = /*#__PURE__*/_interopDefault(QuoteIcon);
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-var tokens = {};
-var tokensWithThemes = tokens;
-tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
-tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
+var tokens = tokensData__default.default;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var layoutClassesSemantic = tokens.semantics?.layoutClasses ?? {};
-layoutClassesSemantic.components ?? {};
-layoutClassesSemantic.sections ?? {};
-var zIndexSemantic = tokens.semantics?.layout?.zIndex ?? {};
-var zIndexPrimitive = tokens.primitives?.zIndex ?? {};
-var zIndexTokens = {
-  ...zIndexPrimitive,
-  ...zIndexSemantic
-};
 var Z_INDEX = {
-  BACKDROP: String(zIndexTokens.overlay ?? zIndexTokens.modal ?? 400),
-  MODAL: String(zIndexTokens.modal ?? 400),
-  DROPDOWN: String(zIndexTokens.dropdown ?? 300)};
-var GRADIENT_DIRECTIONS = tokens.primitives?.gradientDirections ?? {};
-var motionClasses = tokens.semantics?.motionClasses ?? {};
+  base: String(tokens.primitives?.zIndex?.base ?? 100),
+  navigation: String(tokens.primitives?.zIndex?.content ?? 150),
+  dropdown: String(tokens.primitives?.zIndex?.dropdown ?? 300),
+  modal: String(tokens.primitives?.zIndex?.modal ?? 400),
+  overlay: String(tokens.primitives?.zIndex?.overlay ?? 400),
+  sticky: String(tokens.primitives?.zIndex?.sticky ?? 200),
+  fixed: String(tokens.primitives?.zIndex?.fixed ?? 300),
+  tooltip: String(tokens.primitives?.zIndex?.tooltip ?? 500)
+};
+var motionTokens = tokens.primitives?.motion ?? {};
+var animationDelays = motionTokens.delay ?? {};
+var animationDurations = motionTokens.duration ?? {};
+var animationEasings = motionTokens.easing ?? {};
+var ANIMATION_DELAYS = animationDelays;
+var baseDuration = animationDurations.normal ?? animationDurations.default ?? "200ms";
+animationDurations.fast ?? baseDuration;
+animationDurations.slow ?? baseDuration;
+var easeInOut = animationEasings.easeInOut ?? animationEasings.default ?? "ease-in-out";
+animationEasings.easeOut ?? easeInOut;
+animationEasings.spring ?? easeInOut;
+var fallbackMotionSemantic = {
+  };
+tokens.semantics?.motion ?? fallbackMotionSemantic;
 var MOTION = {
   TRANSITION: {
-    DEFAULT: motionClasses.transition?.default,
-    FAST: motionClasses.transition?.fast,
-    SLOW: motionClasses.transition?.slow,
-    COLOR: motionClasses.transition?.color,
-    TRANSFORM: motionClasses.transition?.transform,
-    OPACITY: motionClasses.transition?.opacity
-  }
+    DEFAULT: "transition-all duration-200 ease-in-out",
+    COLOR: "transition-colors duration-200 ease-in-out",
+    TRANSFORM: "transition-transform duration-200 ease-in-out"}
 };
-var motionTokens = tokens.MOTION ?? tokens.motionTokens ?? tokens.primitives?.motion ?? {};
-var motion = motionTokens;
-var motionSemanticTokens = tokens.semantics?.motion ?? {};
-var motionSemantic = motionSemanticTokens;
-var ANIMATION_DELAYS = motion?.delay ?? {};
-var ANIMATION_DURATIONS = motion?.duration ?? {};
-var ANIMATION_EASINGS = motion?.easing ?? {};
-var safeMotionDuration = ANIMATION_DURATIONS;
-var safeMotionEasing = ANIMATION_EASINGS;
-var defaultDuration = safeMotionDuration?.normal ?? safeMotionDuration?.default;
-safeMotionDuration?.fast ?? defaultDuration;
-safeMotionDuration?.slow ?? defaultDuration;
-var easeInOut = safeMotionEasing?.easeInOut ?? safeMotionEasing?.default;
-safeMotionEasing?.easeOut ?? easeInOut;
-safeMotionEasing?.spring ?? easeInOut;
-var motionSemanticTyped = motionSemantic;
-({
-  // Presets semânticos
-  semantic: {
-    transition: motionSemanticTyped.transition?.default,
-    interaction: motionSemanticTyped.interaction?.hover,
-    feedback: motionSemanticTyped.feedback?.success,
-    navigation: motionSemanticTyped.navigation?.page
-  }
-});
+tokens.themes?.light ?? {};
+tokens.themes?.dark ?? {};
+tokens.semantics?.layoutClasses?.components ?? {};
+tokens.semantics?.layoutClasses?.sections ?? {};
+var GRADIENT_DIRECTIONS = tokens.primitives?.gradientDirections ?? {};
 var sizeClasses = {
   xs: "h-6 w-6 text-xs",
   sm: "h-8 w-8 text-sm",

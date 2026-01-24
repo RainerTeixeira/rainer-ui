@@ -5,9 +5,10 @@ var lucideReact = require('lucide-react');
 var Link = require('next/link');
 var reactSlot = require('@radix-ui/react-slot');
 var classVarianceAuthority = require('class-variance-authority');
-require('@rainersoft/design-tokens/formats/css-vars.css');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
+var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
+require('@rainersoft/design-tokens/formats/css-vars.css');
 var jsxRuntime = require('react/jsx-runtime');
 var SwitchPrimitives = require('@radix-ui/react-switch');
 
@@ -33,64 +34,44 @@ function _interopNamespace(e) {
 
 var React2__namespace = /*#__PURE__*/_interopNamespace(React2);
 var Link__default = /*#__PURE__*/_interopDefault(Link);
+var tokensData__default = /*#__PURE__*/_interopDefault(tokensData);
 var SwitchPrimitives__namespace = /*#__PURE__*/_interopNamespace(SwitchPrimitives);
 
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, key + "" , value);
-var tokens = {};
-var tokensWithThemes = tokens;
-tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
-tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
+var tokens = tokensData__default.default;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var layoutClassesSemantic = tokens.semantics?.layoutClasses ?? {};
-layoutClassesSemantic.components ?? {};
-layoutClassesSemantic.sections ?? {};
-var zIndexSemantic = tokens.semantics?.layout?.zIndex ?? {};
-var zIndexPrimitive = tokens.primitives?.zIndex ?? {};
 ({
-  ...zIndexPrimitive,
-  ...zIndexSemantic
+  base: String(tokens.primitives?.zIndex?.base ?? 100),
+  navigation: String(tokens.primitives?.zIndex?.content ?? 150),
+  dropdown: String(tokens.primitives?.zIndex?.dropdown ?? 300),
+  modal: String(tokens.primitives?.zIndex?.modal ?? 400),
+  overlay: String(tokens.primitives?.zIndex?.overlay ?? 400),
+  sticky: String(tokens.primitives?.zIndex?.sticky ?? 200),
+  fixed: String(tokens.primitives?.zIndex?.fixed ?? 300),
+  tooltip: String(tokens.primitives?.zIndex?.tooltip ?? 500)
 });
+var motionTokens = tokens.primitives?.motion ?? {};
+motionTokens.delay ?? {};
+var animationDurations = motionTokens.duration ?? {};
+var animationEasings = motionTokens.easing ?? {};
+var baseDuration = animationDurations.normal ?? animationDurations.default ?? "200ms";
+animationDurations.fast ?? baseDuration;
+animationDurations.slow ?? baseDuration;
+var easeInOut = animationEasings.easeInOut ?? animationEasings.default ?? "ease-in-out";
+animationEasings.easeOut ?? easeInOut;
+animationEasings.spring ?? easeInOut;
+var fallbackMotionSemantic = {
+  };
+tokens.semantics?.motion ?? fallbackMotionSemantic;
+tokens.themes?.light ?? {};
+tokens.themes?.dark ?? {};
+tokens.semantics?.layoutClasses?.components ?? {};
+tokens.semantics?.layoutClasses?.sections ?? {};
 tokens.primitives?.gradientDirections ?? {};
-var motionClasses = tokens.semantics?.motionClasses ?? {};
-({
-  TRANSITION: {
-    DEFAULT: motionClasses.transition?.default,
-    FAST: motionClasses.transition?.fast,
-    SLOW: motionClasses.transition?.slow,
-    COLOR: motionClasses.transition?.color,
-    TRANSFORM: motionClasses.transition?.transform,
-    OPACITY: motionClasses.transition?.opacity
-  }
-});
-var motionTokens = tokens.MOTION ?? tokens.motionTokens ?? tokens.primitives?.motion ?? {};
-var motion = motionTokens;
-var motionSemanticTokens = tokens.semantics?.motion ?? {};
-var motionSemantic = motionSemanticTokens;
-motion?.delay ?? {};
-var ANIMATION_DURATIONS = motion?.duration ?? {};
-var ANIMATION_EASINGS = motion?.easing ?? {};
-var safeMotionDuration = ANIMATION_DURATIONS;
-var safeMotionEasing = ANIMATION_EASINGS;
-var defaultDuration = safeMotionDuration?.normal ?? safeMotionDuration?.default;
-safeMotionDuration?.fast ?? defaultDuration;
-safeMotionDuration?.slow ?? defaultDuration;
-var easeInOut = safeMotionEasing?.easeInOut ?? safeMotionEasing?.default;
-safeMotionEasing?.easeOut ?? easeInOut;
-safeMotionEasing?.spring ?? easeInOut;
-var motionSemanticTyped = motionSemantic;
-({
-  // Presets semânticos
-  semantic: {
-    transition: motionSemanticTyped.transition?.default,
-    interaction: motionSemanticTyped.interaction?.hover,
-    feedback: motionSemanticTyped.feedback?.success,
-    navigation: motionSemanticTyped.navigation?.page
-  }
-});
 var buttonVariants = classVarianceAuthority.cva(
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {

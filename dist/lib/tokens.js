@@ -1,66 +1,49 @@
 'use strict';
 
-require('@rainersoft/design-tokens/formats/css-vars.css');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
+var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
+require('@rainersoft/design-tokens/formats/css-vars.css');
 
-var tokens = {};
-var tokensWithThemes = tokens;
-var lightTokens = tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
-var darkTokens = tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
+function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
+
+var tokensData__default = /*#__PURE__*/_interopDefault(tokensData);
+
+var tokens = tokensData__default.default;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var layoutClassesSemantic = tokens.semantics?.layoutClasses ?? {};
-var COMPONENT_CLASSES = layoutClassesSemantic.components ?? {};
-var SECTION_CLASSES = layoutClassesSemantic.sections ?? {};
-var zIndexSemantic = tokens.semantics?.layout?.zIndex ?? {};
-var zIndexPrimitive = tokens.primitives?.zIndex ?? {};
-var zIndexTokens = {
-  ...zIndexPrimitive,
-  ...zIndexSemantic
-};
 var Z_INDEX = {
-  BACKDROP: String(zIndexTokens.overlay ?? zIndexTokens.modal ?? 400),
-  MODAL: String(zIndexTokens.modal ?? 400),
-  DROPDOWN: String(zIndexTokens.dropdown ?? 300),
-  TOOLTIP: String(zIndexTokens.tooltip ?? 500),
-  NAVIGATION: String(zIndexTokens.content ?? zIndexTokens.base ?? 100),
-  OVERLAY: String(zIndexTokens.overlay ?? 400),
-  STICKY: String(zIndexTokens.sticky ?? zIndexTokens.fixed ?? 200),
-  FIXED: String(zIndexTokens.fixed ?? 300)
+  base: String(tokens.primitives?.zIndex?.base ?? 100),
+  navigation: String(tokens.primitives?.zIndex?.content ?? 150),
+  dropdown: String(tokens.primitives?.zIndex?.dropdown ?? 300),
+  modal: String(tokens.primitives?.zIndex?.modal ?? 400),
+  overlay: String(tokens.primitives?.zIndex?.overlay ?? 400),
+  sticky: String(tokens.primitives?.zIndex?.sticky ?? 200),
+  fixed: String(tokens.primitives?.zIndex?.fixed ?? 300),
+  tooltip: String(tokens.primitives?.zIndex?.tooltip ?? 500)
 };
-var GRADIENT_DIRECTIONS = tokens.primitives?.gradientDirections ?? {};
-var motionClasses = tokens.semantics?.motionClasses ?? {};
-var MOTION = {
-  TRANSITION: {
-    DEFAULT: motionClasses.transition?.default,
-    FAST: motionClasses.transition?.fast,
-    SLOW: motionClasses.transition?.slow,
-    COLOR: motionClasses.transition?.color,
-    TRANSFORM: motionClasses.transition?.transform,
-    OPACITY: motionClasses.transition?.opacity
-  }
+var motionTokens = tokens.primitives?.motion ?? {};
+var animationDelays = motionTokens.delay ?? {};
+var animationDurations = motionTokens.duration ?? {};
+var animationEasings = motionTokens.easing ?? {};
+var ANIMATION_DELAYS = animationDelays;
+var ANIMATION_DURATIONS = animationDurations;
+var ANIMATION_EASINGS = animationEasings;
+var motion = {
+  duration: animationDurations,
+  easing: animationEasings,
+  delay: animationDelays
 };
-var motionTokens = tokens.MOTION ?? tokens.motionTokens ?? tokens.primitives?.motion ?? {};
-var motion = motionTokens;
-var motionSemanticTokens = tokens.semantics?.motion ?? {};
-var motionSemantic = motionSemanticTokens;
-var ANIMATION_DELAYS = motion?.delay ?? {};
-var ANIMATION_DURATIONS = motion?.duration ?? {};
-var ANIMATION_EASINGS = motion?.easing ?? {};
-var safeMotionDuration = ANIMATION_DURATIONS;
-var safeMotionEasing = ANIMATION_EASINGS;
-var defaultDuration = safeMotionDuration?.normal ?? safeMotionDuration?.default;
-var fastDuration = safeMotionDuration?.fast ?? defaultDuration;
-var slowDuration = safeMotionDuration?.slow ?? defaultDuration;
-var easeInOut = safeMotionEasing?.easeInOut ?? safeMotionEasing?.default;
-var easeOut = safeMotionEasing?.easeOut ?? easeInOut;
-var spring = safeMotionEasing?.spring ?? easeInOut;
-var motionSemanticTyped = motionSemantic;
+var baseDuration = animationDurations.normal ?? animationDurations.default ?? "200ms";
+var fastDuration = animationDurations.fast ?? baseDuration;
+var slowDuration = animationDurations.slow ?? baseDuration;
+var easeInOut = animationEasings.easeInOut ?? animationEasings.default ?? "ease-in-out";
+var easeOut = animationEasings.easeOut ?? easeInOut;
+var spring = animationEasings.spring ?? easeInOut;
 var motionPresets = {
   default: {
-    duration: defaultDuration,
+    duration: baseDuration,
     easing: easeInOut
   },
   fast: {
@@ -72,125 +55,128 @@ var motionPresets = {
     easing: easeInOut
   },
   spring: {
-    duration: defaultDuration,
+    duration: baseDuration,
     easing: spring
-  },
-  // Presets semânticos
-  semantic: {
-    transition: motionSemanticTyped.transition?.default,
-    interaction: motionSemanticTyped.interaction?.hover,
-    feedback: motionSemanticTyped.feedback?.success,
-    navigation: motionSemanticTyped.navigation?.page
   }
 };
+var fallbackMotionSemantic = {
+  transition: {
+    default: {
+      duration: baseDuration,
+      easing: easeInOut
+    },
+    fast: {
+      duration: fastDuration,
+      easing: easeOut
+    },
+    slow: {
+      duration: slowDuration,
+      easing: easeInOut
+    }
+  },
+  interaction: {
+    hover: {
+      duration: fastDuration,
+      easing: easeOut
+    },
+    focus: {
+      duration: baseDuration,
+      easing: easeInOut
+    },
+    active: {
+      duration: fastDuration,
+      easing: spring
+    }
+  },
+  feedback: {
+    success: {
+      duration: slowDuration,
+      easing: easeInOut
+    },
+    error: {
+      duration: slowDuration,
+      easing: spring
+    },
+    warning: {
+      duration: slowDuration,
+      easing: easeOut
+    }
+  },
+  navigation: {
+    page: {
+      duration: slowDuration,
+      easing: easeOut
+    },
+    modal: {
+      duration: baseDuration,
+      easing: easeInOut
+    }
+  }
+};
+var motionSemantic = tokens.semantics?.motion ?? fallbackMotionSemantic;
+var MOTION = {
+  TRANSITION: {
+    DEFAULT: "transition-all duration-200 ease-in-out",
+    COLOR: "transition-colors duration-200 ease-in-out",
+    TRANSFORM: "transition-transform duration-200 ease-in-out",
+    OPACITY: "transition-opacity duration-200 ease-in-out"
+  }
+};
+function getTheme(theme) {
+  return tokens.themes?.[theme] ?? {};
+}
 function getThemeColors(theme) {
-  const tokenObj = tokens;
-  return tokenObj.themes?.[theme] || {};
+  return getTheme(theme)?.colors ?? {};
 }
 function getSemanticColors(theme) {
-  return getThemeColors(theme);
-}
-function getSemanticColorsSimplified(theme) {
-  const themeData = getThemeColors(theme);
   return {
-    colors: themeData?.colors || {}
+    colors: getThemeColors(theme)
   };
 }
 function getStatusColor(status, theme = "light") {
-  const themeData = getThemeColors(theme);
-  return themeData?.colors?.[status]?.base || "var(--color-black)";
+  return getThemeColors(theme)?.[status]?.base ?? "var(--color-black)";
 }
 function getButtonPrimaryColor(theme = "light") {
-  const themeData = getThemeColors(theme);
-  return themeData?.colors?.primary?.base || "var(--color-cyan-600)";
+  return getThemeColors(theme)?.primary?.base ?? "var(--color-cyan-600)";
 }
 function getButtonSecondaryColor(theme = "light") {
-  const themeData = getThemeColors(theme);
-  return themeData?.colors?.secondary?.base || "#6366f1";
-}
-function getButtonTertiaryColor(_theme = "light") {
-  return "transparent";
+  return getThemeColors(theme)?.secondary?.base ?? "var(--color-indigo-500)";
 }
 function getButtonPrimaryTextColor(theme = "light") {
-  const themeData = getThemeColors(theme);
-  return themeData?.colors?.primary?.text || "var(--color-white)";
+  return getThemeColors(theme)?.primary?.text ?? "var(--color-white)";
 }
 function getColorFromTheme(theme, category, shade) {
-  const themeData = getThemeColors(theme);
-  return themeData?.colors?.[category]?.[shade];
+  return getThemeColors(theme)?.[category]?.[shade];
 }
 function getBrandColor(variant, theme = "light") {
-  const themeData = getThemeColors(theme);
-  return themeData?.colors?.[variant]?.base;
-}
-function getSemanticColorConstants() {
-  return {
-    light: getSemanticColorsSimplified("light"),
-    dark: getSemanticColorsSimplified("dark")
-  };
+  return getThemeColors(theme)?.[variant]?.base;
 }
 function generateTailwindClasses(options) {
-  const classes = [];
-  if (options.bg) classes.push(`bg-${options.bg}`);
-  if (options.text) classes.push(`text-${options.text}`);
-  if (options.border) classes.push(`border-${options.border}`);
-  if (options.rounded) classes.push(`rounded-${options.rounded}`);
-  if (options.shadow) classes.push(`shadow-${options.shadow}`);
-  if (options.p) classes.push(`p-${options.p}`);
-  if (options.m) classes.push(`m-${options.m}`);
-  Object.entries(options).forEach(([key, value]) => {
-    if (value && !["bg", "text", "border", "rounded", "shadow", "p", "m"].includes(key)) {
-      classes.push(`${key}-${value}`);
-    }
-  });
-  return classes.join(" ");
+  return Object.entries(options).filter(([, value]) => Boolean(value)).map(([key, value]) => `${key}-${value}`).join(" ");
 }
-function getTokenColor(tokenName, theme) {
-  if (theme) {
-    const themeColors = getThemeColors(theme);
-    const colorValue = themeColors[tokenName];
-    if (colorValue) {
-      return colorValue;
-    }
-  }
-  const tokenObj = tokens;
-  const semanticTokens = tokenObj.semantics;
-  const colorTokens = semanticTokens.color;
-  const colorRoles = colorTokens["color-roles"];
-  if (colorRoles?.[tokenName]) {
-    return `var(--${tokenName})`;
-  }
-  const primitiveTokens = tokenObj.primitives;
-  const colorPrimitives = primitiveTokens.color;
-  if (colorPrimitives?.[tokenName]) {
-    return `var(--${tokenName})`;
-  }
+function getTokenColor(tokenName) {
   return `var(--${tokenName})`;
 }
-function overlayFromToken(tokenName, alpha = 0.08, theme) {
-  const cleanName = tokenName.replace(/^color-/, "");
-  if (theme) {
-    const hexColor = getTokenColor(cleanName, theme);
-    if (hexColor.startsWith("#")) {
-      const varName2 = tokenName.startsWith("color-") ? tokenName : `color-${tokenName}`;
-      return `rgba(var(--${varName2}-rgb, 0 0 0), ${alpha})`;
-    }
-  }
-  const varName = tokenName.startsWith("color-") ? tokenName : `color-${tokenName}`;
-  return `rgba(var(--${varName}-rgb, 0 0 0), ${alpha})`;
+function overlayFromToken(tokenName, alpha = 0.08) {
+  const normalized = tokenName.startsWith("color-") ? tokenName : `color-${tokenName}`;
+  return `rgba(var(--${normalized}-rgb, 0 0 0), ${alpha})`;
 }
 function isValidHex(hex) {
-  const cleanHex = hex.replace("#", "");
-  return /^[0-9A-Fa-f]{6}$/.test(cleanHex);
+  return /^#?[0-9A-Fa-f]{6}$/.test(hex);
 }
 function getContrastColor(hex) {
-  const cleanHex = hex.replace("#", "");
-  const r = parseInt(cleanHex.substring(0, 2), 16);
-  const g = parseInt(cleanHex.substring(2, 4), 16);
-  const b = parseInt(cleanHex.substring(4, 6), 16);
+  const clean = hex.replace("#", "");
+  const r = parseInt(clean.slice(0, 2), 16);
+  const g = parseInt(clean.slice(2, 4), 16);
+  const b = parseInt(clean.slice(4, 6), 16);
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   return luminance > 0.5 ? "var(--color-black)" : "var(--color-white)";
 }
+var lightTokens = tokens.themes?.light ?? {};
+var darkTokens = tokens.themes?.dark ?? {};
+var COMPONENT_CLASSES = tokens.semantics?.layoutClasses?.components ?? {};
+var SECTION_CLASSES = tokens.semantics?.layoutClasses?.sections ?? {};
+var GRADIENT_DIRECTIONS = tokens.primitives?.gradientDirections ?? {};
 
 exports.ANIMATION_DELAYS = ANIMATION_DELAYS;
 exports.ANIMATION_DURATIONS = ANIMATION_DURATIONS;
@@ -200,6 +186,9 @@ exports.GRADIENT_DIRECTIONS = GRADIENT_DIRECTIONS;
 exports.MOTION = MOTION;
 exports.SECTION_CLASSES = SECTION_CLASSES;
 exports.Z_INDEX = Z_INDEX;
+exports.animationDelays = animationDelays;
+exports.animationDurations = animationDurations;
+exports.animationEasings = animationEasings;
 exports.cn = cn;
 exports.darkTokens = darkTokens;
 exports.generateTailwindClasses = generateTailwindClasses;
@@ -207,13 +196,11 @@ exports.getBrandColor = getBrandColor;
 exports.getButtonPrimaryColor = getButtonPrimaryColor;
 exports.getButtonPrimaryTextColor = getButtonPrimaryTextColor;
 exports.getButtonSecondaryColor = getButtonSecondaryColor;
-exports.getButtonTertiaryColor = getButtonTertiaryColor;
 exports.getColorFromTheme = getColorFromTheme;
 exports.getContrastColor = getContrastColor;
-exports.getSemanticColorConstants = getSemanticColorConstants;
 exports.getSemanticColors = getSemanticColors;
-exports.getSemanticColorsSimplified = getSemanticColorsSimplified;
 exports.getStatusColor = getStatusColor;
+exports.getTheme = getTheme;
 exports.getThemeColors = getThemeColors;
 exports.getTokenColor = getTokenColor;
 exports.isValidHex = isValidHex;
@@ -221,6 +208,7 @@ exports.lightTokens = lightTokens;
 exports.motion = motion;
 exports.motionPresets = motionPresets;
 exports.motionSemantic = motionSemantic;
+exports.motionTokens = motionTokens;
 exports.overlayFromToken = overlayFromToken;
 exports.tokens = tokens;
 //# sourceMappingURL=tokens.js.map

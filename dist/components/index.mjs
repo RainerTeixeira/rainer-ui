@@ -1,8 +1,9 @@
 import * as React63 from 'react';
 import React63__default, { memo, createContext, useState, useCallback, useEffect, useRef, Component, useMemo } from 'react';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
+import '@rainersoft/design-tokens/formats/css-vars.css';
 import { getInitials, scrollToElement } from '@rainersoft/utils';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import { Slot } from '@radix-ui/react-slot';
@@ -69,7 +70,7 @@ import Settings from 'lucide-react/dist/esm/icons/settings';
 import User from 'lucide-react/dist/esm/icons/user';
 import MoreVertical from 'lucide-react/dist/esm/icons/more-vertical';
 import ArrowLeft from 'lucide-react/dist/esm/icons/arrow-left';
-import { motion as motion$1 } from 'framer-motion';
+import { motion } from 'framer-motion';
 import BarChart from 'lucide-react/dist/esm/icons/bar-chart';
 import Trash2 from 'lucide-react/dist/esm/icons/trash-2';
 import Edit from 'lucide-react/dist/esm/icons/edit';
@@ -104,63 +105,45 @@ import QuoteIcon from 'lucide-react/dist/esm/icons/quote';
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-var tokens = {};
-var tokensWithThemes = tokens;
-tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
-tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
+var tokens = tokensData;
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
-var layoutClassesSemantic = tokens.semantics?.layoutClasses ?? {};
-layoutClassesSemantic.components ?? {};
-layoutClassesSemantic.sections ?? {};
-var zIndexSemantic = tokens.semantics?.layout?.zIndex ?? {};
-var zIndexPrimitive = tokens.primitives?.zIndex ?? {};
-var zIndexTokens = {
-  ...zIndexPrimitive,
-  ...zIndexSemantic
-};
 var Z_INDEX = {
-  BACKDROP: String(zIndexTokens.overlay ?? zIndexTokens.modal ?? 400),
-  MODAL: String(zIndexTokens.modal ?? 400),
-  DROPDOWN: String(zIndexTokens.dropdown ?? 300)};
-var GRADIENT_DIRECTIONS = tokens.primitives?.gradientDirections ?? {};
-var motionClasses = tokens.semantics?.motionClasses ?? {};
+  base: String(tokens.primitives?.zIndex?.base ?? 100),
+  navigation: String(tokens.primitives?.zIndex?.content ?? 150),
+  dropdown: String(tokens.primitives?.zIndex?.dropdown ?? 300),
+  modal: String(tokens.primitives?.zIndex?.modal ?? 400),
+  overlay: String(tokens.primitives?.zIndex?.overlay ?? 400),
+  sticky: String(tokens.primitives?.zIndex?.sticky ?? 200),
+  fixed: String(tokens.primitives?.zIndex?.fixed ?? 300),
+  tooltip: String(tokens.primitives?.zIndex?.tooltip ?? 500)
+};
+var motionTokens = tokens.primitives?.motion ?? {};
+var animationDelays = motionTokens.delay ?? {};
+var animationDurations = motionTokens.duration ?? {};
+var animationEasings = motionTokens.easing ?? {};
+var ANIMATION_DELAYS = animationDelays;
+var baseDuration = animationDurations.normal ?? animationDurations.default ?? "200ms";
+animationDurations.fast ?? baseDuration;
+animationDurations.slow ?? baseDuration;
+var easeInOut = animationEasings.easeInOut ?? animationEasings.default ?? "ease-in-out";
+animationEasings.easeOut ?? easeInOut;
+animationEasings.spring ?? easeInOut;
+var fallbackMotionSemantic = {
+  };
+tokens.semantics?.motion ?? fallbackMotionSemantic;
 var MOTION = {
   TRANSITION: {
-    DEFAULT: motionClasses.transition?.default,
-    FAST: motionClasses.transition?.fast,
-    SLOW: motionClasses.transition?.slow,
-    COLOR: motionClasses.transition?.color,
-    TRANSFORM: motionClasses.transition?.transform,
-    OPACITY: motionClasses.transition?.opacity
-  }
+    DEFAULT: "transition-all duration-200 ease-in-out",
+    COLOR: "transition-colors duration-200 ease-in-out",
+    TRANSFORM: "transition-transform duration-200 ease-in-out"}
 };
-var motionTokens = tokens.MOTION ?? tokens.motionTokens ?? tokens.primitives?.motion ?? {};
-var motion = motionTokens;
-var motionSemanticTokens = tokens.semantics?.motion ?? {};
-var motionSemantic = motionSemanticTokens;
-var ANIMATION_DELAYS = motion?.delay ?? {};
-var ANIMATION_DURATIONS = motion?.duration ?? {};
-var ANIMATION_EASINGS = motion?.easing ?? {};
-var safeMotionDuration = ANIMATION_DURATIONS;
-var safeMotionEasing = ANIMATION_EASINGS;
-var defaultDuration = safeMotionDuration?.normal ?? safeMotionDuration?.default;
-safeMotionDuration?.fast ?? defaultDuration;
-safeMotionDuration?.slow ?? defaultDuration;
-var easeInOut = safeMotionEasing?.easeInOut ?? safeMotionEasing?.default;
-safeMotionEasing?.easeOut ?? easeInOut;
-safeMotionEasing?.spring ?? easeInOut;
-var motionSemanticTyped = motionSemantic;
-({
-  // Presets semânticos
-  semantic: {
-    transition: motionSemanticTyped.transition?.default,
-    interaction: motionSemanticTyped.interaction?.hover,
-    feedback: motionSemanticTyped.feedback?.success,
-    navigation: motionSemanticTyped.navigation?.page
-  }
-});
+tokens.themes?.light ?? {};
+tokens.themes?.dark ?? {};
+tokens.semantics?.layoutClasses?.components ?? {};
+tokens.semantics?.layoutClasses?.sections ?? {};
+var GRADIENT_DIRECTIONS = tokens.primitives?.gradientDirections ?? {};
 var sizeClasses = {
   xs: "h-6 w-6 text-xs",
   sm: "h-8 w-8 text-sm",
@@ -7090,7 +7073,7 @@ function StatsCards({
       const valueText = stat.formatValue ? stat.formatValue(stat.value) : typeof stat.value === "number" ? stat.value.toLocaleString("pt-BR") : stat.value;
       const indicatorColor = isPositive ? "var(--color-success-default)" : "var(--color-error-default)";
       return /* @__PURE__ */ jsx(
-        motion$1.div,
+        motion.div,
         {
           initial: { opacity: 0, y: 12 },
           animate: { opacity: 1, y: 0 },
@@ -7277,7 +7260,7 @@ function QuickActions({
   return /* @__PURE__ */ jsxs(Card, { role: "region", "aria-labelledby": "quick-actions-heading", children: [
     /* @__PURE__ */ jsx(CardHeader, { children: /* @__PURE__ */ jsx(CardTitle, { id: "quick-actions-heading", children: "A\xE7\xF5es R\xE1pidas" }) }),
     /* @__PURE__ */ jsx(CardContent, { children: /* @__PURE__ */ jsx("div", { className: "grid grid-cols-2 gap-3", children: actions.map((action, index) => /* @__PURE__ */ jsx(
-      motion$1.div,
+      motion.div,
       {
         initial: { opacity: 0, scale: 0.9 },
         animate: { opacity: 1, scale: 1 },
@@ -7343,7 +7326,7 @@ function RecentPostsList({
   return /* @__PURE__ */ jsxs(Card, { className: cn("w-full", className), children: [
     /* @__PURE__ */ jsx(CardHeader, { children: /* @__PURE__ */ jsx(CardTitle, { children: "Posts Recentes" }) }),
     /* @__PURE__ */ jsx(CardContent, { children: /* @__PURE__ */ jsx("div", { className: "space-y-4", children: displayedPosts.map((post, index) => /* @__PURE__ */ jsxs(
-      motion$1.div,
+      motion.div,
       {
         initial: { opacity: 0, y: 20 },
         animate: { opacity: 1, y: 0 },
@@ -12495,7 +12478,7 @@ var SocialButton = ({ action, size, variant, showCount, animated, onClick }) => 
     )
   };
   return /* @__PURE__ */ jsxs(
-    motion$1.button,
+    motion.button,
     {
       className: cn(
         "inline-flex items-center justify-center rounded-md font-medium",
@@ -12513,7 +12496,7 @@ var SocialButton = ({ action, size, variant, showCount, animated, onClick }) => 
       children: [
         /* @__PURE__ */ jsx("span", { className: cn("flex-shrink-0", iconSizes[size]), children: isActive && action.activeIcon ? action.activeIcon : action.icon }),
         showCount && count > 0 && /* @__PURE__ */ jsx(
-          motion$1.span,
+          motion.span,
           {
             className: "min-w-[1.2rem] text-center font-mono",
             initial: { scale: 0.8, opacity: 0 },

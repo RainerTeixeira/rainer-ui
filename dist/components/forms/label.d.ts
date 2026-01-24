@@ -1,0 +1,12 @@
+/**
+ * Label Component
+ *
+ * Label para identificar inputs em formulários
+ *
+ * @module @rainersoft/ui/components/forms/label
+ */
+import * as React from 'react';
+import * as LabelPrimitive from '@radix-ui/react-label';
+import { type VariantProps } from 'class-variance-authority';
+declare const Label: React.ForwardRefExoticComponent<Omit<LabelPrimitive.LabelProps & React.RefAttributes<HTMLLabelElement>, "ref"> & VariantProps<(props?: import("class-variance-authority/types").ClassProp) => string> & React.RefAttributes<HTMLLabelElement>>;
+export { Label };

@@ -1,7 +1,8 @@
 import * as React from 'react';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
+import '@rainersoft/design-tokens/formats/css-vars.css';
 import { getInitials } from '@rainersoft/utils';
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { Slot } from '@radix-ui/react-slot';
@@ -17,65 +18,44 @@ import { ChevronDown } from 'lucide-react';
 import 'next-themes';
 import 'lucide-react/dist/esm/icons/moon';
 import 'lucide-react/dist/esm/icons/sun';
-import { motion as motion$1 } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Trash2 from 'lucide-react/dist/esm/icons/trash-2';
 import Calendar from 'lucide-react/dist/esm/icons/calendar';
 import Edit from 'lucide-react/dist/esm/icons/edit';
 import Eye from 'lucide-react/dist/esm/icons/eye';
 
-var tokens = {};
-var tokensWithThemes = tokens;
-tokensWithThemes.themes?.light ?? tokensWithThemes.lightTheme ?? tokens;
-tokensWithThemes.themes?.dark ?? tokensWithThemes.darkTheme ?? tokens;
+var tokens = tokensData;
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
-var layoutClassesSemantic = tokens.semantics?.layoutClasses ?? {};
-layoutClassesSemantic.components ?? {};
-layoutClassesSemantic.sections ?? {};
-var zIndexSemantic = tokens.semantics?.layout?.zIndex ?? {};
-var zIndexPrimitive = tokens.primitives?.zIndex ?? {};
 ({
-  ...zIndexPrimitive,
-  ...zIndexSemantic
+  base: String(tokens.primitives?.zIndex?.base ?? 100),
+  navigation: String(tokens.primitives?.zIndex?.content ?? 150),
+  dropdown: String(tokens.primitives?.zIndex?.dropdown ?? 300),
+  modal: String(tokens.primitives?.zIndex?.modal ?? 400),
+  overlay: String(tokens.primitives?.zIndex?.overlay ?? 400),
+  sticky: String(tokens.primitives?.zIndex?.sticky ?? 200),
+  fixed: String(tokens.primitives?.zIndex?.fixed ?? 300),
+  tooltip: String(tokens.primitives?.zIndex?.tooltip ?? 500)
 });
+var motionTokens = tokens.primitives?.motion ?? {};
+motionTokens.delay ?? {};
+var animationDurations = motionTokens.duration ?? {};
+var animationEasings = motionTokens.easing ?? {};
+var baseDuration = animationDurations.normal ?? animationDurations.default ?? "200ms";
+animationDurations.fast ?? baseDuration;
+animationDurations.slow ?? baseDuration;
+var easeInOut = animationEasings.easeInOut ?? animationEasings.default ?? "ease-in-out";
+animationEasings.easeOut ?? easeInOut;
+animationEasings.spring ?? easeInOut;
+var fallbackMotionSemantic = {
+  };
+tokens.semantics?.motion ?? fallbackMotionSemantic;
+tokens.themes?.light ?? {};
+tokens.themes?.dark ?? {};
+tokens.semantics?.layoutClasses?.components ?? {};
+tokens.semantics?.layoutClasses?.sections ?? {};
 tokens.primitives?.gradientDirections ?? {};
-var motionClasses = tokens.semantics?.motionClasses ?? {};
-({
-  TRANSITION: {
-    DEFAULT: motionClasses.transition?.default,
-    FAST: motionClasses.transition?.fast,
-    SLOW: motionClasses.transition?.slow,
-    COLOR: motionClasses.transition?.color,
-    TRANSFORM: motionClasses.transition?.transform,
-    OPACITY: motionClasses.transition?.opacity
-  }
-});
-var motionTokens = tokens.MOTION ?? tokens.motionTokens ?? tokens.primitives?.motion ?? {};
-var motion = motionTokens;
-var motionSemanticTokens = tokens.semantics?.motion ?? {};
-var motionSemantic = motionSemanticTokens;
-motion?.delay ?? {};
-var ANIMATION_DURATIONS = motion?.duration ?? {};
-var ANIMATION_EASINGS = motion?.easing ?? {};
-var safeMotionDuration = ANIMATION_DURATIONS;
-var safeMotionEasing = ANIMATION_EASINGS;
-var defaultDuration = safeMotionDuration?.normal ?? safeMotionDuration?.default;
-safeMotionDuration?.fast ?? defaultDuration;
-safeMotionDuration?.slow ?? defaultDuration;
-var easeInOut = safeMotionEasing?.easeInOut ?? safeMotionEasing?.default;
-safeMotionEasing?.easeOut ?? easeInOut;
-safeMotionEasing?.spring ?? easeInOut;
-var motionSemanticTyped = motionSemantic;
-({
-  // Presets semânticos
-  semantic: {
-    transition: motionSemanticTyped.transition?.default,
-    interaction: motionSemanticTyped.interaction?.hover,
-    feedback: motionSemanticTyped.feedback?.success,
-    navigation: motionSemanticTyped.navigation?.page
-  }
-});
 var sizeClasses = {
   xs: "h-6 w-6 text-xs",
   sm: "h-8 w-8 text-sm",
@@ -1327,7 +1307,7 @@ function RecentPostsList({
   return /* @__PURE__ */ jsxs(Card, { className: cn("w-full", className), children: [
     /* @__PURE__ */ jsx(CardHeader, { children: /* @__PURE__ */ jsx(CardTitle, { children: "Posts Recentes" }) }),
     /* @__PURE__ */ jsx(CardContent, { children: /* @__PURE__ */ jsx("div", { className: "space-y-4", children: displayedPosts.map((post, index) => /* @__PURE__ */ jsxs(
-      motion$1.div,
+      motion.div,
       {
         initial: { opacity: 0, y: 20 },
         animate: { opacity: 1, y: 0 },
