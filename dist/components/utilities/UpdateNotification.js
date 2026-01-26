@@ -130,20 +130,26 @@ var tokens = tokensData__default.default;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
+var primitiveZIndex = tokens.primitives?.zIndex ?? {};
+var getZIndexValue = (key, fallback) => {
+  const value = primitiveZIndex?.[key];
+  return value !== void 0 ? String(value) : String(fallback);
+};
 ({
-  base: String(tokens.primitives?.zIndex?.base ?? 100),
-  navigation: String(tokens.primitives?.zIndex?.content ?? 150),
-  dropdown: String(tokens.primitives?.zIndex?.dropdown ?? 300),
-  modal: String(tokens.primitives?.zIndex?.modal ?? 400),
-  overlay: String(tokens.primitives?.zIndex?.overlay ?? 400),
-  sticky: String(tokens.primitives?.zIndex?.sticky ?? 200),
-  fixed: String(tokens.primitives?.zIndex?.fixed ?? 300),
-  tooltip: String(tokens.primitives?.zIndex?.tooltip ?? 500)
+  base: getZIndexValue("base", 0),
+  content: getZIndexValue("content", 100),
+  overlay: getZIndexValue("overlay", 200),
+  dropdown: getZIndexValue("dropdown", 300),
+  modal: getZIndexValue("modal", 400),
+  tooltip: getZIndexValue("tooltip", 500),
+  notification: getZIndexValue("notification", 600),
+  max: getZIndexValue("max", 9999)
 });
-var motionTokens = tokens.primitives?.motion ?? {};
-motionTokens.delay ?? {};
-var animationDurations = motionTokens.duration ?? {};
-var animationEasings = motionTokens.easing ?? {};
+var motionPrimitives = tokens.primitives?.motion ?? {};
+var motionTokens = motionPrimitives;
+motionTokens?.delay ?? {};
+var animationDurations = motionTokens?.duration ?? {};
+var animationEasings = motionTokens?.easing ?? {};
 var baseDuration = animationDurations.normal ?? animationDurations.default ?? "200ms";
 animationDurations.fast ?? baseDuration;
 animationDurations.slow ?? baseDuration;
@@ -161,7 +167,10 @@ tokens.themes?.light ?? {};
 tokens.themes?.dark ?? {};
 tokens.semantics?.layoutClasses?.components ?? {};
 tokens.semantics?.layoutClasses?.sections ?? {};
-var GRADIENT_DIRECTIONS = tokens.primitives?.gradientDirections ?? {};
+var defaultGradientDirections = {
+  TO_BOTTOM_RIGHT: "to-br"};
+var rawGradientDirections = tokens.primitives?.gradientDirections ?? {};
+var GRADIENT_DIRECTIONS = rawGradientDirections ?? defaultGradientDirections;
 var buttonVariants = classVarianceAuthority.cva(
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {

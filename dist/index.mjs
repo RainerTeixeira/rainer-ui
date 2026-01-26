@@ -109,20 +109,31 @@ var tokens = tokensData;
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
-var Z_INDEX = {
-  base: String(tokens.primitives?.zIndex?.base ?? 100),
-  navigation: String(tokens.primitives?.zIndex?.content ?? 150),
-  dropdown: String(tokens.primitives?.zIndex?.dropdown ?? 300),
-  modal: String(tokens.primitives?.zIndex?.modal ?? 400),
-  overlay: String(tokens.primitives?.zIndex?.overlay ?? 400),
-  sticky: String(tokens.primitives?.zIndex?.sticky ?? 200),
-  fixed: String(tokens.primitives?.zIndex?.fixed ?? 300),
-  tooltip: String(tokens.primitives?.zIndex?.tooltip ?? 500)
+var primitiveZIndex = tokens.primitives?.zIndex ?? {};
+var getZIndexValue = (key, fallback) => {
+  const value = primitiveZIndex?.[key];
+  return value !== void 0 ? String(value) : String(fallback);
 };
-var motionTokens = tokens.primitives?.motion ?? {};
-var animationDelays = motionTokens.delay ?? {};
-var animationDurations = motionTokens.duration ?? {};
-var animationEasings = motionTokens.easing ?? {};
+var baseZIndex = {
+  base: getZIndexValue("base", 0),
+  content: getZIndexValue("content", 100),
+  overlay: getZIndexValue("overlay", 200),
+  dropdown: getZIndexValue("dropdown", 300),
+  modal: getZIndexValue("modal", 400),
+  tooltip: getZIndexValue("tooltip", 500),
+  notification: getZIndexValue("notification", 600),
+  max: getZIndexValue("max", 9999)
+};
+var Z_INDEX = {
+  DROPDOWN: baseZIndex.dropdown,
+  MODAL: baseZIndex.modal,
+  BACKDROP: baseZIndex.overlay
+};
+var motionPrimitives = tokens.primitives?.motion ?? {};
+var motionTokens = motionPrimitives;
+var animationDelays = motionTokens?.delay ?? {};
+var animationDurations = motionTokens?.duration ?? {};
+var animationEasings = motionTokens?.easing ?? {};
 var ANIMATION_DELAYS = animationDelays;
 var ANIMATION_DURATIONS = animationDurations;
 var ANIMATION_EASINGS = animationEasings;
@@ -157,56 +168,23 @@ var motionPresets = {
 };
 var fallbackMotionSemantic = {
   transition: {
-    default: {
-      duration: baseDuration,
-      easing: easeInOut
-    },
-    fast: {
-      duration: fastDuration,
-      easing: easeOut
-    },
-    slow: {
-      duration: slowDuration,
-      easing: easeInOut
-    }
+    default: { duration: baseDuration, easing: easeInOut },
+    fast: { duration: fastDuration, easing: easeOut },
+    slow: { duration: slowDuration, easing: easeInOut }
   },
   interaction: {
-    hover: {
-      duration: fastDuration,
-      easing: easeOut
-    },
-    focus: {
-      duration: baseDuration,
-      easing: easeInOut
-    },
-    active: {
-      duration: fastDuration,
-      easing: spring
-    }
+    hover: { duration: fastDuration, easing: easeOut },
+    focus: { duration: baseDuration, easing: easeInOut },
+    active: { duration: fastDuration, easing: spring }
   },
   feedback: {
-    success: {
-      duration: slowDuration,
-      easing: easeInOut
-    },
-    error: {
-      duration: slowDuration,
-      easing: spring
-    },
-    warning: {
-      duration: slowDuration,
-      easing: easeOut
-    }
+    success: { duration: slowDuration, easing: easeInOut },
+    error: { duration: slowDuration, easing: spring },
+    warning: { duration: slowDuration, easing: easeOut }
   },
   navigation: {
-    page: {
-      duration: slowDuration,
-      easing: easeOut
-    },
-    modal: {
-      duration: baseDuration,
-      easing: easeInOut
-    }
+    page: { duration: slowDuration, easing: easeOut },
+    modal: { duration: baseDuration, easing: easeInOut }
   }
 };
 var motionSemantic = tokens.semantics?.motion ?? fallbackMotionSemantic;
@@ -222,7 +200,8 @@ function getTheme(theme) {
   return tokens.themes?.[theme] ?? {};
 }
 function getThemeColors(theme) {
-  return getTheme(theme)?.colors ?? {};
+  const themeData = getTheme(theme);
+  return themeData.colors ?? {};
 }
 function getSemanticColors(theme) {
   return {
@@ -230,16 +209,24 @@ function getSemanticColors(theme) {
   };
 }
 function getStatusColor(status, theme = "light") {
-  return getThemeColors(theme)?.[status]?.base ?? "var(--color-black)";
+  const statusPalette = getThemeColors(theme)[status];
+  return statusPalette?.base ?? `var(--color-${status})`;
 }
 function getButtonPrimaryColor(theme = "light") {
-  return getThemeColors(theme)?.primary?.base ?? "var(--color-cyan-600)";
+  const palette = getTheme(theme).button;
+  return palette?.primary?.default ?? "var(--color-primary)";
 }
 function getButtonSecondaryColor(theme = "light") {
-  return getThemeColors(theme)?.secondary?.base ?? "var(--color-indigo-500)";
+  const palette = getTheme(theme).button;
+  return palette?.secondary?.default ?? "var(--color-secondary)";
 }
 function getButtonPrimaryTextColor(theme = "light") {
-  return getThemeColors(theme)?.primary?.text ?? "var(--color-white)";
+  const palette = getTheme(theme).button;
+  return palette?.primary?.text ?? "var(--color-white)";
+}
+function getButtonTertiaryColor(theme = "light") {
+  const palette = getTheme(theme).button;
+  return palette?.tertiary?.default ?? "var(--color-muted)";
 }
 function getColorFromTheme(theme, category, shade) {
   return getThemeColors(theme)?.[category]?.[shade];
@@ -247,24 +234,55 @@ function getColorFromTheme(theme, category, shade) {
 function getBrandColor(variant, theme = "light") {
   return getThemeColors(theme)?.[variant]?.base;
 }
+function getSemanticColorsSimplified(theme) {
+  const colors = getThemeColors(theme);
+  return {
+    primary: colors?.primary,
+    secondary: colors?.secondary,
+    success: colors?.success,
+    warning: colors?.warning,
+    error: colors?.error,
+    info: colors?.info,
+    muted: colors?.muted
+  };
+}
+function getSemanticColorConstants() {
+  return tokens.semantics?.colors ?? {};
+}
 function generateTailwindClasses(options) {
-  return Object.entries(options).filter(([, value]) => Boolean(value)).map(([key, value]) => `${key}-${value}`).join(" ");
+  return Object.entries(options).filter(([, value]) => value !== void 0 && value !== "").map(([key, value]) => {
+    if (key === "bg" || key === "text" || key === "border") {
+      return `${key}-${value}`;
+    }
+    return `${key}-${value}`;
+  }).join(" ");
 }
 function getTokenColor(tokenName) {
-  return `var(--${tokenName})`;
+  const normalizedName = tokenName.startsWith("--") ? tokenName.slice(2) : tokenName;
+  return `var(--${normalizedName})`;
 }
 function overlayFromToken(tokenName, alpha = 0.08) {
   const normalized = tokenName.startsWith("color-") ? tokenName : `color-${tokenName}`;
-  return `rgba(var(--${normalized}-rgb, 0 0 0), ${alpha})`;
+  const rgbVar = `--${normalized}-rgb`;
+  return `rgba(var(${rgbVar}, 0 0 0), ${alpha})`;
 }
 function isValidHex(hex) {
-  return /^#?[0-9A-Fa-f]{6}$/.test(hex);
+  return /^#?([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/.test(hex);
 }
 function getContrastColor(hex) {
-  const clean = hex.replace("#", "");
-  const r = parseInt(clean.slice(0, 2), 16);
-  const g = parseInt(clean.slice(2, 4), 16);
-  const b = parseInt(clean.slice(4, 6), 16);
+  const cleanHex = hex.replace("#", "");
+  let r, g, b;
+  if (cleanHex.length === 3) {
+    r = parseInt(cleanHex[0] + cleanHex[0], 16);
+    g = parseInt(cleanHex[1] + cleanHex[1], 16);
+    b = parseInt(cleanHex[2] + cleanHex[2], 16);
+  } else if (cleanHex.length === 6 || cleanHex.length === 8) {
+    r = parseInt(cleanHex.slice(0, 2), 16);
+    g = parseInt(cleanHex.slice(2, 4), 16);
+    b = parseInt(cleanHex.slice(4, 6), 16);
+  } else {
+    return "var(--color-black)";
+  }
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   return luminance > 0.5 ? "var(--color-black)" : "var(--color-white)";
 }
@@ -272,7 +290,11 @@ var lightTokens = tokens.themes?.light ?? {};
 var darkTokens = tokens.themes?.dark ?? {};
 var COMPONENT_CLASSES = tokens.semantics?.layoutClasses?.components ?? {};
 var SECTION_CLASSES = tokens.semantics?.layoutClasses?.sections ?? {};
-var GRADIENT_DIRECTIONS = tokens.primitives?.gradientDirections ?? {};
+var defaultGradientDirections = {
+  TO_BOTTOM: "to-b",
+  TO_BOTTOM_RIGHT: "to-br"};
+var rawGradientDirections = tokens.primitives?.gradientDirections ?? {};
+var GRADIENT_DIRECTIONS = rawGradientDirections ?? defaultGradientDirections;
 var sizeClasses = {
   xs: "h-6 w-6 text-xs",
   sm: "h-8 w-8 text-sm",
@@ -13132,6 +13154,6 @@ function useTableOfContents({
  * - Lazy loading de recursos visuais
  */
 
-export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, ASPECT_RATIOS, Accordion2 as Accordion, AccordionContent2 as AccordionContent, AccordionItem2 as AccordionItem, AccordionTrigger2 as AccordionTrigger, Alert, AlertDescription, AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, AlertDialogPortal, AlertDialogTitle, AlertDialogTrigger, AlertTitle, AnalyticsOverview, AspectRatio, AspectRatioBox, AspectRatioIframe, AspectRatioImage, AspectRatioVideo, Avatar, AvatarFallback, AvatarImage, BackToTop, BackToTopButton, Badge, BookmarkButton, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator, Button, COMPONENT_CLASSES, Calendar3 as Calendar, CalendarDayButton, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CelestialBackground, Center, CenterInline, CenterScreen, CenterText, Checkbox, Chip, ChipGroup, Code, CodeBlock, CodeInline, Collapsible, CollapsibleContent2 as CollapsibleContent, CollapsibleTrigger2 as CollapsibleTrigger, Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, ConfirmDialog, Container, ContainerFluid, ContainerSection, ContextMenu, ContextMenuCheckboxItem, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuLabel, ContextMenuPortal, ContextMenuRadioGroup, ContextMenuRadioItem, ContextMenuSeparator, ContextMenuShortcut, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuTrigger, CookieBanner, DatePicker, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger, Divider, DotsSpinner, Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTrigger, DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger, EmptyState, EmptyStateIllustrated, EmptyStatePatterns, ErrorBoundary, FAB, FABGroup, FileUpload, Flex, FlexBetween, FlexCenter, FlexColumn, FlexEnd, FlexRow, FlexStart, FloatingGrid, Grid, GridItem, HelpCenter, HorizontalSpacer, HoverCard, HoverCardContent, HoverCardTrigger, IconButton, InlineLoader, Input, InstallPrompt, KPI, KPIChart, KPIGrid, Kbd, KbdCombo, Label, Lightbox, LikeButton, LinkButton, LoadingScreen, MOTION, Masonry, MasonryItem, MatrixBackground, Menu, MenuBar, Modal, ModalContent, ModalFooter, ModalHeader, ModalTrigger, NavigationContextMenu, NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport, Notification, NotificationGroup, NotificationProvider, NotificationToast, PageHeader, Pagination, PaginationCompact, PaginationInfo, Panel, PanelContent, PanelDescription, PanelFooter, PanelGroup, PanelHeader, PanelTitle, ParticlesEffect, PhoneInput, Popover, PopoverContent, PopoverTrigger, Progress, PulseSpinner, QuickActions, QuickStats, Quote, QuoteBlock, QuoteTestimonial, RadioGroup, RadioGroupItem, RangeSlider, Rating, RatingProgress, RatingSummary, RecentPostsList, SECTION_CLASSES, ScrollArea, ScrollBar, SearchInput, SectionDivider, SegmentedControl, SegmentedControlItem, Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, SelectTrigger, SelectValue, Separator2 as Separator, ShareButton, Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Sidebar, SidebarTrigger, Skeleton, Slider, SocialBar, Spacer, Spinner, SpinnerOverlay, StarsBackground, StatsCards, StatsOverview, StepItem, Steps, Switch, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow, Tabs, TabsContent, TabsList, TabsTrigger, TextDivider, Textarea, ThemeProvider, ThemeToggle, TimePicker, Timeline, TimelineItem, TimelineSeparator, Toaster, Toggle, TokensDemo, TokensProvider, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, TopBar, TopBarActions, TopBarTitle, UpdateNotification, VerticalSpacer, VisuallyHidden, badgeVariants, buttonVariants, cn, darkTokens as darkTheme, generateTailwindClasses, getBrandColor, getButtonPrimaryColor, getButtonPrimaryTextColor, getButtonSecondaryColor, getColorFromTheme, getContrastColor, getSemanticColors, getStatusColor, getThemeColors, getTokenColor, isValidHex, lightTokens as lightTheme, motion, motionPresets, motionSemantic, navigationMenuTriggerStyle, overlayFromToken, toggleVariants, tokens, useCarouselKeyboard, useConfirm, useCookieConsent, useNotification, usePWA, useTableOfContents, useTheme };
+export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, ASPECT_RATIOS, Accordion2 as Accordion, AccordionContent2 as AccordionContent, AccordionItem2 as AccordionItem, AccordionTrigger2 as AccordionTrigger, Alert, AlertDescription, AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogOverlay, AlertDialogPortal, AlertDialogTitle, AlertDialogTrigger, AlertTitle, AnalyticsOverview, AspectRatio, AspectRatioBox, AspectRatioIframe, AspectRatioImage, AspectRatioVideo, Avatar, AvatarFallback, AvatarImage, BackToTop, BackToTopButton, Badge, BookmarkButton, Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator, Button, COMPONENT_CLASSES, Calendar3 as Calendar, CalendarDayButton, Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle, Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, CelestialBackground, Center, CenterInline, CenterScreen, CenterText, Checkbox, Chip, ChipGroup, Code, CodeBlock, CodeInline, Collapsible, CollapsibleContent2 as CollapsibleContent, CollapsibleTrigger2 as CollapsibleTrigger, Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, ConfirmDialog, Container, ContainerFluid, ContainerSection, ContextMenu, ContextMenuCheckboxItem, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuLabel, ContextMenuPortal, ContextMenuRadioGroup, ContextMenuRadioItem, ContextMenuSeparator, ContextMenuShortcut, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuTrigger, CookieBanner, DatePicker, Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger, Divider, DotsSpinner, Drawer, DrawerContent, DrawerFooter, DrawerHeader, DrawerTrigger, DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger, EmptyState, EmptyStateIllustrated, EmptyStatePatterns, ErrorBoundary, FAB, FABGroup, FileUpload, Flex, FlexBetween, FlexCenter, FlexColumn, FlexEnd, FlexRow, FlexStart, FloatingGrid, Grid, GridItem, HelpCenter, HorizontalSpacer, HoverCard, HoverCardContent, HoverCardTrigger, IconButton, InlineLoader, Input, InstallPrompt, KPI, KPIChart, KPIGrid, Kbd, KbdCombo, Label, Lightbox, LikeButton, LinkButton, LoadingScreen, MOTION, Masonry, MasonryItem, MatrixBackground, Menu, MenuBar, Modal, ModalContent, ModalFooter, ModalHeader, ModalTrigger, NavigationContextMenu, NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport, Notification, NotificationGroup, NotificationProvider, NotificationToast, PageHeader, Pagination, PaginationCompact, PaginationInfo, Panel, PanelContent, PanelDescription, PanelFooter, PanelGroup, PanelHeader, PanelTitle, ParticlesEffect, PhoneInput, Popover, PopoverContent, PopoverTrigger, Progress, PulseSpinner, QuickActions, QuickStats, Quote, QuoteBlock, QuoteTestimonial, RadioGroup, RadioGroupItem, RangeSlider, Rating, RatingProgress, RatingSummary, RecentPostsList, SECTION_CLASSES, ScrollArea, ScrollBar, SearchInput, SectionDivider, SegmentedControl, SegmentedControlItem, Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, SelectTrigger, SelectValue, Separator2 as Separator, ShareButton, Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Sidebar, SidebarTrigger, Skeleton, Slider, SocialBar, Spacer, Spinner, SpinnerOverlay, StarsBackground, StatsCards, StatsOverview, StepItem, Steps, Switch, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow, Tabs, TabsContent, TabsList, TabsTrigger, TextDivider, Textarea, ThemeProvider, ThemeToggle, TimePicker, Timeline, TimelineItem, TimelineSeparator, Toaster, Toggle, TokensDemo, TokensProvider, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger, TopBar, TopBarActions, TopBarTitle, UpdateNotification, VerticalSpacer, VisuallyHidden, badgeVariants, buttonVariants, cn, darkTokens as darkTheme, generateTailwindClasses, getBrandColor, getButtonPrimaryColor, getButtonPrimaryTextColor, getButtonSecondaryColor, getButtonTertiaryColor, getColorFromTheme, getContrastColor, getSemanticColorConstants, getSemanticColors, getSemanticColorsSimplified, getStatusColor, getThemeColors, getTokenColor, isValidHex, lightTokens as lightTheme, motion, motionPresets, motionSemantic, navigationMenuTriggerStyle, overlayFromToken, toggleVariants, tokens, useCarouselKeyboard, useConfirm, useCookieConsent, useNotification, usePWA, useTableOfContents, useTheme };
 //# sourceMappingURL=index.mjs.map
 //# sourceMappingURL=index.mjs.map

@@ -31,20 +31,31 @@ var tokens = tokensData;
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
-var Z_INDEX = {
-  base: String(tokens.primitives?.zIndex?.base ?? 100),
-  navigation: String(tokens.primitives?.zIndex?.content ?? 150),
-  dropdown: String(tokens.primitives?.zIndex?.dropdown ?? 300),
-  modal: String(tokens.primitives?.zIndex?.modal ?? 400),
-  overlay: String(tokens.primitives?.zIndex?.overlay ?? 400),
-  sticky: String(tokens.primitives?.zIndex?.sticky ?? 200),
-  fixed: String(tokens.primitives?.zIndex?.fixed ?? 300),
-  tooltip: String(tokens.primitives?.zIndex?.tooltip ?? 500)
+var primitiveZIndex = tokens.primitives?.zIndex ?? {};
+var getZIndexValue = (key, fallback) => {
+  const value = primitiveZIndex?.[key];
+  return value !== void 0 ? String(value) : String(fallback);
 };
-var motionTokens = tokens.primitives?.motion ?? {};
-motionTokens.delay ?? {};
-var animationDurations = motionTokens.duration ?? {};
-var animationEasings = motionTokens.easing ?? {};
+var baseZIndex = {
+  base: getZIndexValue("base", 0),
+  content: getZIndexValue("content", 100),
+  overlay: getZIndexValue("overlay", 200),
+  dropdown: getZIndexValue("dropdown", 300),
+  modal: getZIndexValue("modal", 400),
+  tooltip: getZIndexValue("tooltip", 500),
+  notification: getZIndexValue("notification", 600),
+  max: getZIndexValue("max", 9999)
+};
+var Z_INDEX = {
+  DROPDOWN: baseZIndex.dropdown,
+  MODAL: baseZIndex.modal,
+  BACKDROP: baseZIndex.overlay
+};
+var motionPrimitives = tokens.primitives?.motion ?? {};
+var motionTokens = motionPrimitives;
+motionTokens?.delay ?? {};
+var animationDurations = motionTokens?.duration ?? {};
+var animationEasings = motionTokens?.easing ?? {};
 var baseDuration = animationDurations.normal ?? animationDurations.default ?? "200ms";
 animationDurations.fast ?? baseDuration;
 animationDurations.slow ?? baseDuration;

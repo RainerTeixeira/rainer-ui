@@ -13,20 +13,38 @@ var tokens = tokensData__default.default;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
-var Z_INDEX = {
-  base: String(tokens.primitives?.zIndex?.base ?? 100),
-  navigation: String(tokens.primitives?.zIndex?.content ?? 150),
-  dropdown: String(tokens.primitives?.zIndex?.dropdown ?? 300),
-  modal: String(tokens.primitives?.zIndex?.modal ?? 400),
-  overlay: String(tokens.primitives?.zIndex?.overlay ?? 400),
-  sticky: String(tokens.primitives?.zIndex?.sticky ?? 200),
-  fixed: String(tokens.primitives?.zIndex?.fixed ?? 300),
-  tooltip: String(tokens.primitives?.zIndex?.tooltip ?? 500)
+var primitiveZIndex = tokens.primitives?.zIndex ?? {};
+var getZIndexValue = (key, fallback) => {
+  const value = primitiveZIndex?.[key];
+  return value !== void 0 ? String(value) : String(fallback);
 };
-var motionTokens = tokens.primitives?.motion ?? {};
-var animationDelays = motionTokens.delay ?? {};
-var animationDurations = motionTokens.duration ?? {};
-var animationEasings = motionTokens.easing ?? {};
+var baseZIndex = {
+  base: getZIndexValue("base", 0),
+  content: getZIndexValue("content", 100),
+  overlay: getZIndexValue("overlay", 200),
+  dropdown: getZIndexValue("dropdown", 300),
+  modal: getZIndexValue("modal", 400),
+  tooltip: getZIndexValue("tooltip", 500),
+  notification: getZIndexValue("notification", 600),
+  max: getZIndexValue("max", 9999)
+};
+var Z_INDEX = {
+  ...baseZIndex,
+  BASE: baseZIndex.base,
+  CONTENT: baseZIndex.content,
+  OVERLAY: baseZIndex.overlay,
+  DROPDOWN: baseZIndex.dropdown,
+  MODAL: baseZIndex.modal,
+  TOOLTIP: baseZIndex.tooltip,
+  NOTIFICATION: baseZIndex.notification,
+  MAX: baseZIndex.max,
+  BACKDROP: baseZIndex.overlay
+};
+var motionPrimitives = tokens.primitives?.motion ?? {};
+var motionTokens = motionPrimitives;
+var animationDelays = motionTokens?.delay ?? {};
+var animationDurations = motionTokens?.duration ?? {};
+var animationEasings = motionTokens?.easing ?? {};
 var ANIMATION_DELAYS = animationDelays;
 var ANIMATION_DURATIONS = animationDurations;
 var ANIMATION_EASINGS = animationEasings;
@@ -61,56 +79,23 @@ var motionPresets = {
 };
 var fallbackMotionSemantic = {
   transition: {
-    default: {
-      duration: baseDuration,
-      easing: easeInOut
-    },
-    fast: {
-      duration: fastDuration,
-      easing: easeOut
-    },
-    slow: {
-      duration: slowDuration,
-      easing: easeInOut
-    }
+    default: { duration: baseDuration, easing: easeInOut },
+    fast: { duration: fastDuration, easing: easeOut },
+    slow: { duration: slowDuration, easing: easeInOut }
   },
   interaction: {
-    hover: {
-      duration: fastDuration,
-      easing: easeOut
-    },
-    focus: {
-      duration: baseDuration,
-      easing: easeInOut
-    },
-    active: {
-      duration: fastDuration,
-      easing: spring
-    }
+    hover: { duration: fastDuration, easing: easeOut },
+    focus: { duration: baseDuration, easing: easeInOut },
+    active: { duration: fastDuration, easing: spring }
   },
   feedback: {
-    success: {
-      duration: slowDuration,
-      easing: easeInOut
-    },
-    error: {
-      duration: slowDuration,
-      easing: spring
-    },
-    warning: {
-      duration: slowDuration,
-      easing: easeOut
-    }
+    success: { duration: slowDuration, easing: easeInOut },
+    error: { duration: slowDuration, easing: spring },
+    warning: { duration: slowDuration, easing: easeOut }
   },
   navigation: {
-    page: {
-      duration: slowDuration,
-      easing: easeOut
-    },
-    modal: {
-      duration: baseDuration,
-      easing: easeInOut
-    }
+    page: { duration: slowDuration, easing: easeOut },
+    modal: { duration: baseDuration, easing: easeInOut }
   }
 };
 var motionSemantic = tokens.semantics?.motion ?? fallbackMotionSemantic;
@@ -126,7 +111,8 @@ function getTheme(theme) {
   return tokens.themes?.[theme] ?? {};
 }
 function getThemeColors(theme) {
-  return getTheme(theme)?.colors ?? {};
+  const themeData = getTheme(theme);
+  return themeData.colors ?? {};
 }
 function getSemanticColors(theme) {
   return {
@@ -134,16 +120,24 @@ function getSemanticColors(theme) {
   };
 }
 function getStatusColor(status, theme = "light") {
-  return getThemeColors(theme)?.[status]?.base ?? "var(--color-black)";
+  const statusPalette = getThemeColors(theme)[status];
+  return statusPalette?.base ?? `var(--color-${status})`;
 }
 function getButtonPrimaryColor(theme = "light") {
-  return getThemeColors(theme)?.primary?.base ?? "var(--color-cyan-600)";
+  const palette = getTheme(theme).button;
+  return palette?.primary?.default ?? "var(--color-primary)";
 }
 function getButtonSecondaryColor(theme = "light") {
-  return getThemeColors(theme)?.secondary?.base ?? "var(--color-indigo-500)";
+  const palette = getTheme(theme).button;
+  return palette?.secondary?.default ?? "var(--color-secondary)";
 }
 function getButtonPrimaryTextColor(theme = "light") {
-  return getThemeColors(theme)?.primary?.text ?? "var(--color-white)";
+  const palette = getTheme(theme).button;
+  return palette?.primary?.text ?? "var(--color-white)";
+}
+function getButtonTertiaryColor(theme = "light") {
+  const palette = getTheme(theme).button;
+  return palette?.tertiary?.default ?? "var(--color-muted)";
 }
 function getColorFromTheme(theme, category, shade) {
   return getThemeColors(theme)?.[category]?.[shade];
@@ -151,24 +145,55 @@ function getColorFromTheme(theme, category, shade) {
 function getBrandColor(variant, theme = "light") {
   return getThemeColors(theme)?.[variant]?.base;
 }
+function getSemanticColorsSimplified(theme) {
+  const colors = getThemeColors(theme);
+  return {
+    primary: colors?.primary,
+    secondary: colors?.secondary,
+    success: colors?.success,
+    warning: colors?.warning,
+    error: colors?.error,
+    info: colors?.info,
+    muted: colors?.muted
+  };
+}
+function getSemanticColorConstants() {
+  return tokens.semantics?.colors ?? {};
+}
 function generateTailwindClasses(options) {
-  return Object.entries(options).filter(([, value]) => Boolean(value)).map(([key, value]) => `${key}-${value}`).join(" ");
+  return Object.entries(options).filter(([, value]) => value !== void 0 && value !== "").map(([key, value]) => {
+    if (key === "bg" || key === "text" || key === "border") {
+      return `${key}-${value}`;
+    }
+    return `${key}-${value}`;
+  }).join(" ");
 }
 function getTokenColor(tokenName) {
-  return `var(--${tokenName})`;
+  const normalizedName = tokenName.startsWith("--") ? tokenName.slice(2) : tokenName;
+  return `var(--${normalizedName})`;
 }
 function overlayFromToken(tokenName, alpha = 0.08) {
   const normalized = tokenName.startsWith("color-") ? tokenName : `color-${tokenName}`;
-  return `rgba(var(--${normalized}-rgb, 0 0 0), ${alpha})`;
+  const rgbVar = `--${normalized}-rgb`;
+  return `rgba(var(${rgbVar}, 0 0 0), ${alpha})`;
 }
 function isValidHex(hex) {
-  return /^#?[0-9A-Fa-f]{6}$/.test(hex);
+  return /^#?([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6}|[0-9A-Fa-f]{8})$/.test(hex);
 }
 function getContrastColor(hex) {
-  const clean = hex.replace("#", "");
-  const r = parseInt(clean.slice(0, 2), 16);
-  const g = parseInt(clean.slice(2, 4), 16);
-  const b = parseInt(clean.slice(4, 6), 16);
+  const cleanHex = hex.replace("#", "");
+  let r, g, b;
+  if (cleanHex.length === 3) {
+    r = parseInt(cleanHex[0] + cleanHex[0], 16);
+    g = parseInt(cleanHex[1] + cleanHex[1], 16);
+    b = parseInt(cleanHex[2] + cleanHex[2], 16);
+  } else if (cleanHex.length === 6 || cleanHex.length === 8) {
+    r = parseInt(cleanHex.slice(0, 2), 16);
+    g = parseInt(cleanHex.slice(2, 4), 16);
+    b = parseInt(cleanHex.slice(4, 6), 16);
+  } else {
+    return "var(--color-black)";
+  }
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
   return luminance > 0.5 ? "var(--color-black)" : "var(--color-white)";
 }
@@ -176,7 +201,48 @@ var lightTokens = tokens.themes?.light ?? {};
 var darkTokens = tokens.themes?.dark ?? {};
 var COMPONENT_CLASSES = tokens.semantics?.layoutClasses?.components ?? {};
 var SECTION_CLASSES = tokens.semantics?.layoutClasses?.sections ?? {};
-var GRADIENT_DIRECTIONS = tokens.primitives?.gradientDirections ?? {};
+var defaultGradientDirections = {
+  TO_R: "to-r",
+  TO_L: "to-l",
+  TO_T: "to-t",
+  TO_B: "to-b",
+  TO_BR: "to-br",
+  TO_BL: "to-bl",
+  TO_TR: "to-tr",
+  TO_TL: "to-tl",
+  TO_BOTTOM: "to-b",
+  TO_BOTTOM_RIGHT: "to-br",
+  TO_BOTTOM_LEFT: "to-bl",
+  TO_TOP_RIGHT: "to-tr",
+  TO_TOP_LEFT: "to-tl"
+};
+var rawGradientDirections = tokens.primitives?.gradientDirections ?? {};
+var GRADIENT_DIRECTIONS = rawGradientDirections ?? defaultGradientDirections;
+var tokenUtils = {
+  // Funções principais
+  cn,
+  getTheme,
+  getThemeColors,
+  getStatusColor,
+  getBrandColor,
+  getTokenColor,
+  overlayFromToken,
+  isValidHex,
+  getContrastColor,
+  generateTailwindClasses,
+  // Constantes
+  Z_INDEX,
+  motion,
+  motionPresets,
+  motionSemantic,
+  MOTION,
+  COMPONENT_CLASSES,
+  SECTION_CLASSES,
+  GRADIENT_DIRECTIONS,
+  // Tokens diretos
+  lightTokens,
+  darkTokens
+};
 
 exports.ANIMATION_DELAYS = ANIMATION_DELAYS;
 exports.ANIMATION_DURATIONS = ANIMATION_DURATIONS;
@@ -196,9 +262,12 @@ exports.getBrandColor = getBrandColor;
 exports.getButtonPrimaryColor = getButtonPrimaryColor;
 exports.getButtonPrimaryTextColor = getButtonPrimaryTextColor;
 exports.getButtonSecondaryColor = getButtonSecondaryColor;
+exports.getButtonTertiaryColor = getButtonTertiaryColor;
 exports.getColorFromTheme = getColorFromTheme;
 exports.getContrastColor = getContrastColor;
+exports.getSemanticColorConstants = getSemanticColorConstants;
 exports.getSemanticColors = getSemanticColors;
+exports.getSemanticColorsSimplified = getSemanticColorsSimplified;
 exports.getStatusColor = getStatusColor;
 exports.getTheme = getTheme;
 exports.getThemeColors = getThemeColors;
@@ -210,6 +279,7 @@ exports.motionPresets = motionPresets;
 exports.motionSemantic = motionSemantic;
 exports.motionTokens = motionTokens;
 exports.overlayFromToken = overlayFromToken;
+exports.tokenUtils = tokenUtils;
 exports.tokens = tokens;
 //# sourceMappingURL=index.js.map
 //# sourceMappingURL=index.js.map
