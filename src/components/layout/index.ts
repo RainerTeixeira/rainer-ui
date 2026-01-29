@@ -24,6 +24,7 @@
 // ============================================================================
 
 export * from './PageHeader';
+export * from './app-layout';
 export * from './aspect-ratio';
 export * from './breadcrumb';
 // Card já exportado via '@rainersoft/ui/ui'

@@ -19,6 +19,7 @@
  * @category Layout
  */
 export * from './PageHeader';
+export * from './app-layout';
 export * from './aspect-ratio';
 export * from './breadcrumb';
 export * from './scroll-area';

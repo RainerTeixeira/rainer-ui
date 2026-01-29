@@ -1,19 +1,23 @@
 'use strict';
 
-var LogOut = require('lucide-react/dist/esm/icons/log-out');
-var React2 = require('react');
+var React3 = require('react');
 var classVarianceAuthority = require('class-variance-authority');
-var ChevronLeft = require('lucide-react/dist/esm/icons/chevron-left');
-var ChevronRight = require('lucide-react/dist/esm/icons/chevron-right');
-var Menu = require('lucide-react/dist/esm/icons/menu');
-var Settings = require('lucide-react/dist/esm/icons/settings');
-var User = require('lucide-react/dist/esm/icons/user');
-var X = require('lucide-react/dist/esm/icons/x');
-var reactSlot = require('@radix-ui/react-slot');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
+var MoreVertical = require('lucide-react/dist/esm/icons/more-vertical');
+var ArrowLeft = require('lucide-react/dist/esm/icons/arrow-left');
+var Bell = require('lucide-react/dist/esm/icons/bell');
+var Menu = require('lucide-react/dist/esm/icons/menu');
+var Search = require('lucide-react/dist/esm/icons/search');
+var Settings2 = require('lucide-react/dist/esm/icons/settings');
+var reactSlot = require('@radix-ui/react-slot');
 var jsxRuntime = require('react/jsx-runtime');
+var LogOut = require('lucide-react/dist/esm/icons/log-out');
+var ChevronLeft = require('lucide-react/dist/esm/icons/chevron-left');
+var ChevronRight = require('lucide-react/dist/esm/icons/chevron-right');
+var User = require('lucide-react/dist/esm/icons/user');
+var X = require('lucide-react/dist/esm/icons/x');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 
@@ -35,15 +39,19 @@ function _interopNamespace(e) {
   return Object.freeze(n);
 }
 
+var React3__namespace = /*#__PURE__*/_interopNamespace(React3);
+var tokensData__default = /*#__PURE__*/_interopDefault(tokensData);
+var MoreVertical__default = /*#__PURE__*/_interopDefault(MoreVertical);
+var ArrowLeft__default = /*#__PURE__*/_interopDefault(ArrowLeft);
+var Bell__default = /*#__PURE__*/_interopDefault(Bell);
+var Menu__default = /*#__PURE__*/_interopDefault(Menu);
+var Search__default = /*#__PURE__*/_interopDefault(Search);
+var Settings2__default = /*#__PURE__*/_interopDefault(Settings2);
 var LogOut__default = /*#__PURE__*/_interopDefault(LogOut);
-var React2__namespace = /*#__PURE__*/_interopNamespace(React2);
 var ChevronLeft__default = /*#__PURE__*/_interopDefault(ChevronLeft);
 var ChevronRight__default = /*#__PURE__*/_interopDefault(ChevronRight);
-var Menu__default = /*#__PURE__*/_interopDefault(Menu);
-var Settings__default = /*#__PURE__*/_interopDefault(Settings);
 var User__default = /*#__PURE__*/_interopDefault(User);
 var X__default = /*#__PURE__*/_interopDefault(X);
-var tokensData__default = /*#__PURE__*/_interopDefault(tokensData);
 
 var tokens = tokensData__default.default;
 function cn(...inputs) {
@@ -124,7 +132,7 @@ var buttonVariants = classVarianceAuthority.cva(
     }
   }
 );
-var ButtonComponent = React2__namespace.forwardRef(
+var ButtonComponent = React3__namespace.forwardRef(
   ({
     className,
     variant,
@@ -139,7 +147,7 @@ var ButtonComponent = React2__namespace.forwardRef(
   }, ref) => {
     const isDisabled = disabled || loading;
     if (asChild) {
-      const child = React2__namespace.Children.only(children);
+      const child = React3__namespace.Children.only(children);
       return /* @__PURE__ */ jsxRuntime.jsx(
         reactSlot.Slot,
         {
@@ -194,6 +202,209 @@ var ButtonComponent = React2__namespace.forwardRef(
 );
 ButtonComponent.displayName = "Button";
 var Button = ButtonComponent;
+var topBarVariants = classVarianceAuthority.cva(
+  "flex items-center justify-between border-b bg-background px-4 py-3",
+  {
+    variants: {
+      variant: {
+        default: "border-border bg-background",
+        floating: "border-border shadow-sm rounded-lg mx-4 mt-4",
+        glass: "glass border-transparent",
+        neon: "neon-border bg-background dark:shadow-glow-cyan",
+        transparent: "border-transparent bg-transparent"
+      },
+      size: {
+        sm: "h-12 px-3 py-2",
+        md: "h-14 px-4 py-3",
+        lg: "h-16 px-6 py-4"
+      },
+      sticky: {
+        true: "sticky top-0 z-40",
+        false: ""
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "md",
+      sticky: false
+    }
+  }
+);
+var TopBar = React3__namespace.forwardRef(
+  ({
+    className,
+    variant = "default",
+    size = "md",
+    sticky = false,
+    title,
+    subtitle,
+    left,
+    center,
+    right,
+    back,
+    menu,
+    search,
+    notifications,
+    children,
+    ...props
+  }, ref) => {
+    const renderLeft = () => {
+      if (left) return left;
+      return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2", children: [
+        back && /* @__PURE__ */ jsxRuntime.jsx(
+          Button,
+          {
+            variant: "ghost",
+            size: "sm",
+            onClick: back.onClick,
+            className: "h-8 w-8 p-0",
+            "aria-label": back.label || "Voltar",
+            children: /* @__PURE__ */ jsxRuntime.jsx(ArrowLeft__default.default, { className: "h-4 w-4" })
+          }
+        ),
+        menu && /* @__PURE__ */ jsxRuntime.jsx(
+          Button,
+          {
+            variant: "ghost",
+            size: "sm",
+            onClick: menu.onClick,
+            className: "h-8 w-8 p-0",
+            "aria-label": menu.label || "Menu",
+            children: /* @__PURE__ */ jsxRuntime.jsx(Menu__default.default, { className: "h-4 w-4" })
+          }
+        ),
+        (title || subtitle) && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col", children: [
+          title && /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "text-lg font-semibold leading-none", children: title }),
+          subtitle && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted-foreground", children: subtitle })
+        ] })
+      ] });
+    };
+    const renderCenter = () => {
+      if (center) return center;
+      if (search) {
+        return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex-1 max-w-md mx-4", children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "relative", children: [
+          /* @__PURE__ */ jsxRuntime.jsx(Search__default.default, { className: "absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" }),
+          /* @__PURE__ */ jsxRuntime.jsx(
+            "input",
+            {
+              type: "text",
+              placeholder: search.placeholder || "Buscar...",
+              value: search.value,
+              onChange: (e) => search.onChange?.(e.target.value),
+              onKeyDown: (e) => {
+                if (e.key === "Enter") {
+                  search.onSubmit?.(e.currentTarget.value);
+                }
+              },
+              className: cn(
+                "w-full h-9 pl-10 pr-4 rounded-md border border-input bg-background",
+                "text-sm ring-offset-background",
+                "placeholder:text-muted-foreground",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                "disabled:cursor-not-allowed disabled:opacity-50"
+              )
+            }
+          )
+        ] }) });
+      }
+      if (title && (back || menu)) {
+        return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "flex-1 flex justify-center", children: /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "text-lg font-semibold", children: title }) });
+      }
+      return null;
+    };
+    const renderRight = () => {
+      if (right) return right;
+      return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex items-center gap-2", children: [
+        notifications && /* @__PURE__ */ jsxRuntime.jsxs(
+          Button,
+          {
+            variant: "ghost",
+            size: "sm",
+            onClick: notifications.onClick,
+            className: "relative h-8 w-8 p-0",
+            children: [
+              /* @__PURE__ */ jsxRuntime.jsx(Bell__default.default, { className: "h-4 w-4" }),
+              notifications.count && notifications.count > 0 && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-xs text-primary-foreground flex items-center justify-center", children: notifications.count > 99 ? "99+" : notifications.count })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntime.jsx(
+          Button,
+          {
+            variant: "ghost",
+            size: "sm",
+            className: "h-8 w-8 p-0",
+            children: /* @__PURE__ */ jsxRuntime.jsx(Settings2__default.default, { className: "h-4 w-4" })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntime.jsx(
+          Button,
+          {
+            variant: "ghost",
+            size: "sm",
+            className: "h-8 w-8 p-0",
+            children: /* @__PURE__ */ jsxRuntime.jsx(MoreVertical__default.default, { className: "h-4 w-4" })
+          }
+        )
+      ] });
+    };
+    return /* @__PURE__ */ jsxRuntime.jsxs(
+      "div",
+      {
+        ref,
+        className: cn(topBarVariants({ variant, size, sticky }), className),
+        ...props,
+        children: [
+          renderLeft(),
+          renderCenter(),
+          renderRight(),
+          children
+        ]
+      }
+    );
+  }
+);
+TopBar.displayName = "TopBar";
+var TopBarTitle = React3__namespace.forwardRef(
+  ({
+    className,
+    title,
+    subtitle,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsxRuntime.jsxs(
+      "div",
+      {
+        ref,
+        className: cn("flex flex-col items-center", className),
+        ...props,
+        children: [
+          /* @__PURE__ */ jsxRuntime.jsx("h1", { className: "text-lg font-semibold leading-none", children: title }),
+          subtitle && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-sm text-muted-foreground mt-1", children: subtitle })
+        ]
+      }
+    );
+  }
+);
+TopBarTitle.displayName = "TopBarTitle";
+var TopBarActions = React3__namespace.forwardRef(
+  ({
+    className,
+    children,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsxRuntime.jsx(
+      "div",
+      {
+        ref,
+        className: cn("flex items-center gap-2", className),
+        ...props,
+        children
+      }
+    );
+  }
+);
+TopBarActions.displayName = "TopBarActions";
 var sidebarVariants = classVarianceAuthority.cva(
   "flex flex-col bg-card border-r border-border transition-all duration-[var(--motion-duration-normal)]",
   {
@@ -224,7 +435,7 @@ var sidebarVariants = classVarianceAuthority.cva(
     }
   }
 );
-var Sidebar = React2__namespace.forwardRef(
+var Sidebar = React3__namespace.forwardRef(
   ({
     className,
     variant = "default",
@@ -242,25 +453,25 @@ var Sidebar = React2__namespace.forwardRef(
     children,
     ...props
   }, ref) => {
-    const [internalCollapsed, setInternalCollapsed] = React2__namespace.useState(collapsed);
-    const [internalOpen, setInternalOpen] = React2__namespace.useState(open);
+    const [internalCollapsed, setInternalCollapsed] = React3__namespace.useState(collapsed);
+    const [internalOpen, setInternalOpen] = React3__namespace.useState(open);
     const isCollapsed = onCollapse ? collapsed : internalCollapsed;
     const isOpen = overlay ? onOpenChange ? open : internalOpen : true;
-    const handleCollapse = React2__namespace.useCallback(() => {
+    const handleCollapse = React3__namespace.useCallback(() => {
       if (onCollapse) {
         onCollapse(!isCollapsed);
       } else {
         setInternalCollapsed(!isCollapsed);
       }
     }, [isCollapsed, onCollapse]);
-    const handleOpenChange = React2__namespace.useCallback((newOpen) => {
+    const handleOpenChange = React3__namespace.useCallback((newOpen) => {
       if (onOpenChange) {
         onOpenChange(newOpen);
       } else {
         setInternalOpen(newOpen);
       }
     }, [onOpenChange]);
-    React2__namespace.useEffect(() => {
+    React3__namespace.useEffect(() => {
       if (overlay && isOpen) {
         const handleClickOutside = (event) => {
           const target = event.target;
@@ -380,7 +591,7 @@ var Sidebar = React2__namespace.forwardRef(
                     className: "w-full justify-start",
                     size: "sm",
                     children: [
-                      /* @__PURE__ */ jsxRuntime.jsx(Settings__default.default, { className: "mr-2 h-4 w-4" }),
+                      /* @__PURE__ */ jsxRuntime.jsx(Settings2__default.default, { className: "mr-2 h-4 w-4" }),
                       "Configura\xE7\xF5es"
                     ]
                   }
@@ -399,7 +610,7 @@ var Sidebar = React2__namespace.forwardRef(
                 )
               ] }),
               isCollapsed && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex flex-col gap-2", children: [
-                /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(Settings__default.default, { className: "h-4 w-4" }) }),
+                /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(Settings2__default.default, { className: "h-4 w-4" }) }),
                 /* @__PURE__ */ jsxRuntime.jsx(Button, { variant: "ghost", size: "sm", className: "h-8 w-8 p-0", children: /* @__PURE__ */ jsxRuntime.jsx(LogOut__default.default, { className: "h-4 w-4" }) })
               ] }),
               footerActions
@@ -411,14 +622,14 @@ var Sidebar = React2__namespace.forwardRef(
   }
 );
 Sidebar.displayName = "Sidebar";
-var SidebarTrigger = React2__namespace.forwardRef(
+var SidebarTrigger = React3__namespace.forwardRef(
   ({
     className,
     children,
     onClick,
     ...props
   }, ref) => {
-    const handleClick = React2__namespace.useCallback((event) => {
+    const handleClick = React3__namespace.useCallback((event) => {
       onClick?.(event);
       window.dispatchEvent(new CustomEvent("sidebar:toggle"));
     }, [onClick]);
@@ -437,8 +648,138 @@ var SidebarTrigger = React2__namespace.forwardRef(
   }
 );
 SidebarTrigger.displayName = "SidebarTrigger";
+var appLayoutVariants = classVarianceAuthority.cva(
+  "flex h-screen bg-background",
+  {
+    variants: {
+      variant: {
+        default: "bg-background",
+        dark: "bg-background",
+        glass: "bg-background/80 backdrop-blur-sm",
+        neon: "bg-background dark:shadow-glow-cyan/10"
+      },
+      sidebarPosition: {
+        left: "",
+        right: "flex-row-reverse"
+      }
+    },
+    defaultVariants: {
+      variant: "default",
+      sidebarPosition: "left"
+    }
+  }
+);
+var AppLayout = React3__namespace.forwardRef(
+  ({
+    className,
+    variant = "default",
+    sidebarPosition = "left",
+    topBar,
+    sidebar,
+    sidebarCollapsed = false,
+    onSidebarCollapse,
+    children,
+    showSidebarToggle = true,
+    collapsedWidth = "w-16",
+    expandedWidth = "w-64",
+    ...props
+  }, ref) => {
+    const [internalCollapsed, setInternalCollapsed] = React3__namespace.useState(sidebarCollapsed);
+    const isCollapsed = onSidebarCollapse ? sidebarCollapsed : internalCollapsed;
+    const handleSidebarCollapse = React3__namespace.useCallback((collapsed) => {
+      if (onSidebarCollapse) {
+        onSidebarCollapse(collapsed);
+      } else {
+        setInternalCollapsed(collapsed);
+      }
+    }, [onSidebarCollapse]);
+    const topBarProps = {
+      ...topBar,
+      menu: showSidebarToggle ? {
+        onClick: () => handleSidebarCollapse(!isCollapsed),
+        label: isCollapsed ? "Expandir menu" : "Recolher menu"
+      } : topBar?.menu
+    };
+    const sidebarProps = {
+      ...sidebar,
+      collapsed: isCollapsed,
+      onCollapse: handleSidebarCollapse,
+      showToggle: false,
+      // Desabilita toggle interno pois controlamos pelo TopBar
+      className: cn(
+        sidebar?.className,
+        isCollapsed ? collapsedWidth : expandedWidth,
+        "transition-all duration-[var(--motion-duration-normal)]"
+      )
+    };
+    return /* @__PURE__ */ jsxRuntime.jsxs(
+      "div",
+      {
+        ref,
+        className: cn(appLayoutVariants({ variant, sidebarPosition }), className),
+        ...props,
+        children: [
+          /* @__PURE__ */ jsxRuntime.jsx(Sidebar, { ...sidebarProps }),
+          /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "flex-1 flex flex-col overflow-hidden", children: [
+            /* @__PURE__ */ jsxRuntime.jsx(TopBar, { ...topBarProps }),
+            /* @__PURE__ */ jsxRuntime.jsx("main", { className: "flex-1 overflow-auto bg-surface", children })
+          ] })
+        ]
+      }
+    );
+  }
+);
+AppLayout.displayName = "AppLayout";
+var AppLayoutContent = React3__namespace.forwardRef(
+  ({
+    className,
+    children,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsxRuntime.jsx(
+      "div",
+      {
+        ref,
+        className: cn(
+          "p-6 space-y-6",
+          className
+        ),
+        ...props,
+        children
+      }
+    );
+  }
+);
+AppLayoutContent.displayName = "AppLayoutContent";
+var AppLayoutSection = React3__namespace.forwardRef(
+  ({
+    className,
+    title,
+    description,
+    children,
+    ...props
+  }, ref) => {
+    return /* @__PURE__ */ jsxRuntime.jsxs(
+      "div",
+      {
+        ref,
+        className: cn("space-y-4", className),
+        ...props,
+        children: [
+          (title || description) && /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "space-y-2", children: [
+            title && /* @__PURE__ */ jsxRuntime.jsx("h2", { className: "text-2xl font-bold tracking-tight", children: title }),
+            description && /* @__PURE__ */ jsxRuntime.jsx("p", { className: "text-muted-foreground", children: description })
+          ] }),
+          children
+        ]
+      }
+    );
+  }
+);
+AppLayoutSection.displayName = "AppLayoutSection";
 
-exports.Sidebar = Sidebar;
-exports.SidebarTrigger = SidebarTrigger;
-//# sourceMappingURL=sidebar.js.map
-//# sourceMappingURL=sidebar.js.map
+exports.AppLayout = AppLayout;
+exports.AppLayoutContent = AppLayoutContent;
+exports.AppLayoutSection = AppLayoutSection;
+//# sourceMappingURL=app-layout.js.map
+//# sourceMappingURL=app-layout.js.map
