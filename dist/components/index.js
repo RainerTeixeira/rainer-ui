@@ -4,6 +4,7 @@ var React64 = require('react');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
+require('@rainersoft/design-tokens/formats/css-vars.css');
 var utils = require('@rainersoft/utils');
 var jsxRuntime = require('react/jsx-runtime');
 var reactSlot = require('@radix-ui/react-slot');

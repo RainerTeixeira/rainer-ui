@@ -38,7 +38,7 @@
     "rainer-ui": "cli/index.js"
   },
   "scripts": {
-    "build": "npm run validate:tokens && tsup",
+    "build": "NODE_OPTIONS=--max-old-space-size=4096 pnpm run validate:tokens && NODE_OPTIONS=--max-old-space-size=4096 pnpm exec tsup",
     "dev": "tsup --watch",
     "lint": "eslint . --ext ts,tsx",
     "test:coverage": "jest --coverage",

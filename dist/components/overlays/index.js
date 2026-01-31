@@ -6,6 +6,7 @@ var lucideReact = require('lucide-react');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
+require('@rainersoft/design-tokens/formats/css-vars.css');
 var jsxRuntime = require('react/jsx-runtime');
 var reactDialog = require('@radix-ui/react-dialog');
 var reactDropdownMenu = require('@radix-ui/react-dropdown-menu');

@@ -5,6 +5,7 @@ var nextThemes = require('next-themes');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
+require('@rainersoft/design-tokens/formats/css-vars.css');
 var Moon = require('lucide-react/dist/esm/icons/moon');
 var Sun = require('lucide-react/dist/esm/icons/sun');
 var jsxRuntime = require('react/jsx-runtime');

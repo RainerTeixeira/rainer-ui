@@ -1,16 +1,8 @@
-/**
- * Utilities Components
- *
- * Componentes utilitários e helpers para aplicações:
- * - ThemeToggle: Alternador de tema claro/escuro
- * - UpdateNotification: Notificação de atualização PWA
- * - AspectRatioBox: Container com proporção fixa
- * - Center: Container para centralizar conteúdo
- *
- * @module @rainersoft/ui/utilities
- * @category Utilities
- */
-export { ThemeToggle } from './ThemeToggle';
-export { UpdateNotification } from './UpdateNotification';
-export * from './aspect-ratio-box';
-export * from './center';
+export { ThemeToggle } from './ThemeToggle.js';
+export { UpdateNotification } from './UpdateNotification.js';
+export { ASPECT_RATIOS, AspectRatioBox, AspectRatioBoxProps, AspectRatioIframe, AspectRatioIframeProps, AspectRatioImage, AspectRatioImageProps, AspectRatioVideo, AspectRatioVideoProps } from './aspect-ratio-box.js';
+export { Center, CenterInline, CenterInlineProps, CenterProps, CenterScreen, CenterScreenProps, CenterText, CenterTextProps } from './center.js';
+import 'react/jsx-runtime';
+import 'class-variance-authority/types';
+import 'react';
+import 'class-variance-authority';

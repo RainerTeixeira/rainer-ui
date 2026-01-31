@@ -1,34 +1,25 @@
-/**
- * Layout Components - Componentes de Layout
- *
- * Componentes para estruturação de páginas:
- * - Card: Cartões e containers
- * - Sheet: Painéis laterais
- * - Table: Tabelas de dados
- * - ScrollArea: Áreas com scroll
- * - Separator: Separadores visuais
- * - AspectRatio: Controle de proporção
- * - Container: Container responsivo
- * - Grid: Sistema de grid
- * - Flex: Container flexbox
- * - Spacer: Espaçador flexível
- * - Divider: Linha divisória
- * - Panel: Container estilizado
- *
- * @module @rainersoft/ui/layout
- * @category Layout
- */
-export * from './PageHeader';
-export * from './app-layout';
-export * from './aspect-ratio';
-export * from './breadcrumb';
-export * from './scroll-area';
-export * from './separator';
-export * from './sheet';
-export * from './table';
-export * from './container';
-export * from './grid';
-export * from './flex';
-export * from './spacer';
-export * from './divider';
-export * from './panel';
+export { PageHeader } from './PageHeader.js';
+export { AppLayout, AppLayoutContent, AppLayoutContentProps, AppLayoutProps, AppLayoutSection, AppLayoutSectionProps } from './app-layout.js';
+export { AspectRatio } from './aspect-ratio.js';
+export { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from './breadcrumb.js';
+export { ScrollArea, ScrollBar } from './scroll-area.js';
+export { Separator } from './separator.js';
+export { Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from './sheet.js';
+export { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from './table.js';
+export { Container, ContainerFluid, ContainerFluidProps, ContainerProps, ContainerSection, ContainerSectionProps } from './container.js';
+export { Grid, GridItem, GridItemProps, GridProps } from './grid.js';
+export { Flex, FlexBetween, FlexBetweenProps, FlexCenter, FlexCenterProps, FlexColumn, FlexColumnProps, FlexEnd, FlexEndProps, FlexProps, FlexRow, FlexRowProps, FlexStart, FlexStartProps } from './flex.js';
+export { HorizontalSpacer, HorizontalSpacerProps, Spacer, SpacerProps, VerticalSpacer, VerticalSpacerProps } from './spacer.js';
+export { Divider, DividerProps, SectionDivider, SectionDividerProps, TextDivider, TextDividerProps } from './divider.js';
+export { Panel, PanelContent, PanelContentProps, PanelDescription, PanelDescriptionProps, PanelFooter, PanelFooterProps, PanelGroup, PanelGroupProps, PanelHeader, PanelHeaderProps, PanelProps, PanelTitle, PanelTitleProps } from './panel.js';
+import 'react/jsx-runtime';
+import 'class-variance-authority/types';
+import 'react';
+import 'class-variance-authority';
+import '../navigation/top-bar.js';
+import '../navigation/sidebar.js';
+import '../navigation/menu.js';
+import '@radix-ui/react-aspect-ratio';
+import '@radix-ui/react-scroll-area';
+import '@radix-ui/react-separator';
+import '@radix-ui/react-dialog';

@@ -1,13 +1,3 @@
-/**
- * Biblioteca de Utilitários e Tokens da UI
- *
- * Este módulo centraliza todos os utilitários, helpers e tokens necessários
- * para os componentes da UI. Consome os design tokens do pacote
- * @rainersoft/design-tokens e fornece uma API unificada para o restante da aplicação.
- *
- * @module @rainersoft/ui/lib
- * @author Rainer Teixeira
- * @version 2.3.0
- */
-export * from './tokens';
-export { cn } from './tokens';
+export { ANIMATION_DELAYS, ANIMATION_DURATIONS, ANIMATION_EASINGS, BrandColorVariant, COMPONENT_CLASSES, GRADIENT_DIRECTIONS, MOTION, SECTION_CLASSES, StatusColor, ThemeKey, Tokens, Z_INDEX, animationDelays, animationDurations, animationEasings, cn, darkTokens, generateTailwindClasses, getBrandColor, getButtonPrimaryColor, getButtonPrimaryTextColor, getButtonSecondaryColor, getButtonTertiaryColor, getColorFromTheme, getContrastColor, getSemanticColorConstants, getSemanticColors, getSemanticColorsSimplified, getStatusColor, getTheme, getThemeColors, getTokenColor, isValidHex, lightTokens, motion, motionPresets, motionSemantic, motionTokens, overlayFromToken, default as tokenUtils, tokens } from './tokens.js';
+import 'clsx';
+import '@rainersoft/design-tokens/formats/tokens.json';

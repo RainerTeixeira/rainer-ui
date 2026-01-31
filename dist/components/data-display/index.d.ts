@@ -1,20 +1,13 @@
-/**
- * Data Display Components - Componentes de Visualização de Dados
- *
- * Componentes para exibição e visualização de dados:
- * - Calendar: Calendário para seleção de datas
- * - Carousel: Carrossel de imagens/conteúdo
- * - Chip: Tags e badges interativos
- * - Masonry: Layout em grade de alvenaria
- * - Timeline: Linha do tempo vertical/horizontal
- * - Rating: Componente de avaliação com estrelas
- *
- * @module @rainersoft/ui/data-display
- * @category Data Display
- */
-export * from './calendar';
-export * from './carousel';
-export * from './chip';
-export * from './masonry';
-export * from './timeline';
-export * from './rating';
+export { Calendar, CalendarDayButton, CalendarProps } from './calendar.js';
+export { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './carousel.js';
+export { Chip, ChipGroup, ChipGroupProps, ChipProps } from './chip.js';
+export { Masonry, MasonryItem, MasonryItemProps, MasonryProps } from './masonry.js';
+export { Timeline, TimelineItem, TimelineItemProps, TimelineProps, TimelineSeparator, TimelineSeparatorProps } from './timeline.js';
+export { Rating, RatingProgress, RatingProgressProps, RatingProps, RatingSummary, RatingSummaryProps } from './rating.js';
+import 'react/jsx-runtime';
+import 'react';
+import '../ui/button.js';
+import 'class-variance-authority/types';
+import 'class-variance-authority';
+import 'embla-carousel-react';
+import 'lucide-react';

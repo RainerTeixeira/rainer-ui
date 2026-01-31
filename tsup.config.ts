@@ -105,5 +105,11 @@ export default defineConfig({
     options.banner = {
       js: '"use client"',
     };
+    // Silencia avisos "use client" ignorados ao fazer bundle
+    options.logOverride = {
+      'ignored-directive': 'silent',
+      'import-is-undefined': 'silent',
+    };
+    options.logLevel = 'error';
   },
 });

@@ -4,6 +4,7 @@ var React2 = require('react');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
+require('@rainersoft/design-tokens/formats/css-vars.css');
 var lucideReact = require('lucide-react');
 var nextThemes = require('next-themes');
 var reactSlot = require('@radix-ui/react-slot');

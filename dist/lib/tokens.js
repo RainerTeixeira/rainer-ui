@@ -5,6 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
+require('@rainersoft/design-tokens/formats/css-vars.css');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
 

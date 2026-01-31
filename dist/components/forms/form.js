@@ -6,6 +6,7 @@ var reactHookForm = require('react-hook-form');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
+require('@rainersoft/design-tokens/formats/css-vars.css');
 var LabelPrimitive = require('@radix-ui/react-label');
 var classVarianceAuthority = require('class-variance-authority');
 var jsxRuntime = require('react/jsx-runtime');

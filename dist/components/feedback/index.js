@@ -5,6 +5,7 @@ var classVarianceAuthority = require('class-variance-authority');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
+require('@rainersoft/design-tokens/formats/css-vars.css');
 var jsxRuntime = require('react/jsx-runtime');
 var AlertDialogPrimitive = require('@radix-ui/react-alert-dialog');
 var reactSlot = require('@radix-ui/react-slot');

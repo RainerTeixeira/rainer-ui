@@ -1,10 +1,9 @@
-/**
- * Componente Carousel
- *
- * @module @rainersoft/ui/components/data-display/carousel
- */
-import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
 import * as React from 'react';
+import { ButtonProps } from '../ui/button.js';
+import useEmblaCarousel, { UseEmblaCarouselType } from 'embla-carousel-react';
+import 'class-variance-authority/types';
+import 'class-variance-authority';
+
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
 type CarouselOptions = UseCarouselParameters[0];
@@ -18,6 +17,7 @@ type CarouselProps = {
 declare const Carousel: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & CarouselProps & React.RefAttributes<HTMLDivElement>>;
 declare const CarouselContent: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>>;
 declare const CarouselItem: React.ForwardRefExoticComponent<React.HTMLAttributes<HTMLFieldSetElement> & React.RefAttributes<HTMLFieldSetElement>>;
-declare const CarouselPrevious: React.ForwardRefExoticComponent<Omit<import("..").ButtonProps & React.RefAttributes<HTMLButtonElement>, "ref"> & React.RefAttributes<HTMLButtonElement>>;
-declare const CarouselNext: React.ForwardRefExoticComponent<Omit<import("..").ButtonProps & React.RefAttributes<HTMLButtonElement>, "ref"> & React.RefAttributes<HTMLButtonElement>>;
-export { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious, type CarouselApi, };
+declare const CarouselPrevious: React.ForwardRefExoticComponent<Omit<ButtonProps & React.RefAttributes<HTMLButtonElement>, "ref"> & React.RefAttributes<HTMLButtonElement>>;
+declare const CarouselNext: React.ForwardRefExoticComponent<Omit<ButtonProps & React.RefAttributes<HTMLButtonElement>, "ref"> & React.RefAttributes<HTMLButtonElement>>;
+
+export { Carousel, type CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious };

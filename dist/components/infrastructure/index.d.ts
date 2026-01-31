@@ -1,15 +1,4 @@
-/**
- * Infrastructure Components - Componentes de Infraestrutura
- *
- * Componentes para infraestrutura e estado:
- * - ErrorBoundary: Tratamento de erros global
- * - LoadingScreen: Tela de carregamento
- * - ErrorPage: Página de erro
- * - MaintenancePage: Página de manutenção
- * - NotFound: Página não encontrada
- *
- * @module @rainersoft/ui/infrastructure
- * @category Infrastructure
- */
-export * from './ErrorBoundary';
-export * from './LoadingScreen';
+export { ErrorBoundary, ErrorBoundaryProps, ErrorBoundaryState } from './ErrorBoundary.js';
+export { EmptyState, FullPageLoader, InlineLoader, LoadingScreen, LoadingSpinner, SkeletonGrid } from './LoadingScreen.js';
+import 'react/jsx-runtime';
+import 'react';

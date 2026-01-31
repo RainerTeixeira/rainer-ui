@@ -5,6 +5,7 @@ var classVarianceAuthority = require('class-variance-authority');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
+require('@rainersoft/design-tokens/formats/css-vars.css');
 var jsxRuntime = require('react/jsx-runtime');
 var Check = require('lucide-react/dist/esm/icons/check');
 var Copy = require('lucide-react/dist/esm/icons/copy');
