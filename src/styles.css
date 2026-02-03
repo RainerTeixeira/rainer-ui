@@ -1,0 +1,21 @@
+@import "tailwindcss/preflight";
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
+}
+
+.dark {
+  color-scheme: dark;
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
+}
+
+body {
+  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-background-primary);
+  color: var(--color-text-primary);
+  transition: background-color 200ms ease, color 200ms ease;
+}
