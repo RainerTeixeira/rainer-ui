@@ -22,10 +22,21 @@ import React, { useEffect, useRef, useState } from "react";
 import { Check, Settings, X, XCircle } from 'lucide-react';
 
 // ============================================================================
-// Importações do Next.js
+// Links agnósticos (sem dependência de framework)
 // ============================================================================
 
-import Link from "next/link";
+const AgnosticLink = React.forwardRef<HTMLAnchorElement, React.AnchorHTMLAttributes<HTMLAnchorElement>>(
+  ({ href, children, ...props }, ref) => (
+    <a
+      ref={ref}
+      href={href}
+      {...props}
+    >
+      {children}
+    </a>
+  )
+);
+AgnosticLink.displayName = 'AgnosticLink';
 
 // ============================================================================
 // Ícones
@@ -66,16 +77,13 @@ const Separator = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivE
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn('shrink-0 bg-border h-[1px] w-full', className)}
+      className={cn('shrink-0 bg-border h-px w-full', className)}
       {...props}
     />
   )
 );
 Separator.displayName = 'Separator';
 
-// Workaround: Next.js Link typing sometimes conflicts with @types/react versions in monorepos.
-// Use proper typing to avoid ESLint no-explicit-any errors.
-const NextLink = Link as React.ComponentType<React.AnchorHTMLAttributes<HTMLAnchorElement> & { href?: string }>;
 
 // ============================================================================
 // Design Tokens
@@ -378,12 +386,12 @@ export function CookieBanner() {
                       navegação, analisar o tráfego do site e personalizar
                       conteúdo. Ao continuar navegando, você concorda com nossa
                       utilização de cookies.{" "}
-                      <NextLink
+                      <AgnosticLink
                         href="/cookies"
                         className="text-primary hover:underline dark:text-cyan-400 font-semibold"
                       >
                         Saiba mais
-                      </NextLink>
+                      </AgnosticLink>
                     </CardDescription>
                   </div>
                 </div>
@@ -589,19 +597,19 @@ export function CookieBanner() {
               <div className="pt-2">
                 <p className={cn("text-xs", "text-muted-foreground")}>
                   Para mais informações, consulte nossa{" "}
-                  <NextLink
+                  <AgnosticLink
                     href="/cookies"
                     className="text-primary hover:underline dark:text-cyan-400 font-semibold"
                   >
                     Política de Cookies
-                  </NextLink>{" "}
+                  </AgnosticLink>{" "}
                   e nossa{" "}
-                  <NextLink
+                  <AgnosticLink
                     href="/privacidade"
                     className="text-primary hover:underline dark:text-cyan-400 font-semibold"
                   >
                     Política de Privacidade
-                  </NextLink>
+                  </AgnosticLink>
                   .
                 </p>
               </div>

@@ -3,7 +3,6 @@ import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 import { jsx, jsxs } from 'react/jsx-runtime';

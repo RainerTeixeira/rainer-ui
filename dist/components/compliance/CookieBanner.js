@@ -2,13 +2,11 @@
 
 var React2 = require('react');
 var lucideReact = require('lucide-react');
-var Link = require('next/link');
 var reactSlot = require('@radix-ui/react-slot');
 var classVarianceAuthority = require('class-variance-authority');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
-require('@rainersoft/design-tokens/formats/css-vars.css');
 var jsxRuntime = require('react/jsx-runtime');
 var SwitchPrimitives = require('@radix-ui/react-switch');
 
@@ -33,7 +31,6 @@ function _interopNamespace(e) {
 }
 
 var React2__namespace = /*#__PURE__*/_interopNamespace(React2);
-var Link__default = /*#__PURE__*/_interopDefault(Link);
 var tokensData__default = /*#__PURE__*/_interopDefault(tokensData);
 var SwitchPrimitives__namespace = /*#__PURE__*/_interopNamespace(SwitchPrimitives);
 
@@ -287,6 +284,18 @@ var Switch = React2__namespace.forwardRef(({ className, ...props }, ref) => /* @
   }
 ));
 Switch.displayName = SwitchPrimitives__namespace.Root.displayName;
+var AgnosticLink = React2__namespace.default.forwardRef(
+  ({ href, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+    "a",
+    {
+      ref,
+      href,
+      ...props,
+      children
+    }
+  )
+);
+AgnosticLink.displayName = "AgnosticLink";
 var Label = React2__namespace.default.forwardRef(
   ({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     "label",
@@ -306,13 +315,12 @@ var Separator = React2__namespace.default.forwardRef(
     "div",
     {
       ref,
-      className: cn("shrink-0 bg-border h-[1px] w-full", className),
+      className: cn("shrink-0 bg-border h-px w-full", className),
       ...props
     }
   )
 );
 Separator.displayName = "Separator";
-var NextLink = Link__default.default;
 var _SimpleCookieManager = class _SimpleCookieManager {
   static getInstance() {
     if (!_SimpleCookieManager.instance) {
@@ -518,7 +526,7 @@ function CookieBanner() {
                           "Utilizamos cookies para melhorar sua experi\xEAncia de navega\xE7\xE3o, analisar o tr\xE1fego do site e personalizar conte\xFAdo. Ao continuar navegando, voc\xEA concorda com nossa utiliza\xE7\xE3o de cookies.",
                           " ",
                           /* @__PURE__ */ jsxRuntime.jsx(
-                            NextLink,
+                            AgnosticLink,
                             {
                               href: "/cookies",
                               className: "text-primary hover:underline dark:text-cyan-400 font-semibold",
@@ -745,7 +753,7 @@ function CookieBanner() {
                   "Para mais informa\xE7\xF5es, consulte nossa",
                   " ",
                   /* @__PURE__ */ jsxRuntime.jsx(
-                    NextLink,
+                    AgnosticLink,
                     {
                       href: "/cookies",
                       className: "text-primary hover:underline dark:text-cyan-400 font-semibold",
@@ -756,7 +764,7 @@ function CookieBanner() {
                   "e nossa",
                   " ",
                   /* @__PURE__ */ jsxRuntime.jsx(
-                    NextLink,
+                    AgnosticLink,
                     {
                       href: "/privacidade",
                       className: "text-primary hover:underline dark:text-cyan-400 font-semibold",

@@ -3,7 +3,6 @@
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
 var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
-require('@rainersoft/design-tokens/formats/css-vars.css');
 var React64 = require('react');
 var utils = require('@rainersoft/utils');
 var jsxRuntime = require('react/jsx-runtime');
@@ -97,7 +96,6 @@ var CheckCircle = require('lucide-react/dist/esm/icons/check-circle');
 var useEmblaCarousel = require('embla-carousel-react');
 var Star = require('lucide-react/dist/esm/icons/star');
 var StarHalf = require('lucide-react/dist/esm/icons/star-half');
-var Link2 = require('next/link');
 var reactLoadingIndicators = require('react-loading-indicators');
 var Copy = require('lucide-react/dist/esm/icons/copy');
 var QuoteIcon = require('lucide-react/dist/esm/icons/quote');
@@ -201,7 +199,6 @@ var CheckCircle__default = /*#__PURE__*/_interopDefault(CheckCircle);
 var useEmblaCarousel__default = /*#__PURE__*/_interopDefault(useEmblaCarousel);
 var Star__default = /*#__PURE__*/_interopDefault(Star);
 var StarHalf__default = /*#__PURE__*/_interopDefault(StarHalf);
-var Link2__default = /*#__PURE__*/_interopDefault(Link2);
 var Copy__default = /*#__PURE__*/_interopDefault(Copy);
 var QuoteIcon__default = /*#__PURE__*/_interopDefault(QuoteIcon);
 
@@ -10908,6 +10905,18 @@ function ParticlesEffect({
     }
   );
 }
+var AgnosticLink = React64__namespace.default.forwardRef(
+  ({ href, children, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
+    "a",
+    {
+      ref,
+      href,
+      ...props,
+      children
+    }
+  )
+);
+AgnosticLink.displayName = "AgnosticLink";
 var Label3 = React64__namespace.default.forwardRef(
   ({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
     "label",
@@ -10927,13 +10936,12 @@ var Separator3 = React64__namespace.default.forwardRef(
     "div",
     {
       ref,
-      className: cn("shrink-0 bg-border h-[1px] w-full", className),
+      className: cn("shrink-0 bg-border h-px w-full", className),
       ...props
     }
   )
 );
 Separator3.displayName = "Separator";
-var NextLink = Link2__default.default;
 var _SimpleCookieManager = class _SimpleCookieManager {
   static getInstance() {
     if (!_SimpleCookieManager.instance) {
@@ -11139,7 +11147,7 @@ function CookieBanner() {
                           "Utilizamos cookies para melhorar sua experi\xEAncia de navega\xE7\xE3o, analisar o tr\xE1fego do site e personalizar conte\xFAdo. Ao continuar navegando, voc\xEA concorda com nossa utiliza\xE7\xE3o de cookies.",
                           " ",
                           /* @__PURE__ */ jsxRuntime.jsx(
-                            NextLink,
+                            AgnosticLink,
                             {
                               href: "/cookies",
                               className: "text-primary hover:underline dark:text-cyan-400 font-semibold",
@@ -11366,7 +11374,7 @@ function CookieBanner() {
                   "Para mais informa\xE7\xF5es, consulte nossa",
                   " ",
                   /* @__PURE__ */ jsxRuntime.jsx(
-                    NextLink,
+                    AgnosticLink,
                     {
                       href: "/cookies",
                       className: "text-primary hover:underline dark:text-cyan-400 font-semibold",
@@ -11377,7 +11385,7 @@ function CookieBanner() {
                   "e nossa",
                   " ",
                   /* @__PURE__ */ jsxRuntime.jsx(
-                    NextLink,
+                    AgnosticLink,
                     {
                       href: "/privacidade",
                       className: "text-primary hover:underline dark:text-cyan-400 font-semibold",

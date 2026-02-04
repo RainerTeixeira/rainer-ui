@@ -4,7 +4,6 @@ import { cva } from 'class-variance-authority';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import MoreVertical from 'lucide-react/dist/esm/icons/more-vertical';
 import ArrowLeft from 'lucide-react/dist/esm/icons/arrow-left';
 import Bell from 'lucide-react/dist/esm/icons/bell';

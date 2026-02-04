@@ -5,7 +5,6 @@ import { cva } from 'class-variance-authority';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import useEmblaCarousel from 'embla-carousel-react';
 import Star from 'lucide-react/dist/esm/icons/star';

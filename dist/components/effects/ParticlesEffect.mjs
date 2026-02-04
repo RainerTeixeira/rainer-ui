@@ -1,7 +1,6 @@
 import 'clsx';
 import 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import { jsxs, jsx } from 'react/jsx-runtime';
 
 var tokens = tokensData;

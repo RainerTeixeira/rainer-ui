@@ -3,7 +3,6 @@ import * as CheckboxPrimitive from '@radix-ui/react-checkbox';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import { Check, Circle, ChevronDown, ChevronUp } from 'lucide-react';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import * as LabelPrimitive from '@radix-ui/react-label';

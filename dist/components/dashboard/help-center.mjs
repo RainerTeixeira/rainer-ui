@@ -1,7 +1,6 @@
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import * as React from 'react';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import BookOpen from 'lucide-react/dist/esm/icons/book-open';

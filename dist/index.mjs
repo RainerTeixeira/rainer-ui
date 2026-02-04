@@ -1,7 +1,6 @@
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import * as React64 from 'react';
 import React64__default, { memo, createContext, useState, useCallback, useEffect, useRef, Component, useMemo } from 'react';
 import { getInitials, scrollToElement } from '@rainersoft/utils';
@@ -97,7 +96,6 @@ import CheckCircle from 'lucide-react/dist/esm/icons/check-circle';
 import useEmblaCarousel from 'embla-carousel-react';
 import Star from 'lucide-react/dist/esm/icons/star';
 import StarHalf from 'lucide-react/dist/esm/icons/star-half';
-import Link2 from 'next/link';
 import { Atom } from 'react-loading-indicators';
 import Copy from 'lucide-react/dist/esm/icons/copy';
 import QuoteIcon from 'lucide-react/dist/esm/icons/quote';
@@ -10805,6 +10803,18 @@ function ParticlesEffect({
     }
   );
 }
+var AgnosticLink = React64__default.forwardRef(
+  ({ href, children, ...props }, ref) => /* @__PURE__ */ jsx(
+    "a",
+    {
+      ref,
+      href,
+      ...props,
+      children
+    }
+  )
+);
+AgnosticLink.displayName = "AgnosticLink";
 var Label3 = React64__default.forwardRef(
   ({ className, ...props }, ref) => /* @__PURE__ */ jsx(
     "label",
@@ -10824,13 +10834,12 @@ var Separator3 = React64__default.forwardRef(
     "div",
     {
       ref,
-      className: cn("shrink-0 bg-border h-[1px] w-full", className),
+      className: cn("shrink-0 bg-border h-px w-full", className),
       ...props
     }
   )
 );
 Separator3.displayName = "Separator";
-var NextLink = Link2;
 var _SimpleCookieManager = class _SimpleCookieManager {
   static getInstance() {
     if (!_SimpleCookieManager.instance) {
@@ -11036,7 +11045,7 @@ function CookieBanner() {
                           "Utilizamos cookies para melhorar sua experi\xEAncia de navega\xE7\xE3o, analisar o tr\xE1fego do site e personalizar conte\xFAdo. Ao continuar navegando, voc\xEA concorda com nossa utiliza\xE7\xE3o de cookies.",
                           " ",
                           /* @__PURE__ */ jsx(
-                            NextLink,
+                            AgnosticLink,
                             {
                               href: "/cookies",
                               className: "text-primary hover:underline dark:text-cyan-400 font-semibold",
@@ -11263,7 +11272,7 @@ function CookieBanner() {
                   "Para mais informa\xE7\xF5es, consulte nossa",
                   " ",
                   /* @__PURE__ */ jsx(
-                    NextLink,
+                    AgnosticLink,
                     {
                       href: "/cookies",
                       className: "text-primary hover:underline dark:text-cyan-400 font-semibold",
@@ -11274,7 +11283,7 @@ function CookieBanner() {
                   "e nossa",
                   " ",
                   /* @__PURE__ */ jsx(
-                    NextLink,
+                    AgnosticLink,
                     {
                       href: "/privacidade",
                       className: "text-primary hover:underline dark:text-cyan-400 font-semibold",

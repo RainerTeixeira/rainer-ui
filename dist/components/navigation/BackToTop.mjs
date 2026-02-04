@@ -6,7 +6,6 @@ import { useCallback, useState, useEffect } from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import { jsx, jsxs } from 'react/jsx-runtime';
 
 var tokens = tokensData;

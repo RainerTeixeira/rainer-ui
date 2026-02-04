@@ -90,6 +90,11 @@ export * from './components';
 // Export direto para garantir compatibilidade
 export { InlineLoader } from './components/ui/InlineLoader';
 
+// Exportar componentes de Layout para uso direto
+export { Container } from './components/layout/container';
+export { Grid } from './components/layout/grid';
+export { Flex } from './components/layout/flex';
+
 // Exportar funções de cor para compatibilidade
 // hexToRgb movido para @rainersoft/utils/color
 
@@ -115,6 +120,9 @@ export * from './components/ui/icon-button';
 export * from './components/ui/link-button';
 export * from './components/ui/fab';
 export * from './components/ui/segmented-control';
+
+// Exportar efeitos visualmente
+export * from './components/effects';
 
 // Exportar Accordion diretamente para compatibilidade
 export { 

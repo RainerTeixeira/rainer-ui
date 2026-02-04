@@ -1,13 +1,11 @@
 import * as React2 from 'react';
 import React2__default, { useState, useEffect, useRef } from 'react';
 import { Cookie, X, Settings, XCircle, Check } from 'lucide-react';
-import Link from 'next/link';
 import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import * as SwitchPrimitives from '@radix-ui/react-switch';
 
@@ -261,6 +259,18 @@ var Switch = React2.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */
   }
 ));
 Switch.displayName = SwitchPrimitives.Root.displayName;
+var AgnosticLink = React2__default.forwardRef(
+  ({ href, children, ...props }, ref) => /* @__PURE__ */ jsx(
+    "a",
+    {
+      ref,
+      href,
+      ...props,
+      children
+    }
+  )
+);
+AgnosticLink.displayName = "AgnosticLink";
 var Label = React2__default.forwardRef(
   ({ className, ...props }, ref) => /* @__PURE__ */ jsx(
     "label",
@@ -280,13 +290,12 @@ var Separator = React2__default.forwardRef(
     "div",
     {
       ref,
-      className: cn("shrink-0 bg-border h-[1px] w-full", className),
+      className: cn("shrink-0 bg-border h-px w-full", className),
       ...props
     }
   )
 );
 Separator.displayName = "Separator";
-var NextLink = Link;
 var _SimpleCookieManager = class _SimpleCookieManager {
   static getInstance() {
     if (!_SimpleCookieManager.instance) {
@@ -492,7 +501,7 @@ function CookieBanner() {
                           "Utilizamos cookies para melhorar sua experi\xEAncia de navega\xE7\xE3o, analisar o tr\xE1fego do site e personalizar conte\xFAdo. Ao continuar navegando, voc\xEA concorda com nossa utiliza\xE7\xE3o de cookies.",
                           " ",
                           /* @__PURE__ */ jsx(
-                            NextLink,
+                            AgnosticLink,
                             {
                               href: "/cookies",
                               className: "text-primary hover:underline dark:text-cyan-400 font-semibold",
@@ -719,7 +728,7 @@ function CookieBanner() {
                   "Para mais informa\xE7\xF5es, consulte nossa",
                   " ",
                   /* @__PURE__ */ jsx(
-                    NextLink,
+                    AgnosticLink,
                     {
                       href: "/cookies",
                       className: "text-primary hover:underline dark:text-cyan-400 font-semibold",
@@ -730,7 +739,7 @@ function CookieBanner() {
                   "e nossa",
                   " ",
                   /* @__PURE__ */ jsx(
-                    NextLink,
+                    AgnosticLink,
                     {
                       href: "/privacidade",
                       className: "text-primary hover:underline dark:text-cyan-400 font-semibold",

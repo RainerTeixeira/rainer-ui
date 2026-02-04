@@ -3,7 +3,6 @@ import { useState, useEffect, useCallback } from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import { RefreshCw } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { Slot } from '@radix-ui/react-slot';

@@ -3,7 +3,6 @@ import * as SelectPrimitive from '@radix-ui/react-select';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import { ChevronDown, ChevronUp, Check } from 'lucide-react';
 import { jsxs, jsx } from 'react/jsx-runtime';
 

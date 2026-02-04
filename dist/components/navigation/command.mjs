@@ -3,7 +3,6 @@ import { Overlay, Portal, Content, Close, Title, Description, Root } from '@radi
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import { X, Search } from 'lucide-react';
 import { jsx, jsxs } from 'react/jsx-runtime';
 import { Command as Command$1 } from 'cmdk';

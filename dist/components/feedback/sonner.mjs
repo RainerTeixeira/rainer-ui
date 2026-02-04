@@ -2,7 +2,6 @@ import * as React from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 import { useTheme } from 'next-themes';
 import { Toaster as Toaster$1 } from 'sonner';
 export { Toaster as Sonner } from 'sonner';

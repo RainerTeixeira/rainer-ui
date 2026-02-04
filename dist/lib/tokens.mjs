@@ -1,7 +1,6 @@
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import '@rainersoft/design-tokens/formats/css-vars.css';
 
 var tokens = tokensData;
 function cn(...inputs) {
