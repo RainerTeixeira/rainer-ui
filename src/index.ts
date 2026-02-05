@@ -121,9 +121,6 @@ export * from './components/ui/link-button';
 export * from './components/ui/fab';
 export * from './components/ui/segmented-control';
 
-// Exportar efeitos visualmente
-export * from './components/effects';
-
 // Exportar Accordion diretamente para compatibilidade
 export { 
   Accordion, 

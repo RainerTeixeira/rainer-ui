@@ -23,7 +23,7 @@ import { VariantProps } from 'class-variance-authority';
  * @type {Function}
  */
 declare const badgeVariants: (props?: {
-    variant?: "secondary" | "default" | "destructive" | "outline";
+    variant?: "default" | "secondary" | "destructive" | "outline";
 } & class_variance_authority_types.ClassProp) => string;
 /**
  * Interface de props do Badge
