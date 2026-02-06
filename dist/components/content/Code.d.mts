@@ -6,7 +6,7 @@ import { VariantProps } from 'class-variance-authority';
  * Variantes do Code
  */
 declare const codeVariants: (props?: {
-    variant?: "success" | "warning" | "error" | "ghost" | "neon" | "inline" | "block";
+    variant?: "error" | "success" | "warning" | "ghost" | "neon" | "inline" | "block";
     size?: "xs" | "sm" | "md" | "lg";
 } & class_variance_authority_types.ClassProp) => string;
 /**
