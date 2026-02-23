@@ -1,0 +1,10 @@
+/**
+ * Componente Collapsible
+ *
+ * @module @rainersoft/ui/components/navigation/collapsible
+ */
+import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
+declare const Collapsible: import("react").ForwardRefExoticComponent<CollapsiblePrimitive.CollapsibleProps & import("react").RefAttributes<HTMLDivElement>>;
+declare const CollapsibleTrigger: import("react").ForwardRefExoticComponent<CollapsiblePrimitive.CollapsibleTriggerProps & import("react").RefAttributes<HTMLButtonElement>>;
+declare const CollapsibleContent: import("react").ForwardRefExoticComponent<CollapsiblePrimitive.CollapsibleContentProps & import("react").RefAttributes<HTMLDivElement>>;
+export { Collapsible, CollapsibleContent, CollapsibleTrigger };

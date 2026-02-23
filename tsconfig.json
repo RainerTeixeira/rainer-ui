@@ -17,5 +17,5 @@
     "ignoreDeprecations": "5.0",
     "types": ["node"]
   },
-  "include": ["src/**/*", "stories/**/*"]
+  "include": ["src/**/*"]
 }

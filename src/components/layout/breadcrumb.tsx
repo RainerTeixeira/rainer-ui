@@ -1,6 +1,6 @@
-import * as React from 'react';
-import { cn } from '../../lib/tokens';
-import { ChevronRight } from 'lucide-react';
+import * as React from "react";
+import { cn } from "../../lib/tokens";
+import { ChevronRight } from "lucide-react";
 
 const Breadcrumb = React.forwardRef<
   HTMLOListElement,
@@ -9,13 +9,13 @@ const Breadcrumb = React.forwardRef<
   <ol
     ref={ref}
     className={cn(
-      'flex flex-wrap items-center gap-2 break-words text-sm text-muted-foreground',
+      "flex flex-wrap items-center gap-2 break-words text-sm text-muted-foreground",
       className
     )}
     {...props}
   />
 ));
-Breadcrumb.displayName = 'Breadcrumb';
+Breadcrumb.displayName = "Breadcrumb";
 
 const BreadcrumbList = React.forwardRef<
   HTMLOListElement,
@@ -23,11 +23,11 @@ const BreadcrumbList = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <ol
     ref={ref}
-    className={cn('flex flex-wrap items-center gap-2', className)}
+    className={cn("flex flex-wrap items-center gap-2", className)}
     {...props}
   />
 ));
-BreadcrumbList.displayName = 'BreadcrumbList';
+BreadcrumbList.displayName = "BreadcrumbList";
 
 const BreadcrumbItem = React.forwardRef<
   HTMLLIElement,
@@ -35,11 +35,11 @@ const BreadcrumbItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <li
     ref={ref}
-    className={cn('inline-flex items-center gap-1.5', className)}
+    className={cn("inline-flex items-center gap-1.5", className)}
     {...props}
   />
 ));
-BreadcrumbItem.displayName = 'BreadcrumbItem';
+BreadcrumbItem.displayName = "BreadcrumbItem";
 
 const BreadcrumbLink = React.forwardRef<
   HTMLAnchorElement,
@@ -51,15 +51,17 @@ const BreadcrumbLink = React.forwardRef<
   <a
     ref={ref}
     className={cn(
-      'transition-colors hover:text-foreground',
-      isCurrentPage ? 'text-foreground font-medium pointer-events-none cursor-default' : 'cursor-pointer',
+      "transition-colors hover:text-foreground",
+      isCurrentPage
+        ? "text-foreground font-medium pointer-events-none cursor-default"
+        : "cursor-pointer",
       className
     )}
-    {...(isCurrentPage && { 'aria-current': 'page' })}
+    {...(isCurrentPage && { "aria-current": "page" })}
     {...props}
   />
 ));
-BreadcrumbLink.displayName = 'BreadcrumbLink';
+BreadcrumbLink.displayName = "BreadcrumbLink";
 
 const BreadcrumbSeparator = ({
   children,
@@ -69,13 +71,13 @@ const BreadcrumbSeparator = ({
   <div
     role="presentation"
     aria-hidden="true"
-    className={cn('[&>svg]:h-3.5 [&>svg]:w-3.5', className)}
+    className={cn("[&>svg]:h-3.5 [&>svg]:w-3.5", className)}
     {...props}
   >
     {children ?? <ChevronRight />}
   </div>
 );
-BreadcrumbSeparator.displayName = 'BreadcrumbSeparator';
+BreadcrumbSeparator.displayName = "BreadcrumbSeparator";
 
 const BreadcrumbPage = React.forwardRef<
   HTMLSpanElement,
@@ -86,11 +88,11 @@ const BreadcrumbPage = React.forwardRef<
     role="doc-pagebreak"
     aria-current="page"
     aria-label="current page"
-    className={cn('font-medium text-foreground', className)}
+    className={cn("font-medium text-foreground", className)}
     {...props}
   />
 ));
-BreadcrumbPage.displayName = 'BreadcrumbPage';
+BreadcrumbPage.displayName = "BreadcrumbPage";
 
 export {
   Breadcrumb,
@@ -100,4 +102,3 @@ export {
   BreadcrumbSeparator,
   BreadcrumbPage,
 };
-

@@ -38,7 +38,7 @@
     "rainer-ui": "cli/index.js"
   },
   "scripts": {
-    "build": "NODE_OPTIONS=--max-old-space-size=4096 pnpm run validate:tokens && NODE_OPTIONS=--max-old-space-size=4096 pnpm exec tsup",
+    "build": "set NODE_OPTIONS=--max-old-space-size=4096 && pnpm run validate:tokens && set NODE_OPTIONS=--max-old-space-size=4096 && pnpm exec tsup",
     "dev": "tsup --watch",
     "lint": "eslint . --ext ts,tsx",
     "test:coverage": "jest --coverage",
@@ -146,7 +146,8 @@
     "clean": true,
     "external": [
       "react",
-      "react-dom"
+      "react-dom",
+      "next-themes"
     ]
   },
   "publishConfig": {
