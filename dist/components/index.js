@@ -13060,6 +13060,24 @@ function useCarouselKeyboard({
     progress: totalItems > 0 ? (currentIndex + 1) / totalItems * 100 : 0
   };
 }
+function scrollToElement(element, options = {}) {
+  if (typeof window === "undefined") return;
+  const { smooth = false, offset = 0, behavior } = options;
+  let targetElement;
+  if (typeof element === "string") {
+    targetElement = document.querySelector(element);
+  } else {
+    targetElement = element;
+  }
+  if (!targetElement) return;
+  const rect = targetElement.getBoundingClientRect();
+  const absoluteY = rect.top + window.scrollY - offset;
+  window.scrollTo({
+    left: 0,
+    top: absoluteY,
+    behavior: behavior || (smooth ? "smooth" : "auto")
+  });
+}
 function useTableOfContents({
   containerRef,
   headings = ["h2", "h3"],
@@ -13071,9 +13089,9 @@ function useTableOfContents({
     activeOnScroll = true,
     nested = true
   } = options;
-  const [items, setItems] = React64__namespace.default.useState([]);
-  const [activeId, setActiveId] = React64__namespace.default.useState(null);
-  const generateTOC = React64__namespace.default.useCallback(() => {
+  const [items, setItems] = React64__namespace.useState([]);
+  const [activeId, setActiveId] = React64__namespace.useState(null);
+  const generateTOC = React64__namespace.useCallback(() => {
     const container = containerRef?.current;
     if (!container) return [];
     const headingElements = container.querySelectorAll(headings.join(", "));
@@ -13094,20 +13112,20 @@ function useTableOfContents({
     });
     return tocItems;
   }, [containerRef, headings]);
-  React64__namespace.default.useEffect(() => {
+  React64__namespace.useEffect(() => {
     const tocItems = generateTOC();
     setItems(tocItems);
   }, [generateTOC]);
-  const scrollToItem = React64__namespace.default.useCallback((itemId) => {
+  const scrollToItem = React64__namespace.useCallback((itemId) => {
     const element = document.getElementById(itemId);
     if (!element) return;
-    utils.scrollToElement(element, {
+    scrollToElement(element, {
       smooth: smoothScroll,
       offset
     });
     setActiveId(itemId);
   }, [offset, smoothScroll]);
-  React64__namespace.default.useEffect(() => {
+  React64__namespace.useEffect(() => {
     if (!activeOnScroll || items.length === 0) return;
     const observer = new IntersectionObserver(
       (entries) => {
@@ -13135,7 +13153,7 @@ function useTableOfContents({
       });
     };
   }, [activeOnScroll, items, offset]);
-  const nestedItems = React64__namespace.default.useMemo(() => {
+  const nestedItems = React64__namespace.useMemo(() => {
     if (!nested) return items;
     const result = [];
     const stack = [];
@@ -13153,7 +13171,7 @@ function useTableOfContents({
     });
     return result;
   }, [items, nested]);
-  const renderItem = React64__namespace.default.useCallback((item, depth = 0) => {
+  const renderItem = React64__namespace.useCallback((item, depth = 0) => {
     const isActive = item.id === activeId;
     const hasChildren = "children" in item && item.children && item.children.length > 0;
     return {
@@ -13164,7 +13182,7 @@ function useTableOfContents({
       scrollTo: () => scrollToItem(item.id)
     };
   }, [activeId, scrollToItem]);
-  const renderItems = React64__namespace.default.useCallback(() => {
+  const renderItems = React64__namespace.useCallback(() => {
     const flatItems = [];
     const flatten = (items2, depth = 0) => {
       items2.forEach((item) => {
@@ -13177,7 +13195,7 @@ function useTableOfContents({
     flatten(nestedItems);
     return flatItems;
   }, [nestedItems, renderItem]);
-  const stats = React64__namespace.default.useMemo(() => {
+  const stats = React64__namespace.useMemo(() => {
     const levelCounts = {};
     items.forEach((item) => {
       levelCounts[item.level] = (levelCounts[item.level] || 0) + 1;
@@ -13190,11 +13208,11 @@ function useTableOfContents({
       activeIndex: items.findIndex((item) => item.id === activeId)
     };
   }, [items, activeId]);
-  const refresh = React64__namespace.default.useCallback(() => {
+  const refresh = React64__namespace.useCallback(() => {
     const tocItems = generateTOC();
     setItems(tocItems);
   }, [generateTOC]);
-  const reset = React64__namespace.default.useCallback(() => {
+  const reset = React64__namespace.useCallback(() => {
     setItems([]);
     setActiveId(null);
   }, []);

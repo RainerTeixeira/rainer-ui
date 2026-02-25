@@ -1,6 +1,9 @@
-import { type StatsCardsProps, type MetricCardItem } from './stats-cards';
-export type StatsOverviewVariant = 'quick' | 'analytics';
-export interface StatsOverviewProps {
+import * as react_jsx_runtime from 'react/jsx-runtime';
+import { MetricCardItem, StatsCardsProps } from './stats-cards.js';
+import 'react';
+
+type StatsOverviewVariant = 'quick' | 'analytics';
+interface StatsOverviewProps {
     variant?: StatsOverviewVariant;
     items?: MetricCardItem[];
     className?: string;
@@ -11,4 +14,6 @@ export interface StatsOverviewProps {
     theme?: 'light' | 'dark' | 'auto';
     showFooterDate?: boolean;
 }
-export declare function StatsOverview({ variant, items, className, isLoading, updatedAt, columns, animationDelay, theme, showFooterDate, }: StatsOverviewProps): import("react/jsx-runtime").JSX.Element;
+declare function StatsOverview({ variant, items, className, isLoading, updatedAt, columns, animationDelay, theme, showFooterDate, }: StatsOverviewProps): react_jsx_runtime.JSX.Element;
+
+export { StatsOverview, type StatsOverviewProps, type StatsOverviewVariant };

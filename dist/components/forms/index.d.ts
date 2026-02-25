@@ -1,31 +1,18 @@
-/**
- * Forms Components - Componentes de Formulário
- *
- * Componentes para construção de formulários:
- * - Form: Gerenciamento de formulários
- * - Input: Campos de entrada de texto
- * - Textarea: Campos de texto multilinha
- * - Select: Seleção de opções
- * - Checkbox: Caixas de seleção
- * - Radio: Botões de rádio
- * - Label: Rótulos de formulário
- * - FileUpload: Upload de arquivos com drag & drop
- * - DatePicker: Seleção de datas
- * - TimePicker: Seleção de horas
- * - RangeSlider: Slider de intervalo
- * - SearchInput: Campo de busca com sugestões
- * - PhoneInput: Campo de telefone internacional
- *
- * @module @rainersoft/ui/forms
- * @category Forms
- */
-export * from './checkbox';
-export * from './label';
-export * from './radio-group';
-export * from './select';
-export * from './file-upload';
-export * from './date-picker';
-export * from './time-picker';
-export * from './range-slider';
-export * from './search-input';
-export * from './phone-input';
+export { Checkbox } from './checkbox.js';
+export { Label } from './label.js';
+export { RadioGroup, RadioGroupItem } from './radio-group.js';
+export { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectScrollDownButton, SelectScrollUpButton, SelectSeparator, SelectTrigger, SelectValue } from './select.js';
+export { FileItem, FileUpload, FileUploadProps } from './file-upload.js';
+export { DatePicker, DatePickerProps, DateRange } from './date-picker.js';
+export { TimePicker, TimePickerProps, TimeValue } from './time-picker.js';
+export { RangeSlider, RangeSliderProps, RangeValue } from './range-slider.js';
+export { SearchInput, SearchInputProps, SearchSuggestion } from './search-input.js';
+export { Country, PhoneInput, PhoneInputProps } from './phone-input.js';
+import 'react';
+import '@radix-ui/react-checkbox';
+import 'class-variance-authority/types';
+import '@radix-ui/react-label';
+import 'class-variance-authority';
+import '@radix-ui/react-radio-group';
+import '@radix-ui/react-select';
+import 'lucide-react/dist/esm/icons/file';

@@ -1,6 +1,23 @@
-import React from 'react';
-import { scrollToElement } from '@rainersoft/utils';
+import * as React from 'react';
 
+function scrollToElement(element, options = {}) {
+  if (typeof window === "undefined") return;
+  const { smooth = false, offset = 0, behavior } = options;
+  let targetElement;
+  if (typeof element === "string") {
+    targetElement = document.querySelector(element);
+  } else {
+    targetElement = element;
+  }
+  if (!targetElement) return;
+  const rect = targetElement.getBoundingClientRect();
+  const absoluteY = rect.top + window.scrollY - offset;
+  window.scrollTo({
+    left: 0,
+    top: absoluteY,
+    behavior: behavior || (smooth ? "smooth" : "auto")
+  });
+}
 function useTableOfContents({
   containerRef,
   headings = ["h2", "h3"],

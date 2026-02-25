@@ -1,28 +1,21 @@
-/**
- * Componente AppLayout
- *
- * Layout principal do aplicativo com header, sidebar e área de conteúdo.
- * Combina TopBar e Sidebar para criar um layout completo.
- *
- * @module @rainersoft/ui/components/layout/app-layout
- * @author Rainer Teixeira
- * @version 1.0.0
- */
+import * as class_variance_authority_types from 'class-variance-authority/types';
 import * as React from 'react';
-import { type VariantProps } from 'class-variance-authority';
-import { TopBarProps } from '../navigation/top-bar';
-import { SidebarProps } from '../navigation/sidebar';
+import { VariantProps } from 'class-variance-authority';
+import { TopBarProps } from '../navigation/top-bar.js';
+import { SidebarProps } from '../navigation/sidebar.js';
+import '../navigation/menu.js';
+
 /**
  * Variantes do AppLayout
  */
 declare const appLayoutVariants: (props?: {
     variant?: "dark" | "default" | "neon" | "glass";
     sidebarPosition?: "left" | "right";
-} & import("class-variance-authority/types").ClassProp) => string;
+} & class_variance_authority_types.ClassProp) => string;
 /**
  * Props do AppLayout
  */
-export interface AppLayoutProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof appLayoutVariants> {
+interface AppLayoutProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof appLayoutVariants> {
     /** Props do TopBar */
     topBar?: Partial<TopBarProps>;
     /** Props do Sidebar */
@@ -88,21 +81,22 @@ export interface AppLayoutProps extends React.HTMLAttributes<HTMLDivElement>, Va
  * </AppLayout>
  * ```
  */
-export declare const AppLayout: React.ForwardRefExoticComponent<AppLayoutProps & React.RefAttributes<HTMLDivElement>>;
+declare const AppLayout: React.ForwardRefExoticComponent<AppLayoutProps & React.RefAttributes<HTMLDivElement>>;
 /**
  * AppLayoutContent - Container para o conteúdo principal
  */
-export interface AppLayoutContentProps extends React.HTMLAttributes<HTMLDivElement> {
+interface AppLayoutContentProps extends React.HTMLAttributes<HTMLDivElement> {
 }
-export declare const AppLayoutContent: React.ForwardRefExoticComponent<AppLayoutContentProps & React.RefAttributes<HTMLDivElement>>;
+declare const AppLayoutContent: React.ForwardRefExoticComponent<AppLayoutContentProps & React.RefAttributes<HTMLDivElement>>;
 /**
  * AppLayoutSection - Seção dentro do conteúdo
  */
-export interface AppLayoutSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+interface AppLayoutSectionProps extends React.HTMLAttributes<HTMLDivElement> {
     /** Título da seção */
     title?: string;
     /** Descrição da seção */
     description?: string;
 }
-export declare const AppLayoutSection: React.ForwardRefExoticComponent<AppLayoutSectionProps & React.RefAttributes<HTMLDivElement>>;
-export {};
+declare const AppLayoutSection: React.ForwardRefExoticComponent<AppLayoutSectionProps & React.RefAttributes<HTMLDivElement>>;
+
+export { AppLayout, AppLayoutContent, type AppLayoutContentProps, type AppLayoutProps, AppLayoutSection, type AppLayoutSectionProps };

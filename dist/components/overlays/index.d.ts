@@ -1,28 +1,20 @@
-/**
- * Overlay Components - Componentes Sobrepostos
- *
- * Componentes que aparecem sobre o conteúdo:
- * - Dialog: Diálogos modais
- * - Popover: Popovers contextuais
- * - Tooltip: Dicas de ferramentas
- * - DropdownMenu: Menus dropdown
- * - ContextMenu: Menus de contexto
- * - HoverCard: Cards ao passar o mouse
- * - Modal: Janela modal completa
- * - Drawer: Gaveta deslizante
- * - Lightbox: Visualizador de mídia
- * - ConfirmDialog: Diálogo de confirmação
- *
- * @module @rainersoft/ui/overlays
- * @category Overlays
- */
-export * from './context-menu';
-export * from './dialog';
-export * from './dropdown-menu';
-export * from './hover-card';
-export * from './popover';
-export * from './tooltip';
-export * from './modal';
-export * from './drawer';
-export * from './lightbox';
-export * from './confirm-dialog';
+export { ContextMenu, ContextMenuCheckboxItem, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuLabel, ContextMenuPortal, ContextMenuRadioGroup, ContextMenuRadioItem, ContextMenuSeparator, ContextMenuShortcut, ContextMenuSub, ContextMenuSubContent, ContextMenuSubTrigger, ContextMenuTrigger } from './context-menu.js';
+export { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogOverlay, DialogPortal, DialogTitle, DialogTrigger } from './dialog.js';
+export { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuRadioGroup, DropdownMenuRadioItem, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from './dropdown-menu.js';
+export { HoverCard, HoverCardContent, HoverCardTrigger } from './hover-card.js';
+export { Popover, PopoverContent, PopoverTrigger } from './popover.js';
+export { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './tooltip.js';
+export { Modal, ModalContent, ModalContentProps, ModalFooter, ModalFooterProps, ModalHeader, ModalHeaderProps, ModalProps, ModalTrigger, ModalTriggerProps } from './modal.js';
+export { Drawer, DrawerContent, DrawerContentProps, DrawerFooter, DrawerFooterProps, DrawerHeader, DrawerHeaderProps, DrawerProps, DrawerTrigger, DrawerTriggerProps } from './drawer.js';
+export { Lightbox, LightboxItem, LightboxProps, MediaType } from './lightbox.js';
+export { ConfirmDialog, ConfirmDialogProps, UseConfirmOptions, useConfirm } from './confirm-dialog.js';
+import 'react/jsx-runtime';
+import '@radix-ui/react-context-menu';
+import 'react';
+import '@radix-ui/react-dialog';
+import '@radix-ui/react-dropdown-menu';
+import '@radix-ui/react-hover-card';
+import '@radix-ui/react-popover';
+import '@radix-ui/react-tooltip';
+import 'class-variance-authority/types';
+import 'class-variance-authority';

@@ -1,19 +1,9 @@
-/**
- * Dashboard Components
- *
- * Componentes reutilizáveis para dashboards e painéis administrativos.
- * Inclui cards de estatísticas, gráficos, formulários e utilitários.
- *
- * @module @rainersoft/ui/dashboard
- * @category Dashboard
- * @author Rainer Teixeira
- * @version 1.0.0
- */
-export { StatsCards } from './stats-cards';
-export type { StatsCardsProps } from './stats-cards';
-export { QuickStats } from './quick-stats';
-export { QuickActions } from './quick-actions';
-export { AnalyticsOverview } from './analytics-overview';
-export { StatsOverview } from './stats-overview';
-export { RecentPostsList } from './recent-posts-list';
-export { HelpCenter } from './help-center';
+export { StatsCards, StatsCardsProps } from './stats-cards.js';
+export { QuickStats } from './quick-stats.js';
+export { QuickActions } from './quick-actions.js';
+export { AnalyticsOverview } from './analytics-overview.js';
+export { StatsOverview } from './stats-overview.js';
+export { RecentPostsList } from './recent-posts-list.js';
+export { HelpCenter } from './help-center.js';
+import 'react/jsx-runtime';
+import 'react';

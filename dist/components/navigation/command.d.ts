@@ -1,13 +1,8 @@
-/**
- * Command Component (shadcn/ui)
- *
- * Command palette (Ctrl+K style)
- *
- * @fileoverview Command palette component
- * @author Rainer Teixeira
- */
-import { Dialog } from "../overlays/dialog";
-import * as React from "react";
+import * as react_jsx_runtime from 'react/jsx-runtime';
+import { Dialog } from '../overlays/dialog.js';
+import * as React from 'react';
+import '@radix-ui/react-dialog';
+
 declare const Command: React.ForwardRefExoticComponent<Omit<{
     children?: React.ReactNode;
 } & Pick<Pick<React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, "key" | keyof React.HTMLAttributes<HTMLDivElement>> & {
@@ -25,7 +20,7 @@ declare const Command: React.ForwardRefExoticComponent<Omit<{
     disablePointerSelection?: boolean;
     vimBindings?: boolean;
 } & React.RefAttributes<HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
-declare const CommandDialog: ({ children, ...props }: React.ComponentProps<typeof Dialog>) => import("react/jsx-runtime").JSX.Element;
+declare const CommandDialog: ({ children, ...props }: React.ComponentProps<typeof Dialog>) => react_jsx_runtime.JSX.Element;
 declare const CommandInput: React.ForwardRefExoticComponent<Omit<Omit<Pick<Pick<React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>, "key" | keyof React.InputHTMLAttributes<HTMLInputElement>> & {
     ref?: React.Ref<HTMLInputElement>;
 } & {
@@ -82,7 +77,8 @@ declare const CommandItem: React.ForwardRefExoticComponent<Omit<{
     forceMount?: boolean;
 } & React.RefAttributes<HTMLDivElement>, "ref"> & React.RefAttributes<HTMLDivElement>>;
 declare const CommandShortcut: {
-    ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>): import("react/jsx-runtime").JSX.Element;
+    ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>): react_jsx_runtime.JSX.Element;
     displayName: string;
 };
-export { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut, };
+
+export { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut };

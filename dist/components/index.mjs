@@ -3,7 +3,7 @@ import React64__default, { memo, createContext, useState, useCallback, useEffect
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
-import { getInitials, scrollToElement } from '@rainersoft/utils';
+import { getInitials } from '@rainersoft/utils';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import { Slot } from '@radix-ui/react-slot';
 import { cva } from 'class-variance-authority';
@@ -12958,6 +12958,24 @@ function useCarouselKeyboard({
     progress: totalItems > 0 ? (currentIndex + 1) / totalItems * 100 : 0
   };
 }
+function scrollToElement(element, options = {}) {
+  if (typeof window === "undefined") return;
+  const { smooth = false, offset = 0, behavior } = options;
+  let targetElement;
+  if (typeof element === "string") {
+    targetElement = document.querySelector(element);
+  } else {
+    targetElement = element;
+  }
+  if (!targetElement) return;
+  const rect = targetElement.getBoundingClientRect();
+  const absoluteY = rect.top + window.scrollY - offset;
+  window.scrollTo({
+    left: 0,
+    top: absoluteY,
+    behavior: behavior || (smooth ? "smooth" : "auto")
+  });
+}
 function useTableOfContents({
   containerRef,
   headings = ["h2", "h3"],
@@ -12969,9 +12987,9 @@ function useTableOfContents({
     activeOnScroll = true,
     nested = true
   } = options;
-  const [items, setItems] = React64__default.useState([]);
-  const [activeId, setActiveId] = React64__default.useState(null);
-  const generateTOC = React64__default.useCallback(() => {
+  const [items, setItems] = React64.useState([]);
+  const [activeId, setActiveId] = React64.useState(null);
+  const generateTOC = React64.useCallback(() => {
     const container = containerRef?.current;
     if (!container) return [];
     const headingElements = container.querySelectorAll(headings.join(", "));
@@ -12992,11 +13010,11 @@ function useTableOfContents({
     });
     return tocItems;
   }, [containerRef, headings]);
-  React64__default.useEffect(() => {
+  React64.useEffect(() => {
     const tocItems = generateTOC();
     setItems(tocItems);
   }, [generateTOC]);
-  const scrollToItem = React64__default.useCallback((itemId) => {
+  const scrollToItem = React64.useCallback((itemId) => {
     const element = document.getElementById(itemId);
     if (!element) return;
     scrollToElement(element, {
@@ -13005,7 +13023,7 @@ function useTableOfContents({
     });
     setActiveId(itemId);
   }, [offset, smoothScroll]);
-  React64__default.useEffect(() => {
+  React64.useEffect(() => {
     if (!activeOnScroll || items.length === 0) return;
     const observer = new IntersectionObserver(
       (entries) => {
@@ -13033,7 +13051,7 @@ function useTableOfContents({
       });
     };
   }, [activeOnScroll, items, offset]);
-  const nestedItems = React64__default.useMemo(() => {
+  const nestedItems = React64.useMemo(() => {
     if (!nested) return items;
     const result = [];
     const stack = [];
@@ -13051,7 +13069,7 @@ function useTableOfContents({
     });
     return result;
   }, [items, nested]);
-  const renderItem = React64__default.useCallback((item, depth = 0) => {
+  const renderItem = React64.useCallback((item, depth = 0) => {
     const isActive = item.id === activeId;
     const hasChildren = "children" in item && item.children && item.children.length > 0;
     return {
@@ -13062,7 +13080,7 @@ function useTableOfContents({
       scrollTo: () => scrollToItem(item.id)
     };
   }, [activeId, scrollToItem]);
-  const renderItems = React64__default.useCallback(() => {
+  const renderItems = React64.useCallback(() => {
     const flatItems = [];
     const flatten = (items2, depth = 0) => {
       items2.forEach((item) => {
@@ -13075,7 +13093,7 @@ function useTableOfContents({
     flatten(nestedItems);
     return flatItems;
   }, [nestedItems, renderItem]);
-  const stats = React64__default.useMemo(() => {
+  const stats = React64.useMemo(() => {
     const levelCounts = {};
     items.forEach((item) => {
       levelCounts[item.level] = (levelCounts[item.level] || 0) + 1;
@@ -13088,11 +13106,11 @@ function useTableOfContents({
       activeIndex: items.findIndex((item) => item.id === activeId)
     };
   }, [items, activeId]);
-  const refresh = React64__default.useCallback(() => {
+  const refresh = React64.useCallback(() => {
     const tocItems = generateTOC();
     setItems(tocItems);
   }, [generateTOC]);
-  const reset = React64__default.useCallback(() => {
+  const reset = React64.useCallback(() => {
     setItems([]);
     setActiveId(null);
   }, []);

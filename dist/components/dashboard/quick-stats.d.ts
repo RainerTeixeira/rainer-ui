@@ -1,3 +1,7 @@
+import React__default from 'react';
+import { MetricCardItem } from './stats-cards.js';
+import 'react/jsx-runtime';
+
 /**
  * Componente de Estatísticas Rápidas para Dashboard
  *
@@ -38,8 +42,7 @@
  * - Animações com hardware acceleration
  * - Lazy loading de recursos visuais
  */
-import React from 'react';
-import { type MetricCardItem } from './stats-cards';
+
 /**
  * Representa uma métrica individual no dashboard
  *
@@ -54,7 +57,7 @@ import { type MetricCardItem } from './stats-cards';
  * @property {string} [description] - Texto explicativo adicional (opcional)
  * @property {boolean} [isLoading] - Indica se os dados estão sendo carregados
  */
-export interface StatItem extends MetricCardItem {
+interface StatItem extends MetricCardItem {
 }
 /**
  * Propriedades do componente QuickStats
@@ -66,7 +69,7 @@ export interface StatItem extends MetricCardItem {
  * @property {string} [className] - Classes CSS adicionais para o container
  * @property {'light' | 'dark' | 'auto'} [theme] - Tema de exibição dos cards
  */
-export interface QuickStatsProps {
+interface QuickStatsProps {
     stats?: StatItem[];
     animationDelay?: number;
     className?: string;
@@ -119,7 +122,7 @@ export interface QuickStatsProps {
  * - Animações otimizadas
  * - Renderização condicional
  */
-declare function QuickStatsComponent({ stats, animationDelay, className, theme }: QuickStatsProps): React.ReactElement;
+declare function QuickStatsComponent({ stats, animationDelay, className, theme }: QuickStatsProps): React__default.ReactElement;
 /**
  * Componente QuickStats memoizado para performance otimizada
  *
@@ -127,5 +130,6 @@ declare function QuickStatsComponent({ stats, animationDelay, className, theme }
  * Utiliza React.memo para evitar re-renderizações desnecessárias
  * quando as props não mudam.
  */
-export declare const QuickStats: React.MemoExoticComponent<typeof QuickStatsComponent>;
-export default QuickStats;
+declare const QuickStats: React__default.MemoExoticComponent<typeof QuickStatsComponent>;
+
+export { QuickStats, type QuickStatsProps, type StatItem, QuickStats as default };

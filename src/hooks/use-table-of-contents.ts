@@ -14,8 +14,43 @@
  */
 
 // Importar React
-import React from 'react';
-import { scrollToElement } from '@rainersoft/utils';
+import * as React from 'react';
+
+
+/**
+ * Implementação local de scrollToElement para evitar problemas de dependências
+ */
+function scrollToElement(
+  element: string | Element,
+  options: {
+    smooth?: boolean;
+    offset?: number;
+    behavior?: ScrollBehavior;
+  } = {}
+): void {
+  if (typeof window === 'undefined') return;
+  
+  const { smooth = false, offset = 0, behavior } = options;
+  
+  let targetElement: Element | null;
+  
+  if (typeof element === 'string') {
+    targetElement = document.querySelector(element);
+  } else {
+    targetElement = element;
+  }
+  
+  if (!targetElement) return;
+  
+  const rect = targetElement.getBoundingClientRect();
+  const absoluteY = rect.top + window.scrollY - offset;
+  
+  window.scrollTo({
+    left: 0,
+    top: absoluteY,
+    behavior: behavior || (smooth ? 'smooth' : 'auto')
+  });
+}
 
 export function useTableOfContents({
   containerRef,

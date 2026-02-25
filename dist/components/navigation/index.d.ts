@@ -1,29 +1,21 @@
-/**
- * Navigation Components - Componentes de Navegação
- *
- * Componentes para navegação e organização:
- * - Accordion: Painéis expansíveis
- * - Tabs: Abas de navegação
- * - NavigationMenu: Menus de navegação
- * - Collapsible: Conteúdo retrátil
- * - Command: Paleta de comandos
- * - Menu: Menu dropdown
- * - Pagination: Sistema de paginação
- * - Steps: Indicador de etapas
- * - Sidebar: Barra lateral
- * - TopBar: Barra superior
- *
- * @module @rainersoft/ui/navigation
- * @category Navigation
- */
-export * from './BackToTop';
-export * from './accordion';
-export * from './collapsible';
-export * from './command';
-export * from './navigation-menu';
-export * from './tabs';
-export * from './menu';
-export * from './pagination';
-export * from './steps';
-export * from './sidebar';
-export * from './top-bar';
+export { BackToTop, BackToTopButton } from './BackToTop.js';
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './accordion.js';
+export { Collapsible, CollapsibleContent, CollapsibleTrigger } from './collapsible.js';
+export { Command, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator, CommandShortcut } from './command.js';
+export { NavigationMenu, NavigationMenuContent, NavigationMenuIndicator, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, NavigationMenuViewport, navigationMenuTriggerStyle } from './navigation-menu.js';
+export { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs.js';
+export { Menu, MenuBar, MenuBarProps, MenuItem, MenuProps, NavigationContextMenu, NavigationContextMenuProps } from './menu.js';
+export { Pagination, PaginationCompact, PaginationCompactProps, PaginationInfo, PaginationInfoProps, PaginationProps } from './pagination.js';
+export { Step, StepItem, StepItemProps, StepStatus, Steps, StepsProps } from './steps.js';
+export { Sidebar, SidebarProps, SidebarTrigger, SidebarTriggerProps } from './sidebar.js';
+export { TopBar, TopBarActions, TopBarActionsProps, TopBarProps, TopBarTitle, TopBarTitleProps } from './top-bar.js';
+import 'react/jsx-runtime';
+import '@radix-ui/react-accordion';
+import 'react';
+import '@radix-ui/react-collapsible';
+import '../overlays/dialog.js';
+import '@radix-ui/react-dialog';
+import 'class-variance-authority/types';
+import '@radix-ui/react-navigation-menu';
+import '@radix-ui/react-tabs';
+import 'class-variance-authority';

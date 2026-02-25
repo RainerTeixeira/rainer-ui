@@ -1,16 +1,8 @@
-/**
- * Componente Sidebar
- *
- * Barra lateral navegável com colapso.
- * Suporta menus, perfil e ações customizadas.
- *
- * @module @rainersoft/ui/components/navigation/sidebar
- * @author Rainer Teixeira
- * @version 1.0.0
- */
+import * as class_variance_authority_types from 'class-variance-authority/types';
 import * as React from 'react';
-import { type VariantProps } from 'class-variance-authority';
-import { MenuItem } from './menu';
+import { VariantProps } from 'class-variance-authority';
+import { MenuItem } from './menu.js';
+
 /**
  * Variantes do Sidebar
  */
@@ -18,11 +10,11 @@ declare const sidebarVariants: (props?: {
     variant?: "dark" | "default" | "neon" | "glass";
     size?: "sm" | "md" | "lg" | "xl";
     position?: "top" | "bottom" | "left" | "right";
-} & import("class-variance-authority/types").ClassProp) => string;
+} & class_variance_authority_types.ClassProp) => string;
 /**
  * Props do Sidebar
  */
-export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof sidebarVariants> {
+interface SidebarProps extends React.HTMLAttributes<HTMLDivElement>, VariantProps<typeof sidebarVariants> {
     /** Se está colapsado */
     collapsed?: boolean;
     /** Callback quando colapsa/expande */
@@ -81,13 +73,14 @@ export interface SidebarProps extends React.HTMLAttributes<HTMLDivElement>, Vari
  * />
  * ```
  */
-export declare const Sidebar: React.ForwardRefExoticComponent<SidebarProps & React.RefAttributes<HTMLDivElement>>;
+declare const Sidebar: React.ForwardRefExoticComponent<SidebarProps & React.RefAttributes<HTMLDivElement>>;
 /**
  * SidebarTrigger - Botão para abrir sidebar (overlay)
  */
-export interface SidebarTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface SidebarTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     /** Sidebar alvo */
     sidebarId?: string;
 }
-export declare const SidebarTrigger: React.ForwardRefExoticComponent<SidebarTriggerProps & React.RefAttributes<HTMLButtonElement>>;
-export {};
+declare const SidebarTrigger: React.ForwardRefExoticComponent<SidebarTriggerProps & React.RefAttributes<HTMLButtonElement>>;
+
+export { Sidebar, type SidebarProps, SidebarTrigger, type SidebarTriggerProps };

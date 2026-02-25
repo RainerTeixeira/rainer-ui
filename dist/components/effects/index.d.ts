@@ -1,18 +1,7 @@
-/**
- * Effects Components
- *
- * Componentes de efeitos visuais e animações para backgrounds e interfaces
- * - CelestialBackground: Background celestial com estrelas e nebulosas
- * - FloatingGrid: Grid futurista cyberpunk animado
- * - MatrixBackground: Chuva de caracteres binários estilo Matrix
- * - ParticlesEffect: Partículas decorativas animadas
- * - StarsBackground: Céu estrelado animado
- *
- * @module @rainersoft/ui/effects
- * @category Effects
- */
-export { CelestialBackground } from './CelestialBackground';
-export { FloatingGrid } from './FloatingGrid';
-export { MatrixBackground } from './MatrixBackground';
-export { StarsBackground } from './StarsBackground';
-export { ParticlesEffect } from './ParticlesEffect';
+export { CelestialBackground } from './CelestialBackground.js';
+export { FloatingGrid } from './FloatingGrid.js';
+export { MatrixBackground } from './MatrixBackground.js';
+export { StarsBackground } from './StarsBackground.js';
+export { ParticlesEffect } from './ParticlesEffect.js';
+import 'react/jsx-runtime';
+import 'react';

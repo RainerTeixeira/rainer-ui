@@ -1,17 +1,7 @@
-/**
- * Content Components - Componentes de Conteúdo
- *
- * Componentes para exibição de conteúdo:
- * - Kbd: Indicador de teclas do teclado
- * - Code: Exibição de código
- * - Quote: Citações e depoimentos
- * - Blockquote: Bloco de citação
- * - Highlight: Destaque de texto
- * - Typography: Tipografia
- *
- * @module @rainersoft/ui/content
- * @category Content
- */
-export * from './Kbd';
-export * from './Code';
-export * from './Quote';
+export { Kbd, KbdCombo, KbdComboProps, KbdProps, KeyboardShortcuts } from './Kbd.js';
+export { Code, CodeBlock, CodeBlockProps, CodeInline, CodeInlineProps, CodeProps } from './Code.js';
+export { Quote, QuoteBlock, QuoteBlockProps, QuoteProps, QuoteTestimonial, QuoteTestimonialProps } from './Quote.js';
+import 'react/jsx-runtime';
+import 'class-variance-authority/types';
+import 'react';
+import 'class-variance-authority';
