@@ -4,7 +4,6 @@ var React10 = require('react');
 var CheckboxPrimitive = require('@radix-ui/react-checkbox');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
-var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
 var lucideReact = require('lucide-react');
 var jsxRuntime = require('react/jsx-runtime');
 var LabelPrimitive = require('@radix-ui/react-label');
@@ -50,7 +49,6 @@ function _interopNamespace(e) {
 
 var React10__namespace = /*#__PURE__*/_interopNamespace(React10);
 var CheckboxPrimitive__namespace = /*#__PURE__*/_interopNamespace(CheckboxPrimitive);
-var tokensData__default = /*#__PURE__*/_interopDefault(tokensData);
 var LabelPrimitive__namespace = /*#__PURE__*/_interopNamespace(LabelPrimitive);
 var RadioGroupPrimitive__namespace = /*#__PURE__*/_interopNamespace(RadioGroupPrimitive);
 var SelectPrimitive__namespace = /*#__PURE__*/_interopNamespace(SelectPrimitive);
@@ -69,7 +67,36 @@ var Search__default = /*#__PURE__*/_interopDefault(Search);
 var Globe__default = /*#__PURE__*/_interopDefault(Globe);
 var Phone__default = /*#__PURE__*/_interopDefault(Phone);
 
-var tokens = tokensData__default.default;
+// ../rainer-design-tokens/formats/tokens.json
+var tokens_default = {
+  primitives: {
+    motion: {
+      duration: {
+        fast: "100ms",
+        normal: "200ms",
+        slow: "300ms"},
+      easing: {
+        easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+        easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+        spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      },
+      delay: {
+        }
+    },
+    zIndex: {
+      base: 0,
+      content: 100,
+      overlay: 200,
+      dropdown: 300,
+      modal: 400,
+      tooltip: 500,
+      notification: 600,
+      max: 9999
+    }
+  }};
+
+// src/lib/tokens.ts
+var tokens = tokens_default;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -102,11 +129,8 @@ animationEasings.spring ?? easeInOut;
 var fallbackMotionSemantic = {
   };
 tokens.semantics?.motion ?? fallbackMotionSemantic;
-tokens.themes?.light ?? {};
-tokens.themes?.dark ?? {};
 tokens.semantics?.layoutClasses?.components ?? {};
 tokens.semantics?.layoutClasses?.sections ?? {};
-tokens.primitives?.gradientDirections ?? {};
 var Checkbox = React10__namespace.forwardRef(({ className, ...props }, ref) => /* @__PURE__ */ jsxRuntime.jsx(
   CheckboxPrimitive__namespace.Root,
   {

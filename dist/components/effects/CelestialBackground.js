@@ -5,14 +5,38 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var react = require('react');
 require('clsx');
 require('tailwind-merge');
-var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
 var jsxRuntime = require('react/jsx-runtime');
 
-function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
+// ../rainer-design-tokens/formats/tokens.json
+var tokens_default = {
+  primitives: {
+    motion: {
+      duration: {
+        fast: "100ms",
+        normal: "200ms",
+        slow: "300ms"},
+      easing: {
+        easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+        easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+        spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      },
+      delay: {
+        }
+    },
+    zIndex: {
+      base: 0,
+      content: 100,
+      overlay: 200,
+      dropdown: 300,
+      modal: 400,
+      tooltip: 500,
+      notification: 600,
+      max: 9999
+    }
+  }};
 
-var tokensData__default = /*#__PURE__*/_interopDefault(tokensData);
-
-var tokens = tokensData__default.default;
+// src/lib/tokens.ts
+var tokens = tokens_default;
 var primitiveZIndex = tokens.primitives?.zIndex ?? {};
 var getZIndexValue = (key, fallback) => {
   const value = primitiveZIndex?.[key];
@@ -42,8 +66,6 @@ animationEasings.spring ?? easeInOut;
 var fallbackMotionSemantic = {
   };
 tokens.semantics?.motion ?? fallbackMotionSemantic;
-tokens.themes?.light ?? {};
-tokens.themes?.dark ?? {};
 tokens.semantics?.layoutClasses?.components ?? {};
 tokens.semantics?.layoutClasses?.sections ?? {};
 var defaultGradientDirections = {

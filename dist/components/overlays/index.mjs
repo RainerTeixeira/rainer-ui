@@ -3,7 +3,6 @@ import * as React9 from 'react';
 import { ChevronRight, Check, X } from 'lucide-react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import { Overlay, Portal as Portal$1, Content as Content$1, Close, Title, Description, Root as Root$1, Trigger as Trigger$1 } from '@radix-ui/react-dialog';
 import { SubTrigger as SubTrigger$1, SubContent as SubContent$1, Portal as Portal$2, Content as Content$2, Item as Item$1, CheckboxItem as CheckboxItem$1, ItemIndicator as ItemIndicator$1, RadioItem as RadioItem$1, Label as Label$1, Separator as Separator$1, Root as Root$2, Group as Group$1, RadioGroup as RadioGroup$1, Sub as Sub$1, Trigger as Trigger$2 } from '@radix-ui/react-dropdown-menu';
@@ -27,7 +26,36 @@ import AlertTriangle from 'lucide-react/dist/esm/icons/alert-triangle';
 import CheckCircle from 'lucide-react/dist/esm/icons/check-circle';
 import Info from 'lucide-react/dist/esm/icons/info';
 
-var tokens = tokensData;
+// ../rainer-design-tokens/formats/tokens.json
+var tokens_default = {
+  primitives: {
+    motion: {
+      duration: {
+        fast: "100ms",
+        normal: "200ms",
+        slow: "300ms"},
+      easing: {
+        easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+        easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+        spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      },
+      delay: {
+        }
+    },
+    zIndex: {
+      base: 0,
+      content: 100,
+      overlay: 200,
+      dropdown: 300,
+      modal: 400,
+      tooltip: 500,
+      notification: 600,
+      max: 9999
+    }
+  }};
+
+// src/lib/tokens.ts
+var tokens = tokens_default;
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -68,11 +96,8 @@ var MOTION = {
   TRANSITION: {
     DEFAULT: "transition-all duration-200 ease-in-out"}
 };
-tokens.themes?.light ?? {};
-tokens.themes?.dark ?? {};
 tokens.semantics?.layoutClasses?.components ?? {};
 tokens.semantics?.layoutClasses?.sections ?? {};
-tokens.primitives?.gradientDirections ?? {};
 var ContextMenu = Root;
 var ContextMenuTrigger = Trigger;
 var ContextMenuGroup = Group;

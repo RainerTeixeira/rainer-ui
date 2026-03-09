@@ -145,7 +145,11 @@ export * from './hooks/use-theme';
 export * from './hooks/use-carousel-keyboard';
 export * from './hooks/use-table-of-contents';
 
-// ============================================================================
-// PROVIDERS
-// ============================================================================
-export { ThemeProvider } from './components/providers/theme-provider';
+// Exportar componentes de infraestrutura diretamente para compatibilidade
+export { LoadingScreen } from './components/infrastructure';
+
+// Exportar componentes de efeitos diretamente para compatibilidade  
+export { StarsBackground } from './components/effects';
+
+// Exportar utilitários
+export { ThemeToggle } from './components/utilities';

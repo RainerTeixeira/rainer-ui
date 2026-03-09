@@ -3,7 +3,6 @@
 var React64 = require('react');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
-var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
 var utils = require('@rainersoft/utils');
 var jsxRuntime = require('react/jsx-runtime');
 var reactSlot = require('@radix-ui/react-slot');
@@ -121,7 +120,6 @@ function _interopNamespace(e) {
 }
 
 var React64__namespace = /*#__PURE__*/_interopNamespace(React64);
-var tokensData__default = /*#__PURE__*/_interopDefault(tokensData);
 var SliderPrimitive__namespace = /*#__PURE__*/_interopNamespace(SliderPrimitive);
 var SwitchPrimitives__namespace = /*#__PURE__*/_interopNamespace(SwitchPrimitives);
 var TogglePrimitive__namespace = /*#__PURE__*/_interopNamespace(TogglePrimitive);
@@ -205,7 +203,38 @@ var QuoteIcon__default = /*#__PURE__*/_interopDefault(QuoteIcon);
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-var tokens = tokensData__default.default;
+
+// ../rainer-design-tokens/formats/tokens.json
+var tokens_default = {
+  primitives: {
+    motion: {
+      duration: {
+        fast: "100ms",
+        normal: "200ms",
+        slow: "300ms"},
+      easing: {
+        easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+        easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+        spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      },
+      delay: {
+        short: "50ms",
+        long: "200ms"}
+    },
+    zIndex: {
+      base: 0,
+      content: 100,
+      overlay: 200,
+      dropdown: 300,
+      modal: 400,
+      tooltip: 500,
+      notification: 600,
+      max: 9999
+    }
+  }};
+
+// src/lib/tokens.ts
+var tokens = tokens_default;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -250,8 +279,6 @@ var MOTION = {
     COLOR: "transition-colors duration-200 ease-in-out",
     TRANSFORM: "transition-transform duration-200 ease-in-out"}
 };
-tokens.themes?.light ?? {};
-tokens.themes?.dark ?? {};
 tokens.semantics?.layoutClasses?.components ?? {};
 tokens.semantics?.layoutClasses?.sections ?? {};
 var defaultGradientDirections = {

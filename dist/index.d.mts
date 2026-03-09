@@ -107,7 +107,6 @@ export { useCarouselKeyboard } from './hooks/use-carousel-keyboard.mjs';
 export { usePWA } from './hooks/use-pwa.mjs';
 export { useTableOfContents } from './hooks/use-table-of-contents.mjs';
 export { Toaster as Sonner, ToasterProps } from 'sonner';
-import '@rainersoft/design-tokens/formats/tokens.json';
 import 'react';
 import 'class-variance-authority/types';
 import 'class-variance-authority';

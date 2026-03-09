@@ -5,7 +5,6 @@ var React9 = require('react');
 var lucideReact = require('lucide-react');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
-var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
 var jsxRuntime = require('react/jsx-runtime');
 var reactDialog = require('@radix-ui/react-dialog');
 var reactDropdownMenu = require('@radix-ui/react-dropdown-menu');
@@ -50,7 +49,6 @@ function _interopNamespace(e) {
 }
 
 var React9__namespace = /*#__PURE__*/_interopNamespace(React9);
-var tokensData__default = /*#__PURE__*/_interopDefault(tokensData);
 var TooltipPrimitive__namespace = /*#__PURE__*/_interopNamespace(TooltipPrimitive);
 var ChevronLeft__default = /*#__PURE__*/_interopDefault(ChevronLeft);
 var ChevronRight3__default = /*#__PURE__*/_interopDefault(ChevronRight3);
@@ -67,7 +65,36 @@ var AlertTriangle__default = /*#__PURE__*/_interopDefault(AlertTriangle);
 var CheckCircle__default = /*#__PURE__*/_interopDefault(CheckCircle);
 var Info__default = /*#__PURE__*/_interopDefault(Info);
 
-var tokens = tokensData__default.default;
+// ../rainer-design-tokens/formats/tokens.json
+var tokens_default = {
+  primitives: {
+    motion: {
+      duration: {
+        fast: "100ms",
+        normal: "200ms",
+        slow: "300ms"},
+      easing: {
+        easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+        easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+        spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      },
+      delay: {
+        }
+    },
+    zIndex: {
+      base: 0,
+      content: 100,
+      overlay: 200,
+      dropdown: 300,
+      modal: 400,
+      tooltip: 500,
+      notification: 600,
+      max: 9999
+    }
+  }};
+
+// src/lib/tokens.ts
+var tokens = tokens_default;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -108,11 +135,8 @@ var MOTION = {
   TRANSITION: {
     DEFAULT: "transition-all duration-200 ease-in-out"}
 };
-tokens.themes?.light ?? {};
-tokens.themes?.dark ?? {};
 tokens.semantics?.layoutClasses?.components ?? {};
 tokens.semantics?.layoutClasses?.sections ?? {};
-tokens.primitives?.gradientDirections ?? {};
 var ContextMenu = reactContextMenu.Root;
 var ContextMenuTrigger = reactContextMenu.Trigger;
 var ContextMenuGroup = reactContextMenu.Group;

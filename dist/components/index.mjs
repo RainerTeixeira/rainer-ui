@@ -2,7 +2,6 @@ import * as React64 from 'react';
 import React64__default, { memo, createContext, useState, useCallback, useEffect, useRef, Component, useMemo } from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
 import { getInitials } from '@rainersoft/utils';
 import { jsxs, jsx, Fragment } from 'react/jsx-runtime';
 import { Slot } from '@radix-ui/react-slot';
@@ -103,7 +102,38 @@ import QuoteIcon from 'lucide-react/dist/esm/icons/quote';
 var __defProp = Object.defineProperty;
 var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __publicField = (obj, key, value) => __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-var tokens = tokensData;
+
+// ../rainer-design-tokens/formats/tokens.json
+var tokens_default = {
+  primitives: {
+    motion: {
+      duration: {
+        fast: "100ms",
+        normal: "200ms",
+        slow: "300ms"},
+      easing: {
+        easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+        easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+        spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      },
+      delay: {
+        short: "50ms",
+        long: "200ms"}
+    },
+    zIndex: {
+      base: 0,
+      content: 100,
+      overlay: 200,
+      dropdown: 300,
+      modal: 400,
+      tooltip: 500,
+      notification: 600,
+      max: 9999
+    }
+  }};
+
+// src/lib/tokens.ts
+var tokens = tokens_default;
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -148,8 +178,6 @@ var MOTION = {
     COLOR: "transition-colors duration-200 ease-in-out",
     TRANSFORM: "transition-transform duration-200 ease-in-out"}
 };
-tokens.themes?.light ?? {};
-tokens.themes?.dark ?? {};
 tokens.semantics?.layoutClasses?.components ?? {};
 tokens.semantics?.layoutClasses?.sections ?? {};
 var defaultGradientDirections = {

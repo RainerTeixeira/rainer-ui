@@ -2,7 +2,6 @@ import * as React8 from 'react';
 import { cva } from 'class-variance-authority';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import * as AlertDialogPrimitive from '@radix-ui/react-alert-dialog';
 import { Slot } from '@radix-ui/react-slot';
@@ -28,7 +27,36 @@ import Check2 from 'lucide-react/dist/esm/icons/check';
 import Info2 from 'lucide-react/dist/esm/icons/info';
 import X from 'lucide-react/dist/esm/icons/x';
 
-var tokens = tokensData;
+// ../rainer-design-tokens/formats/tokens.json
+var tokens_default = {
+  primitives: {
+    motion: {
+      duration: {
+        fast: "100ms",
+        normal: "200ms",
+        slow: "300ms"},
+      easing: {
+        easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+        easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+        spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      },
+      delay: {
+        }
+    },
+    zIndex: {
+      base: 0,
+      content: 100,
+      overlay: 200,
+      dropdown: 300,
+      modal: 400,
+      tooltip: 500,
+      notification: 600,
+      max: 9999
+    }
+  }};
+
+// src/lib/tokens.ts
+var tokens = tokens_default;
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -61,11 +89,8 @@ animationEasings.spring ?? easeInOut;
 var fallbackMotionSemantic = {
   };
 tokens.semantics?.motion ?? fallbackMotionSemantic;
-tokens.themes?.light ?? {};
-tokens.themes?.dark ?? {};
 tokens.semantics?.layoutClasses?.components ?? {};
 tokens.semantics?.layoutClasses?.sections ?? {};
-tokens.primitives?.gradientDirections ?? {};
 var alertVariants = cva(
   "relative w-full rounded-lg border p-4 [&>svg~*]:pl-7 [&>svg+div]:translate-y-[-3px] [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-foreground",
   {

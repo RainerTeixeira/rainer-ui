@@ -5,7 +5,6 @@ import * as React7 from 'react';
 import { useCallback, useState, useEffect } from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
 import { jsx, jsxs, Fragment } from 'react/jsx-runtime';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
 import * as CollapsiblePrimitive from '@radix-ui/react-collapsible';
@@ -26,7 +25,36 @@ import ArrowLeft from 'lucide-react/dist/esm/icons/arrow-left';
 import Bell from 'lucide-react/dist/esm/icons/bell';
 import Search2 from 'lucide-react/dist/esm/icons/search';
 
-var tokens = tokensData;
+// ../rainer-design-tokens/formats/tokens.json
+var tokens_default = {
+  primitives: {
+    motion: {
+      duration: {
+        fast: "100ms",
+        normal: "200ms",
+        slow: "300ms"},
+      easing: {
+        easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+        easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+        spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      },
+      delay: {
+        }
+    },
+    zIndex: {
+      base: 0,
+      content: 100,
+      overlay: 200,
+      dropdown: 300,
+      modal: 400,
+      tooltip: 500,
+      notification: 600,
+      max: 9999
+    }
+  }};
+
+// src/lib/tokens.ts
+var tokens = tokens_default;
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -70,11 +98,8 @@ var MOTION = {
     COLOR: "transition-colors duration-200 ease-in-out",
     TRANSFORM: "transition-transform duration-200 ease-in-out"}
 };
-tokens.themes?.light ?? {};
-tokens.themes?.dark ?? {};
 tokens.semantics?.layoutClasses?.components ?? {};
 tokens.semantics?.layoutClasses?.sections ?? {};
-tokens.primitives?.gradientDirections ?? {};
 var buttonVariants = cva(
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {

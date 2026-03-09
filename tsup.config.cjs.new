@@ -105,10 +105,6 @@ module.exports = defineConfig({
     options.banner = {
       js: '"use client"',
     };
-    // Configurar aliases para resolução de paths
-    options.alias = {
-      '@rainersoft/design-tokens': '../../../rainer-design-tokens',
-    };
     // Silencia avisos "use client" ignorados ao fazer bundle
     options.logOverride = {
       'ignored-directive': 'silent',

@@ -1,11 +1,40 @@
 import { memo, useState, useCallback, useEffect, useRef } from 'react';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
-import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
 import { jsxs, Fragment, jsx } from 'react/jsx-runtime';
 import { useTheme } from 'next-themes';
 
-var tokens = tokensData;
+// ../rainer-design-tokens/formats/tokens.json
+var tokens_default = {
+  primitives: {
+    motion: {
+      duration: {
+        fast: "100ms",
+        normal: "200ms",
+        slow: "300ms"},
+      easing: {
+        easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+        easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+        spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      },
+      delay: {
+        short: "50ms",
+        long: "200ms"}
+    },
+    zIndex: {
+      base: 0,
+      content: 100,
+      overlay: 200,
+      dropdown: 300,
+      modal: 400,
+      tooltip: 500,
+      notification: 600,
+      max: 9999
+    }
+  }};
+
+// src/lib/tokens.ts
+var tokens = tokens_default;
 function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
@@ -39,8 +68,6 @@ animationEasings.spring ?? easeInOut;
 var fallbackMotionSemantic = {
   };
 tokens.semantics?.motion ?? fallbackMotionSemantic;
-tokens.themes?.light ?? {};
-tokens.themes?.dark ?? {};
 tokens.semantics?.layoutClasses?.components ?? {};
 tokens.semantics?.layoutClasses?.sections ?? {};
 var defaultGradientDirections = {

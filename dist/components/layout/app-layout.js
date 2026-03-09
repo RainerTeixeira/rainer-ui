@@ -4,7 +4,6 @@ var React3 = require('react');
 var classVarianceAuthority = require('class-variance-authority');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
-var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
 var MoreVertical = require('lucide-react/dist/esm/icons/more-vertical');
 var ArrowLeft = require('lucide-react/dist/esm/icons/arrow-left');
 var Bell = require('lucide-react/dist/esm/icons/bell');
@@ -40,7 +39,6 @@ function _interopNamespace(e) {
 }
 
 var React3__namespace = /*#__PURE__*/_interopNamespace(React3);
-var tokensData__default = /*#__PURE__*/_interopDefault(tokensData);
 var MoreVertical__default = /*#__PURE__*/_interopDefault(MoreVertical);
 var ArrowLeft__default = /*#__PURE__*/_interopDefault(ArrowLeft);
 var Bell__default = /*#__PURE__*/_interopDefault(Bell);
@@ -53,7 +51,36 @@ var ChevronRight__default = /*#__PURE__*/_interopDefault(ChevronRight);
 var User__default = /*#__PURE__*/_interopDefault(User);
 var X__default = /*#__PURE__*/_interopDefault(X);
 
-var tokens = tokensData__default.default;
+// ../rainer-design-tokens/formats/tokens.json
+var tokens_default = {
+  primitives: {
+    motion: {
+      duration: {
+        fast: "100ms",
+        normal: "200ms",
+        slow: "300ms"},
+      easing: {
+        easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+        easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+        spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      },
+      delay: {
+        }
+    },
+    zIndex: {
+      base: 0,
+      content: 100,
+      overlay: 200,
+      dropdown: 300,
+      modal: 400,
+      tooltip: 500,
+      notification: 600,
+      max: 9999
+    }
+  }};
+
+// src/lib/tokens.ts
+var tokens = tokens_default;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -86,11 +113,8 @@ animationEasings.spring ?? easeInOut;
 var fallbackMotionSemantic = {
   };
 tokens.semantics?.motion ?? fallbackMotionSemantic;
-tokens.themes?.light ?? {};
-tokens.themes?.dark ?? {};
 tokens.semantics?.layoutClasses?.components ?? {};
 tokens.semantics?.layoutClasses?.sections ?? {};
-tokens.primitives?.gradientDirections ?? {};
 var buttonVariants = classVarianceAuthority.cva(
   'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all duration-200 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*="size-"])]:size-4 shrink-0 [&_svg]:shrink-0 select-none',
   {

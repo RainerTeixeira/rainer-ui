@@ -56,7 +56,7 @@ import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 // Importação dos tokens JSON
-import tokensData from '@rainersoft/design-tokens/formats/tokens.json';
+import tokensData from '../../../rainer-design-tokens/formats/tokens.json';
 
 // ============================================================================
 // TIPAGEM

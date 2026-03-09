@@ -6,7 +6,6 @@ var Star = require('lucide-react/dist/esm/icons/star');
 var StarHalf = require('lucide-react/dist/esm/icons/star-half');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
-var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
 var jsxRuntime = require('react/jsx-runtime');
 
 function _interopDefault (e) { return e && e.__esModule ? e : { default: e }; }
@@ -32,9 +31,37 @@ function _interopNamespace(e) {
 var React__namespace = /*#__PURE__*/_interopNamespace(React);
 var Star__default = /*#__PURE__*/_interopDefault(Star);
 var StarHalf__default = /*#__PURE__*/_interopDefault(StarHalf);
-var tokensData__default = /*#__PURE__*/_interopDefault(tokensData);
 
-var tokens = tokensData__default.default;
+// ../rainer-design-tokens/formats/tokens.json
+var tokens_default = {
+  primitives: {
+    motion: {
+      duration: {
+        fast: "100ms",
+        normal: "200ms",
+        slow: "300ms"},
+      easing: {
+        easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+        easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+        spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      },
+      delay: {
+        }
+    },
+    zIndex: {
+      base: 0,
+      content: 100,
+      overlay: 200,
+      dropdown: 300,
+      modal: 400,
+      tooltip: 500,
+      notification: 600,
+      max: 9999
+    }
+  }};
+
+// src/lib/tokens.ts
+var tokens = tokens_default;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -67,11 +94,8 @@ animationEasings.spring ?? easeInOut;
 var fallbackMotionSemantic = {
   };
 tokens.semantics?.motion ?? fallbackMotionSemantic;
-tokens.themes?.light ?? {};
-tokens.themes?.dark ?? {};
 tokens.semantics?.layoutClasses?.components ?? {};
 tokens.semantics?.layoutClasses?.sections ?? {};
-tokens.primitives?.gradientDirections ?? {};
 var ratingVariants = classVarianceAuthority.cva(
   "flex items-center gap-1",
   {

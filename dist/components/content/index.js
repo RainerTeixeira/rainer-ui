@@ -4,7 +4,6 @@ var React3 = require('react');
 var classVarianceAuthority = require('class-variance-authority');
 var clsx = require('clsx');
 var tailwindMerge = require('tailwind-merge');
-var tokensData = require('@rainersoft/design-tokens/formats/tokens.json');
 var jsxRuntime = require('react/jsx-runtime');
 var Check = require('lucide-react/dist/esm/icons/check');
 var Copy = require('lucide-react/dist/esm/icons/copy');
@@ -32,12 +31,40 @@ function _interopNamespace(e) {
 }
 
 var React3__namespace = /*#__PURE__*/_interopNamespace(React3);
-var tokensData__default = /*#__PURE__*/_interopDefault(tokensData);
 var Check__default = /*#__PURE__*/_interopDefault(Check);
 var Copy__default = /*#__PURE__*/_interopDefault(Copy);
 var QuoteIcon__default = /*#__PURE__*/_interopDefault(QuoteIcon);
 
-var tokens = tokensData__default.default;
+// ../rainer-design-tokens/formats/tokens.json
+var tokens_default = {
+  primitives: {
+    motion: {
+      duration: {
+        fast: "100ms",
+        normal: "200ms",
+        slow: "300ms"},
+      easing: {
+        easeOut: "cubic-bezier(0, 0, 0.2, 1)",
+        easeInOut: "cubic-bezier(0.4, 0, 0.2, 1)",
+        spring: "cubic-bezier(0.68, -0.55, 0.265, 1.55)"
+      },
+      delay: {
+        }
+    },
+    zIndex: {
+      base: 0,
+      content: 100,
+      overlay: 200,
+      dropdown: 300,
+      modal: 400,
+      tooltip: 500,
+      notification: 600,
+      max: 9999
+    }
+  }};
+
+// src/lib/tokens.ts
+var tokens = tokens_default;
 function cn(...inputs) {
   return tailwindMerge.twMerge(clsx.clsx(inputs));
 }
@@ -70,11 +97,8 @@ animationEasings.spring ?? easeInOut;
 var fallbackMotionSemantic = {
   };
 tokens.semantics?.motion ?? fallbackMotionSemantic;
-tokens.themes?.light ?? {};
-tokens.themes?.dark ?? {};
 tokens.semantics?.layoutClasses?.components ?? {};
 tokens.semantics?.layoutClasses?.sections ?? {};
-tokens.primitives?.gradientDirections ?? {};
 var kbdVariants = classVarianceAuthority.cva(
   "inline-flex items-center justify-center rounded border font-mono text-xs font-semibold",
   {
